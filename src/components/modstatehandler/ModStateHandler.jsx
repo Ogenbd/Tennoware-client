@@ -1,0 +1,201 @@
+import React, { Component } from 'react';
+import './ModStateHandler.css';
+
+import ModCardGenerator from '../modcardgenerator/ModCardGenerator';
+
+export class ModStateHandler extends Component {
+  constructor(props) {
+    super(props);
+    this.handler = React.createRef();
+    this.state = {
+      mod: {},
+      handlerActive: false,
+      cardStyle: { transform: 'translate(0, 0)' },
+      topButtons: {},
+      bottomButtons: {}
+    }
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // if (nextProps.mod.name !== prevState.mod.name || (nextProps.mod.name === 'Riven Mod' && nextProps.mod.currRank === prevState.mod.currRank && nextProps.mod.effects !== prevState.mod.effects)) {
+    if (nextProps.mod.name !== prevState.mod.name || (nextProps.mod.name === 'Riven Mod' && nextProps.mod.currRank === prevState.mod.currRank)) {
+      return { mod: nextProps.mod };
+    } else {
+      return null;
+    }
+  }
+
+  updateRank() {
+    this.props.handleRankUpdate(this.props.slot, this.state.mod);
+  }
+
+  handleClick = (e) => {
+    // e.stopPropagation();
+    if (this.props.viewWidth < 1223) {
+      if (this.props.forSwap !== null) {
+        this.props.doSwap(this.props.slot);
+      } else if (this.props.forma) {
+        document.body.classList.add('noscroll');
+        this.props.showPolarityPicker(this.props.slot);
+      } else if (!this.state.mod.name) {
+        this.props.openModPicker(this.props.slot);
+      } else {
+        document.body.classList.add('noscroll');
+        this.activateHandler(e.target.closest('.mod-card-wrapper'));
+      }
+    } else if (this.props.forma) {
+      this.props.showPolarityPicker(this.props.slot);
+    }
+  }
+
+  activateHandler = (element) => {
+    if (!this.state.handlerActive) {
+      let style = {};
+      let topButtons = {};
+      let bottomButtons = {};
+      let viewHeight = window.innerHeight;
+      let viewWidth = this.props.viewWidth;
+      let yCenter = window.pageYOffset;
+      let xPosition = 0;
+      let yPosition = 0;
+      while (element) {
+        xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
+        yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
+        element = element.offsetParent;
+      }
+      style.transform = `translate(${viewWidth / 2 - xPosition - 75}px,${viewHeight / 2 + yCenter - yPosition - 109.775}px) scale(1.3,1.3)`;
+      style.zIndex = 1022;
+      topButtons.top = `${viewHeight / 2 + yCenter - yPosition - 190}px`;
+      topButtons.left = `${viewWidth / 2 - xPosition}px`;
+      bottomButtons.top = `${viewHeight / 2 + yCenter - yPosition + 141}px`;
+      bottomButtons.left = `${viewWidth / 2 - xPosition}px`;
+      this.setState({
+        handlerActive: true,
+        cardStyle: style,
+        topButtons: topButtons,
+        bottomButtons: bottomButtons
+      })
+    }
+  }
+
+  closeHandler = (e) => {
+    e.stopPropagation();
+    document.body.classList.remove('noscroll');
+    this.setState({
+      handlerActive: false,
+      cardStyle: { transform: 'translate(0,0)' }
+    });
+  }
+
+  decRank = (e) => {
+    e.stopPropagation();
+    if (this.state.mod.currRank > 0) {
+      let newMod = { ...this.state.mod };
+      newMod.currRank = newMod.currRank - 1;
+      this.setState({ mod: newMod }, this.updateRank);
+    }
+  }
+
+  minRank = (e) => {
+    e.stopPropagation();
+    let newMod = { ...this.state.mod };
+    newMod.currRank = 0;
+    console.log(newMod);    
+    this.setState({ mod: newMod }, this.updateRank);
+  }
+
+  incRank = (e) => {
+    e.stopPropagation();
+    if (this.state.mod.currRank < this.state.mod.maxRank) {
+      let newMod = { ...this.state.mod };
+      newMod.currRank = newMod.currRank + 1;
+      this.setState({ mod: newMod }, this.updateRank);
+    }
+  }
+
+  maxRank = (e) => {
+    e.stopPropagation();
+    e.target.blur();
+    let newMod = { ...this.state.mod };
+    newMod.currRank = newMod.maxRank;
+    this.setState({ mod: newMod }, this.updateRank);
+  }
+
+  removeMod = (e) => {
+    e.stopPropagation();
+    this.props.removeMod(this.props.slot, this.state.mod);
+    this.closeHandler(e);
+  }
+
+  rightClickRemove = (e) => {
+    if (this.props.mod.name) {
+      e.preventDefault();
+      this.removeMod(e);
+    }
+  }
+
+  polarizeSlot = (e, polarity) => {
+    this.props.polarizeSlot(this.props.slot, polarity);
+    this.closeHandler(e);
+  }
+
+  startSwap = (e) => {
+    e.stopPropagation();
+    this.props.startSwap(this.props.slot);
+    this.closeHandler(e);
+  }
+
+  render() {
+    return (
+      <div className="slot-wrapper" onClick={this.handleClick} onContextMenu={this.rightClickRemove}>
+        <div className={"handler-background " + (this.state.handlerActive ? "handler-active" : "handler-inactive")} onClick={this.closeHandler}></div>
+        <div className={"handler-top-buttons " + (this.state.handlerActive ? "handler-active" : "handler-inactive")} style={this.state.topButtons}>
+          <div className="handler-word-button handler-remove" onClick={this.removeMod}>Remove</div>
+          <div className="handler-word-button handler-swap" onClick={this.startSwap}>Swap</div>
+        </div>
+        <div className={"handler-bottom-buttons " + (this.state.handlerActive ? "handler-active" : "handler-inactive")} style={this.state.bottomButtons}>
+          <div className="bottom-button-wrapper">
+            <div className="bottom-rank-button" onClick={this.minRank}>
+              <img className="handler-icon" src={require('../../assets/rankdownmax.png')} alt='--' />
+            </div>
+            <div className="bottom-rank-button" onClick={this.decRank}>
+              <img className="handler-icon" src={require('../../assets/rankdownone.png')} alt='-' />
+            </div>
+            <div className="bottom-rank-button" onClick={this.incRank}>
+              <img className="handler-icon" src={require('../../assets/rankupone.png')} alt='+' />
+            </div>
+            <div className="bottom-rank-button" onClick={this.maxRank}>
+              <img className="handler-icon" src={require('../../assets/rankupmax.png')} alt='++' />
+            </div>
+          </div>
+          <div className="bottom-button-wrapper">
+            <div className="handler-word-button handler-done" onClick={this.closeHandler}>Done</div>
+            {this.state.mod.name === 'Riven' &&
+              <div className="handler-word-button handler-riven">Riven</div>
+            }
+          </div>
+        </div>
+        <div className="empty-slot" draggable="false" style={this.props.forma ? {cursor: 'pointer'} : {}}>
+          {this.props.slotPolarity && !this.props.mod.name &&
+            <img className="slot-polarity" src={require(`../../assets/${this.props.slotPolarity}black.png`)} alt='' />
+          }
+        </div>
+        {this.props.mod.name &&
+          <div draggable className="mod-card-wrapper" style={this.state.handlerActive ? this.state.cardStyle : {}}>
+            <ModCardGenerator mod={this.state.mod} slotPolarity={this.props.slotPolarity} handlerActive={this.state.showHandler} />
+            {this.props.mod.name && this.props.viewWidth >= 1223 &&
+              <div draggable="false" className="hover-buttons">
+                <div className="hover-button max-rank-button" onClick={this.maxRank}>➤</div>
+                <div className="hover-button up-rank-button" onClick={this.incRank}>+</div>
+                <div className="hover-button down-rank-button" onClick={this.decRank}>-</div>
+                <div className="hover-button min-rank-button" onClick={this.minRank}>➤</div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    )
+  }
+}
+
+export default ModStateHandler;

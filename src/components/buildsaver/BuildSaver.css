@@ -1,0 +1,26 @@
+.build-saver-window {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 250px;
+    min-height: 150px;
+    background-color: #ccd7ea;
+    top: 35%;
+    left: 50%;
+    transition: opacity 0.1s;
+}
+
+@media screen and (max-width: 1222px) {
+    .build-saver-window {
+        margin-top: 56px;
+        left: 29%;
+    }
+}
+
+@media screen and (max-width: 529px) {
+    .build-saver-window {
+        left: 50%;
+        margin-left: -125px;
+    }
+}

@@ -1,0 +1,227 @@
+.slot-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    width: 150px;
+    height: 219.55px;
+    margin: 3px;
+    transition: transform 0.15s;
+}
+
+.handler-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    cursor: default;
+    z-index: 1020;
+    transition: opacity 0.1s;
+}
+
+.handler-top-buttons {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: -97.5px;
+    width: 195px;
+    z-index: 1021;
+    height: 48px;
+    transition: opacity 0.1s
+}
+
+.handler-bottom-buttons {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: -97.5px;
+    width: 195px;
+    z-index: 1021;
+    height: 90px;
+    transition: opacity 0.1s
+}
+
+.bottom-button-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width:195px;
+}
+
+.handler-word-button {
+    width: 75px;
+    height: 40px;
+    line-height: 40px;
+    background-color: rgba(240, 240, 240, 0.9);
+    text-align: center;
+    border-radius: 5px;
+    border: solid 2px black;
+    font-weight: 600;
+}
+
+.bottom-rank-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(240, 240, 240, 0.9);
+    border-radius: 5px;
+    border: solid 2px black;
+}
+
+.handler-button-top {
+    width: 65px;
+    height: 35px;
+    text-align: center;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s;
+    font-weight: 600;
+}
+
+.handler-remove {
+    color: #ff0000;
+}
+
+.handler-done {
+    color: #15E610;
+}
+
+.handler-riven {
+    color: #aa50ce
+}
+
+.rank-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px
+}
+
+.handler-button-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s;
+}
+
+.handler-icon {
+    position: relative;
+    width: 28px;
+    height: 32px;
+    padding: 2px 4px;
+    transition: all 0.2s;
+}
+
+.mod-card-wrapper {
+    position: absolute;
+    cursor: pointer;
+    z-index: 16;
+    transform: translateZ(0) translate(0, 0);
+    transition: transform 0.15s, z-index 0.05s step-end; 
+    -webkit-tap-highlight-color: transparent;
+}
+
+.empty-slot {
+    position: absolute;
+    top: 5px;
+    width: 140px;
+    height: 205px;
+    box-shadow: inset 0px 0px 12px 1px rgba(0, 0, 0, 0.7);
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: rgba(255, 255, 255, 0.85);
+    transition: all 0.2s;
+    z-index: 15;
+}
+
+.slot-polarity {
+    position: absolute;
+    width: 22px;
+    right: 8px;
+    top: 8px;
+}
+
+.hover-buttons {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 22px;
+    left: -8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s;
+}
+
+.hover-button {
+    position: relative;
+    margin-bottom: 2px;
+    height: 22px;
+    top: 0;
+    left: 0;
+    width: 22px;
+    background-color: white;
+    border: solid 1px black;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 22px;
+    font-weight: 900;
+    transition: color 0.15s, background-color 0.15s;
+    user-select: none;
+}
+
+.max-rank-button{
+    transform: rotate(-90deg);
+}
+
+.min-rank-button{
+    transform: rotate(90deg);
+}
+
+.handler-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.handler-inactive {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@media (hover: hover) {
+    .mod-card-wrapper:hover {
+        transform: translateZ(0) scale(1.1, 1.1);
+    }
+    
+    .mod-card-wrapper:hover .hover-buttons {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    
+    .hover-button:hover {
+        color: white;
+        background-color: rgb(60, 60, 60)
+    }
+    
+    .empty-slot:hover {
+        box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.7);
+    }
+}
+
+@media screen and (max-width: 1222px) {
+    .empty-slot {
+        cursor: pointer;
+    }
+}

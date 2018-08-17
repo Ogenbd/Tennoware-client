@@ -1,0 +1,432 @@
+import React, { Component } from 'react';
+import './RangedRivenEditor.css';
+
+export class RangedRivenEditor extends Component {
+  constructor(props) {
+    super(props);
+    this.softInputOne = React.createRef();
+    this.softInputTwo = React.createRef();
+    this.softInputThree = React.createRef();
+    this.softInputFour = React.createRef();
+    this.state = {
+      effects: ['None', 'Ammo Maximum', 'Cold Damage', 'Crit Chance', 'Crit Damage', 'Damage', 'Damage vs. Corpus', 'Damage vs. Grineer', 'Damage vs. Infested', 'Electricity Damage', 'Heat Damage', 'Fire Rate', 'Flight Speed', 'Impact Damage', 'Mag Capacity', 'Multishot', 'Toxin Damage', 'Punch Through', 'Puncture Damage', 'Reload Speed', 'Slash Damage', 'Status Chance', 'Status Duration', 'Recoil', 'Zoom'],
+      openEffect: null,
+      polarity: props.rivenMod.polarity,
+      effectOne: props.rivenMod.effectOne,
+      numOne: props.rivenMod.numOne,
+      effectTwo: props.rivenMod.effectTwo,
+      numTwo: props.rivenMod.numTwo,
+      effectThree: props.rivenMod.effectThree,
+      numThree: props.rivenMod.numThree,
+      effectFour: props.rivenMod.effectFour,
+      numFour: props.rivenMod.numFour,
+    }
+  }
+
+  componentDidMount() {
+    this.updateRiven();
+  }
+
+  updateRiven = () => {
+    let rivenMod = {
+      polarity: this.state.polarity,
+      effects: [],
+      effectOne: 'None',
+      numOne: '',
+      effectTwo: 'None',
+      numTwo: '',
+      effectThree: 'None',
+      numThree: '',
+      effectFour: 'None',
+      numFour: '',
+      desc: '',
+    }
+    if (this.state.effectOne !== 'None') {
+      let effectOneObj = this.constructEffect(this.state.effectOne, this.state.numOne / 100);
+      if (effectOneObj) {
+        rivenMod.effects.push(effectOneObj);
+      }
+      rivenMod.effectOne = this.state.effectOne;
+      rivenMod.numOne = this.state.numOne;
+      rivenMod.desc += `${this.state.numOne >= 0 ? '+' : ''}${this.state.numOne}${this.state.effectOne === 'Punch Through' ? 'm ' : '% '}${this.state.effectOne}\n`;
+      if (this.state.effectTwo !== 'None') {
+        let effectTwoObj = this.constructEffect(this.state.effectTwo, this.state.numTwo / 100);
+        if (effectTwoObj) {
+          rivenMod.effects.push(effectTwoObj);
+        }
+        rivenMod.effectTwo = this.state.effectTwo;
+        rivenMod.numTwo = this.state.numTwo;
+        rivenMod.desc += `${this.state.numTwo >= 0 ? '+' : ''}${this.state.numTwo}${this.state.effectTwo === 'Punch Through' ? 'm ' : '% '}${this.state.effectTwo}\n`;
+        if (this.state.effectThree !== 'None') {
+          let effectThreeObj = this.constructEffect(this.state.effectThree, this.state.numThree / 100);
+          if (effectThreeObj) {
+            rivenMod.effects.push(effectThreeObj);
+          }
+          rivenMod.effectThree = this.state.effectThree;
+          rivenMod.numThree = this.state.numThree;
+          rivenMod.desc += `${this.state.numThree >= 0 ? '+' : ''}${this.state.numThree}${this.state.effectThree === 'Punch Through' ? 'm ' : '% '}${this.state.effectThree}\n`;
+          if (this.state.effectFour !== 'None') {
+            let effectFourObj = this.constructEffect(this.state.effectFour, this.state.numFour / 100);
+            if (effectFourObj) {
+              rivenMod.effects.push(effectFourObj);
+            }
+            rivenMod.effectFour = this.state.effectFour;
+            rivenMod.numFour = this.state.numFour;
+            rivenMod.desc += `${this.state.numFour >= 0 ? '+' : ''}${this.state.numFour}${this.state.effectFour === 'Punch Through' ? 'm ' : '% '}${this.state.effectFour}`;
+          }
+        }
+      }
+    }
+    document.body.classList.remove('noscroll');
+    this.props.handleRiven(rivenMod);
+  }
+
+  constructEffect = (effect, amount) => {
+    let rivenEffect = {};
+    switch (effect) {
+      case 'Ammo Maximum':
+        rivenEffect.maxAmmo = amount;
+        return rivenEffect;
+      case 'Cold Damage':
+        rivenEffect = { elemental: { damage: amount, type: 'Cold' } }
+        return rivenEffect;
+      case 'Crit Chance':
+        rivenEffect.critChance = amount;
+        return rivenEffect;
+      case 'Crit Damage':
+        rivenEffect.critMult = amount;
+        return rivenEffect;
+      case 'Damage':
+        rivenEffect.baseDamage = amount;
+        return rivenEffect;
+      case 'Electricity Damage':
+        rivenEffect = { elemental: { damage: amount, type: 'Electricity' } }
+        return rivenEffect;
+      case 'Heat Damage':
+        rivenEffect = { elemental: { damage: amount, type: 'Heat' } }
+        return rivenEffect;
+      case 'Fire Rate':
+        rivenEffect.fireRate = amount;
+        return rivenEffect;
+      case 'Flight Speed':
+        rivenEffect.flightSpeed = amount;
+        return rivenEffect;
+      case 'Impact Damage':
+        rivenEffect.impact = amount;
+        return rivenEffect;
+      case 'Mag Capacity':
+        rivenEffect.magSize = amount;
+        return rivenEffect;
+      case 'Multishot':
+        rivenEffect.multishot = amount;
+        return rivenEffect;
+      case 'Toxin Damage':
+        rivenEffect = { elemental: { damage: amount, type: 'Toxin' } }
+        return rivenEffect;
+      case 'Punch Through':
+        rivenEffect.punchThrough = amount * 100;
+        return rivenEffect;
+      case 'Puncture Damage':
+        rivenEffect.puncture = amount;
+        return rivenEffect;
+      case 'Reload Speed':
+        rivenEffect.reload = amount;
+        return rivenEffect;
+      case 'Slash Damage':
+        rivenEffect.slash = amount;
+        return rivenEffect;
+      case 'Status Chance':
+        rivenEffect.status = amount;
+        return rivenEffect;
+      default:
+        return null;
+    }
+  }
+
+  setPolarity = (e, polarity) => {
+    e.stopPropagation();
+    this.setState({ polarity: polarity })
+  }
+
+  handleChange = ({ target }) => {
+    let value = target.value;
+    if (value > 999) value = 999;
+    if (value < -999) value = -999;
+    this.setState({ [target.name]: value })
+  }
+
+  setEffect = (e, effectNum, effect) => {
+    e.stopPropagation();
+    this.setState({
+      [effectNum]: effect,
+      openEffect: null
+    });
+
+  }
+
+  // setSlot = (slot) => {
+  //   this.setState({ pickedSlot: slot });
+  // }
+
+  openEffect = (e, effectSlot) => {
+    e.stopPropagation();
+    this.setState({ openEffect: effectSlot });
+  }
+
+  determineOptionSet = () => {
+    if (!this.state.openEffect) {
+      return null;
+    } else if (this.state.openEffect === 1) {
+      return this.effectOneDisplayOptions();
+    } else if (this.state.openEffect === 2) {
+      return this.effectTwoDisplayOptions();
+    } else if (this.state.openEffect === 3) {
+      return this.effectThreeDisplayOptions();
+    } else if (this.state.openEffect === 4) {
+      return this.effectFourDisplayOptions();
+    }
+  }
+
+  effectOneDisplayOptions = () => {
+    let optionsList = [];
+    this.state.effects.forEach((effect, index) => {
+      if (effect === 'None' && this.state.effectTwo === 'None') {
+        optionsList.push(<div className={"stat-choice " + (this.state.effectOne === effect ? "stat-picked" : "stat-not-picked")} key={index} onClick={(e) => this.setEffect(e, 'effectOne', effect)}><p>{effect}</p></div>);
+      } else if (effect !== this.state.effectTwo && effect !== this.state.effectThree && effect !== this.state.effectFour && effect !== 'None') {
+        optionsList.push(<div className={"stat-choice " + (this.state.effectOne === effect ? "stat-picked" : "stat-not-picked")} key={index} onClick={(e) => this.setEffect(e, 'effectOne', effect)}><p>{effect}</p></div>);
+      }
+    });
+    return optionsList;
+  }
+
+  effectTwoDisplayOptions = () => {
+    let optionsList = [];
+    this.state.effects.forEach((effect, index) => {
+      if (effect === 'None' && this.state.effectThree === 'None') {
+        optionsList.push(<div className={"stat-choice " + (this.state.effectTwo === effect ? "stat-picked" : "stat-not-picked")} key={index} onClick={(e) => this.setEffect(e, 'effectTwo', effect)}><p>{effect}</p></div>);
+      } else if (effect !== this.state.effectOne && effect !== this.state.effectThree && effect !== this.state.effectFour && effect !== 'None') {
+        optionsList.push(<div className={"stat-choice " + (this.state.effectTwo === effect ? "stat-picked" : "stat-not-picked")} key={index} onClick={(e) => this.setEffect(e, 'effectTwo', effect)}><p>{effect}</p></div>);
+      }
+    });
+    return optionsList;
+  }
+
+  effectThreeDisplayOptions = () => {
+    let optionsList = [];
+    this.state.effects.forEach((effect, index) => {
+      if (effect === 'None' && this.state.effectFour === 'None') {
+        optionsList.push(<div className={"stat-choice " + (this.state.effectThree === effect ? "stat-picked" : "stat-not-picked")} key={index} onClick={(e) => this.setEffect(e, 'effectThree', effect)}><p>{effect}</p></div>);
+      } else if (effect !== this.state.effectOne && effect !== this.state.effectTwo && effect !== this.state.effectFour && effect !== 'None') {
+        optionsList.push(<div className={"stat-choice " + (this.state.effectThree === effect ? "stat-picked" : "stat-not-picked")} key={index} onClick={(e) => this.setEffect(e, 'effectThree', effect)}><p>{effect}</p></div>);
+      }
+    });
+    return optionsList;
+  }
+
+  effectFourDisplayOptions = () => {
+    let optionsList = [];
+    this.state.effects.forEach((effect, index) => {
+      if (effect !== this.state.effectOne && effect !== this.state.effectTwo && effect !== this.state.effectThree) {
+        optionsList.push(<div className={"stat-choice " + (this.state.effectFour === effect ? "stat-picked" : "stat-not-picked")} key={index} onClick={(e) => this.setEffect(e, 'effectFour', effect)}><p>{effect}</p></div>);
+      }
+    });
+    return optionsList;
+  }
+
+  // getAvailSlots = () => {
+  //   let availSlots = [];
+  //   this.props.chosenMods.forEach((slot, index) => {
+  //     if (!slot.name) {
+  //       availSlots.push(<div key={index} className={"riven-slot " + (this.state.pickedSlot === index ? "picked-slot-riven" : "unpicked-slot-riven")} onClick={() => this.setSlot(index)}>{index + 1}</div>)
+  //     } else {
+  //       availSlots.push(<div key={index} className="unavail-riven-slot"></div>)
+  //     }
+  //   });
+  //   return availSlots;
+  // }
+
+  stopPropagation = (e) => {
+    e.stopPropagation();
+  }
+
+  focusSoftInput = ({ target }) => {
+    if (this.props.viewWidth < 1223) {
+      switch (target.name) {
+        case 'numOne':
+          this.softInputOne.current.focus();
+          break;
+        case 'numTwo':
+          this.softInputTwo.current.focus();
+          break;
+        case 'numThree':
+          this.softInputThree.current.focus();
+          break;
+        case 'numFour':
+          this.softInputFour.current.focus();
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
+  blurInput = ({ target, key }) => {
+    if (key === 'Enter') {
+      target.blur();
+    }
+  }
+
+  render() {
+    let displayOptions = this.determineOptionSet();
+    return (
+      <React.Fragment>
+        <div className={"riven-editor " + (this.props.rivenEditor ? "show-riven-editor" : "hide-riven-editor")}>
+          <div className="riven-editor-window" onClick={this.stopPropagation}>
+            <div className="riven-editor-x-wrapper" onClick={this.props.hideRivenEditor}>
+              <div className="riven-editor-bar top"></div>
+              <div className="riven-editor-bar bot"></div>
+            </div>
+            <div className="riven-polarity">
+              <div className="riven-window-title">Choose Polarity</div>
+              <div className="hexa-wrapper hexa-first">
+                <div className={"riven-hexagon hexagon " + (this.state.polarity === 'madurai' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'madurai') }}>
+                  <span>
+                    <img className="hex-polarity" src={require('../../assets/maduraiblack.png')} alt="madurai" />
+                  </span>
+                </div>
+                <div className={"riven-hexagon hexagon " + (this.state.polarity === 'naramon' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'naramon') }}>
+                  <span>
+                    <img className="hex-polarity" src={require('../../assets/naramonblack.png')} alt="naramon" />
+                  </span>
+                </div>
+                <div className={"riven-hexagon hexagon " + (this.state.polarity === 'vazarin' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'vazarin') }}>
+                  <span>
+                    <img className="hex-polarity" src={require('../../assets/vazarinblack.png')} alt="vazarin" />
+                  </span>
+                </div>
+              </div>
+              <div className="hexa-wrapper hexa-second">
+                <div className={"riven-hexagon hexagon " + (this.state.polarity === 'zenurik' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'zenurik') }}>
+                  <span>
+                    <img className="hex-polarity" src={require('../../assets/zenurikblack.png')} alt="zenurik" />
+                  </span>
+                </div>
+                <div className={"riven-hexagon hexagon " + (this.state.polarity === 'unairu' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'unairu') }}>
+                  <span>
+                    <img className="hex-polarity" src={require('../../assets/unairublack.png')} alt="unairu" />
+                  </span>
+                </div>
+                <div className={"riven-hexagon hexagon " + (this.state.polarity === 'penjaga' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'penjaga') }}>
+                  <span>
+                    <img className="hex-polarity" src={require('../../assets/penjagablack.png')} alt="penjaga" />
+                  </span>
+                </div>
+              </div>
+            </div>
+            {/* {!this.state.rivenInStack &&
+              <div className="slot-choice">
+                <div className="riven-window-title">Choose Mod Slot</div>
+                <div className="avail-slots">
+                  {this.getAvailSlots()}
+                </div>
+              </div>
+            } */}
+            <div className="riven-effects">
+              <div className="riven-window-title">Choose Effects</div>
+              <div className="riven-effect-wrapper">
+                <div className="riven-effect" onClick={(e) => this.openEffect(e, 1)}>
+                  <div className="chosen-stat"><p>{this.state.effectOne}</p></div>
+                </div>
+                <div className="riven-effect-amount">
+                  <input className="riven-amount-input riven-input-one" type="tel" value={this.state.numOne} name="numOne" placeholder={0} onFocus={this.focusSoftInput} onChange={this.handleChange} />
+                  {this.state.effectOne !== 'Punch Through'
+                    ? <p className="percent">%</p>
+                    : <p className="percent">m</p>
+                  }
+                </div>
+              </div>
+              {this.state.effectOne !== 'None' &&
+                <div className="riven-effect-wrapper">
+                  <div className="riven-effect" onClick={(e) => this.openEffect(e, 2)}>
+                    <div className="chosen-stat"><p>{this.state.effectTwo}</p></div>
+                  </div>
+                  <div className="riven-effect-amount">
+                    <input className="riven-amount-input riven-input-two" type="tel" value={this.state.numTwo} name="numTwo" placeholder={0} onFocus={this.focusSoftInput} onChange={this.handleChange} />
+                    {this.state.effectTwo !== 'Punch Through'
+                      ? <p className="percent">%</p>
+                      : <p className="percent">m</p>
+                    }
+                  </div>
+                </div>
+              }
+              {this.state.effectTwo !== 'None' &&
+                <div className="riven-effect-wrapper">
+                  <div className="riven-effect" onClick={(e) => this.openEffect(e, 3)}>
+                    <div className="chosen-stat"><p>{this.state.effectThree}</p></div>
+                  </div>
+                  <div className="riven-effect-amount">
+                    <input className="riven-amount-input riven-input-three" type="tel" value={this.state.numThree} name="numThree" placeholder={0} onFocus={this.focusSoftInput} onChange={this.handleChange} />
+                    {this.state.effectThree !== 'Punch Through'
+                      ? <p className="percent">%</p>
+                      : <p className="percent">m</p>
+                    }
+                  </div>
+                </div>
+              }
+              {this.state.effectThree !== 'None' &&
+                <div className="riven-effect-wrapper">
+                  <div className="riven-effect" onClick={(e) => this.openEffect(e, 4)}>
+                    <div className="chosen-stat"><p>{this.state.effectFour}</p></div>
+                  </div>
+                  <div className="riven-effect-amount">
+                    <input className="riven-amount-input riven-input-four" type="tel" value={this.state.numFour} name="numFour" placeholder={0} onFocus={this.focusSoftInput} onChange={this.handleChange} />
+                    {this.state.effectFour !== 'Punch Through'
+                      ? <p className="percent">%</p>
+                      : <p className="percent">m</p>
+                    }
+                  </div>
+                </div>
+              }
+            </div>
+            <div className="riven-button" onClick={this.updateRiven}>Update</div>
+          </div>
+        </div>
+        <div className="soft-input-wrapper">
+          <input ref={this.softInputOne} type="tel" name="numOne" className="soft-input" placeholder={0} value={this.state.numOne} onChange={this.handleChange} onKeyUp={this.blurInput} />
+          {this.state.effectOne !== 'Punch Through'
+            ? <p className="soft-percent">%</p>
+            : <p className="soft-percent">m</p>
+          }
+        </div>
+        <div className="soft-input-wrapper">
+          <input ref={this.softInputTwo} type="tel" name="numTwo" className="soft-input" placeholder={0} value={this.state.numTwo} onChange={this.handleChange} onKeyUp={this.blurInput} />
+          {this.state.effectTwo !== 'Punch Through'
+            ? <p className="soft-percent">%</p>
+            : <p className="soft-percent">m</p>
+          }
+        </div>
+        <div className="soft-input-wrapper">
+          <input ref={this.softInputThree} type="tel" name="numThree" className="soft-input" placeholder={0} value={this.state.numThree} onChange={this.handleChange} onKeyUp={this.blurInput} />
+          {this.state.effectThree !== 'Punch Through'
+            ? <p className="soft-percent">%</p>
+            : <p className="soft-percent">m</p>
+          }
+        </div>
+        <div className="soft-input-wrapper">
+          <input ref={this.softInputFour} type="tel" name="numFour" className="soft-input" placeholder={0} value={this.state.numFour} onChange={this.handleChange} onKeyUp={this.blurInput} />
+          {this.state.effectFour !== 'Punch Through'
+            ? <p className="soft-percent">%</p>
+            : <p className="soft-percent">m</p>
+          }
+        </div>
+        <div className={"effect-picker " + (this.state.openEffect !== null ? "open-effect-picker" : "closed-effect-picker")}>
+          <div className="stat-choices-wrapper">
+            {displayOptions}
+          </div>
+        </div>
+      </React.Fragment>
+    )
+  }
+}
+
+export default RangedRivenEditor;

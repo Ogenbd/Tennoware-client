@@ -1,0 +1,84 @@
+import React, { Component } from 'react';
+import './ModCardGenerator.css';
+
+export class SimpleModCardGenerator extends Component {
+
+    shouldComponentUpdate(nextProps) {
+        if (this.props.viewWidth !== nextProps.viewWidth || this.props.mod.name === 'Riven Mod') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    determineFontColor = () => {
+        switch (this.props.mod.rarity) {
+            case 'rare':
+                return { color: '#fff9a0' }
+            case 'uncommon':
+                return { color: '#cccccc' }
+            case 'common':
+                return { color: '#c79989' }
+            case 'prime':
+                return { color: '#e6e6e6' }
+            case 'riven':
+                return { color: '#be87d4' }
+            default:
+                break;
+        }
+    }
+
+    determineRank = () => {
+        let key = 0;
+        let currRanks = [];
+        for (let i = this.props.mod.maxRank; i > 0; i--) {
+            currRanks.push(<img key={key} className="rank-light" src={require('../../assets/rankon.png')} alt={''} />);
+            key++;
+        }
+        return currRanks;
+    }
+
+    generateSetBar = (color) => {
+        let completeDescription = [<div key={this.props.mod.set.setMax} className="set-bar" style={{ backgroundColor: color, borderColor: color }}></div>];
+        for (let i = this.props.mod.set.setMax - 1; i > 0; i--) {
+            completeDescription.push(<div key={i} className="set-bar" style={{ borderColor: color }}></div>);
+        }
+        return completeDescription;
+    }
+
+    render() {
+        const { mod, viewWidth } = this.props;
+        let description = mod.description();
+        let fontColor = this.determineFontColor();
+        return (
+            <div draggable={viewWidth >= 1223} className="mod simple-mod" style={fontColor}>
+                <img className="mod-image" src={mod.img} alt="" />
+                <div className="mod-info-wrapper">
+                    <div className="mod-name"><p>{mod.name}</p></div>
+                    {mod.set
+                        ? <div className="mod-desc">
+                            <p>{description[0]}</p>
+                            <div className="set-bar-wrapper">
+                                {this.generateSetBar(fontColor.color)}
+                            </div>
+                            <p>{description[1]}</p>
+                        </div>
+                        : <div className="mod-desc"><p>{description}</p></div>
+                    }
+                </div>
+                <img src={require(`../../assets/${mod.rarity}.png`)} alt={''} className={"rarity " + (mod.rarity === 'riven' ? "riven-border" : "")} />
+                <div className="polarity-wrapper">
+                    <p className="cost" style={fontColor}>{mod.baseCost + mod.currRank}</p>
+                    <img className="polarity-icon" src={require(`../../assets/${mod.polarity}${mod.rarity}.png`)} alt={''} />
+                </div>
+                <div className="mod-type"><p>{mod.type}</p></div>
+                <img className="max-rank" src={require('../../assets/maxrank.png')} alt={''} />
+                <div className="rank-wrapper">
+                    {this.determineRank()}
+                </div>
+            </div >
+        )
+    }
+}
+
+export default SimpleModCardGenerator;
