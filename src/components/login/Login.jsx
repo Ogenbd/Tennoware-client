@@ -20,7 +20,7 @@ export class Login extends Component {
             <div className={"login " + (this.props.showLogin ? "show-login" : "hide-login")}>
                 <div className="login-box">
                     {/* <p className="login-title">Login</p> */}
-                    <div className="build-action" onClick={this.login}>Sign in with pooper</div>
+                    <div className="interactable interactible-semi-inactive" onClick={this.login}>Sign in with pooper</div>
                 </div>
             </div>
         )

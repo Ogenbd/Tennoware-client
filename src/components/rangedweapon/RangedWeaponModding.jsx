@@ -19,6 +19,7 @@ export class RangedWeaponModding extends Component {
             formaCount: 0,
             mods: this.props.mods,
             slotPolarities: this.props.slotPolarities,
+            liked: this.props.metaInfo.Liked,
             forSlot: null,
             chosenMods: [{}, {}, {}, {}, {}, {}, {}, {}],
             totalModsCost: 0,
@@ -635,6 +636,12 @@ export class RangedWeaponModding extends Component {
                     <p className="display-message">This mod cannot be use with {this.state.chosenMods[this.state.errorBlinker].name}.</p>
                 </div>
             );
+        // } else if (this.state.duplicateBuild !== null) {
+        //     return (
+        //         <div className="message-wrapper show-error-message">
+        //             <p className="display-message">Cannot save duplicate builds, liking the build will allow for quick navigation from</p>
+        //         </div>
+        //     );
         } else if (this.state.forSwap !== null) {
             return (
                 <div className="message-wrapper always-on">
@@ -646,30 +653,27 @@ export class RangedWeaponModding extends Component {
 
     render() {
         let onLine = navigator.onLine;
-        const { mods, chosenMods, modPicker, catalyst, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSwap, polarityPicker, rivenEditor, rivenMod, buildStr, linkGenerator, buildSaver, buildList } = this.state
+        const { mods, chosenMods, modPicker, catalyst, forma, liked, totalModsCost, slotPolarities, errorBlinker, formaCount, forSwap, polarityPicker, rivenEditor, rivenMod, buildStr, linkGenerator, buildSaver, buildList } = this.state
         return (
             <div className="ranged-modding">
                 <ModPicker mods={mods} chosenMods={chosenMods} active={modPicker} closeModPicker={this.closeModPicker} pickMod={this.pickMod} viewWidth={this.props.viewWidth} drop={this.drop} />
                 <div className="mod-stack">
-                    <div className="build-action-wrapper">
+                    <div className="interactable-wrapper">
                         {onLine &&
-                            <div className="build-action" onClick={this.showBuildList}><p className="build-action-text">Community Builds</p></div>
+                            <div className="interactable interactable-semi-inactive" onClick={this.showBuildList}><p className="interactable-p">Community Builds</p></div>
                         }
-                        {onLine && this.props.user && !this.props.match.params.user &&
-                            <div className="build-action" onClick={this.saveBuild}><p className="build-action-text">Save</p></div>
+                        {onLine && this.props.user && !this.props.match.params.build &&
+                            <div className="interactable interactable-semi-inactive" onClick={this.saveBuild}><p className="interactable-p">Save</p></div>
                         }
-                        {onLine && this.props.user === parseInt(this.props.match.params.user, 10) &&
-                            <div className="build-action" onClick={this.saveBuild}><p className="build-action-text">Update</p></div>
+                        {onLine && this.props.metaInfo.Owner === 1 &&
+                            <div className="interactable interactable-semi-inactive" onClick={this.saveBuild}><p className="interactable-p">Update</p></div>
                         }
-                        <div className="build-action" onClick={this.createLink}><p className="build-action-text">Link</p></div>
-                        {onLine && this.props.user && this.props.match.params.user && this.props.user !== this.props.match.params.user &&
-                            <React.Fragment>
-                                <div className="build-action"><p className="build-action-text">Bookmark</p></div>
-                                <div className="build-action"><p className="build-action-text">Like</p></div>
-                            </React.Fragment>
+                        <div className="interactable interactable-semi-inactive" onClick={this.createLink}><p className="interactable-p">Link</p></div>
+                        {onLine && this.props.user && this.props.match.params.build && !this.props.metaInfo.Owner &&
+                            <div className={"interactable " + (liked ? "interactable-active" : "interactable-inactive")} onClick={}><p className="interactable-p">Like/Save</p></div>
                         }
-                        {onLine && this.props.match.params.user && this.props.user !== this.props.match.params.user &&
-                            <div className="build-action"><p className="build-action-text">Report</p></div>
+                        {onLine && this.props.match.params.build && !this.props.metaInfo.UserID &&
+                            <div className="interactable interactable-semi-inactive"><p className="interactable-p">Report</p></div>
                         }
                     </div>
                     <div className="aug-container">
@@ -691,13 +695,15 @@ export class RangedWeaponModding extends Component {
                             </div>
                         </div>
                         <div className="aug-wrapper">
-                            <div className="aug riven" onClick={this.showRivenEditor}></div>
-                            <div className="aug" onClick={this.toggleCatalyst}>
-                                {this.state.catalyst
+                            <div className="interactable interactable-inactive riven" onClick={this.showRivenEditor}>
+                                <div className="riven-placeholder"></div>
+                            </div>
+                            <div className={"interactable " + (catalyst ? "interactable-active" : "interactable-inactive")} onClick={this.toggleCatalyst}>
+                                {catalyst
                                     ? <img className="aug-image catalyst" src={require('../../assets/catalyst.png')} alt={'Remove Catalyst'} />
                                     : <img className="aug-image catalyst" src={require('../../assets/nocatalyst.png')} alt={'Apply Catalyst'} />}
                             </div>
-                            <div className="aug sticky-aug" onClick={this.toggleForma}>
+                            <div className={"interactable " + (forma ? "interactable-active" : "interactable-inactive")} onClick={this.toggleForma}>
                                 {forma
                                     ? <img className="aug-image forma" src={require('../../assets/forma.png')} alt={'Cancel Forma Application'} />
                                     : <img className="aug-image forma" src={require('../../assets/noforma.png')} alt={'Apply Forma'} />}
@@ -744,7 +750,7 @@ export class RangedWeaponModding extends Component {
                 </div>
                 <BuildList buildList={buildList} hideBuildList={this.hideBuildList} />
                 <LinkGenerator linkGenerator={linkGenerator} type="primaryweapons" buildStr={buildStr} match={this.props.match} hideLinkGenerator={this.hideLinkGenerator} />
-                <BuildSaver buildSaver={buildSaver} type="primaryweapons" orokin={catalyst} formaCount={formaCount} user={this.props.user} buildStr={buildStr} hideBuildSaver={this.hideBuildSaver} />
+                <BuildSaver buildSaver={buildSaver} type="primaryweapons" orokin={catalyst} formaCount={formaCount} user={this.props.user} buildStr={buildStr} hideBuildSaver={this.hideBuildSaver} metaInfo={this.props.metaInfo} />
                 <RangedWeaponStats weapon={this.props.weapon} mods={this.state.chosenMods} />
                 <PolarityPicker polarityPicker={polarityPicker} polarizeSlot={this.polarizeSlot} hidePolarityPicker={this.hidePolarityPicker} />
                 {rivenMod &&

@@ -67,44 +67,16 @@
     color: white;
 }
 
-.build-action-wrapper {
+.interactable-wrapper {
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 5px;
-    margin-left: 10px;
+    margin: 5px;
 }
-
-.build-action {
-    margin: 3px;
-    min-width: 70px;
-    text-align: center;
-    color: #fff9a0;
-    font-weight: bold;
-    background-color: rgba(0, 0, 0, 0.7);
-    border: solid 1px;
-    border-color: rgba(255, 249, 160, 0.3);
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-}
-
-.build-action-text {
-    padding: 10px 8px 8px 8px;
-    /* color: rgba(255, 249, 160, 0.73); */
-}
-
-.build-action:after {
-    display: block;
-    content: '';
-    border-bottom: solid 2px #fff9a0;
-    transform: scaleX(0);
-    transition: transform 200ms ease-in-out;
-    opacity: 0.8;
-}
-
 .aug-container {
     display: flex;
     flex-direction: column;
     align-self: flex-end;
+    margin-right: 5px;
 }
 
 .aug-wrapper {
@@ -117,7 +89,7 @@
     align-items: center;
     width: 75px;
     height: 68px;
-    margin: 3px;
+    /* margin: 3px; */
     cursor: pointer;
     background-color: white;
     border-radius: 5px;
@@ -133,36 +105,40 @@
 .aug-image {
     position: relative;
     width: 75px;
-    margin: 3px;
     /* backface-visibility: hidden; */
-    transition: all 0.3s;
+    /* transition: all 0.3s; */
     /* overflow: hidden; */
 }
 
 .forma {
-    padding: 3px 0;
+    /* padding: 3px 0; */
 }
 
 .catalyst {
-    padding: 9px 0;
+    padding: 6px 0;
 }
 
 .riven {
-    width: 75px;
+    /* position: absolute; */
     /* width: */
     /* overflow: hidden; */
-    border-radius: 5px;
+    /* border-radius: 5px; */
     background-image: url('../../assets/rivenicon.jpg');
     /* margin: 0; */
 }
 
+.riven-placeholder {
+    width: 75px;
+    height: 66px;
+}
+
 .aug-info {
-    width: 77px;
+    width: 75px;
     height: 50px;
     text-align: center;
-    background-color: rgba(50, 50, 50, 1);
+    background-color: rgba(0, 0, 0, 0.7);
     color: white;
-    margin: 1px;
+    margin: 3px;
     border: solid 1px black;
     font-weight: 600;
 }
@@ -173,7 +149,7 @@
 }
 
 .riven-title {
-    font-size: 14px;
+    font-size: 13px;
     line-height: 18px;
 }
 
@@ -248,23 +224,16 @@
     }
 }
 
-@media screen and (max-width: 529px) {
-    .build-action-wrapper {
-        margin-left: 70px;
-        justify-content: flex-start;
-    }
-    .build-action {
-        align-self: center;
+@media screen and (max-width: 828px) {
+    .slots {
+        max-width: 350px;
     }
 }
 
-@media (hover: hover) {
-    .build-action:hover:after {
-        transform: scaleX(1);
+@media screen and (max-width: 529px) {
+    .interactable-wrapper {
+        margin-left: 70px;
+        /* justify-content: flex-start; */
+        justify-content: center;
     }
-    .build-action:hover {
-        box-shadow: inset 0px -17px 15px -11px rgba(255, 249, 160, 0.73);
-        border-color: rgba(255, 249, 160, 0.73);
-        text-shadow: 0px 0px 6px rgba(255, 249, 160, 0.73);
-    }   
 }

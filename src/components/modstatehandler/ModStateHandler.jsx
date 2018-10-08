@@ -150,29 +150,26 @@ export class ModStateHandler extends Component {
       <div className="slot-wrapper" onClick={this.handleClick} onContextMenu={this.rightClickRemove}>
         <div className={"handler-background " + (this.state.handlerActive ? "handler-active" : "handler-inactive")} onClick={this.closeHandler}></div>
         <div className={"handler-top-buttons " + (this.state.handlerActive ? "handler-active" : "handler-inactive")} style={this.state.topButtons}>
-          <div className="handler-word-button handler-remove" onClick={this.removeMod}>Remove</div>
-          <div className="handler-word-button handler-swap" onClick={this.startSwap}>Swap</div>
+          <div className="interactable interactable-semi-inactive handler-remove" onClick={this.removeMod}><p className="interactable-p">Remove</p></div>
+          <div className="interactable interactable-semi-inactive handler-swap" onClick={this.startSwap}><p className="interactable-p">Swap</p></div>
         </div>
         <div className={"handler-bottom-buttons " + (this.state.handlerActive ? "handler-active" : "handler-inactive")} style={this.state.bottomButtons}>
           <div className="bottom-button-wrapper">
-            <div className="bottom-rank-button" onClick={this.minRank}>
+            <div className="interactable interactable-semi-inactive handler-rank" onClick={this.minRank}>
               <img className="handler-icon" src={require('../../assets/rankdownmax.png')} alt='--' />
             </div>
-            <div className="bottom-rank-button" onClick={this.decRank}>
+            <div className="interactable interactable-semi-inactive handler-rank" onClick={this.decRank}>
               <img className="handler-icon" src={require('../../assets/rankdownone.png')} alt='-' />
             </div>
-            <div className="bottom-rank-button" onClick={this.incRank}>
+            <div className="interactable interactable-semi-inactive handler-rank" onClick={this.incRank}>
               <img className="handler-icon" src={require('../../assets/rankupone.png')} alt='+' />
             </div>
-            <div className="bottom-rank-button" onClick={this.maxRank}>
+            <div className="interactable interactable-semi-inactive handler-rank" onClick={this.maxRank}>
               <img className="handler-icon" src={require('../../assets/rankupmax.png')} alt='++' />
             </div>
           </div>
           <div className="bottom-button-wrapper">
-            <div className="handler-word-button handler-done" onClick={this.closeHandler}>Done</div>
-            {this.state.mod.name === 'Riven' &&
-              <div className="handler-word-button handler-riven">Riven</div>
-            }
+            <div className="interactable interactable-semi-inactive handler-done" onClick={this.closeHandler}><p className="interactable-p">Done</p></div>
           </div>
         </div>
         <div className="empty-slot" draggable="false" style={this.props.forma ? {cursor: 'pointer'} : {}}>
@@ -187,8 +184,12 @@ export class ModStateHandler extends Component {
               <div draggable="false" className="hover-buttons">
                 <div className="hover-button max-rank-button" onClick={this.maxRank}>➤</div>
                 <div className="hover-button up-rank-button" onClick={this.incRank}>+</div>
-                <div className="hover-button down-rank-button" onClick={this.decRank}>-</div>
+                <div className="hover-button down-rank-button" onClick={this.decRank}>–</div>
                 <div className="hover-button min-rank-button" onClick={this.minRank}>➤</div>
+                {/* <div className="hover-button max-rank-button" onClick={this.maxRank}>➤</div>
+                <div className="hover-button up-rank-button" onClick={this.incRank}>+</div>
+                <div className="hover-button down-rank-button" onClick={this.decRank}>-</div>
+                <div className="hover-button min-rank-button" onClick={this.minRank}>➤</div> */}
               </div>
             }
           </div>

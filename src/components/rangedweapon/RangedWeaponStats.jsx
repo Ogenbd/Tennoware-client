@@ -239,7 +239,6 @@ export class RangedWeaponStats extends Component {
         totalElementalDamageArr.forEach(element => {
             finalDamageArray.push(element)
         })
-        // console.log(finalDamageArray);
         return finalDamageArray;
     }
 
@@ -252,19 +251,16 @@ export class RangedWeaponStats extends Component {
             <React.Fragment>
                 <div className={"pull-tab " + (this.state.open ? 'open-pull-tab' : 'closed-pull-tab')} onClick={this.toggleStats}>
                     <p>STATS</p>
-                    <img src={require('../../assets/arrowicon.png')} alt=">>" className={"pull-tab-arrow " + (this.state.open ? 'point-left' : 'point-right')} />
+                    <img src={require('../../assets/arrowicong.png')} alt=">>" className={"pull-tab-arrow " + (this.state.open ? 'point-left' : 'point-right')} />
                 </div>
                 <div className={"ranged-stats " + (this.state.open ? 'open-ranged-stats' : 'closed-ranged-stats')}>
                     <div className="top-bar-margin"></div>
                     {weapon.modes.length > 1 &&
                         <div className="modes">
                             {weapon.modes.map((instance, index) => (
-                                <div key={index} className={"build-action " + (mode === index ? 'picked-mode' : 'unpicked-mode')} onClick={() => this.setState({ mode: index })}>
-                                    <p className="build-action-text">{instance.name}</p>
+                                <div key={index} className={"interactable " + (mode === index ? 'interactable-active' : 'interactable-inactive')} onClick={() => this.setState({ mode: index })}>
+                                    <p className="interactable-p">{instance.name}</p>
                                 </div>
-                                // <div key={index} className={"mode-button " + (mode === index ? 'picked-mode' : 'unpicked-mode')} onClick={() => this.setState({ mode: index })}>
-                                //     <p>{instance.name}</p>
-                                // </div>
                             ))}
                         </div>
                     }

@@ -8,6 +8,18 @@ export class BuildSaver extends Component {
         this.state = {
             private: false,
             buildName: '',
+            buildDesc: ''
+        }
+    }
+
+    componentDidMount() {
+        if (this.props.metaInfo.UserID) {
+            let isPrivate = this.props.metaInfo.Private ? true : false
+            this.setState({
+                private: isPrivate,
+                buildName: this.props.metaInfo.BuildName,
+                buildDesc: this.props.metaInfo.BuildDesc
+            });
         }
     }
 
@@ -24,7 +36,13 @@ export class BuildSaver extends Component {
     handleBuildName = ({ target }) => {
         this.setState({
             buildName: target.value
-        })
+        });
+    }
+
+    handleBuildDesc = ({ target }) => {
+        this.setState({
+            buildDesc: target.value
+        });
     }
 
     saveBuild = () => {
@@ -38,32 +56,52 @@ export class BuildSaver extends Component {
                 buildStr: this.props.buildStr,
                 private: this.state.private,
                 buildName: this.state.buildName,
+                buildDesc: this.state.buildDesc,
                 item: this.props.match.params.id
             }
             buildData.buildStr[41] === 'x' ? buildData.riven = 1 : buildData.riven = 0;
             this.state.private ? buildData.private = 1 : buildData.private = 0;
             this.props.orokin ? buildData.orokin = 1 : buildData.orokin = 0;
-            // fix url
-            fetch('http://192.168.1.114:50000/savebuild', {
-                method: 'post',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(buildData)
-            })
-            .then(res => res.json())
-            .then(({ res }) => {
-                this.redirectToSaved(buildData, res);
-            })
-            .catch(err => {
-                console.log('error')
-            });
+            if (this.props.match.params.build && this.props.metaInfo.UserID) {
+                buildData.buildId = this.props.match.params.build;
+                console.log('haps');
+                // fix url
+                fetch('http://192.168.1.114:50000/updatebuild', {
+                    method: 'post',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(buildData)
+                })
+                    .then(res => res.json())
+                    .then(({ res }) => {
+                        console.log(res);
+                        this.redirectToSaved(buildData, buildData.buildId);
+                    })
+                    .catch(err => {
+                        console.log('error')
+                    });
+            } else {
+                // fix url
+                fetch('http://192.168.1.114:50000/savebuild', {
+                    method: 'post',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(buildData)
+                })
+                    .then(res => res.json())
+                    .then(({ res }) => {
+                        this.redirectToSaved(buildData, res);
+                    })
+                    .catch(err => {
+                        console.log('error')
+                    });
+            }
         }
     }
 
     redirectToSaved = (buildData, buildId) => {
         console.log(buildId);
         // fix url
-        let newUrl = `/${this.props.type}/${this.props.match.params.id}/${buildData.buildStr}/${this.props.user}/${buildId}`;
-        this.props.history.push(newUrl);
+        let newUrl = `/${this.props.type}/${this.props.match.params.id}/${buildData.buildStr}/${buildId}`;
+        this.props.history.push(newUrl, { req: true });
     }
 
     stopPropagation = (e) => {
@@ -72,12 +110,30 @@ export class BuildSaver extends Component {
 
     render() {
         return (
-            <div className={"dark-bg " + (this.props.buildSaver ? "show-dark-bg" : "hide-dark-bg")} onClick={this.hideBuildSaver}>
-                <div className="build-saver-window" onClick={this.stopPropagation}>
-                    <input type="checkbox" value={this.state.private} onChange={this.togglePrivate} />
-                    <input type="text" placeholder="Build Name" value={this.state.buildName} onChange={this.handleBuildName} />
-                    <div className="build-action" onClick={this.saveBuild}>
-                        <p className="build-action-text">Save</p>
+            // <div className={"dark-bg " + (this.props.buildSaver ? "show-dark-bg" : "hide-dark-bg")} onClick={this.hideBuildSaver}>
+            // <div className="build-saver-window" onClick={this.stopPropagation}>
+            <div className={"popup " + (this.props.buildSaver ? "popup-active" : "popup-inactive")}>
+                <div className={"popup-topbar " + (this.props.buildSaver ? "popup-active" : "popup-inactive")}>
+                    <div className="popup-x" onClick={this.hideBuildSaver}>
+                        <div className="popup-x-bar one-bar"></div>
+                        <div className="popup-x-bar two-bar"></div>
+                    </div>
+                </div>
+                <div className="popup-content build-saver">
+                    <label className="check-private" name="private">
+                        <p>Private?</p>
+                        <input name="private" type="checkbox" value={this.state.private} onChange={this.togglePrivate} />
+                    </label>
+                    <label className="build-name-input-label" name="build-name">
+                        <p>Build Name</p>
+                        <input className="build-name-input" name="build-name" type="text" placeholder="Build Name" value={this.state.buildName} onChange={this.handleBuildName} />
+                    </label>
+                    <label className="build-name-input-label" name="build-desc">
+                        <p>Build Description</p>
+                        <textarea className="build-name-input build-desc-box" name="build-desc" type="text" placeholder="Build Description" value={this.state.buildDesc} onChange={this.handleBuildDesc} />
+                    </label>
+                    <div className="interactable interactable-semi-inactive" onClick={this.saveBuild}>
+                        <p className="interactable-p">Save</p>
                     </div>
                 </div>
             </div>

@@ -191,9 +191,9 @@ export class RangedRivenEditor extends Component {
     let optionsList = [];
     this.state.effects.forEach((effect, index) => {
       if (effect === 'None' && this.state.effectTwo === 'None') {
-        optionsList.push(<div className={"stat-choice " + (this.state.effectOne === effect ? "stat-picked" : "stat-not-picked")} key={index} onClick={(e) => this.setEffect(e, 'effectOne', effect)}><p>{effect}</p></div>);
+        optionsList.push(<div className={"interactable stat-choice " + (this.state.effectOne === effect ? "interactable-active" : "interactable-inactive")} key={index} onClick={(e) => this.setEffect(e, 'effectOne', effect)}><div className="effect-choice"><p>{effect}</p></div></div>);
       } else if (effect !== this.state.effectTwo && effect !== this.state.effectThree && effect !== this.state.effectFour && effect !== 'None') {
-        optionsList.push(<div className={"stat-choice " + (this.state.effectOne === effect ? "stat-picked" : "stat-not-picked")} key={index} onClick={(e) => this.setEffect(e, 'effectOne', effect)}><p>{effect}</p></div>);
+        optionsList.push(<div className={"interactable stat-choice " + (this.state.effectOne === effect ? "interactable-active" : "interactable-inactive")} key={index} onClick={(e) => this.setEffect(e, 'effectOne', effect)}><div className="effect-choice"><p>{effect}</p></div></div>);
       }
     });
     return optionsList;
@@ -203,9 +203,9 @@ export class RangedRivenEditor extends Component {
     let optionsList = [];
     this.state.effects.forEach((effect, index) => {
       if (effect === 'None' && this.state.effectThree === 'None') {
-        optionsList.push(<div className={"stat-choice " + (this.state.effectTwo === effect ? "stat-picked" : "stat-not-picked")} key={index} onClick={(e) => this.setEffect(e, 'effectTwo', effect)}><p>{effect}</p></div>);
+        optionsList.push(<div className={"interactable stat-choice " + (this.state.effectTwo === effect ? "interactable-active" : "interactable-inactive")} key={index} onClick={(e) => this.setEffect(e, 'effectTwo', effect)}><div className="effect-choice"><p>{effect}</p></div></div>);
       } else if (effect !== this.state.effectOne && effect !== this.state.effectThree && effect !== this.state.effectFour && effect !== 'None') {
-        optionsList.push(<div className={"stat-choice " + (this.state.effectTwo === effect ? "stat-picked" : "stat-not-picked")} key={index} onClick={(e) => this.setEffect(e, 'effectTwo', effect)}><p>{effect}</p></div>);
+        optionsList.push(<div className={"interactable stat-choice " + (this.state.effectTwo === effect ? "interactable-active" : "interactable-inactive")} key={index} onClick={(e) => this.setEffect(e, 'effectTwo', effect)}><div className="effect-choice"><p>{effect}</p></div></div>);
       }
     });
     return optionsList;
@@ -215,9 +215,9 @@ export class RangedRivenEditor extends Component {
     let optionsList = [];
     this.state.effects.forEach((effect, index) => {
       if (effect === 'None' && this.state.effectFour === 'None') {
-        optionsList.push(<div className={"stat-choice " + (this.state.effectThree === effect ? "stat-picked" : "stat-not-picked")} key={index} onClick={(e) => this.setEffect(e, 'effectThree', effect)}><p>{effect}</p></div>);
+        optionsList.push(<div className={"interactable stat-choice " + (this.state.effectThree === effect ? "interactable-active" : "interactable-inactive")} key={index} onClick={(e) => this.setEffect(e, 'effectThree', effect)}><div className="effect-choice"><p>{effect}</p></div></div>);
       } else if (effect !== this.state.effectOne && effect !== this.state.effectTwo && effect !== this.state.effectFour && effect !== 'None') {
-        optionsList.push(<div className={"stat-choice " + (this.state.effectThree === effect ? "stat-picked" : "stat-not-picked")} key={index} onClick={(e) => this.setEffect(e, 'effectThree', effect)}><p>{effect}</p></div>);
+        optionsList.push(<div className={"interactable stat-choice " + (this.state.effectThree === effect ? "interactable-active" : "interactable-inactive")} key={index} onClick={(e) => this.setEffect(e, 'effectThree', effect)}><div className="effect-choice"><p>{effect}</p></div></div>);
       }
     });
     return optionsList;
@@ -227,7 +227,7 @@ export class RangedRivenEditor extends Component {
     let optionsList = [];
     this.state.effects.forEach((effect, index) => {
       if (effect !== this.state.effectOne && effect !== this.state.effectTwo && effect !== this.state.effectThree) {
-        optionsList.push(<div className={"stat-choice " + (this.state.effectFour === effect ? "stat-picked" : "stat-not-picked")} key={index} onClick={(e) => this.setEffect(e, 'effectFour', effect)}><p>{effect}</p></div>);
+        optionsList.push(<div className={"interactable stat-choice " + (this.state.effectFour === effect ? "interactable-active" : "interactable-inactive")} key={index} onClick={(e) => this.setEffect(e, 'effectFour', effect)}><div className="effect-choice"><p>{effect}</p></div></div>);
       }
     });
     return optionsList;
@@ -276,18 +276,27 @@ export class RangedRivenEditor extends Component {
     }
   }
 
+  hideRivenEditor = () => {
+    this.setState({
+      openEffect: null
+    });
+    this.props.hideRivenEditor();
+  }
+
   render() {
     let displayOptions = this.determineOptionSet();
     return (
       <React.Fragment>
-        <div className={"riven-editor " + (this.props.rivenEditor ? "show-riven-editor" : "hide-riven-editor")}>
-          <div className="riven-editor-window" onClick={this.stopPropagation}>
-            <div className="riven-editor-x-wrapper" onClick={this.props.hideRivenEditor}>
-              <div className="riven-editor-bar top"></div>
-              <div className="riven-editor-bar bot"></div>
+        <div className={"popup " + (this.props.rivenEditor ? "popup-active" : "popup-inactive")}>
+          <div className={"popup-topbar " + (this.props.rivenEditor ? "popup-active" : "popup-inactive")}>
+            <div className="popup-x" onClick={this.hideRivenEditor}>
+              <div className="popup-x-bar one-bar"></div>
+              <div className="popup-x-bar two-bar"></div>
             </div>
+          </div>
+          <div className="popup-content riven-editor">
             <div className="riven-polarity">
-              <div className="riven-window-title">Choose Polarity</div>
+              <div className="riven-window-title">Riven Polarity</div>
               <div className="hexa-wrapper hexa-first">
                 <div className={"riven-hexagon hexagon " + (this.state.polarity === 'madurai' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'madurai') }}>
                   <span>
@@ -323,16 +332,8 @@ export class RangedRivenEditor extends Component {
                 </div>
               </div>
             </div>
-            {/* {!this.state.rivenInStack &&
-              <div className="slot-choice">
-                <div className="riven-window-title">Choose Mod Slot</div>
-                <div className="avail-slots">
-                  {this.getAvailSlots()}
-                </div>
-              </div>
-            } */}
             <div className="riven-effects">
-              <div className="riven-window-title">Choose Effects</div>
+              <div className="riven-window-title">Riven Effects</div>
               <div className="riven-effect-wrapper">
                 <div className="riven-effect" onClick={(e) => this.openEffect(e, 1)}>
                   <div className="chosen-stat"><p>{this.state.effectOne}</p></div>
@@ -388,7 +389,7 @@ export class RangedRivenEditor extends Component {
                 </div>
               }
             </div>
-            <div className="riven-button" onClick={this.updateRiven}>Update</div>
+            <div className="interactable interactable-semi-inactive" onClick={this.updateRiven}><p className="interactable-p">Update</p></div>
           </div>
         </div>
         <div className="soft-input-wrapper">
@@ -419,12 +420,14 @@ export class RangedRivenEditor extends Component {
             : <p className="soft-percent">m</p>
           }
         </div>
-        <div className={"effect-picker " + (this.state.openEffect !== null ? "open-effect-picker" : "closed-effect-picker")}>
-          <div className="stat-choices-wrapper">
-            {displayOptions}
+        <div className={"popup " + (this.state.openEffect !== null ? "popup-active" : "popup-inactive")}>
+          <div className="popup-content stat-choices-wrapper">
+            <div className="stat-choices">
+              {displayOptions}
+            </div>
           </div>
         </div>
-      </React.Fragment>
+      </React.Fragment >
     )
   }
 }

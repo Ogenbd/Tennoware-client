@@ -1817,7 +1817,7 @@ export const primaryWeapons = [
         disposition: 3,
         modes: [
             {
-                name: 'Primary Total',
+                name: 'Total',
                 trigger: 'Charge',
                 fireRate: 3.33,
                 chargeRate: 0.3,
@@ -1835,7 +1835,7 @@ export const primaryWeapons = [
                 ]
             },
             {
-                name: 'Primary Impact',
+                name: 'Impact',
                 trigger: 'Charge',
                 fireRate: 3.33,
                 chargeRate: 0.3,
@@ -1853,7 +1853,7 @@ export const primaryWeapons = [
                 ]
             },
             {
-                name: 'Primary Explosion',
+                name: 'Explosion',
                 trigger: 'Charge',
                 fireRate: 3.33,
                 chargeRate: 0.3,

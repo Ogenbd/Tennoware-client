@@ -6,7 +6,7 @@
     width: 150px;
     height: 219.55px;
     margin: 3px;
-    transition: transform 0.15s;
+    transition: transform 0.2s;
 }
 
 .handler-background {
@@ -15,7 +15,7 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
     cursor: default;
     z-index: 1020;
     transition: opacity 0.1s;
@@ -46,10 +46,16 @@
     transition: opacity 0.1s
 }
 
+.handler-rank {
+    width: 40px;
+    min-width: 40px;
+}
+
 .bottom-button-wrapper {
     display: flex;
-    justify-content: space-between;
-    width:195px;
+    justify-content: center;
+    width: 195px;
+    height: 48px;
 }
 
 .handler-word-button {
@@ -88,7 +94,14 @@
     color: #ff0000;
 }
 
+.handler-swap {
+    color: white;
+    width: 78.25px;
+}
+
 .handler-done {
+    width: 78.25px;
+    min-height: 38px;
     color: #15E610;
 }
 
@@ -129,7 +142,7 @@
     cursor: pointer;
     z-index: 16;
     transform: translateZ(0) translate(0, 0);
-    transition: transform 0.15s, z-index 0.05s step-end; 
+    transition: transform 0.15s, z-index 0.05s step-end;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -162,32 +175,39 @@
     left: -8px;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.15s;
+    transition: opacity 200ms;
 }
 
 .hover-button {
     position: relative;
-    margin-bottom: 2px;
-    height: 22px;
+    margin-bottom: 1px;
+    height: 23px;
     top: 0;
     left: 0;
-    width: 22px;
-    background-color: white;
-    border: solid 1px black;
+    width: 23px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: rgba(255, 244, 190, 0.4);
+    border: solid 1px;
+    border-color: rgba(255, 249, 160, 0.3);
     border-radius: 5px;
     text-align: center;
     line-height: 22px;
     font-weight: 900;
-    transition: color 0.15s, background-color 0.15s;
+    transition: all 200ms;
     user-select: none;
+    font-size: 18px;
 }
 
-.max-rank-button{
+.max-rank-button {
     transform: rotate(-90deg);
 }
 
-.min-rank-button{
+.min-rank-button {
     transform: rotate(90deg);
+}
+
+.down-rank-button {
+    line-height: 20px;
 }
 
 .handler-active {
@@ -204,17 +224,16 @@
     .mod-card-wrapper:hover {
         transform: translateZ(0) scale(1.1, 1.1);
     }
-    
     .mod-card-wrapper:hover .hover-buttons {
         opacity: 1;
         pointer-events: auto;
     }
-    
     .hover-button:hover {
-        color: white;
-        background-color: rgb(60, 60, 60)
+        color: rgba(255, 249, 160, 1);
+        box-shadow: inset 0px 0px 12px 0px rgba(255, 249, 160, 0.73);
+        border-color: rgba(255, 249, 160, 0.73);
+        /* text-shadow: 0px 0px 8px rgba(255, 249, 160, 1); */
     }
-    
     .empty-slot:hover {
         box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.7);
     }

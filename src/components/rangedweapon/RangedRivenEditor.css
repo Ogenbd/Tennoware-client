@@ -2,24 +2,23 @@
     display: none;
 }
 
-.effect-picker {
-    position: absolute;
-}
-
 .riven-polarity {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
+    min-height: 133px;
 }
 
 .riven-window-title {
     font-size: 22px;
     padding: 7px 15px;
-    color: black;
+    color: white;
     text-align: center;
-    /* width: 170px; */
-    /* background-color: white */
+}
+
+.riven-effects {
+    margin-bottom: 10px;
 }
 
 .hexa-first {
@@ -37,51 +36,12 @@
 .polarity-large {
     transform: scale(1.2, 1.2);
     transition: transform 0.2s;
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
-}
-
-.polarity-large:after {
-    box-shadow: -4px 4px 4px -1px rgba(0, 0, 0, 0.4);
-}
-
-.polarity-large:before {
-    box-shadow: -1px 0 0 0 rgba(0, 0, 0, 0);
-}
-
-.riven-effects {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.riven-editor-x-wrapper {
-    position: absolute;
-    top: 7px;
-    left: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 24px;
-    height: 21px;
-    padding: 8px;
-    margin-right: 16px;
-    margin-bottom: 2px;
-    cursor: pointer;
-}
-
-.riven-editor-bar {
-    position: absolute;
-    width: 20px;
-    height: 3px;
-    background-color: #373737;
-    border-radius: 1px;
 }
 
 .riven-button {
     width: 100px;
     height: 48px;
     margin-top: 25px;
-    /* margin-left: 40px; */
     line-height: 48px;
     text-align: center;
     background-color: #373737;
@@ -108,11 +68,9 @@
     padding: 5px;
     color: white;
     height: 38px;
-    /* line-height: 18px; */
     text-align: center;
     margin-right: 2px;
     margin-bottom: 2px;
-    z-index: 1021;
     font-weight: 600;
     cursor: pointer;
 }
@@ -145,19 +103,41 @@
     transition: opacity 200ms;
 }
 
+.stat-choices-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-choices {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    max-width: 800px;
+}
+
+.stat-choice {
+    flex-shrink: 0;
+    width: 148px;
+    height: 38px;
+}
+
+.effect-choice {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 36px;
+    text-align: center;
+    padding: 0 3px;
+}
+
 @media screen and (min-width: 1223px) {
     .riven-editor {
-        display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        position: absolute;
-        background-color: rgba(0, 0, 0, 0.7);
-        z-index: 1020;
-        top: 0;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        transition: opacity 0.1s;
     }
     .show-riven-editor {
         opacity: 1;
@@ -184,75 +164,18 @@
         justify-content: center;
         width: 100%;
     }
-    .effect-picker {
-        position: absolute;
-        display: flex;
-        align-self: center;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        max-width:600px;
-        height: 535px;
-        transition: opacity 100ms;
-        z-index: 1021;
-        background-color: white;
-        /* margin-top: 20%; */
-    }
-    .open-effect-picker {
-        opacity: 1;
-        pointer-events: auto;
-    }
-    .closed-effect-picker {
-        opacity: 0;
-        pointer-events: none;
-    }
-    .stat-choices-wrapper {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-    }
-    .stat-choice {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 5px;
-        width: 148px;
-        height: 38px;
-        text-align: center;
-        margin: 5px;
-        border: 1px solid black;
-    }
-    .stat-picked {
-        background-color: #373737;
-        color: white;
-        font-weight: 600;
-    }
-
 }
 
 @media screen and (max-width: 1222px) {
     .riven-editor {
-        position: fixed;
         display: flex;
         align-items: center;
         flex-direction: column;
-        height: 100vh;
-        width: 100vw;
-        max-width: 100vw;
-        transition: transform 200ms;
-        top: 56px;
-        left: initial;
-        z-index: 1020;
-        box-sizing: border-box;
-        /* overflow-y: scroll; */
-        overflow-x: hidden;
-        background-color: #ababc9;
+        justify-content: center;
     }
     .riven-editor-window {
         position: absolute;
         display: flex;
-        /* height: calc(100vh - 56px); */
         flex-direction: column;
         align-items: center;
         margin-bottom: 155px;
@@ -262,21 +185,12 @@
         display: flex;
         box-sizing: border-box;
         padding-top: 20px;
-        /* overflow-y: scroll; */
         overflow-x: hidden;
-    }
-    .show-riven-editor {
-        transform: translateY(0);
-    }
-    .hide-riven-editor {
-        transform: translateY(106vh);
     }
     .riven-effect-wrapper {
         display: flex;
-        /* align-items: center; */
         justify-content: center;
         width: 100%;
-        /* height: 38px; */
     }
     .chosen-stat {
         display: flex;
@@ -288,11 +202,9 @@
         padding: 5px;
         color: white;
         height: 38px;
-        /* line-height: 18px; */
         text-align: center;
         margin-right: 2px;
         margin-bottom: 2px;
-        z-index: 1021;
         font-weight: 600;
     }
     .riven-effect-amount {
@@ -333,7 +245,6 @@
         max-width: 230px;
     }
     .riven-slot {
-        /* min-width: 50px; */
         font-weight: 600;
         width: 50px;
         height: 73.2px;
@@ -368,9 +279,9 @@
         align-items: center;
         justify-content: center;
         background-color: #373737;
-        z-index: 1022;
         opacity: 0;
         pointer-events: none;
+        z-index: 5052;
     }
     .soft-input-wrapper:focus-within {
         opacity: 1;
@@ -389,61 +300,30 @@
     .soft-percent {
         color: white;
     }
-    .effect-picker {
-        position: fixed;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        height: calc(50vh - 56px);
-        width: 100%;
-        /* max-width: 1222px; */
-        transition: transform 100ms;
-        left: initial;
-        z-index: 1021;
-        box-shadow: 0px -1px 5px 1px rgba(0, 0, 0, 0.4);
-        background-color: white;
-        box-sizing: content-box;
-    }
-    .open-effect-picker {
-        transform: translateY(50vh);
-    }
-    .closed-effect-picker {
-        transform: translateY(200vh);
-    }
     .stat-choices-wrapper {
-        border: 50% 0;
-        display: flex;
+        justify-content: center;
+        flex-direction: column;
         flex-wrap: wrap;
-        justify-content: space-evenly;
-        /* flex-direction: column; */
-        align-items: center;
-        width: 100%;
-        height: 100%;
-        position: absolute;
+        height: 100vh;
+        max-height: 100vh;
+    }
+    .stat-choices {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
         overflow-y: auto;
-        box-sizing: content-box;
     }
     .stat-choice {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 5px;
+        flex-shrink: 0;
         width: 148px;
         height: 38px;
+    }
+    .effect-choice {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 36px;
+        padding: 0 3px;
         text-align: center;
-        margin: 2px;
-        border: 1px solid black;
-    }
-    .stat-picked {
-        background-color: #373737;
-        color: white;
-        font-weight: 600;
-    }
-}
-
-@media screen and (max-width: 529px) {
-    .riven-editor-window {
-        /* margin-left: -47.25%; */
-        /* left: 50%; */
     }
 }

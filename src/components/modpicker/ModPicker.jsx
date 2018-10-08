@@ -84,18 +84,35 @@ export class ModPicker extends Component {
     render() {
         let display = this.filterMods();
         return (
-            <div className={'mod-picker ' + (this.props.active ? 'open-mod-picker' : 'closed-mod-picker')}>
-                <div className="mod-list">
+            // <div className={this.props.viewWidth < 1223 ? "popup " + (this.props.active ? "popup-active" : "popup-inactive") : 'mod-picker ' + (this.props.active ? 'open-mod-picker' : 'closed-mod-picker')}>
+            <div className={this.props.viewWidth < 1223 ? "popup " + (this.props.active ? "popup-active" : "popup-inactive") : 'mod-picker'}>
+                {/* <div className="mod-list">
                     <div className={"mod-list-topbar " + (this.props.active ? 'open-mod-picker' : 'closed-mod-picker')}>
                         <div className="mod-picker-x-wrapper" onClick={this.closeModPicker}>
                             <div className="mod-picker-bar top"></div>
                             <div className="mod-picker-bar bot"></div>
                         </div>
+                        <div className="search-wrapper">
+                            <input className="search" type="text" placeholder="Search..." value={this.state.search} onChange={this.handleChange} onKeyUp={this.blurInput} />
+                        </div>
+                        </div>
+                        <div className="mod-picker-mods-wrapper">
+                        {this.generateModList(display)}
+                        </div>
+                    </div> */}
+                <div className={this.props.viewWidth < 1223 ? "mod-list-topbar popup-topbar " + (this.props.active ? "popup-active" : "popup-inactive") : "mod-list-topbar"}>
+                    { this.props.viewWidth < 1223 &&
+                    <div className="popup-x" onClick={this.closeModPicker}>
+                        <div className="popup-x-bar one-bar"></div>
+                        <div className="popup-x-bar two-bar"></div>
+                    </div>
+                    }
+                    <div className="search-wrapper mod-list-search-wrapper">
                         <input className="search" type="text" placeholder="Search..." value={this.state.search} onChange={this.handleChange} onKeyUp={this.blurInput} />
                     </div>
-                    <div className="mod-picker-mods-wrapper">
-                        {this.generateModList(display)}
-                    </div>
+                </div>
+                <div className="popup-content mod-list">
+                    {this.generateModList(display)}
                 </div>
             </div>
         )

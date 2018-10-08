@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './App.css';
+import './general.css';
 
 import Routing from './Routing';
 import Sidebar from './components/sidebar/Sidebar';
@@ -13,7 +14,7 @@ class App extends Component {
       showLogin: false,
       title: '',
       viewWidth: window.innerWidth,
-      user: 2,
+      user: 1,
       indicator: !navigator.onLine
     }
     this.debouncedSetWidth = debounce(this.setViewWidth, 100)

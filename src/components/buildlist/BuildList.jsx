@@ -41,8 +41,43 @@ export class BuildList extends Component {
 
     render() {
         return (
-            <div className={"dark-bg " + (this.props.buildList ? "show-dark-bg" : "hide-dark-bg")} onClick={this.hideBuildList}>
-
+            // <div className={"dark-bg " + (this.props.buildList ? "show-dark-bg" : "hide-dark-bg")} onClick={this.hideBuildList}>
+            <div className={"popup " + (this.props.buildList ? "popup-active" : "popup-inactive")}>
+                <div className={"popup-topbar " + (this.props.buildList ? "popup-active" : "popup-inactive")}>
+                    <div className="popup-x" onClick={this.hideBuildList}>
+                        <div className="popup-x-bar one-bar"></div>
+                        <div className="popup-x-bar two-bar"></div>
+                    </div>
+                </div>
+                <div className="popup-content build-list">
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                    <div className="build-item"></div>
+                </div>
             </div>
         )
     }

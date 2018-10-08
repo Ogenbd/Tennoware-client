@@ -1,0 +1,28 @@
+@media screen and (min-width: 1223px) {
+    .build-list {
+        height: calc(100vh - 112px);
+        flex-direction: column;
+        align-items: center;
+    }
+    .build-item {
+        width: 90%;
+        height: 56px;
+        min-height: 56px;
+        background-color: aliceblue;
+        margin: 3px;
+    }
+}
+
+@media screen and (max-width: 1222px) {
+    .build-list {
+        flex-direction: column;
+        align-items: center;
+    }
+    .build-item {
+        width: 90%;
+        height: 56px;
+        min-height: 56px;
+        background-color: aliceblue;
+        margin: 3px;
+    }
+}

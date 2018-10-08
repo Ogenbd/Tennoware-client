@@ -1,27 +1,7 @@
-.link-generator-window {
-    position: fixed;
-    display: flex;
+.link-generator {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    max-width: 529px;
-    height: 110px;
-    margin-left: -184px;
-    background-color: rgba(0, 0, 0, 0.8);
-    top: 35%;
-    left: 50%;
-    transition: opacity 0.1s;
-}
-
-.show-link-generator {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.hide-link-generator {
-    opacity: 0;
-    pointer-events: none;
 }
 
 .link-area {
@@ -38,7 +18,7 @@
 
 .link-area:focus {
     outline: none;
-    border-bottom: solid 2px #fff9a0;
+    border-bottom: solid 2px rgb(255, 249, 160);
     box-shadow: inset 0px -17px 15px -11px rgba(255, 249, 160, 0.73);
     border-color: rgba(255, 249, 160, 0.73);
 }
@@ -49,18 +29,14 @@
 }
 
 @media screen and (max-width: 1222px) {
-    .link-generator-window {
-        margin-top: 56px;
-        left: 50%;
-        margin-left: -264.5px;
-    }
+
 }
 
 @media screen and (max-width: 529px) {
     .link-generator-window {
-        left: unset;
-        margin-left: unset;
-        height: 140px;
+        /* left: unset; */
+        /* margin-left: unset; */
+        /* height: 140px; */
     }
     .link-area {
         height: 70px;

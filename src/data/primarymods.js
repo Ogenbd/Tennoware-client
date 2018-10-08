@@ -1,4 +1,4 @@
-// currently at abrev o5
+// currently at abrev o6
 export const primaryMods = [
     {
         abrev: 'a0',
@@ -260,6 +260,7 @@ export const primaryMods = [
     {
         abrev: 'c0',
         name: 'Charged Shell',
+        family: 'Charged Shell',
         type: 'SHOTGUN',
         rarity: 'uncommon',
         polarity: 'naramon',
@@ -1063,6 +1064,19 @@ export const primaryMods = [
         currRank: 10,
         baseCost: 4,
         description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Damage to Infested` }
+    },
+    {
+        abrev: 'o6',
+        name: 'Primed Charged Shell',
+        family: 'Charged Shell',
+        type: 'SHOTGUN',
+        rarity: 'prime',
+        polarity: 'naramon',
+        effects: { elemental: { damage: 0.15, type: 'Electricity' } },
+        maxRank: 10,
+        currRank: 10,
+        baseCost: 6,
+        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Electricity` }
     },
     {
         abrev: 'i6',

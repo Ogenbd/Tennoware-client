@@ -13,9 +13,9 @@ export class LinkGenerator extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.linkGenerator === false && this.props.linkGenerator === true) {
       // fix url
-      let linkUrl = `localhost:3000/${this.props.type}/${this.props.match.params.id}/${this.props.buildStr}`;
+      let linkUrl = `localhost:3000/${this.props.type}/${encodeURIComponent(this.props.match.params.id)}/${this.props.buildStr}`;
       if (this.props.match.params.build && this.props.buildStr === this.props.match.params.pre) {
-        linkUrl += `/${this.props.match.params.user}/${this.props.match.params.build}`;
+        linkUrl += `/${this.props.match.params.build}`;
       }
       this.setState({ fullLink: linkUrl });
     }
@@ -39,10 +39,18 @@ export class LinkGenerator extends Component {
   render() {
     return (
       // <div className={"link-generator dark-bg " + (this.props.linkGenerator ? "show-dark-bg" : "hide-dark-bg")} >
-      <div className={"dark-bg " + (this.props.linkGenerator ? "show-dark-bg" : "hide-dark-bg")} onClick={this.hideLinkGenerator}>
-        <div className="link-generator-window" onClick={this.stopPropagation}>
+      // <div className={"dark-bg " + (this.props.linkGenerator ? "show-dark-bg" : "hide-dark-bg")} onClick={this.hideLinkGenerator}>
+      // {/* <div className="link-generator-window" onClick={this.stopPropagation}> */}
+      <div className={"popup " + (this.props.linkGenerator ? "popup-active" : "popup-inactive")}>
+        <div className={"popup-topbar " + (this.props.linkGenerator ? "popup-active" : "popup-inactive")}>
+          <div className="popup-x" onClick={this.hideLinkGenerator}>
+            <div className="popup-x-bar one-bar"></div>
+            <div className="popup-x-bar two-bar"></div>
+          </div>
+        </div>
+        <div className="popup-content link-generator">
           <textarea className="link-area" value={this.state.fullLink} autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false"></textarea>
-          <div className="build-action copy-button" onClick={this.copyLinkToClipboard}><p className="build-action-text">Copy</p></div>
+          <div className="interactable interactable-semi-inactive" onClick={this.copyLinkToClipboard}><p className="interactable-p">Copy</p></div>
         </div>
       </div>
     )

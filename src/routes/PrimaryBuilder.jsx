@@ -10,11 +10,24 @@ class PrimaryBuilder extends Component {
             weapon: {},
             relevantMods: [],
             slotPolarities: [],
-            originalPolarityCount: {}
+            originalPolarityCount: {},
+            metaInfo: {
+                UserID: undefined,
+
+            }
         }
     }
 
     componentDidMount() {
+        if (this.props.match.params.build) {
+            this.confirmBuild()
+        } else {
+            this.setupBuilder()
+        }
+        console.log(this.props);
+    }
+
+    setupBuilder = () => {
         let weapon = this.props.weapons.find(item => {
             return item.name.toLowerCase() === this.props.match.params.id.toLowerCase();
         });
@@ -45,6 +58,30 @@ class PrimaryBuilder extends Component {
         }
     }
 
+    confirmBuild = () => {
+        // fix url
+        fetch('http://192.168.1.114:50000/getbuild', {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ buildId: this.props.match.params.build, userId: this.props.user })
+        })
+            .then(res => res.json())
+            .then(({ res }) => {
+                console.log(res);
+                if (res.ItemName === this.props.match.params.id.toLowerCase() && res.BuildStr === this.props.match.params.pre) {
+                    this.setState({
+                        metaInfo: res
+                    });
+                    this.setupBuilder();
+                } else {
+                    this.redirectToVoid();
+                }
+            })
+            .catch(err => {
+                console.log('error')
+            });
+    }
+
     redirectToVoid = () => {
         this.props.history.replace('/void');
     }
@@ -54,7 +91,7 @@ class PrimaryBuilder extends Component {
             <div className="screen">
                 {/* <div className="primary-builder"> */}
                 {this.props.title === this.state.weapon.name &&
-                    <RangedWeaponModding redirectToVoid={this.redirectToVoid} weapon={this.state.weapon} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} />
+                    <RangedWeaponModding redirectToVoid={this.redirectToVoid} weapon={this.state.weapon} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} />
                 }
             </div>
         )

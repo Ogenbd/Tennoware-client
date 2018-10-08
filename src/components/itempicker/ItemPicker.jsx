@@ -46,7 +46,9 @@ export class ItemPicker extends Component {
                 <div className={"item-picker " + (this.state.picked ? 'fade-picker' : '')}>
                     <div className="item-picker-content">
                         <div className="item-picker-topbar">
-                            <input className="item-search" type="text" placeholder="Sreach..." onChange={this.filterItems} onKeyUp={this.blurInput} />
+                            <div className="search-wrapper item-picker-search">
+                                <input className="search" type="text" placeholder="Sreach..." onChange={this.filterItems} onKeyUp={this.blurInput} />
+                            </div>
                         </div>
                         <div className="items-display">
                             {this.state.displayItems.map(item => (
