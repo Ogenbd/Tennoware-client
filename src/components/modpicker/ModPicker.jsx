@@ -7,14 +7,15 @@ export class ModPicker extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            display: this.props.mods,
-            search: ''
+            // display: this.props.mods,
+            search: '',
+            conclave: false
         }
     }
 
-    static getDerivedStateFromProps(nextProps) {
-        return { display: nextProps.mods }
-    }
+    // static getDerivedStateFromProps(nextProps) {
+    //     return { display: nextProps.mods }
+    // }
 
     handlePick = (mod) => {
         if (this.props.viewWidth < 1223) {
@@ -60,53 +61,73 @@ export class ModPicker extends Component {
     }
 
     filterMods = () => {
-        if (this.state.search.length < 1) {
-            return this.props.mods;
-        } else {
-            let desc;
-            let regExp = new RegExp(this.state.search, 'i')
-            let searchResaults = this.props.mods.filter(mod => {
-                if (mod.name) {
-                    desc = mod.description();
-                    if (typeof desc === 'string') {
-                        return (mod.name && (mod.name.search(regExp) !== -1 || desc.search(regExp) !== -1 || mod.type.search(regExp) !== -1));
+        if (!this.state.conclave) {
+            let results;
+            if (this.state.search.length < 1) {
+                results = this.props.mods.filter(mod => {
+                    return !mod.conclaveOnly;
+                });
+            } else {
+                let desc;
+                let regExp = new RegExp(this.state.search, 'i')
+                results = this.props.mods.filter(mod => {
+                    if (mod.name) {
+                        desc = mod.description();
+                        if (typeof desc === 'string') {
+                            return (mod.name && !mod.conclaveOnly && (mod.name.search(regExp) !== -1 || desc.search(regExp) !== -1 || mod.type.search(regExp) !== -1));
+                        } else {
+                            return (mod.name && !mod.conclaveOnly && (mod.name.search(regExp) !== -1 || desc[0].search(regExp) !== -1 || desc[1].search(regExp) !== -1 || mod.type.search(regExp) !== -1));
+                        }
                     } else {
-                        return (mod.name && (mod.name.search(regExp) !== -1 || desc[0].search(regExp) !== -1 || desc[1].search(regExp) !== -1 || mod.type.search(regExp) !== -1));
+                        return false;
                     }
-                } else {
-                    return false;
-                }
-            })
-            return searchResaults;
+                })
+            }
+            return results;
+        } else {
+            let conclaveMods;
+            if (this.state.search.length < 1) {
+                conclaveMods = this.props.mods.filter(mod => {
+                    return mod.conclave;
+                });
+            } else {
+                let desc;
+                let regExp = new RegExp(this.state.search, 'i')
+                conclaveMods = this.props.mods.filter(mod => {
+                    if (mod.name) {
+                        desc = mod.description();
+                        if (typeof desc === 'string') {
+                            return (mod.name && mod.conclave && (mod.name.search(regExp) !== -1 || desc.search(regExp) !== -1 || mod.type.search(regExp) !== -1));
+                        } else {
+                            return (mod.name && mod.conclave && (mod.name.search(regExp) !== -1 || desc[0].search(regExp) !== -1 || desc[1].search(regExp) !== -1 || mod.type.search(regExp) !== -1));
+                        }
+                    } else {
+                        return false;
+                    }
+                })
+            }
+            return conclaveMods;
         }
+    }
+
+    toggleConclave = () => {
+        this.setState(prevState => ({
+            conclave: !prevState.conclave
+        }));
     }
 
     render() {
         let display = this.filterMods();
         return (
-            // <div className={this.props.viewWidth < 1223 ? "popup " + (this.props.active ? "popup-active" : "popup-inactive") : 'mod-picker ' + (this.props.active ? 'open-mod-picker' : 'closed-mod-picker')}>
             <div className={this.props.viewWidth < 1223 ? "popup " + (this.props.active ? "popup-active" : "popup-inactive") : 'mod-picker'}>
-                {/* <div className="mod-list">
-                    <div className={"mod-list-topbar " + (this.props.active ? 'open-mod-picker' : 'closed-mod-picker')}>
-                        <div className="mod-picker-x-wrapper" onClick={this.closeModPicker}>
-                            <div className="mod-picker-bar top"></div>
-                            <div className="mod-picker-bar bot"></div>
-                        </div>
-                        <div className="search-wrapper">
-                            <input className="search" type="text" placeholder="Search..." value={this.state.search} onChange={this.handleChange} onKeyUp={this.blurInput} />
-                        </div>
-                        </div>
-                        <div className="mod-picker-mods-wrapper">
-                        {this.generateModList(display)}
-                        </div>
-                    </div> */}
                 <div className={this.props.viewWidth < 1223 ? "mod-list-topbar popup-topbar " + (this.props.active ? "popup-active" : "popup-inactive") : "mod-list-topbar"}>
-                    { this.props.viewWidth < 1223 &&
-                    <div className="popup-x" onClick={this.closeModPicker}>
-                        <div className="popup-x-bar one-bar"></div>
-                        <div className="popup-x-bar two-bar"></div>
-                    </div>
+                    {this.props.viewWidth < 1223 &&
+                        <div className="popup-x" onClick={this.closeModPicker}>
+                            <div className="popup-x-bar one-bar"></div>
+                            <div className="popup-x-bar two-bar"></div>
+                        </div>
                     }
+                    <div className={"interactable conclave " + (this.state.conclave ? "interactable-active" : "interactable-inactive")} onClick={this.toggleConclave}><div className="conclave-placeholder"></div></div>
                     <div className="search-wrapper mod-list-search-wrapper">
                         <input className="search" type="text" placeholder="Search..." value={this.state.search} onChange={this.handleChange} onKeyUp={this.blurInput} />
                     </div>

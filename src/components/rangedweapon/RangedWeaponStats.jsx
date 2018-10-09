@@ -258,7 +258,7 @@ export class RangedWeaponStats extends Component {
                     {weapon.modes.length > 1 &&
                         <div className="modes">
                             {weapon.modes.map((instance, index) => (
-                                <div key={index} className={"interactable " + (mode === index ? 'interactable-active' : 'interactable-inactive')} onClick={() => this.setState({ mode: index })}>
+                                <div key={index} className={"activatable " + (mode === index ? 'interactable-active' : 'interactable-inactive')} onClick={() => this.setState({ mode: index })}>
                                     <p className="interactable-p">{instance.name}</p>
                                 </div>
                             ))}

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { RangedWeaponModding } from '../components/rangedweapon/RangedWeaponModding';
 
 
-class PrimaryBuilder extends Component {
+class RangedBuilder extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,7 +24,6 @@ class PrimaryBuilder extends Component {
         } else {
             this.setupBuilder()
         }
-        console.log(this.props);
     }
 
     setupBuilder = () => {
@@ -36,7 +35,7 @@ class PrimaryBuilder extends Component {
             let slotPolarities = [];
             let originalPolarityCount = { madurai: 0, naramon: 0, vazarin: 0, zenurik: 0, unairu: 0, penjaga: 0, umbra: 0 };
             let filteredMods = this.props.mods.filter(mod => {
-                return mod.type === 'PRIMARY' || weapon.type.some(keyword => {
+                return mod.type === 'PRIMARY' || mod.type === 'PISTOL' || weapon.type.some(keyword => {
                     return keyword === mod.type
                 });
             });
@@ -67,7 +66,6 @@ class PrimaryBuilder extends Component {
         })
             .then(res => res.json())
             .then(({ res }) => {
-                console.log(res);
                 if (res.ItemName === this.props.match.params.id.toLowerCase() && res.BuildStr === this.props.match.params.pre) {
                     this.setState({
                         metaInfo: res
@@ -98,4 +96,4 @@ class PrimaryBuilder extends Component {
     }
 }
 
-export default PrimaryBuilder;
+export default RangedBuilder;

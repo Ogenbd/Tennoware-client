@@ -1,4 +1,4 @@
-// currently at abrev o6
+// currently at abrev r0
 export const primaryMods = [
     {
         abrev: 'a0',
@@ -41,6 +41,7 @@ export const primaryMods = [
         name: 'Agile Aim',
         img: require('../assets/modimages/primary/agileaim.jpeg'),
         type: 'RIFLE',
+        conclave: true,
         rarity: 'uncommon',
         polarity: 'madurai',
         effects: { none: 0.05 },
@@ -48,6 +49,20 @@ export const primaryMods = [
         currRank: 3,
         baseCost: 2,
         description() { return `Increase movement speed by +${Math.round(this.effects.none * (this.currRank + 1) * 100)}% while aiming` }
+    },
+    {
+        abrev: 'o7',
+        name: 'Ambush Optics',
+        type: 'RUBICO',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'naramon',
+        effects: { none: 0.125 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 6,
+        description() { return `-${Math.round(this.effects.none * (this.currRank + 1) * 1000) / 10}% Zoom` }
     },
     {
         abrev: 'a4',
@@ -86,6 +101,20 @@ export const primaryMods = [
         description() { return `+${Math.round(this.effects.magSize * (this.currRank + 1) * 100)}% Magazine Capacity` }
     },
     {
+        abrev: 'o8',
+        name: 'Apex Predator',
+        type: 'RIFLE',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'uncommon',
+        polarity: 'naramon',
+        effects: { none: 1 },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 2,
+        description() { return `Target visible on map for +${(this.effects.none * (this.currRank + 1))} seconds if hit` }
+    },
+    {
         abrev: 'a6',
         name: 'Argon Scope',
         type: 'RIFLE',
@@ -95,7 +124,7 @@ export const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 2,
-        description() { return `ON HEADSHOT: +${Math.round(this.effects.none[0] * (this.currRank + 1) * 1000) / 10}% Crit Chance while aiming for ${this.effects.none[1] * (this.currRank + 1)} seconds` }
+        description() { return `On Headshot: +${Math.round(this.effects.none[0] * (this.currRank + 1) * 1000) / 10}% Crit Chance while aiming for ${this.effects.none[1] * (this.currRank + 1)} seconds` }
     },
     {
         abrev: 'a7',
@@ -198,6 +227,34 @@ export const primaryMods = [
         description() { return `+${Math.round(this.effects.critChance * (this.currRank + 1) * 100)}% Critical Chance` }
     },
     {
+        abrev: 'o9',
+        name: 'Bounty Hunter',
+        type: 'SHOTGUN',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'uncommon',
+        polarity: 'naramon',
+        effects: { none: 1 },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 2,
+        description() { return `Target cisible on map for +${(this.effects.none * (this.currRank + 1))} seconds if hit` }
+    },
+    {
+        abrev: 'p0',
+        name: 'Brain Storm',
+        type: 'GRAKATA',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { none: 0.25 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 10,
+        description() { return `ON HEADSHOT: +${(this.effects.none * (this.currRank + 1) * 100)}% Ammo Efficiency for 0.5 seconds` }
+    },
+    {
         abrev: 'b5',
         name: 'Breach Loader',
         type: 'SHOTGUN',
@@ -213,6 +270,7 @@ export const primaryMods = [
         abrev: 'b6',
         name: 'Broad Eye',
         type: 'SHOTGUN',
+        conclave: true,
         rarity: 'uncommon',
         polarity: 'naramon',
         effects: { none: -0.1 },
@@ -355,6 +413,21 @@ export const primaryMods = [
         description() { return `Enemies killed explode, dealing +${this.effects.none * (this.currRank + 1)} damage shortly after death` }
     },
     {
+        abrev: 'p1',
+        name: 'Comet Rounds',
+        family: 'Conclave Rifle Converstion',
+        type: 'RIFLE',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'uncommon',
+        polarity: 'madurai',
+        effects: { none: 0.05 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 2,
+        description() { return `Converts +${Math.round(this.effects.none * (this.currRank + 1) * 100)}% of Damage into Impact` }
+    },
+    {
         abrev: 'c8',
         name: 'Contagious Spread',
         type: 'SHOTGUN',
@@ -389,6 +462,21 @@ export const primaryMods = [
         currRank: 5,
         baseCost: 6,
         description() { return `+${Math.round(this.effects.impact * (this.currRank + 1) * 100)}% Impact` }
+    },
+    {
+        abrev: 'p2',
+        name: 'Crash Shot',
+        family: 'Conclave Shotgun Converstion',
+        type: 'SHOTGUN',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'uncommon',
+        polarity: 'madurai',
+        effects: { none: 0.05 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 2,
+        description() { return `Converts +${Math.round(this.effects.none * (this.currRank + 1) * 100)}% of Damage into Impact` }
     },
     {
         abrev: 'd1',
@@ -440,6 +528,20 @@ export const primaryMods = [
         description() { return `+${Math.round(this.effects.critChance * (this.currRank + 1) * 100)}% Critical Chance +${this.effects.none * (this.currRank + 1)} 'Sequence'` }
     },
     {
+        abrev: 'p3',
+        name: 'Deft Tempo',
+        type: 'ASSULT RIFLE',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'naramon',
+        effects: { none: [0.025, 1] },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 2,
+        description() { return `ON HEADSHOT: +${Math.round(this.effects.none[0] * (this.currRank + 1) * 1000) / 10}% Mobility for ${(this.effects.none[1] * (this.currRank + 1))}` }
+    },
+    {
         abrev: 'd5',
         name: 'Depleted Reload',
         type: 'SNIPER',
@@ -450,6 +552,20 @@ export const primaryMods = [
         currRank: 5,
         baseCost: 2,
         description() { return `${Math.round(this.effects.magSize * (this.currRank + 1) * 100)}% Magazine Capacity +${Math.round(this.effects.reload * (this.currRank + 1) * 100)}% Reload Speed` }
+    },
+    {
+        abrev: 'p4',
+        name: 'Directed Convergence',
+        type: 'SUPRA',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { none: 0.25 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 10,
+        description() { return `When aiming, accuracy increased by +${Math.round(this.effects.none * (this.currRank + 1) * 100)}%` }
     },
     {
         abrev: 'd6',
@@ -479,6 +595,7 @@ export const primaryMods = [
         abrev: 'd8',
         name: 'Double-Barrel Drift',
         type: 'SHOTGUN',
+        conclave: true,
         rarity: 'rare',
         polarity: 'madurai',
         effects: { none: -0.05 },
@@ -488,9 +605,25 @@ export const primaryMods = [
         description() { return `${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Recoil and Spread when sliding` }
     },
     {
+        abrev: 'p5',
+        name: 'Double Tap',
+        family: 'Conclave Assault',
+        type: 'LATRON',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { none: [0.05, 0.5] },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 10,
+        description() { return `ON HIT: ${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% bonus Damage on next hit for ${Math.round(this.effects.none[1] * (this.currRank + 1))} seconds` }
+    },
+    {
         abrev: 'd9',
         name: 'Eagle Eye',
         type: 'RIFLE',
+        conclave: true,
         rarity: 'uncommon',
         polarity: 'naramon',
         effects: { none: 0.1 },
@@ -498,6 +631,20 @@ export const primaryMods = [
         currRank: 3,
         baseCost: 4,
         description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Zoom` }
+    },
+    {
+        abrev: 'p6',
+        name: 'Emergent Aftermath',
+        type: 'SNIPER',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { none: 0.125 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 10,
+        description() { return `ON KILL: ${Math.round(this.effects.none * (this.currRank + 1) * 1000) / 10}% Reload Speed for 3 seconds` }
     },
     {
         abrev: 'e0',
@@ -549,6 +696,34 @@ export const primaryMods = [
         description() { return `+${Math.round(this.effects.flightSpeed * (this.currRank + 1) * 100)}% Flight Speed` }
     },
     {
+        abrev: 'p7',
+        name: 'Feathered Arrows',
+        type: 'BOW',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'uncommon',
+        polarity: 'madurai',
+        effects: { none: 0.15, baseDamage: -0.05 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 10,
+        description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Flight Speed ${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Damage` }
+    },
+    {
+        abrev: 'p8',
+        name: 'Final Tap',
+        type: 'HIND',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { none: 0.25 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 10,
+        description() { return `ON 4 HITS WITHIN 0.5 seconds +${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Damage for 0.2 seconds` }
+    },
+    {
         abrev: 'e4',
         name: 'Firestorm',
         type: 'EXPLOSIVE',
@@ -559,6 +734,21 @@ export const primaryMods = [
         currRank: 3,
         baseCost: 6,
         description() { return `Improves the blast radius of specialized launcher weapons. +${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Blast Radius` }
+    },
+    {
+        abrev: 'p9',
+        name: 'Flak Shot',
+        family: 'Conclave Shotgun Converstion',
+        type: 'SHOTGUN',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'uncommon',
+        polarity: 'madurai',
+        effects: { none: 0.05 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 2,
+        description() { return `Converts +${Math.round(this.effects.none * (this.currRank + 1) * 100)}% of Damage into Slash` }
     },
     {
         abrev: 'e5',
@@ -583,6 +773,20 @@ export const primaryMods = [
         currRank: 5,
         baseCost: 2,
         description() { return `Status Chance fluctuates between +${this.effects.none[0] * (this.currRank + 1)}% and ${Math.ceil(this.effects.none[1] * (this.currRank + 1))}% over 5 seconds while the beam is fired` }
+    },
+    {
+        abrev: 'q0',
+        name: 'Focused Acceleration',
+        type: 'TETRA',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { none: 0.2 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 10,
+        description() { return `When aiming +${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Flight Speed` }
     },
     {
         abrev: 'e7',
@@ -645,6 +849,34 @@ export const primaryMods = [
         description() { return `+${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate +${this.effects.none * (this.currRank + 1)} 'Truth` }
     },
     {
+        abrev: 'q1',
+        name: 'Gorgon Frenzy',
+        type: 'GORGON',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { none: 0.075 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 10,
+        description() { return `ON KILL: +${Math.round(this.effects.none * (this.currRank + 1) * 1000) / 10}% FIRE RATE for 3 seconds` }
+    },
+    {
+        abrev: 'q2',
+        name: 'Grinloked',
+        type: 'GRINLOK',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { none: 0.15 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 10,
+        description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Accuracy when Aiming` }
+    },
+    {
         abrev: 'f2',
         name: 'Guided Ordnance',
         type: 'ASSAULT RIFLE',
@@ -660,13 +892,14 @@ export const primaryMods = [
         abrev: 'f3',
         name: 'Gun Glide',
         type: 'ASSAULT RIFLE',
+        conclave: true,
         rarity: 'rare',
         polarity: 'madurai',
         effects: { none: -0.05 },
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Recoil and Spread when sliding` }
+        description() { return `${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Recoil and Spread when sliding` }
     },
     {
         abrev: 'f4',
@@ -785,6 +1018,36 @@ export const primaryMods = [
         description() { return `Reduce the chance an enemy will hear gunfire by +${Math.round(this.effects.none * (this.currRank + 1) * 100)}%` }
     },
     {
+        abrev: 'q3',
+        name: 'Hydraulic Chamber',
+        family: 'Conclave Shotgun',
+        type: 'SHOTGUN',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'naramon',
+        effects: { none: -0.15, magSize: -0.025 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 6,
+        description() { return `${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Weapon Recoil ${Math.round(this.effects.magSize * (this.currRank + 1) * 1000) / 10}% Magazine Capacity` }
+    },
+    {
+        abrev: 'q4',
+        name: 'Hydraulic Gauge',
+        family: 'Conclave Assault',
+        type: 'ASSAULT RIFLE',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'naramon',
+        effects: { none: -0.15, magSize: -0.025 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 6,
+        description() { return `${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Weapon Recoil ${Math.round(this.effects.magSize * (this.currRank + 1) * 1000) / 10}% Magazine Capacity` }
+    },
+    {
         abrev: 'g3',
         name: 'Incendiary Coat',
         type: 'SHOTGUN',
@@ -807,6 +1070,20 @@ export const primaryMods = [
         currRank: 5,
         baseCost: 6,
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Toxin` }
+    },
+    {
+        abrev: 'q5',
+        name: 'Kill Switch',
+        type: 'SHOTGUN',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { reload: 0.125 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 10,
+        description() { return `On Kill +${Math.round(this.effects.reload * (this.currRank + 1) * 1000) / 10}% Reload Speed for 3 seconds` }
     },
     {
         abrev: 'g5',
@@ -845,6 +1122,20 @@ export const primaryMods = [
         description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Dead Aim +${this.effect[1] * (this.currRank + 1)} 'Purity'` }
     },
     {
+        abrev: 'q6',
+        name: 'Lie In Wait',
+        type: 'SNIPER',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'uncommon',
+        polarity: 'madurai',
+        effects: { none: 0.25 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 10,
+        description() { return `-${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Reticle Sway +${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Weapon Recoil` }
+    },
+    {
         abrev: 'g8',
         name: 'Lingering Torment',
         type: 'SHOTGUN',
@@ -857,9 +1148,25 @@ export const primaryMods = [
         description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Status Duration` }
     },
     {
+        abrev: 'q7',
+        name: 'Loaded Capacity',
+        family: 'Conclave Shotgun',
+        type: 'SHOTGUN',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'common',
+        polarity: 'naramon',
+        effects: { magSize: 0.05, reload: -0.025 },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 10,
+        description() { return `+${Math.round(this.effects.magSize * (this.currRank + 1) * 100)}% Magazine Capacity ${Math.round(this.effects.reload * (this.currRank + 1) * 1000) / 10}% Reload Speed` }
+    },
+    {
         abrev: 'g9',
         name: 'Lock and Load',
         type: 'SHOTGUN',
+        conclave: true,
         rarity: 'rare',
         polarity: 'naramon',
         effects: { none: 0.05 },
@@ -867,6 +1174,50 @@ export const primaryMods = [
         currRank: 3,
         baseCost: 10,
         description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Clip Reloaded per Second when Holstered` }
+    },
+    {
+        abrev: 'q8',
+        name: 'Loose Chamber',
+        family: 'Conclave Shotgun',
+        type: 'SHOTGUN',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'common',
+        polarity: 'naramon',
+        effects: { reload: 0.05, none: (0.5 / 6) },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 4,
+        description() { return `+${Math.round(this.effects.reload * (this.currRank + 1) * 100)}% Reload Speed +${Math.round(this.effects.none * (this.currRank + 1) * 1000) / 10}% Weapon Recoil` }
+    },
+    {
+        abrev: 'q9',
+        name: 'Loose Hatch',
+        family: 'Conclave Assault',
+        type: 'ASSAULT RIFLE',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'common',
+        polarity: 'naramon',
+        effects: { reload: 0.05, none: (0.5 / 6) },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 4,
+        description() { return `+${Math.round(this.effects.reload * (this.currRank + 1) * 100)}% Reload Speed +${Math.round(this.effects.none * (this.currRank + 1) * 1000) / 10}% Weapon Recoil` }
+    },
+    {
+        abrev: 'r0',
+        name: 'Lucky Shot',
+        type: 'RIFLE',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'uncommon',
+        polarity: 'madurai',
+        effects: { none: [0.1, -0.005] },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 6,
+        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Flight Speed ${Math.round(this.effects.none[1] * (this.currRank + 1) * 1000) / 10}% Accuracy` }
     },
     {
         abrev: 'h0',
@@ -903,6 +1254,49 @@ export const primaryMods = [
         currRank: 5,
         baseCost: 10,
         description() { return `+${Math.round(this.effects.punchThrough * (this.currRank + 1) * 10) / 10} Punch Through` }
+    },
+    {
+        abrev: 'r1',
+        name: 'Maximum Capacity',
+        family: 'Conclave Assault',
+        type: 'ASSAULT RIFLE',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'common',
+        polarity: 'naramon',
+        effects: { magSize: 0.05, reload: -0.025 },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 4,
+        description() { return `+${Math.round(this.effects.magSize * (this.currRank + 1) * 100)}% Magazine Capacity ${Math.round(this.effects.reload * (this.currRank + 1) * 1000) / 10}% Reload Speed` }
+    },
+    {
+        abrev: 'r2',
+        name: 'Measured Burst',
+        type: 'TIBERON',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { none: [-0.15, 0.075] },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 10,
+        description() { return `When Aiming: ${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Fire Rate +${Math.round(this.effects.none[1] * (this.currRank + 1) * 1000) / 10}% Damage` }
+    },
+    {
+        abrev: 'r3',
+        name: 'Momentary Pause',
+        type: 'SHOTGUN',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'vazarin',
+        effects: { none: 0 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 10,
+        description() { return `On Kill: +15 Heal Rate for 10 seconds. -25% from Health Orbs` }
     },
     {
         abrev: 'h3',
@@ -956,6 +1350,7 @@ export const primaryMods = [
         abrev: 'h7',
         name: 'Overview',
         type: 'ASSAULT RIFLE',
+        conclave: true,
         rarity: 'uncommon',
         polarity: 'naramon',
         effects: { none: -0.1 },
@@ -989,6 +1384,20 @@ export const primaryMods = [
         description() { return `+${Math.round(this.effects.puncture * (this.currRank + 1) * 100)}% Puncture` }
     },
     {
+        abrev: 'r4',
+        name: 'Plan B',
+        type: 'BOW',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { none: [0.05, 0.75] },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 10,
+        description() { return `On Hit: +${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Secondary Weapon Fire Rate for ${Math.round(this.effects.none[1] * (this.currRank + 1) * 100) / 100}s` }
+    },
+    {
         abrev: 'i0',
         name: 'Point Blank',
         family: 'Point Blank',
@@ -1012,6 +1421,20 @@ export const primaryMods = [
         currRank: 5,
         baseCost: 4,
         description() { return `+${Math.round(this.effects.critChance * (this.currRank + 1) * 100)}% Critical Chance` }
+    },
+    {
+        abrev: 'r5',
+        name: 'Precision Munition',
+        type: 'TONKOR',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { none: 0 },
+        maxRank: 0,
+        currRank: 0,
+        baseCost: 10,
+        description() { return `+100% Accuracy +50% Flight Speed -50% Magazine Capacity` }
     },
     {
         abrev: 'i2',
@@ -1170,6 +1593,20 @@ export const primaryMods = [
         description() { return `+${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate (x2 for Bows) +${Math.round(this.effects.punchThrough * (this.currRank + 1) * 10) / 10}m Punch Through` }
     },
     {
+        abrev: 'r6',
+        name: 'Prize Kill',
+        type: 'SHOTGUN',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'vazarin',
+        effects: { none: 0 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 10,
+        description() { return `On Kill: -100% Shield Recharge Delay for 10 seconds. -25% from Health Orbs` }
+    },
+    {
         abrev: 'j3',
         name: 'Ravage',
         family: 'Ravage',
@@ -1183,6 +1620,20 @@ export const primaryMods = [
         description() { return `+${Math.round(this.effects.critMult * (this.currRank + 1) * 100)}% Critical Damage` }
     },
     {
+        abrev: 'r7',
+        name: 'Recover',
+        type: 'RIFLE',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'vazarin',
+        effects: { none: 0 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 10,
+        description() { return `On Kill: +15 Heal Rate for 10 seconds. -25% from Health Orbs` }
+    },
+    {
         abrev: 'j4',
         name: 'Repeater Clip',
         type: 'SHOTGUN',
@@ -1192,7 +1643,7 @@ export const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `ON RELOAD: +${Math.round(this.effects.none[0] * (this.currRank + 1) * 1000) / 10}% Fire Rate while aiming for ${this.effects.none[1] * (this.currRank + 1)}s` }
+        description() { return `ON Reload: +${Math.round(this.effects.none[0] * (this.currRank + 1) * 1000) / 10}% Fire Rate while aiming for ${this.effects.none[1] * (this.currRank + 1)}s` }
     },
     {
         abrev: 'j5',
@@ -1230,6 +1681,21 @@ export const primaryMods = [
         currRank: 3,
         baseCost: 4,
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Cold +${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Status Chance` }
+    },
+    {
+        abrev: 'r8',
+        name: 'Ripper Rounds',
+        family: 'Conclave Rifle Converstion',
+        type: 'RIFLE',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'uncommon',
+        polarity: 'madurai',
+        effects: { none: 0.05 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 2,
+        description() { return `Converts +${Math.round(this.effects.none * (this.currRank + 1) * 100)}% of Damage into Puncture` }
     },
     {
         abrev: 'ri',
@@ -1324,6 +1790,21 @@ export const primaryMods = [
         currRank: 5,
         baseCost: 6,
         description() { return `+${Math.round(this.effects.reload * (this.currRank + 1) * 1000) / 10}% Reload Speed +${Math.round(this.effects.punchThrough * (this.currRank + 1) * 10) / 10}m Punch Through` }
+    },
+    {
+        abrev: 'r9',
+        name: 'Serrated Rounds',
+        family: 'Conclave Rifle Converstion',
+        type: 'RIFLE',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'uncommon',
+        polarity: 'madurai',
+        effects: { none: 0.05 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 2,
+        description() { return `Converts +${Math.round(this.effects.none * (this.currRank + 1) * 100)}% of Damage into Slash` }
     },
     {
         abrev: 'k4',
@@ -1436,6 +1917,21 @@ export const primaryMods = [
         description() { return `+${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate (x2 for Bows) +${Math.round(this.effects.punchThrough * (this.currRank + 1) * 10) / 10}m Punch Through` }
     },
     {
+        abrev: 's0',
+        name: 'Shred Shot',
+        family: 'Conclave Shotgun Converstion',
+        type: 'SHOTGUN',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'uncommon',
+        polarity: 'madurai',
+        effects: { none: 0.05 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 2,
+        description() { return `Converts +${Math.round(this.effects.none * (this.currRank + 1) * 100)}% of Damage into Puncture` }
+    },
+    {
         abrev: 'l3',
         name: 'Shredder',
         type: 'SHOTGUN',
@@ -1475,6 +1971,7 @@ export const primaryMods = [
         abrev: 'l6',
         name: 'Snap Shot',
         type: 'SHOTGUN',
+        conclave: true,
         rarity: 'uncommon',
         polarity: 'madurai',
         effects: { none: 0.05 },
@@ -1484,9 +1981,24 @@ export const primaryMods = [
         description() { return `Increase movment speed by +${Math.round(this.effects.none * (this.currRank + 1) * 100)}% while aiming` }
     },
     {
+        abrev: 's0',
+        name: 'Soaring Strike',
+        type: 'BOW',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { none: 0.05 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 10,
+        description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 1000) / 10}% Fire Rate while airborne` }
+    },
+    {
         abrev: 'l7',
         name: 'Soft Hands',
         type: 'SHOTGUN',
+        conclave: true,
         rarity: 'uncommon',
         polarity: 'naramon',
         effects: { none: 0.5 },
@@ -1523,6 +2035,7 @@ export const primaryMods = [
         abrev: 'm0',
         name: 'Spring-Loaded Broadhead',
         type: 'DAIKYU',
+        conclave: true,
         rarity: 'rare',
         polarity: 'madurai',
         effects: { none: 45 },
@@ -1541,7 +2054,7 @@ export const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 2,
-        description() { return `ON RELOAD: +${Math.round(this.effects.none[0] * (this.currRank + 1) * 1000) / 10}% Fire Rate while aiming for ${this.effects.none[1] * (this.currRank + 1)}s` }
+        description() { return `ON Reload: +${Math.round(this.effects.none[0] * (this.currRank + 1) * 1000) / 10}% Fire Rate while aiming for ${this.effects.none[1] * (this.currRank + 1)}s` }
     },
     {
         abrev: 'm2',
@@ -1566,6 +2079,20 @@ export const primaryMods = [
         currRank: 5,
         baseCost: 6,
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Electricity` }
+    },
+    {
+        abrev: 's1',
+        name: 'Sudden Justice',
+        type: 'SYBARIS',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { none: 0.075 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 10,
+        description() { return `On 2 hits within 0.2s: +${Math.round(this.effects.none * (this.currRank + 1) * 1000) / 10}% Fire Rate for 2 seconds` }
     },
     {
         abrev: 'm4',
@@ -1595,6 +2122,7 @@ export const primaryMods = [
         abrev: 'm6',
         name: 'Tactical Reload',
         type: 'ASSAULT RIFLE',
+        conclave: true,
         rarity: 'rare',
         polarity: 'naramon',
         effects: { none: 0.05 },
@@ -1688,6 +2216,20 @@ export const primaryMods = [
         description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 1000) / 10}% Chance to Explode (Use with Caution)` }
     },
     {
+        abrev: 's2',
+        name: 'Thundermiter',
+        type: 'MITER',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { none: 0.25, magSize: -0.15 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 10,
+        description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% chance charged Projectiles explode ${Math.round(this.effects.magSize * (this.currRank + 1) * 100)} Magezine Capacity` }
+    },
+    {
         abrev: 'n4',
         name: 'Toxic Barrage',
         type: 'SHOTGUN',
@@ -1700,9 +2242,24 @@ export const primaryMods = [
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Toxin +${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
+        abrev: 's3',
+        name: 'Triple Tap',
+        type: 'BURSTON',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { none: 0.1 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 10,
+        description() { return `On 2 hits within 0.2 seconds +${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Damage for 0.5 seconds` }
+    },
+    {
         abrev: 'n5',
         name: 'Twitch',
         type: 'RIFLE',
+        conclave: true,
         rarity: 'uncommon',
         polarity: 'naramon',
         effects: { none: 0.5 },
@@ -1710,6 +2267,20 @@ export const primaryMods = [
         currRank: 3,
         baseCost: 4,
         description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Holster Rate` }
+    },
+    {
+        abrev: 's3',
+        name: 'Vanquished Prey',
+        type: 'RIFLE',
+        conclave: true,
+        conclaveOnly: true,
+        rarity: 'rare',
+        polarity: 'vazarin',
+        effects: { none: 0 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 10,
+        description() { return `On Kill: -100% Shield Recharge Delay for 10 seconds. -25% from Health Orbs` }
     },
     {
         abrev: 'n6',

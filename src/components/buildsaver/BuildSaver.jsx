@@ -98,9 +98,9 @@ export class BuildSaver extends Component {
     }
 
     redirectToSaved = (buildData, buildId) => {
-        console.log(buildId);
+        let type = this.props.match.url.split('/', 2);
         // fix url
-        let newUrl = `/${this.props.type}/${this.props.match.params.id}/${buildData.buildStr}/${buildId}`;
+        let newUrl = `/${type[1]}/${this.props.match.params.id}/${buildData.buildStr}/${buildId}`;
         this.props.history.push(newUrl, { req: true });
     }
 

@@ -12,8 +12,9 @@ export class LinkGenerator extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.linkGenerator === false && this.props.linkGenerator === true) {
+      let type = this.props.match.url.split('/', 2);
       // fix url
-      let linkUrl = `localhost:3000/${this.props.type}/${encodeURIComponent(this.props.match.params.id)}/${this.props.buildStr}`;
+      let linkUrl = `localhost:3000/${type[1]}/${encodeURIComponent(this.props.match.params.id)}/${this.props.buildStr}`;
       if (this.props.match.params.build && this.props.buildStr === this.props.match.params.pre) {
         linkUrl += `/${this.props.match.params.build}`;
       }

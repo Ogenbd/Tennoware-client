@@ -13,13 +13,16 @@ import BuildList from '../buildlist/BuildList';
 export class RangedWeaponModding extends Component {
     constructor(props) {
         super(props);
+        this.timer = null;
         this.state = {
             catalyst: true,
             forma: false,
             formaCount: 0,
-            mods: this.props.mods,
+            mods: [],
             slotPolarities: this.props.slotPolarities,
-            liked: this.props.metaInfo.Liked,
+            liked: undefined,
+            lastLikePress: 0,
+            lastLikeSent: undefined,
             forSlot: null,
             chosenMods: [{}, {}, {}, {}, {}, {}, {}, {}],
             totalModsCost: 0,
@@ -32,7 +35,8 @@ export class RangedWeaponModding extends Component {
             rivenMod: undefined,
             buildStr: undefined,
             buildSaver: false,
-            buildList: false
+            buildList: false,
+            ready: false
         }
     }
 
@@ -41,26 +45,32 @@ export class RangedWeaponModding extends Component {
             if (this.props.match.params.pre.length === 67) {
                 let build = this.props.match.params.pre;
                 let catalyst = build[0] === '0' ? false : true;
+                let liked = this.props.metaInfo.Liked === 1 ? true : false;
+                let lastLikeSent = this.props.metaInfo.Liked === 1 ? true : false;
                 let prePolarities = this.createPrePolarities(build.slice(1, 9).split(''));
                 let preMods = this.createPreMods(build.slice(9, 41));
                 let preRiven = this.createPreRiven(build.slice(41, 67));
                 let totalModsCost = this.calcCost(preMods.chosenMods, prePolarities);
                 let formaCount = this.countForma(prePolarities);
-                build[0] === '0' ? catalyst = false : catalyst = true;
                 this.setState({
                     catalyst: catalyst,
+                    liked: liked,
                     slotPolarities: prePolarities,
                     mods: preMods.mods,
                     chosenMods: preMods.chosenMods,
                     totalModsCost: totalModsCost,
                     formaCount: formaCount,
-                    rivenMod: preRiven
+                    rivenMod: preRiven,
+                    lastLikeSent: lastLikeSent
+                }, () => {
+                    this.setState({ ready: true })
                 });
             } else {
                 this.props.redirectToVoid();
             }
         } else {
             this.setState({
+                mods: this.props.mods,
                 rivenMod: {
                     polarity: 'madurai',
                     effects: [],
@@ -74,6 +84,8 @@ export class RangedWeaponModding extends Component {
                     numFour: '',
                     desc: ''
                 }
+            }, () => {
+                this.setState({ ready: true })
             })
         }
     }
@@ -629,6 +641,63 @@ export class RangedWeaponModding extends Component {
         this.swapMods(this.state.forSwap, slot);
     }
 
+    likeButtonPress = () => {
+        this.setState(prevState => ({
+            liked: !prevState.liked,
+        }), () => {
+            if (Date.now() - this.state.lastLikePress < 3000 && this.state.lastLikePress !== 0) {
+                this.setState({
+                    lastLikePress: Date.now()
+                }, this.spammerMan
+                )
+            } else {
+                this.setState({
+                    lastLikePress: Date.now()
+                }, this.sendLike
+                )
+            }
+        });
+    }
+
+    spammerMan = () => {
+        if (this.timer) {
+            clearTimeout(this.timer);
+        }
+        this.timer = setTimeout(() => {
+            this.sendLike();
+        }, 3000);
+    }
+
+    sendLike = () => {
+        if (!this.state.likeDispatched && this.state.lastLikeSent !== this.state.liked) {
+            this.setState({
+                lastLikeSent: this.state.liked,
+                likeDispatched: true
+            }, () => {
+                let comp = this.state.liked ? 'like' : 'unlike';
+                fetch(`http://192.168.1.114:50000/${comp}`, {
+                    method: 'post',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        user: this.props.user,
+                        build: this.props.match.params.build
+                    })
+                })
+                    .then(res => res.json())
+                    .then(({ res }) => {
+                        this.setState({ likeDispatched: false }, () => {
+                            if (res !== this.state.liked) {
+                                this.spammerMan();
+                            }
+                        });
+                    })
+                    .catch(err => {
+                        console.log('error')
+                    });
+            });
+        }
+    }
+
     displayMessage = () => {
         if (this.state.errorBlinker !== null) {
             return (
@@ -636,12 +705,12 @@ export class RangedWeaponModding extends Component {
                     <p className="display-message">This mod cannot be use with {this.state.chosenMods[this.state.errorBlinker].name}.</p>
                 </div>
             );
-        // } else if (this.state.duplicateBuild !== null) {
-        //     return (
-        //         <div className="message-wrapper show-error-message">
-        //             <p className="display-message">Cannot save duplicate builds, liking the build will allow for quick navigation from</p>
-        //         </div>
-        //     );
+            // } else if (this.state.duplicateBuild !== null) {
+            //     return (
+            //         <div className="message-wrapper show-error-message">
+            //             <p className="display-message">Cannot save duplicate builds, liking the build will allow for quick navigation from</p>
+            //         </div>
+            //     );
         } else if (this.state.forSwap !== null) {
             return (
                 <div className="message-wrapper always-on">
@@ -656,7 +725,9 @@ export class RangedWeaponModding extends Component {
         const { mods, chosenMods, modPicker, catalyst, forma, liked, totalModsCost, slotPolarities, errorBlinker, formaCount, forSwap, polarityPicker, rivenEditor, rivenMod, buildStr, linkGenerator, buildSaver, buildList } = this.state
         return (
             <div className="ranged-modding">
-                <ModPicker mods={mods} chosenMods={chosenMods} active={modPicker} closeModPicker={this.closeModPicker} pickMod={this.pickMod} viewWidth={this.props.viewWidth} drop={this.drop} />
+                {this.state.ready &&
+                    <ModPicker mods={mods} chosenMods={chosenMods} active={modPicker} closeModPicker={this.closeModPicker} pickMod={this.pickMod} viewWidth={this.props.viewWidth} drop={this.drop} />
+                }
                 <div className="mod-stack">
                     <div className="interactable-wrapper">
                         {onLine &&
@@ -670,11 +741,11 @@ export class RangedWeaponModding extends Component {
                         }
                         <div className="interactable interactable-semi-inactive" onClick={this.createLink}><p className="interactable-p">Link</p></div>
                         {onLine && this.props.user && this.props.match.params.build && !this.props.metaInfo.Owner &&
-                            <div className={"interactable " + (liked ? "interactable-active" : "interactable-inactive")} onClick={}><p className="interactable-p">Like/Save</p></div>
+                            <div className={"activatable " + (liked ? "interactable-active" : "interactable-inactive")} onClick={this.likeButtonPress}><p className="interactable-p">Like/Save</p></div>
                         }
-                        {onLine && this.props.match.params.build && !this.props.metaInfo.UserID &&
+                        {/* {onLine && this.props.match.params.build && !this.props.metaInfo.UserID &&
                             <div className="interactable interactable-semi-inactive"><p className="interactable-p">Report</p></div>
-                        }
+                        } */}
                     </div>
                     <div className="aug-container">
                         <div className="aug-wrapper">
@@ -749,8 +820,8 @@ export class RangedWeaponModding extends Component {
                     {this.displayMessage()}
                 </div>
                 <BuildList buildList={buildList} hideBuildList={this.hideBuildList} />
-                <LinkGenerator linkGenerator={linkGenerator} type="primaryweapons" buildStr={buildStr} match={this.props.match} hideLinkGenerator={this.hideLinkGenerator} />
-                <BuildSaver buildSaver={buildSaver} type="primaryweapons" orokin={catalyst} formaCount={formaCount} user={this.props.user} buildStr={buildStr} hideBuildSaver={this.hideBuildSaver} metaInfo={this.props.metaInfo} />
+                <LinkGenerator linkGenerator={linkGenerator} buildStr={buildStr} match={this.props.match} hideLinkGenerator={this.hideLinkGenerator} />
+                <BuildSaver buildSaver={buildSaver} orokin={catalyst} formaCount={formaCount} user={this.props.user} buildStr={buildStr} hideBuildSaver={this.hideBuildSaver} metaInfo={this.props.metaInfo} />
                 <RangedWeaponStats weapon={this.props.weapon} mods={this.state.chosenMods} />
                 <PolarityPicker polarityPicker={polarityPicker} polarizeSlot={this.polarizeSlot} hidePolarityPicker={this.hidePolarityPicker} />
                 {rivenMod &&
