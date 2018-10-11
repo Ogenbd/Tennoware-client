@@ -4,38 +4,77 @@ import './RangedWeaponStats.css';
 export class RangedWeaponStats extends Component {
     constructor(props) {
         super(props);
+        this.softInput = React.createRef();
         this.state = {
             effects: {},
             elemental: [],
+            conditionalEffects: [],
             mode: 0,
-            open: false
+            zoom: 0,
+            powerStr: 100,
+            open: false,
+            aiming: false,
+            kill: false,
+            headshot: false,
+            reload: false,
+            cast: false,
+            first: false,
+            aimingToggle: false,
+            killToggle: false,
+            headshotToggle: false,
+            reloadToggle: false,
+            castToggle: false,
+            firstToggle: false
         }
     }
 
     static getDerivedStateFromProps(props) {
         let effects = {};
         let elemental = [];
+        let conditionalEffects = [];
+        let conditional = {
+            aiming: false,
+            kill: false,
+            headshot: false,
+            reload: false,
+            cast: false,
+            first: false
+        }
         props.mods.forEach(mod => {
             if (mod.name !== 'Riven Mod') {
-                for (let effect in mod.effects) {
-                    if (effect !== 'none') {
-                        if (effect === 'elemental') {
-                            let exists = elemental.findIndex(element => {
-                                return element.type === mod.effects.elemental.type;
-                            })
-                            if (exists === -1) {
-                                let damageObj = {
-                                    type: mod.effects.elemental.type,
-                                    damage: Math.round((mod.effects.elemental.damage * (mod.currRank + 1)) * 100) / 100
+                if (mod.conditional) {
+                    for (let condition in mod.conditional) {
+                        conditional[condition] = mod.conditional[condition]
+                    }
+                    let modEffects = JSON.parse(JSON.stringify(mod.effects));
+                    for (let effect in modEffects) {
+                        modEffects[effect] = modEffects[effect] * (mod.currRank + 1);
+                    }
+                    conditionalEffects.push({
+                        effects: modEffects,
+                        conditions: mod.conditional
+                    })
+                } else {
+                    for (let effect in mod.effects) {
+                        if (effect !== 'none') {
+                            if (effect === 'elemental') {
+                                let exists = elemental.findIndex(element => {
+                                    return element.type === mod.effects.elemental.type;
+                                })
+                                if (exists === -1) {
+                                    let damageObj = {
+                                        type: mod.effects.elemental.type,
+                                        damage: Math.round((mod.effects.elemental.damage * (mod.currRank + 1)) * 100) / 100
+                                    }
+                                    elemental.push(damageObj)
+                                } else {
+                                    elemental[exists].damage = Math.round((elemental[exists].damage + mod.effects.elemental.damage * (mod.currRank + 1)) * 100) / 100;
                                 }
-                                elemental.push(damageObj)
+                            } else if (effects[effect]) {
+                                effects[effect] = effects[effect] + mod.effects[effect] * (mod.currRank + 1);
                             } else {
-                                elemental[exists].damage = Math.round((elemental[exists].damage + mod.effects.elemental.damage * (mod.currRank + 1)) * 100) / 100;
+                                effects[effect] = mod.effects[effect] * (mod.currRank + 1);
                             }
-                        } else if (effects[effect]) {
-                            effects[effect] = Math.round((effects[effect] + mod.effects[effect] * (mod.currRank + 1)) * 100) / 100;
-                        } else {
-                            effects[effect] = mod.effects[effect] * (mod.currRank + 1);
                         }
                     }
                 }
@@ -68,12 +107,55 @@ export class RangedWeaponStats extends Component {
         });
         return {
             effects: effects,
-            elemental: elemental
+            elemental: elemental,
+            conditionalEffects: conditionalEffects,
+            aiming: conditional.aiming,
+            kill: conditional.kill,
+            headshot: conditional.headshot,
+            reload: conditional.reload,
+            cast: conditional.cast,
+            first: conditional.first
         };
     }
 
     toggleStats = () => {
         this.setState(prevState => ({ open: !prevState.open }))
+    }
+
+    toggleAiming = () => {
+        this.setState(prevState => ({ aimingToggle: !prevState.aimingToggle }))
+    }
+
+    toggleHeadshot = () => {
+        this.setState(prevState => ({ headshotToggle: !prevState.headshotToggle }))
+    }
+
+    toggleKill = () => {
+        this.setState(prevState => ({ killToggle: !prevState.killToggle }))
+    }
+
+    toggleReload = () => {
+        this.setState(prevState => ({ reloadToggle: !prevState.reloadToggle }))
+    }
+
+    toggleCast = () => {
+        this.setState(prevState => ({ castToggle: !prevState.castToggle }))
+    }
+
+    toggleFirst = () => {
+        this.setState(prevState => ({ firstToggle: !prevState.firstToggle }))
+    }
+
+    toggleZoom = () => {
+        if (this.props.weapon.zoom[this.state.zoom + 1]) {
+            this.setState(prevState => ({
+                zoom: prevState.zoom + 1
+            }));
+        } else {
+            this.setState(prevState => ({
+                zoom: 0
+            }));
+        }
     }
 
     calcStatus = () => {
@@ -84,6 +166,14 @@ export class RangedWeaponStats extends Component {
         if (this.state.effects.status) {
             statusMult += this.state.effects.status;
         }
+        let conditionalStatusEffects = this.state.conditionalEffects.filter(conditional => {
+            return conditional.effects.status;
+        });
+        conditionalStatusEffects.forEach(conditionalEffect => {
+            if (this.state.aimingToggle === conditionalEffect.conditions.aiming && this.state.castToggle === conditionalEffect.conditions.cast) {
+                statusMult += conditionalEffect.effects.status;
+            }
+        });
         if (this.state.effects.multishot && this.props.weapon.modes[this.state.mode].trigger !== 'Held' && !this.props.weapon.modes[this.state.mode].singleProjectile) {
             multishotMult += this.state.effects.multishot
         }
@@ -129,23 +219,27 @@ export class RangedWeaponStats extends Component {
         let calcedElementalEffects = [];
         let totalElementalDamageArr = [];
         let damageSplit = [];
-        let baseDamageMult;
-        let multishotMult;
+        let baseDamageMult = 1;
+        let multishotMult = 1;
         let weaponDamage;
         let combinedElement;
         let secondCombinedElement;
         let typeIndex;
         let nativeElementPosition;
         let nativeElementType;
+        let conditionalBaseDamageEffects = this.state.conditionalEffects.filter(conditional => {
+            return conditional.effects.baseDamage;
+        });
+        conditionalBaseDamageEffects.forEach(conditionalEffect => {
+            if (this.state.firstToggle === conditionalEffect.conditions.first) {
+                baseDamageMult += conditionalEffect.effects.baseDamage;
+            }
+        });
         if (this.state.effects.baseDamage) {
-            baseDamageMult = 1 + this.state.effects.baseDamage
-        } else {
-            baseDamageMult = 1
+            baseDamageMult += this.state.effects.baseDamage
         }
         if (this.state.effects.multishot && !this.props.weapon.modes[this.state.mode].singleProjectile) {
-            multishotMult = 1 + this.state.effects.multishot
-        } else {
-            multishotMult = 1
+            multishotMult += this.state.effects.multishot
         }
         weaponDamage = Math.floor(this.props.weapon.modes[this.state.mode].damage * baseDamageMult) * multishotMult
         this.state.elemental.forEach(element => {
@@ -239,19 +333,108 @@ export class RangedWeaponStats extends Component {
         totalElementalDamageArr.forEach(element => {
             finalDamageArray.push(element)
         })
+        if (this.props.weapon.exalted) {
+            finalDamageArray.forEach(damageType => {
+                damageType.damage = damageType.damage * (this.state.powerStr / 100);
+            })
+        }
+        console.log(finalDamageArray);
         return finalDamageArray;
+    }
+
+    calcCritChance = () => {
+        let critChanceMult = 1;
+        let conditionalCritChanceEffects = this.state.conditionalEffects.filter(conditional => {
+            return conditional.effects.critChance;
+        });
+        conditionalCritChanceEffects.forEach(conditionalEffect => {
+            if (this.state.aimingToggle === conditionalEffect.conditions.aiming && this.state.headshotToggle === conditionalEffect.conditions.headshot) {
+                critChanceMult += conditionalEffect.effects.critChance;
+            }
+        });
+        if (this.state.effects.critChance) {
+            critChanceMult += this.state.effects.critChance;
+        }
+        // lanka zoom
+        if (this.props.weapon.name === 'LANKA' && this.state.zoom > 0) {
+            return (Math.round((this.props.weapon.modes[this.state.mode].critChance * critChanceMult) * 1000) / 10) + this.props.weapon.zoom[this.state.zoom].effect;
+        }
+        return Math.round((this.props.weapon.modes[this.state.mode].critChance * critChanceMult) * 1000) / 10;
+    }
+
+    calcCritMult = () => {
+        let critMultMult = 1;
+        let conditionalCritMultEffects = this.state.conditionalEffects.filter(conditional => {
+            return conditional.effects.critMult;
+        });
+        conditionalCritMultEffects.forEach(conditionalEffect => {
+            if (this.state.aimingToggle === conditionalEffect.conditions.aiming && this.state.killToggle === conditionalEffect.conditions.kill) {
+                critMultMult += conditionalEffect.effects.critMult;
+            }
+        });
+        if (this.state.effects.critMult) {
+            critMultMult += this.state.effects.critMult;
+        }
+        // rubico (prime) zoom
+        if ((this.props.weapon.name === 'RUBICO' || this.props.weapon.name === 'RUBICO PRIME') && this.state.zoom > 0) {
+            critMultMult += this.props.weapon.zoom[this.state.zoom].effect;
+        }
+        return Math.round((this.props.weapon.modes[this.state.mode].critMult * critMultMult) * 10) / 10;
+    }
+
+    calcFireRate = () => {
+        let fireRateMult = 1;
+        let conditionalFireRateEffects = this.state.conditionalEffects.filter(conditional => {
+            return conditional.effects.fireRate;
+        });
+        conditionalFireRateEffects.forEach(conditionalEffect => {
+            if (this.state.aimingToggle === conditionalEffect.conditions.aiming && this.state.reloadToggle === conditionalEffect.conditions.reload) {
+                fireRateMult += conditionalEffect.effects.fireRate;
+            }
+        });
+        if (this.state.effects.fireRate) {
+            fireRateMult += this.state.effects.fireRate;
+        }
+        if (this.props.weapon.bow) {
+            return Math.round((this.props.weapon.modes[this.state.mode].fireRate * fireRateMult * 2) * 10) / 10;
+        } else {
+            return Math.round((this.props.weapon.modes[this.state.mode].fireRate * fireRateMult) * 10) / 10;
+        }
+    }
+
+    handleChange = ({ target }) => {
+        let value = target.value;
+        if (value > 999) value = 999;
+        if (value < -60) value = -60;
+        this.setState({ powerStr: value })
+    }
+
+    focusSoftInput = () => {
+        console.log(this.softInput);
+        if (this.props.viewWidth < 1223) {
+            this.softInput.current.focus();
+        }
+    }
+
+    blurInput = ({ target, key }) => {
+        if (key === 'Enter') {
+            target.blur();
+        }
     }
 
     render() {
         const { weapon } = this.props;
-        const { mode, effects } = this.state;
+        const { mode, effects, zoom } = this.state;
+        const critChance = this.calcCritChance();
+        const critMult = this.calcCritMult();
+        const fireRate = this.calcFireRate();
         const status = this.calcStatus();
         const damage = this.calcDamage();
         return (
             <React.Fragment>
                 <div className={"pull-tab " + (this.state.open ? 'open-pull-tab' : 'closed-pull-tab')} onClick={this.toggleStats}>
-                    <p>STATS</p>
                     <img src={require('../../assets/arrowicong.png')} alt=">>" className={"pull-tab-arrow " + (this.state.open ? 'point-left' : 'point-right')} />
+                    <p>STATS</p>
                 </div>
                 <div className={"ranged-stats " + (this.state.open ? 'open-ranged-stats' : 'closed-ranged-stats')}>
                     <div className="top-bar-margin"></div>
@@ -292,15 +475,7 @@ export class RangedWeaponStats extends Component {
                         {weapon.modes[mode].fireRate &&
                             <div className="stats-item">
                                 <p className="stat-name">Fire Rate: </p>
-                                {effects.fireRate
-                                    ? <div className="stat">
-                                        {weapon.bow
-                                            ? <p>{Math.round((weapon.modes[mode].fireRate * ((1 + effects.fireRate) * 2)) * 100) / 100}</p>
-                                            : <p>{Math.round((weapon.modes[mode].fireRate * (1 + effects.fireRate)) * 100) / 100}</p>
-                                        }
-                                    </div>
-                                    : <div className="stat"><p>{weapon.modes[mode].fireRate}</p></div>
-                                }
+                                <div className="stat"><p>{fireRate}</p></div>
                             </div>
                         }
                         {weapon.modes[mode].chargeRate &&
@@ -390,17 +565,11 @@ export class RangedWeaponStats extends Component {
                         }
                         <div className="stats-item">
                             <p className="stat-name">Critical Chance: </p>
-                            {effects.critChance
-                                ? <div className="stat"><p>{Math.round((weapon.modes[mode].critChance * (1 + effects.critChance)) * 1000) / 10}%</p></div>
-                                : <div className="stat"><p>{Math.round(weapon.modes[mode].critChance * 1000) / 10}%</p></div>
-                            }
+                            <div className="stat"><p>{critChance}%</p></div>
                         </div>
                         <div className="stats-item">
                             <p className="stat-name">Critical Multiplier: </p>
-                            {effects.critMult
-                                ? <div className="stat"><p>{Math.round((weapon.modes[mode].critMult * (1 + effects.critMult)) * 10) / 10}x</p></div>
-                                : <div className="stat"><p>{weapon.modes[mode].critMult}x</p></div>
-                            }
+                            <div className="stat"><p>{critMult}x</p></div>
                         </div>
                         <div className="stats-item">
                             <p className="stat-name">Status: </p>
@@ -412,7 +581,64 @@ export class RangedWeaponStats extends Component {
                                 <div className="stat"><p>{status.chancePerPellet}%</p></div>
                             </div>
                         }
+                        {/* snipetron (vandal) zoom */}
+                        {(weapon.name === "SNIPETRON" || weapon.name === "SNIPETRON VANDAL") && zoom > 0 &&
+                            <div className="stats-item">
+                                <p className="stat-name">Headshot Damage: </p>
+                                <div className="stat"><p>{weapon.zoom[zoom].effect}%</p></div>
+                            </div>
+                        }
+                        {/* str mod for exalted weapons */}
+                        {weapon.exalted &&
+                            <div className="stats-item">
+                                <p className="stat-name">Power Strength: </p>
+                                <div className="str-stat"><input className="str-input" type="number" value={this.state.powerStr} onFocus={this.focusSoftInput} onChange={this.handleChange} /><span className="stat">%</span></div>
+                            </div>
+                        }
                     </div>
+                    <div className="modes">
+                        {weapon.zoom &&
+                            <div className={"zoom activatable " + (this.state.zoom > 0 ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleZoom}>
+                                <p className="interactable-p">{weapon.zoom[zoom].name}</p>
+                            </div>
+                        }
+                    </div>
+                    <div className="modes">
+                        {this.state.aiming &&
+                            <div className={"condition activatable " + (this.state.aimingToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleAiming}>
+                                <p className="interactable-p">While Aiming</p>
+                            </div>
+                        }
+                        {this.state.headshot &&
+                            <div className={"activatable condition " + (this.state.headshotToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleHeadshot}>
+                                <p className="interactable-p">After Headshot</p>
+                            </div>
+                        }
+                        {this.state.kill &&
+                            <div className={"activatable condition " + (this.state.killToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleKill}>
+                                <p className="interactable-p kill-activatable">After Kill</p>
+                            </div>
+                        }
+                        {this.state.reload &&
+                            <div className={"activatable condition " + (this.state.reloadToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleReload}>
+                                <p className="interactable-p">After Reload</p>
+                            </div>
+                        }
+                        {this.state.cast &&
+                            <div className={"activatable condition " + (this.state.castToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleCast}>
+                                <p className="interactable-p">After Cast</p>
+                            </div>
+                        }
+                        {this.state.first &&
+                            <div className={"activatable condition " + (this.state.firstToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleFirst}>
+                                <p className="interactable-p">First Shot</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div className="soft-input-wrapper">
+                    <input ref={this.softInput} type="number" className="soft-input" value={this.state.powerStr} onChange={this.handleChange} onKeyUp={this.blurInput} />
+                    <p className="soft-percent">%</p>
                 </div>
             </React.Fragment>
         )

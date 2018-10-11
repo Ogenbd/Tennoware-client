@@ -32,28 +32,6 @@
     margin-left: 56px;
 }
 
-/* .burger-wrapper {
-    display: flex;
-    visibility: hidden;
-    flex-direction: column;
-    justify-content: space-evenly;
-    width: 24px;
-    height: 21px;
-    padding: 8px;
-    margin-right: 16px;
-    margin-bottom: 2px;
-    cursor: pointer;
-}
-
-.burger-bar {
-    position: relative;
-    width: 20px;
-    height: 3px;
-    left: 2px;
-    background-color: #373737;
-    border-radius: 1px;
-} */
-
 .page-title {
     display: flex;
     align-items: center;
@@ -91,11 +69,9 @@
 .background-image {
     position: fixed;
     height: 100vh;
-    /* margin-top: 56px; */
     width: 100vw;
     background-image: url('./assets/Warframe0001.jpg');
     background-size: cover;
-    /* box-sizing: border-box; */
 }
 
 .main {
@@ -117,31 +93,9 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    /* max-width: 995px; */
     min-height: 100%;
-    /* flex: 1 1 auto; */
-    /* background-color: rgba(240, 240, 240, 0.3); */
-    /* background-color: rgba(40, 40, 40, 0.4); */
-    /* background-color: whitesmoke; */
-    /* box-shadow: 0px 0px 6px 0px rgba(140, 140, 140, 0.4); */
     box-sizing: border-box;
-    
 }
-
-/* .screen { */
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* align-items: center; */
-    /* position: absolute; */
-    /* top: -56px; */
-    /* left: */
-    /* padding-top: 56px; */
-    /* box-sizing: border-box; */
-    /* width: 100%; */
-    /* min-height: 100%; */
-    /* min-height: fill-available; */
-    /* flex: 1 0 auto; */
-/* } */
 
 .fade-exit {
     opacity: 1;

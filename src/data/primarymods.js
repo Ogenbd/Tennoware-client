@@ -1,4 +1,4 @@
-// currently at abrev r0
+// currently at abrev s6
 export const primaryMods = [
     {
         abrev: 'a0',
@@ -77,17 +77,6 @@ export const primaryMods = [
         baseCost: 2,
         description() { return `+${Math.round(this.effects.maxAmmo * (this.currRank + 1) * 100)}% Ammo Maximum` }
     },
-    // {
-    //     name: 'Ammo Mutation',
-    //     type: 'PRIMARY',
-    //     rarity: 'rare',
-    //     polarity: 'naramon',
-    //     effects: { none: 0 },
-    //     maxRank: 5,
-    //     currRank: 5,
-    //     baseCost: 4,
-    //     description() { return `Converts unused ammo pickups into Primary weapon ammo` }
-    // },
     {
         abrev: 'a5',
         name: 'Ammo Stock',
@@ -120,11 +109,12 @@ export const primaryMods = [
         type: 'RIFLE',
         rarity: 'rare',
         polarity: 'madurai',
-        effects: { none: [0.225, 1.5] },
+        effects: { critChance: 0.225, none: 1.5 },
+        conditional: { aiming: true, headshot: true },
         maxRank: 5,
         currRank: 5,
         baseCost: 2,
-        description() { return `On Headshot: +${Math.round(this.effects.none[0] * (this.currRank + 1) * 1000) / 10}% Crit Chance while aiming for ${this.effects.none[1] * (this.currRank + 1)} seconds` }
+        description() { return `On Headshot: +${Math.round(this.effects.critChance * (this.currRank + 1) * 1000) / 10}% Crit Chance while aiming for ${this.effects.none * (this.currRank + 1)} seconds` }
     },
     {
         abrev: 'a7',
@@ -196,11 +186,12 @@ export const primaryMods = [
         type: 'RIFLE',
         rarity: 'uncommon',
         polarity: 'madurai',
-        effects: { none: [0.2, 1.5] },
+        effects: { critMult: 0.2, none: 1.5 },
+        conditional: { aiming: true, kill: true },
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `ON KILL: +${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Crit Damage while aiming for ${this.effects.none[1] * (this.currRank + 1)}s` }
+        description() { return `On Kill: +${Math.round(this.effects.critMult * (this.currRank + 1) * 100)}% Crit Damage while aiming for ${Math.round(this.effects.none * (this.currRank + 1) * 10) / 10}s` }
     },
     {
         abrev: 'b3',
@@ -252,7 +243,7 @@ export const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 10,
-        description() { return `ON HEADSHOT: +${(this.effects.none * (this.currRank + 1) * 100)}% Ammo Efficiency for 0.5 seconds` }
+        description() { return `On Headshot: +${(this.effects.none * (this.currRank + 1) * 100)}% Ammo Efficiency for 0.5 seconds` }
     },
     {
         abrev: 'b5',
@@ -289,7 +280,7 @@ export const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.magSize * (this.currRank + 1) * 100)}% Magazine Capacity ${Math.round(this.effects.reload * (this.effects.reload + 1) * 100)}% Reload Speed` }
+        description() { return `+${Math.round(this.effects.magSize * (this.currRank + 1) * 100)}% Magazine Capacity ${Math.round(this.effects.reload * (this.currRank + 1) * 100)}% Reload Speed` }
     },
     {
         abrev: 'b8',
@@ -297,11 +288,12 @@ export const primaryMods = [
         type: 'RIFLE',
         rarity: 'common',
         polarity: 'madurai',
-        effects: { none: [0.1, 1.5] },
+        effects: { status: 0.1, none: 1.5 },
+        conditional: { aiming: true, cast: true },
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `ON ABILITY CAST: +${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Status Chance while aiming for ${this.effects.none[1] * (this.currRank + 1)}s` }
+        description() { return `On Ability Cast: +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance while aiming for ${this.effects.none * (this.currRank + 1)}s` }
     },
     {
         abrev: 'b9',
@@ -309,11 +301,12 @@ export const primaryMods = [
         type: 'SNIPER',
         rarity: 'uncommon',
         polarity: 'madurai',
-        effects: { none: 0.1 },
+        effects: { baseDamage: 0.1 },
+        conditional: { first: true },
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Bonus Damage on first shot in clip` }
+        description() { return `+${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Bonus Damage on first shot in clip` }
     },
     {
         abrev: 'c0',
@@ -539,7 +532,7 @@ export const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 2,
-        description() { return `ON HEADSHOT: +${Math.round(this.effects.none[0] * (this.currRank + 1) * 1000) / 10}% Mobility for ${(this.effects.none[1] * (this.currRank + 1))}` }
+        description() { return `On Headshot: +${Math.round(this.effects.none[0] * (this.currRank + 1) * 1000) / 10}% Mobility for ${(this.effects.none[1] * (this.currRank + 1))}` }
     },
     {
         abrev: 'd5',
@@ -617,7 +610,7 @@ export const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 10,
-        description() { return `ON HIT: ${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% bonus Damage on next hit for ${Math.round(this.effects.none[1] * (this.currRank + 1))} seconds` }
+        description() { return `On Hit: ${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% bonus Damage on next hit for ${Math.round(this.effects.none[1] * (this.currRank + 1))} seconds` }
     },
     {
         abrev: 'd9',
@@ -644,7 +637,7 @@ export const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 10,
-        description() { return `ON KILL: ${Math.round(this.effects.none * (this.currRank + 1) * 1000) / 10}% Reload Speed for 3 seconds` }
+        description() { return `On Kill: ${Math.round(this.effects.none * (this.currRank + 1) * 1000) / 10}% Reload Speed for 3 seconds` }
     },
     {
         abrev: 'e0',
@@ -721,7 +714,7 @@ export const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 10,
-        description() { return `ON 4 HITS WITHIN 0.5 seconds +${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Damage for 0.2 seconds` }
+        description() { return `On 4 Hits Within 0.5 seconds +${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Damage for 0.2 seconds` }
     },
     {
         abrev: 'e4',
@@ -860,7 +853,7 @@ export const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 10,
-        description() { return `ON KILL: +${Math.round(this.effects.none * (this.currRank + 1) * 1000) / 10}% FIRE RATE for 3 seconds` }
+        description() { return `On Kill: +${Math.round(this.effects.none * (this.currRank + 1) * 1000) / 10}% Fire Rate for 3 seconds` }
     },
     {
         abrev: 'q2',
@@ -886,7 +879,7 @@ export const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 2,
-        description() { return `ON HIT: +${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Accuracy while aiming for ${this.effects.none[1] * (this.currRank + 1)}s` }
+        description() { return `On Hit: +${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Accuracy while aiming for ${this.effects.none[1] * (this.currRank + 1)}s` }
     },
     {
         abrev: 'f3',
@@ -1103,11 +1096,12 @@ export const primaryMods = [
         type: 'SHOTGUN',
         rarity: 'uncommon',
         polarity: 'madurai',
-        effects: { none: [0.2, 1.5] },
+        effects: { critChance: 0.2, none: 1.5 },
+        conditional: { aiming: true, headshot: true },
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `ON HEADSHOT: +${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Crit Chance while aiming for ${this.effects.none[1] * (this.currRank + 1)}s` }
+        description() { return `On Headshot: +${Math.round(this.effects.critChance * (this.currRank + 1) * 100)}% Crit Chance while aiming for ${this.effects.none * (this.currRank + 1)}s` }
     },
     {
         abrev: 'g7',
@@ -1304,11 +1298,12 @@ export const primaryMods = [
         type: 'SHOTGUN',
         rarity: 'rare',
         polarity: 'madurai',
-        effects: { none: [0.15, 1.5] },
+        effects: { status: 0.15, none: 1.5 },
+        conditional: { aiming: true, cast: true },
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `ON ABILITY CAST: +${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Status Chance while aiming for ${this.effects.none[1] * (this.currRank + 1)}s` }
+        description() { return `On Ability Cast: +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance while aiming for ${this.effects.none * (this.currRank + 1)}s` }
     },
     {
         abrev: 'h4',
@@ -1320,7 +1315,7 @@ export const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 2,
-        description() { return `ON HIT: +${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Accuracy while aiming for ${this.effects.none[1] * (this.currRank + 1)}s` }
+        description() { return `On Hit: +${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Accuracy while aiming for ${this.effects.none[1] * (this.currRank + 1)}s` }
     },
     {
         abrev: 'h5',
@@ -1489,6 +1484,19 @@ export const primaryMods = [
         description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Damage to Infested` }
     },
     {
+        abrev: 's5',
+        name: 'Primed Chamber',
+        type: 'SNIPER',
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { baseDamage: 0.25 },
+        conditional: { first: true },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 4,
+        description() { return `+${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Bonus Damage on first shot in clip` }
+    },
+    {
         abrev: 'o6',
         name: 'Primed Charged Shell',
         family: 'Charged Shell',
@@ -1639,11 +1647,12 @@ export const primaryMods = [
         type: 'SHOTGUN',
         rarity: 'uncommon',
         polarity: 'madurai',
-        effects: { none: [0.175, 1.5] },
+        effects: { fireRate: 0.175, none: 1.5 },
+        conditional: { aiming: true, reload: true },
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `ON Reload: +${Math.round(this.effects.none[0] * (this.currRank + 1) * 1000) / 10}% Fire Rate while aiming for ${this.effects.none[1] * (this.currRank + 1)}s` }
+        description() { return `On Reload: +${Math.round(this.effects.fireRate * (this.currRank + 1) * 1000) / 10}% Fire Rate while aiming for ${this.effects.none * (this.currRank + 1)}s` }
     },
     {
         abrev: 'j5',
@@ -1897,11 +1906,12 @@ export const primaryMods = [
         type: 'SHOTGUN',
         rarity: 'common',
         polarity: 'madurai',
-        effects: { none: [0.165, 1.5] },
+        effects: { critMult: 0.165, none: 1.5 },
+        conditional: { aiming: true, kill: true },
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `ON KILL: +${Math.round(this.effects.none[0] * (this.currRank + 1) * 1000) / 10}% Crit Damage while aiming for ${this.effects.none[1] * (this.currRank + 1)}s` }
+        description() { return `On Kill: +${Math.round(this.effects.critMult * (this.currRank + 1) * 1000) / 10}% Crit Damage while aiming for ${this.effects.none * (this.currRank + 1)}s` }
     },
     {
         abrev: 'l2',
@@ -1981,7 +1991,7 @@ export const primaryMods = [
         description() { return `Increase movment speed by +${Math.round(this.effects.none * (this.currRank + 1) * 100)}% while aiming` }
     },
     {
-        abrev: 's0',
+        abrev: 's6',
         name: 'Soaring Strike',
         type: 'BOW',
         conclave: true,
@@ -2050,11 +2060,12 @@ export const primaryMods = [
         type: 'ASSAULT RIFLE',
         rarity: 'uncommon',
         polarity: 'madurai',
-        effects: { none: [0.125, 1.5] },
+        effects: { fireRate: 0.125, none: 0.125 },
+        conditional: { aiming: true, reload: true },
         maxRank: 5,
         currRank: 5,
         baseCost: 2,
-        description() { return `ON Reload: +${Math.round(this.effects.none[0] * (this.currRank + 1) * 1000) / 10}% Fire Rate while aiming for ${this.effects.none[1] * (this.currRank + 1)}s` }
+        description() { return `On Reload: +${Math.round(this.effects.fireRate * (this.currRank + 1) * 1000) / 10}% Fire Rate while aiming for ${this.effects.none * (this.currRank + 1)}s` }
     },
     {
         abrev: 'm2',
@@ -2269,7 +2280,7 @@ export const primaryMods = [
         description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Holster Rate` }
     },
     {
-        abrev: 's3',
+        abrev: 's4',
         name: 'Vanquished Prey',
         type: 'RIFLE',
         conclave: true,
@@ -2344,7 +2355,7 @@ export const primaryMods = [
     },
     {
         abrev: 'o0',
-        name: 'Vigilanted Supplies',
+        name: 'Vigilante Supplies',
         type: 'PRIMARY',
         rarity: 'rare',
         polarity: 'naramon',

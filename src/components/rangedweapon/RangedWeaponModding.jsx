@@ -721,6 +721,7 @@ export class RangedWeaponModding extends Component {
     }
 
     render() {
+        console.log('render');
         let onLine = navigator.onLine;
         const { mods, chosenMods, modPicker, catalyst, forma, liked, totalModsCost, slotPolarities, errorBlinker, formaCount, forSwap, polarityPicker, rivenEditor, rivenMod, buildStr, linkGenerator, buildSaver, buildList } = this.state
         return (
@@ -822,7 +823,7 @@ export class RangedWeaponModding extends Component {
                 <BuildList buildList={buildList} hideBuildList={this.hideBuildList} />
                 <LinkGenerator linkGenerator={linkGenerator} buildStr={buildStr} match={this.props.match} hideLinkGenerator={this.hideLinkGenerator} />
                 <BuildSaver buildSaver={buildSaver} orokin={catalyst} formaCount={formaCount} user={this.props.user} buildStr={buildStr} hideBuildSaver={this.hideBuildSaver} metaInfo={this.props.metaInfo} />
-                <RangedWeaponStats weapon={this.props.weapon} mods={this.state.chosenMods} />
+                <RangedWeaponStats weapon={this.props.weapon} mods={this.state.chosenMods} viewWidth={this.props.viewWidth} />
                 <PolarityPicker polarityPicker={polarityPicker} polarizeSlot={this.polarizeSlot} hidePolarityPicker={this.hidePolarityPicker} />
                 {rivenMod &&
                     <RangedRivenEditor viewWidth={this.props.viewWidth} rivenEditor={rivenEditor} rivenMod={rivenMod} chosenMods={chosenMods} hideRivenEditor={this.hideRivenEditor} handleRiven={this.handleRiven} />

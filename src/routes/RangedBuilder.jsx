@@ -19,6 +19,24 @@ class RangedBuilder extends Component {
     }
 
     componentDidMount() {
+        // let weaponList = [] 
+        // this.props.weapons.forEach(weapon => {
+        //     weaponList.push(weapon.name)
+        // })
+        // console.log(weaponList);
+        // let sortedMods = this.props.mods.sort((a, b) => {
+        //     if (a.abrev[0] > b.abrev[0]) return 1
+        //     if (a.abrev[0] < b.abrev[0]) return -1
+        //     if (a.abrev[1] > b.abrev[1]) return 1
+        //     if (a.abrev[1] < b.abrev[1]) return -1
+        // })
+        // let check = sortedMods.filter((mod, index) => {
+        //     if (index > 0) {
+        //     return mod.abrev === sortedMods[index - 1].abrev
+        //     }
+        // })
+        // console.log(sortedMods);
+        // console.log(check);
         if (this.props.match.params.build) {
             this.confirmBuild()
         } else {

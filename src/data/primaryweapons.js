@@ -140,6 +140,7 @@ export const primaryWeapons = [
         exalted: true,
         modes: [
             {
+                name: 'Normal',
                 trigger: 'Charge',
                 chargeRate: 1,
                 accuracy: 100,
@@ -2069,6 +2070,23 @@ export const primaryWeapons = [
         img: require('../assets/weapons/primary/lanka.png'),
         mastery: 10,
         type: ['RIFLE', 'SNIPER', 'PROJECTILE', 'LANKA'],
+        zoom: [
+            {
+                name: 'No Zoom'
+            },
+            {
+                name: '3x Zoom',
+                effect: 20      
+            },
+            {
+                name: '5x Zoom',
+                effect: 30      
+            },
+            {
+                name: '8x Zoom',
+                effect: 50      
+            },
+        ],
         polarities: [],
         noise: 'Alarming',
         reload: 2,
@@ -2095,7 +2113,7 @@ export const primaryWeapons = [
                 ]
             },
             {
-                name: 'uncharged',
+                name: 'Uncharged',
                 trigger: 'Charge',
                 fireRate: 1,
                 accuracy: 100,
@@ -2332,7 +2350,7 @@ export const primaryWeapons = [
                 ]
             },
             {
-                name: 'uncharged',
+                name: 'Uncharged',
                 trigger: 'Charge',
                 fireRate: 2.5,
                 chargeRate: 0.75,
@@ -3092,6 +3110,65 @@ export const primaryWeapons = [
         ]
     },
     {
+        name: 'PHANTASMA',
+        img: require('../assets/weapons/primary/phantasma.png'),
+        mastery: 9,
+        type: ['SHOTGUN', 'BEAM'],
+        polarities: ['naramon', 'madurai'],
+        noise: 'Alarming',
+        reload: 0.5,
+        magSize: 11,
+        maxAmmo: 275,
+        disposition: 3,
+        modes: [
+            {
+                name: 'Primary',
+                trigger: 'Held',
+                rangeLimit: 20,
+                fireRate: 12,
+                pellets: 5,
+                accuracy: 100,
+                punchThrough: 0.5,
+                ammoCost: 0.5,
+                critChance: 0.03,
+                critMult: 1.5,
+                status: 0.37,
+                damage: 74,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 1/3
+                    },
+                    {
+                        type: 'Radiation',
+                        percent: 2/3
+                    }
+                ]
+            },
+            {
+                name: 'Plasma Bomb',
+                trigger: 'Charge',
+                fireRate: 2,
+                accuracy: 100,
+                punchThrough: 0,
+                critChance: 0.03,
+                critMult: 1.5,
+                status: 0.37,
+                damage: 88,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.17
+                    },
+                    {
+                        type: 'Radiation',
+                        percent: 0.83
+                    }
+                ]
+            }
+        ]
+    },
+    {
         name: 'PRISMA GORGON',
         img: require('../assets/weapons/primary/prismagorgon.png'),
         mastery: 11,
@@ -3408,6 +3485,19 @@ export const primaryWeapons = [
         img: require('../assets/weapons/primary/rubico.png'),
         mastery: 6,
         type: ['RIFLE', 'SNIPER', 'RUBICO'],
+        zoom: [
+            {
+                name: 'No Zoom'
+            },
+            {
+                name: '3.5x Zoom',
+                effect: 0.35      
+            },
+            {
+                name: '6x Zoom',
+                effect: 0.5
+            }
+        ],
         polarities: [],
         noise: 'Alarming',
         reload: 2.4,
@@ -3424,6 +3514,57 @@ export const primaryWeapons = [
                 critMult: 3,
                 status: 0.12,
                 damage: 180,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.8
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.15
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.05
+                    },
+                ]
+            }
+        ]
+    },
+    {
+        name: 'RUBICO PRIME',
+        img: require('../assets/weapons/primary/rubicoprime.png'),
+        mastery: 12,
+        type: ['RIFLE', 'SNIPER', 'RUBICO'],
+        zoom: [
+            {
+                name: 'No Zoom'
+            },
+            {
+                name: '2.5x Zoom',
+                effect: 0.35      
+            },
+            {
+                name: '5x Zoom',
+                effect: 0.5
+            }
+        ],
+        polarities: ['madurai', 'madurai'],
+        noise: 'Alarming',
+        reload: 2,
+        magSize: 5,
+        maxAmmo: 72,
+        disposition: 3,
+        modes: [
+            {
+                trigger: 'Semi-Auto',
+                fireRate: 2.67,
+                accuracy: 13.3,
+                punchThrough: 1,
+                critChance: 0.3,
+                critMult: 3,
+                status: 0.12,
+                damage: 187,
                 split: [
                     {
                         type: 'Impact',
@@ -3696,6 +3837,19 @@ export const primaryWeapons = [
         img: require('../assets/weapons/primary/snipetron.png'),
         mastery: 0,
         type: ['RIFLE', 'SNIPER'],
+        zoom: [
+            {
+                name: 'No Zoom'
+            },
+            {
+                name: '2.5x Zoom',
+                effect: 30      
+            },
+            {
+                name: '6x Zoom',
+                effect: 50
+            }
+        ],
         polarities: ['madurai'],
         noise: 'Alarming',
         reload: 3.5,
@@ -3734,6 +3888,19 @@ export const primaryWeapons = [
         img: require('../assets/weapons/primary/snipetronvandal.png'),
         mastery: 5,
         type: ['RIFLE', 'SNIPER'],
+        zoom: [
+            {
+                name: 'No Zoom'
+            },
+            {
+                name: '2.5x Zoom',
+                effect: 30      
+            },
+            {
+                name: '6x Zoom',
+                effect: 50
+            }
+        ],
         polarities: ['madurai'],
         noise: 'Alarming',
         reload: 2,
@@ -4178,18 +4345,203 @@ export const primaryWeapons = [
                         type: 'Slash',
                         percent: 0.34
                     },
-                    // {
-                    //     type: 'Impact',
-                    //     percent: 29 / 88
-                    // },
-                    // {
-                    //     type: 'Puncture',
-                    //     percent: 29 / 88
-                    // },
-                    // {
-                    //     type: 'Slash',
-                    //     percent: 29.9 / 88
-                    // },
+                ]
+            }
+        ]
+    },
+    {
+        name: 'SYNAPSE',
+        img: require('../assets/weapons/primary/synapse.png'),
+        mastery: 11,
+        type: ['RIFLE', 'BEAM', 'ASSAULT RIFLE'],
+        polarities: [],
+        noise: 'Alarming',
+        reload: 1.5,
+        magSize: 70,
+        maxAmmo: 540,
+        disposition: 5,
+        modes: [
+            {
+                trigger: 'Held',
+                fireRate: 12,
+                rangeLimit: 27,
+                accuracy: 100,
+                punchThrough: 0,
+                critChance: 0.39,
+                critMult: 2.7,
+                status: 0.13,
+                ammoCost: 0.5,
+                damage: 20,
+                split: [
+                    {
+                        type: 'Corrosive',
+                        percent: 1
+                    },
+                ]
+            }
+        ]
+    },
+    {
+        name: 'SYNOID SIMULOR',
+        img: require('../assets/weapons/primary/synoidsimulor.png'),
+        mastery: 5,
+        type: ['RIFLE', 'ASSAULT RIFLE'],
+        polarities: ['madurai', 'vazarin', 'naramon'],
+        noise: 'Alarming',
+        reload: 2,
+        magSize: 15,
+        maxAmmo: 75,
+        disposition: 1,
+        modes: [
+            {
+                name: 'Orb Detonation',
+                trigger: 'Active',
+                fireRate: 2.67,
+                accuracy: 100,
+                punchThrough: 0,
+                critChance: 0.5,
+                critMult: 2,
+                status: 0.35,
+                damage: 75,
+                split: [
+                    {
+                        type: 'Electricity',
+                        percent: 1
+                    }
+                ]
+            },
+            {
+                name: 'Orb Merge',
+                trigger: 'Semi-Auto',
+                fireRate: 2.67,
+                accuracy: 100,
+                punchThrough: 0,
+                critChance: 0.5,
+                critMult: 2,
+                status: 0.35,
+                damage: 50,
+                split: [
+                    {
+                        type: 'Magnetic',
+                        percent: 1
+                    }
+                ]
+            },
+            {
+                name: 'Orb Damage',
+                trigger: 'Semi-Auto',
+                fireRate: 2.67,
+                accuracy: 100,
+                punchThrough: 0,
+                critChance: 0.5,
+                critMult: 2,
+                status: 0.35,
+                damage: 20,
+                split: [
+                    {
+                        type: 'Magnetic',
+                        percent: 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        name: 'TELOS BOLTOR',
+        img: require('../assets/weapons/primary/telosboltor.png'),
+        mastery: 12,
+        type: ['RIFLE', 'ASSAULT RIFLE', 'PROJECTILE'],
+        polarities: ['vazarin', 'madurai'],
+        noise: 'Alarming',
+        reload: 2.4,
+        magSize: 90,
+        maxAmmo: 540,
+        disposition: 2,
+        modes: [
+            {
+                trigger: 'Auto',
+                fireRate: 9.33,
+                accuracy: 25,
+                punchThrough: 0,
+                critChance: 0.3,
+                critMult: 2.4,
+                status: 0.16,
+                damage: 30,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.1
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.9
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        name: 'TENORA',
+        img: require('../assets/weapons/primary/tenora.png'),
+        mastery: 10,
+        type: ['RIFLE', 'ASSAULT RIFLE'],
+        polarities: [],
+        noise: 'Alarming',
+        reload: 2.5,
+        magSize: 150,
+        maxAmmo: 900,
+        disposition: 3,
+        modes: [
+            {
+                name: 'Primary',
+                trigger: 'Auto-Spool',
+                fireRate: 11.67,
+                accuracy: 12.5,
+                punchThrough: 0,
+                critChance: 0.28,
+                critMult: 2,
+                status: 0.16,
+                damage: 24,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.3
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.4
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.3
+                    },
+                ]
+            },
+            {
+                name: 'Secondary',
+                trigger: 'Charge',
+                fireRate: 10,
+                chargeRate: 0.8,
+                accuracy: 12.5,
+                punchThrough: 1,
+                critChance: 0.34,
+                critMult: 3,
+                status: 0.11,
+                ammoCost: 10,
+                damage: 240,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.2
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.6
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.2
+                    },
                 ]
             }
         ]
