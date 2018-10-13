@@ -1,4 +1,4 @@
-export const secondaryMods = [
+const secondaryMods = [
     {
         abrev: 'a0',
         name: 'Air Recon',
@@ -34,3 +34,5 @@ export const secondaryMods = [
         description() { return this.desc }
     },
 ]
+
+export default secondaryMods;

@@ -42,9 +42,9 @@ class App extends Component {
     this.setState({ viewWidth: window.innerWidth });
   }
 
-  setTitle = (title) => {
-    this.setState({ title: title })
-  }
+  // setTitle = (title) => {
+  //   this.setState({ title: title })
+  // }
 
   showLogin = () => {
     document.body.classList.add('noscroll');
@@ -77,9 +77,7 @@ class App extends Component {
               <p>TENNOWARE</p>
             </div>
           </div>
-          <div className="page-title">
-            <p>{this.state.title}</p>
-          </div>
+          <div className="page-title"></div>
           <div className="top-buttons">
             {this.state.user
               ? <div className="user-account">
@@ -90,7 +88,7 @@ class App extends Component {
           </div>
         </div>
         <div className="main-view">
-          <Routing setTitle={this.setTitle} title={this.state.title} viewWidth={this.state.viewWidth} user={this.state.user} />
+          <Routing viewWidth={this.state.viewWidth} user={this.state.user} />
         </div>
         <Sidebar />
         <Login showLogin={this.state.showLogin} logUser={this.logUser} />

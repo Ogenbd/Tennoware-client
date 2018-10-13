@@ -95,6 +95,7 @@
     width: 100%;
     min-height: 100%;
     box-sizing: border-box;
+    transition: opacity 100ms ease-out;
 }
 
 .fade-exit {
@@ -103,7 +104,7 @@
 
 .fade-exit.fade-exit-active {
     opacity: 0;
-    transition: opacity 200ms ease-out;
+    transition: opacity 100ms ease-out;
 }
 
 .fade-enter, .fade-appear {
@@ -112,30 +113,7 @@
 
 .fade-enter.fade-enter-active, .fade-appear.fade-appear-active {
     opacity: 1;
-    transition: opacity 200ms ease-in;
-}
-
-.dark-bg {
-    position: absolute;
-    align-items: center;
-    justify-content: center;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1020;
-    background-color: rgba(0, 0, 0, 0.8);
-    transition: opacity 0.1s;
-}
-
-.show-dark-bg {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.hide-dark-bg {
-    opacity: 0;
-    pointer-events: none;
+    transition: opacity 100ms ease-out;
 }
 
 @media screen and (max-width: 1222px) {

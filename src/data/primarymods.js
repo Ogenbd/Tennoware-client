@@ -1,5 +1,5 @@
-// currently at abrev s6
-export const primaryMods = [
+// currently at abrev s8
+const primaryMods = [
     {
         abrev: 'a0',
         name: 'Accelerated Blast',
@@ -294,6 +294,18 @@ export const primaryMods = [
         currRank: 5,
         baseCost: 4,
         description() { return `On Ability Cast: +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance while aiming for ${this.effects.none * (this.currRank + 1)}s` }
+    },
+    {
+        abrev: 's8',
+        name: 'Cautious Shot',
+        type: 'EXPLOSIVE',
+        rarity: 'rare',
+        polarity: 'naramon',
+        effects: { none: 1.5 },
+        maxRank: 10,
+        currRank: 10,
+        baseCost: 2,
+        description() { return `` }
     },
     {
         abrev: 'b9',
@@ -1828,6 +1840,18 @@ export const primaryMods = [
         description() { return `+${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Damage` }
     },
     {
+        abrev: 's7',
+        name: 'Sharpshooter',
+        type: 'SNIPER',
+        rarity: 'rare',
+        polarity: 'naramon',
+        effects: { none: 1 },
+        maxRank: 10,
+        currRank: 10,
+        baseCost: 2,
+        description() { return `On Headshot Kill ${5 + (this.effects.none * this.currRank)} Energy` }
+    },
+    {
         abrev: 'k5',
         name: 'Shattering Justice',
         type: 'SOBEK',
@@ -2430,3 +2454,5 @@ export const primaryMods = [
         description() { return `+${Math.round(this.effects.magSize * (this.currRank + 1) * 100)}% Magazine Capacity +${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}` }
     },
 ]
+
+export default primaryMods;

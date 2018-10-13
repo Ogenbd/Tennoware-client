@@ -272,7 +272,6 @@ export class RangedWeaponModding extends Component {
                 let rank = parseInt(`${modAbrev[2]}${modAbrev[3]}`, 10);
                 if (foundMod === undefined || typeof rank !== 'number' || rank < 0 || rank > foundMod.maxRank) {
                     this.props.redirectToVoid();
-                    console.log(249);
                 } else {
                     foundMod.currRank = rank;
                     chosenMods.push(foundMod);
@@ -721,7 +720,6 @@ export class RangedWeaponModding extends Component {
     }
 
     render() {
-        console.log('render');
         let onLine = navigator.onLine;
         const { mods, chosenMods, modPicker, catalyst, forma, liked, totalModsCost, slotPolarities, errorBlinker, formaCount, forSwap, polarityPicker, rivenEditor, rivenMod, buildStr, linkGenerator, buildSaver, buildList } = this.state
         return (

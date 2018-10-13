@@ -64,7 +64,6 @@ export class BuildSaver extends Component {
             this.props.orokin ? buildData.orokin = 1 : buildData.orokin = 0;
             if (this.props.match.params.build && this.props.metaInfo.UserID) {
                 buildData.buildId = this.props.match.params.build;
-                console.log('haps');
                 // fix url
                 fetch('http://192.168.1.114:50000/updatebuild', {
                     method: 'post',
@@ -73,7 +72,6 @@ export class BuildSaver extends Component {
                 })
                     .then(res => res.json())
                     .then(({ res }) => {
-                        console.log(res);
                         this.redirectToSaved(buildData, buildData.buildId);
                     })
                     .catch(err => {

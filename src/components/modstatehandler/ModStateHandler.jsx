@@ -100,7 +100,6 @@ export class ModStateHandler extends Component {
     e.stopPropagation();
     let newMod = { ...this.state.mod };
     newMod.currRank = 0;
-    console.log(newMod);    
     this.setState({ mod: newMod }, this.updateRank);
   }
 

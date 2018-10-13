@@ -1,4 +1,4 @@
-export const primaryWeapons = [
+const primaryWeapons = [
     {
         name: 'AMPREX',
         img: require('../assets/weapons/primary/amprex.png'),
@@ -2076,15 +2076,15 @@ export const primaryWeapons = [
             },
             {
                 name: '3x Zoom',
-                effect: 20      
+                effect: 20
             },
             {
                 name: '5x Zoom',
-                effect: 30      
+                effect: 30
             },
             {
                 name: '8x Zoom',
-                effect: 50      
+                effect: 50
             },
         ],
         polarities: [],
@@ -3137,11 +3137,11 @@ export const primaryWeapons = [
                 split: [
                     {
                         type: 'Impact',
-                        percent: 1/3
+                        percent: 1 / 3
                     },
                     {
                         type: 'Radiation',
-                        percent: 2/3
+                        percent: 2 / 3
                     }
                 ]
             },
@@ -3491,7 +3491,7 @@ export const primaryWeapons = [
             },
             {
                 name: '3.5x Zoom',
-                effect: 0.35      
+                effect: 0.35
             },
             {
                 name: '6x Zoom',
@@ -3542,7 +3542,7 @@ export const primaryWeapons = [
             },
             {
                 name: '2.5x Zoom',
-                effect: 0.35      
+                effect: 0.35
             },
             {
                 name: '5x Zoom',
@@ -3837,13 +3837,14 @@ export const primaryWeapons = [
         img: require('../assets/weapons/primary/snipetron.png'),
         mastery: 0,
         type: ['RIFLE', 'SNIPER'],
+        headshotDamage: true,
         zoom: [
             {
                 name: 'No Zoom'
             },
             {
                 name: '2.5x Zoom',
-                effect: 30      
+                effect: 30
             },
             {
                 name: '6x Zoom',
@@ -3888,13 +3889,14 @@ export const primaryWeapons = [
         img: require('../assets/weapons/primary/snipetronvandal.png'),
         mastery: 5,
         type: ['RIFLE', 'SNIPER'],
+        headshotDamage: true,
         zoom: [
             {
                 name: 'No Zoom'
             },
             {
                 name: '2.5x Zoom',
-                effect: 30      
+                effect: 30
             },
             {
                 name: '6x Zoom',
@@ -4546,4 +4548,800 @@ export const primaryWeapons = [
             }
         ]
     },
+    {
+        name: 'TETRA',
+        img: require('../assets/weapons/primary/tetra.png'),
+        mastery: 3,
+        type: ['RIFLE', 'ASSAULT RIFLE', 'PROJECTILE', 'TETRA'],
+        polarities: [],
+        noise: 'Alarming',
+        reload: 2,
+        magSize: 60,
+        maxAmmo: 540,
+        disposition: 5,
+        modes: [
+            {
+                trigger: 'Auto',
+                fireRate: 6.67,
+                accuracy: 18.2,
+                punchThrough: 0,
+                critChance: 0.04,
+                critMult: 1.5,
+                status: 0.20,
+                damage: 32,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.2
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.8
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        name: 'TIBERON',
+        img: require('../assets/weapons/primary/tiberon.png'),
+        mastery: 10,
+        type: ['RIFLE', 'ASSAULT RIFLE'],
+        polarities: [],
+        noise: 'Alarming',
+        reload: 2,
+        magSize: 30,
+        maxAmmo: 540,
+        disposition: 5,
+        modes: [
+            {
+                trigger: 'Burst',
+                burst: 3,
+                fireRate: 9.09,
+                accuracy: 33.3,
+                punchThrough: 0,
+                critChance: 0.26,
+                critMult: 2.4,
+                status: 0.16,
+                damage: 44,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.25
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.5
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.25
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        name: 'TIBERON PRIME',
+        img: require('../assets/weapons/primary/tiberonprime.png'),
+        mastery: 14,
+        type: ['RIFLE', 'ASSAULT RIFLE'],
+        polarities: ['madurai', 'naramon', 'naramon'],
+        noise: 'Alarming',
+        reload: 2,
+        magSize: 42,
+        maxAmmo: 540,
+        disposition: 5,
+        modes: [
+            {
+                name: 'Burst',
+                trigger: 'Burst',
+                burst: 3,
+                fireRate: 7.38,
+                accuracy: 33.3,
+                punchThrough: 0,
+                critChance: 0.2,
+                critMult: 3,
+                status: 0.2,
+                damage: 46,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.3
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.4
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.3
+                    }
+                ]
+            },
+            {
+                name: 'Semi-Auto',
+                trigger: 'Semi-Auto',
+                fireRate: 6,
+                accuracy: 33.3,
+                punchThrough: 0,
+                critChance: 0.3,
+                critMult: 3.4,
+                status: 0.18,
+                damage: 46,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.3
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.4
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.3
+                    }
+                ]
+            },
+            {
+                name: 'Auto',
+                trigger: 'Auto',
+                fireRate: 8.33,
+                accuracy: 33.3,
+                punchThrough: 0,
+                critChance: 0.16,
+                critMult: 2.8,
+                status: 0.32,
+                damage: 46,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.3
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.4
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.3
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        name: 'TIGRIS',
+        img: require('../assets/weapons/primary/tigris.png'),
+        mastery: 7,
+        type: ['SHOTGUN'],
+        polarities: [],
+        noise: 'Alarming',
+        reload: 1.8,
+        magSize: 2,
+        maxAmmo: 120,
+        disposition: 1,
+        modes: [
+            {
+                trigger: 'Duplex',
+                fireRate: 2,
+                pellets: 5,
+                accuracy: 9.1,
+                punchThrough: 0,
+                critChance: 0.1,
+                critMult: 2,
+                status: 0.28,
+                falloffMin: 10,
+                falloffMax: 20,
+                damage: 1050,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.1
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.1
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.8
+                    },
+                ]
+            }
+        ]
+    },
+    {
+        name: 'TIGRIS PRIME',
+        img: require('../assets/weapons/primary/tigrisprime.png'),
+        mastery: 13,
+        type: ['SHOTGUN'],
+        polarities: ['madurai', 'naramon'],
+        noise: 'Alarming',
+        reload: 1.8,
+        magSize: 2,
+        maxAmmo: 120,
+        disposition: 1,
+        modes: [
+            {
+                trigger: 'Duplex',
+                fireRate: 2,
+                pellets: 8,
+                accuracy: 9.1,
+                punchThrough: 0,
+                critChance: 0.1,
+                critMult: 2,
+                status: 0.3,
+                falloffMin: 8,
+                falloffMax: 20,
+                damage: 1560,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.1
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.1
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.8
+                    },
+                ]
+            }
+        ]
+    },
+    {
+        name: 'TONKOR',
+        img: require('../assets/weapons/primary/tonkor.png'),
+        mastery: 5,
+        type: ['RIFLE', 'ASSAULT RIFLE', 'PROJECTILE', 'EXPLOSIVE', 'UNIQUE', 'TONKOR'],
+        polarities: [],
+        noise: 'Alarming',
+        reload: 2,
+        magSize: 2,
+        maxAmmo: 40,
+        disposition: 1,
+        modes: [
+            {
+                name: 'Explosion',
+                trigger: 'Semi-Auto',
+                fireRate: 2,
+                accuracy: 100,
+                punchThrough: 0,
+                critChance: 0.25,
+                critMult: 2.5,
+                status: 0.1,
+                damage: 325,
+                split: [
+                    {
+                        type: 'Blast',
+                        percent: 1
+                    }
+                ]
+            },
+            {
+                name: 'Grenade Impact',
+                trigger: 'Semi-Auto',
+                fireRate: 2,
+                accuracy: 100,
+                punchThrough: 0,
+                critChance: 0.25,
+                critMult: 2.5,
+                status: 0.1,
+                damage: 75,
+                split: [
+                    {
+                        type: 'Puncture',
+                        percent: 1
+                    }
+                ]
+            },
+        ]
+    },
+    {
+        name: 'TORID',
+        img: require('../assets/weapons/primary/torid.png'),
+        mastery: 4,
+        type: ['RIFLE', 'ASSAULT RIFLE', 'PROJECTILE', 'EXPLOSIVE', 'UNIQUE'],
+        polarities: [],
+        noise: 'Alarming',
+        reload: 1.7,
+        magSize: 5,
+        maxAmmo: 60,
+        disposition: 4,
+        modes: [
+            {
+                name: 'Poison Cloud',
+                trigger: 'Semi-Auto',
+                fireRate: 1.5,
+                accuracy: 100,
+                punchThrough: 0,
+                critChance: 0.15,
+                critMult: 2,
+                status: 0.23,
+                damage: 400,
+                split: [
+                    {
+                        type: 'Toxin',
+                        percent: 1
+                    }
+                ]
+            },
+            {
+                name: 'Grenade Impact',
+                trigger: 'Semi-Auto',
+                fireRate: 1.5,
+                accuracy: 100,
+                punchThrough: 0,
+                critChance: 0.15,
+                critMult: 2,
+                status: 0.23,
+                damage: 100,
+                split: [
+                    {
+                        type: 'Toxin',
+                        percent: 1
+                    }
+                ]
+            },
+        ]
+    },
+    {
+        name: 'VAYKOR HEK',
+        img: require('../assets/weapons/primary/vaykorhek.png'),
+        mastery: 12,
+        type: ['SHOTGUN', 'HEK'],
+        polarities: ['vazarin', 'madurai'],
+        noise: 'Alarming',
+        reload: 2.25,
+        magSize: 8,
+        maxAmmo: 120,
+        disposition: 1,
+        modes: [
+            {
+                trigger: 'Semi-Auto',
+                fireRate: 3,
+                pellets: 7,
+                accuracy: 9.1,
+                punchThrough: 0,
+                critChance: 0.25,
+                critMult: 2,
+                status: 0.25,
+                falloffMin: 10,
+                falloffMax: 25,
+                damage: 525,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.15
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.65
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.2
+                    },
+                ]
+            }
+        ]
+    },
+    {
+        name: 'VECTIS',
+        img: require('../assets/weapons/primary/vectis.png'),
+        mastery: 2,
+        type: ['RIFLE', 'SNIPER'],
+        headshotDamage: true,
+        zoom: [
+            {
+                name: 'No Zoom'
+            },
+            {
+                name: '3x Zoom',
+                effect: 30
+            },
+            {
+                name: '4.5x Zoom',
+                effect: 50
+            }
+        ],
+        polarities: ['madurai'],
+        noise: 'Alarming',
+        reload: 1,
+        magSize: 1,
+        maxAmmo: 72,
+        disposition: 3,
+        modes: [
+            {
+                trigger: 'Semi-Auto',
+                fireRate: 1.5,
+                accuracy: 13.3,
+                punchThrough: 1,
+                critChance: 0.25,
+                critMult: 2,
+                status: 0.3,
+                damage: 225,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.4
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.35
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.25
+                    },
+                ]
+            }
+        ]
+    },
+    {
+        name: 'VECTIS PRIME',
+        img: require('../assets/weapons/primary/vectisprime.png'),
+        mastery: 14,
+        type: ['RIFLE', 'SNIPER'],
+        headshotDamage: true,
+        zoom: [
+            {
+                name: 'No Zoom'
+            },
+            {
+                name: '3.5x Zoom',
+                effect: 40
+            },
+            {
+                name: '6x Zoom',
+                effect: 60
+            }
+        ],
+        polarities: ['madurai', 'naramon'],
+        noise: 'Alarming',
+        reload: 0.85,
+        magSize: 2,
+        maxAmmo: 72,
+        disposition: 3,
+        modes: [
+            {
+                trigger: 'Semi-Auto',
+                fireRate: 2.67,
+                accuracy: 13.3,
+                punchThrough: 1,
+                critChance: 0.3,
+                critMult: 2,
+                status: 0.3,
+                damage: 350,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.15
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.45
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.4
+                    },
+                ]
+            }
+        ]
+    },
+    {
+        name: 'VELDT',
+        img: require('../assets/weapons/primary/veldt.png'),
+        mastery: 8,
+        type: ['RIFLE', 'ASSAULT RIFLE'],
+        polarities: ['naramon'],
+        noise: 'Alarming',
+        reload: 1.8,
+        magSize: 16,
+        maxAmmo: 528,
+        disposition: 3,
+        modes: [
+            {
+                trigger: 'Semi-Auto',
+                fireRate: 3.67,
+                accuracy: 32,
+                punchThrough: 0,
+                critChance: 0.22,
+                critMult: 2.2,
+                status: 0.22,
+                damage: 90,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.26
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.26
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.48
+                    },
+                ]
+            }
+        ]
+    },
+    {
+        name: 'VULKAR',
+        img: require('../assets/weapons/primary/vulkar.png'),
+        mastery: 3,
+        type: ['RIFLE', 'SNIPER', 'VULKAR'],
+        headshotDamage: true,
+        zoom: [
+            {
+                name: 'No Zoom'
+            },
+            {
+                name: '2.5x Zoom',
+                effect: 35
+            },
+            {
+                name: '4x Zoom',
+                effect: 55
+            },
+            {
+                name: '8x Zoom',
+                effect: 70
+            }
+        ],
+        polarities: [],
+        noise: 'Alarming',
+        reload: 3,
+        magSize: 6,
+        maxAmmo: 72,
+        disposition: 5,
+        modes: [
+            {
+                trigger: 'Semi-Auto',
+                fireRate: 1.5,
+                accuracy: 13.3,
+                punchThrough: 1,
+                critChance: 0.2,
+                critMult: 2,
+                status: 0.25,
+                damage: 225,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.8
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.15
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.05
+                    },
+                ]
+            }
+        ]
+    },
+    {
+        name: 'VULKAR WRAITH',
+        img: require('../assets/weapons/primary/vulkarwraith.png'),
+        mastery: 7,
+        type: ['RIFLE', 'SNIPER', 'VULKAR'],
+        headshotDamage: true,
+        zoom: [
+            {
+                name: 'No Zoom'
+            },
+            {
+                name: '2.5x Zoom',
+                effect: 35
+            },
+            {
+                name: '4x Zoom',
+                effect: 55
+            },
+            {
+                name: '8x Zoom',
+                effect: 70
+            }
+        ],
+        polarities: ['madurai'],
+        noise: 'Alarming',
+        reload: 3,
+        magSize: 8,
+        maxAmmo: 72,
+        disposition: 5,
+        modes: [
+            {
+                trigger: 'Semi-Auto',
+                fireRate: 2,
+                accuracy: 13.3,
+                punchThrough: 1,
+                critChance: 0.2,
+                critMult: 2,
+                status: 0.25,
+                damage: 273,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.9
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.1
+                    },
+                ]
+            }
+        ]
+    },
+    {
+        name: 'ZARR',
+        img: require('../assets/weapons/primary/zarr.png'),
+        mastery: 7,
+        type: ['RIFLE', 'ASSAULT RIFLE', 'PROJECTILE', 'EXPLOSIVE', 'UNIQUE'],
+        polarities: ['madurai'],
+        noise: 'Alarming',
+        reload: 2.3,
+        magSize: 3,
+        maxAmmo: 84,
+        disposition: 3,
+        modes: [
+            {
+                name: 'Cannon',
+                trigger: 'Semi-Auto',
+                fireRate: 1.67,
+                accuracy: 100,
+                punchThrough: 0,
+                critChance: 0.17,
+                critMult: 2.5,
+                status: 0.29,
+                damage: 200,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.125
+                    },
+                    {
+                        type: 'Blast',
+                        percent: 0.875
+                    },
+                ]
+            },
+            {
+                name: 'Barrage',
+                trigger: 'Semi-Auto',
+                fireRate: 3,
+                pellets: 10,
+                accuracy: 1.4,
+                punchThrough: 1.6,
+                critChance: 0.17,
+                critMult: 2.5,
+                status: 0.29,
+                damage: 800,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.3
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.5
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.2
+                    },
+                ]
+            },
+        ]
+    },
+    {
+        name: 'ZENITH',
+        img: require('../assets/weapons/primary/zenith.png'),
+        mastery: 10,
+        type: ['RIFLE', 'ASSAULT RIFLE'],
+        polarities: ['naramon', 'madurai'],
+        noise: 'Alarming',
+        reload: 1.4,
+        magSize: 90,
+        maxAmmo: 540,
+        disposition: 3,
+        modes: [
+            {
+                trigger: 'Auto',
+                fireRate: 10.83,
+                accuracy: 33.3,
+                punchThrough: 0,
+                critChance: 0.1,
+                critMult: 2,
+                status: 0.34,
+                damage: 30,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.15
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.2
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.65
+                    },
+                ]
+            },
+            {
+                trigger: 'Semi-Auto',
+                fireRate: 3,
+                accuracy: 33.3,
+                punchThrough: 0,
+                critChance: 0.35,
+                critMult: 2.5,
+                status: 0.08,
+                ammoCost: 5,
+                damage: 15,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.1
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.8
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.1
+                    },
+                ]
+            }
+        ]
+    },
+    {
+        name: 'ZHUGE',
+        img: require('../assets/weapons/primary/zhuge.png'),
+        mastery: 7,
+        type: ['RIFLE', 'BOW', 'PROJECTILE'],
+        polarities: ['madurai'],
+        noise: 'Silent',
+        reload: 2.5,
+        magSize: 20,
+        maxAmmo: 540,
+        disposition: 3,
+        modes: [
+            {
+                trigger: 'Auto',
+                fireRate: 4.17,
+                accuracy: 40,
+                punchThrough: 0,
+                critChance: 0.2,
+                critMult: 2,
+                status: 0.35,
+                damage: 100,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.05
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.75
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.2
+                    },
+                ]
+            }
+        ]
+    },
 ]
+
+export default primaryWeapons;

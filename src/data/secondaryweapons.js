@@ -1,4 +1,4 @@
-export const secondaryWeapons = [
+const secondaryWeapons = [
     {
         name: 'ACRID',
         img: require('../assets/weapons/secondary/acrid.png'),
@@ -30,3 +30,5 @@ export const secondaryWeapons = [
         ]
     },
 ]
+
+export default secondaryWeapons;

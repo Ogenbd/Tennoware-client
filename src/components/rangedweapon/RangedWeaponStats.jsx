@@ -338,7 +338,6 @@ export class RangedWeaponStats extends Component {
                 damageType.damage = damageType.damage * (this.state.powerStr / 100);
             })
         }
-        console.log(finalDamageArray);
         return finalDamageArray;
     }
 
@@ -410,7 +409,6 @@ export class RangedWeaponStats extends Component {
     }
 
     focusSoftInput = () => {
-        console.log(this.softInput);
         if (this.props.viewWidth < 1223) {
             this.softInput.current.focus();
         }
@@ -581,8 +579,8 @@ export class RangedWeaponStats extends Component {
                                 <div className="stat"><p>{status.chancePerPellet}%</p></div>
                             </div>
                         }
-                        {/* snipetron (vandal) zoom */}
-                        {(weapon.name === "SNIPETRON" || weapon.name === "SNIPETRON VANDAL") && zoom > 0 &&
+                        {/* headshot damage on sniper zoom */}
+                        {weapon.headshotDamage && zoom > 0 &&
                             <div className="stats-item">
                                 <p className="stat-name">Headshot Damage: </p>
                                 <div className="stat"><p>{weapon.zoom[zoom].effect}%</p></div>

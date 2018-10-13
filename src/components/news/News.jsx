@@ -7,7 +7,6 @@ export class News extends Component {
   // }
 
   componentDidMount() {
-    this.props.setTitle('News');
   }
 
   render() {
