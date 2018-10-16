@@ -74,7 +74,7 @@ export class ModCardGenerator extends Component {
               <div className="set-bar-wrapper">
                 {this.generateSetBar(fontColor.color)}
               </div>
-              <p>{description[1]}</p>
+              <p className="set-desc">{description[1]}</p>
             </div>
             : <div className="mod-desc"><p>{description}</p></div>
           }

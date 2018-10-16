@@ -3,6 +3,7 @@ const primaryMods = [
     {
         abrev: 'a0',
         name: 'Accelerated Blast',
+        img: require('../assets/modimages/accelerated-blast.jpg'),
         type: 'SHOTGUN',
         rarity: 'rare',
         polarity: 'madurai',
@@ -15,6 +16,7 @@ const primaryMods = [
     {
         abrev: 'a1',
         name: 'Acid Shells',
+        img: require('../assets/modimages/acid-shells.jpg'),
         type: 'SOBEK',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -27,6 +29,7 @@ const primaryMods = [
     {
         abrev: 'a2',
         name: 'Adhesive Blast',
+        img: require('../assets/modimages/adhesive-blast.jpg'),
         type: 'UNIQUE',
         rarity: 'rare',
         polarity: 'madurai',
@@ -39,7 +42,7 @@ const primaryMods = [
     {
         abrev: 'a3',
         name: 'Agile Aim',
-        img: require('../assets/modimages/primary/agileaim.jpeg'),
+        img: require('../assets/modimages/agile-aim.jpg'),
         type: 'RIFLE',
         conclave: true,
         rarity: 'uncommon',
@@ -53,6 +56,7 @@ const primaryMods = [
     {
         abrev: 'o7',
         name: 'Ambush Optics',
+        img: require('../assets/modimages/ambush-optics.jpg'),
         type: 'RUBICO',
         conclave: true,
         conclaveOnly: true,
@@ -67,7 +71,7 @@ const primaryMods = [
     {
         abrev: 'a4',
         name: 'Ammo Drum',
-        img: require('../assets/modimages/primary/ammodrum.jpeg'),
+        img: require('../assets/modimages/ammo-drum.jpg'),
         type: 'RIFLE',
         rarity: 'common',
         polarity: 'naramon',
@@ -80,6 +84,7 @@ const primaryMods = [
     {
         abrev: 'a5',
         name: 'Ammo Stock',
+        img: require('../assets/modimages/ammo-stock.jpg'),
         type: 'SHOTGUN',
         rarity: 'uncommon',
         polarity: 'naramon',
@@ -92,6 +97,7 @@ const primaryMods = [
     {
         abrev: 'o8',
         name: 'Apex Predator',
+        img: require('../assets/modimages/apex-predator.jpg'),
         type: 'RIFLE',
         conclave: true,
         conclaveOnly: true,
@@ -106,6 +112,7 @@ const primaryMods = [
     {
         abrev: 'a6',
         name: 'Argon Scope',
+        img: require('../assets/modimages/argon-scope.jpg'),
         type: 'RIFLE',
         rarity: 'rare',
         polarity: 'madurai',
@@ -119,6 +126,7 @@ const primaryMods = [
     {
         abrev: 'a7',
         name: 'Ammo Mutation',
+        img: require('../assets/modimages/rifle-ammo-mutation.jpg'),
         type: 'PRIMARY',
         rarity: 'rare',
         polarity: 'naramon',
@@ -144,6 +152,7 @@ const primaryMods = [
         abrev: 'a8',
         name: 'Bane of Corpus',
         family: 'Bane of Corpus',
+        img: require('../assets/modimages/bane-of-corpus.jpg'),
         type: 'RIFLE',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -157,6 +166,7 @@ const primaryMods = [
         abrev: 'a9',
         name: 'Bane of Corrupted',
         family: 'Bane of Corrupted',
+        img: require('../assets/modimages/bane-of-corrupted.jpg'),
         type: 'RIFLE',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -170,6 +180,7 @@ const primaryMods = [
         abrev: 'b0',
         name: 'Bane of Grineer',
         family: 'Bane of Grineer',
+        img: require('../assets/modimages/bane-of-grineer.jpg'),
         type: 'RIFLE',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -183,6 +194,7 @@ const primaryMods = [
         abrev: 'b1',
         name: 'Bane of Infested',
         family: 'Bane of Infested',
+        img: require('../assets/modimages/bane-of-infested.jpg'),
         type: 'RIFLE',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -195,6 +207,7 @@ const primaryMods = [
     {
         abrev: 'b2',
         name: 'Bladed Rounds',
+        img: require('../assets/modimages/bladed-rounds.jpg'),
         type: 'RIFLE',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -208,6 +221,7 @@ const primaryMods = [
     {
         abrev: 'b3',
         name: 'Blaze',
+        img: require('../assets/modimages/blaze.jpg'),
         type: 'SHOTGUN',
         rarity: 'rare',
         polarity: 'madurai',
@@ -220,6 +234,7 @@ const primaryMods = [
     {
         abrev: 'b4',
         name: 'Blunderbuss',
+        img: require('../assets/modimages/blunderbuss.jpg'),
         type: 'SHOTGUN',
         rarity: 'common',
         polarity: 'madurai',
@@ -232,6 +247,7 @@ const primaryMods = [
     {
         abrev: 'o9',
         name: 'Bounty Hunter',
+        img: require('../assets/modimages/bounty-hunter.jpg'),
         type: 'SHOTGUN',
         conclave: true,
         conclaveOnly: true,
@@ -246,6 +262,7 @@ const primaryMods = [
     {
         abrev: 'p0',
         name: 'Brain Storm',
+        img: require('../assets/modimages/brain-storm.jpg'),
         type: 'GRAKATA',
         conclave: true,
         conclaveOnly: true,
@@ -260,6 +277,7 @@ const primaryMods = [
     {
         abrev: 'b5',
         name: 'Breach Loader',
+        img: require('../assets/modimages/breach-loader.jpg'),
         type: 'SHOTGUN',
         rarity: 'rare',
         polarity: 'naramon',
@@ -272,6 +290,7 @@ const primaryMods = [
     {
         abrev: 'b6',
         name: 'Broad Eye',
+        img: require('../assets/modimages/broad-eye.jpg'),
         type: 'SHOTGUN',
         conclave: true,
         rarity: 'uncommon',
@@ -285,6 +304,7 @@ const primaryMods = [
     {
         abrev: 'b7',
         name: 'Burdened Magazine',
+        img: require('../assets/modimages/burdened-magazine.jpg'),
         type: 'SHOTGUN',
         rarity: 'rare',
         polarity: 'naramon',
@@ -297,6 +317,7 @@ const primaryMods = [
     {
         abrev: 'b8',
         name: 'Catalyzer Link',
+        img: require('../assets/modimages/catalyzer-link.jpg'),
         type: 'RIFLE',
         rarity: 'common',
         polarity: 'madurai',
@@ -310,18 +331,20 @@ const primaryMods = [
     {
         abrev: 's8',
         name: 'Cautious Shot',
+        img: require('../assets/modimages/cautious-shot.jpg'),
         type: 'EXPLOSIVE',
         rarity: 'rare',
         polarity: 'naramon',
-        effects: { none: 1.5 },
+        effects: { none: [-0.1, -0.2, -0.3, -0.4, -0.5, -0.5, -0.6, -0.6, -0.7, -0.8, -0.9], totalDamage: [-0.05, -0.06, -0.07, -0.08, -0.09, -0.1, -0.11, -0.12, -0.13, -0.14, -0.15] },
         maxRank: 10,
         currRank: 10,
         baseCost: 2,
-        description() { return `` }
+        description() { return `${Math.round(this.effects.none[this.currRank] * 100)}% Self-damage ${Math.round(this.effects.totalDamage[this.currRank] * 100)}% Total Damage` }
     },
     {
         abrev: 'b9',
         name: 'Charged Chamber',
+        img: require('../assets/modimages/charged-chamber.jpg'),
         type: 'SNIPER',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -336,6 +359,7 @@ const primaryMods = [
         abrev: 'c0',
         name: 'Charged Shell',
         family: 'Charged Shell',
+        img: require('../assets/modimages/charged-shell.jpg'),
         type: 'SHOTGUN',
         rarity: 'uncommon',
         polarity: 'naramon',
@@ -348,6 +372,7 @@ const primaryMods = [
     {
         abrev: 'c1',
         name: 'Chilling Grasp',
+        img: require('../assets/modimages/chilling-grasp.jpg'),
         type: 'SHOTGUN',
         rarity: 'uncommon',
         polarity: 'vazarin',
@@ -360,6 +385,7 @@ const primaryMods = [
     {
         abrev: 'c2',
         name: 'Chilling Reload',
+        img: require('../assets/modimages/chilling-reload.jpg'),
         type: 'SHOTGUN',
         rarity: 'rare',
         polarity: 'madurai',
@@ -372,6 +398,7 @@ const primaryMods = [
     {
         abrev: 'c3',
         name: 'Cleanse Corpus',
+        img: require('../assets/modimages/cleanse-corpus.jpg'),
         type: 'SHOTGUN',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -384,6 +411,7 @@ const primaryMods = [
     {
         abrev: 'c4',
         name: 'Cleanse Corrupted',
+        img: require('../assets/modimages/cleanse-corrupted.jpg'),
         type: 'SHOTGUN',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -396,6 +424,7 @@ const primaryMods = [
     {
         abrev: 'c5',
         name: 'Cleanse Grineer',
+        img: require('../assets/modimages/cleanse-grineer.jpg'),
         type: 'SHOTGUN',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -408,6 +437,7 @@ const primaryMods = [
     {
         abrev: 'c6',
         name: 'Cleanse Infested',
+        img: require('../assets/modimages/cleanse-infested.jpg'),
         type: 'SHOTGUN',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -420,6 +450,7 @@ const primaryMods = [
     {
         abrev: 'c7',
         name: 'Combustion Beam',
+        img: require('../assets/modimages/combustion-beam.jpg'),
         type: 'BEAM',
         rarity: 'rare',
         polarity: 'madurai',
@@ -433,6 +464,7 @@ const primaryMods = [
         abrev: 'p1',
         name: 'Comet Rounds',
         family: 'Conclave Rifle Converstion',
+        img: require('../assets/modimages/comet-rounds.jpg'),
         type: 'RIFLE',
         conclave: true,
         conclaveOnly: true,
@@ -447,6 +479,7 @@ const primaryMods = [
     {
         abrev: 'c8',
         name: 'Contagious Spread',
+        img: require('../assets/modimages/contagious-spread.jpg'),
         type: 'SHOTGUN',
         rarity: 'uncommon',
         polarity: 'naramon',
@@ -459,6 +492,7 @@ const primaryMods = [
     {
         abrev: 'c9',
         name: 'Continuous Misery',
+        img: require('../assets/modimages/continuous-misery.jpg'),
         type: 'RIFLE',
         rarity: 'common',
         polarity: 'madurai',
@@ -471,6 +505,7 @@ const primaryMods = [
     {
         abrev: 'd0',
         name: 'Crash Course',
+        img: require('../assets/modimages/crash-course.jpg'),
         type: 'RIFLE',
         rarity: 'rare',
         polarity: 'naramon',
@@ -484,6 +519,7 @@ const primaryMods = [
         abrev: 'p2',
         name: 'Crash Shot',
         family: 'Conclave Shotgun Converstion',
+        img: require('../assets/modimages/crash-shot.jpg'),
         type: 'SHOTGUN',
         conclave: true,
         conclaveOnly: true,
@@ -498,6 +534,7 @@ const primaryMods = [
     {
         abrev: 'd1',
         name: 'Critical Deceleration',
+        img: require('../assets/modimages/critical-deceleration.jpg'),
         type: 'SHOTGUN',
         rarity: 'rare',
         polarity: 'madurai',
@@ -510,6 +547,7 @@ const primaryMods = [
     {
         abrev: 'd2',
         name: 'Critical Delay',
+        img: require('../assets/modimages/critical-delay.jpg'),
         type: 'RIFLE',
         rarity: 'rare',
         polarity: 'naramon',
@@ -523,6 +561,7 @@ const primaryMods = [
         abrev: 'd3',
         name: 'Cryo Rounds',
         family: 'Cryo Rounds',
+        img: require('../assets/modimages/cryo-rounds.jpg'),
         type: 'RIFLE',
         rarity: 'uncommon',
         polarity: 'vazarin',
@@ -535,6 +574,7 @@ const primaryMods = [
     {
         abrev: 'd4',
         name: 'Deadly Sequence',
+        img: require('../assets/modimages/deadly-sequence.jpg'),
         type: 'GRINLOK',
         rarity: 'rare',
         polarity: 'madurai',
@@ -547,6 +587,7 @@ const primaryMods = [
     {
         abrev: 'p3',
         name: 'Deft Tempo',
+        img: require('../assets/modimages/deft-tempo.jpg'),
         type: 'ASSULT RIFLE',
         conclave: true,
         conclaveOnly: true,
@@ -561,6 +602,7 @@ const primaryMods = [
     {
         abrev: 'd5',
         name: 'Depleted Reload',
+        img: require('../assets/modimages/depleted-reload.jpg'),
         type: 'SNIPER',
         rarity: 'rare',
         polarity: 'naramon',
@@ -573,6 +615,7 @@ const primaryMods = [
     {
         abrev: 'p4',
         name: 'Directed Convergence',
+        img: require('../assets/modimages/directed-convergence.jpg'),
         type: 'SUPRA',
         conclave: true,
         conclaveOnly: true,
@@ -587,6 +630,7 @@ const primaryMods = [
     {
         abrev: 'd6',
         name: 'Disarming Purity',
+        img: require('../assets/modimages/disarming-purity.jpg'),
         type: 'PANTHERA',
         rarity: 'rare',
         polarity: 'naramon',
@@ -599,6 +643,7 @@ const primaryMods = [
     {
         abrev: 'd7',
         name: 'Disruptor',
+        img: require('../assets/modimages/disruptor.jpg'),
         type: 'SHOTGUN',
         rarity: 'common',
         polarity: 'naramon',
@@ -611,6 +656,7 @@ const primaryMods = [
     {
         abrev: 'd8',
         name: 'Double-Barrel Drift',
+        img: require('../assets/modimages/double-barrel-drift.jpg'),
         type: 'SHOTGUN',
         conclave: true,
         rarity: 'rare',
@@ -625,6 +671,7 @@ const primaryMods = [
         abrev: 'p5',
         name: 'Double Tap',
         family: 'Conclave Assault',
+        img: require('../assets/modimages/double-tap.jpg'),
         type: 'LATRON',
         conclave: true,
         conclaveOnly: true,
@@ -639,6 +686,7 @@ const primaryMods = [
     {
         abrev: 'd9',
         name: 'Eagle Eye',
+        img: require('../assets/modimages/eagle-eye.jpg'),
         type: 'RIFLE',
         conclave: true,
         rarity: 'uncommon',
@@ -652,6 +700,7 @@ const primaryMods = [
     {
         abrev: 'p6',
         name: 'Emergent Aftermath',
+        img: require('../assets/modimages/emergent-aftermath.jpg'),
         type: 'SNIPER',
         conclave: true,
         conclaveOnly: true,
@@ -666,6 +715,7 @@ const primaryMods = [
     {
         abrev: 'e0',
         name: 'Entropy Burst',
+        img: require('../assets/modimages/entropy-burst.jpg'),
         type: 'SUPRA',
         rarity: 'rare',
         polarity: 'madurai',
@@ -678,6 +728,7 @@ const primaryMods = [
     {
         abrev: 'e1',
         name: 'Fanged Fusillade',
+        img: require('../assets/modimages/fanged-fusillade.jpg'),
         type: 'RIFLE',
         rarity: 'rare',
         polarity: 'naramon',
@@ -691,6 +742,7 @@ const primaryMods = [
         abrev: 'e2',
         name: 'Fast Hands',
         family: 'Fast Hands',
+        img: require('../assets/modimages/fast-hands.jpg'),
         type: 'RIFLE',
         rarity: 'common',
         polarity: 'naramon',
@@ -703,6 +755,7 @@ const primaryMods = [
     {
         abrev: 'e3',
         name: 'Fatal Accelleration',
+        img: require('../assets/modimages/fatal-acceleration.jpg'),
         type: 'SHOTGUN',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -715,6 +768,7 @@ const primaryMods = [
     {
         abrev: 'p7',
         name: 'Feathered Arrows',
+        img: require('../assets/modimages/feathered-arrows.jpg'),
         type: 'BOW',
         conclave: true,
         conclaveOnly: true,
@@ -729,6 +783,7 @@ const primaryMods = [
     {
         abrev: 'p8',
         name: 'Final Tap',
+        img: require('../assets/modimages/final-tap.jpg'),
         type: 'HIND',
         conclave: true,
         conclaveOnly: true,
@@ -743,6 +798,7 @@ const primaryMods = [
     {
         abrev: 'e4',
         name: 'Firestorm',
+        img: require('../assets/modimages/firestorm.jpg'),
         type: 'EXPLOSIVE',
         rarity: 'rare',
         polarity: 'madurai',
@@ -756,6 +812,7 @@ const primaryMods = [
         abrev: 'p9',
         name: 'Flak Shot',
         family: 'Conclave Shotgun Converstion',
+        img: require('../assets/modimages/flak-shot.jpg'),
         type: 'SHOTGUN',
         conclave: true,
         conclaveOnly: true,
@@ -770,6 +827,7 @@ const primaryMods = [
     {
         abrev: 'e5',
         name: 'Flechette',
+        img: require('../assets/modimages/flechette.jpg'),
         type: 'SHOTGUN',
         rarity: 'common',
         polarity: 'naramon',
@@ -782,6 +840,7 @@ const primaryMods = [
     {
         abrev: 'e6',
         name: 'Flux Overdrive',
+        img: require('../assets/modimages/flux-overdrive.jpg'),
         type: 'FLUX RIFLE',
         rarity: 'rare',
         polarity: 'madurai',
@@ -794,6 +853,7 @@ const primaryMods = [
     {
         abrev: 'q0',
         name: 'Focused Acceleration',
+        img: require('../assets/modimages/focused-acceleration.jpg'),
         type: 'TETRA',
         conclave: true,
         conclaveOnly: true,
@@ -808,6 +868,7 @@ const primaryMods = [
     {
         abrev: 'e7',
         name: 'Fomorian Accelerant',
+        img: require('../assets/modimages/fomorian-accelerant.jpg'),
         type: 'DRAKGOON',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -820,6 +881,7 @@ const primaryMods = [
     {
         abrev: 'e8',
         name: 'Frail Momentum',
+        img: require('../assets/modimages/frail-momentum.jpg'),
         type: 'SHOTGUN',
         rarity: 'rare',
         polarity: 'madurai',
@@ -832,6 +894,7 @@ const primaryMods = [
     {
         abrev: 'e9',
         name: 'Frigid Blast',
+        img: require('../assets/modimages/frigid-blast.jpg'),
         type: 'SHOTGUN',
         rarity: 'rare',
         polarity: 'madurai',
@@ -844,6 +907,7 @@ const primaryMods = [
     {
         abrev: 'f0',
         name: 'Full Contact',
+        img: require('../assets/modimages/full-contact.jpg'),
         type: 'SHOTGUN',
         rarity: 'rare',
         polarity: 'naramon',
@@ -856,6 +920,7 @@ const primaryMods = [
     {
         abrev: 'f1',
         name: 'Gilded Truth',
+        img: require('../assets/modimages/gilded-truth.jpg'),
         type: 'BURSTON PRIME',
         rarity: 'rare',
         polarity: 'madurai',
@@ -868,6 +933,7 @@ const primaryMods = [
     {
         abrev: 'q1',
         name: 'Gorgon Frenzy',
+        img: require('../assets/modimages/gorgon-frenzy.jpg'),
         type: 'GORGON',
         conclave: true,
         conclaveOnly: true,
@@ -882,6 +948,7 @@ const primaryMods = [
     {
         abrev: 'q2',
         name: 'Grinloked',
+        img: require('../assets/modimages/grinloked.jpg'),
         type: 'GRINLOK',
         conclave: true,
         conclaveOnly: true,
@@ -896,6 +963,7 @@ const primaryMods = [
     {
         abrev: 'f2',
         name: 'Guided Ordnance',
+        img: require('../assets/modimages/guided-ordnance.jpg'),
         type: 'ASSAULT RIFLE',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -908,6 +976,7 @@ const primaryMods = [
     {
         abrev: 'f3',
         name: 'Gun Glide',
+        img: require('../assets/modimages/gun-glide.jpg'),
         type: 'ASSAULT RIFLE',
         conclave: true,
         rarity: 'rare',
@@ -921,6 +990,7 @@ const primaryMods = [
     {
         abrev: 'f4',
         name: 'Hammer Shot',
+        img: require('../assets/modimages/hammer-shot.jpg'),
         type: 'RIFLE',
         rarity: 'rare',
         polarity: 'vazarin',
@@ -933,6 +1003,7 @@ const primaryMods = [
     {
         abrev: 'f5',
         name: 'Harkonar Scope',
+        img: require('../assets/modimages/harkonar-scope.jpg'),
         type: 'SNIPER',
         rarity: 'uncommon',
         polarity: 'naramon',
@@ -945,6 +1016,7 @@ const primaryMods = [
     {
         abrev: 'f6',
         name: 'Heavy Caliber',
+        img: require('../assets/modimages/heavy-caliber.jpg'),
         type: 'RIFLE',
         rarity: 'rare',
         polarity: 'madurai',
@@ -957,6 +1029,7 @@ const primaryMods = [
     {
         abrev: 'f7',
         name: 'Hell\'s Chamber',
+        img: require('../assets/modimages/hell\'s-chamber.jpg'),
         type: 'SHOTGUN',
         rarity: 'rare',
         polarity: 'madurai',
@@ -969,6 +1042,7 @@ const primaryMods = [
     {
         abrev: 'f8',
         name: 'Hellfire',
+        img: require('../assets/modimages/hellfire.jpg'),
         type: 'RIFLE',
         rarity: 'uncommon',
         polarity: 'naramon',
@@ -981,6 +1055,7 @@ const primaryMods = [
     {
         abrev: 'f9',
         name: 'High Voltage',
+        img: require('../assets/modimages/high-voltage.jpg'),
         type: 'RIFLE',
         rarity: 'rare',
         polarity: 'madurai',
@@ -993,6 +1068,7 @@ const primaryMods = [
     {
         abrev: 'g0',
         name: 'Hunter Munitions',
+        img: require('../assets/modimages/hunter-munitions.jpg'),
         type: 'PRIMARY',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -1009,6 +1085,7 @@ const primaryMods = [
     {
         abrev: 'g1',
         name: 'Hunter Track',
+        img: require('../assets/modimages/hunter-track.jpg'),
         type: 'PRIMARY',
         rarity: 'rare',
         polarity: 'madurai',
@@ -1025,6 +1102,7 @@ const primaryMods = [
     {
         abrev: 'g2',
         name: 'Hush',
+        img: require('../assets/modimages/hush.jpg'),
         type: 'RIFLE',
         rarity: 'common',
         polarity: 'naramon',
@@ -1038,6 +1116,7 @@ const primaryMods = [
         abrev: 'q3',
         name: 'Hydraulic Chamber',
         family: 'Conclave Shotgun',
+        img: require('../assets/modimages/hydraulic-chamber.jpg'),
         type: 'SHOTGUN',
         conclave: true,
         conclaveOnly: true,
@@ -1053,6 +1132,7 @@ const primaryMods = [
         abrev: 'q4',
         name: 'Hydraulic Gauge',
         family: 'Conclave Assault',
+        img: require('../assets/modimages/hydraulic-gauge.jpg'),
         type: 'ASSAULT RIFLE',
         conclave: true,
         conclaveOnly: true,
@@ -1067,6 +1147,7 @@ const primaryMods = [
     {
         abrev: 'g3',
         name: 'Incendiary Coat',
+        img: require('../assets/modimages/incendiary-coat.jpg'),
         type: 'SHOTGUN',
         rarity: 'uncommon',
         polarity: 'naramon',
@@ -1079,6 +1160,7 @@ const primaryMods = [
     {
         abrev: 'g4',
         name: 'Infected Clip',
+        img: require('../assets/modimages/infected-clip.jpg'),
         type: 'RIFLE',
         rarity: 'uncommon',
         polarity: 'naramon',
@@ -1091,6 +1173,7 @@ const primaryMods = [
     {
         abrev: 'q5',
         name: 'Kill Switch',
+        img: require('../assets/modimages/kill-switch.jpg'),
         type: 'SHOTGUN',
         conclave: true,
         conclaveOnly: true,
@@ -1105,6 +1188,7 @@ const primaryMods = [
     {
         abrev: 'g5',
         name: 'Kinetic Ricochet',
+        img: require('../assets/modimages/kinetic-ricochet.jpg'),
         type: 'TETRA',
         rarity: 'rare',
         polarity: 'naramon',
@@ -1117,6 +1201,7 @@ const primaryMods = [
     {
         abrev: 'g6',
         name: 'Laser Sight',
+        img: require('../assets/modimages/laser-sight.jpg'),
         type: 'SHOTGUN',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -1130,6 +1215,7 @@ const primaryMods = [
     {
         abrev: 'g7',
         name: 'Lasting Purity',
+        img: require('../assets/modimages/lasting-purity.jpg'),
         type: 'VULKAR',
         rarity: 'rare',
         polarity: 'naramon',
@@ -1142,6 +1228,7 @@ const primaryMods = [
     {
         abrev: 'q6',
         name: 'Lie In Wait',
+        img: require('../assets/modimages/lie-in-wait.jpg'),
         type: 'SNIPER',
         conclave: true,
         conclaveOnly: true,
@@ -1156,6 +1243,7 @@ const primaryMods = [
     {
         abrev: 'g8',
         name: 'Lingering Torment',
+        img: require('../assets/modimages/lingering-torment.jpg'),
         type: 'SHOTGUN',
         rarity: 'common',
         polarity: 'madurai',
@@ -1169,6 +1257,7 @@ const primaryMods = [
         abrev: 'q7',
         name: 'Loaded Capacity',
         family: 'Conclave Shotgun',
+        img: require('../assets/modimages/loaded-capacity.jpg'),
         type: 'SHOTGUN',
         conclave: true,
         conclaveOnly: true,
@@ -1183,6 +1272,7 @@ const primaryMods = [
     {
         abrev: 'g9',
         name: 'Lock and Load',
+        img: require('../assets/modimages/lock-and-load.jpg'),
         type: 'SHOTGUN',
         conclave: true,
         rarity: 'rare',
@@ -1197,6 +1287,7 @@ const primaryMods = [
         abrev: 'q8',
         name: 'Loose Chamber',
         family: 'Conclave Shotgun',
+        img: require('../assets/modimages/loose-chamber.jpg'),
         type: 'SHOTGUN',
         conclave: true,
         conclaveOnly: true,
@@ -1212,6 +1303,7 @@ const primaryMods = [
         abrev: 'q9',
         name: 'Loose Hatch',
         family: 'Conclave Assault',
+        img: require('../assets/modimages/loose-hatch.jpg'),
         type: 'ASSAULT RIFLE',
         conclave: true,
         conclaveOnly: true,
@@ -1226,6 +1318,7 @@ const primaryMods = [
     {
         abrev: 'r0',
         name: 'Lucky Shot',
+        img: require('../assets/modimages/lucky-shot.jpg'),
         type: 'RIFLE',
         conclave: true,
         conclaveOnly: true,
@@ -1240,6 +1333,7 @@ const primaryMods = [
     {
         abrev: 'h0',
         name: 'Magazine Warp',
+        img: require('../assets/modimages/magazine-warp.jpg'),
         type: 'RIFLE',
         rarity: 'common',
         polarity: 'naramon',
@@ -1252,6 +1346,7 @@ const primaryMods = [
     {
         abrev: 'h1',
         name: 'Malignant Force',
+        img: require('../assets/modimages/malignant-force.jpg'),
         type: 'RIFLE',
         rarity: 'rare',
         polarity: 'madurai',
@@ -1264,6 +1359,7 @@ const primaryMods = [
     {
         abrev: 'h2',
         name: 'Metal Auger',
+        img: require('../assets/modimages/metal-auger.jpg'),
         type: 'RIFLE',
         rarity: 'rare',
         polarity: 'naramon',
@@ -1277,6 +1373,7 @@ const primaryMods = [
         abrev: 'r1',
         name: 'Maximum Capacity',
         family: 'Conclave Assault',
+        img: require('../assets/modimages/maximum-capacity.jpg'),
         type: 'ASSAULT RIFLE',
         conclave: true,
         conclaveOnly: true,
@@ -1291,6 +1388,7 @@ const primaryMods = [
     {
         abrev: 'r2',
         name: 'Measured Burst',
+        img: require('../assets/modimages/measured-burst.jpg'),
         type: 'TIBERON',
         conclave: true,
         conclaveOnly: true,
@@ -1305,6 +1403,7 @@ const primaryMods = [
     {
         abrev: 'r3',
         name: 'Momentary Pause',
+        img: require('../assets/modimages/momentary-pause.jpg'),
         type: 'SHOTGUN',
         conclave: true,
         conclaveOnly: true,
@@ -1319,6 +1418,7 @@ const primaryMods = [
     {
         abrev: 'h3',
         name: 'Nano-Applicator',
+        img: require('../assets/modimages/nano-applicator.jpg'),
         type: 'SHOTGUN',
         rarity: 'rare',
         polarity: 'madurai',
@@ -1332,6 +1432,7 @@ const primaryMods = [
     {
         abrev: 'h4',
         name: 'Narrow Barrel',
+        img: require('../assets/modimages/narrow-barrel.jpg'),
         type: 'SHOTGUN',
         rarity: 'rare',
         polarity: 'madurai',
@@ -1344,6 +1445,7 @@ const primaryMods = [
     {
         abrev: 'h5',
         name: 'Neutralizing Justice',
+        img: require('../assets/modimages/neutralizing-justice.jpg'),
         type: 'MITER',
         rarity: 'rare',
         polarity: 'vazarin',
@@ -1356,6 +1458,7 @@ const primaryMods = [
     {
         abrev: 'h6',
         name: 'Nightwatch Napalm',
+        img: require('../assets/modimages/nightwatch-napalm.jpg'),
         type: 'OGRIS',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -1368,6 +1471,7 @@ const primaryMods = [
     {
         abrev: 'h7',
         name: 'Overview',
+        img: require('../assets/modimages/overview.jpg'),
         type: 'ASSAULT RIFLE',
         conclave: true,
         rarity: 'uncommon',
@@ -1381,6 +1485,7 @@ const primaryMods = [
     {
         abrev: 'h8',
         name: 'Piercing Caliber',
+        img: require('../assets/modimages/piercing-caliber.jpg'),
         type: 'RIFLE',
         rarity: 'rare',
         polarity: 'naramon',
@@ -1393,6 +1498,7 @@ const primaryMods = [
     {
         abrev: 'h9',
         name: 'Piercing Hit',
+        img: require('../assets/modimages/piercing-hit.jpg'),
         type: 'RIFLE',
         rarity: 'rare',
         polarity: 'naramon',
@@ -1405,6 +1511,7 @@ const primaryMods = [
     {
         abrev: 'r4',
         name: 'Plan B',
+        img: require('../assets/modimages/plan-b.jpg'),
         type: 'BOW',
         conclave: true,
         conclaveOnly: true,
@@ -1420,6 +1527,7 @@ const primaryMods = [
         abrev: 'i0',
         name: 'Point Blank',
         family: 'Point Blank',
+        img: require('../assets/modimages/point-blank.jpg'),
         type: 'SHOTGUN',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -1432,6 +1540,7 @@ const primaryMods = [
     {
         abrev: 'i1',
         name: 'Point Strike',
+        img: require('../assets/modimages/point-strike.jpg'),
         type: 'RIFLE',
         rarity: 'common',
         polarity: 'madurai',
@@ -1444,6 +1553,7 @@ const primaryMods = [
     {
         abrev: 'r5',
         name: 'Precision Munition',
+        img: require('../assets/modimages/precision-munition.jpg'),
         type: 'TONKOR',
         conclave: true,
         conclaveOnly: true,
@@ -1459,6 +1569,7 @@ const primaryMods = [
         abrev: 'j0',
         name: 'Primed Ammo Mutation',
         family: 'Ammo Mutation',
+        img: require('../assets/modimages/primed-rifle-ammo-mutation.jpg'),
         type: 'PRIMARY',
         rarity: 'prime',
         polarity: 'naramon',
@@ -1472,6 +1583,7 @@ const primaryMods = [
         abrev: 'i2',
         name: 'Primed Bane of Corpus',
         family: 'Bane of Corpus',
+        img: require('../assets/modimages/primed-bane-of-corpus.jpg'),
         type: 'RIFLE',
         rarity: 'prime',
         polarity: 'madurai',
@@ -1485,6 +1597,7 @@ const primaryMods = [
         abrev: 'i3',
         name: 'Primed Bane of Corrupted',
         family: 'Bane of Corrupted',
+        img: require('../assets/modimages/primed-bane-of-corrupted.jpg'),
         type: 'RIFLE',
         rarity: 'prime',
         polarity: 'madurai',
@@ -1498,6 +1611,7 @@ const primaryMods = [
         abrev: 'i4',
         name: 'Primed Bane of Grineer',
         family: 'Bane of Grineer',
+        img: require('../assets/modimages/primed-bane-of-grineer.jpg'),
         type: 'RIFLE',
         rarity: 'prime',
         polarity: 'madurai',
@@ -1511,6 +1625,7 @@ const primaryMods = [
         abrev: 'i5',
         name: 'Primed Bane of Infested',
         family: 'Bane of Infested',
+        img: require('../assets/modimages/primed-bane-of-infested.jpg'),
         type: 'RIFLE',
         rarity: 'prime',
         polarity: 'madurai',
@@ -1523,6 +1638,7 @@ const primaryMods = [
     {
         abrev: 's5',
         name: 'Primed Chamber',
+        img: require('../assets/modimages/primed-chamber.jpg'),
         type: 'SNIPER',
         rarity: 'rare',
         polarity: 'madurai',
@@ -1537,6 +1653,7 @@ const primaryMods = [
         abrev: 'o6',
         name: 'Primed Charged Shell',
         family: 'Charged Shell',
+        img: require('../assets/modimages/primed-charged-shell.jpg'),
         type: 'SHOTGUN',
         rarity: 'prime',
         polarity: 'naramon',
@@ -1550,6 +1667,7 @@ const primaryMods = [
         abrev: 'i6',
         name: 'Primed Cryo Rounds',
         family: 'Cryo Rounds',
+        img: require('../assets/modimages/primed-cryo-rounds.jpg'),
         type: 'RIFLE',
         rarity: 'prime',
         polarity: 'vazarin',
@@ -1563,6 +1681,7 @@ const primaryMods = [
         abrev: 'i7',
         name: 'Primed Fast Hands',
         family: 'Fast Hands',
+        img: require('../assets/modimages/primed-fast-hands.jpg'),
         type: 'RIFLE',
         rarity: 'prime',
         polarity: 'naramon',
@@ -1576,6 +1695,7 @@ const primaryMods = [
         abrev: 'i8',
         name: 'Primed Point Blank',
         family: 'Point Blank',
+        img: require('../assets/modimages/primed-point-blank.jpg'),
         type: 'SHOTGUN',
         rarity: 'prime',
         polarity: 'madurai',
@@ -1589,6 +1709,7 @@ const primaryMods = [
         abrev: 'i9',
         name: 'Primed Ravage',
         family: 'Ravage',
+        img: require('../assets/modimages/primed-ravage.jpg'),
         type: 'SHOTGUN',
         rarity: 'prime',
         polarity: 'madurai',
@@ -1628,6 +1749,7 @@ const primaryMods = [
         abrev: 'j2',
         name: 'Primed Shred',
         family: 'Shred',
+        img: require('../assets/modimages/primed-shred.jpg'),
         type: 'RIFLE',
         rarity: 'prime',
         polarity: 'madurai',
@@ -1640,6 +1762,7 @@ const primaryMods = [
     {
         abrev: 'r6',
         name: 'Prize Kill',
+        img: require('../assets/modimages/prize-kill.jpg'),
         type: 'SHOTGUN',
         conclave: true,
         conclaveOnly: true,
@@ -1655,6 +1778,7 @@ const primaryMods = [
         abrev: 'j3',
         name: 'Ravage',
         family: 'Ravage',
+        img: require('../assets/modimages/ravage.jpg'),
         type: 'SHOTGUN',
         rarity: 'rare',
         polarity: 'madurai',
@@ -1667,6 +1791,7 @@ const primaryMods = [
     {
         abrev: 'r7',
         name: 'Recover',
+        img: require('../assets/modimages/recover.jpg'),
         type: 'RIFLE',
         conclave: true,
         conclaveOnly: true,
@@ -1681,6 +1806,7 @@ const primaryMods = [
     {
         abrev: 'j4',
         name: 'Repeater Clip',
+        img: require('../assets/modimages/repeater-clip.jpg'),
         type: 'SHOTGUN',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -1707,6 +1833,7 @@ const primaryMods = [
     {
         abrev: 'j6',
         name: 'Rifle Aptitude',
+        img: require('../assets/modimages/rifle-aptitude.jpg'),
         type: 'RIFLE',
         rarity: 'uncommon',
         polarity: 'vazarin',
@@ -1719,6 +1846,7 @@ const primaryMods = [
     {
         abrev: 'j7',
         name: 'Rime Rounds',
+        img: require('../assets/modimages/rime-rounds.jpg'),
         type: 'RIFLE',
         rarity: 'rare',
         polarity: 'madurai',
@@ -1732,6 +1860,7 @@ const primaryMods = [
         abrev: 'r8',
         name: 'Ripper Rounds',
         family: 'Conclave Rifle Converstion',
+        img: require('../assets/modimages/ripper-rounds.jpg'),
         type: 'RIFLE',
         conclave: true,
         conclaveOnly: true,
@@ -1768,6 +1897,7 @@ const primaryMods = [
     {
         abrev: 'j8',
         name: 'Rupture',
+        img: require('../assets/modimages/rupture.jpg'),
         type: 'RIFLE',
         rarity: 'common',
         polarity: 'naramon',
@@ -1780,6 +1910,7 @@ const primaryMods = [
     {
         abrev: 'j9',
         name: 'Sawtooth Clip',
+        img: require('../assets/modimages/sawtooth-clip.jpg'),
         type: 'RIFLE',
         rarity: 'common',
         polarity: 'naramon',
@@ -1792,6 +1923,7 @@ const primaryMods = [
     {
         abrev: 'k0',
         name: 'Scattered Justice',
+        img: require('../assets/modimages/scattered-justice.jpg'),
         type: 'HEK',
         rarity: 'rare',
         polarity: 'madurai',
@@ -1804,6 +1936,7 @@ const primaryMods = [
     {
         abrev: 'k1',
         name: 'Scattering Inferno',
+        img: require('../assets/modimages/scattering-inferno.jpg'),
         type: 'SHOTGUN',
         rarity: 'rare',
         polarity: 'madurai',
@@ -1816,6 +1949,7 @@ const primaryMods = [
     {
         abrev: 'k2',
         name: 'Seeking Force',
+        img: require('../assets/modimages/seeking-force.jpg'),
         type: 'SHOTGUN',
         rarity: 'rare',
         polarity: 'naramon',
@@ -1828,6 +1962,7 @@ const primaryMods = [
     {
         abrev: 'k3',
         name: 'Seeking Fury',
+        img: require('../assets/modimages/seeking-fury.jpg'),
         type: 'SHOTGUN',
         rarity: 'rare',
         polarity: 'madurai',
@@ -1841,6 +1976,7 @@ const primaryMods = [
         abrev: 'r9',
         name: 'Serrated Rounds',
         family: 'Conclave Rifle Converstion',
+        img: require('../assets/modimages/serrated-rounds.jpg'),
         type: 'RIFLE',
         conclave: true,
         conclaveOnly: true,
@@ -1855,6 +1991,7 @@ const primaryMods = [
     {
         abrev: 'k4',
         name: 'Serration',
+        img: require('../assets/modimages/serration.jpg'),
         type: 'RIFLE',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -1867,6 +2004,7 @@ const primaryMods = [
     {
         abrev: 's7',
         name: 'Sharpshooter',
+        img: require('../assets/modimages/sharpshooter.jpg'),
         type: 'SNIPER',
         rarity: 'rare',
         polarity: 'naramon',
@@ -1879,6 +2017,7 @@ const primaryMods = [
     {
         abrev: 'k5',
         name: 'Shattering Justice',
+        img: require('../assets/modimages/shattering-justice.jpg'),
         type: 'SOBEK',
         rarity: 'rare',
         polarity: 'naramon',
@@ -1891,6 +2030,7 @@ const primaryMods = [
     {
         abrev: 'k6',
         name: 'Shell Compression',
+        img: require('../assets/modimages/shell-compression.jpg'),
         type: 'SHOTGUN',
         rarity: 'uncommon',
         polarity: 'naramon',
@@ -1903,6 +2043,7 @@ const primaryMods = [
     {
         abrev: 'k7',
         name: 'Shell Shock',
+        img: require('../assets/modimages/shell-shock.jpg'),
         type: 'SHOTGUN',
         rarity: 'rare',
         polarity: 'madurai',
@@ -1928,6 +2069,7 @@ const primaryMods = [
     {
         abrev: 'k9',
         name: 'Shotgun Savvy',
+        img: require('../assets/modimages/shotgun-savvy.jpg'),
         type: 'SHOTGUN',
         rarity: 'uncommon',
         polarity: 'vazarin',
@@ -1940,6 +2082,7 @@ const primaryMods = [
     {
         abrev: 'l0',
         name: 'Shotgun Spazz',
+        img: require('../assets/modimages/shotgun-spazz.jpg'),
         type: 'SHOTGUN',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -1952,6 +2095,7 @@ const primaryMods = [
     {
         abrev: 'l1',
         name: 'Shrapnel Shot',
+        img: require('../assets/modimages/shrapnel-shot.jpg'),
         type: 'SHOTGUN',
         rarity: 'common',
         polarity: 'madurai',
@@ -1966,6 +2110,7 @@ const primaryMods = [
         abrev: 'l2',
         name: 'Shred',
         family: 'Shred',
+        img: require('../assets/modimages/shred.jpg'),
         type: 'RIFLE',
         rarity: 'rare',
         polarity: 'madurai',
@@ -1979,6 +2124,7 @@ const primaryMods = [
         abrev: 's0',
         name: 'Shred Shot',
         family: 'Conclave Shotgun Converstion',
+        img: require('../assets/modimages/shred-shot.jpg'),
         type: 'SHOTGUN',
         conclave: true,
         conclaveOnly: true,
@@ -1993,6 +2139,7 @@ const primaryMods = [
     {
         abrev: 'l3',
         name: 'Shredder',
+        img: require('../assets/modimages/shredder.jpg'),
         type: 'SHOTGUN',
         rarity: 'common',
         polarity: 'naramon',
@@ -2005,6 +2152,7 @@ const primaryMods = [
     {
         abrev: 'l4',
         name: 'Silent Battery',
+        img: require('../assets/modimages/silent-battery.jpg'),
         type: 'SHOTGUN',
         rarity: 'uncommon',
         polarity: 'naramon',
@@ -2017,6 +2165,7 @@ const primaryMods = [
     {
         abrev: 'l5',
         name: 'Sinister Reach',
+        img: require('../assets/modimages/sinister-reach.jpg'),
         type: 'BEAM',
         rarity: 'uncommon',
         polarity: 'naramon',
@@ -2029,6 +2178,7 @@ const primaryMods = [
     {
         abrev: 'l6',
         name: 'Snap Shot',
+        img: require('../assets/modimages/snap-shot.jpg'),
         type: 'SHOTGUN',
         conclave: true,
         rarity: 'uncommon',
@@ -2042,6 +2192,7 @@ const primaryMods = [
     {
         abrev: 's6',
         name: 'Soaring Strike',
+        img: require('../assets/modimages/soaring-strike.jpg'),
         type: 'BOW',
         conclave: true,
         conclaveOnly: true,
@@ -2056,6 +2207,7 @@ const primaryMods = [
     {
         abrev: 'l7',
         name: 'Soft Hands',
+        img: require('../assets/modimages/soft-hands.jpg'),
         type: 'SHOTGUN',
         conclave: true,
         rarity: 'uncommon',
@@ -2069,6 +2221,7 @@ const primaryMods = [
     {
         abrev: 'l8',
         name: 'Speed Trigger',
+        img: require('../assets/modimages/speed-trigger.jpg'),
         type: 'RIFLE',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -2081,6 +2234,7 @@ const primaryMods = [
     {
         abrev: 'l9',
         name: 'Split Chamber',
+        img: require('../assets/modimages/split-chamber.jpg'),
         type: 'RIFLE',
         rarity: 'rare',
         polarity: 'madurai',
@@ -2093,6 +2247,7 @@ const primaryMods = [
     {
         abrev: 'm0',
         name: 'Spring-Loaded Broadhead',
+        img: require('../assets/modimages/spring-loaded-broadhead.jpg'),
         type: 'DAIKYU',
         conclave: true,
         rarity: 'rare',
@@ -2106,6 +2261,7 @@ const primaryMods = [
     {
         abrev: 'm1',
         name: 'Spring-Loaded Chamber',
+        img: require('../assets/modimages/spring-loaded-chamber.jpg'),
         type: 'ASSAULT RIFLE',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -2119,6 +2275,7 @@ const primaryMods = [
     {
         abrev: 'm2',
         name: 'Stabilizer',
+        img: require('../assets/modimages/stabilizer.jpg'),
         type: 'RIFLE',
         rarity: 'rare',
         polarity: 'naramon',
@@ -2131,6 +2288,7 @@ const primaryMods = [
     {
         abrev: 'm3',
         name: 'Stormbringer',
+        img: require('../assets/modimages/stormbringer.jpg'),
         type: 'RIFLE',
         rarity: 'uncommon',
         polarity: 'naramon',
@@ -2143,6 +2301,7 @@ const primaryMods = [
     {
         abrev: 's1',
         name: 'Sudden Justice',
+        img: require('../assets/modimages/sudden-justice.jpg'),
         type: 'SYBARIS',
         conclave: true,
         conclaveOnly: true,
@@ -2157,6 +2316,7 @@ const primaryMods = [
     {
         abrev: 'm4',
         name: 'Sweeping Serration',
+        img: require('../assets/modimages/sweeping-serration.jpg'),
         type: 'SHOTGUN',
         rarity: 'rare',
         polarity: 'naramon',
@@ -2169,6 +2329,7 @@ const primaryMods = [
     {
         abrev: 'm5',
         name: 'Tactical Pump',
+        img: require('../assets/modimages/tactical-pump.jpg'),
         type: 'SHOTGUN',
         rarity: 'uncommon',
         polarity: 'naramon',
@@ -2181,6 +2342,7 @@ const primaryMods = [
     {
         abrev: 'm6',
         name: 'Tactical Reload',
+        img: require('../assets/modimages/tactical-reload.jpg'),
         type: 'ASSAULT RIFLE',
         conclave: true,
         rarity: 'rare',
@@ -2194,6 +2356,7 @@ const primaryMods = [
     {
         abrev: 'm7',
         name: 'Tainted Mag',
+        img: require('../assets/modimages/tainted-mag.jpg'),
         type: 'ASSAULT RIFLE',
         rarity: 'rare',
         polarity: 'naramon',
@@ -2206,6 +2369,7 @@ const primaryMods = [
     {
         abrev: 'm8',
         name: 'Tainted Shell',
+        img: require('../assets/modimages/tainted-shell.jpg'),
         type: 'SHOTGUN',
         rarity: 'rare',
         polarity: 'vazarin',
@@ -2218,6 +2382,7 @@ const primaryMods = [
     {
         abrev: 'm9',
         name: 'Target Acquired',
+        img: require('../assets/modimages/target-acquired.jpg'),
         type: 'SNIPER',
         rarity: 'rare',
         polarity: 'madurai',
@@ -2230,6 +2395,7 @@ const primaryMods = [
     {
         abrev: 'n0',
         name: 'Terminal Velocity',
+        img: require('../assets/modimages/terminal-velocity.jpg'),
         type: 'PROJECTILE',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -2242,6 +2408,7 @@ const primaryMods = [
     {
         abrev: 'n1',
         name: 'Tether Grenades',
+        img: require('../assets/modimages/tether-grenades.jpg'),
         type: 'PENTA',
         rarity: 'rare',
         polarity: 'naramon',
@@ -2254,6 +2421,7 @@ const primaryMods = [
     {
         abrev: 'n2',
         name: 'Thermite Rounds',
+        img: require('../assets/modimages/thermite-rounds.jpg'),
         type: 'RIFLE',
         rarity: 'rare',
         polarity: 'madurai',
@@ -2266,6 +2434,7 @@ const primaryMods = [
     {
         abrev: 'n3',
         name: 'Thunderbolt',
+        img: require('../assets/modimages/thunderbolt.jpg'),
         type: 'BOW',
         rarity: 'rare',
         polarity: 'madurai',
@@ -2278,6 +2447,7 @@ const primaryMods = [
     {
         abrev: 's2',
         name: 'Thundermiter',
+        img: require('../assets/modimages/thundermiter.jpg'),
         type: 'MITER',
         conclave: true,
         conclaveOnly: true,
@@ -2292,6 +2462,7 @@ const primaryMods = [
     {
         abrev: 'n4',
         name: 'Toxic Barrage',
+        img: require('../assets/modimages/toxic-barrage.jpg'),
         type: 'SHOTGUN',
         rarity: 'rare',
         polarity: 'madurai',
@@ -2304,6 +2475,7 @@ const primaryMods = [
     {
         abrev: 's3',
         name: 'Triple Tap',
+        img: require('../assets/modimages/triple-tap.jpg'),
         type: 'BURSTON',
         conclave: true,
         conclaveOnly: true,
@@ -2318,6 +2490,7 @@ const primaryMods = [
     {
         abrev: 'n5',
         name: 'Twitch',
+        img: require('../assets/modimages/twitch.jpg'),
         type: 'RIFLE',
         conclave: true,
         rarity: 'uncommon',
@@ -2331,6 +2504,7 @@ const primaryMods = [
     {
         abrev: 's4',
         name: 'Vanquished Prey',
+        img: require('../assets/modimages/vanquished-prey.jpg'),
         type: 'RIFLE',
         conclave: true,
         conclaveOnly: true,
@@ -2345,6 +2519,7 @@ const primaryMods = [
     {
         abrev: 'n6',
         name: 'Vicious Spread',
+        img: require('../assets/modimages/vicious-spread.jpg'),
         type: 'SHOTGUN',
         rarity: 'rare',
         polarity: 'madurai',
@@ -2357,6 +2532,7 @@ const primaryMods = [
     {
         abrev: 'n7',
         name: 'Vigilante Armaments',
+        img: require('../assets/modimages/vigilante-armaments.jpg'),
         type: 'PRIMARY',
         rarity: 'common',
         polarity: 'naramon',
@@ -2373,6 +2549,7 @@ const primaryMods = [
     {
         abrev: 'n8',
         name: 'Vigilante Fervor',
+        img: require('../assets/modimages/vigilante-fervor.jpg'),
         type: 'PRIMARY',
         rarity: 'uncommon',
         polarity: 'madurai',
@@ -2389,6 +2566,7 @@ const primaryMods = [
     {
         abrev: 'n9',
         name: 'Vigilante Offense',
+        img: require('../assets/modimages/vigilante-offense.jpg'),
         type: 'PRIMARY',
         rarity: 'rare',
         polarity: 'naramon',
@@ -2405,6 +2583,7 @@ const primaryMods = [
     {
         abrev: 'o0',
         name: 'Vigilante Supplies',
+        img: require('../assets/modimages/vigilante-supplies.jpg'),
         type: 'PRIMARY',
         rarity: 'rare',
         polarity: 'naramon',
@@ -2421,6 +2600,7 @@ const primaryMods = [
     {
         abrev: 'o1',
         name: 'Vile Acceleration',
+        img: require('../assets/modimages/vile-acceleration.jpg'),
         type: 'RIFLE',
         rarity: 'rare',
         polarity: 'naramon',
@@ -2433,6 +2613,7 @@ const primaryMods = [
     {
         abrev: 'o2',
         name: 'Vile Precision',
+        img: require('../assets/modimages/vile-precision.jpg'),
         type: 'RIFLE',
         rarity: 'rare',
         polarity: 'naramon',
@@ -2445,6 +2626,7 @@ const primaryMods = [
     {
         abrev: 'o3',
         name: 'Vital Sense',
+        img: require('../assets/modimages/vital-sense.jpg'),
         type: 'RIFLE',
         rarity: 'rare',
         polarity: 'madurai',
@@ -2457,6 +2639,7 @@ const primaryMods = [
     {
         abrev: 'o4',
         name: 'Voltage Sequence',
+        img: require('../assets/modimages/voltage-sequence.jpg'),
         type: 'LANKA',
         rarity: 'rare',
         polarity: 'naramon',
@@ -2469,6 +2652,7 @@ const primaryMods = [
     {
         abrev: 'o5',
         name: 'WildFire',
+        img: require('../assets/modimages/wildfire.jpg'),
         type: 'RIFLE',
         rarity: 'rare',
         polarity: 'madurai',
@@ -2476,7 +2660,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.magSize * (this.currRank + 1) * 100)}% Magazine Capacity +${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}` }
+        description() { return `+${Math.round(this.effects.magSize * (this.currRank + 1) * 100)}% Magazine Capacity +${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Heat` }
     },
 ]
 

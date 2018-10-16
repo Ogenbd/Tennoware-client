@@ -95,8 +95,8 @@
     /* position: relative; */
     /* bottom: 100px; */
     text-align: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 4px;
+    padding-bottom: 2px;
     font-size: 17px;
     width: 100%;
     /* background-color: rgba(0, 0, 0, 0.6); */
@@ -108,8 +108,8 @@
     /* height: 50px; */
     /* top: 125px; */
     padding: 0 5px 35px 5px;
-    font-size: 13px;
-    line-height: 16px;
+    font-size: 14px;
+    line-height: 15px;
     text-align: center;
     overflow: auto;
     border-bottom-left-radius: 15%;
@@ -126,9 +126,14 @@
 .set-bar {
     width: 23px;
     height: 3px;
-    margin: 2px 0;
+    margin: 4px 0;
     border-style: solid;
     border-width: 1px;
+}
+
+.set-desc {
+    font-size: 11px;
+    line-height: 11px;
 }
 
 .rank-wrapper {

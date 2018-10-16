@@ -41,68 +41,72 @@ export class RangedWeaponStats extends Component {
             first: false
         }
         props.mods.forEach(mod => {
-            if (mod.name !== 'Riven Mod') {
-                if (mod.conditional) {
-                    for (let condition in mod.conditional) {
-                        conditional[condition] = mod.conditional[condition]
-                    }
-                    let modEffects = JSON.parse(JSON.stringify(mod.effects));
-                    for (let effect in modEffects) {
-                        modEffects[effect] = modEffects[effect] * (mod.currRank + 1);
-                    }
-                    conditionalEffects.push({
-                        effects: modEffects,
-                        conditions: mod.conditional
-                    })
-                } else {
-                    for (let effect in mod.effects) {
-                        if (effect !== 'none') {
-                            if (effect === 'elemental') {
-                                let exists = elemental.findIndex(element => {
-                                    return element.type === mod.effects.elemental.type;
-                                })
-                                if (exists === -1) {
-                                    let damageObj = {
-                                        type: mod.effects.elemental.type,
-                                        damage: Math.round((mod.effects.elemental.damage * (mod.currRank + 1)) * 100) / 100
-                                    }
-                                    elemental.push(damageObj)
-                                } else {
-                                    elemental[exists].damage = Math.round((elemental[exists].damage + mod.effects.elemental.damage * (mod.currRank + 1)) * 100) / 100;
-                                }
-                            } else if (effects[effect]) {
-                                effects[effect] = effects[effect] + mod.effects[effect] * (mod.currRank + 1);
-                            } else {
-                                effects[effect] = mod.effects[effect] * (mod.currRank + 1);
-                            }
+            if (mod.name) {
+                if (mod.name !== 'Riven Mod') {
+                    if (mod.conditional) {
+                        for (let condition in mod.conditional) {
+                            conditional[condition] = mod.conditional[condition]
                         }
-                    }
-                }
-            } else {
-                mod.effects.forEach(rivenEffect => {
-                    if (rivenEffect.elemental) {
-                        let exists = elemental.findIndex(element => {
-                            return element.type === rivenEffect.elemental.type;
+                        let modEffects = JSON.parse(JSON.stringify(mod.effects));
+                        for (let effect in modEffects) {
+                            modEffects[effect] = modEffects[effect] * (mod.currRank + 1);
+                        }
+                        conditionalEffects.push({
+                            effects: modEffects,
+                            conditions: mod.conditional
                         })
-                        if (exists === -1) {
-                            let damageObj = {
-                                type: rivenEffect.elemental.type,
-                                damage: Math.round((rivenEffect.elemental.damage) * 100) / 100
-                            }
-                            elemental.push(damageObj)
-                        } else {
-                            elemental[exists].damage = Math.round((elemental[exists].damage + rivenEffect.elemental.damage) * 100) / 100;
-                        }
                     } else {
-                        for (let effect in rivenEffect) {
-                            if (effects[effect]) {
-                                effects[effect] = Math.round((effects[effect] + rivenEffect[effect]) * 100) / 100;
-                            } else {
-                                effects[effect] = rivenEffect[effect];
+                        for (let effect in mod.effects) {
+                            if (effect !== 'none') {
+                                if (effect === 'elemental') {
+                                    let exists = elemental.findIndex(element => {
+                                        return element.type === mod.effects.elemental.type;
+                                    })
+                                    if (exists === -1) {
+                                        let damageObj = {
+                                            type: mod.effects.elemental.type,
+                                            damage: Math.round((mod.effects.elemental.damage * (mod.currRank + 1)) * 100) / 100
+                                        }
+                                        elemental.push(damageObj)
+                                    } else {
+                                        elemental[exists].damage = Math.round((elemental[exists].damage + mod.effects.elemental.damage * (mod.currRank + 1)) * 100) / 100;
+                                    }
+                                } else if (effect === 'totalDamage') {
+                                    effects.totalDamage = mod.effects.totalDamage[mod.currRank];
+                                } else if (effects[effect]) {
+                                    effects[effect] = effects[effect] + mod.effects[effect] * (mod.currRank + 1);
+                                } else {
+                                    effects[effect] = mod.effects[effect] * (mod.currRank + 1);
+                                }
                             }
                         }
                     }
-                })
+                } else {
+                    mod.effects.forEach(rivenEffect => {
+                        if (rivenEffect.elemental) {
+                            let exists = elemental.findIndex(element => {
+                                return element.type === rivenEffect.elemental.type;
+                            })
+                            if (exists === -1) {
+                                let damageObj = {
+                                    type: rivenEffect.elemental.type,
+                                    damage: Math.round((rivenEffect.elemental.damage) * 100) / 100
+                                }
+                                elemental.push(damageObj)
+                            } else {
+                                elemental[exists].damage = Math.round((elemental[exists].damage + rivenEffect.elemental.damage) * 100) / 100;
+                            }
+                        } else {
+                            for (let effect in rivenEffect) {
+                                if (effects[effect]) {
+                                    effects[effect] = Math.round((effects[effect] + rivenEffect[effect]) * 100) / 100;
+                                } else {
+                                    effects[effect] = rivenEffect[effect];
+                                }
+                            }
+                        }
+                    })
+                }
             }
         });
         return {
@@ -338,6 +342,11 @@ export class RangedWeaponStats extends Component {
                 damageType.damage = damageType.damage * (this.state.powerStr / 100);
             })
         }
+        if (this.state.effects.totalDamage) {
+            finalDamageArray.forEach(damageType => {
+                damageType.damage = damageType.damage * (1 + this.state.effects.totalDamage);
+            })
+        }
         return finalDamageArray;
     }
 
@@ -421,6 +430,7 @@ export class RangedWeaponStats extends Component {
     }
 
     render() {
+        console.log('render');
         const { weapon } = this.props;
         const { mode, effects, zoom } = this.state;
         const critChance = this.calcCritChance();
