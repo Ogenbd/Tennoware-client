@@ -18,8 +18,6 @@ export class PolarityPicker extends Component {
 
     render() {
         return (
-            // <div className={"polarity-picker " + (this.props.polarityPicker ? "show-polarity-picker" : "hide-polarity-picker")} onClick={this.hidePolarityPicker}>
-            // <div className={"dark-bg " + (this.props.polarityPicker ? "show-dark-bg" : "hide-dark-bg")} onClick={this.hidePolarityPicker}>
             <div className={"popup " + (this.props.polarityPicker ? "popup-active" : "popup-inactive")}>
                 <div className={"popup-topbar " + (this.props.polarityPicker ? "popup-active" : "popup-inactive")}>
                     <div className="popup-x" onClick={this.hidePolarityPicker}>

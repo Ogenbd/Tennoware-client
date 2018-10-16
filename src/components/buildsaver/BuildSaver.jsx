@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import './BuildSaver.css';
+
+
+// still needs error handling and defering to like button
+
 
 export class BuildSaver extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            showBuildSaver: false,
             private: false,
             buildName: '',
             buildDesc: ''
@@ -13,7 +17,7 @@ export class BuildSaver extends Component {
     }
 
     componentDidMount() {
-        if (this.props.metaInfo.UserID) {
+        if (this.props.metaInfo.Owner) {
             let isPrivate = this.props.metaInfo.Private ? true : false
             this.setState({
                 private: isPrivate,
@@ -23,8 +27,18 @@ export class BuildSaver extends Component {
         }
     }
 
+    showBuildSaver = () => {
+        document.body.classList.add('noscroll');
+        this.setState({
+            showBuildSaver: true
+        });
+    }
+
     hideBuildSaver = () => {
-        this.props.hideBuildSaver();
+        document.body.classList.remove('noscroll');
+        this.setState({
+            showBuildSaver: false
+        });
     }
 
     togglePrivate = () => {
@@ -53,7 +67,7 @@ export class BuildSaver extends Component {
                 orokin: this.props.orokin,
                 forma: this.props.formaCount,
                 user: this.props.user,
-                buildStr: this.props.buildStr,
+                buildStr: this.props.getBuildStr(),
                 private: this.state.private,
                 buildName: this.state.buildName,
                 buildDesc: this.state.buildDesc,
@@ -62,7 +76,7 @@ export class BuildSaver extends Component {
             buildData.buildStr[41] === 'x' ? buildData.riven = 1 : buildData.riven = 0;
             this.state.private ? buildData.private = 1 : buildData.private = 0;
             this.props.orokin ? buildData.orokin = 1 : buildData.orokin = 0;
-            if (this.props.match.params.build && this.props.metaInfo.UserID) {
+            if (this.props.match.params.build && this.props.metaInfo.Owner) {
                 buildData.buildId = this.props.match.params.build;
                 // fix url
                 fetch('http://192.168.1.114:50000/updatebuild', {
@@ -99,6 +113,7 @@ export class BuildSaver extends Component {
         let type = this.props.match.url.split('/', 2);
         // fix url
         let newUrl = `/${type[1]}/${this.props.match.params.id}/${buildData.buildStr}/${buildId}`;
+        document.body.classList.remove('noscroll');
         this.props.history.push(newUrl, { req: true });
     }
 
@@ -108,35 +123,43 @@ export class BuildSaver extends Component {
 
     render() {
         return (
-            // <div className={"dark-bg " + (this.props.buildSaver ? "show-dark-bg" : "hide-dark-bg")} onClick={this.hideBuildSaver}>
-            // <div className="build-saver-window" onClick={this.stopPropagation}>
-            <div className={"popup " + (this.props.buildSaver ? "popup-active" : "popup-inactive")}>
-                <div className={"popup-topbar " + (this.props.buildSaver ? "popup-active" : "popup-inactive")}>
-                    <div className="popup-x" onClick={this.hideBuildSaver}>
-                        <div className="popup-x-bar one-bar"></div>
-                        <div className="popup-x-bar two-bar"></div>
-                    </div>
-                </div>
-                <div className="popup-content build-saver">
-                    <label className="check-private" name="private">
-                        <p>Private?</p>
-                        <input name="private" type="checkbox" value={this.state.private} onChange={this.togglePrivate} />
-                    </label>
-                    <label className="build-name-input-label" name="build-name">
-                        <p>Build Name</p>
-                        <input className="build-name-input" name="build-name" type="text" placeholder="Build Name" value={this.state.buildName} onChange={this.handleBuildName} />
-                    </label>
-                    <label className="build-name-input-label" name="build-desc">
-                        <p>Build Description</p>
-                        <textarea className="build-name-input build-desc-box" name="build-desc" type="text" placeholder="Build Description" value={this.state.buildDesc} onChange={this.handleBuildDesc} />
-                    </label>
-                    <div className="interactable interactable-semi-inactive" onClick={this.saveBuild}>
+            <React.Fragment>
+                <div className="interactable interactable-semi-inactive" onClick={this.showBuildSaver}>
+                    {!this.props.metaInfo.Owner &&
                         <p className="interactable-p">Save</p>
+                    }
+                    {this.props.metaInfo.Owner &&
+                        <p className="interactable-p">Update</p>
+                    }
+                </div>
+                <div className={"popup " + (this.state.showBuildSaver ? "popup-active" : "popup-inactive")}>
+                    <div className={"popup-topbar " + (this.state.showBuildSaver ? "popup-active" : "popup-inactive")}>
+                        <div className="popup-x" onClick={this.hideBuildSaver}>
+                            <div className="popup-x-bar one-bar"></div>
+                            <div className="popup-x-bar two-bar"></div>
+                        </div>
+                    </div>
+                    <div className="popup-content build-saver">
+                        <label className="check-private" name="private">
+                            <p>Private?</p>
+                            <input name="private" type="checkbox" value={this.state.private} onChange={this.togglePrivate} />
+                        </label>
+                        <label className="build-name-input-label" name="build-name">
+                            <p>Build Name</p>
+                            <input className="build-name-input" name="build-name" type="text" placeholder="Build Name" value={this.state.buildName} onChange={this.handleBuildName} />
+                        </label>
+                        <label className="build-name-input-label" name="build-desc">
+                            <p>Build Description</p>
+                            <textarea className="build-name-input build-desc-box" name="build-desc" type="text" placeholder="Build Description" value={this.state.buildDesc} onChange={this.handleBuildDesc} />
+                        </label>
+                        <div className="interactable interactable-semi-inactive" onClick={this.saveBuild}>
+                            <p className="interactable-p">Save</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </React.Fragment>
         )
     }
 }
 
-export default withRouter(BuildSaver)
+export default BuildSaver;

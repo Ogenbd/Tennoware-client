@@ -118,16 +118,28 @@ const primaryMods = [
     },
     {
         abrev: 'a7',
-        name: 'Arrow Mutation',
-        type: 'BOW',
+        name: 'Ammo Mutation',
+        type: 'PRIMARY',
         rarity: 'rare',
         polarity: 'naramon',
-        effects: { none: [0.0625, 0.25] },
+        effects: { none: 0 },
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `Convert unused ammo drops into Arrows` }
+        description() { return `Convert unused ammo drops into relevant Primary ammo type` }
     },
+    // {
+    //     abrev: 'a7',
+    //     name: 'Arrow Mutation',
+    //     type: 'BOW',
+    //     rarity: 'rare',
+    //     polarity: 'naramon',
+    //     effects: { none: [0.0625, 0.25] },
+    //     maxRank: 5,
+    //     currRank: 5,
+    //     baseCost: 4,
+    //     description() { return `Convert unused ammo drops into Arrows` }
+    // },
     {
         abrev: 'a8',
         name: 'Bane of Corpus',
@@ -1125,7 +1137,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Dead Aim +${this.effect[1] * (this.currRank + 1)} 'Purity'` }
+        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Dead Aim +${this.effects.none[1] * (this.currRank + 1)} 'Purity'` }
     },
     {
         abrev: 'q6',
@@ -1444,6 +1456,19 @@ const primaryMods = [
         description() { return `+100% Accuracy +50% Flight Speed -50% Magazine Capacity` }
     },
     {
+        abrev: 'j0',
+        name: 'Primed Ammo Mutation',
+        family: 'Ammo Mutation',
+        type: 'PRIMARY',
+        rarity: 'prime',
+        polarity: 'naramon',
+        effects: { none: 0 },
+        maxRank: 10,
+        currRank: 10,
+        baseCost: 4,
+        description() { return `Convert unused ammo drops into relevant Primary ammo type` }
+    },
+    {
         abrev: 'i2',
         name: 'Primed Bane of Corpus',
         family: 'Bane of Corpus',
@@ -1573,32 +1598,32 @@ const primaryMods = [
         baseCost: 4,
         description() { return `+${Math.round(this.effects.critMult * (this.currRank + 1) * 100)}% Critical Damage` }
     },
-    {
-        abrev: 'j0',
-        name: 'Primed Rifle Ammo Mutation',
-        family: 'Rifle Ammo Mutation',
-        type: 'ASSAULT RIFLE',
-        rarity: 'prime',
-        polarity: 'naramon',
-        effects: { none: 0 },
-        maxRank: 10,
-        currRank: 10,
-        baseCost: 4,
-        description() { return `Convert unused ammo drops into Rifle Ammo` }
-    },
-    {
-        abrev: 'j1',
-        name: 'Primed Shotgun Ammo Mutation',
-        family: 'Shotgun Ammo Mutation',
-        type: 'SHOTGUN',
-        rarity: 'prime',
-        polarity: 'naramon',
-        effects: { none: 0 },
-        maxRank: 10,
-        currRank: 10,
-        baseCost: 4,
-        description() { return `Convert unused ammo drops into Shotgun Ammo` }
-    },
+    // {
+    //     abrev: 'j0',
+    //     name: 'Primed Rifle Ammo Mutation',
+    //     family: 'Rifle Ammo Mutation',
+    //     type: 'ASSAULT RIFLE',
+    //     rarity: 'prime',
+    //     polarity: 'naramon',
+    //     effects: { none: 0 },
+    //     maxRank: 10,
+    //     currRank: 10,
+    //     baseCost: 4,
+    //     description() { return `Convert unused ammo drops into Rifle Ammo` }
+    // },
+    // {
+    //     abrev: 'j1',
+    //     name: 'Primed Shotgun Ammo Mutation',
+    //     family: 'Shotgun Ammo Mutation',
+    //     type: 'SHOTGUN',
+    //     rarity: 'prime',
+    //     polarity: 'naramon',
+    //     effects: { none: 0 },
+    //     maxRank: 10,
+    //     currRank: 10,
+    //     baseCost: 4,
+    //     description() { return `Convert unused ammo drops into Shotgun Ammo` }
+    // },
     {
         abrev: 'j2',
         name: 'Primed Shred',
@@ -1666,19 +1691,19 @@ const primaryMods = [
         baseCost: 4,
         description() { return `On Reload: +${Math.round(this.effects.fireRate * (this.currRank + 1) * 1000) / 10}% Fire Rate while aiming for ${this.effects.none * (this.currRank + 1)}s` }
     },
-    {
-        abrev: 'j5',
-        name: 'Rifle Ammo Mutation',
-        family: 'Rifle Ammo Mutation',
-        type: 'ASSAULT RIFLE',
-        rarity: 'rare',
-        polarity: 'naramon',
-        effects: { none: 0 },
-        maxRank: 5,
-        currRank: 5,
-        baseCost: 4,
-        description() { return `Convert unused ammo drops into Rifle Ammo` }
-    },
+    // {
+    //     abrev: 'j5',
+    //     name: 'Rifle Ammo Mutation',
+    //     family: 'Rifle Ammo Mutation',
+    //     type: 'ASSAULT RIFLE',
+    //     rarity: 'rare',
+    //     polarity: 'naramon',
+    //     effects: { none: 0 },
+    //     maxRank: 5,
+    //     currRank: 5,
+    //     baseCost: 4,
+    //     description() { return `Convert unused ammo drops into Rifle Ammo` }
+    // },
     {
         abrev: 'j6',
         name: 'Rifle Aptitude',
@@ -1887,19 +1912,19 @@ const primaryMods = [
         baseCost: 4,
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Electricity +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
-    {
-        abrev: 'k8',
-        name: 'Shotgun Ammo Mutation',
-        family: 'Shotgun Ammo Mutation',
-        type: 'SHOTGUN',
-        rarity: 'rare',
-        polarity: 'naramon',
-        effects: { none: 0 },
-        maxRank: 5,
-        currRank: 5,
-        baseCost: 4,
-        description() { return `Convert unused ammo drops into Shotgun Ammo` }
-    },
+    // {
+    //     abrev: 'k8',
+    //     name: 'Shotgun Ammo Mutation',
+    //     family: 'Shotgun Ammo Mutation',
+    //     type: 'SHOTGUN',
+    //     rarity: 'rare',
+    //     polarity: 'naramon',
+    //     effects: { none: 0 },
+    //     maxRank: 5,
+    //     currRank: 5,
+    //     baseCost: 4,
+    //     description() { return `Convert unused ammo drops into Shotgun Ammo` }
+    // },
     {
         abrev: 'k9',
         name: 'Shotgun Savvy',

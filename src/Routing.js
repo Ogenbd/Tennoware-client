@@ -1,31 +1,32 @@
 import React, { Component } from 'react';
+import Loadable from 'react-loadable';
 import { Switch, Route, withRouter } from 'react-router-dom';
-import { TransitionGroup, CSSTransition } from "react-transition-group";
-import AsyncComponent from './Async';
-
-// import primaryWeapons from './data/primaryweapons';
-// import primaryMods from './data/primarymods';
-// import secondaryWeapons from './data/secondaryweapons';
-// import secondaryMods from './data/secondarymods';
-
+// import { TransitionGroup, CSSTransition } from "react-transition-group";
 import TheVoid from './components/thevoid/TheVoid';
 import News from './components/news/News';
-// import ItemPicker from './components/itempicker/ItemPicker';
-// import PrimaryPicker from './routes/PrimaryPicker';
-// import SecondaryPicker from './routes/SecondaryPicker';
-// import RangedBuilder from './routes/RangedBuilder';
 
-const AsyncItemPicker = AsyncComponent(() => {
-    return import('./components/itempicker/ItemPicker');
+// const Loading = () => <img className="loading-gif" src={require('./assets/loader.svg')} alt="Loading..." />
+// const Loading = () => <div className="screen loading-screen"><div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+
+// async imports for react/webpack code-splitting
+const ItemPicker = Loadable({
+    loader: () => import('./components/itempicker/ItemPicker'),
+    loading: () => null,
+    modules: ['Picker']
 });
 
-const AsyncRangedBuilder = AsyncComponent(() => {
-    return import('./routes/RangedBuilder');
+const RangedBuilder = Loadable({
+    loader: () => import('./routes/RangedBuilder'),
+    loading: () => null,
+    modules: ['RangedBuilder']
 });
 
-const AsyncFrameBuilder = AsyncComponent(() => {
-    return import('./routes/FrameBuilder');
+const FrameBuilder = Loadable({
+    loader: () => import('./routes/FrameBuilder'),
+    loading: () => null,
+    modules: ['FrameBuilder']
 });
+
 
 const getPrimaryWeapons = () => {
     let data = import('./data/primaryweapons');
@@ -94,25 +95,28 @@ export class Routing extends Component {
             user: this.props.user,
         }
         return (
+            // <TransitionGroup className="main">
+            // <CSSTransition key={this.props.location.key} className="screen" classNames="fade" in={true} appear={true} timeout={300}>
             <div className="main">
-                <TransitionGroup>
-                    <CSSTransition key={this.props.location.key} className="screen" classNames="fade" appear={true} timeout={100}>
-                        <Switch location={this.props.location}>
-                            <Route exact path='/' render={props => <News {...props} />} />
-                            <Route exact path='/primaryweapons' render={props => <AsyncItemPicker {...props} {...nonRouterPropPass} title={'Primary Weapons'} items={this.primaryWeapons} />} />
-                            <Route exact path='/primaryweapons/:id/:pre/:build' render={props => <AsyncRangedBuilder {...props} {...nonRouterPropPass} weapons={this.primaryWeapons} mods={this.primaryMods} />} />
-                            <Route exact path='/primaryweapons/:id/:pre' render={props => <AsyncRangedBuilder {...props} {...nonRouterPropPass} weapons={this.primaryWeapons} mods={this.primaryMods} />} />
-                            <Route exact path='/primaryweapons/:id' render={props => <AsyncRangedBuilder {...props} {...nonRouterPropPass} weapons={this.primaryWeapons} mods={this.primaryMods} />} />
-                            <Route exact path='/secondaryweapons' render={props => <AsyncItemPicker {...props} {...nonRouterPropPass} title={'Secondary Weapons'} items={this.secondaryWeapons} />} />
-                            <Route exact path='/secondaryweapons/:id/:pre/:build' render={props => <AsyncRangedBuilder {...props} {...nonRouterPropPass} weapons={this.secondaryWeapons} mods={this.secondaryMods} />} />
-                            <Route exact path='/secondaryweapons/:id/:pre' render={props => <AsyncRangedBuilder {...props} {...nonRouterPropPass} weapons={this.secondaryWeapons} mods={this.secondaryMods} />} />
-                            <Route exact path='/secondaryweapons/:id' render={props => <AsyncRangedBuilder {...props} {...nonRouterPropPass} weapons={this.secondaryWeapons} mods={this.secondaryMods} />} />
-                            <Route exact path='/warframes' render={props => <AsyncItemPicker {...props} {...nonRouterPropPass} title={'Warframes'} items={this.warframes} />} />
-                            <Route component={TheVoid} />
-                        </Switch>
-                    </CSSTransition>
-                </TransitionGroup>
+                <Switch key={this.props.location.key}>
+                    <Route exact path='/' render={props => <News {...props} />} />
+                    <Route exact path='/primaryweapons' render={props => <ItemPicker {...props} {...nonRouterPropPass} title={'Primary Weapons'} items={this.primaryWeapons} />} />
+                    <Route exact path='/primaryweapons/:id/:pre/:build' render={props => <RangedBuilder {...props} {...nonRouterPropPass} weapons={this.primaryWeapons} mods={this.primaryMods} />} />
+                    <Route exact path='/primaryweapons/:id/:pre' render={props => <RangedBuilder {...props} {...nonRouterPropPass} weapons={this.primaryWeapons} mods={this.primaryMods} />} />
+                    <Route exact path='/primaryweapons/:id' render={props => <RangedBuilder {...props} {...nonRouterPropPass} weapons={this.primaryWeapons} mods={this.primaryMods} />} />
+                    <Route exact path='/secondaryweapons' render={props => <ItemPicker {...props} {...nonRouterPropPass} title={'Secondary Weapons'} items={this.secondaryWeapons} />} />
+                    <Route exact path='/secondaryweapons/:id/:pre/:build' render={props => <RangedBuilder {...props} {...nonRouterPropPass} weapons={this.secondaryWeapons} mods={this.secondaryMods} />} />
+                    <Route exact path='/secondaryweapons/:id/:pre' render={props => <RangedBuilder {...props} {...nonRouterPropPass} weapons={this.secondaryWeapons} mods={this.secondaryMods} />} />
+                    <Route exact path='/secondaryweapons/:id' render={props => <RangedBuilder {...props} {...nonRouterPropPass} weapons={this.secondaryWeapons} mods={this.secondaryMods} />} />
+                    <Route exact path='/warframes' render={props => <ItemPicker {...props} {...nonRouterPropPass} title={'Warframes'} items={this.warframes} />} />
+                    <Route exact path='/warframes/:id/:pre/:build' render={props => <FrameBuilder {...props} {...nonRouterPropPass} items={this.warframes} mods={this.warframeMods} />} />
+                    <Route exact path='/warframes/:id/:pre' render={props => <FrameBuilder {...props} {...nonRouterPropPass} items={this.warframes} mods={this.warframeMods} />} />
+                    <Route exact path='/warframes/:id' render={props => <FrameBuilder {...props} {...nonRouterPropPass} items={this.warframes} mods={this.warframeMods} />} />
+                    <Route component={TheVoid} />
+                </Switch>
             </div>
+                // {/* </CSSTransition> */ }
+        // {/* </TransitionGroup > */ }
         )
     }
 }

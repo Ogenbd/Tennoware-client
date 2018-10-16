@@ -6,32 +6,38 @@ export class LinkGenerator extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      showLinkGenerator: false,
       fullLink: ''
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.linkGenerator === false && this.props.linkGenerator === true) {
-      let type = this.props.match.url.split('/', 2);
-      // fix url
-      let linkUrl = `localhost:3000/${type[1]}/${encodeURIComponent(this.props.match.params.id)}/${this.props.buildStr}`;
-      if (this.props.match.params.build && this.props.buildStr === this.props.match.params.pre) {
-        linkUrl += `/${this.props.match.params.build}`;
-      }
-      this.setState({ fullLink: linkUrl });
+  showLinkGenerator = () => {
+    let type = this.props.match.url.split('/', 2);
+    let buildStr = this.props.getBuildStr();
+    // fix url
+    let linkUrl = `localhost:3000/${type[1]}/${encodeURIComponent(this.props.match.params.id)}/${buildStr}`;
+    if (this.props.match.params.build && buildStr === this.props.match.params.pre) {
+      linkUrl += `/${this.props.match.params.build}`;
     }
+    this.setState({
+      fullLink: linkUrl,
+      showLinkGenerator: true
+    });
+  }
+
+  hideLinkGenerator = () => {
+    this.setState({
+      showLinkGenerator: false
+    });
   }
 
   copyLinkToClipboard = ({ target }) => {
     let text = target.parentElement.previousSibling;
     text.select();
     document.execCommand('copy');
-    this.props.hideLinkGenerator();
+    this.hideLinkGenerator();
   }
 
-  hideLinkGenerator = () => {
-    this.props.hideLinkGenerator();
-  }
 
   stopPropagation = (e) => {
     e.stopPropagation()
@@ -39,21 +45,21 @@ export class LinkGenerator extends Component {
 
   render() {
     return (
-      // <div className={"link-generator dark-bg " + (this.props.linkGenerator ? "show-dark-bg" : "hide-dark-bg")} >
-      // <div className={"dark-bg " + (this.props.linkGenerator ? "show-dark-bg" : "hide-dark-bg")} onClick={this.hideLinkGenerator}>
-      // {/* <div className="link-generator-window" onClick={this.stopPropagation}> */}
-      <div className={"popup " + (this.props.linkGenerator ? "popup-active" : "popup-inactive")}>
-        <div className={"popup-topbar " + (this.props.linkGenerator ? "popup-active" : "popup-inactive")}>
-          <div className="popup-x" onClick={this.hideLinkGenerator}>
-            <div className="popup-x-bar one-bar"></div>
-            <div className="popup-x-bar two-bar"></div>
+      <React.Fragment>
+        <div className="interactable interactable-semi-inactive" onClick={this.showLinkGenerator}><p className="interactable-p">Link</p></div>
+        <div className={"popup " + (this.state.showLinkGenerator ? "popup-active" : "popup-inactive")}>
+          <div className={"popup-topbar " + (this.state.showLinkGenerator ? "popup-active" : "popup-inactive")}>
+            <div className="popup-x" onClick={this.hideLinkGenerator}>
+              <div className="popup-x-bar one-bar"></div>
+              <div className="popup-x-bar two-bar"></div>
+            </div>
+          </div>
+          <div className="popup-content link-generator">
+            <textarea className="link-area" value={this.state.fullLink} readOnly autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false"></textarea>
+            <div className="interactable interactable-semi-inactive" onClick={this.copyLinkToClipboard}><p className="interactable-p">Copy</p></div>
           </div>
         </div>
-        <div className="popup-content link-generator">
-          <textarea className="link-area" value={this.state.fullLink} autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false"></textarea>
-          <div className="interactable interactable-semi-inactive" onClick={this.copyLinkToClipboard}><p className="interactable-p">Copy</p></div>
-        </div>
-      </div>
+      </React.Fragment>
     )
   }
 }

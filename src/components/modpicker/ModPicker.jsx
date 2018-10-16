@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { CSSTransition } from "react-transition-group";
 import './ModPicker.css';
 
 import { SimpleModCardGenerator } from '../modcardgenerator/SimpleModCardGenerator.jsx';
@@ -132,9 +133,11 @@ export class ModPicker extends Component {
                         <input className="search" type="text" placeholder="Search..." value={this.state.search} onChange={this.handleChange} onKeyUp={this.blurInput} />
                     </div>
                 </div>
-                <div className="popup-content mod-list">
-                    {this.generateModList(display)}
-                </div>
+                {/* <CSSTransition classNames="fade" in={true} appear={true} timeout={200}> */}
+                    <div className="popup-content mod-list">
+                        {this.generateModList(display)}
+                    </div>
+                {/* </CSSTransition> */}
             </div>
         )
     }

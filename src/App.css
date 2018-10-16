@@ -6,6 +6,14 @@
     height: 100%;
 }
 
+.loading-gif {
+    position: absolute;
+    top: calc(50% - 37.5px);
+    left: calc(50% + 46px);
+    width: 100px;
+    z-index: 8081;
+}
+
 .topbar {
     display: flex;
     position: fixed;
@@ -78,10 +86,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1 0 auto;
+    flex: 0 0 auto;
     padding: 56px 0 0 192px;
     box-sizing: border-box;
     width: 100%;
+    min-height: 100vh;
 }
 
 .screen {
@@ -98,7 +107,38 @@
     transition: opacity 100ms ease-out;
 }
 
+.fade-appear {
+    opacity: 0;
+}
+
+.fade-appear.fade-appear-active {
+    opacity: 1;
+    transition: opacity 300ms;
+}
+
 .fade-exit {
+    opacity: 1;
+}
+
+.fade-exit.fade-exit-active {
+    opacity: 0;
+    transition: opacity 300ms;
+}
+
+.fade-exit-done {
+    opacity: 0;
+}
+
+.fade-enter {
+    opacity: 0;
+}
+
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 300ms;
+}
+
+/* .fade-exit {
     opacity: 1;
 }
 
@@ -114,11 +154,14 @@
 .fade-enter.fade-enter-active, .fade-appear.fade-appear-active {
     opacity: 1;
     transition: opacity 100ms ease-out;
-}
+} */
 
 @media screen and (max-width: 1222px) {
     .background-image {
         background-image: url('./assets/Warframe0001small.jpg');
+    }
+    .loading-gif {
+        left: calc(50% - 50px);
     }
     .main {
         padding: 56px 0 0 0;

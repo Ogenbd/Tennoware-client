@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import './App.css';
 import './general.css';
 
 import Routing from './Routing';
 import Sidebar from './components/sidebar/Sidebar';
-import Login from './components/login/Login';
+// import Login from './components/login/Login';
 
 class App extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class App extends Component {
       showLogin: false,
       title: '',
       viewWidth: window.innerWidth,
-      user: 1,
+      user: 2,
       indicator: !navigator.onLine
     }
     this.debouncedSetWidth = debounce(this.setViewWidth, 100)
@@ -41,10 +41,6 @@ class App extends Component {
   setViewWidth = () => {
     this.setState({ viewWidth: window.innerWidth });
   }
-
-  // setTitle = (title) => {
-  //   this.setState({ title: title })
-  // }
 
   showLogin = () => {
     document.body.classList.add('noscroll');
@@ -79,19 +75,19 @@ class App extends Component {
           </div>
           <div className="page-title"></div>
           <div className="top-buttons">
-            {this.state.user
+            {/* {this.state.user
               ? <div className="user-account">
                 <Link className="user-account-item" to="/mystuff">My Stuff</Link> | <p className="user-account-item" onClick={this.logout}>Log out</p>
               </div>
               : <p className="user-account-item" onClick={this.showLogin}>Login</p>
-            }
+            } */}
           </div>
         </div>
         <div className="main-view">
           <Routing viewWidth={this.state.viewWidth} user={this.state.user} />
         </div>
         <Sidebar />
-        <Login showLogin={this.state.showLogin} logUser={this.logUser} />
+        {/* <Login showLogin={this.state.showLogin} logUser={this.logUser} /> */}
       </div>
     );
   }

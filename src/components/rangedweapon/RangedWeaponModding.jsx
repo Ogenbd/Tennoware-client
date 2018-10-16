@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { CSSTransition } from "react-transition-group";
 import './RangedWeaponModding.css'
 
-import ModPicker from '../modpicker/ModPicker';
 import RangedWeaponStats from './RangedWeaponStats';
 import ModStateHandler from '../modstatehandler/ModStateHandler';
 import PolarityPicker from '../polaritypicker/PolarityPicker';
@@ -9,20 +9,19 @@ import RangedRivenEditor from './RangedRivenEditor';
 import LinkGenerator from '../linkgenerator/LinkGenerator';
 import BuildSaver from '../buildsaver/BuildSaver';
 import BuildList from '../buildlist/BuildList';
+import Like from '../like/Like';
+import BuildDescription from '../builddescription/BuildDescription';
+import ModPicker from '../modpicker/ModPicker';
 
 export class RangedWeaponModding extends Component {
     constructor(props) {
         super(props);
-        this.timer = null;
         this.state = {
             catalyst: true,
             forma: false,
             formaCount: 0,
-            mods: [],
+            mods: this.props.mods,
             slotPolarities: this.props.slotPolarities,
-            liked: undefined,
-            lastLikePress: 0,
-            lastLikeSent: undefined,
             forSlot: null,
             chosenMods: [{}, {}, {}, {}, {}, {}, {}, {}],
             totalModsCost: 0,
@@ -30,89 +29,39 @@ export class RangedWeaponModding extends Component {
             modPicker: false,
             errorBlinker: null,
             forSwap: null,
-            rivenEditor: false,
-            linkGenerator: false,
-            rivenMod: undefined,
-            buildStr: undefined,
-            buildSaver: false,
-            buildList: false,
-            ready: false
+            rivenMod: {
+                polarity: 'madurai',
+                effects: [],
+                effectOne: 'None',
+                numOne: '',
+                effectTwo: 'None',
+                numTwo: '',
+                effectThree: 'None',
+                numThree: '',
+                effectFour: 'None',
+                numFour: '',
+                desc: ''
+            }
         }
     }
 
     componentDidMount() {
         if (this.props.match.params.pre) {
-            if (this.props.match.params.pre.length === 67) {
-                let build = this.props.match.params.pre;
-                let catalyst = build[0] === '0' ? false : true;
-                let liked = this.props.metaInfo.Liked === 1 ? true : false;
-                let lastLikeSent = this.props.metaInfo.Liked === 1 ? true : false;
-                let prePolarities = this.createPrePolarities(build.slice(1, 9).split(''));
-                let preMods = this.createPreMods(build.slice(9, 41));
-                let preRiven = this.createPreRiven(build.slice(41, 67));
-                let totalModsCost = this.calcCost(preMods.chosenMods, prePolarities);
-                let formaCount = this.countForma(prePolarities);
-                this.setState({
-                    catalyst: catalyst,
-                    liked: liked,
-                    slotPolarities: prePolarities,
-                    mods: preMods.mods,
-                    chosenMods: preMods.chosenMods,
-                    totalModsCost: totalModsCost,
-                    formaCount: formaCount,
-                    rivenMod: preRiven,
-                    lastLikeSent: lastLikeSent
-                }, () => {
-                    this.setState({ ready: true })
-                });
-            } else {
-                this.props.redirectToVoid();
-            }
-        } else {
+            let build = this.props.match.params.pre;
+            let catalyst = build[0] === '0' ? false : true;
+            let prePolarities = this.createPrePolarities(build.slice(1, 9).split(''));
+            let preMods = this.createPreMods(build.slice(9, 41));
+            let totalModsCost = this.calcCost(preMods.chosenMods, prePolarities);
+            let formaCount = this.countForma(prePolarities);
             this.setState({
-                mods: this.props.mods,
-                rivenMod: {
-                    polarity: 'madurai',
-                    effects: [],
-                    effectOne: 'None',
-                    numOne: '',
-                    effectTwo: 'None',
-                    numTwo: '',
-                    effectThree: 'None',
-                    numThree: '',
-                    effectFour: 'None',
-                    numFour: '',
-                    desc: ''
-                }
-            }, () => {
-                this.setState({ ready: true })
-            })
+                catalyst: catalyst,
+                slotPolarities: prePolarities,
+                mods: preMods.mods,
+                chosenMods: preMods.chosenMods,
+                totalModsCost: totalModsCost,
+                formaCount: formaCount,
+            });
         }
-    }
-
-    createLink = () => {
-        let buildStr = this.convertBuildToString();
-        document.body.classList.add('noscroll');
-        this.setState({
-            buildStr: buildStr,
-            linkGenerator: true
-        });
-    }
-
-    showBuildList = () => {
-        document.body.classList.add('noscroll');
-        this.setState({
-            buildList: true
-        });
-    }
-
-    saveBuild = () => {
-        let buildStr = this.convertBuildToString();
-        document.body.classList.add('noscroll');
-        this.setState({
-            buildStr: buildStr,
-            buildSaver: true
-        });
     }
 
     convertBuildToString = () => {
@@ -145,13 +94,13 @@ export class RangedWeaponModding extends Component {
             buildStr += this.convertEffectToNum(this.state.rivenMod.effectThree, this.state.rivenMod.numThree);
             buildStr += this.convertEffectToNum(this.state.rivenMod.effectFour, this.state.rivenMod.numFour);
         } else {
-            buildStr += 'v100p00000p00000p00000p000';
+            buildStr += 'v';
         }
         return buildStr;
     }
 
     convertEffectToNum = (effect, num) => {
-        let effects = ['None', 'Ammo Maximum', 'Cold Damage', 'Crit Chance', 'Crit Damage', 'Damage', 'Damage vs. Corpus', 'Damage vs. Grineer', 'Damage vs. Infested', 'Electricity Damage', 'Heat Damage', 'Fire Rate', 'Flight Speed', 'Impact Damage', 'Mag Capacity', 'Multishot', 'Toxin Damage', 'Punch Through', 'Puncture Damage', 'Reload Speed', 'Slash Damage', 'Status Chance', 'Status Duration', 'Recoil', 'Zoom']
+        let effects = ['None', 'Ammo Maximum', 'Cold Damage', 'Critical Chance', 'Critical Damage', 'Damage', 'Damage vs. Corpus', 'Damage vs. Grineer', 'Damage vs. Infested', 'Electricity Damage', 'Heat Damage', 'Fire Rate', 'Flight Speed', 'Impact Damage', 'Mag Capacity', 'Multishot', 'Toxin Damage', 'Punch Through', 'Puncture Damage', 'Reload Speed', 'Slash Damage', 'Status Chance', 'Status Duration', 'Recoil', 'Zoom']
         let effectStr = '';
         let effectIndex = effects.findIndex(rivenEffect => {
             return effect === rivenEffect;
@@ -201,61 +150,6 @@ export class RangedWeaponModding extends Component {
             default:
                 return '0';
         }
-    }
-
-    createPreRiven = (rivenStr) => {
-        let rivenMod = {
-            polarity: 'madurai',
-            effects: [],
-            effectOne: 'None',
-            numOne: '',
-            effectTwo: 'None',
-            numTwo: '',
-            effectThree: 'None',
-            numThree: '',
-            effectFour: 'None',
-            numFour: '',
-            desc: ''
-        }
-        if (rivenStr[0] === 'v') {
-            return rivenMod;
-        }
-        if (rivenStr[1] === '0' || rivenStr[1] === '7') {
-            this.props.redirectToVoid();
-        }
-        rivenMod.polarity = this.transPolarity(rivenStr[1]);
-        let statsStr = rivenStr.slice(2);
-        let statsArr = statsStr.match(/.{1,6}/g)
-        rivenMod.effectOne = this.findRivenStat(parseInt(statsArr[0].slice(0, 2), 10));
-        rivenMod.numOne = this.findRivenAmount(statsArr[0].slice(2));
-        rivenMod.effectTwo = this.findRivenStat(parseInt(statsArr[1].slice(0, 2), 10));
-        rivenMod.numTwo = this.findRivenAmount(statsArr[1].slice(2));
-        rivenMod.effectThree = this.findRivenStat(parseInt(statsArr[2].slice(0, 2), 10));
-        rivenMod.numThree = this.findRivenAmount(statsArr[2].slice(2));
-        rivenMod.effectFour = this.findRivenStat(parseInt(statsArr[3].slice(0, 2), 10));
-        rivenMod.numFour = this.findRivenAmount(statsArr[3].slice(2));
-        return rivenMod;
-    }
-
-    findRivenStat = (index) => {
-        let effects = ['None', 'Ammo Maximum', 'Cold Damage', 'Crit Chance', 'Crit Damage', 'Damage', 'Damage vs. Corpus', 'Damage vs. Grineer', 'Damage vs. Infested', 'Electricity Damage', 'Heat Damage', 'Fire Rate', 'Flight Speed', 'Impact Damage', 'Mag Capacity', 'Multishot', 'Toxin Damage', 'Punch Through', 'Puncture Damage', 'Reload Speed', 'Slash Damage', 'Status Chance', 'Status Duration', 'Recoil', 'Zoom']
-        if (typeof index !== 'number' || isNaN(index) || index < 0 || index > effects.length - 1) {
-            this.props.redirectToVoid();
-        }
-        return effects[index];
-    }
-
-    findRivenAmount = (amountStr) => {
-        let number = 0;
-        let amount = parseInt(amountStr.slice(1), 10);
-        if (isNaN(amount)) {
-            this.props.redirectToVoid();
-        } else if (amountStr[0] === 'p') {
-            number += amount;
-        } else if (amountStr[0] === 'n') {
-            number -= amount;
-        }
-        return number;
     }
 
     createPreMods = (modsStr) => {
@@ -640,63 +534,6 @@ export class RangedWeaponModding extends Component {
         this.swapMods(this.state.forSwap, slot);
     }
 
-    likeButtonPress = () => {
-        this.setState(prevState => ({
-            liked: !prevState.liked,
-        }), () => {
-            if (Date.now() - this.state.lastLikePress < 3000 && this.state.lastLikePress !== 0) {
-                this.setState({
-                    lastLikePress: Date.now()
-                }, this.spammerMan
-                )
-            } else {
-                this.setState({
-                    lastLikePress: Date.now()
-                }, this.sendLike
-                )
-            }
-        });
-    }
-
-    spammerMan = () => {
-        if (this.timer) {
-            clearTimeout(this.timer);
-        }
-        this.timer = setTimeout(() => {
-            this.sendLike();
-        }, 3000);
-    }
-
-    sendLike = () => {
-        if (!this.state.likeDispatched && this.state.lastLikeSent !== this.state.liked) {
-            this.setState({
-                lastLikeSent: this.state.liked,
-                likeDispatched: true
-            }, () => {
-                let comp = this.state.liked ? 'like' : 'unlike';
-                fetch(`http://192.168.1.114:50000/${comp}`, {
-                    method: 'post',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        user: this.props.user,
-                        build: this.props.match.params.build
-                    })
-                })
-                    .then(res => res.json())
-                    .then(({ res }) => {
-                        this.setState({ likeDispatched: false }, () => {
-                            if (res !== this.state.liked) {
-                                this.spammerMan();
-                            }
-                        });
-                    })
-                    .catch(err => {
-                        console.log('error')
-                    });
-            });
-        }
-    }
-
     displayMessage = () => {
         if (this.state.errorBlinker !== null) {
             return (
@@ -721,112 +558,104 @@ export class RangedWeaponModding extends Component {
 
     render() {
         let onLine = navigator.onLine;
-        const { mods, chosenMods, modPicker, catalyst, forma, liked, totalModsCost, slotPolarities, errorBlinker, formaCount, forSwap, polarityPicker, rivenEditor, rivenMod, buildStr, linkGenerator, buildSaver, buildList } = this.state
+        const { mods, chosenMods, modPicker, catalyst, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSwap, polarityPicker } = this.state
         return (
-            <div className="ranged-modding">
-                {this.state.ready &&
+            <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
+                <div className="ranged-modding">
                     <ModPicker mods={mods} chosenMods={chosenMods} active={modPicker} closeModPicker={this.closeModPicker} pickMod={this.pickMod} viewWidth={this.props.viewWidth} drop={this.drop} />
-                }
-                <div className="mod-stack">
-                    <div className="interactable-wrapper">
-                        {onLine &&
-                            <div className="interactable interactable-semi-inactive" onClick={this.showBuildList}><p className="interactable-p">Community Builds</p></div>
-                        }
-                        {onLine && this.props.user && !this.props.match.params.build &&
-                            <div className="interactable interactable-semi-inactive" onClick={this.saveBuild}><p className="interactable-p">Save</p></div>
-                        }
-                        {onLine && this.props.metaInfo.Owner === 1 &&
-                            <div className="interactable interactable-semi-inactive" onClick={this.saveBuild}><p className="interactable-p">Update</p></div>
-                        }
-                        <div className="interactable interactable-semi-inactive" onClick={this.createLink}><p className="interactable-p">Link</p></div>
-                        {onLine && this.props.user && this.props.match.params.build && !this.props.metaInfo.Owner &&
-                            <div className={"activatable " + (liked ? "interactable-active" : "interactable-inactive")} onClick={this.likeButtonPress}><p className="interactable-p">Like/Save</p></div>
-                        }
-                        {/* {onLine && this.props.match.params.build && !this.props.metaInfo.UserID &&
+                    <div className="mod-stack">
+                        <div className="interactable-wrapper">
+                            {onLine &&
+                                <BuildList itemName={this.props.match.params.id} />
+                            }
+                            {this.props.metaInfo.BuildDesc && this.props.metaInfo.BuildDesc.length > 0 &&
+                                <BuildDescription metaInfo={this.props.metaInfo} />
+                            }
+                            {onLine && this.props.user &&
+                                <BuildSaver orokin={catalyst} formaCount={formaCount} user={this.props.user} match={this.props.match} getBuildStr={this.convertBuildToString} metaInfo={this.props.metaInfo} />
+                            }
+                            <LinkGenerator getBuildStr={this.convertBuildToString} match={this.props.match} />
+                            {onLine && this.props.user && this.props.match.params.build && !this.props.metaInfo.Owner &&
+                                <Like />
+                            }
+                            {/* {onLine && this.props.match.params.build && !this.props.metaInfo.UserID &&
                             <div className="interactable interactable-semi-inactive"><p className="interactable-p">Report</p></div>
                         } */}
-                    </div>
-                    <div className="aug-container">
-                        <div className="aug-wrapper">
-                            <div className="aug-info">
-                                <p className="aug-info-title riven-title">Disposition</p>
-                                <p className="aug-info-content">{this.props.weapon.disposition}/5</p>
+                        </div>
+                        <div className="aug-container">
+                            <div className="aug-wrapper">
+                                <div className="aug-info">
+                                    <p className="aug-info-title riven-title">Disposition</p>
+                                    <p className="aug-info-content">{this.props.weapon.disposition}/5</p>
+                                </div>
+                                <div className="aug-info">
+                                    <p className="aug-info-title">Capacity</p>
+                                    {catalyst
+                                        ? <p className="aug-info-content" style={60 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{60 - totalModsCost}</p>
+                                        : <p className="aug-info-content" style={30 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{30 - totalModsCost}</p>
+                                    }
+                                </div>
+                                <div className="aug-info">
+                                    <p className="aug-info-title">Forma</p>
+                                    <p className="aug-info-content">{formaCount}</p>
+                                </div>
                             </div>
-                            <div className="aug-info">
-                                <p className="aug-info-title">Capacity</p>
-                                {catalyst
-                                    ? <p className="aug-info-content" style={60 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{60 - totalModsCost}</p>
-                                    : <p className="aug-info-content" style={30 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{30 - totalModsCost}</p>
-                                }
-                            </div>
-                            <div className="aug-info">
-                                <p className="aug-info-title">Forma</p>
-                                <p className="aug-info-content">{formaCount}</p>
+                            <div className="aug-wrapper">
+                                <RangedRivenEditor viewWidth={this.props.viewWidth} chosenMods={chosenMods} handleRiven={this.handleRiven} buildStr={this.props.metaInfo.BuildStr} transPolarity={this.transPolarity} />
+                                <div className={"interactable " + (catalyst ? "interactable-active" : "interactable-inactive")} onClick={this.toggleCatalyst}>
+                                    {catalyst
+                                        ? <img className="aug-image catalyst" src={require('../../assets/catalyst.png')} alt={'Remove Catalyst'} />
+                                        : <img className="aug-image catalyst" src={require('../../assets/nocatalyst.png')} alt={'Apply Catalyst'} />}
+                                </div>
+                                <div className={"interactable " + (forma ? "interactable-active" : "interactable-inactive")} onClick={this.toggleForma}>
+                                    {forma
+                                        ? <img className="aug-image forma" src={require('../../assets/forma.png')} alt={'Cancel Forma Application'} />
+                                        : <img className="aug-image forma" src={require('../../assets/noforma.png')} alt={'Apply Forma'} />}
+                                </div>
                             </div>
                         </div>
-                        <div className="aug-wrapper">
-                            <div className="interactable interactable-inactive riven" onClick={this.showRivenEditor}>
-                                <div className="riven-placeholder"></div>
-                            </div>
-                            <div className={"interactable " + (catalyst ? "interactable-active" : "interactable-inactive")} onClick={this.toggleCatalyst}>
-                                {catalyst
-                                    ? <img className="aug-image catalyst" src={require('../../assets/catalyst.png')} alt={'Remove Catalyst'} />
-                                    : <img className="aug-image catalyst" src={require('../../assets/nocatalyst.png')} alt={'Apply Catalyst'} />}
-                            </div>
-                            <div className={"interactable " + (forma ? "interactable-active" : "interactable-inactive")} onClick={this.toggleForma}>
-                                {forma
-                                    ? <img className="aug-image forma" src={require('../../assets/forma.png')} alt={'Cancel Forma Application'} />
-                                    : <img className="aug-image forma" src={require('../../assets/noforma.png')} alt={'Apply Forma'} />}
-                            </div>
-                        </div>
-                    </div>
-                    <div className="slots-wrapper">
-                        <div className="slots">
-                            <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 0) }} onDragOver={this.dragOver} onDrop={(e) => { this.drop(e, 0) }} >
-                                <ModStateHandler mod={chosenMods[0]} slot={0} slotPolarity={slotPolarities[0]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
-                                <div className={"error-blinker " + ((errorBlinker === 0) ? 'error-flash' : '')}></div>
-                            </div>
-                            <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 1) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 1) }} >
-                                <ModStateHandler mod={chosenMods[1]} slot={1} slotPolarity={slotPolarities[1]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
-                                <div className={"error-blinker " + ((errorBlinker === 1) ? 'error-flash' : '')}></div>
-                            </div>
-                            <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 2) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 2) }} >
-                                <ModStateHandler mod={chosenMods[2]} slot={2} slotPolarity={slotPolarities[2]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
-                                <div className={"error-blinker " + ((errorBlinker === 2) ? 'error-flash' : '')}></div>
-                            </div>
-                            <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 3) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 3) }} >
-                                <ModStateHandler mod={chosenMods[3]} slot={3} slotPolarity={slotPolarities[3]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
-                                <div className={"error-blinker " + ((errorBlinker === 3) ? 'error-flash' : '')}></div>
-                            </div>
-                            <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 4) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 4) }} >
-                                <ModStateHandler mod={chosenMods[4]} slot={4} slotPolarity={slotPolarities[4]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
-                                <div className={"error-blinker " + ((errorBlinker === 4) ? 'error-flash' : '')}></div>
-                            </div>
-                            <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 5) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 5) }} >
-                                <ModStateHandler mod={chosenMods[5]} slot={5} slotPolarity={slotPolarities[5]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
-                                <div className={"error-blinker " + ((errorBlinker === 5) ? 'error-flash' : '')}></div>
-                            </div>
-                            <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 6) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 6) }} >
-                                <ModStateHandler mod={chosenMods[6]} slot={6} slotPolarity={slotPolarities[6]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
-                                <div className={"error-blinker " + ((errorBlinker === 6) ? 'error-flash' : '')}></div>
-                            </div>
-                            <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 7) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 7) }} >
-                                <ModStateHandler mod={chosenMods[7]} slot={7} slotPolarity={slotPolarities[7]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
-                                <div className={"error-blinker " + ((errorBlinker === 7) ? 'error-flash' : '')}></div>
+                        <div className="slots-wrapper">
+                            <div className="slots">
+                                <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 0) }} onDragOver={this.dragOver} onDrop={(e) => { this.drop(e, 0) }} >
+                                    <ModStateHandler mod={chosenMods[0]} slot={0} slotPolarity={slotPolarities[0]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
+                                    <div className={"error-blinker " + ((errorBlinker === 0) ? 'error-flash' : '')}></div>
+                                </div>
+                                <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 1) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 1) }} >
+                                    <ModStateHandler mod={chosenMods[1]} slot={1} slotPolarity={slotPolarities[1]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
+                                    <div className={"error-blinker " + ((errorBlinker === 1) ? 'error-flash' : '')}></div>
+                                </div>
+                                <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 2) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 2) }} >
+                                    <ModStateHandler mod={chosenMods[2]} slot={2} slotPolarity={slotPolarities[2]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
+                                    <div className={"error-blinker " + ((errorBlinker === 2) ? 'error-flash' : '')}></div>
+                                </div>
+                                <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 3) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 3) }} >
+                                    <ModStateHandler mod={chosenMods[3]} slot={3} slotPolarity={slotPolarities[3]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
+                                    <div className={"error-blinker " + ((errorBlinker === 3) ? 'error-flash' : '')}></div>
+                                </div>
+                                <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 4) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 4) }} >
+                                    <ModStateHandler mod={chosenMods[4]} slot={4} slotPolarity={slotPolarities[4]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
+                                    <div className={"error-blinker " + ((errorBlinker === 4) ? 'error-flash' : '')}></div>
+                                </div>
+                                <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 5) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 5) }} >
+                                    <ModStateHandler mod={chosenMods[5]} slot={5} slotPolarity={slotPolarities[5]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
+                                    <div className={"error-blinker " + ((errorBlinker === 5) ? 'error-flash' : '')}></div>
+                                </div>
+                                <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 6) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 6) }} >
+                                    <ModStateHandler mod={chosenMods[6]} slot={6} slotPolarity={slotPolarities[6]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
+                                    <div className={"error-blinker " + ((errorBlinker === 6) ? 'error-flash' : '')}></div>
+                                </div>
+                                <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 7) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 7) }} >
+                                    <ModStateHandler mod={chosenMods[7]} slot={7} slotPolarity={slotPolarities[7]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
+                                    <div className={"error-blinker " + ((errorBlinker === 7) ? 'error-flash' : '')}></div>
+                                </div>
                             </div>
                         </div>
+                        {this.displayMessage()}
                     </div>
-                    {this.displayMessage()}
+                    <RangedWeaponStats weapon={this.props.weapon} mods={this.state.chosenMods} viewWidth={this.props.viewWidth} />
+                    <PolarityPicker polarityPicker={polarityPicker} polarizeSlot={this.polarizeSlot} hidePolarityPicker={this.hidePolarityPicker} />
                 </div>
-                <BuildList buildList={buildList} hideBuildList={this.hideBuildList} />
-                <LinkGenerator linkGenerator={linkGenerator} buildStr={buildStr} match={this.props.match} hideLinkGenerator={this.hideLinkGenerator} />
-                <BuildSaver buildSaver={buildSaver} orokin={catalyst} formaCount={formaCount} user={this.props.user} buildStr={buildStr} hideBuildSaver={this.hideBuildSaver} metaInfo={this.props.metaInfo} />
-                <RangedWeaponStats weapon={this.props.weapon} mods={this.state.chosenMods} viewWidth={this.props.viewWidth} />
-                <PolarityPicker polarityPicker={polarityPicker} polarizeSlot={this.polarizeSlot} hidePolarityPicker={this.hidePolarityPicker} />
-                {rivenMod &&
-                    <RangedRivenEditor viewWidth={this.props.viewWidth} rivenEditor={rivenEditor} rivenMod={rivenMod} chosenMods={chosenMods} hideRivenEditor={this.hideRivenEditor} handleRiven={this.handleRiven} />
-                }
-            </div>
+            </CSSTransition>
         )
     }
 }

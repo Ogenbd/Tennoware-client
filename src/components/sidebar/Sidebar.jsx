@@ -28,6 +28,10 @@ export class Sidebar extends Component {
     return JSON.stringify(window.location.href).includes('secondaryweapons');
   }
 
+  warframeActive = () => {
+    return JSON.stringify(window.location.href).includes('warframes');
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -50,6 +54,7 @@ export class Sidebar extends Component {
         </div>
         <div className="sidebar-content">
           <NavLink exact to="/" className="nav-item" activeClassName="selected" onClick={this.closeSidebar}><p>News</p></NavLink>
+          <NavLink exact to="/warframes" className="nav-item" activeClassName="selected" isActive={this.warframeActive} onClick={this.closeSidebar}><p>Warframe Builder</p></NavLink>
           <NavLink exact to="/primaryweapons" className="nav-item" activeClassName="selected" isActive={this.primaryActive} onClick={this.closeSidebar}><p>Primary Builder</p></NavLink>
           <NavLink exact to="/secondaryweapons" className="nav-item" activeClassName="selected" isActive={this.secondaryActive} onClick={this.closeSidebar}><p>Secondary Builder</p></NavLink>
         </div>

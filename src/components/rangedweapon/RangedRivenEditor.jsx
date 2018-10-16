@@ -9,23 +9,87 @@ export class RangedRivenEditor extends Component {
     this.softInputThree = React.createRef();
     this.softInputFour = React.createRef();
     this.state = {
-      effects: ['None', 'Ammo Maximum', 'Cold Damage', 'Crit Chance', 'Crit Damage', 'Damage', 'Damage vs. Corpus', 'Damage vs. Grineer', 'Damage vs. Infested', 'Electricity Damage', 'Heat Damage', 'Fire Rate', 'Flight Speed', 'Impact Damage', 'Mag Capacity', 'Multishot', 'Toxin Damage', 'Punch Through', 'Puncture Damage', 'Reload Speed', 'Slash Damage', 'Status Chance', 'Status Duration', 'Recoil', 'Zoom'],
+      effects: ['None', 'Ammo Maximum', 'Cold Damage', 'Critical Chance', 'Critical Damage', 'Damage', 'Damage vs. Corpus', 'Damage vs. Grineer', 'Damage vs. Infested', 'Electricity Damage', 'Heat Damage', 'Fire Rate', 'Flight Speed', 'Impact Damage', 'Mag Capacity', 'Multishot', 'Toxin Damage', 'Punch Through', 'Puncture Damage', 'Reload Speed', 'Slash Damage', 'Status Chance', 'Status Duration', 'Recoil', 'Zoom'],
       openEffect: null,
-      polarity: props.rivenMod.polarity,
-      effectOne: props.rivenMod.effectOne,
-      numOne: props.rivenMod.numOne,
-      effectTwo: props.rivenMod.effectTwo,
-      numTwo: props.rivenMod.numTwo,
-      effectThree: props.rivenMod.effectThree,
-      numThree: props.rivenMod.numThree,
-      effectFour: props.rivenMod.effectFour,
-      numFour: props.rivenMod.numFour,
+      polarity: 'madurai',
+      effectOne: 'None',
+      numOne: '',
+      effectTwo: 'None',
+      numTwo: '',
+      effectThree: 'None',
+      numThree: '',
+      effectFour: 'None',
+      numFour: '',
     }
   }
 
   componentDidMount() {
-    this.updateRiven();
+    // this.updateRiven();
+    if (this.props.buildStr && this.props.buildStr[41] === 'x') {
+      let preRiven = this.createPreRiven(this.props.buildStr.slice(41, 67));
+      this.setState({
+        polarity: preRiven.polarity,
+        effectOne: preRiven.effectOne,
+        numOne: preRiven.numOne,
+        effectTwo: preRiven.effectTwo,
+        numTwo: preRiven.numTwo,
+        effectThree: preRiven.effectThree,
+        numThree: preRiven.numThree,
+        effectFour: preRiven.effectFour,
+        numFour: preRiven.numFour,
+      }, this.updateRiven)
+    }
   }
+
+  createPreRiven = (rivenStr) => {
+    let rivenMod = {
+      polarity: 'madurai',
+      effectOne: 'None',
+      numOne: '',
+      effectTwo: 'None',
+      numTwo: '',
+      effectThree: 'None',
+      numThree: '',
+      effectFour: 'None',
+      numFour: '',
+    }
+    if (rivenStr[1] === '0' || rivenStr[1] === '7') {
+      this.props.redirectToVoid();
+    }
+    rivenMod.polarity = this.props.transPolarity(rivenStr[1]);
+    let statsStr = rivenStr.slice(2);
+    let statsArr = statsStr.match(/.{1,6}/g)
+    rivenMod.effectOne = this.findRivenStat(parseInt(statsArr[0].slice(0, 2), 10));
+    rivenMod.numOne = this.findRivenAmount(statsArr[0].slice(2));
+    rivenMod.effectTwo = this.findRivenStat(parseInt(statsArr[1].slice(0, 2), 10));
+    rivenMod.numTwo = this.findRivenAmount(statsArr[1].slice(2));
+    rivenMod.effectThree = this.findRivenStat(parseInt(statsArr[2].slice(0, 2), 10));
+    rivenMod.numThree = this.findRivenAmount(statsArr[2].slice(2));
+    rivenMod.effectFour = this.findRivenStat(parseInt(statsArr[3].slice(0, 2), 10));
+    rivenMod.numFour = this.findRivenAmount(statsArr[3].slice(2));
+    return rivenMod;
+  }
+
+  findRivenStat = (index) => {
+    if (typeof index !== 'number' || isNaN(index) || index < 0 || index > this.state.effects.length - 1) {
+      this.props.redirectToVoid();
+    }
+    return this.state.effects[index];
+  }
+
+  findRivenAmount = (amountStr) => {
+    let number = 0;
+    let amount = parseInt(amountStr.slice(1), 10);
+    if (isNaN(amount)) {
+      this.props.redirectToVoid();
+    } else if (amountStr[0] === 'p') {
+      number += amount;
+    } else if (amountStr[0] === 'n') {
+      number -= amount;
+    }
+    return number;
+  }
+
 
   updateRiven = () => {
     let rivenMod = {
@@ -77,7 +141,7 @@ export class RangedRivenEditor extends Component {
         }
       }
     }
-    document.body.classList.remove('noscroll');
+    this.hideRivenEditor();
     this.props.handleRiven(rivenMod);
   }
 
@@ -90,10 +154,10 @@ export class RangedRivenEditor extends Component {
       case 'Cold Damage':
         rivenEffect = { elemental: { damage: amount, type: 'Cold' } }
         return rivenEffect;
-      case 'Crit Chance':
+      case 'Critical Chance':
         rivenEffect.critChance = amount;
         return rivenEffect;
-      case 'Crit Damage':
+      case 'Critical Damage':
         rivenEffect.critMult = amount;
         return rivenEffect;
       case 'Damage':
@@ -276,19 +340,30 @@ export class RangedRivenEditor extends Component {
     }
   }
 
-  hideRivenEditor = () => {
+  showRivenEditor = () => {
+    document.body.classList.add('noscroll');
     this.setState({
-      openEffect: null
+      showRivenEditor: true
     });
-    this.props.hideRivenEditor();
+  }
+  
+  hideRivenEditor = () => {
+    document.body.classList.remove('noscroll');
+    this.setState({
+      openEffect: null,
+      showRivenEditor: false
+    });
   }
 
   render() {
     let displayOptions = this.determineOptionSet();
     return (
       <React.Fragment>
-        <div className={"popup " + (this.props.rivenEditor ? "popup-active" : "popup-inactive")}>
-          <div className={"popup-topbar " + (this.props.rivenEditor ? "popup-active" : "popup-inactive")}>
+        <div className="interactable interactable-inactive riven" onClick={this.showRivenEditor}>
+          <div className="riven-placeholder"></div>
+        </div>
+        <div className={"popup " + (this.state.showRivenEditor ? "popup-active" : "popup-inactive")}>
+          <div className={"popup-topbar " + (this.state.showRivenEditor ? "popup-active" : "popup-inactive")}>
             <div className="popup-x" onClick={this.hideRivenEditor}>
               <div className="popup-x-bar one-bar"></div>
               <div className="popup-x-bar two-bar"></div>

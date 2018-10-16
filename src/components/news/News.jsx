@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './News.css';
 
+const Loading = () => <div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
 export class News extends Component {
   // constructor(props) {
   //   super(props);
@@ -11,9 +13,10 @@ export class News extends Component {
 
   render() {
     return (
-      <div className="screen">
+      <Loading />
+      // <div className="screen">
        
-      </div>
+      // </div>
     )
   }
 }

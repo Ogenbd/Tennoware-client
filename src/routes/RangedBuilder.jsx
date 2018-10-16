@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
+import Loadable from 'react-loadable';
 
-import { RangedWeaponModding } from '../components/rangedweapon/RangedWeaponModding';
+import Loading from '../components/loading/Loading';
+
+// import RangedWeaponModding from '../components/rangedweapon/RangedWeaponModding';
+
+const RangedWeaponModding = Loadable({
+    loader: () => import('../components/rangedweapon/RangedWeaponModding'),
+    loading: Loading,
+    modules: ['RangedWeaponModding']
+});
 
 
 class RangedBuilder extends Component {
@@ -12,10 +21,7 @@ class RangedBuilder extends Component {
             relevantMods: [],
             slotPolarities: [],
             originalPolarityCount: {},
-            metaInfo: {
-                UserID: undefined,
-
-            }
+            metaInfo: {}
         }
     }
 
@@ -41,12 +47,12 @@ class RangedBuilder extends Component {
         if (this.props.match.params.build) {
             this.confirmBuild()
         } else {
-            this.setupBuilder()
+            this.setupBuilder({})
         }
     }
 
 
-     setupBuilder = async () => {
+    setupBuilder = async (metaInfo) => {
         let weapons = await this.props.weapons();
         let mods = await this.props.mods();
         let weapon = weapons.find(item => {
@@ -72,7 +78,8 @@ class RangedBuilder extends Component {
                 weapon: weapon,
                 relevantMods: filteredMods,
                 slotPolarities: slotPolarities,
-                originalPolarityCount: originalPolarityCount
+                originalPolarityCount: originalPolarityCount,
+                metaInfo: metaInfo
             });
         } else {
             this.redirectToVoid();
@@ -89,10 +96,7 @@ class RangedBuilder extends Component {
             .then(res => res.json())
             .then(({ res }) => {
                 if (res.ItemName === this.props.match.params.id.toLowerCase() && res.BuildStr === this.props.match.params.pre) {
-                    this.setState({
-                        metaInfo: res
-                    });
-                    this.setupBuilder();
+                    this.setupBuilder(res);
                 } else {
                     this.redirectToVoid();
                 }
@@ -109,8 +113,10 @@ class RangedBuilder extends Component {
     render() {
         return (
             <div className="screen">
-            <div className="top-title"><p>{this.state.title}</p></div>
-                {/* <div className="primary-builder"> */}
+                <div className="top-title"><p>{this.state.title}</p></div>
+                {!this.state.weapon.name &&
+                    <Loading />
+                }
                 {this.state.weapon.name &&
                     <RangedWeaponModding redirectToVoid={this.redirectToVoid} weapon={this.state.weapon} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} />
                 }
