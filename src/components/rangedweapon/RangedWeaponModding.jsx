@@ -335,7 +335,6 @@ export class RangedWeaponModding extends Component {
                 errorBlinker: sameFamilySlot
             });
         }
-        this.convertBuildToString();
     }
 
     removeMod = (slot, mod) => {
@@ -405,23 +404,6 @@ export class RangedWeaponModding extends Component {
         });
     }
 
-    showRivenEditor = () => {
-        this.setState({
-            forSlot: null,
-            errorBlinker: null,
-            forSwap: null,
-            rivenEditor: true
-        });
-        document.body.classList.add('noscroll');
-    }
-
-    hideRivenEditor = () => {
-        this.setState({
-            rivenEditor: false
-        });
-        document.body.classList.remove('noscroll');
-    }
-
     polarizeSlot = (polarity) => {
         let slotPolarities = this.state.slotPolarities.slice(0);
         slotPolarities[this.state.forSlot] = polarity;
@@ -441,27 +423,6 @@ export class RangedWeaponModding extends Component {
         this.setState({
             forSlot: null,
             polarityPicker: false
-        });
-        document.body.classList.remove('noscroll');
-    }
-
-    hideLinkGenerator = () => {
-        this.setState({
-            linkGenerator: false
-        });
-        document.body.classList.remove('noscroll');
-    }
-
-    hideBuildSaver = () => {
-        this.setState({
-            buildSaver: false
-        });
-        document.body.classList.remove('noscroll');
-    }
-
-    hideBuildList = () => {
-        this.setState({
-            buildList: false
         });
         document.body.classList.remove('noscroll');
     }
@@ -541,12 +502,6 @@ export class RangedWeaponModding extends Component {
                     <p className="display-message">This mod cannot be use with {this.state.chosenMods[this.state.errorBlinker].name}.</p>
                 </div>
             );
-            // } else if (this.state.duplicateBuild !== null) {
-            //     return (
-            //         <div className="message-wrapper show-error-message">
-            //             <p className="display-message">Cannot save duplicate builds, liking the build will allow for quick navigation from</p>
-            //         </div>
-            //     );
         } else if (this.state.forSwap !== null) {
             return (
                 <div className="message-wrapper always-on">

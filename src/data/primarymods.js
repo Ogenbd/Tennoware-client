@@ -2373,11 +2373,11 @@ const primaryMods = [
         type: 'SHOTGUN',
         rarity: 'rare',
         polarity: 'vazarin',
-        effects: { none: 0.07, fireRate: -0.05 },
+        effects: { none: -0.07, fireRate: -0.05 },
         maxRank: 10,
         currRank: 10,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Spread ${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate` }
+        description() { return `${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Spread ${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate` }
     },
     {
         abrev: 'm9',

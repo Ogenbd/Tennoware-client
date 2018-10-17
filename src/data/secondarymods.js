@@ -2,6 +2,7 @@ const secondaryMods = [
     {
         abrev: 'a0',
         name: 'Air Recon',
+        img: require('../assets/modimages/air-recon.jpg'),
         type: 'PISTOL',
         rarity: 'uncommon',
         polarity: 'naramon',

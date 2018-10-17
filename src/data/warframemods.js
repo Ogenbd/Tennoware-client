@@ -15,6 +15,7 @@ const warframeMods = [
         abrev: 'b3',
         name: 'Aviator',
         type: 'EXILUS',
+        exilus: true,
         rarity: 'common',
         polarity: 'vazarin',
         effects: { none: 0.1 },
