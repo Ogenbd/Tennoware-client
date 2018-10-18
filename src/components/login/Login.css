@@ -8,7 +8,7 @@
     width: 100%;
     padding-left: 192px;
     box-sizing: border-box;
-    z-index: 1110;
+    /* z-index: 1110; */
     background-color: rgba(0, 0, 0, 0.8);
     transition: opacity 0.2s;
 }

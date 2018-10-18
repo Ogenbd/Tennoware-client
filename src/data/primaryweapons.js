@@ -5254,6 +5254,7 @@ const primaryWeapons = [
         disposition: 3,
         modes: [
             {
+                name: 'Auto',
                 trigger: 'Auto',
                 fireRate: 10.83,
                 accuracy: 33.3,
@@ -5278,6 +5279,7 @@ const primaryWeapons = [
                 ]
             },
             {
+                name: 'Semi-Auto',
                 trigger: 'Semi-Auto',
                 fireRate: 3,
                 accuracy: 33.3,
