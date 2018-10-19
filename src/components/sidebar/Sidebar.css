@@ -89,7 +89,7 @@
         height: 56px;
         padding: 0 16px;
         opacity: 1;
-        z-index: 5050;
+        /* z-index: 5050; */
     }
     .burger-wrapper {
         display: flex;

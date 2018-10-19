@@ -7,6 +7,8 @@
     height: 219.55px;
     margin: 3px;
     transition: transform 0.2s;
+    perspective: 800px;
+    perspective-origin: 50% 50%;
 }
 
 .handler-background {
@@ -141,23 +143,26 @@
     position: absolute;
     cursor: pointer;
     z-index: 16;
-    transform: translateZ(0) translate(0, 0);
-    transition: transform 0.15s, z-index 0.05s step-end;
+    /* transform: translateZ(0) translate(0, 0); */
+    transition: transform 0.2s, z-index 0.05s step-end;
     -webkit-tap-highlight-color: transparent;
 }
 
 .empty-slot {
+    /* display: flex; */
+    /* align-items: flex-start; */
+    /* justify-content: center; */
     position: absolute;
     top: 5px;
     width: 140px;
     height: 205px;
-    box-shadow: inset 0px 0px 15px 3px rgba(0, 0, 0, 0.7);
+    box-shadow: inset 0px 0px 8px 3px rgba(0, 0, 0, 0.7);
     border-bottom-left-radius: 10%;
     border-bottom-right-radius: 10%;
     font-family: 'Roboto Condensed', sans-serif;
     background-color: rgba(255, 255, 255, 0.85);
     transition: all 0.2s;
-    z-index: 15;
+    /* z-index: 15; */
 }
 
 .slot-polarity {
@@ -165,6 +170,14 @@
     width: 22px;
     right: 8px;
     top: 8px;
+}
+
+.top-type {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    max-height: 21px;
+    width: 30px;
 }
 
 .hover-buttons {
@@ -223,6 +236,7 @@
 @media (hover: hover) {
     .mod-card-wrapper:hover {
         transform: translateZ(0) scale(1.1, 1.1);
+        /* transform: translateZ(30px); */
     }
     .mod-card-wrapper:hover .hover-buttons {
         opacity: 1;
@@ -240,6 +254,10 @@
 }
 
 @media screen and (max-width: 1222px) {
+    .slot-wrapper {
+        perspective: unset;
+        perspective-origin: unset;
+    }
     .empty-slot {
         cursor: pointer;
     }

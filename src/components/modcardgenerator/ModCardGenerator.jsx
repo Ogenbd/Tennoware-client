@@ -66,6 +66,12 @@ export class ModCardGenerator extends Component {
     return (
       <div className="mod" style={fontColor}>
         <img className="mod-image" src={mod.img} alt="" />
+        {mod.aura &&
+          <img className="aura-topper" src={require('../../assets/auratopper.png')} alt="" />
+        }
+        {mod.exilus &&
+          <img className="exilus-mod-icon" src={require(`../../assets/exilus${mod.rarity}.png`)} alt="" />
+        }
         <div className="mod-info-wrapper">
           <div className="mod-name"><p>{mod.name}</p></div>
           {mod.set
@@ -78,13 +84,18 @@ export class ModCardGenerator extends Component {
             </div>
             : <div className="mod-desc"><p>{description}</p></div>
           }
+          <div className="info-bottom"></div>
         </div>
         <img src={require(`../../assets/${mod.rarity}.png`)} alt={''} className={"rarity " + (mod.rarity === 'riven' ? "riven-border" : "")} />
         <div className="polarity-wrapper">
           {match === 'green'
-            ? <p className="cost" style={{ color: '#15E610' }}>{Math.round((mod.baseCost + mod.currRank) / 2)}</p>
+            ? (mod.aura || mod.stance)
+              ? <p className="cost" style={{ color: '#15E610' }}>{Math.round((mod.baseCost + mod.currRank) * 2)}</p>
+              : <p className="cost" style={{ color: '#15E610' }}>{Math.round((mod.baseCost + mod.currRank) / 2)}</p>
             : match === 'red'
-              ? <p className="cost" style={{ color: 'red' }}>{Math.round((mod.baseCost + mod.currRank) * 1.25)}</p>
+              ? (mod.aura || mod.stance)
+                ? <p className="cost" style={{ color: 'red' }}>{Math.round((mod.baseCost + mod.currRank) * 0.725)}</p>
+                : <p className="cost" style={{ color: 'red' }}>{Math.round((mod.baseCost + mod.currRank) * 1.25)}</p>
               : <p className="cost" style={fontColor}>{mod.baseCost + mod.currRank}</p>
           }
           <img className="polarity-icon" src={require(`../../assets/${mod.polarity}${match}.png`)} alt={''} />

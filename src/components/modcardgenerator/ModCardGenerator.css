@@ -11,7 +11,7 @@
 }
 
 .simple-mod {
-    transition: all 0.15s;
+    transition: all 200ms ease-in-out;
     cursor: pointer;
     margin: 1px;
     z-index: 2;
@@ -62,6 +62,18 @@
     line-height: 13px;
 }
 
+.aura-topper {
+    position: absolute;
+    top: 6px;
+    width: 39px;
+}
+
+.exilus-mod-icon {
+    position: absolute;
+    top: 11px;
+    width: 19px;
+}
+
 .mod-info-wrapper {
     position: absolute;
     bottom: 12px;
@@ -70,20 +82,25 @@
     border-bottom-right-radius: 10%;
     box-shadow: 0px -7px 15px -6px rgba(112, 112, 112, 0.99), inset 0px 10px 9px -8px rgba(112, 112, 112, 1);
     width: 140px;
-    transform: none;
+    /* transform: none; */
+    transition: all 200ms ease-in-out;
 }
 
 .mod-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     padding-top: 4px;
     padding-bottom: 2px;
     font-size: 17px;
     width: 100%;
+    min-height: 32px;
 }
 
 .mod-desc {
     width: 100%;
-    padding: 0 5px 35px 5px;
+    padding: 0 5px;
     font-size: 14px;
     line-height: 15px;
     text-align: center;
@@ -92,6 +109,8 @@
     border-bottom-right-radius: 15%;
     box-sizing: border-box;
     pointer-events: none;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
 }
 
 .set-bar-wrapper {
@@ -109,6 +128,10 @@
 .set-desc {
     font-size: 11px;
     line-height: 11px;
+}
+
+.info-bottom {
+    height: 32px;
 }
 
 .rank-wrapper {
@@ -129,8 +152,48 @@
 }
 
 @media (hover: hover) {
+    .mod-info-wrapper {
+        max-height: 250px;
+        transition: all 200ms ease-in-out;
+        overflow: hidden;
+    }
+    .mod-desc p {
+        transition: all 200ms ease-in-out;
+        overflow: hidden;
+        max-height: 0;
+    }
+    .set-desc {
+        transition: all 200ms ease-in-out;
+        overflow: hidden;
+        max-height: 0;
+    }
+    .simple-set-bar-wrapper {
+        overflow: hidden;
+        transition: all 200ms ease-in-out;
+        max-height: 0;
+    }
     .simple-mod:hover {
-        transform: translateZ(0) scale(1.1, 1.1);
         z-index: 3;
+    }
+    .simple-mod:hover .mod-info-wrapper .mod-desc p {
+        max-height: 172px;
+    }
+    .simple-mod:hover .mod-info-wrapper .set-bar-wrapper {
+        max-height: 172px;
+    }
+    .simple-mod:hover .mod-info-wrapper .set-bar-wrapper {
+        max-height: 172px;
+    }
+    .simple-mod:hover .mod-info-wrapper .set-desc {
+        max-height: 172px;
+    }
+    .mod-card-wrapper:hover .mod .mod-info-wrapper .mod-desc p {
+        max-height: 172px;
+    }
+    .mod-card-wrapper:hover .mod .mod-info-wrapper .set-bar-wrapper {
+        max-height: 172px;
+    }
+    .mod-card-wrapper:hover .mod .mod-info-wrapper .set-desc {
+        max-height: 172px;
     }
 }

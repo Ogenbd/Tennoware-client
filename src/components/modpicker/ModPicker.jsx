@@ -10,7 +10,9 @@ export class ModPicker extends Component {
         this.state = {
             // display: this.props.mods,
             search: '',
-            conclave: false
+            conclave: false,
+            aura: false,
+            exilus: false
         }
     }
 
@@ -62,59 +64,94 @@ export class ModPicker extends Component {
     }
 
     filterMods = () => {
-        if (!this.state.conclave) {
-            let results;
-            if (this.state.search.length < 1) {
-                results = this.props.mods.filter(mod => {
-                    return !mod.conclaveOnly;
-                });
-            } else {
-                let desc;
-                let regExp = new RegExp(this.state.search, 'i')
-                results = this.props.mods.filter(mod => {
-                    if (mod.name) {
-                        desc = mod.description();
-                        if (typeof desc === 'string') {
-                            return (mod.name && !mod.conclaveOnly && (mod.name.search(regExp) !== -1 || desc.search(regExp) !== -1 || mod.type.search(regExp) !== -1));
-                        } else {
-                            return (mod.name && !mod.conclaveOnly && (mod.name.search(regExp) !== -1 || desc[0].search(regExp) !== -1 || desc[1].search(regExp) !== -1 || mod.type.search(regExp) !== -1));
-                        }
-                    } else {
-                        return false;
-                    }
-                })
-            }
-            return results;
+        let filteredMods;
+        let initial;
+        if (this.state.conclave) {
+            initial = this.props.mods.filter(mod => {
+                return mod.conclave;
+            });
         } else {
-            let conclaveMods;
-            if (this.state.search.length < 1) {
-                conclaveMods = this.props.mods.filter(mod => {
-                    return mod.conclave;
-                });
-            } else {
-                let desc;
-                let regExp = new RegExp(this.state.search, 'i')
-                conclaveMods = this.props.mods.filter(mod => {
-                    if (mod.name) {
-                        desc = mod.description();
-                        if (typeof desc === 'string') {
-                            return (mod.name && mod.conclave && (mod.name.search(regExp) !== -1 || desc.search(regExp) !== -1 || mod.type.search(regExp) !== -1));
-                        } else {
-                            return (mod.name && mod.conclave && (mod.name.search(regExp) !== -1 || desc[0].search(regExp) !== -1 || desc[1].search(regExp) !== -1 || mod.type.search(regExp) !== -1));
-                        }
-                    } else {
-                        return false;
-                    }
-                })
-            }
-            return conclaveMods;
+            initial = this.props.mods.filter(mod => {
+                return !mod.conclaveOnly;
+            });
         }
+        if (this.state.aura || this.props.forSlot === 'aura') {
+            initial = initial.filter(mod => {
+                return mod.aura;
+            });
+        } else if (this.state.exilus || this.props.forSlot === 'exilus') {
+            initial = initial.filter(mod => {
+                return mod.exilus;
+            });
+        } else if (typeof this.props.forSlot === 'number') {
+            initial = initial.filter(mod => {
+                return !mod.aura;
+            });
+        }
+        this.state.search.length > 0 ? filteredMods = this.filterBySearch(initial) : filteredMods = initial;
+        return filteredMods;
+    }
+
+
+
+    filterBySearch = () => {
+        let desc;
+        let regExp = new RegExp(this.state.search, 'i');
+        let filteredMods = this.props.mods.filter(mod => {
+            if (mod.name) {
+                desc = mod.description();
+                if (typeof desc === 'string') {
+                    return (mod.name && (mod.name.search(regExp) !== -1 || desc.search(regExp) !== -1 || mod.type.search(regExp) !== -1));
+                } else {
+                    return (mod.name && (mod.name.search(regExp) !== -1 || desc[0].search(regExp) !== -1 || desc[1].search(regExp) !== -1 || mod.type.search(regExp) !== -1));
+                }
+            } else {
+                return false;
+            }
+        });
+        return filteredMods
     }
 
     toggleConclave = () => {
-        this.setState(prevState => ({
-            conclave: !prevState.conclave
-        }));
+        if (this.state.conclave) {
+            this.setState({
+                conclave: false
+            })
+        } else {
+            this.setState({
+                conclave: true,
+                aura: false,
+                exilus: false
+            });
+        }
+    }
+
+    toggleAura = () => {
+        if (this.state.aura) {
+            this.setState({
+                aura: false
+            })
+        } else {
+            this.setState({
+                conclave: false,
+                aura: true,
+                exilus: false
+            });
+        }
+    }
+
+    toggleExilus = () => {
+        if (this.state.exilus) {
+            this.setState({
+                exilus: false
+            })
+        } else {
+            this.setState({
+                conclave: false,
+                aura: false,
+                exilus: true
+            });
+        }
     }
 
     render() {
@@ -128,15 +165,21 @@ export class ModPicker extends Component {
                             <div className="popup-x-bar two-bar"></div>
                         </div>
                     }
-                    <div className={"interactable conclave " + (this.state.conclave ? "interactable-active" : "interactable-inactive")} onClick={this.toggleConclave}><div className="conclave-placeholder"></div></div>
+                    <div className={"interactable topbar-filter " + (this.state.conclave ? "interactable-active" : "interactable-inactive")} onClick={this.toggleConclave}><div className="conclave-placeholder"></div></div>
+                    {this.props.viewWidth > 1223 && this.props.type === 'warframe' &&
+                        <div className={"interactable topbar-filter " + (this.state.aura ? "interactable-active" : "interactable-inactive")} onClick={this.toggleAura}><div className="aura-placeholder"></div></div>
+                    }
+                    {this.props.viewWidth > 1223 && this.props.type === 'warframe' &&
+                        <div className={"interactable topbar-filter " + (this.state.exilus ? "interactable-active" : "interactable-inactive")} onClick={this.toggleExilus}><div className="exilus-placeholder"></div></div>
+                    }
                     <div className="search-wrapper mod-list-search-wrapper">
                         <input className="search" type="text" placeholder="Search..." value={this.state.search} onChange={this.handleChange} onKeyUp={this.blurInput} />
                     </div>
                 </div>
                 {/* <CSSTransition classNames="fade" in={true} appear={true} timeout={200}> */}
-                    <div className="popup-content mod-list">
-                        {this.generateModList(display)}
-                    </div>
+                <div className="popup-content mod-list">
+                    {this.generateModList(display)}
+                </div>
                 {/* </CSSTransition> */}
             </div>
         )

@@ -78,6 +78,7 @@
     flex-direction: column;
     align-self: flex-end;
     margin-right: 5px;
+    z-index: 1;
 }
 
 .aug-wrapper {
@@ -178,7 +179,7 @@
     max-width: 640px;
     align-items: center;
     justify-content: center;
-    margin-bottom: 100px;
+    margin-bottom: 10px;
 }
 
 .handler-wrapper {
@@ -202,7 +203,7 @@
 
 .error-flash {
     background: radial-gradient(circle, rgba(255, 0, 0, 0.75) 0%, rgba(255, 0, 0, 0.4) 100%);
-    animation: blinker 0.3s linear 2;
+    animation: blinker 0.3s linear 4;
     z-index: 1022;
 }
 

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { CSSTransition } from "react-transition-group";
+import cloneDeep from 'lodash/cloneDeep';
 import '../rangedweapon/RangedWeaponModding.css'
+import './WarframeModding.css';
 
+import WarframeStats from './WarframeStats';
 import ModStateHandler from '../modstatehandler/ModStateHandler';
 import PolarityPicker from '../polaritypicker/PolarityPicker';
 import LinkGenerator from '../linkgenerator/LinkGenerator';
@@ -19,8 +22,12 @@ export class RangedWeaponModding extends Component {
             forma: false,
             formaCount: 0,
             mods: this.props.mods,
+            auraPolarity: this.props.frame.aura,
+            exilusPolarity: this.props.frame.exilus,
             slotPolarities: this.props.slotPolarities,
             forSlot: null,
+            chosenAuraMod: {},
+            chosenExilusMod: {},
             chosenMods: [{}, {}, {}, {}, {}, {}, {}, {}],
             totalModsCost: 0,
             polarityPicker: false,
@@ -58,82 +65,167 @@ export class RangedWeaponModding extends Component {
     closeModPicker = () => {
         this.setState({
             modPicker: false,
+            forSlot: null,
             errorBlinker: null
         })
         document.body.classList.remove('noscroll');
     }
 
     pickMod = (mod) => {
-        let sameFamilySlot = -1;
-        if (mod.family) {
-            sameFamilySlot = this.state.chosenMods.findIndex(slottedMod => {
-                return mod.family === slottedMod.family;
-            });
-        }
-        if (sameFamilySlot === -1) {
-            let mods = this.state.mods.slice(0);
-            let chosenMods = this.state.chosenMods.slice(0);
+        let mods = cloneDeep(this.state.mods);
+        if (typeof this.state.forSlot === 'number') {
+            let sameFamilySlot = -1;
+            if (mod.family) {
+                sameFamilySlot = this.state.chosenMods.findIndex(slottedMod => {
+                    return mod.family === slottedMod.family;
+                });
+            }
+            if (sameFamilySlot === -1) {
+                let chosenMods = cloneDeep(this.state.chosenMods);
+                mods[mod.index] = {};
+                chosenMods[this.state.forSlot] = mod;
+                let totalModsCost = this.calcCost(chosenMods, this.state.slotPolarities, this.state.chosenAuraMod, this.state.auraPolarity, this.state.chosenExilusMod, this.state.exilusPolarity);
+                let chosenModsSets = this.checkModSets(chosenMods)
+                this.setState({
+                    mods: mods,
+                    chosenMods: chosenModsSets,
+                    forSlot: null,
+                    forSwap: null,
+                    totalModsCost: totalModsCost,
+                    errorBlinker: null
+                });
+            } else {
+                this.setState({
+                    forSlot: null,
+                    errorBlinker: sameFamilySlot
+                });
+            }
+        } else if (this.state.forSlot === 'aura' && mod.aura) {
+            let auraMod = mod;
             mods[mod.index] = {};
-            chosenMods[this.state.forSlot] = mod;
-            let totalModsCost = this.calcCost(chosenMods, this.state.slotPolarities);
-            let chosenModsSets = this.checkModSets(chosenMods)
+            let totalModsCost = this.calcCost(this.state.chosenMods, this.state.slotPolarities, auraMod, this.state.auraPolarity, this.state.chosenExilusMod, this.state.exilusPolarity);
             this.setState({
                 mods: mods,
-                chosenMods: chosenModsSets,
                 forSlot: null,
                 forSwap: null,
                 totalModsCost: totalModsCost,
-                errorBlinker: null
+                errorBlinker: null,
+                chosenAuraMod: auraMod
             });
-        } else {
+        } else if (this.state.forSlot === 'exilus' && mod.exilus) {
+            let exilusMod = mod;
+            mods[mod.index] = {};
+            let totalModsCost = this.calcCost(this.state.chosenMods, this.state.slotPolarities, this.state.chosenAuraMod, this.state.auraPolarity, exilusMod, this.state.exilusPolarity);
             this.setState({
+                mods: mods,
                 forSlot: null,
-                errorBlinker: sameFamilySlot
+                forSwap: null,
+                totalModsCost: totalModsCost,
+                errorBlinker: null,
+                chosenExilusMod: exilusMod
             });
         }
     }
 
     dragInMod = (modIndex, targetSlot) => {
         let mod = this.state.mods[modIndex];
-        let sameFamilySlot = -1;
-        if (mod.family) {
-            sameFamilySlot = this.state.chosenMods.findIndex((slottedMod, index) => {
-                return mod.family === slottedMod.family && index !== targetSlot;
-            });
-        }
-        if (sameFamilySlot === -1) {
-            let mods = this.state.mods.slice(0);
-            let chosenMods = this.state.chosenMods.slice(0);
-            mods[modIndex] = {};
-            if (chosenMods[targetSlot].name) {
-                mods[chosenMods[targetSlot].index] = chosenMods[targetSlot];
+        if (mod.aura || targetSlot === 'aura') {
+            if (mod.aura && targetSlot === 'aura') {
+                let mods = cloneDeep(this.state.mods);
+                if (this.state.chosenAuraMod.name) {
+                    mods[this.state.chosenAuraMod.index] = cloneDeep(this.state.chosenAuraMod);
+                    mods[this.state.chosenAuraMod.index].currRank = mods[this.state.chosenAuraMod.index].maxRank;
+                }
+                mods[mod.index] = {};
+                let totalModsCost = this.calcCost(this.state.chosenMods, this.state.slotPolarities, mod, this.state.auraPolarity, this.state.chosenExilusMod, this.state.exilusPolarity);
+                this.setState({
+                    mods: mods,
+                    chosenAuraMod: mod,
+                    totalModsCost: totalModsCost
+                });
             }
-            chosenMods[targetSlot] = mod;
-            let totalModsCost = this.calcCost(chosenMods, this.state.slotPolarities);
-            let chosenModsSets = this.checkModSets(chosenMods)
-            this.setState({
-                mods: mods,
-                chosenMods: chosenModsSets,
-                forSlot: null,
-                forSwap: null,
-                totalModsCost: totalModsCost,
-                errorBlinker: null
-            });
+        } else if (targetSlot === 'exilus') {
+            if (mod.exilus) {
+                let mods = cloneDeep(this.state.mods);
+                if (this.state.chosenExilusMod.name) {
+                    mods[this.state.chosenExilusMod.index] = cloneDeep(this.state.chosenExilusMod);
+                    mods[this.state.chosenExilusMod.index].currRank = mods[this.state.chosenExilusMod.index].maxRank;
+                }
+                mods[mod.index] = {};
+                let totalModsCost = this.calcCost(this.state.chosenMods, this.state.slotPolarities, this.state.chosenAuraMod, this.state.auraPolarity, mod, this.state.exilusPolarity);
+                this.setState({
+                    mods: mods,
+                    chosenExilusMod: mod,
+                    totalModsCost: totalModsCost
+                });
+            }
         } else {
-            this.setState({
-                forSlot: null,
-                errorBlinker: sameFamilySlot
-            });
+            let sameFamilySlot = -1;
+            if (mod.family) {
+                sameFamilySlot = this.state.chosenMods.findIndex((slottedMod, index) => {
+                    return mod.family === slottedMod.family && index !== targetSlot;
+                });
+            }
+            if (sameFamilySlot === -1) {
+                let mods = cloneDeep(this.state.mods);
+                let chosenMods = cloneDeep(this.state.chosenMods);
+                mods[modIndex] = {};
+                if (chosenMods[targetSlot].name) {
+                    mods[chosenMods[targetSlot].index] = chosenMods[targetSlot];
+                }
+                chosenMods[targetSlot] = mod;
+                let totalModsCost = this.calcCost(chosenMods, this.state.slotPolarities, this.state.chosenAuraMod, this.state.auraPolarity, this.state.chosenExilusMod, this.state.exilusPolarity);
+                let chosenModsSets = this.checkModSets(chosenMods)
+                this.setState({
+                    mods: mods,
+                    chosenMods: chosenModsSets,
+                    forSlot: null,
+                    forSwap: null,
+                    totalModsCost: totalModsCost,
+                    errorBlinker: null
+                });
+            } else {
+                this.setState({
+                    forSlot: null,
+                    errorBlinker: sameFamilySlot
+                });
+            }
         }
     }
 
+    removeAura = () => {
+        let mods = cloneDeep(this.state.mods);
+        mods[this.state.chosenAuraMod.index] = this.state.chosenAuraMod;
+        mods[this.state.chosenAuraMod.index].currRank = mods[this.state.chosenAuraMod.index].maxRank;
+        let auraMod = {}
+        let totalModsCost = this.calcCost(this.state.chosenMods, this.state.slotPolarities, auraMod, this.state.auraPolarity, this.state.chosenExilusMod, this.state.exilusPolarity);
+        this.setState({
+            mods: mods,
+            chosenAuraMod: auraMod,
+            totalModsCost: totalModsCost
+        });
+    }
+
+    removeExilus = () => {
+        let mods = cloneDeep(this.state.mods);
+        mods[this.state.chosenExilusMod.index] = this.state.chosenExilusMod;
+        mods[this.state.chosenExilusMod.index].currRank = mods[this.state.chosenExilusMod.index].maxRank;
+        let exilusMod = {}
+        let totalModsCost = this.calcCost(this.state.chosenMods, this.state.slotPolarities, this.state.chosenAuraMod, this.state.auraPolarity, exilusMod, this.state.exilusPolarity);
+        this.setState({
+            mods: mods,
+            chosenExilusMod: exilusMod,
+            totalModsCost: totalModsCost
+        });
+    }
+
     removeMod = (slot, mod) => {
-        let chosenMods = this.state.chosenMods.slice(0);
-        let mods = this.state.mods.slice(0);
+        let chosenMods = cloneDeep(this.state.chosenMods);
+        let mods = cloneDeep(this.state.mods);
         mods[mod.index] = mod;
         mods[mod.index].currRank = mod.maxRank;
         chosenMods[slot] = {};
-        let totalModsCost = this.calcCost(chosenMods, this.state.slotPolarities);
+        let totalModsCost = this.calcCost(chosenMods, this.state.slotPolarities, this.state.chosenAuraMod, this.state.auraPolarity, this.state.chosenExilusMod, this.state.exilusPolarity);
         let chosenModsSets = this.checkModSets(chosenMods)
         this.setState({
             mods: mods,
@@ -161,30 +253,68 @@ export class RangedWeaponModding extends Component {
     }
 
     handleRankUpdate = (slot, mod) => {
-        let chosenMods = this.state.chosenMods.slice(0);
-        chosenMods[slot].currRank = mod.currRank;
-        let totalModsCost = this.calcCost(chosenMods, this.state.slotPolarities);
-        this.setState({
-            chosenMods: chosenMods,
-            totalModsCost: totalModsCost,
-            errorBlinker: null
-        });
+        if (typeof slot === 'number') {
+            let chosenMods = cloneDeep(this.state.chosenMods);
+            chosenMods[slot].currRank = mod.currRank;
+            let totalModsCost = this.calcCost(chosenMods, this.state.slotPolarities, this.state.chosenAuraMod, this.state.auraPolarity, this.state.chosenExilusMod, this.state.exilusPolarity);
+            this.setState({
+                chosenMods: chosenMods,
+                totalModsCost: totalModsCost,
+                errorBlinker: null
+            });
+        } else if (slot === 'aura') {
+            let chosenMod = cloneDeep(this.state.chosenAuraMod);
+            chosenMod.currRank = mod.currRank;
+            let totalModsCost = this.calcCost(this.state.chosenMods, this.state.slotPolarities, chosenMod, this.state.auraPolarity, this.state.chosenExilusMod, this.state.exilusPolarity);
+            this.setState({
+                chosenAuraMod: chosenMod,
+                totalModsCost: totalModsCost,
+                errorBlinker: null
+            });
+        } else if (slot === 'exilus') {
+            let chosenMod = cloneDeep(this.state.chosenExilusMod);
+            chosenMod.currRank = mod.currRank;
+            let totalModsCost = this.calcCost(this.state.chosenMods, this.state.slotPolarities, this.state.chosenAuraMod, this.state.auraPolarity, chosenMod, this.state.exilusPolarity);
+            this.setState({
+                chosenAuraMod: chosenMod,
+                totalModsCost: totalModsCost,
+                errorBlinker: null
+            });
+        }
     }
 
-    calcCost = (newMods, slotPolarities) => {
+    calcCost = (newMods, slotPolarities, auraMod, auraPolarity, exilusMod, exilusPolarity) => {
         let modsCostSum = 0;
+        if (auraMod.name) {
+            if (!auraPolarity) {
+                modsCostSum += auraMod.baseCost - auraMod.currRank;
+            } else if (auraMod.polarity === auraPolarity) {
+                modsCostSum -= (auraMod.baseCost + auraMod.currRank) * 2;
+            } else {
+                modsCostSum -= Math.round((auraMod.baseCost + auraMod.currRank) * 0.725);
+            }
+        }
+        if (exilusMod.name) {
+            let modCost = this.calcModCost(exilusMod, exilusPolarity)
+            modsCostSum += modCost;
+        }
         newMods.forEach((mod, index) => {
             if (mod.name) {
-                if (!slotPolarities[index]) {
-                    modsCostSum += mod.currRank + mod.baseCost;
-                } else if (mod.polarity === slotPolarities[index]) {
-                    modsCostSum += Math.ceil((mod.currRank + mod.baseCost) / 2);
-                } else {
-                    modsCostSum += Math.floor((mod.currRank + mod.baseCost) * 1.25);
-                }
+                let modCost = this.calcModCost(mod, slotPolarities[index]);
+                modsCostSum += modCost;
             }
         });
         return modsCostSum;
+    }
+
+    calcModCost = (mod, polarity) => {
+        if (!polarity) {
+            return mod.currRank + mod.baseCost;
+        } else if (mod.polarity === polarity) {
+            return Math.ceil((mod.currRank + mod.baseCost) / 2);
+        } else {
+            return Math.round((mod.currRank + mod.baseCost) * 1.25);
+        }
     }
 
     showPolarityPicker = (slot) => {
@@ -194,7 +324,53 @@ export class RangedWeaponModding extends Component {
         });
     }
 
-    countForma = (slotPolarities) => {
+    hidePolarityPicker = () => {
+        this.setState({
+            forSlot: null,
+            polarityPicker: false
+        });
+        document.body.classList.remove('noscroll');
+    }
+
+    polarizeSlot = (polarity) => {
+        if (typeof this.state.forSlot === 'number') {
+            let slotPolarities = cloneDeep(this.state.slotPolarities);
+            slotPolarities[this.state.forSlot] = polarity;
+            let totalModsCost = this.calcCost(this.state.chosenMods, slotPolarities, this.state.chosenAuraMod, this.state.auraPolarity, this.state.chosenExilusMod, this.state.exilusPolarity);
+            let formaCount = this.countForma(slotPolarities, this.state.auraPolarity, this.state.exilusPolarity);
+            this.setState({
+                slotPolarities: slotPolarities,
+                totalModsCost: totalModsCost,
+                formaCount: formaCount,
+                forSlot: null,
+                polarityPicker: false
+            });
+        } else if (this.state.forSlot === 'aura') {
+            let totalModsCost = this.calcCost(this.state.chosenMods, this.state.slotPolarities, this.state.chosenAuraMod, polarity, this.state.chosenExilusMod, this.state.exilusPolarity);
+            let formaCount = this.countForma(this.state.slotPolarities, polarity, this.state.exilusPolarity);
+            this.setState({
+                auraPolarity: polarity,
+                totalModsCost: totalModsCost,
+                formaCount: formaCount,
+                forSlot: null,
+                polarityPicker: false
+            });
+        } else if (this.state.forSlot === 'exilus') {
+            let totalModsCost = this.calcCost(this.state.chosenMods, this.state.slotPolarities, this.state.chosenAuraMod, this.state.auraPolarity, this.state.chosenExilusMod, polarity);
+            let formaCount = this.countForma(this.state.slotPolarities, this.state.auraPolarity, polarity);
+            this.setState({
+                exilusPolarity: polarity,
+                totalModsCost: totalModsCost,
+                formaCount: formaCount,
+                forSlot: null,
+                polarityPicker: false
+            });
+        }
+        document.body.classList.remove('noscroll');
+    }
+
+
+    countForma = (slotPolarities, auraPolarity, exilusPolarity) => {
         let formaCount = 0;
         let currPolarityCount = { madurai: 0, naramon: 0, vazarin: 0, zenurik: 0, unairu: 0, penjaga: 0, umbra: 0 };
         slotPolarities.forEach(slot => {
@@ -216,12 +392,24 @@ export class RangedWeaponModding extends Component {
         } else {
             formaCount = missing;
         }
+        if (auraPolarity !== this.props.frame.aura) formaCount++
+        if (exilusPolarity !== this.props.frame.exilus) formaCount++
         return formaCount
     }
 
     dragStart = (e, slot) => {
-        if (this.state.chosenMods[slot].name) {
-            e.dataTransfer.setData('payload', JSON.stringify({ from: 'stack', index: slot }));
+        if (typeof slot === 'number') {
+            if (this.state.chosenMods[slot].name) {
+                e.dataTransfer.setData('payload', JSON.stringify({ from: 'stack', index: slot }));
+            }
+        } else if (slot === 'aura') {
+            if (this.state.chosenAuraMod.name) {
+                e.dataTransfer.setData('payload', JSON.stringify({ from: 'stack', index: slot }));
+            }
+        } else if (slot === 'exilus') {
+            if (this.state.chosenExilusMod.name) {
+                e.dataTransfer.setData('payload', JSON.stringify({ from: 'stack', index: slot }));
+            }
         }
     }
 
@@ -239,16 +427,53 @@ export class RangedWeaponModding extends Component {
     }
 
     swapMods = (startSlot, targetSlot) => {
-        let mods = this.state.chosenMods.slice(0);
-        let temp = this.state.chosenMods[startSlot];
-        mods[startSlot] = mods[targetSlot];
-        mods[targetSlot] = temp;
-        let totalModsCost = this.calcCost(mods, this.state.slotPolarities);
-        this.setState({
-            chosenMods: mods,
-            totalModsCost: totalModsCost,
-            forSwap: null,
-        });
+        if (startSlot !== targetSlot && startSlot !== 'aura' && targetSlot !== 'aura') {
+            if (typeof startSlot === 'number' && typeof targetSlot === 'number') {
+                let mods = cloneDeep(this.state.chosenMods);
+                let temp = this.state.chosenMods[startSlot];
+                mods[startSlot] = mods[targetSlot];
+                mods[targetSlot] = temp;
+                let totalModsCost = this.calcCost(mods, this.state.slotPolarities, this.state.chosenAuraMod, this.state.auraPolarity, this.state.chosenExilusMod, this.state.exilusPolarity);
+                this.setState({
+                    chosenMods: mods,
+                    totalModsCost: totalModsCost,
+                    forSwap: null,
+                });
+            } else if ((targetSlot === 'exilus') && this.state.chosenMods[startSlot].exilus) {
+                let mods = cloneDeep(this.state.chosenMods);
+                let temp = this.state.chosenMods[startSlot];
+                let exilus = cloneDeep(this.state.chosenExilusMod);
+                mods[startSlot] = exilus;
+                exilus = temp;
+                let totalModsCost = this.calcCost(mods, this.state.slotPolarities, this.state.chosenAuraMod, this.state.auraPolarity, exilus, this.state.exilusPolarity);
+                this.setState({
+                    chosenMods: mods,
+                    chosenExilusMod: exilus,
+                    totalModsCost: totalModsCost,
+                    forSwap: null,
+                });
+            } else if (startSlot === 'exilus' && (this.state.chosenMods[targetSlot].exilus || !this.state.chosenMods[targetSlot].name)) {
+                let mods = cloneDeep(this.state.chosenMods);
+                let temp = this.state.chosenExilusMod;
+                let exilus = this.state.chosenMods[targetSlot];
+                mods[targetSlot] = temp;
+                let totalModsCost = this.calcCost(mods, this.state.slotPolarities, this.state.chosenAuraMod, this.state.auraPolarity, exilus, this.state.exilusPolarity);
+                this.setState({
+                    chosenMods: mods,
+                    chosenExilusMod: exilus,
+                    totalModsCost: totalModsCost,
+                    forSwap: null,
+                });
+            } else {
+                this.setState({
+                    forSwap: null
+                });
+            }
+        } else {
+            this.setState({
+                forSwap: null
+            });
+        }
     }
 
 
@@ -272,20 +497,22 @@ export class RangedWeaponModding extends Component {
         } else if (this.state.forSwap !== null) {
             return (
                 <div className="message-wrapper always-on">
-                    <p className="display-message">Choose a mod slot to swap with {this.state.chosenMods[this.state.forSwap].name}.</p>
+                    {this.state.forSwap !== 'exilus'
+                        ? <p className="display-message">Choose a mod slot to swap with {this.state.chosenMods[this.state.forSwap].name}.</p>
+                        : <p className="display-message">Choose a mod slot to swap with {this.state.chosenExilusMod.name}.</p>
+                    }
                 </div>
             )
         }
     }
 
     render() {
-        console.log(this.props);
         let onLine = navigator.onLine;
-        const { mods, chosenMods, modPicker, reactor, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSwap, polarityPicker } = this.state
+        const { mods, chosenAuraMod, auraPolarity, chosenExilusMod, exilusPolarity, chosenMods, modPicker, reactor, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSlot, forSwap, polarityPicker } = this.state
         return (
             <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
                 <div className="ranged-modding">
-                    <ModPicker mods={mods} chosenMods={chosenMods} active={modPicker} closeModPicker={this.closeModPicker} pickMod={this.pickMod} viewWidth={this.props.viewWidth} drop={this.drop} />
+                    <ModPicker type={'warframe'} mods={mods} chosenMods={chosenMods} active={modPicker} closeModPicker={this.closeModPicker} pickMod={this.pickMod} viewWidth={this.props.viewWidth} drop={this.drop} forSlot={forSlot} />
                     <div className="mod-stack">
                         <div className="interactable-wrapper">
                             {onLine &&
@@ -305,7 +532,7 @@ export class RangedWeaponModding extends Component {
                             <div className="interactable interactable-semi-inactive"><p className="interactable-p">Report</p></div>
                         } */}
                         </div>
-                        <div className="aug-container">
+                        <div className="aug-container frame-aug-container">
                             <div className="aug-wrapper">
                                 <div className="aug-info">
                                     <p className="aug-info-title">Capacity</p>
@@ -334,12 +561,12 @@ export class RangedWeaponModding extends Component {
                         </div>
                         <div className="slots-wrapper">
                             <div className="special-slots">
-                                <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 0) }} onDragOver={this.dragOver} onDrop={(e) => { this.drop(e, 0) }} >
-                                    <ModStateHandler mod={chosenMods[0]} slot={0} slotPolarity={slotPolarities[0]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
+                                <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 'aura') }} onDragOver={this.dragOver} onDrop={(e) => { this.drop(e, 'aura') }} >
+                                    <ModStateHandler mod={chosenAuraMod} slot={'aura'} slotPolarity={auraPolarity} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeAura} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
                                     <div className={"error-blinker " + ((errorBlinker === 0) ? 'error-flash' : '')}></div>
                                 </div>
-                                <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 0) }} onDragOver={this.dragOver} onDrop={(e) => { this.drop(e, 0) }} >
-                                    <ModStateHandler mod={chosenMods[0]} slot={0} slotPolarity={slotPolarities[0]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
+                                <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 'exilus') }} onDragOver={this.dragOver} onDrop={(e) => { this.drop(e, 'exilus') }} >
+                                    <ModStateHandler mod={chosenExilusMod} slot={'exilus'} slotPolarity={exilusPolarity} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeExilus} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
                                     <div className={"error-blinker " + ((errorBlinker === 0) ? 'error-flash' : '')}></div>
                                 </div>
                             </div>
@@ -380,6 +607,7 @@ export class RangedWeaponModding extends Component {
                         </div>
                         {this.displayMessage()}
                     </div>
+                    <WarframeStats frame={this.props.frame} mods={this.state.chosenMods} viewWidth={this.props.viewWidth} />
                     <PolarityPicker polarityPicker={polarityPicker} polarizeSlot={this.polarizeSlot} hidePolarityPicker={this.hidePolarityPicker} />
                 </div>
             </CSSTransition>

@@ -311,7 +311,7 @@
         background-color: rgba(0, 0, 0, 0.9);
         left: 0;
         top: 0;
-        z-index: 5051;
+        z-index: 9091;
     }
     .popup-active {
         transform: translateY(0);
@@ -324,6 +324,7 @@
         opacity: 0;
     }
     .popup-topbar {
+        z-index: 9091;
         display: flex;
         align-items: center;
         width: 100vw;
@@ -331,6 +332,7 @@
         background-color: rgba(0, 0, 0, 0.8);
     }
     .popup-x {
+        z-index: 9092;
         padding: 20px 32px 24px 24px;
         cursor: pointer;
     }

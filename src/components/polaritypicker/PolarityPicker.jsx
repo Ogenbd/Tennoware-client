@@ -61,6 +61,11 @@ export class PolarityPicker extends Component {
                             <div className="hexagon" onClick={(e) => { this.polarizeSlot(e, undefined) }}>
                                 <span></span>
                             </div>
+                            {/* <div className="hexagon">
+                                <div className="hex-wrapper">
+                                    <div className="hex-border bg-image"></div>
+                                </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

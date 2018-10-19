@@ -53,18 +53,25 @@ export class SimpleModCardGenerator extends Component {
         return (
             <div draggable={viewWidth >= 1223} className="mod simple-mod" style={fontColor}>
                 <img className="mod-image" src={mod.img} alt="" />
+                {mod.aura &&
+                    <img className="aura-topper" src={require('../../assets/auratopper.png')} alt="" />
+                }
+                {mod.exilus &&
+                    <img className="exilus-mod-icon" src={require(`../../assets/exilus${mod.rarity}.png`)} alt="" />
+                }
                 <div className="mod-info-wrapper">
                     <div className="mod-name"><p>{mod.name}</p></div>
                     {mod.set
                         ? <div className="mod-desc">
                             <p>{description[0]}</p>
-                            <div className="set-bar-wrapper">
+                            <div className="set-bar-wrapper simple-set-bar-wrapper">
                                 {this.generateSetBar(fontColor.color)}
                             </div>
                             <p className="set-desc">{description[1]}</p>
                         </div>
                         : <div className="mod-desc"><p>{description}</p></div>
                     }
+                    <div className="info-bottom"></div>
                 </div>
                 <img src={require(`../../assets/${mod.rarity}.png`)} alt={''} className={"rarity " + (mod.rarity === 'riven' ? "riven-border" : "")} />
                 <div className="polarity-wrapper">

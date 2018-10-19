@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { CSSTransition } from "react-transition-group";
+import cloneDeep from 'lodash/cloneDeep';
 import './RangedWeaponModding.css'
 
 import RangedWeaponStats from './RangedWeaponStats';
@@ -153,7 +154,7 @@ export class RangedWeaponModding extends Component {
     }
 
     createPreMods = (modsStr) => {
-        let mods = this.props.mods.slice(0)
+        let mods = cloneDeep(this.props.mods);
         let chosenMods = [];
         let modsArr = modsStr.match(/.{1,4}/g);
         modsArr.forEach(modAbrev => {
@@ -250,8 +251,8 @@ export class RangedWeaponModding extends Component {
             });
         }
         if (sameFamilySlot === -1) {
-            let mods = this.state.mods.slice(0);
-            let chosenMods = this.state.chosenMods.slice(0);
+            let mods = cloneDeep(this.state.mods);
+            let chosenMods = cloneDeep(this.state.chosenMods);
             mods[mod.index] = {};
             chosenMods[this.state.forSlot] = mod;
             let totalModsCost = this.calcCost(chosenMods, this.state.slotPolarities);
@@ -277,7 +278,7 @@ export class RangedWeaponModding extends Component {
             return mod.name === 'Riven Mod';
         });
         if (findRivenInChosenMods !== -1) {
-            let chosenMods = this.state.chosenMods.slice(0);
+            let chosenMods = cloneDeep(this.state.chosenMods);
             for (let key in rivenUpdate) {
                 chosenMods[findRivenInChosenMods][key] = rivenUpdate[key];
             }
@@ -291,7 +292,7 @@ export class RangedWeaponModding extends Component {
             let findRivenInMods = this.state.mods.findIndex(mod => {
                 return mod.name === 'Riven Mod';
             });
-            let mods = this.state.mods.slice(0);
+            let mods = cloneDeep(this.state.mods);
             for (let key in rivenUpdate) {
                 mods[findRivenInMods][key] = rivenUpdate[key];
             }
@@ -312,8 +313,8 @@ export class RangedWeaponModding extends Component {
             });
         }
         if (sameFamilySlot === -1) {
-            let mods = this.state.mods.slice(0);
-            let chosenMods = this.state.chosenMods.slice(0);
+            let mods = cloneDeep(this.state.mods);
+            let chosenMods = cloneDeep(this.state.chosenMods);
             mods[modIndex] = {};
             if (chosenMods[targetSlot].name) {
                 mods[chosenMods[targetSlot].index] = chosenMods[targetSlot];
@@ -321,6 +322,7 @@ export class RangedWeaponModding extends Component {
             chosenMods[targetSlot] = mod;
             let totalModsCost = this.calcCost(chosenMods, this.state.slotPolarities);
             let chosenModsSets = this.checkModSets(chosenMods)
+
             this.setState({
                 mods: mods,
                 chosenMods: chosenModsSets,
@@ -338,8 +340,8 @@ export class RangedWeaponModding extends Component {
     }
 
     removeMod = (slot, mod) => {
-        let chosenMods = this.state.chosenMods.slice(0);
-        let mods = this.state.mods.slice(0);
+        let chosenMods = cloneDeep(this.state.chosenMods);
+        let mods = cloneDeep(this.state.mods);
         mods[mod.index] = mod;
         mods[mod.index].currRank = mod.maxRank;
         chosenMods[slot] = {};
@@ -371,7 +373,7 @@ export class RangedWeaponModding extends Component {
     }
 
     handleRankUpdate = (slot, mod) => {
-        let chosenMods = this.state.chosenMods.slice(0);
+        let chosenMods = cloneDeep(this.state.chosenMods);
         chosenMods[slot].currRank = mod.currRank;
         let totalModsCost = this.calcCost(chosenMods, this.state.slotPolarities);
         this.setState({
@@ -390,7 +392,7 @@ export class RangedWeaponModding extends Component {
                 } else if (mod.polarity === slotPolarities[index]) {
                     modsCostSum += Math.ceil((mod.currRank + mod.baseCost) / 2);
                 } else {
-                    modsCostSum += Math.floor((mod.currRank + mod.baseCost) * 1.25);
+                    modsCostSum += Math.round((mod.currRank + mod.baseCost) * 1.25);
                 }
             }
         });
@@ -404,8 +406,16 @@ export class RangedWeaponModding extends Component {
         });
     }
 
+    hidePolarityPicker = () => {
+        this.setState({
+            forSlot: null,
+            polarityPicker: false
+        });
+        document.body.classList.remove('noscroll');
+    }
+
     polarizeSlot = (polarity) => {
-        let slotPolarities = this.state.slotPolarities.slice(0);
+        let slotPolarities = cloneDeep(this.state.slotPolarities);
         slotPolarities[this.state.forSlot] = polarity;
         let totalModsCost = this.calcCost(this.state.chosenMods, slotPolarities);
         let formaCount = this.countForma(slotPolarities);
@@ -419,13 +429,6 @@ export class RangedWeaponModding extends Component {
         document.body.classList.remove('noscroll');
     }
 
-    hidePolarityPicker = () => {
-        this.setState({
-            forSlot: null,
-            polarityPicker: false
-        });
-        document.body.classList.remove('noscroll');
-    }
 
     countForma = (slotPolarities) => {
         let formaCount = 0;
@@ -472,16 +475,18 @@ export class RangedWeaponModding extends Component {
     }
 
     swapMods = (startSlot, targetSlot) => {
-        let mods = this.state.chosenMods.slice(0);
-        let temp = this.state.chosenMods[startSlot];
-        mods[startSlot] = mods[targetSlot];
-        mods[targetSlot] = temp;
-        let totalModsCost = this.calcCost(mods, this.state.slotPolarities);
-        this.setState({
-            chosenMods: mods,
-            totalModsCost: totalModsCost,
-            forSwap: null,
-        });
+        if (startSlot !== targetSlot) {
+            let mods = cloneDeep(this.state.chosenMods);
+            let temp = this.state.chosenMods[startSlot];
+            mods[startSlot] = mods[targetSlot];
+            mods[targetSlot] = temp;
+            let totalModsCost = this.calcCost(mods, this.state.slotPolarities);
+            this.setState({
+                chosenMods: mods,
+                totalModsCost: totalModsCost,
+                forSwap: null,
+            });
+        }
     }
 
 
@@ -539,10 +544,12 @@ export class RangedWeaponModding extends Component {
                         </div>
                         <div className="aug-container">
                             <div className="aug-wrapper">
-                                <div className="aug-info">
-                                    <p className="aug-info-title riven-title">Disposition</p>
-                                    <p className="aug-info-content">{this.props.weapon.disposition}/5</p>
-                                </div>
+                                {!this.props.weapon.exalted &&
+                                    <div className="aug-info">
+                                        <p className="aug-info-title riven-title">Disposition</p>
+                                        <p className="aug-info-content">{this.props.weapon.disposition}/5</p>
+                                    </div>
+                                }
                                 <div className="aug-info">
                                     <p className="aug-info-title">Capacity</p>
                                     {catalyst
@@ -556,7 +563,9 @@ export class RangedWeaponModding extends Component {
                                 </div>
                             </div>
                             <div className="aug-wrapper">
-                                <RangedRivenEditor viewWidth={this.props.viewWidth} chosenMods={chosenMods} handleRiven={this.handleRiven} buildStr={this.props.metaInfo.BuildStr} transPolarity={this.transPolarity} />
+                                {!this.props.weapon.exalted &&
+                                    <RangedRivenEditor viewWidth={this.props.viewWidth} chosenMods={chosenMods} handleRiven={this.handleRiven} buildStr={this.props.metaInfo.BuildStr} transPolarity={this.transPolarity} />
+                                }
                                 <div className={"interactable " + (catalyst ? "interactable-active" : "interactable-inactive")} onClick={this.toggleCatalyst}>
                                     {catalyst
                                         ? <img className="aug-image catalyst" src={require('../../assets/catalyst.png')} alt={'Remove Catalyst'} />

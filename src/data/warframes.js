@@ -104,7 +104,7 @@ const warframes = [
         mastery: 0,
         polarities: ['madurai', 'madurai'],
         aura: 'madurai',
-        exilus: '',
+        exilus: undefined,
         health: 450,
         shield: 300,
         armor: 65,

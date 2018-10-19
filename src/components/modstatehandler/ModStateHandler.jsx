@@ -18,7 +18,7 @@ export class ModStateHandler extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     // if (nextProps.mod.name !== prevState.mod.name || (nextProps.mod.name === 'Riven Mod' && nextProps.mod.currRank === prevState.mod.currRank && nextProps.mod.effects !== prevState.mod.effects)) {
-    if (nextProps.mod.name !== prevState.mod.name || (nextProps.mod.name === 'Riven Mod' && nextProps.mod.currRank === prevState.mod.currRank)) {
+    if (nextProps.mod.name !== prevState.mod.name || ((nextProps.mod.set || prevState.mod.set) && nextProps.mod.set.setCurr !== prevState.mod.set.setCurr) || (nextProps.mod.name === 'Riven Mod' && nextProps.mod.currRank === prevState.mod.currRank)) {
       return { mod: nextProps.mod };
     } else {
       return null;
@@ -150,7 +150,9 @@ export class ModStateHandler extends Component {
         <div className={"handler-background " + (this.state.handlerActive ? "handler-active" : "handler-inactive")} onClick={this.closeHandler}></div>
         <div className={"handler-top-buttons " + (this.state.handlerActive ? "handler-active" : "handler-inactive")} style={this.state.topButtons}>
           <div className="interactable interactable-semi-inactive handler-remove" onClick={this.removeMod}><p className="interactable-p">Remove</p></div>
-          <div className="interactable interactable-semi-inactive handler-swap" onClick={this.startSwap}><p className="interactable-p">Swap</p></div>
+          {!this.props.mod.aura &&
+            <div className="interactable interactable-semi-inactive handler-swap" onClick={this.startSwap}><p className="interactable-p">Swap</p></div>
+          }
         </div>
         <div className={"handler-bottom-buttons " + (this.state.handlerActive ? "handler-active" : "handler-inactive")} style={this.state.bottomButtons}>
           <div className="bottom-button-wrapper">
@@ -171,7 +173,13 @@ export class ModStateHandler extends Component {
             <div className="interactable interactable-semi-inactive handler-done" onClick={this.closeHandler}><p className="interactable-p">Done</p></div>
           </div>
         </div>
-        <div className="empty-slot" draggable="false" style={this.props.forma ? {cursor: 'pointer'} : {}}>
+        <div className="empty-slot" draggable="false" style={this.props.forma ? { cursor: 'pointer' } : {}}>
+          {this.props.slot === 'aura' && !this.props.mod.name &&
+            <img className="top-type" src={require(`../../assets/aura.png`)} alt='' />
+          }
+          {this.props.slot === 'exilus' && !this.props.mod.name &&
+            <img className="top-type" src={require(`../../assets/exilusblack.png`)} alt='' />
+          }
           {this.props.slotPolarity && !this.props.mod.name &&
             <img className="slot-polarity" src={require(`../../assets/${this.props.slotPolarity}black.png`)} alt='' />
           }
@@ -185,10 +193,6 @@ export class ModStateHandler extends Component {
                 <div className="hover-button up-rank-button" onClick={this.incRank}>+</div>
                 <div className="hover-button down-rank-button" onClick={this.decRank}>–</div>
                 <div className="hover-button min-rank-button" onClick={this.minRank}>➤</div>
-                {/* <div className="hover-button max-rank-button" onClick={this.maxRank}>➤</div>
-                <div className="hover-button up-rank-button" onClick={this.incRank}>+</div>
-                <div className="hover-button down-rank-button" onClick={this.decRank}>-</div>
-                <div className="hover-button min-rank-button" onClick={this.minRank}>➤</div> */}
               </div>
             }
           </div>

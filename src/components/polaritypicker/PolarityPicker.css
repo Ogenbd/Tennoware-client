@@ -30,10 +30,8 @@
 .hex-polarity {
     position: relative;
     width: 28px;
-    /* left: 6px; */
     top: -8px;
     padding: 6px;
-    /* box-sizing: border-box; */
     transition: all 0.2s;
 }
 
@@ -53,14 +51,12 @@
     content: "";
     position: absolute;
     z-index: 1;
-    /* width: 29px; */
     width: 28.28px;
     height: 28.28px;
     -webkit-transform: scaleY(0.5774) rotate(-45deg);
     -ms-transform: scaleY(0.5774) rotate(-45deg);
     transform: scaleY(0.5774) rotate(-45deg);
     background-color: inherit;
-    /* left: 5.8579px; */
     left: 6px;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
     transition: all 0.3s;
@@ -94,6 +90,60 @@
     opacity: 0;
     pointer-events: none;
 }
+
+/* .bg-image {
+    background-image: url('../../assets/maduraiprime.png');
+    background-size: contain;
+}
+
+.hexagon {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    width: 60px;
+    height: 50.4px;
+    margin: 0 auto;
+    transform: rotate(240deg);
+}
+
+.hex-wrapper {
+    position: absolute;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    transform: rotate(60deg);
+}
+
+.hex-border {
+    position: absolute;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 10px 1px rgba(255, 244, 190, 0.8) inset;
+    transform: rotate(60deg);
+}
+
+.hex-border:before {
+    content: "\0020";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 10px 1px rgba(255, 244, 190, 0.8) inset;
+    transform: rotate(60deg);
+}
+
+.hex-border:after {
+    content: "\0020";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 10px 1px rgba(255, 244, 190, 0.8) inset;
+    transform: rotate(120deg);
+} */
 
 @media screen and (max-width: 1222px) {
     /* .polarity-picker-window {

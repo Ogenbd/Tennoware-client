@@ -430,7 +430,6 @@ export class RangedWeaponStats extends Component {
     }
 
     render() {
-        console.log('render');
         const { weapon } = this.props;
         const { mode, effects, zoom } = this.state;
         const critChance = this.calcCritChance();
