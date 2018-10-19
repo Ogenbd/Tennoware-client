@@ -19,8 +19,7 @@
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.8);
     cursor: default;
-    z-index: 1020;
-    transition: opacity 0.1s;
+    transition: opacity 200ms;
 }
 
 .handler-top-buttons {
@@ -30,7 +29,6 @@
     align-items: center;
     margin-left: -97.5px;
     width: 195px;
-    z-index: 1021;
     height: 48px;
     transition: opacity 0.1s
 }
@@ -43,7 +41,6 @@
     align-items: center;
     margin-left: -97.5px;
     width: 195px;
-    z-index: 1021;
     height: 90px;
     transition: opacity 0.1s
 }
@@ -142,16 +139,11 @@
 .mod-card-wrapper {
     position: absolute;
     cursor: pointer;
-    z-index: 16;
-    /* transform: translateZ(0) translate(0, 0); */
-    transition: transform 0.2s, z-index 0.05s step-end;
+    transition: transform 200ms ease-in-out;
     -webkit-tap-highlight-color: transparent;
 }
 
 .empty-slot {
-    /* display: flex; */
-    /* align-items: flex-start; */
-    /* justify-content: center; */
     position: absolute;
     top: 5px;
     width: 140px;
@@ -161,8 +153,8 @@
     border-bottom-right-radius: 10%;
     font-family: 'Roboto Condensed', sans-serif;
     background-color: rgba(255, 255, 255, 0.85);
-    transition: all 0.2s;
-    /* z-index: 15; */
+    transition: all 200ms;
+    z-index: 0;
 }
 
 .slot-polarity {
@@ -226,6 +218,7 @@
 .handler-active {
     opacity: 1;
     pointer-events: auto;
+    z-index: 9089;
 }
 
 .handler-inactive {

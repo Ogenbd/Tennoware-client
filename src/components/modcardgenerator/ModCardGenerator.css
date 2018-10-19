@@ -14,7 +14,6 @@
     transition: all 200ms ease-in-out;
     cursor: pointer;
     margin: 1px;
-    z-index: 2;
 }
 
 .rarity {
@@ -173,7 +172,6 @@
         max-height: 0;
     }
     .simple-mod:hover {
-        z-index: 3;
     }
     .simple-mod:hover .mod-info-wrapper .mod-desc p {
         max-height: 172px;

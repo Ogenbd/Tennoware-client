@@ -33,7 +33,6 @@
     position: fixed;
     top: 56px;
     /* opacity: 1 !important; */
-    z-index: 1010;
 }
 
 .item-picker-search {

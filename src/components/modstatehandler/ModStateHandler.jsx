@@ -64,7 +64,7 @@ export class ModStateHandler extends Component {
         element = element.offsetParent;
       }
       style.transform = `translate(${viewWidth / 2 - xPosition - 75}px,${viewHeight / 2 + yCenter - yPosition - 109.775}px) scale(1.3,1.3)`;
-      style.zIndex = 1022;
+      style.zIndex = '9091';
       topButtons.top = `${viewHeight / 2 + yCenter - yPosition - 190}px`;
       topButtons.left = `${viewWidth / 2 - xPosition}px`;
       bottomButtons.top = `${viewHeight / 2 + yCenter - yPosition + 141}px`;
@@ -74,8 +74,16 @@ export class ModStateHandler extends Component {
         cardStyle: style,
         topButtons: topButtons,
         bottomButtons: bottomButtons
-      })
+      });
     }
+  }
+
+  backToBackground = () => {
+    setTimeout(() => {
+      this.setState({
+        cardStyle: { transform: 'translate(0,0)', zIndex: '1' }
+      });
+    }, 200);
   }
 
   closeHandler = (e) => {
@@ -83,8 +91,8 @@ export class ModStateHandler extends Component {
     document.body.classList.remove('noscroll');
     this.setState({
       handlerActive: false,
-      cardStyle: { transform: 'translate(0,0)' }
-    });
+      cardStyle: { transform: 'translate(0,0)', zIndex: '9091' }
+    }, this.backToBackground);
   }
 
   decRank = (e) => {
@@ -185,7 +193,8 @@ export class ModStateHandler extends Component {
           }
         </div>
         {this.props.mod.name &&
-          <div draggable className="mod-card-wrapper" style={this.state.handlerActive ? this.state.cardStyle : {}}>
+          // <div draggable className="mod-card-wrapper" style={this.state.handlerActive ? this.state.cardStyle : {}}>
+          <div draggable className="mod-card-wrapper" style={this.state.cardStyle}>
             <ModCardGenerator mod={this.state.mod} slotPolarity={this.props.slotPolarity} handlerActive={this.state.showHandler} />
             {this.props.mod.name && this.props.viewWidth >= 1223 &&
               <div draggable="false" className="hover-buttons">

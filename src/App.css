@@ -6,14 +6,6 @@
     height: 100%;
 }
 
-.loading-gif {
-    position: absolute;
-    top: calc(50% - 37.5px);
-    left: calc(50% + 46px);
-    width: 100px;
-    z-index: 8081;
-}
-
 .topbar {
     display: flex;
     position: fixed;
@@ -22,11 +14,10 @@
     height: 56px;
     min-height: 56px;
     background-color: #fefefe;
-    /* padding: 0 16px; */
     box-shadow: 0px 2px 1px 0px rgba(140, 140, 140, 0.1);
-    /* z-index: 2020; */
     font-weight: 600;
     font-size: 18px;
+    z-index: 7079;
 }
 
 .top-left {
@@ -157,9 +148,7 @@
 } */
 
 @media screen and (min-width: 1223px) {
-    .topbar {
-        z-index: 2020;
-    }
+
 }
 
 @media screen and (max-width: 1222px) {

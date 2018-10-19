@@ -40,7 +40,6 @@
     box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.4);
     pointer-events: none;
     opacity: 0;
-    z-index: 1019;
 }
 
 .always-on {
@@ -78,7 +77,6 @@
     flex-direction: column;
     align-self: flex-end;
     margin-right: 5px;
-    z-index: 1;
 }
 
 .aug-wrapper {
@@ -204,7 +202,6 @@
 .error-flash {
     background: radial-gradient(circle, rgba(255, 0, 0, 0.75) 0%, rgba(255, 0, 0, 0.4) 100%);
     animation: blinker 0.3s linear 4;
-    z-index: 1022;
 }
 
 @keyframes blinker {

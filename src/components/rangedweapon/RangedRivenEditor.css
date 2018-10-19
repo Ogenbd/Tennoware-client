@@ -281,7 +281,6 @@
         background-color: #373737;
         opacity: 0;
         pointer-events: none;
-        /* z-index: 5052; */
     }
     .soft-input-wrapper:focus-within {
         opacity: 1;
