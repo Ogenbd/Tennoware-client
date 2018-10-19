@@ -198,10 +198,10 @@
     top: 0;
     left: 0;
     width: 23px;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: rgba(255, 244, 190, 0.4);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: rgba(255, 244, 190, 0.7);
     border: solid 1px;
-    border-color: rgba(255, 249, 160, 0.3);
+    border-color: rgba(255, 249, 160, 0.6);
     border-radius: 5px;
     text-align: center;
     line-height: 22px;
@@ -244,8 +244,8 @@
     }
     .hover-button:hover {
         color: rgba(255, 249, 160, 1);
-        box-shadow: inset 0px 0px 12px 0px rgba(255, 249, 160, 0.73);
-        border-color: rgba(255, 249, 160, 0.73);
+        box-shadow: inset 0px 0px 12px 0px rgba(255, 249, 160, 0.9);
+        border-color: rgba(255, 249, 160, 1);
         /* text-shadow: 0px 0px 8px rgba(255, 249, 160, 1); */
     }
     .empty-slot:hover {
