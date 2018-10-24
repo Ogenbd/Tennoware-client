@@ -40,6 +40,7 @@
     box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.4);
     pointer-events: none;
     opacity: 0;
+    z-index: 9098;
 }
 
 .always-on {
@@ -94,7 +95,7 @@
     background-color: white;
     border-radius: 5px;
     box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.7);
-    transition: all 0.3s;
+    transition: all 0.3s ease-in-out;
 }
 
 .sticky-aug {
@@ -227,6 +228,7 @@
         position: fixed;
         bottom: 20px;
         top: unset;
+        z-index: 9098;
     }
     .aug-image {
         backface-visibility: visible;

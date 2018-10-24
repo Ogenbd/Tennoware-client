@@ -121,7 +121,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 2,
-        description() { return `On Headshot: +${Math.round(this.effects.critChance * (this.currRank + 1) * 1000) / 10}% Crit Chance while aiming for ${this.effects.none * (this.currRank + 1)} seconds` }
+        description() { return `On Headshot: +${Math.round(this.effects.critChance * (this.currRank + 1) * 1000) / 10}% Critical Chance while aiming for ${this.effects.none * (this.currRank + 1)} seconds` }
     },
     {
         abrev: 'a7',
@@ -1210,7 +1210,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `On Headshot: +${Math.round(this.effects.critChance * (this.currRank + 1) * 100)}% Crit Chance while aiming for ${this.effects.none * (this.currRank + 1)}s` }
+        description() { return `On Headshot: +${Math.round(this.effects.critChance * (this.currRank + 1) * 100)}% Critical Chance while aiming for ${this.effects.none * (this.currRank + 1)}s` }
     },
     {
         abrev: 'g7',

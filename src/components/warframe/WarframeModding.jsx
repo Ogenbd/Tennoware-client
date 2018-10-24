@@ -607,7 +607,7 @@ export class RangedWeaponModding extends Component {
                         </div>
                         {this.displayMessage()}
                     </div>
-                    <WarframeStats frame={this.props.frame} mods={this.state.chosenMods} viewWidth={this.props.viewWidth} />
+                    <WarframeStats frame={this.props.frame} mods={chosenMods} chosenExilusMod={chosenExilusMod} chosenAuraMod={chosenAuraMod} viewWidth={this.props.viewWidth} />
                     <PolarityPicker polarityPicker={polarityPicker} polarizeSlot={this.polarizeSlot} hidePolarityPicker={this.hidePolarityPicker} />
                 </div>
             </CSSTransition>

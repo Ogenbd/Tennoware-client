@@ -113,45 +113,23 @@ export class ModPicker extends Component {
     }
 
     toggleConclave = () => {
-        if (this.state.conclave) {
-            this.setState({
-                conclave: false
-            })
-        } else {
-            this.setState({
-                conclave: true,
-                aura: false,
-                exilus: false
-            });
-        }
+        this.setState(prevState => ({
+            conclave: !prevState.conclave
+        }));
     }
 
     toggleAura = () => {
-        if (this.state.aura) {
-            this.setState({
-                aura: false
-            })
-        } else {
-            this.setState({
-                conclave: false,
-                aura: true,
-                exilus: false
-            });
-        }
+        this.setState(prevState => ({
+            aura: !prevState.aura,
+            exilus: false
+        }));
     }
 
     toggleExilus = () => {
-        if (this.state.exilus) {
-            this.setState({
-                exilus: false
-            })
-        } else {
-            this.setState({
-                conclave: false,
-                aura: false,
-                exilus: true
-            });
-        }
+        this.setState(prevState => ({
+            exilus: !prevState.exilus,
+            aura: false
+        }));
     }
 
     render() {
@@ -165,12 +143,12 @@ export class ModPicker extends Component {
                             <div className="popup-x-bar two-bar"></div>
                         </div>
                     }
-                    <div className={"interactable topbar-filter " + (this.state.conclave ? "interactable-active" : "interactable-inactive")} onClick={this.toggleConclave}><div className="conclave-placeholder"></div></div>
+                    <div className={"interactable topbar-filter " + (this.state.conclave ? "interactable-active" : "interactable-inactive")} onClick={this.toggleConclave}><div className={"conclave-placeholder " + (this.state.conclave ? "conclave-placeholder-active" : "conclave-placeholder-inactive")}></div></div>
                     {this.props.viewWidth > 1223 && this.props.type === 'warframe' &&
-                        <div className={"interactable topbar-filter " + (this.state.aura ? "interactable-active" : "interactable-inactive")} onClick={this.toggleAura}><div className="aura-placeholder"></div></div>
+                        <div className={"interactable topbar-filter " + (this.state.aura ? "interactable-active" : "interactable-inactive")} onClick={this.toggleAura}><div className={"aura-placeholder " + (this.state.aura ? "aura-placeholder-active" : "aura-placeholder-inactive")}></div></div>
                     }
                     {this.props.viewWidth > 1223 && this.props.type === 'warframe' &&
-                        <div className={"interactable topbar-filter " + (this.state.exilus ? "interactable-active" : "interactable-inactive")} onClick={this.toggleExilus}><div className="exilus-placeholder"></div></div>
+                        <div className={"interactable topbar-filter " + (this.state.exilus ? "interactable-active" : "interactable-inactive")} onClick={this.toggleExilus}><div className={"exilus-placeholder " + (this.state.exilus ? "exilus-placeholder-active" : "exilus-placeholder-inactive")}></div></div>
                     }
                     <div className="search-wrapper mod-list-search-wrapper">
                         <input className="search" type="text" placeholder="Search..." value={this.state.search} onChange={this.handleChange} onKeyUp={this.blurInput} />

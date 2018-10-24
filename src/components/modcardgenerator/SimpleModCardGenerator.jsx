@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import './ModCardGenerator.css';
 
-export class SimpleModCardGenerator extends Component {
+export class SimpleModCardGenerator extends PureComponent {
 
-    shouldComponentUpdate(nextProps) {
-        if (this.props.viewWidth !== nextProps.viewWidth || this.props.mod.name === 'Riven Mod') {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    // shouldComponentUpdate(nextProps) {
+    //     if (this.props.viewWidth !== nextProps.viewWidth || this.props.mod.name === 'Riven Mod') {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
     determineFontColor = () => {
         switch (this.props.mod.rarity) {

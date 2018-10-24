@@ -4,14 +4,20 @@
 }
 
 .conclave-placeholder {
-    background-image: url('../../assets/conclave.png');
     background-size: contain;
     width: 40px;
     height: 40px;
+}
+
+.conclave-placeholder-active {
+    background-image: url('../../assets/conclaverare.png');
+}
+
+.conclave-placeholder-inactive {
+    background-image: url('../../assets/conclave.png');
 }
 
 .aura-placeholder {
-    background-image: url('../../assets/auraprime.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -19,12 +25,27 @@
     height: 40px;
 }
 
+.aura-placeholder-active {
+    background-image: url('../../assets/aurarare.png');
+}
+
+.aura-placeholder-inactive {
+    background-image: url('../../assets/auraprime.png');
+}
+
 .exilus-placeholder {
-    background-image: url('../../assets/exilusprime.png');
     background-repeat: no-repeat;
     background-position: center;
     width: 40px;
     height: 40px;
+}
+
+.exilus-placeholder-active {
+    background-image: url('../../assets/exilusrare.png');
+}
+
+.exilus-placeholder-inactive {
+    background-image: url('../../assets/exilusprime.png');
 }
 
 @media screen and (min-width: 1223px) {
@@ -67,7 +88,7 @@
         overflow-x: hidden;
     }
     .mod-wrapper {
-        transition: all 200ms ease-in-out;
+        transition: all 150ms ease-in-out;
     }
 }
 

@@ -128,6 +128,12 @@
     box-shadow: inset 0px -17px 15px -15px rgba(255, 249, 160, 0.73);
 }
 
+.damage-icon {
+    width: 12px;
+    max-height: 12px;
+    margin-left: 3px;
+}
+
 /* Loading spinner */
 
 .loading-screen {

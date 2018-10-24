@@ -32,7 +32,7 @@
     width: 28px;
     top: -8px;
     padding: 6px;
-    transition: all 0.2s;
+    transition: all 0.2s ease-in-out;
 }
 
 .hexagon {
@@ -42,7 +42,7 @@
     background-color: #ffffff;
     margin: 11.55px 10px;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
-    transition: all 0.3s;
+    transition: all 0.3s ease-in-out;
     cursor: pointer;
 }
 
@@ -59,7 +59,7 @@
     background-color: inherit;
     left: 6px;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
-    transition: all 0.3s;
+    transition: all 0.3s ease-in-out;
 }
 
 .hexagon:before {

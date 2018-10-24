@@ -47,7 +47,7 @@ class FrameBuilder extends Component {
             let slotPolarities = [];
             let originalPolarityCount = { madurai: 0, naramon: 0, vazarin: 0, zenurik: 0, unairu: 0, penjaga: 0, umbra: 0 };
             let filteredMods = mods.filter(mod => {
-                return mod.type === 'WARFRAME' || mod.type === 'AURA' || mod.type === 'EXILUS' || mod.type === selected.name;
+                return mod.type === 'WARFRAME' || mod.type === 'AURA' || mod.type === 'EXILUS' || mod.type === selected.name || selected.name.includes(mod.type);
             });
             filteredMods.forEach((mod, index) => mod.index = index);
             if (selected.polarities.length > 0) {

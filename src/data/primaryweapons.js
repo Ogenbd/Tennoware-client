@@ -739,6 +739,7 @@ const primaryWeapons = [
             {
                 name: 'Charged',
                 trigger: 'Charge',
+                chargeRate: 0.5,
                 accuracy: 16.7,
                 punchThrough: 1,
                 critChance: 0.36,
@@ -763,6 +764,7 @@ const primaryWeapons = [
             {
                 name: 'Uncharged',
                 trigger: 'Charge',
+                chargeRate: 0.5,
                 accuracy: 16.7,
                 punchThrough: 0,
                 critChance: 0.18,

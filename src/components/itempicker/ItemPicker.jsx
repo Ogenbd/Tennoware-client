@@ -51,7 +51,7 @@ export class ItemPicker extends Component {
     animDelay = (pick) => {
         setTimeout(() => {
             this.routeToBuilder(pick);
-        }, 200);
+        }, 100);
     }
 
     routeToBuilder = (pick) => {

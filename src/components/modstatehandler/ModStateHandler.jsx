@@ -10,7 +10,7 @@ export class ModStateHandler extends Component {
     this.state = {
       mod: {},
       handlerActive: false,
-      cardStyle: { transform: 'translate(0, 0)' },
+      cardStyle: { transform: 'translate(0, 0)', zIndex: '1' },
       topButtons: {},
       bottomButtons: {}
     }
@@ -186,15 +186,14 @@ export class ModStateHandler extends Component {
             <img className="top-type" src={require(`../../assets/aura.png`)} alt='' />
           }
           {this.props.slot === 'exilus' && !this.props.mod.name &&
-            <img className="top-type" src={require(`../../assets/exilusblack.png`)} alt='' />
+            <img className="top-type top-type-exilus" src={require(`../../assets/exilusblack.png`)} alt='' />
           }
           {this.props.slotPolarity && !this.props.mod.name &&
             <img className="slot-polarity" src={require(`../../assets/${this.props.slotPolarity}black.png`)} alt='' />
           }
         </div>
         {this.props.mod.name &&
-          // <div draggable className="mod-card-wrapper" style={this.state.handlerActive ? this.state.cardStyle : {}}>
-          <div draggable className="mod-card-wrapper" style={this.state.cardStyle}>
+          <div draggable className="mod-card-wrapper" style={this.state.handlerActive || this.props.viewWidth < 1223 ? this.state.cardStyle : {}}>
             <ModCardGenerator mod={this.state.mod} slotPolarity={this.props.slotPolarity} handlerActive={this.state.showHandler} />
             {this.props.mod.name && this.props.viewWidth >= 1223 &&
               <div draggable="false" className="hover-buttons">

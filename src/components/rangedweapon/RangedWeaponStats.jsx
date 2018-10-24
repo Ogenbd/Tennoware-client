@@ -156,9 +156,9 @@ export class RangedWeaponStats extends Component {
                 zoom: prevState.zoom + 1
             }));
         } else {
-            this.setState(prevState => ({
+            this.setState({
                 zoom: 0
-            }));
+            });
         }
     }
 
@@ -347,6 +347,9 @@ export class RangedWeaponStats extends Component {
                 damageType.damage = damageType.damage * (1 + this.state.effects.totalDamage);
             })
         }
+        finalDamageArray.forEach(damageType => {
+            damageType.icon = require(`../../assets/${damageType.type}.png`)
+        })
         return finalDamageArray;
     }
 
@@ -367,7 +370,10 @@ export class RangedWeaponStats extends Component {
         if (this.props.weapon.name === 'LANKA' && this.state.zoom > 0) {
             return (Math.round((this.props.weapon.modes[this.state.mode].critChance * critChanceMult) * 1000) / 10) + this.props.weapon.zoom[this.state.zoom].effect;
         }
-        return Math.round((this.props.weapon.modes[this.state.mode].critChance * critChanceMult) * 1000) / 10;
+        return {
+            display: Math.round((this.props.weapon.modes[this.state.mode].critChance * critChanceMult) * 1000) / 10,
+            mult: critChanceMult
+        };
     }
 
     calcCritMult = () => {
@@ -387,7 +393,10 @@ export class RangedWeaponStats extends Component {
         if ((this.props.weapon.name === 'RUBICO' || this.props.weapon.name === 'RUBICO PRIME') && this.state.zoom > 0) {
             critMultMult += this.props.weapon.zoom[this.state.zoom].effect;
         }
-        return Math.round((this.props.weapon.modes[this.state.mode].critMult * critMultMult) * 10) / 10;
+        return {
+            display: Math.round((this.props.weapon.modes[this.state.mode].critMult * critMultMult) * 10) / 10,
+            mult: critMultMult
+        };
     }
 
     calcFireRate = () => {
@@ -401,13 +410,16 @@ export class RangedWeaponStats extends Component {
             }
         });
         if (this.state.effects.fireRate) {
-            fireRateMult += this.state.effects.fireRate;
+            if (this.props.weapon.bow) {
+                fireRateMult += this.state.effects.fireRate * 2;
+            } else {
+                fireRateMult += this.state.effects.fireRate;
+            }
         }
-        if (this.props.weapon.bow) {
-            return Math.round((this.props.weapon.modes[this.state.mode].fireRate * fireRateMult * 2) * 10) / 10;
-        } else {
-            return Math.round((this.props.weapon.modes[this.state.mode].fireRate * fireRateMult) * 10) / 10;
-        }
+        return {
+            display: Math.round((this.props.weapon.modes[this.state.mode].fireRate * fireRateMult) * 10) / 10,
+            mult: fireRateMult
+        };
     }
 
     handleChange = ({ target }) => {
@@ -444,203 +456,205 @@ export class RangedWeaponStats extends Component {
                     <p>STATS</p>
                 </div>
                 <div className={"ranged-stats " + (this.state.open ? 'open-ranged-stats' : 'closed-ranged-stats')}>
-                    <div className="top-bar-margin"></div>
-                    {weapon.modes.length > 1 &&
-                        <div className="modes">
-                            {weapon.modes.map((instance, index) => (
-                                <div key={index} className={"activatable " + (mode === index ? 'interactable-active' : 'interactable-inactive')} onClick={() => this.setState({ mode: index })}>
-                                    <p className="interactable-p">{instance.name}</p>
-                                </div>
-                            ))}
-                        </div>
-                    }
-                    <div className="stats-wrapper">
-                        <div className="stats-item damage">
-                            <p className="stat-name">Damage: </p>
-                            <div className="damage">
-                                {damage.map(instance => (
-                                    <div key={instance.type} className="stat"><p>{instance.type}: </p><p className="stat-frag">{Math.round(instance.damage * 10) / 10}</p></div>
+                    <div className="ranged-stats-inner-wrapper">
+                        <div className="top-bar-margin"></div>
+                        {weapon.modes.length > 1 &&
+                            <div className="modes">
+                                {weapon.modes.map((instance, index) => (
+                                    <div key={index} className={"activatable " + (mode === index ? 'interactable-active' : 'interactable-inactive')} onClick={() => this.setState({ mode: index })}>
+                                        <p className="interactable-p">{instance.name}</p>
+                                    </div>
                                 ))}
                             </div>
-                        </div>
-                        <div className="stats-item">
-                            <p className="stat-name">Mastery: </p>
-                            <div className="stat"><p>{weapon.mastery}</p></div>
-                        </div>
-                        <div className="stats-item">
-                            <p className="stat-name">Trigger: </p>
-                            <div className="stat"><p>{weapon.modes[mode].trigger}</p></div>
-                        </div>
-                        <div className="stats-item">
-                            <p className="stat-name">Noise: </p>
-                            <div className="stat"><p>{weapon.noise}</p></div>
-                        </div>
-                        <div className="stats-item">
-                            <p className="stat-name">Base Accuracy: </p>
-                            <div className="stat"><p>{weapon.modes[mode].accuracy}</p></div>
-                        </div>
-                        {weapon.modes[mode].fireRate &&
-                            <div className="stats-item">
-                                <p className="stat-name">Fire Rate: </p>
-                                <div className="stat"><p>{fireRate}</p></div>
-                            </div>
                         }
-                        {weapon.modes[mode].chargeRate &&
+                        <div className="stats-wrapper">
+                            <div className="stats-item damage">
+                                <p className="stat-name">Damage: </p>
+                                <div className="damage">
+                                    {damage.map(instance => (
+                                        <div key={instance.type} className="stat"><p>{instance.type}: </p><p className="stat-frag">{Math.round(instance.damage * 10) / 10}</p><img className="damage-icon" src={instance.icon} alt="" /></div>
+                                    ))}
+                                </div>
+                            </div>
                             <div className="stats-item">
-                                <p className="stat-name">Charge Rate: </p>
-                                {effects.fireRate
-                                    ? <div className="stat">
-                                        {weapon.bow
-                                            ? <p>{Math.round((weapon.modes[mode].chargeRate / ((1 + effects.fireRate) * 2)) * 100) / 100}s</p>
-                                            : <p>{Math.round((weapon.modes[mode].chargeRate / (1 + effects.fireRate)) * 100) / 100}s</p>
-                                        }
+                                <p className="stat-name">Mastery: </p>
+                                <div className="stat"><p>{weapon.mastery}</p></div>
+                            </div>
+                            <div className="stats-item">
+                                <p className="stat-name">Trigger: </p>
+                                <div className="stat"><p>{weapon.modes[mode].trigger}</p></div>
+                            </div>
+                            <div className="stats-item">
+                                <p className="stat-name">Noise: </p>
+                                <div className="stat"><p>{weapon.noise}</p></div>
+                            </div>
+                            <div className="stats-item">
+                                <p className="stat-name">Base Accuracy: </p>
+                                <div className="stat"><p>{weapon.modes[mode].accuracy}</p></div>
+                            </div>
+                            {weapon.modes[mode].fireRate &&
+                                <div className="stats-item">
+                                    <p className="stat-name">Fire Rate: </p>
+                                    <div className={"stat " + (fireRate.mult > 1 ? "increased-stat" : fireRate.mult === 1 ? "" : "decreased-stat")}>
+                                        <p>{fireRate.display}</p>
                                     </div>
-                                    : <div className="stat"><p>{weapon.modes[mode].chargeRate}s</p></div>
+                                </div>
+                            }
+                            {weapon.modes[mode].chargeRate &&
+                                <div className="stats-item">
+                                    <p className="stat-name">Charge Rate: </p>
+                                    <div className={"stat " + (fireRate.mult > 1 ? "increased-stat" : fireRate.mult === 1 ? "" : "decreased-stat")}>
+                                        <p>{Math.round(weapon.modes[mode].chargeRate / fireRate.mult * 100) / 100}</p>
+                                    </div>
+                                </div>
+                            }
+                            {weapon.modes[mode].burst &&
+                                <div className="stats-item">
+                                    <p className="stat-name">Rounds Per Burst: </p>
+                                    <div className="stat"><p>{weapon.modes[mode].burst}</p></div>
+                                </div>
+                            }
+                            {weapon.modes[mode].rangeLimit &&
+                                <div className="stats-item">
+                                    <p className="stat-name">Range Limit: </p>
+                                    {effects.rangeLimit
+                                        ? <div className={"stat " + (effects.rangeLimit > 0 ? "increased-stat" : "decreased-stat")}>
+                                            <p>{effects.rangeLimit + weapon.modes[mode].rangeLimit}m</p>
+                                        </div>
+                                        : <div className="stat">
+                                            <p>{weapon.modes[mode].rangeLimit}m</p>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            {weapon.modes[mode].pellets &&
+                                <div className="stats-item">
+                                    <p className="stat-name">Pellets: </p>
+                                    {effects.multishot
+                                        ? <div className="stat"><p>{weapon.modes[mode].pellets * (1 + effects.multishot)}</p></div>
+                                        : <div className="stat"><p>{weapon.modes[mode].pellets}</p></div>
+                                    }
+                                </div>
+                            }
+                            {weapon.modes[mode].falloffMin &&
+                                <div className="stats-item">
+                                    <p className="stat-name">Falloff: </p>
+                                    {effects.flightSpeed
+                                        ? <div className={"stat " + (effects.flightSpeed > 0 ? "increased-stat" : "decreased-stat")}><p>{weapon.modes[mode].falloffMin * (1 + effects.flightSpeed)}-{weapon.modes[mode].falloffMax * (1 + effects.flightSpeed)}m</p></div>
+                                        : <div className="stat"><p>{weapon.modes[mode].falloffMin}-{weapon.modes[mode].falloffMax}m</p></div>
+                                    }
+                                </div>
+                            }
+                            {weapon.modes[mode].ammoCost &&
+                                <div className="stats-item">
+                                    <p className="stat-name">Ammo Cost: </p>
+                                    <div className="stat"><p>{weapon.modes[mode].ammoCost}</p></div>
+                                </div>
+                            }
+                            <div className="stats-item">
+                                <p className="stat-name">Magazine Size: </p>
+                                {effects.magSize
+                                    ? <div className={"stat " + (effects.magSize > 0 ? "increased-stat" : "decreased-stat")}><p>{Math.round(weapon.magSize * (1 + effects.magSize))}</p></div>
+                                    : <div className="stat"><p>{weapon.magSize}</p></div>
                                 }
                             </div>
-                        }
-                        {weapon.modes[mode].burst &&
+                            {weapon.maxAmmo &&
+                                <div className="stats-item">
+                                    <p className="stat-name">Max Ammo: </p>
+                                    {effects.maxAmmo
+                                        ? <div className={"stat " + (effects.maxAmmo > 0 ? "increased-stat" : "decreased-stat")}><p>{Math.round(weapon.maxAmmo * (1 + effects.maxAmmo))}</p></div>
+                                        : <div className="stat"><p>{weapon.maxAmmo}</p></div>
+                                    }
+                                </div>
+                            }
                             <div className="stats-item">
-                                <p className="stat-name">Rounds Per Burst: </p>
-                                <div className="stat"><p>{weapon.modes[mode].burst}</p></div>
-                            </div>
-                        }
-                        {weapon.modes[mode].rangeLimit &&
-                            <div className="stats-item">
-                                <p className="stat-name">Range Limit: </p>
-                                {effects.rangeLimit
-                                    ? <div className="stat"><p>{effects.rangeLimit + weapon.modes[mode].rangeLimit}m</p></div>
-                                    : <div className="stat"><p>{weapon.modes[mode].rangeLimit}m</p></div>
+                                <p className="stat-name">Reload: </p>
+                                {effects.reload
+                                    ? <div className={"stat " + (effects.reload > 0 ? "increased-stat" : "decreased-stat")}><p>{Math.round((weapon.reload / (1 + effects.reload)) * 10) / 10}s</p></div>
+                                    : <div className="stat"><p>{Math.round(weapon.reload * 10) / 10}s</p></div>
                                 }
                             </div>
-                        }
-                        {weapon.modes[mode].pellets &&
+                            {(weapon.modes[mode].punchThrough > 0 || effects.punchThrough) &&
+                                <div className="stats-item">
+                                    <p className="stat-name">Punch Through: </p>
+                                    {effects.punchThrough
+                                        ? <div className={"stat " + (effects.punchThrough > 0 ? "increased-stat" : "decreased-stat")}><p>{Math.round((weapon.modes[mode].punchThrough + effects.punchThrough) * 10) / 10}m</p></div>
+                                        : <div className="stat"><p>{Math.round(weapon.modes[mode].punchThrough * 10) / 10}m</p></div>
+                                    }
+                                </div>
+                            }
                             <div className="stats-item">
-                                <p className="stat-name">Pellets: </p>
-                                {effects.multishot
-                                    ? <div className="stat"><p>{weapon.modes[mode].pellets * (1 + effects.multishot)}</p></div>
-                                    : <div className="stat"><p>{weapon.modes[mode].pellets}</p></div>
-                                }
+                                <p className="stat-name">Critical Chance: </p>
+                                <div className={"stat " + (critChance.mult > 1 ? "increased-stat" : critChance.mult === 1 ? "" : "decreased-stat")}><p>{critChance.display}%</p></div>
                             </div>
-                        }
-                        {weapon.modes[mode].falloffMin &&
                             <div className="stats-item">
-                                <p className="stat-name">Falloff: </p>
-                                {effects.flightSpeed
-                                    ? <div className="stat"><p>{weapon.modes[mode].falloffMin * (1 + effects.flightSpeed)}-{weapon.modes[mode].falloffMax * (1 + effects.flightSpeed)}m</p></div>
-                                    : <div className="stat"><p>{weapon.modes[mode].falloffMin}-{weapon.modes[mode].falloffMax}m</p></div>
-                                }
+                                <p className="stat-name">Critical Multiplier: </p>
+                                <div className={"stat " + (critMult.mult > 1 ? "increased-stat" : critMult.mult === 1 ? "" : "decreased-stat")}><p>{critMult.display}x</p></div>
                             </div>
-                        }
-                        {weapon.modes[mode].ammoCost &&
                             <div className="stats-item">
-                                <p className="stat-name">Ammo Cost: </p>
-                                <div className="stat"><p>{weapon.modes[mode].ammoCost}</p></div>
+                                <p className="stat-name">Status: </p>
+                                <div className={"stat " + (status.chance > weapon.modes[mode].status * 100 ? "increased-stat" : status.chance === weapon.modes[mode].status * 100 ? "" : "decreased-stat")}><p>{status.chance}%</p></div>
                             </div>
-                        }
-                        <div className="stats-item">
-                            <p className="stat-name">Magazine Size: </p>
-                            {effects.magSize
-                                ? <div className="stat"><p>{Math.round(weapon.magSize * (1 + effects.magSize))}</p></div>
-                                : <div className="stat"><p>{weapon.magSize}</p></div>
+                            {weapon.modes[mode].pellets &&
+                                <div className="stats-item">
+                                    <p className="stat-name">Status Per Pellet: </p>
+                                    <div className={"stat " + (status.chance > weapon.modes[mode].status * 100 ? "increased-stat" : status.chance === weapon.modes[mode].status * 100 ? "" : "decreased-stat")}><p>{status.chancePerPellet}%</p></div>
+                                </div>
+                            }
+                            {/* headshot damage on sniper zoom */}
+                            {weapon.headshotDamage && zoom > 0 &&
+                                <div className="stats-item">
+                                    <p className="stat-name">Headshot Damage: </p>
+                                    <div className="stat"><p>{weapon.zoom[zoom].effect}%</p></div>
+                                </div>
+                            }
+                            {/* str mod for exalted weapons */}
+                            {weapon.exalted &&
+                                <div className="stats-item">
+                                    <p className="stat-name">Power Strength: </p>
+                                    <div className="str-stat"><input className="str-input" type="number" value={this.state.powerStr} onFocus={this.focusSoftInput} onChange={this.handleChange} /><span className="stat">%</span></div>
+                                </div>
                             }
                         </div>
-                        {weapon.maxAmmo &&
-                            <div className="stats-item">
-                                <p className="stat-name">Max Ammo: </p>
-                                {effects.maxAmmo
-                                    ? <div className="stat"><p>{Math.round(weapon.maxAmmo * (1 + effects.maxAmmo))}</p></div>
-                                    : <div className="stat"><p>{weapon.maxAmmo}</p></div>
-                                }
-                            </div>
-                        }
-                        <div className="stats-item">
-                            <p className="stat-name">Reload: </p>
-                            {effects.reload
-                                ? <div className="stat"><p>{Math.round((weapon.reload / (1 + effects.reload)) * 10) / 10}s</p></div>
-                                : <div className="stat"><p>{Math.round(weapon.reload * 10) / 10}s</p></div>
+                        <div className="modes">
+                            {weapon.zoom &&
+                                <div className={"zoom activatable " + (this.state.zoom > 0 ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleZoom}>
+                                    <p className="interactable-p">{weapon.zoom[zoom].name}</p>
+                                </div>
                             }
                         </div>
-                        {(weapon.modes[mode].punchThrough > 0 || effects.punchThrough) &&
-                            <div className="stats-item">
-                                <p className="stat-name">Punch Through: </p>
-                                {effects.punchThrough
-                                    ? <div className="stat"><p>{Math.round((weapon.modes[mode].punchThrough + effects.punchThrough) * 10) / 10}m</p></div>
-                                    : <div className="stat"><p>{Math.round(weapon.modes[mode].punchThrough * 10) / 10}m</p></div>
-                                }
-                            </div>
-                        }
-                        <div className="stats-item">
-                            <p className="stat-name">Critical Chance: </p>
-                            <div className="stat"><p>{critChance}%</p></div>
+                        <div className="modes">
+                            {this.state.aiming &&
+                                <div className={"condition activatable " + (this.state.aimingToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleAiming}>
+                                    <p className="interactable-p">While Aiming</p>
+                                </div>
+                            }
+                            {this.state.headshot &&
+                                <div className={"activatable condition " + (this.state.headshotToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleHeadshot}>
+                                    <p className="interactable-p">After Headshot</p>
+                                </div>
+                            }
+                            {this.state.kill &&
+                                <div className={"activatable condition " + (this.state.killToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleKill}>
+                                    <p className="interactable-p kill-activatable">After Kill</p>
+                                </div>
+                            }
+                            {this.state.reload &&
+                                <div className={"activatable condition " + (this.state.reloadToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleReload}>
+                                    <p className="interactable-p">After Reload</p>
+                                </div>
+                            }
+                            {this.state.cast &&
+                                <div className={"activatable condition " + (this.state.castToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleCast}>
+                                    <p className="interactable-p">After Cast</p>
+                                </div>
+                            }
+                            {this.state.first &&
+                                <div className={"activatable condition " + (this.state.firstToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleFirst}>
+                                    <p className="interactable-p">First Shot</p>
+                                </div>
+                            }
                         </div>
-                        <div className="stats-item">
-                            <p className="stat-name">Critical Multiplier: </p>
-                            <div className="stat"><p>{critMult}x</p></div>
-                        </div>
-                        <div className="stats-item">
-                            <p className="stat-name">Status: </p>
-                            <div className="stat"><p>{status.chance}%</p></div>
-                        </div>
-                        {weapon.modes[mode].pellets &&
-                            <div className="stats-item">
-                                <p className="stat-name">Status Per Pellet: </p>
-                                <div className="stat"><p>{status.chancePerPellet}%</p></div>
-                            </div>
-                        }
-                        {/* headshot damage on sniper zoom */}
-                        {weapon.headshotDamage && zoom > 0 &&
-                            <div className="stats-item">
-                                <p className="stat-name">Headshot Damage: </p>
-                                <div className="stat"><p>{weapon.zoom[zoom].effect}%</p></div>
-                            </div>
-                        }
-                        {/* str mod for exalted weapons */}
-                        {weapon.exalted &&
-                            <div className="stats-item">
-                                <p className="stat-name">Power Strength: </p>
-                                <div className="str-stat"><input className="str-input" type="number" value={this.state.powerStr} onFocus={this.focusSoftInput} onChange={this.handleChange} /><span className="stat">%</span></div>
-                            </div>
-                        }
-                    </div>
-                    <div className="modes">
-                        {weapon.zoom &&
-                            <div className={"zoom activatable " + (this.state.zoom > 0 ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleZoom}>
-                                <p className="interactable-p">{weapon.zoom[zoom].name}</p>
-                            </div>
-                        }
-                    </div>
-                    <div className="modes">
-                        {this.state.aiming &&
-                            <div className={"condition activatable " + (this.state.aimingToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleAiming}>
-                                <p className="interactable-p">While Aiming</p>
-                            </div>
-                        }
-                        {this.state.headshot &&
-                            <div className={"activatable condition " + (this.state.headshotToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleHeadshot}>
-                                <p className="interactable-p">After Headshot</p>
-                            </div>
-                        }
-                        {this.state.kill &&
-                            <div className={"activatable condition " + (this.state.killToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleKill}>
-                                <p className="interactable-p kill-activatable">After Kill</p>
-                            </div>
-                        }
-                        {this.state.reload &&
-                            <div className={"activatable condition " + (this.state.reloadToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleReload}>
-                                <p className="interactable-p">After Reload</p>
-                            </div>
-                        }
-                        {this.state.cast &&
-                            <div className={"activatable condition " + (this.state.castToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleCast}>
-                                <p className="interactable-p">After Cast</p>
-                            </div>
-                        }
-                        {this.state.first &&
-                            <div className={"activatable condition " + (this.state.firstToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleFirst}>
-                                <p className="interactable-p">First Shot</p>
-                            </div>
-                        }
                     </div>
                 </div>
                 <div className="soft-input-wrapper">

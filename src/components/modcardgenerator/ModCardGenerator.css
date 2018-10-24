@@ -65,6 +65,7 @@
     position: absolute;
     top: 6px;
     width: 39px;
+    transition: all 200ms
 }
 
 .exilus-mod-icon {
@@ -110,6 +111,7 @@
     pointer-events: none;
     -webkit-font-smoothing: antialiased;
     overflow: hidden;
+    padding: 5px;
 }
 
 .set-bar-wrapper {
@@ -130,7 +132,7 @@
 }
 
 .info-bottom {
-    height: 32px;
+    height: 28px;
 }
 
 .rank-wrapper {
@@ -171,7 +173,11 @@
         transition: all 200ms ease-in-out;
         max-height: 0;
     }
-    .simple-mod:hover {
+    .simple-mod:hover .aura-topper {
+        transform: translateX(-1px)
+    }
+    .simple-mod:hover .exilus-mod-icon {
+        transform: translateX(-1px)
     }
     .simple-mod:hover .mod-info-wrapper .mod-desc p {
         max-height: 172px;

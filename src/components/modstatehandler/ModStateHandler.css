@@ -139,7 +139,7 @@
 .mod-card-wrapper {
     position: absolute;
     cursor: pointer;
-    transition: transform 200ms ease-in-out;
+    transition: transform 150ms ease-in-out;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -168,8 +168,11 @@
     position: absolute;
     top: 8px;
     left: 8px;
-    max-height: 21px;
-    width: 30px;
+    width: 23px;
+}
+
+.top-type-exilus {
+    width: 26px;
 }
 
 .hover-buttons {
@@ -229,17 +232,21 @@
 @media (hover: hover) {
     .mod-card-wrapper:hover {
         transform: translateZ(0) scale(1.1, 1.1);
-        /* transform: translateZ(30px); */
     }
     .mod-card-wrapper:hover .hover-buttons {
         opacity: 1;
         pointer-events: auto;
     }
+    .mod-card-wrapper:hover .mod .aura-topper {
+        transform: translateX(-1px);
+    }
+    .mod-card-wrapper:hover .mod .exilus-mod-icon {
+        transform: translateX(-1px);
+    }
     .hover-button:hover {
         color: rgba(255, 249, 160, 1);
         box-shadow: inset 0px 0px 12px 0px rgba(255, 249, 160, 0.9);
         border-color: rgba(255, 249, 160, 1);
-        /* text-shadow: 0px 0px 8px rgba(255, 249, 160, 1); */
     }
     .empty-slot:hover {
         box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.7);
