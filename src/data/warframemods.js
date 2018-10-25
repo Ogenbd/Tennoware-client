@@ -111,6 +111,19 @@ const warframeMods = [
     },
     {
         abrev: '',
+        name: 'Overextended',
+        img: require('../assets/modimages/overextended.jpg'),
+        type: 'WARFRAME',
+        rarity: 'rare',
+        polarity: 'vazarin',
+        effects: { range: 0.15, strength: -0.1 },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 2,
+        description() { return `+${Math.round(this.effects.range * (this.currRank + 1) * 100)}% Ability Range ${Math.round(this.effects.strength * (this.currRank + 1) * 100)}% Ability Strength` }
+    },
+    {
+        abrev: '',
         name: 'Physique',
         img: require('../assets/modimages/physique.jpg'),
         type: 'WARFRAME',
