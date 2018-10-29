@@ -180,7 +180,7 @@ const warframes = [
     {
         name: 'EXCALIBUR PRIME',
         img: require('../assets/warframes/excalibur-prime.png'),
-        polarities: ['madurai', 'umbra', 'umbra', 'umbra'],
+        polarities: ['vazarin', 'madurai', 'madurai'],
         aura: 'madurai',
         exilus: undefined,
         armor: 300,
@@ -196,7 +196,7 @@ const warframes = [
     {
         name: 'EXCALIBUR UMBRA',
         img: require('../assets/warframes/excalibur-umbra.png'),
-        polarities: ['vazarin', 'madurai', 'madurai'],
+        polarities: ['madurai', 'umbra', 'umbra', 'umbra'],
         aura: 'madurai',
         exilus: undefined,
         armor: 300,

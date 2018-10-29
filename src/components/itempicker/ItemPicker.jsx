@@ -30,9 +30,9 @@ export class ItemPicker extends Component {
         } else {
             let regExp = new RegExp(target.value, 'i')
             let searchResaults = this.state.items.filter(item => {
-                return (item.name.search(regExp) !== -1 || item.noise.search(regExp) !== -1 || item.type.some(type => {
+                return (item.name.search(regExp) !== -1 || (item.noise && item.noise.search(regExp) !== -1) || (item.type && item.type.some(type => {
                     return type.search(regExp) !== -1
-                }));
+                })));
             });
             this.setState({ displayItems: searchResaults });
         }

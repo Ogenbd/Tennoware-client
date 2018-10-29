@@ -225,6 +225,7 @@ export class RangedWeaponModding extends Component {
         mods[mod.index] = mod;
         mods[mod.index].currRank = mod.maxRank;
         chosenMods[slot] = {};
+        if (mods[mod.index].set) mods[mod.index].set.setCurr = 1;
         let totalModsCost = this.calcCost(chosenMods, this.state.slotPolarities, this.state.chosenAuraMod, this.state.auraPolarity, this.state.chosenExilusMod, this.state.exilusPolarity);
         let chosenModsSets = this.checkModSets(chosenMods)
         this.setState({
@@ -238,7 +239,7 @@ export class RangedWeaponModding extends Component {
     }
 
     checkModSets = (newMods) => {
-        let sets = { hunter: 0, vigilante: 0, augur: 0 }
+        let sets = { hunter: 0, vigilante: 0, augur: 0, umbral: 0 }
         newMods.forEach(mod => {
             if (mod.set) {
                 sets[mod.set.setName]++;
@@ -276,7 +277,7 @@ export class RangedWeaponModding extends Component {
             chosenMod.currRank = mod.currRank;
             let totalModsCost = this.calcCost(this.state.chosenMods, this.state.slotPolarities, this.state.chosenAuraMod, this.state.auraPolarity, chosenMod, this.state.exilusPolarity);
             this.setState({
-                chosenAuraMod: chosenMod,
+                chosenExilusMod: chosenMod,
                 totalModsCost: totalModsCost,
                 errorBlinker: null
             });
@@ -508,7 +509,7 @@ export class RangedWeaponModding extends Component {
 
     render() {
         let onLine = navigator.onLine;
-        const { mods, chosenAuraMod, auraPolarity, chosenExilusMod, exilusPolarity, chosenMods, modPicker, reactor, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSlot, forSwap, polarityPicker } = this.state
+        const { mods, chosenAuraMod, auraPolarity, chosenExilusMod, exilusPolarity, chosenMods, modPicker, reactor, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSlot, forSwap, polarityPicker } = this.state;
         return (
             <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
                 <div className="ranged-modding">

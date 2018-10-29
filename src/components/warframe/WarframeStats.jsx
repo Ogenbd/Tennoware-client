@@ -11,7 +11,6 @@ export class WarframeStats extends PureComponent {
             effects: {},
             growingPowerSlotted: false,
             growingPowerActive: true,
-            growingPowerEffect: 0,
             abilityOne: 0,
             abilityTwo: 0,
             abilityThree: 0,
@@ -23,14 +22,18 @@ export class WarframeStats extends PureComponent {
         }
     }
 
-    static getDerivedStateFromProps(props) {
+    static getDerivedStateFromProps(props, state) {
         let effects = {};
         let augments = []
-        let growingPower = { slotted: false, active: true, effect: 0 }
+        let growingPowerSlotted = false;
         if (props.frame.name === 'NIDUS') effects.strength = 0.15;
         if (props.chosenAuraMod.name === 'Growing Power') {
-            growingPower.slotted = true;
-            growingPower.effect = props.chosenAuraMod.effects.strength
+            growingPowerSlotted = true;
+            if (effects.strength && state.growingPowerActive) {
+                effects.strength += props.chosenAuraMod.effects.growingPower * (props.chosenAuraMod.currRank + 1);
+            } else if (!effects.strength && state.growingPowerActive) {
+                effects.strength = props.chosenAuraMod.effects.growingPower * (props.chosenAuraMod.currRank + 1);
+            }
         }
         WarframeStats.groupEffects(props.chosenAuraMod, effects);
         WarframeStats.groupEffects(props.chosenExilusMod, effects);
@@ -41,8 +44,7 @@ export class WarframeStats extends PureComponent {
         });
         return {
             effects: effects,
-            growingPowerSlotted: growingPower.slotted,
-            growingPowerEffect: growingPower.effect,
+            growingPowerSlotted: growingPowerSlotted,
             augmentOne: augments[0],
             augmentTwo: augments[1],
             augmentThree: augments[2],
@@ -54,13 +56,38 @@ export class WarframeStats extends PureComponent {
         if (mod.name) {
             for (let effect in mod.effects) {
                 if (effect !== 'none') {
-                    if (effects[effect]) {
+                    if (typeof mod.effects[effect] === 'object') {
+                        if (effects[effect]) {
+                            effects[effect] = effects[effect] + mod.effects[effect][mod.set.setCurr - 1] * (mod.currRank + 1);
+                        } else {
+                            effects[effect] = mod.effects[effect][mod.set.setCurr - 1] * (mod.currRank + 1);
+                        }
+                    }
+                    else if (effects[effect]) {
                         effects[effect] = effects[effect] + mod.effects[effect] * (mod.currRank + 1);
                     } else {
                         effects[effect] = mod.effects[effect] * (mod.currRank + 1);
                     }
                 }
             }
+        }
+    }
+
+    toggleGrowingPower = () => {
+        let newEffects = cloneDeep(this.state.effects);
+        if (this.state.growingPowerActive) {
+            newEffects.strength -= this.state.growingPowerEffect;
+            console.log(newEffects.strength);
+            this.setState({
+                growingPowerActive: false,
+                effects: newEffects
+            });
+        } else {
+            newEffects.strength += this.state.growingPowerEffect;
+            this.setState({
+                growingPowerActive: true,
+                effects: newEffects
+            });
         }
     }
 
@@ -155,7 +182,7 @@ export class WarframeStats extends PureComponent {
                         )
                         // the next else if contents are exceptions for specific warframe abilities that have a min/max calculation or otherwise a singular type of calculation
                     } else if (coefficient === 'exception') {
-                        if (this.props.frame.name === 'ATLAS' || ((this.props.frame.name === 'VALKYR' || this.props.frame.name === 'VALKYR PRIME') && abilityNum === 0 )) {
+                        if (this.props.frame.name === 'ATLAS' || ((this.props.frame.name === 'VALKYR' || this.props.frame.name === 'VALKYR PRIME') && abilityNum === 0)) {
                             if (abilityNum === 0) {
                                 let durationMult = this.state.effects.duration ? this.state.effects.duration : 0;
                                 stats.push(
@@ -189,22 +216,59 @@ export class WarframeStats extends PureComponent {
                                     stats.push(
                                         <div key={`${coefficient}${index}`} className="ability-stat">
                                             <div className="ability-stat-name">{stat.name}</div>
-                                            <div className={"ability-stat-amount " + (durationMult > 0 ? "increased-stat" : durationMult < 0 ? "decreased-stat" : "")}>{stat.base * (1 + durationMult) >= 0.5 && stat.base * (1 + durationMult) < 1.5 ? Math.round(stat.base * (1 + durationMult) * 10) / 10 : stat.base * (1 + durationMult) > 1.5 ? 1.5 : 0.5}</div>
+                                            <div className={"ability-stat-amount " + (durationMult > 0 ? "increased-stat" : durationMult < 0 ? "decreased-stat" : "")}>{stat.base * (1 + durationMult) >= 0.5 && stat.base * (1 + durationMult) < 1.5 ? Math.round(stat.base * (1 + durationMult) * 100) / 100 : stat.base * (1 + durationMult) > 1.5 ? 1.5 : 0.5}</div>
                                         </div>
                                     )
                                 }
                             }
                         }
                         if (this.props.frame.name === 'EQUINOX') {
-                            stats.push(
-                                <div key={`${coefficient}${index}`} className="ability-stat">
-                                    <div className="ability-stat-name">{stat.name}</div>
-                                    {this.state.effects.strength
-                                        ? <div className={"ability-stat-amount " + ((this.state.effects.strength > 0 ? "increased-stat" : "decreased-stat"))}>{stat.base + stat.base * this.state.effects.strength < 50 ? Math.round((stat.base + stat.base * this.state.effects.strength) * 10) / 10 : 50}%</div>
-                                        : <div className="ability-stat-amount">{stat.base}%</div>
-                                    }
-                                </div>
-                            )
+                            if (this.state.abilityThree === 1) {
+                                if (index === 0) {
+                                    stats.push(
+                                        <div key={`${coefficient}${index}`} className="ability-stat">
+                                            <div className="ability-stat-name">{stat.name}</div>
+                                            {this.state.effects.strength
+                                                ? <div className={"ability-stat-amount " + ((this.state.effects.strength > 0 ? "increased-stat" : "decreased-stat"))}>{stat.base + stat.base * this.state.effects.strength < 50 ? Math.round((stat.base + stat.base * this.state.effects.strength) * 10) / 10 : 50}%</div>
+                                                : <div className="ability-stat-amount">{stat.base}%</div>
+                                            }
+                                        </div>
+                                    )
+                                } else if (index === 1) {
+                                    stats.push(
+                                        <div key={`${coefficient}${index}`} className="ability-stat">
+                                            <div className="ability-stat-name">{stat.name}</div>
+                                            {this.state.effects.strength
+                                                ? <div className={"ability-stat-amount " + ((this.state.effects.strength > 0 ? "increased-stat" : "decreased-stat"))}>{stat.base + stat.base * this.state.effects.strength < 30 ? Math.round((stat.base + stat.base * this.state.effects.strength) * 10) / 10 : 30}%</div>
+                                                : <div className="ability-stat-amount">{stat.base}%</div>
+                                            }
+                                        </div>
+                                    )
+                                }
+                            } else if (this.state.abilityThree === 0) {
+                                if (index === 0) {
+                                    let strengthMult = this.state.effects.strength ? this.state.effects.strength + 1 : 1;
+                                    stats.push(
+                                        <div key={`${coefficient}${index}`} className="ability-stat">
+                                            <div className="ability-stat-name">{stat.name}</div>
+                                            {this.state.effects.strength
+                                                ? <div className={"ability-stat-amount " + ((this.state.effects.strength > 0 ? "increased-stat" : "decreased-stat"))}>{Math.round((stat.base / strengthMult) * 10) / 10}%</div>
+                                                : <div className="ability-stat-amount">{stat.base}%</div>
+                                            }
+                                        </div>
+                                    )
+                                } else if (index === 1) {
+                                    stats.push(
+                                        <div key={`${coefficient}${index}`} className="ability-stat">
+                                            <div className="ability-stat-name">{stat.name}</div>
+                                            {this.state.effects.strength
+                                                ? <div className={"ability-stat-amount " + ((this.state.effects.strength > 0 ? "increased-stat" : "decreased-stat"))}>{stat.base + stat.base * this.state.effects.strength < 80 ? Math.round((stat.base + stat.base * this.state.effects.strength) * 10) / 10 : 80}%</div>
+                                                : <div className="ability-stat-amount">{stat.base}%</div>
+                                            }
+                                        </div>
+                                    )
+                                }
+                            }
                         }
                         if (this.props.frame.name === 'FROST' || this.props.frame.name === 'FROST PRIME') {
                             stats.push(
@@ -217,7 +281,7 @@ export class WarframeStats extends PureComponent {
                                 </div>
                             )
                         }
-                        if (this.props.frame.name === 'GARA' || this.props.frame.name === 'NIDUS') {
+                        if (this.props.frame.name === 'GARA' || this.props.frame.name === 'NIDUS' || this.props.frame.name === 'HARROW') {
                             stats.push(
                                 <div key={`${coefficient}${index}`} className="ability-stat">
                                     <div className="ability-stat-name">{stat.name}</div>
@@ -250,7 +314,7 @@ export class WarframeStats extends PureComponent {
                                 </div>
                             )
                         }
-                        if (this.props.frame.name === 'NOVA' || this.props.frame.name === 'NOVA PRIME' || ((this.props.frame.name === 'VALKYR' || this.props.frame.name === 'VALKYR PRIME') && abilityNum === 1 )) {
+                        if (this.props.frame.name === 'NOVA' || this.props.frame.name === 'NOVA PRIME' || ((this.props.frame.name === 'VALKYR' || this.props.frame.name === 'VALKYR PRIME') && abilityNum === 1)) {
                             stats.push(
                                 <div key={`${coefficient}${index}`} className="ability-stat">
                                     <div className="ability-stat-name">{stat.name}</div>
@@ -318,6 +382,28 @@ export class WarframeStats extends PureComponent {
                                     <div className="ability-stat-name">{stat.name}</div>
                                     {this.state.effects.strength
                                         ? <div className={"ability-stat-amount " + ((this.state.effects.strength > 0 ? "increased-stat" : "decreased-stat"))}>{stat.base + stat.base * this.state.effects.strength < 75 ? Math.round((stat.base + stat.base * this.state.effects.strength) * 10) / 10 : 75}%</div>
+                                        : <div className="ability-stat-amount">{stat.base}%</div>
+                                    }
+                                </div>
+                            )
+                        }
+                        if (this.props.frame.name === 'NEKROS' || this.props.frame.name === 'NEKROS PRIME' || ((this.props.frame.name === 'MAG' || this.props.frame.name === 'MAG PRIME') && abilityNum === 3)) {
+                            stats.push(
+                                <div key={`${coefficient}${index}`} className="ability-stat">
+                                    <div className="ability-stat-name">{stat.name}</div>
+                                    {this.state.effects.strength
+                                        ? <div className={"ability-stat-amount " + ((this.state.effects.strength > 0 ? "increased-stat" : "decreased-stat"))}>{stat.base + stat.base * this.state.effects.strength < 80 ? Math.round((stat.base + stat.base * this.state.effects.strength) * 10) / 10 : 80}%</div>
+                                        : <div className="ability-stat-amount">{stat.base}%</div>
+                                    }
+                                </div>
+                            )
+                        }
+                        if (this.props.frame.name === 'BANSHEE' || this.props.frame.name === 'BANSHEE PRIME') {
+                            stats.push(
+                                <div key={`${coefficient}${index}`} className="ability-stat">
+                                    <div className="ability-stat-name">{stat.name}</div>
+                                    {this.state.effects.strength
+                                        ? <div className={"ability-stat-amount " + ((this.state.effects.strength > 0 ? "increased-stat" : "decreased-stat"))}>{stat.base + stat.base * this.state.effects.strength < 100 ? Math.round((stat.base + stat.base * this.state.effects.strength) * 10) / 10 : 100}%</div>
                                         : <div className="ability-stat-amount">{stat.base}%</div>
                                     }
                                 </div>
@@ -403,31 +489,38 @@ export class WarframeStats extends PureComponent {
                             <div className="stats-item">
                                 <p className="stat-name">Duration: </p>
                                 {effects.duration
-                                    ? <div className={"warframe-stat " + (effects.duration > 0 ? "increased-stat" : "decreased-stat")}><p>{Math.round((1 + effects.duration) * 100)}%</p></div>
+                                    ? <div className={"warframe-stat " + (effects.duration > 0 ? "increased-stat" : "decreased-stat")}><p>{Math.round((1 + effects.duration) * 1000) / 10}%</p></div>
                                     : <div className="warframe-stat"><p>100%</p></div>
                                 }
                             </div>
                             <div className="stats-item">
                                 <p className="stat-name">Efficiency: </p>
                                 {effects.efficiency
-                                    ? <div className={"warframe-stat " + (effects.efficiency > 0 ? "increased-stat" : "decreased-stat")}><p>{Math.round((1 + effects.efficiency) * 100)}%</p></div>
+                                    ? <div className={"warframe-stat " + (effects.efficiency > 0 ? "increased-stat" : "decreased-stat")}><p>{Math.round((1 + effects.efficiency) * 1000) / 10}%</p></div>
                                     : <div className="warframe-stat"><p>100%</p></div>
                                 }
                             </div>
                             <div className="stats-item">
                                 <p className="stat-name">Range: </p>
                                 {effects.range
-                                    ? <div className={"warframe-stat " + (effects.range > 0 ? "increased-stat" : "decreased-stat")}><p>{Math.round((1 + effects.range) * 100)}%</p></div>
+                                    ? <div className={"warframe-stat " + (effects.range > 0 ? "increased-stat" : "decreased-stat")}><p>{Math.round((1 + effects.range) * 1000) / 10}%</p></div>
                                     : <div className="warframe-stat"><p>100%</p></div>
                                 }
                             </div>
                             <div className="stats-item">
                                 <p className="stat-name">Power Strength: </p>
                                 {effects.strength
-                                    ? <div className={"warframe-stat " + (effects.strength > 0 ? "increased-stat" : "decreased-stat")}><p>{Math.round((1 + effects.strength) * 100)}%</p></div>
+                                    ? <div className={"warframe-stat " + (effects.strength > 0 ? "increased-stat" : "decreased-stat")}><p>{Math.round((1 + effects.strength) * 1000) / 10}%</p></div>
                                     : <div className="warframe-stat"><p>100%</p></div>
                                 }
                             </div>
+                            {this.state.growingPowerSlotted &&
+                                <div className="modes">
+                                    <div className={"activatable " + (this.state.growingPowerActive ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleGrowingPower}>
+                                        <p className="interactable-p">Growing Power</p>
+                                    </div>
+                                </div>
+                            }
                             <div className="frame-ability">
                                 <div className="ability-title">
                                     <p>{frame.abilities[0].name}</p>

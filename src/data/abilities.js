@@ -1160,9 +1160,9 @@ const abilities = {
             details: [
                 {
                     mode: 'Pacify',
-                    strength: [
+                    exception: [
                         {
-                            name: 'Damage reduction',
+                            name: 'Enemy damage',
                             suffix: '%',
                             base: 50
                         },
@@ -1681,6 +1681,8 @@ const abilities = {
                             suffix: '%',
                             base: 70
                         },
+                    ],
+                    strength: [
                         {
                             name: 'Damage multiplier',
                             suffix: '%',
@@ -3289,7 +3291,7 @@ const abilities = {
                     ],
                     range: [
                         {
-                            name: 'Range',
+                            name: 'Radius',
                             suffix: 'm',
                             base: 16
                         }
@@ -3467,7 +3469,7 @@ const abilities = {
             img: require('../assets/warframes/eclipse.png'),
             details: [
                 {
-                    mode: 'light',
+                    mode: 'Light',
                     strength: [
                         {
                             name: 'Damage bonus',
@@ -3664,7 +3666,7 @@ const abilities = {
                             base: 10
                         },
                         {
-                            name: 'Energy per corpse',
+                            name: 'Energy / Corpse',
                             base: 10
                         },
                     ],
@@ -4150,7 +4152,7 @@ const abilities = {
                     ],
                     exception: [
                         {
-                            name: 'slow',
+                            name: 'Slow',
                             suffix: '%',
                             base: 30
                         }

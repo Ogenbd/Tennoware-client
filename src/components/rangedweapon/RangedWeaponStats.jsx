@@ -449,6 +449,7 @@ export class RangedWeaponStats extends Component {
         const fireRate = this.calcFireRate();
         const status = this.calcStatus();
         const damage = this.calcDamage();
+        console.log(status.chance, Math.round(weapon.modes[mode].status * 1000) / 10);
         return (
             <React.Fragment>
                 <div className={"pull-tab " + (this.state.open ? 'open-pull-tab' : 'closed-pull-tab')} onClick={this.toggleStats}>
@@ -593,12 +594,12 @@ export class RangedWeaponStats extends Component {
                             </div>
                             <div className="stats-item">
                                 <p className="stat-name">Status: </p>
-                                <div className={"stat " + (status.chance > weapon.modes[mode].status * 100 ? "increased-stat" : status.chance === weapon.modes[mode].status * 100 ? "" : "decreased-stat")}><p>{status.chance}%</p></div>
+                                <div className={"stat " + (status.chance > Math.round(weapon.modes[mode].status * 1000) / 10 ? "increased-stat" : status.chance === Math.round(weapon.modes[mode].status * 1000) / 10 ? "" : "decreased-stat")}><p>{status.chance}%</p></div>
                             </div>
                             {weapon.modes[mode].pellets &&
                                 <div className="stats-item">
                                     <p className="stat-name">Status Per Pellet: </p>
-                                    <div className={"stat " + (status.chance > weapon.modes[mode].status * 100 ? "increased-stat" : status.chance === weapon.modes[mode].status * 100 ? "" : "decreased-stat")}><p>{status.chancePerPellet}%</p></div>
+                                    <div className={"stat " + (status.chance > Math.round(weapon.modes[mode].status * 1000) / 10 ? "increased-stat" : status.chance === Math.round(weapon.modes[mode].status * 1000) / 10 ? "" : "decreased-stat")}><p>{status.chancePerPellet}%</p></div>
                                 </div>
                             }
                             {/* headshot damage on sniper zoom */}

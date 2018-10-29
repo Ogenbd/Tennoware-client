@@ -345,6 +345,7 @@ export class RangedWeaponModding extends Component {
         mods[mod.index] = mod;
         mods[mod.index].currRank = mod.maxRank;
         chosenMods[slot] = {};
+        if (mods[mod.index].set) mods[mod.index].set.setCurr = 1;
         let totalModsCost = this.calcCost(chosenMods, this.state.slotPolarities);
         let chosenModsSets = this.checkModSets(chosenMods)
         this.setState({
@@ -518,7 +519,7 @@ export class RangedWeaponModding extends Component {
 
     render() {
         let onLine = navigator.onLine;
-        const { mods, chosenMods, modPicker, catalyst, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSwap, polarityPicker } = this.state
+        const { mods, chosenMods, modPicker, catalyst, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSwap, polarityPicker } = this.state;
         return (
             <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
                 <div className="ranged-modding">

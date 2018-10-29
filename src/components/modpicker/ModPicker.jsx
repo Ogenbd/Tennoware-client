@@ -94,10 +94,10 @@ export class ModPicker extends Component {
 
 
 
-    filterBySearch = () => {
+    filterBySearch = (mods) => {
         let desc;
         let regExp = new RegExp(this.state.search, 'i');
-        let filteredMods = this.props.mods.filter(mod => {
+        let filteredMods = mods.filter(mod => {
             if (mod.name) {
                 desc = mod.description();
                 if (typeof desc === 'string') {
