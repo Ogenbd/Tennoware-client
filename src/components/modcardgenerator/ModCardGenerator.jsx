@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import './ModCardGenerator.css';
 
-export class ModCardGenerator extends Component {
+export class ModCardGenerator extends PureComponent {
   determineFontColor = () => {
     switch (this.props.mod.rarity) {
       case 'rare':

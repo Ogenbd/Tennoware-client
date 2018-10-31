@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import './BuildSaver.css';
 
 
@@ -63,17 +64,18 @@ export class BuildSaver extends Component {
         if (this.state.buildName.length < 12) {
 
         } else {
+            let buildState = this.props.getBuildStr()
             let buildData = {
                 orokin: this.props.orokin,
                 forma: this.props.formaCount,
                 user: this.props.user,
-                buildStr: this.props.getBuildStr(),
+                buildStr: buildState.buildStr,
+                riven: buildState.riven,
                 private: this.state.private,
                 buildName: this.state.buildName,
                 buildDesc: this.state.buildDesc,
                 item: this.props.match.params.id
             }
-            buildData.buildStr[41] === 'x' ? buildData.riven = 1 : buildData.riven = 0;
             this.state.private ? buildData.private = 1 : buildData.private = 0;
             this.props.orokin ? buildData.orokin = 1 : buildData.orokin = 0;
             if (this.props.match.params.build && this.props.metaInfo.Owner) {
@@ -103,7 +105,7 @@ export class BuildSaver extends Component {
                         this.redirectToSaved(buildData, res);
                     })
                     .catch(err => {
-                        console.log('error')
+                        console.log(err)
                     });
             }
         }
@@ -162,4 +164,4 @@ export class BuildSaver extends Component {
     }
 }
 
-export default BuildSaver;
+export default withRouter(BuildSaver);

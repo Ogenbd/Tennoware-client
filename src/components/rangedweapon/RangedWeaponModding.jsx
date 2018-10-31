@@ -97,7 +97,7 @@ export class RangedWeaponModding extends Component {
         } else {
             buildStr += 'v';
         }
-        return buildStr;
+        return {buildStr: buildStr, riven: riven};
     }
 
     convertEffectToNum = (effect, num) => {
@@ -533,7 +533,7 @@ export class RangedWeaponModding extends Component {
                                 <BuildDescription metaInfo={this.props.metaInfo} />
                             }
                             {onLine && this.props.user &&
-                                <BuildSaver orokin={catalyst} formaCount={formaCount} user={this.props.user} match={this.props.match} getBuildStr={this.convertBuildToString} metaInfo={this.props.metaInfo} />
+                                <BuildSaver orokin={catalyst} formaCount={formaCount} user={this.props.user} getBuildStr={this.convertBuildToString} metaInfo={this.props.metaInfo} />
                             }
                             <LinkGenerator getBuildStr={this.convertBuildToString} match={this.props.match} />
                             {onLine && this.props.user && this.props.match.params.build && !this.props.metaInfo.Owner &&
@@ -565,7 +565,7 @@ export class RangedWeaponModding extends Component {
                             </div>
                             <div className="aug-wrapper">
                                 {!this.props.weapon.exalted &&
-                                    <RangedRivenEditor viewWidth={this.props.viewWidth} chosenMods={chosenMods} handleRiven={this.handleRiven} buildStr={this.props.metaInfo.BuildStr} transPolarity={this.transPolarity} />
+                                    <RangedRivenEditor viewWidth={this.props.viewWidth} chosenMods={chosenMods} handleRiven={this.handleRiven} buildStr={this.props.match.params.pre} transPolarity={this.transPolarity} />
                                 }
                                 <div className={"interactable " + (catalyst ? "interactable-active" : "interactable-inactive")} onClick={this.toggleCatalyst}>
                                     {catalyst

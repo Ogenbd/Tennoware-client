@@ -13,10 +13,10 @@ export class LinkGenerator extends Component {
 
   showLinkGenerator = () => {
     let type = this.props.match.url.split('/', 2);
-    let buildStr = this.props.getBuildStr();
+    let buildState = this.props.getBuildStr();
     // fix url
-    let linkUrl = `localhost:3000/${type[1]}/${encodeURIComponent(this.props.match.params.id)}/${buildStr}`;
-    if (this.props.match.params.build && buildStr === this.props.match.params.pre) {
+    let linkUrl = `localhost:3000/${type[1]}/${encodeURIComponent(this.props.match.params.id)}/${buildState.buildStr}`;
+    if (this.props.match.params.build && buildState.buildStr === this.props.match.params.pre) {
       linkUrl += `/${this.props.match.params.build}`;
     }
     this.setState({

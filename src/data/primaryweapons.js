@@ -33,7 +33,7 @@ const primaryWeapons = [
     },
     {
         name: 'ARCA PLASMOR',
-        img: require('../assets/weapons/primary/arcaplasmor.png'),
+        img: require('../assets/weapons/primary/arca-plasmor.png'),
         mastery: 10,
         type: ['SHOTGUN'],
         polarities: ['madurai', 'madurai'],
@@ -129,7 +129,7 @@ const primaryWeapons = [
     },
     {
         name: 'ARTEMIS BOW',
-        img: require('../assets/weapons/primary/artemisbow.png'),
+        img: require('../assets/weapons/primary/artemis-bow.png'),
         mastery: 0,
         type: ['RIFLE', 'BOW', 'PROJECTILE'],
         polarities: ['madurai', 'madurai', 'naramon'],
@@ -382,7 +382,7 @@ const primaryWeapons = [
     },
     {
         name: 'BOAR PRIME',
-        img: require('../assets/weapons/primary/boarprime.png'),
+        img: require('../assets/weapons/primary/boar-prime.png'),
         mastery: 11,
         type: ['SHOTGUN'],
         polarities: [],
@@ -461,7 +461,7 @@ const primaryWeapons = [
     },
     {
         name: 'BOLTOR PRIME',
-        img: require('../assets/weapons/primary/boltorprime.png'),
+        img: require('../assets/weapons/primary/boltor-prime.png'),
         mastery: 13,
         type: ['RIFLE', 'ASSAULT RIFLE', 'PROJECTILE'],
         polarities: ['vazarin', 'madurai'],
@@ -533,7 +533,7 @@ const primaryWeapons = [
     },
     {
         name: 'BRATON PRIME',
-        img: require('../assets/weapons/primary/bratonprime.png'),
+        img: require('../assets/weapons/primary/braton-prime.png'),
         mastery: 8,
         type: ['RIFLE', 'ASSAULT RIFLE'],
         polarities: [],
@@ -571,7 +571,7 @@ const primaryWeapons = [
     },
     {
         name: 'BRATON VANDAL',
-        img: require('../assets/weapons/primary/bratonvandal.png'),
+        img: require('../assets/weapons/primary/braton-vandal.png'),
         mastery: 4,
         type: ['RIFLE', 'ASSAULT RIFLE'],
         polarities: ['madurai'],
@@ -648,7 +648,7 @@ const primaryWeapons = [
     },
     {
         name: 'BURSTON PRIME',
-        img: require('../assets/weapons/primary/burstonprime.png'),
+        img: require('../assets/weapons/primary/burston-prime.png'),
         mastery: 12,
         type: ['RIFLE', 'ASSAULT RIFLE', 'BURSTON PRIME'],
         polarities: ['madurai'],
@@ -790,7 +790,7 @@ const primaryWeapons = [
     },
     {
         name: 'CERNOS PRIME',
-        img: require('../assets/weapons/primary/cernosprime.png'),
+        img: require('../assets/weapons/primary/cernos-prime.png'),
         mastery: 12,
         type: ['RIFLE', 'BOW', 'PROJECTILE'],
         polarities: ['madurai', 'madurai'],
@@ -1034,7 +1034,7 @@ const primaryWeapons = [
     },
     {
         name: 'DERA VANDAL',
-        img: require('../assets/weapons/primary/deravandal.png'),
+        img: require('../assets/weapons/primary/dera-vandal.png'),
         mastery: 7,
         type: ['RIFLE', 'ASSAULT RIFLE', 'PROJECTILE'],
         polarities: [],
@@ -1072,7 +1072,7 @@ const primaryWeapons = [
     },
     {
         name: 'DEX SYBARIS',
-        img: require('../assets/weapons/primary/dexsybaris.png'),
+        img: require('../assets/weapons/primary/dex-sybaris.png'),
         mastery: 7,
         type: ['RIFLE', 'ASSAULT RIFLE'],
         polarities: [],
@@ -1327,7 +1327,7 @@ const primaryWeapons = [
     },
     {
         name: 'FLUX RIFLE',
-        img: require('../assets/weapons/primary/fluxrifle.png'),
+        img: require('../assets/weapons/primary/flux-rifle.png'),
         mastery: 6,
         type: ['RIFLE', 'BEAM', 'ASSAULT RIFLE'],
         polarities: [],
@@ -1432,7 +1432,7 @@ const primaryWeapons = [
     },
     {
         name: 'GORGON WRAITH',
-        img: require('../assets/weapons/primary/gorgonwraith.png'),
+        img: require('../assets/weapons/primary/gorgon-wraith.png'),
         mastery: 7,
         type: ['RIFLE', 'ASSAULT RIFLE'],
         polarities: [],
@@ -1778,7 +1778,7 @@ const primaryWeapons = [
     },
     {
         name: 'IGNIS WRAITH',
-        img: require('../assets/weapons/primary/igniswraith.png'),
+        img: require('../assets/weapons/primary/ignis-wraith.png'),
         mastery: 9,
         type: ['RIFLE', 'BEAM', 'ASSAULT RIFLE', 'EXPLOSIVE'],
         polarities: [],
@@ -1961,7 +1961,7 @@ const primaryWeapons = [
     },
     {
         name: 'KARAK WRAITH',
-        img: require('../assets/weapons/primary/karakwraith.png'),
+        img: require('../assets/weapons/primary/karak-wraith.png'),
         mastery: 7,
         type: ['RIFLE', 'ASSAULT RIFLE'],
         polarities: ['madurai'],
@@ -2173,7 +2173,7 @@ const primaryWeapons = [
     },
     {
         name: 'LATRON PRIME',
-        img: require('../assets/weapons/primary/latronprime.png'),
+        img: require('../assets/weapons/primary/latron-prime.png'),
         mastery: 10,
         type: ['RIFLE', 'ASSAULT RIFLE', 'LATRON'],
         polarities: ['madurai', 'naramon'],
@@ -2211,7 +2211,7 @@ const primaryWeapons = [
     },
     {
         name: 'LATRON WRAITH',
-        img: require('../assets/weapons/primary/latronwraith.png'),
+        img: require('../assets/weapons/primary/latron-wraith.png'),
         mastery: 7,
         type: ['RIFLE', 'ASSAULT RIFLE', 'LATRON'],
         polarities: ['madurai'],
@@ -2525,7 +2525,7 @@ const primaryWeapons = [
     },
     {
         name: 'MUTALIST CERNOS',
-        img: require('../assets/weapons/primary/mutalistcernos.png'),
+        img: require('../assets/weapons/primary/mutalist-cernos.png'),
         mastery: 7,
         type: ['RIFLE', 'BOW', 'PROJECTILE'],
         polarities: ['naramon'],
@@ -2606,7 +2606,7 @@ const primaryWeapons = [
     },
     {
         name: 'MUTALIST QUANTA',
-        img: require('../assets/weapons/primary/mutalistquanta.png'),
+        img: require('../assets/weapons/primary/mutalist-quanta.png'),
         mastery: 2,
         type: ['RIFLE', 'ASSAULT RIFLE'],
         polarities: ['vazarin'],
@@ -2968,7 +2968,7 @@ const primaryWeapons = [
     },
     {
         name: 'PARIS PRIME',
-        img: require('../assets/weapons/primary/parisprime.png'),
+        img: require('../assets/weapons/primary/paris-prime.png'),
         mastery: 8,
         type: ['RIFLE', 'BOW'],
         polarities: ['naramon', 'madurai'],
@@ -3172,7 +3172,7 @@ const primaryWeapons = [
     },
     {
         name: 'PRISMA GORGON',
-        img: require('../assets/weapons/primary/prismagorgon.png'),
+        img: require('../assets/weapons/primary/prisma-gorgon.png'),
         mastery: 11,
         type: ['RIFLE', 'ASSAULT RIFLE'],
         polarities: [],
@@ -3210,7 +3210,7 @@ const primaryWeapons = [
     },
     {
         name: 'PRISMA GRAKATA',
-        img: require('../assets/weapons/primary/prismagrakata.png'),
+        img: require('../assets/weapons/primary/prisma-grakata.png'),
         mastery: 11,
         type: ['RIFLE', 'ASSAULT RIFLE'],
         polarities: [],
@@ -3248,7 +3248,7 @@ const primaryWeapons = [
     },
     {
         name: 'PRISMA TETRA',
-        img: require('../assets/weapons/primary/prismatetra.png'),
+        img: require('../assets/weapons/primary/prisma-tetra.png'),
         mastery: 4,
         type: ['RIFLE', 'ASSAULT RIFLE', 'PROJECTILE', 'TETRA'],
         polarities: [],
@@ -3332,7 +3332,7 @@ const primaryWeapons = [
     },
     {
         name: 'QUANTA VANDAL',
-        img: require('../assets/weapons/primary/quantavandal.png'),
+        img: require('../assets/weapons/primary/quanta-vandal.png'),
         mastery: 10,
         type: ['RIFLE', 'ASSAULT RIFLE', 'PROJECTILE', 'BEAM'],
         polarities: ['madurai'],
@@ -3421,7 +3421,7 @@ const primaryWeapons = [
     },
     {
         name: 'RAKTA CERNOS',
-        img: require('../assets/weapons/primary/raktacernos.png'),
+        img: require('../assets/weapons/primary/rakta-cernos.png'),
         mastery: 12,
         type: ['RIFLE', 'BOW', 'PROJECTILE'],
         polarities: ['madurai', 'madurai', 'naramon'],
@@ -3535,7 +3535,7 @@ const primaryWeapons = [
     },
     {
         name: 'RUBICO PRIME',
-        img: require('../assets/weapons/primary/rubicoprime.png'),
+        img: require('../assets/weapons/primary/rubico-prime.png'),
         mastery: 12,
         type: ['RIFLE', 'SNIPER', 'RUBICO'],
         zoom: [
@@ -3586,7 +3586,7 @@ const primaryWeapons = [
     },
     {
         name: 'SANCTI TIGRIS',
-        img: require('../assets/weapons/primary/sanctitigris.png'),
+        img: require('../assets/weapons/primary/sancti-tigris.png'),
         mastery: 12,
         type: ['SHOTGUN'],
         polarities: ['vazarin', 'naramon', 'madurai'],
@@ -3723,7 +3723,7 @@ const primaryWeapons = [
     },
     {
         name: 'SECURA PENTA',
-        img: require('../assets/weapons/primary/securapenta.png'),
+        img: require('../assets/weapons/primary/secura-penta.png'),
         mastery: 12,
         type: ['RIFLE', 'ASSAULT RIFLE', 'EXPLOSIVE', 'UNIQUE', 'PENTA'],
         polarities: ['naramon', 'vazarin', 'madurai'],
@@ -3888,7 +3888,7 @@ const primaryWeapons = [
     },
     {
         name: 'SNIPETRON VANDAL',
-        img: require('../assets/weapons/primary/snipetronvandal.png'),
+        img: require('../assets/weapons/primary/snipetron-vandal.png'),
         mastery: 5,
         type: ['RIFLE', 'SNIPER'],
         headshotDamage: true,
@@ -4019,7 +4019,7 @@ const primaryWeapons = [
     },
     {
         name: 'SOMA PRIME',
-        img: require('../assets/weapons/primary/somaprime.png'),
+        img: require('../assets/weapons/primary/soma-prime.png'),
         mastery: 7,
         type: ['RIFLE', 'ASSAULT RIFLE'],
         polarities: ['madurai', 'madurai'],
@@ -4160,7 +4160,7 @@ const primaryWeapons = [
     },
     {
         name: 'STRUN WRAITH',
-        img: require('../assets/weapons/primary/strunwraith.png'),
+        img: require('../assets/weapons/primary/strun-wraith.png'),
         mastery: 1,
         type: ['SHOTGUN'],
         polarities: ['naramon'],
@@ -4239,7 +4239,7 @@ const primaryWeapons = [
     },
     {
         name: 'SUPRA VANDAL',
-        img: require('../assets/weapons/primary/supravandal.png'),
+        img: require('../assets/weapons/primary/supra-vandal.png'),
         mastery: 14,
         type: ['RIFLE', 'ASSAULT RIFLE', 'SUPRA'],
         polarities: ['madurai', 'madurai'],
@@ -4316,7 +4316,7 @@ const primaryWeapons = [
     },
     {
         name: 'SYBARIS PRIME',
-        img: require('../assets/weapons/primary/sybarisprime.png'),
+        img: require('../assets/weapons/primary/sybaris-prime.png'),
         mastery: 12,
         type: ['RIFLE', 'ASSAULT RIFLE', 'SYBARIS'],
         polarities: ['naramon', 'naramon', 'madurai'],
@@ -4387,7 +4387,7 @@ const primaryWeapons = [
     },
     {
         name: 'SYNOID SIMULOR',
-        img: require('../assets/weapons/primary/synoidsimulor.png'),
+        img: require('../assets/weapons/primary/synoid-simulor.png'),
         mastery: 5,
         type: ['RIFLE', 'ASSAULT RIFLE'],
         polarities: ['madurai', 'vazarin', 'naramon'],
@@ -4452,7 +4452,7 @@ const primaryWeapons = [
     },
     {
         name: 'TELOS BOLTOR',
-        img: require('../assets/weapons/primary/telosboltor.png'),
+        img: require('../assets/weapons/primary/telos-boltor.png'),
         mastery: 12,
         type: ['RIFLE', 'ASSAULT RIFLE', 'PROJECTILE'],
         polarities: ['vazarin', 'madurai'],
@@ -4625,7 +4625,7 @@ const primaryWeapons = [
     },
     {
         name: 'TIBERON PRIME',
-        img: require('../assets/weapons/primary/tiberonprime.png'),
+        img: require('../assets/weapons/primary/tiberon-prime.png'),
         mastery: 14,
         type: ['RIFLE', 'ASSAULT RIFLE'],
         polarities: ['madurai', 'naramon', 'naramon'],
@@ -4756,7 +4756,7 @@ const primaryWeapons = [
     },
     {
         name: 'TIGRIS PRIME',
-        img: require('../assets/weapons/primary/tigrisprime.png'),
+        img: require('../assets/weapons/primary/tigris-prime.png'),
         mastery: 13,
         type: ['SHOTGUN'],
         polarities: ['madurai', 'naramon'],
@@ -4893,7 +4893,7 @@ const primaryWeapons = [
     },
     {
         name: 'VAYKOR HEK',
-        img: require('../assets/weapons/primary/vaykorhek.png'),
+        img: require('../assets/weapons/primary/vaykor-hek.png'),
         mastery: 12,
         type: ['SHOTGUN', 'HEK'],
         polarities: ['vazarin', 'madurai'],
@@ -4986,7 +4986,7 @@ const primaryWeapons = [
     },
     {
         name: 'VECTIS PRIME',
-        img: require('../assets/weapons/primary/vectisprime.png'),
+        img: require('../assets/weapons/primary/vectis-prime.png'),
         mastery: 14,
         type: ['RIFLE', 'SNIPER'],
         headshotDamage: true,
@@ -5132,7 +5132,7 @@ const primaryWeapons = [
     },
     {
         name: 'VULKAR WRAITH',
-        img: require('../assets/weapons/primary/vulkarwraith.png'),
+        img: require('../assets/weapons/primary/vulkar-wraith.png'),
         mastery: 7,
         type: ['RIFLE', 'SNIPER', 'VULKAR'],
         headshotDamage: true,

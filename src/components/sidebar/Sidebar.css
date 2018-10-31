@@ -48,8 +48,8 @@
 }
 
 .noscroll {
-    position: fixed;
-    overflow-y: scroll;
+    /* position: fixed; */
+    /* overflow-y: scroll; */
     /* overflow: hidden !important; */
 }
 

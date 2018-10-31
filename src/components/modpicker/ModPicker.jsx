@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 // import { CSSTransition } from "react-transition-group";
 import './ModPicker.css';
 
 import { SimpleModCardGenerator } from '../modcardgenerator/SimpleModCardGenerator.jsx';
 
-export class ModPicker extends Component {
+export class ModPicker extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,7 +12,8 @@ export class ModPicker extends Component {
             search: '',
             conclave: false,
             aura: false,
-            exilus: false
+            exilus: false,
+            loader: false
         }
     }
 
@@ -22,9 +23,13 @@ export class ModPicker extends Component {
 
     handlePick = (mod) => {
         if (this.props.viewWidth < 1223) {
-            this.closeModPicker();
+            // this.setState({ loader: true })
+            // setTimeout(() => {
             this.props.pickMod(mod);
-            this.setState({ search: '' });
+            this.closeModPicker();
+            // this.setState({ loader: false })
+            // }, 50)
+            // this.setState({ search: '' });
         }
     }
 
@@ -155,9 +160,10 @@ export class ModPicker extends Component {
                     </div>
                 </div>
                 {/* <CSSTransition classNames="fade" in={true} appear={true} timeout={200}> */}
-                <div className="popup-content mod-list">
-                    {this.generateModList(display)}
-                </div>
+                {/* {this.state.loader */}
+                {/* ? <div className="popup-content mod-list"><div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div> */}
+                <div className="popup-content mod-list">{this.generateModList(display)}</div>
+                {/* } */}
                 {/* </CSSTransition> */}
             </div>
         )

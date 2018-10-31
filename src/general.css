@@ -1,6 +1,7 @@
 .popup {
     z-index: 9099;
 }
+
 .top-title {
     display: flex;
     justify-content: center;

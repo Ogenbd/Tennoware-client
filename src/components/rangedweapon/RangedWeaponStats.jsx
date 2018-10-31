@@ -449,7 +449,6 @@ export class RangedWeaponStats extends Component {
         const fireRate = this.calcFireRate();
         const status = this.calcStatus();
         const damage = this.calcDamage();
-        console.log(status.chance, Math.round(weapon.modes[mode].status * 1000) / 10);
         return (
             <React.Fragment>
                 <div className={"pull-tab " + (this.state.open ? 'open-pull-tab' : 'closed-pull-tab')} onClick={this.toggleStats}>

@@ -37,6 +37,168 @@ export class RangedWeaponModding extends Component {
         }
     }
 
+    componentDidMount() {
+        if (this.props.match.params.pre) {
+            let build = this.props.match.params.pre;
+            let reactor = build[0] === '0' ? false : true;
+            let prePolarities = this.createPrePolarities(build.slice(1, 11).split(''));
+            let preMods = this.createPreMods(build.slice(11));
+            let totalModsCost = this.calcCost(preMods.chosenMods, prePolarities.stack, preMods.auraMod, prePolarities.aura, preMods.exilusMod, prePolarities.exilus);
+            let formaCount = this.countForma(prePolarities.stack, prePolarities.aura, prePolarities.exilus);
+            this.setState({
+                reactor: reactor,
+                auraPolarity: prePolarities.aura,
+                exilusPolarity: prePolarities.exilus,
+                slotPolarities: prePolarities.stack,
+                mods: preMods.mods,
+                chosenAuraMod: preMods.auraMod,
+                chosenExilusMod: preMods.exilusMod,
+                chosenMods: preMods.chosenMods,
+                totalModsCost: totalModsCost,
+                formaCount: formaCount,
+            });
+        }
+    }
+
+    createPreMods = (modsStr) => {
+        let mods = cloneDeep(this.props.mods);
+        let auraMod;
+        let exilusMod;
+        let chosenMods = [];
+        let modsArr = modsStr.match(/.{1,4}/g);
+        modsArr.forEach((modAbrev, index) => {
+            if (index === 0) {
+                if (modAbrev === '0000') {
+                    auraMod = {};
+                } else {
+                    auraMod = this.preSlotMod(mods, modAbrev);
+                }
+            } else if (index === 1) {
+                if (modAbrev === '0000') {
+                    exilusMod = {};
+                } else {
+                    exilusMod = this.preSlotMod(mods, modAbrev);
+                }
+            } else {
+                if (modAbrev === '0000') {
+                    chosenMods.push({});
+                } else {
+                    chosenMods.push(this.preSlotMod(mods, modAbrev));
+                }
+            }
+        });
+        return { chosenMods: chosenMods, mods: mods, auraMod: auraMod, exilusMod: exilusMod };
+    }
+
+    preSlotMod = (mods, modAbrev) => {
+        let foundMod = mods.find(mod => {
+            return mod.abrev === `${modAbrev[0]}${modAbrev[1]}`
+        });
+        let rank = parseInt(`${modAbrev[2]}${modAbrev[3]}`, 10);
+        if (foundMod === undefined || typeof rank !== 'number' || rank < 0 || rank > foundMod.maxRank) {
+            this.props.redirectToVoid();
+        } else {
+            foundMod.currRank = rank;
+            mods[foundMod.index] = {};
+            return foundMod;
+        }
+    }
+
+    createPrePolarities = (polarityArr) => {
+        let slotPolarities = { aura: undefined, exilus: undefined, stack: [] };
+        polarityArr.forEach((number, index) => {
+            let polarity = this.transPolarity(number);
+            if (index === 0) {
+                slotPolarities.aura = polarity;
+            } else if (index === 1) {
+                slotPolarities.exilus = polarity;
+            } else {
+                slotPolarities.stack.push(polarity);
+            }
+        });
+        return slotPolarities;
+    }
+
+    transPolarity = (number) => {
+        switch (number) {
+            case '0':
+                return undefined;
+            case '1':
+                return 'madurai';
+            case '2':
+                return 'naramon';
+            case '3':
+                return 'vazarin';
+            case '4':
+                return 'zenurik';
+            case '5':
+                return 'unairu';
+            case '6':
+                return 'penjaga';
+            case '7':
+                return 'umbra';
+            default:
+                this.props.redirectToVoid();
+                break;
+        }
+    }
+
+    convertBuildToString = () => {
+        let buildStr = '';
+        this.state.reactor ? buildStr += '1' : buildStr += '0';
+        buildStr += this.convertPolarityToNum(this.state.auraPolarity);
+        buildStr += this.convertPolarityToNum(this.state.exilusPolarity);
+        for (let i = 0; i < 8; i++) {
+            let polNum = this.convertPolarityToNum(this.state.slotPolarities[i]);
+            buildStr += polNum;
+        }
+        buildStr += this.convertModSlotToString(this.state.chosenAuraMod)
+        buildStr += this.convertModSlotToString(this.state.chosenExilusMod)
+        this.state.chosenMods.forEach(mod => {
+            buildStr += this.convertModSlotToString(mod);
+        });
+        return { buildStr: buildStr, riven: false };
+    }
+
+    convertModSlotToString = (mod) => {
+        if (mod.name) {
+            let modStr = '';
+            modStr += mod.abrev
+            if (mod.currRank < 10) {
+                modStr += '0';
+                modStr += mod.currRank;
+            } else {
+                modStr += mod.currRank;
+            }
+            return modStr;
+        } else {
+            return '0000';
+        }
+    }
+
+    convertPolarityToNum = (polarity) => {
+        switch (polarity) {
+            case 'madurai':
+                return '1';
+            case 'naramon':
+                return '2';
+            case 'vazarin':
+                return '3';
+            case 'zenurik':
+                return '4';
+            case 'unairu':
+                return '5';
+            case 'penjaga':
+                return '6';
+            case 'umbra':
+                return '7';
+            case undefined:
+                return '0';
+            default:
+                return '0';
+        }
+    }
+
     toggleReactor = () => {
         this.setState(prevState => ({
             reactor: !prevState.reactor,
@@ -511,7 +673,7 @@ export class RangedWeaponModding extends Component {
         let onLine = navigator.onLine;
         const { mods, chosenAuraMod, auraPolarity, chosenExilusMod, exilusPolarity, chosenMods, modPicker, reactor, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSlot, forSwap, polarityPicker } = this.state;
         return (
-            <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
+            <CSSTransition classNames="fade" in={true} appear={true} timeout={200} >
                 <div className="ranged-modding">
                     <ModPicker type={'warframe'} mods={mods} chosenMods={chosenMods} active={modPicker} closeModPicker={this.closeModPicker} pickMod={this.pickMod} viewWidth={this.props.viewWidth} drop={this.drop} forSlot={forSlot} />
                     <div className="mod-stack">

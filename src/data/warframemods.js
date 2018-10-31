@@ -1,4 +1,4 @@
-// currently at abrev 0e
+// currently at abrev 0n
 const warframeMods = [
     {
         abrev: 'a0',
@@ -590,7 +590,7 @@ const warframeMods = [
         description() { return `+${Math.round(this.effects.strength * (this.currRank + 1) * 100)}% Ability Strength ${Math.round(this.effects.efficiency * (this.currRank + 1) * 100)}% Ability Efficiency` }
     },
     {
-        abrev: 'b8',
+        abrev: '0f',
         name: 'Brief Respite',
         img: require('../assets/modimages/brief-respite.jpg'),
         type: 'AURA',
@@ -604,7 +604,7 @@ const warframeMods = [
         description() { return `Casting an ability grants shields equal to +${Math.round(this.effects.none * (this.currRank + 1) * 100)}% of the energy spent, while Overshields are inactive` }
     },
     {
-        abrev: 'b9',
+        abrev: '0g',
         name: 'Calculated Spring',
         img: require('../assets/modimages/calculated-spring.jpg'),
         type: 'EXILUS',
@@ -620,7 +620,7 @@ const warframeMods = [
         description() { return `${Math.round(this.effects.none[0] * (this.currRank + 1) * 1000) / 10}% Mobility +${Math.round(this.effects.none[1] * (this.currRank + 1) * 100) / 100}% Health` }
     },
     {
-        abrev: 'c0',
+        abrev: '0h',
         name: 'Calm & Frenzy',
         img: require('../assets/modimages/calm-&-frenzy.jpg'),
         type: 'EQUINOX',
@@ -723,7 +723,7 @@ const warframeMods = [
         description() { return `Rest & Rage Augment: Killing an affected enemy causes the effect to spread to enemies within ${1 + this.effects.none[0] * (this.currRank + 1)}m for ${20 + this.effects.none[1] * (this.currRank + 1)}% of the remaining duration.` }
     },
     {
-        abrev: 'c1',
+        abrev: '0i',
         name: 'Capacitance',
         img: require('../assets/modimages/capacitance.jpg'),
         type: 'VOLT',
@@ -780,7 +780,7 @@ const warframeMods = [
         description() { return `Discharge Augment: Converts ${Math.round(1 + this.effects.none * (this.currRank + 1))}% of Damage dealt into Shields split between Volt and Squadmates.` }
     },
     {
-        abrev: 'c2',
+        abrev: '0j',
         name: 'Cataclysmic Continuum',
         img: require('../assets/modimages/cataclysmic-continuum.jpg'),
         type: 'LIMBO',
@@ -793,7 +793,7 @@ const warframeMods = [
         description() { return `Cataclysm Augment: Duration increased by ${this.effects.none[this.currRank]}s for each enemy killed.` }
     },
     {
-        abrev: 'c3',
+        abrev: '0k',
         name: 'Chaos Sphere',
         img: require('../assets/modimages/chaos-sphere.jpg'),
         type: 'NYX',
@@ -838,7 +838,7 @@ const warframeMods = [
         description() { return `Chaos Augment: Enemies entering the Effect Range will be inflicted with Chaos. Effect Range lasts for ${this.effects.none[this.currRank]}% of the ability duration and shrinks over time.` }
     },
     {
-        abrev: 'c4',
+        abrev: '0l',
         name: 'Chilling Globe',
         img: require('../assets/modimages/chilling-globe.jpg'),
         type: 'FROST',
@@ -892,7 +892,7 @@ const warframeMods = [
         description() { return `Snow Globe Augment: Enemies that enter have a ${this.effects.none[1][this.currRank]}% chance to become frozen solid for ${this.effects.none[0][this.currRank]}s.` }
     },
     {
-        abrev: 'c5',
+        abrev: '0m',
         name: 'Chromatic Blade',
         img: require('../assets/modimages/chromatic-blade.jpg'),
         type: 'EXCALIBUR',
@@ -961,7 +961,7 @@ const warframeMods = [
         description() { return `Exalted Blade Augment: Exalted Blade's Damage Type changes depending on Excalibur's Energy Color and Status Chance is increased by ${this.effects.none[this.currRank]}%.` }
     },
     {
-        abrev: 'c6',
+        abrev: '0n',
         name: 'Coaction Drift',
         img: require('../assets/modimages/coaction-drift.jpg'),
         type: 'WARFRAME',
@@ -5108,7 +5108,8 @@ const warframeMods = [
         abrev: 'p4',
         name: 'Power Drift',
         img: require('../assets/modimages/power-drift.jpg'),
-        type: 'WARFRAME',
+        type: 'EXILUS',
+        exilus: true,
         rarity: 'rare',
         polarity: 'zenurik',
         effects: { strength: 0.025 },
