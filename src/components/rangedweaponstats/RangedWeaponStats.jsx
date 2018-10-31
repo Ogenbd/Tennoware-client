@@ -416,6 +416,9 @@ export class RangedWeaponStats extends Component {
                 fireRateMult += this.state.effects.fireRate;
             }
         }
+        if (this.state.effects.chargeRate) {
+            fireRateMult += this.state.effects.chargeRate;
+        }
         return {
             display: Math.round((this.props.weapon.modes[this.state.mode].fireRate * fireRateMult) * 10) / 10,
             mult: fireRateMult

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import Loadable from 'react-loadable';
 import { CSSTransition } from "react-transition-group";
 import cloneDeep from 'lodash/cloneDeep';
 import './EightSlotModding.css'
 
-import RangedWeaponStats from '../rangedweaponstats/RangedWeaponStats';
+// import RangedWeaponStats from '../rangedweaponstats/RangedWeaponStats';
 import ModStateHandler from '../modstatehandler/ModStateHandler';
 import PolarityPicker from '../polaritypicker/PolarityPicker';
 import RangedRivenEditor from '../rangedriveneditor/RangedRivenEditor';
@@ -13,6 +14,18 @@ import BuildList from '../buildlist/BuildList';
 import Like from '../like/Like';
 import BuildDescription from '../builddescription/BuildDescription';
 import ModPicker from '../modpicker/ModPicker';
+
+const StatsPlaceholder = () => <div className="stats-placeholder"></div>
+
+const RangedWeaponStats = Loadable({
+    loader: () => import('../rangedweaponstats/RangedWeaponStats'),
+    loading: StatsPlaceholder,
+});
+
+const WarframeStats = Loadable({
+    loader: () => import('../warframe/WarframeStats'),
+    loading: StatsPlaceholder,
+});
 
 export class EightSlotModding extends Component {
     constructor(props) {
@@ -97,7 +110,7 @@ export class EightSlotModding extends Component {
         } else {
             buildStr += 'v';
         }
-        return {buildStr: buildStr, riven: riven};
+        return { buildStr: buildStr, riven: riven };
     }
 
     convertEffectToNum = (effect, num) => {
@@ -523,7 +536,7 @@ export class EightSlotModding extends Component {
         return (
             <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
                 <div className="ranged-modding">
-                    <ModPicker mods={mods} chosenMods={chosenMods} active={modPicker} closeModPicker={this.closeModPicker} pickMod={this.pickMod} viewWidth={this.props.viewWidth} drop={this.drop} />
+                    <ModPicker mods={mods} active={modPicker} closeModPicker={this.closeModPicker} pickMod={this.pickMod} viewWidth={this.props.viewWidth} drop={this.drop} />
                     <div className="mod-stack">
                         <div className="interactable-wrapper">
                             {onLine &&
@@ -545,10 +558,10 @@ export class EightSlotModding extends Component {
                         </div>
                         <div className="aug-container">
                             <div className="aug-wrapper">
-                                {!this.props.weapon.exalted &&
+                                {!this.props.item.exalted && this.props.riven &&
                                     <div className="aug-info">
                                         <p className="aug-info-title riven-title">Disposition</p>
-                                        <p className="aug-info-content">{this.props.weapon.disposition}/5</p>
+                                        <p className="aug-info-content">{this.props.item.disposition}/5</p>
                                     </div>
                                 }
                                 <div className="aug-info">
@@ -564,10 +577,10 @@ export class EightSlotModding extends Component {
                                 </div>
                             </div>
                             <div className="aug-wrapper">
-                                {!this.props.weapon.exalted && this.props.riven === 'ranged' &&
+                                {!this.props.item.exalted && this.props.riven === 'ranged' &&
                                     <RangedRivenEditor viewWidth={this.props.viewWidth} chosenMods={chosenMods} handleRiven={this.handleRiven} buildStr={this.props.match.params.pre} transPolarity={this.transPolarity} />
                                 }
-                                {/* {!this.props.weapon.exalted && this.props.riven === 'melee' &&
+                                {/* {!this.props.item.exalted && this.props.riven === 'melee' &&
                                     <RangedRivenEditor viewWidth={this.props.viewWidth} chosenMods={chosenMods} handleRiven={this.handleRiven} buildStr={this.props.match.params.pre} transPolarity={this.transPolarity} />
                                 } */}
                                 <div className={"interactable " + (orokin ? "interactable-active" : "interactable-inactive")} onClick={this.toggleCatalyst}>
@@ -620,7 +633,12 @@ export class EightSlotModding extends Component {
                         </div>
                         {this.displayMessage()}
                     </div>
-                    <RangedWeaponStats weapon={this.props.weapon} mods={this.state.chosenMods} viewWidth={this.props.viewWidth} />
+                    {(this.props.type === 'primaryweapons' || this.props.type === 'secondaryweapons' || this.props.type === 'archguns') &&
+                        <RangedWeaponStats weapon={this.props.item} mods={this.state.chosenMods} viewWidth={this.props.viewWidth} />
+                    }
+                    {(this.props.type === 'warframes' || this.props.type === 'archwings') &&
+                        <WarframeStats frame={this.props.item} mods={this.state.chosenMods} viewWidth={this.props.viewWidth} />
+                    }
                     <PolarityPicker polarityPicker={polarityPicker} polarizeSlot={this.polarizeSlot} hidePolarityPicker={this.hidePolarityPicker} />
                 </div>
             </CSSTransition>

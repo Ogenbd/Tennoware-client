@@ -24,11 +24,11 @@ class RangedBuilder extends Component {
     }
 
     componentDidMount() {
-        // let weaponList = [] 
-        // this.props.weapons.forEach(weapon => {
-        //     weaponList.push(weapon.name)
+        // let itemList = [] 
+        // this.props.items.forEach(item => {
+        //     itemList.push(item.name)
         // })
-        // console.log(weaponList);
+        // console.log(itemList);
         // let sortedMods = this.props.mods.sort((a, b) => {
         //     if (a.abrev[0] > b.abrev[0]) return 1
         //     if (a.abrev[0] < b.abrev[0]) return -1
@@ -53,16 +53,14 @@ class RangedBuilder extends Component {
     setupBuilder = async (metaInfo) => {
         let items = await this.props.items();
         let mods = await this.props.mods();
-        let item = items.find(weapon => {
-            return weapon.name.toLowerCase() === this.props.match.params.id.toLowerCase();
+        let item = items.find(archwing => {
+            return archwing.name.toLowerCase() === this.props.match.params.id.toLowerCase();
         });
         if (item !== undefined) {
             let slotPolarities = [];
             let originalPolarityCount = { madurai: 0, naramon: 0, vazarin: 0, zenurik: 0, unairu: 0, penjaga: 0, umbra: 0 };
             let filteredMods = mods.filter(mod => {
-                return mod.type === 'PRIMARY' || mod.type === 'PISTOL' || item.type.some(keyword => {
-                    return keyword === mod.type
-                });
+                return mod.type === 'ARCHWING' || item.name.includes(mod.type);
             });
             filteredMods.forEach((mod, index) => mod.index = index);
             if (item.polarities.length > 0) {
@@ -116,7 +114,7 @@ class RangedBuilder extends Component {
                     <Loading />
                 }
                 {this.state.item.name &&
-                    <EightSlotModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={'catalyst'} riven={'ranged'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} />
+                    <EightSlotModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={'reactor'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} />
                 }
             </div>
         )

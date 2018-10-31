@@ -1,10 +1,10 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 // import { CSSTransition } from "react-transition-group";
 import './ModPicker.css';
 
 import { SimpleModCardGenerator } from '../modcardgenerator/SimpleModCardGenerator.jsx';
 
-export class ModPicker extends PureComponent {
+export class ModPicker extends Component {
     constructor(props) {
         super(props);
         this.state = {

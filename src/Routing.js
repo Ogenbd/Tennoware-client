@@ -12,19 +12,26 @@ import News from './components/news/News';
 const ItemPicker = Loadable({
     loader: () => import('./components/itempicker/ItemPicker'),
     loading: () => null,
-    modules: ['Picker']
 });
 
 const RangedBuilder = Loadable({
     loader: () => import('./routes/RangedBuilder'),
     loading: () => null,
-    modules: ['RangedBuilder']
 });
 
 const FrameBuilder = Loadable({
     loader: () => import('./routes/FrameBuilder'),
     loading: () => null,
-    modules: ['FrameBuilder']
+});
+
+const ArchwingBuilder = Loadable({
+    loader: () => import('./routes/ArchwingBuilder'),
+    loading: () => null,
+});
+
+const ArchgunBuilder = Loadable({
+    loader: () => import('./routes/ArchgunBuilder'),
+    loading: () => null,
 });
 
 
@@ -54,6 +61,26 @@ const getWarframes = () => {
 
 const getWarframeMods = () => {
     let data = import('./data/warframemods');
+    return data;
+}
+
+const getArchwings = () => {
+    let data = import('./data/archwings');
+    return data;
+}
+
+const getArchwingMods = () => {
+    let data = import('./data/archwingmods');
+    return data;
+}
+
+const getArchguns = () => {
+    let data = import('./data/archguns');
+    return data;
+}
+
+const getArchgunMods = () => {
+    let data = import('./data/archgunmods');
     return data;
 }
 
@@ -89,6 +116,26 @@ export class Routing extends Component {
         return mods.default;
     }
 
+    archwings = async () => {
+        let mods = await getArchwings();
+        return mods.default;
+    }
+
+    archwingMods = async () => {
+        let mods = await getArchwingMods();
+        return mods.default;
+    }
+
+    archguns = async () => {
+        let mods = await getArchguns();
+        return mods.default;
+    }
+
+    archgunMods = async () => {
+        let mods = await getArchgunMods();
+        return mods.default;
+    }
+
     render() {
         let nonRouterPropPass = {
             viewWidth: this.props.viewWidth,
@@ -101,17 +148,25 @@ export class Routing extends Component {
                 <Switch key={this.props.location.key}>
                     <Route exact path='/' render={props => <News {...props} />} />
                     <Route exact path='/primaryweapons' render={props => <ItemPicker {...props} {...nonRouterPropPass} title={'PRIMARY WEAPONS'} items={this.primaryWeapons} />} />
-                    <Route exact path='/primaryweapons/:id/:pre/:build' render={props => <RangedBuilder {...props} {...nonRouterPropPass} type={'primaryweapons'} weapons={this.primaryWeapons} mods={this.primaryMods} />} />
-                    <Route exact path='/primaryweapons/:id/:pre' render={props => <RangedBuilder {...props} {...nonRouterPropPass} type={'primaryweapons'} weapons={this.primaryWeapons} mods={this.primaryMods} />} />
-                    <Route exact path='/primaryweapons/:id' render={props => <RangedBuilder {...props} {...nonRouterPropPass} type={'primaryweapons'} weapons={this.primaryWeapons} mods={this.primaryMods} />} />
+                    <Route exact path='/primaryweapons/:id/:pre/:build' render={props => <RangedBuilder {...props} {...nonRouterPropPass} type={'primaryweapons'} items={this.primaryWeapons} mods={this.primaryMods} />} />
+                    <Route exact path='/primaryweapons/:id/:pre' render={props => <RangedBuilder {...props} {...nonRouterPropPass} type={'primaryweapons'} items={this.primaryWeapons} mods={this.primaryMods} />} />
+                    <Route exact path='/primaryweapons/:id' render={props => <RangedBuilder {...props} {...nonRouterPropPass} type={'primaryweapons'} items={this.primaryWeapons} mods={this.primaryMods} />} />
                     <Route exact path='/secondaryweapons' render={props => <ItemPicker {...props} {...nonRouterPropPass}  title={'SECONDARY WEAPONS'} items={this.secondaryWeapons} />} />
-                    <Route exact path='/secondaryweapons/:id/:pre/:build' render={props => <RangedBuilder {...props} {...nonRouterPropPass} type={'secondaryweapons'} weapons={this.secondaryWeapons} mods={this.secondaryMods} />} />
-                    <Route exact path='/secondaryweapons/:id/:pre' render={props => <RangedBuilder {...props} {...nonRouterPropPass} type={'secondaryweapons'} weapons={this.secondaryWeapons} mods={this.secondaryMods} />} />
-                    <Route exact path='/secondaryweapons/:id' render={props => <RangedBuilder {...props} {...nonRouterPropPass} type={'secondaryweapons'} weapons={this.secondaryWeapons} mods={this.secondaryMods} />} />
+                    <Route exact path='/secondaryweapons/:id/:pre/:build' render={props => <RangedBuilder {...props} {...nonRouterPropPass} type={'secondaryweapons'} items={this.secondaryWeapons} mods={this.secondaryMods} />} />
+                    <Route exact path='/secondaryweapons/:id/:pre' render={props => <RangedBuilder {...props} {...nonRouterPropPass} type={'secondaryweapons'} items={this.secondaryWeapons} mods={this.secondaryMods} />} />
+                    <Route exact path='/secondaryweapons/:id' render={props => <RangedBuilder {...props} {...nonRouterPropPass} type={'secondaryweapons'} items={this.secondaryWeapons} mods={this.secondaryMods} />} />
                     <Route exact path='/warframes' render={props => <ItemPicker {...props} {...nonRouterPropPass} title={'WARFRAMES'} items={this.warframes} />} />
                     <Route exact path='/warframes/:id/:pre/:build' render={props => <FrameBuilder {...props} {...nonRouterPropPass} type={'warframes'} items={this.warframes} mods={this.warframeMods} />} />
                     <Route exact path='/warframes/:id/:pre' render={props => <FrameBuilder {...props} {...nonRouterPropPass} type={'warframes'} items={this.warframes} mods={this.warframeMods} />} />
                     <Route exact path='/warframes/:id' render={props => <FrameBuilder {...props} {...nonRouterPropPass} type={'warframes'} items={this.warframes} mods={this.warframeMods} />} />
+                    <Route exact path='/archwings' render={props => <ItemPicker {...props} {...nonRouterPropPass} title={'ARCHWINGS'} items={this.archwings} />} />
+                    <Route exact path='/archwings/:id/:pre/:build' render={props => <ArchwingBuilder {...props} {...nonRouterPropPass} type={'archwings'} items={this.archwings} mods={this.archwingMods} />} />
+                    <Route exact path='/archwings/:id/:pre' render={props => <ArchwingBuilder {...props} {...nonRouterPropPass} type={'archwings'} items={this.archwings} mods={this.archwingMods} />} />
+                    <Route exact path='/archwings/:id' render={props => <ArchwingBuilder {...props} {...nonRouterPropPass} type={'archwings'} items={this.archwings} mods={this.archwingMods} />} />
+                    <Route exact path='/archguns' render={props => <ItemPicker {...props} {...nonRouterPropPass} title={'ARCHGUNS'} items={this.archguns} />} />
+                    <Route exact path='/archguns/:id/:pre/:build' render={props => <ArchgunBuilder {...props} {...nonRouterPropPass} type={'archguns'} items={this.archguns} mods={this.archgunMods} />} />
+                    <Route exact path='/archguns/:id/:pre' render={props => <ArchgunBuilder {...props} {...nonRouterPropPass} type={'archguns'} items={this.archguns} mods={this.archgunMods} />} />
+                    <Route exact path='/archguns/:id' render={props => <ArchgunBuilder {...props} {...nonRouterPropPass} type={'archguns'} items={this.archguns} mods={this.archgunMods} />} />
                     <Route component={TheVoid} />
                 </Switch>
             </div>

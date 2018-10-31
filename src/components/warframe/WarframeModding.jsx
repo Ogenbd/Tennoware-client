@@ -677,7 +677,7 @@ export class EightSlotModding extends Component {
         return (
             <CSSTransition classNames="fade" in={true} appear={true} timeout={200} >
                 <div className="ranged-modding">
-                    <ModPicker type={'warframe'} mods={mods} chosenMods={chosenMods} active={modPicker} closeModPicker={this.closeModPicker} pickMod={this.pickMod} viewWidth={this.props.viewWidth} drop={this.drop} forSlot={forSlot} />
+                    <ModPicker type={'warframe'} mods={mods} active={modPicker} closeModPicker={this.closeModPicker} pickMod={this.pickMod} viewWidth={this.props.viewWidth} drop={this.drop} forSlot={forSlot} />
                     <div className="mod-stack">
                         <div className="interactable-wrapper">
                             {onLine &&
@@ -772,7 +772,7 @@ export class EightSlotModding extends Component {
                         </div>
                         {this.displayMessage()}
                     </div>
-                    <WarframeStats frame={this.props.frame} mods={chosenMods} chosenExilusMod={chosenExilusMod} chosenAuraMod={chosenAuraMod} viewWidth={this.props.viewWidth} />
+                    <WarframeStats frame={this.props.frame} full={true} mods={chosenMods} chosenExilusMod={chosenExilusMod} chosenAuraMod={chosenAuraMod} viewWidth={this.props.viewWidth} />
                     <PolarityPicker polarityPicker={polarityPicker} polarizeSlot={this.polarizeSlot} hidePolarityPicker={this.hidePolarityPicker} />
                 </div>
             </CSSTransition>

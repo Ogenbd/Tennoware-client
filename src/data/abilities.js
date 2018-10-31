@@ -6438,14 +6438,14 @@ const abilities = {
     //                         name: '',
     //                         suffix: 's',
     //                         base: 
-    //                     }
+    //                     },
     //                 ],
     //                 range: [
     //                     {
     //                         name: '',
     //                         suffix: 'm',
     //                         base: 
-    //                     }
+    //                     },
     //                 ],
     //                 efficiency: [
     //                     {

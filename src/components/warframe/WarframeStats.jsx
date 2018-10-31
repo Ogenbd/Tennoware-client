@@ -26,18 +26,20 @@ export class WarframeStats extends PureComponent {
         let effects = {};
         let augments = []
         let growingPowerSlotted = false;
-        if (props.frame.name === 'NIDUS') effects.strength = 0.15;
-        if (props.chosenAuraMod.name === 'Growing Power') {
-            growingPowerSlotted = true;
-            if (effects.strength && state.growingPowerActive) {
-                effects.strength += props.chosenAuraMod.effects.growingPower * (props.chosenAuraMod.currRank + 1);
-            } else if (!effects.strength && state.growingPowerActive) {
-                effects.strength = props.chosenAuraMod.effects.growingPower * (props.chosenAuraMod.currRank + 1);
+        if (props.full) {
+            if (props.frame.name === 'NIDUS') effects.strength = 0.15;
+            if (props.chosenAuraMod.name === 'Growing Power') {
+                growingPowerSlotted = true;
+                if (effects.strength && state.growingPowerActive) {
+                    effects.strength += props.chosenAuraMod.effects.growingPower * (props.chosenAuraMod.currRank + 1);
+                } else if (!effects.strength && state.growingPowerActive) {
+                    effects.strength = props.chosenAuraMod.effects.growingPower * (props.chosenAuraMod.currRank + 1);
+                }
             }
+            WarframeStats.groupEffects(props.chosenAuraMod, effects);
+            WarframeStats.groupEffects(props.chosenExilusMod, effects);
+            if (props.chosenExilusMod.name && props.chosenExilusMod.augment) augments[props.chosenExilusMod.augment.ability] = cloneDeep(props.chosenExilusMod);
         }
-        WarframeStats.groupEffects(props.chosenAuraMod, effects);
-        WarframeStats.groupEffects(props.chosenExilusMod, effects);
-        if (props.chosenExilusMod.name && props.chosenExilusMod.augment) augments[props.chosenExilusMod.augment.ability] = cloneDeep(props.chosenExilusMod);
         props.mods.forEach(mod => {
             if (mod.augment) augments[mod.augment.ability] = cloneDeep(mod)
             WarframeStats.groupEffects(mod, effects);
@@ -480,7 +482,7 @@ export class WarframeStats extends PureComponent {
                                 }
                             </div>
                             <div className="stats-item">
-                                <p className="stat-name">Sprint Speed: </p>
+                                <p className="stat-name">Speed: </p>
                                 {effects.speed
                                     ? <div className={"warframe-stat " + (frame.speed < frame.speed + (frame.speed * effects.speed) ? "increased-stat" : "decreased-stat")}><p>{Math.round((frame.speed + frame.speed * effects.speed) * 100) / 100}</p></div>
                                     : <div className="warframe-stat"><p>{frame.speed}</p></div>

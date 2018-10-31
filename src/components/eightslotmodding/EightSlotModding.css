@@ -19,6 +19,13 @@
     max-width: 1200px;
 }
 
+.stats-placeholder {
+    min-height: calc(100% - 56px);
+    width: 225px;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
 .mod-stack {
     display: flex;
     flex-direction: column;
