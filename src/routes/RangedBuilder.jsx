@@ -3,12 +3,12 @@ import Loadable from 'react-loadable';
 
 import Loading from '../components/loading/Loading';
 
-// import RangedWeaponModding from '../components/rangedweapon/RangedWeaponModding';
+// import EightSlotModding from '../components/eightslotmodding/EightSlotModding';
 
-const RangedWeaponModding = Loadable({
-    loader: () => import('../components/rangedweapon/RangedWeaponModding'),
+const EightSlotModding = Loadable({
+    loader: () => import('../components/eightslotmodding/EightSlotModding'),
     loading: Loading,
-    modules: ['RangedWeaponModding']
+    modules: ['EightSlotModding']
 });
 
 
@@ -118,7 +118,7 @@ class RangedBuilder extends Component {
                     <Loading />
                 }
                 {this.state.weapon.name &&
-                    <RangedWeaponModding redirectToVoid={this.redirectToVoid} weapon={this.state.weapon} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} />
+                    <EightSlotModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={'catalyst'} riven={'ranged'} weapon={this.state.weapon} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} />
                 }
             </div>
         )

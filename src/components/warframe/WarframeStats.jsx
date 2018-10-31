@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import cloneDeep from 'lodash/cloneDeep';
-import '../rangedweapon/RangedWeaponStats.css';
+import '../rangedweaponstats/RangedWeaponStats.css';
 import './WarframeStats.css';
 
 export class WarframeStats extends PureComponent {

@@ -103,7 +103,7 @@ class FrameBuilder extends Component {
                     <Loading />
                 }
                 {this.state.item.name &&
-                    <WarframeModding redirectToVoid={this.redirectToVoid} frame={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} />
+                    <WarframeModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={'reactor'} frame={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} />
                 }
             </div>
         )

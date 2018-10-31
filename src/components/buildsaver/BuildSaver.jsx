@@ -112,9 +112,8 @@ export class BuildSaver extends Component {
     }
 
     redirectToSaved = (buildData, buildId) => {
-        let type = this.props.match.url.split('/', 2);
         // fix url
-        let newUrl = `/${type[1]}/${this.props.match.params.id}/${buildData.buildStr}/${buildId}`;
+        let newUrl = `/${this.props.type}/${this.props.match.params.id}/${buildData.buildStr}/${buildId}`;
         document.body.classList.remove('noscroll');
         this.props.history.push(newUrl, { req: true });
     }

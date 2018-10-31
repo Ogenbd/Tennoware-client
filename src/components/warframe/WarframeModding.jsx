@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { CSSTransition } from "react-transition-group";
 import cloneDeep from 'lodash/cloneDeep';
-import '../rangedweapon/RangedWeaponModding.css'
+import '../eightslotmodding/EightSlotModding.css'
 import './WarframeModding.css';
 
 import WarframeStats from './WarframeStats';
@@ -14,11 +14,11 @@ import Like from '../like/Like';
 import BuildDescription from '../builddescription/BuildDescription';
 import ModPicker from '../modpicker/ModPicker';
 
-export class RangedWeaponModding extends Component {
+export class EightSlotModding extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            reactor: true,
+            orokin: true,
             forma: false,
             formaCount: 0,
             mods: this.props.mods,
@@ -40,13 +40,13 @@ export class RangedWeaponModding extends Component {
     componentDidMount() {
         if (this.props.match.params.pre) {
             let build = this.props.match.params.pre;
-            let reactor = build[0] === '0' ? false : true;
+            let orokin = build[0] === '0' ? false : true;
             let prePolarities = this.createPrePolarities(build.slice(1, 11).split(''));
-            let preMods = this.createPreMods(build.slice(11));
+            let preMods = this.createPreMods(build.slice(11, 51));
             let totalModsCost = this.calcCost(preMods.chosenMods, prePolarities.stack, preMods.auraMod, prePolarities.aura, preMods.exilusMod, prePolarities.exilus);
             let formaCount = this.countForma(prePolarities.stack, prePolarities.aura, prePolarities.exilus);
             this.setState({
-                reactor: reactor,
+                orokin: orokin,
                 auraPolarity: prePolarities.aura,
                 exilusPolarity: prePolarities.exilus,
                 slotPolarities: prePolarities.stack,
@@ -61,6 +61,7 @@ export class RangedWeaponModding extends Component {
     }
 
     createPreMods = (modsStr) => {
+        console.log(modsStr);
         let mods = cloneDeep(this.props.mods);
         let auraMod;
         let exilusMod;
@@ -94,6 +95,7 @@ export class RangedWeaponModding extends Component {
         let foundMod = mods.find(mod => {
             return mod.abrev === `${modAbrev[0]}${modAbrev[1]}`
         });
+        console.log(foundMod);
         let rank = parseInt(`${modAbrev[2]}${modAbrev[3]}`, 10);
         if (foundMod === undefined || typeof rank !== 'number' || rank < 0 || rank > foundMod.maxRank) {
             this.props.redirectToVoid();
@@ -145,7 +147,7 @@ export class RangedWeaponModding extends Component {
 
     convertBuildToString = () => {
         let buildStr = '';
-        this.state.reactor ? buildStr += '1' : buildStr += '0';
+        this.state.orokin ? buildStr += '1' : buildStr += '0';
         buildStr += this.convertPolarityToNum(this.state.auraPolarity);
         buildStr += this.convertPolarityToNum(this.state.exilusPolarity);
         for (let i = 0; i < 8; i++) {
@@ -201,7 +203,7 @@ export class RangedWeaponModding extends Component {
 
     toggleReactor = () => {
         this.setState(prevState => ({
-            reactor: !prevState.reactor,
+            orokin: !prevState.orokin,
             forSwap: null,
             errorBlinker: null
         }));
@@ -671,7 +673,7 @@ export class RangedWeaponModding extends Component {
 
     render() {
         let onLine = navigator.onLine;
-        const { mods, chosenAuraMod, auraPolarity, chosenExilusMod, exilusPolarity, chosenMods, modPicker, reactor, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSlot, forSwap, polarityPicker } = this.state;
+        const { mods, chosenAuraMod, auraPolarity, chosenExilusMod, exilusPolarity, chosenMods, modPicker, orokin, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSlot, forSwap, polarityPicker } = this.state;
         return (
             <CSSTransition classNames="fade" in={true} appear={true} timeout={200} >
                 <div className="ranged-modding">
@@ -685,9 +687,9 @@ export class RangedWeaponModding extends Component {
                                 <BuildDescription metaInfo={this.props.metaInfo} />
                             }
                             {onLine && this.props.user &&
-                                <BuildSaver orokin={reactor} formaCount={formaCount} user={this.props.user} match={this.props.match} getBuildStr={this.convertBuildToString} metaInfo={this.props.metaInfo} />
+                                <BuildSaver orokin={orokin} formaCount={formaCount} user={this.props.user} type={this.props.type} getBuildStr={this.convertBuildToString} metaInfo={this.props.metaInfo} />
                             }
-                            <LinkGenerator getBuildStr={this.convertBuildToString} match={this.props.match} />
+                            <LinkGenerator type={this.props.type} getBuildStr={this.convertBuildToString} match={this.props.match} />
                             {onLine && this.props.user && this.props.match.params.build && !this.props.metaInfo.Owner &&
                                 <Like />
                             }
@@ -699,7 +701,7 @@ export class RangedWeaponModding extends Component {
                             <div className="aug-wrapper">
                                 <div className="aug-info">
                                     <p className="aug-info-title">Capacity</p>
-                                    {reactor
+                                    {orokin
                                         ? <p className="aug-info-content" style={60 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{60 - totalModsCost}</p>
                                         : <p className="aug-info-content" style={30 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{30 - totalModsCost}</p>
                                     }
@@ -710,10 +712,10 @@ export class RangedWeaponModding extends Component {
                                 </div>
                             </div>
                             <div className="aug-wrapper">
-                                <div className={"interactable " + (reactor ? "interactable-active" : "interactable-inactive")} onClick={this.toggleReactor}>
-                                    {reactor
-                                        ? <img className="aug-image catalyst" src={require('../../assets/reactor.png')} alt={'Remove Reactor'} />
-                                        : <img className="aug-image catalyst" src={require('../../assets/nocatalyst.png')} alt={'Apply Reactor'} />}
+                                <div className={"interactable " + (orokin ? "interactable-active" : "interactable-inactive")} onClick={this.toggleReactor}>
+                                    {orokin
+                                        ? <img className="aug-image orokin" src={require(`../../assets/${this.props.orokin}.png`)} alt={'Remove Reactor'} />
+                                        : <img className="aug-image orokin" src={require('../../assets/nocatalyst.png')} alt={'Apply Reactor'} />}
                                 </div>
                                 <div className={"interactable " + (forma ? "interactable-active" : "interactable-inactive")} onClick={this.toggleForma}>
                                     {forma
@@ -778,4 +780,4 @@ export class RangedWeaponModding extends Component {
     }
 }
 
-export default RangedWeaponModding
+export default EightSlotModding
