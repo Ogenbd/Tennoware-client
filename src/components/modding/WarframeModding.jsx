@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { CSSTransition } from "react-transition-group";
 import cloneDeep from 'lodash/cloneDeep';
-import '../eightslotmodding/EightSlotModding.css'
-import './WarframeModding.css';
+import './Modding.css'
 
-import WarframeStats from './WarframeStats';
+import WarframeStats from '../stats/WarframeStats';
 import ModStateHandler from '../modstatehandler/ModStateHandler';
 import PolarityPicker from '../polaritypicker/PolarityPicker';
 import LinkGenerator from '../linkgenerator/LinkGenerator';
@@ -21,7 +20,6 @@ export class EightSlotModding extends Component {
             orokin: true,
             forma: false,
             formaCount: 0,
-            mods: this.props.mods,
             auraPolarity: this.props.frame.aura,
             exilusPolarity: this.props.frame.exilus,
             slotPolarities: this.props.slotPolarities,
@@ -29,6 +27,7 @@ export class EightSlotModding extends Component {
             chosenAuraMod: {},
             chosenExilusMod: {},
             chosenMods: [{}, {}, {}, {}, {}, {}, {}, {}],
+            chosenIndexs: [],
             totalModsCost: 0,
             polarityPicker: false,
             modPicker: false,
@@ -50,7 +49,7 @@ export class EightSlotModding extends Component {
                 auraPolarity: prePolarities.aura,
                 exilusPolarity: prePolarities.exilus,
                 slotPolarities: prePolarities.stack,
-                mods: preMods.mods,
+                chosenIndexs: preMods.chosenIndexs,
                 chosenAuraMod: preMods.auraMod,
                 chosenExilusMod: preMods.exilusMod,
                 chosenMods: preMods.chosenMods,
@@ -61,8 +60,7 @@ export class EightSlotModding extends Component {
     }
 
     createPreMods = (modsStr) => {
-        console.log(modsStr);
-        let mods = cloneDeep(this.props.mods);
+        let chosenIndexs = [];
         let auraMod;
         let exilusMod;
         let chosenMods = [];
@@ -72,36 +70,35 @@ export class EightSlotModding extends Component {
                 if (modAbrev === '0000') {
                     auraMod = {};
                 } else {
-                    auraMod = this.preSlotMod(mods, modAbrev);
+                    auraMod = this.preSlotMod(chosenIndexs, modAbrev);
                 }
             } else if (index === 1) {
                 if (modAbrev === '0000') {
                     exilusMod = {};
                 } else {
-                    exilusMod = this.preSlotMod(mods, modAbrev);
+                    exilusMod = this.preSlotMod(chosenIndexs, modAbrev);
                 }
             } else {
                 if (modAbrev === '0000') {
                     chosenMods.push({});
                 } else {
-                    chosenMods.push(this.preSlotMod(mods, modAbrev));
+                    chosenMods.push(this.preSlotMod(chosenIndexs, modAbrev));
                 }
             }
         });
-        return { chosenMods: chosenMods, mods: mods, auraMod: auraMod, exilusMod: exilusMod };
+        return { chosenMods: chosenMods, chosenIndexs: chosenIndexs, auraMod: auraMod, exilusMod: exilusMod };
     }
 
-    preSlotMod = (mods, modAbrev) => {
-        let foundMod = mods.find(mod => {
+    preSlotMod = (chosenIndexs, modAbrev) => {
+        let foundMod = this.props.mods.find(mod => {
             return mod.abrev === `${modAbrev[0]}${modAbrev[1]}`
         });
-        console.log(foundMod);
         let rank = parseInt(`${modAbrev[2]}${modAbrev[3]}`, 10);
         if (foundMod === undefined || typeof rank !== 'number' || rank < 0 || rank > foundMod.maxRank) {
             this.props.redirectToVoid();
         } else {
             foundMod.currRank = rank;
-            mods[foundMod.index] = {};
+            chosenIndexs.push(foundMod.index);
             return foundMod;
         }
     }
@@ -201,7 +198,7 @@ export class EightSlotModding extends Component {
         }
     }
 
-    toggleReactor = () => {
+    toggleOrokin = () => {
         this.setState(prevState => ({
             orokin: !prevState.orokin,
             forSwap: null,
@@ -236,7 +233,7 @@ export class EightSlotModding extends Component {
     }
 
     pickMod = (mod) => {
-        let mods = cloneDeep(this.state.mods);
+        let chosenIndexs = cloneDeep(this.state.chosenIndexs);
         if (typeof this.state.forSlot === 'number') {
             let sameFamilySlot = -1;
             if (mod.family) {
@@ -246,12 +243,12 @@ export class EightSlotModding extends Component {
             }
             if (sameFamilySlot === -1) {
                 let chosenMods = cloneDeep(this.state.chosenMods);
-                mods[mod.index] = {};
+                chosenIndexs.push(mod.index);
                 chosenMods[this.state.forSlot] = mod;
                 let totalModsCost = this.calcCost(chosenMods, this.state.slotPolarities, this.state.chosenAuraMod, this.state.auraPolarity, this.state.chosenExilusMod, this.state.exilusPolarity);
                 let chosenModsSets = this.checkModSets(chosenMods)
                 this.setState({
-                    mods: mods,
+                    chosenIndexs: chosenIndexs,
                     chosenMods: chosenModsSets,
                     forSlot: null,
                     forSwap: null,
@@ -266,10 +263,10 @@ export class EightSlotModding extends Component {
             }
         } else if (this.state.forSlot === 'aura' && mod.aura) {
             let auraMod = mod;
-            mods[mod.index] = {};
+            chosenIndexs.push(mod.index);
             let totalModsCost = this.calcCost(this.state.chosenMods, this.state.slotPolarities, auraMod, this.state.auraPolarity, this.state.chosenExilusMod, this.state.exilusPolarity);
             this.setState({
-                mods: mods,
+                chosenIndexs: chosenIndexs,
                 forSlot: null,
                 forSwap: null,
                 totalModsCost: totalModsCost,
@@ -278,10 +275,10 @@ export class EightSlotModding extends Component {
             });
         } else if (this.state.forSlot === 'exilus' && mod.exilus) {
             let exilusMod = mod;
-            mods[mod.index] = {};
+            chosenIndexs.push(mod.index);
             let totalModsCost = this.calcCost(this.state.chosenMods, this.state.slotPolarities, this.state.chosenAuraMod, this.state.auraPolarity, exilusMod, this.state.exilusPolarity);
             this.setState({
-                mods: mods,
+                chosenIndexs: chosenIndexs,
                 forSlot: null,
                 forSwap: null,
                 totalModsCost: totalModsCost,
@@ -290,35 +287,32 @@ export class EightSlotModding extends Component {
             });
         }
     }
-
+    
     dragInMod = (modIndex, targetSlot) => {
-        let mod = this.state.mods[modIndex];
+        let mod = this.props.mods[modIndex];
+        let chosenIndexs = cloneDeep(this.state.chosenIndexs);
         if (mod.aura || targetSlot === 'aura') {
             if (mod.aura && targetSlot === 'aura') {
-                let mods = cloneDeep(this.state.mods);
                 if (this.state.chosenAuraMod.name) {
-                    mods[this.state.chosenAuraMod.index] = cloneDeep(this.state.chosenAuraMod);
-                    mods[this.state.chosenAuraMod.index].currRank = mods[this.state.chosenAuraMod.index].maxRank;
+                    chosenIndexs = chosenIndexs.filter(idx => idx !== this.state.chosenAuraMod.index);
                 }
-                mods[mod.index] = {};
+                chosenIndexs.push(mod.index)
                 let totalModsCost = this.calcCost(this.state.chosenMods, this.state.slotPolarities, mod, this.state.auraPolarity, this.state.chosenExilusMod, this.state.exilusPolarity);
                 this.setState({
-                    mods: mods,
+                    chosenIndexs: chosenIndexs,
                     chosenAuraMod: mod,
                     totalModsCost: totalModsCost
                 });
             }
         } else if (targetSlot === 'exilus') {
             if (mod.exilus) {
-                let mods = cloneDeep(this.state.mods);
                 if (this.state.chosenExilusMod.name) {
-                    mods[this.state.chosenExilusMod.index] = cloneDeep(this.state.chosenExilusMod);
-                    mods[this.state.chosenExilusMod.index].currRank = mods[this.state.chosenExilusMod.index].maxRank;
+                    chosenIndexs = chosenIndexs.filter(idx => idx !== this.state.chosenExilusMod.index);
                 }
-                mods[mod.index] = {};
+                chosenIndexs.push(mod.index)
                 let totalModsCost = this.calcCost(this.state.chosenMods, this.state.slotPolarities, this.state.chosenAuraMod, this.state.auraPolarity, mod, this.state.exilusPolarity);
                 this.setState({
-                    mods: mods,
+                    chosenIndexs: chosenIndexs,
                     chosenExilusMod: mod,
                     totalModsCost: totalModsCost
                 });
@@ -331,17 +325,16 @@ export class EightSlotModding extends Component {
                 });
             }
             if (sameFamilySlot === -1) {
-                let mods = cloneDeep(this.state.mods);
                 let chosenMods = cloneDeep(this.state.chosenMods);
-                mods[modIndex] = {};
                 if (chosenMods[targetSlot].name) {
-                    mods[chosenMods[targetSlot].index] = chosenMods[targetSlot];
+                    chosenIndexs = chosenIndexs.filter(idx => idx !== chosenMods[targetSlot].index);
                 }
+                chosenIndexs.push(mod.index)
                 chosenMods[targetSlot] = mod;
                 let totalModsCost = this.calcCost(chosenMods, this.state.slotPolarities, this.state.chosenAuraMod, this.state.auraPolarity, this.state.chosenExilusMod, this.state.exilusPolarity);
                 let chosenModsSets = this.checkModSets(chosenMods)
                 this.setState({
-                    mods: mods,
+                    chosenIndexs: chosenIndexs,
                     chosenMods: chosenModsSets,
                     forSlot: null,
                     forSwap: null,
@@ -358,42 +351,38 @@ export class EightSlotModding extends Component {
     }
 
     removeAura = () => {
-        let mods = cloneDeep(this.state.mods);
-        mods[this.state.chosenAuraMod.index] = this.state.chosenAuraMod;
-        mods[this.state.chosenAuraMod.index].currRank = mods[this.state.chosenAuraMod.index].maxRank;
+        let chosenIndexs = cloneDeep(this.state.chosenIndexs);
+        chosenIndexs = chosenIndexs.filter(idx => idx !== this.state.chosenAuraMod.index);
         let auraMod = {}
         let totalModsCost = this.calcCost(this.state.chosenMods, this.state.slotPolarities, auraMod, this.state.auraPolarity, this.state.chosenExilusMod, this.state.exilusPolarity);
         this.setState({
-            mods: mods,
+            chosenIndexs: chosenIndexs,
             chosenAuraMod: auraMod,
             totalModsCost: totalModsCost
         });
     }
-
+    
     removeExilus = () => {
-        let mods = cloneDeep(this.state.mods);
-        mods[this.state.chosenExilusMod.index] = this.state.chosenExilusMod;
-        mods[this.state.chosenExilusMod.index].currRank = mods[this.state.chosenExilusMod.index].maxRank;
+        let chosenIndexs = cloneDeep(this.state.chosenIndexs);
+        chosenIndexs = chosenIndexs.filter(idx => idx !== this.state.chosenExilusMod.index);
         let exilusMod = {}
         let totalModsCost = this.calcCost(this.state.chosenMods, this.state.slotPolarities, this.state.chosenAuraMod, this.state.auraPolarity, exilusMod, this.state.exilusPolarity);
         this.setState({
-            mods: mods,
+            chosenIndexs: chosenIndexs,
             chosenExilusMod: exilusMod,
             totalModsCost: totalModsCost
         });
     }
-
-    removeMod = (slot, mod) => {
+    
+    removeMod = (slot) => {
         let chosenMods = cloneDeep(this.state.chosenMods);
-        let mods = cloneDeep(this.state.mods);
-        mods[mod.index] = mod;
-        mods[mod.index].currRank = mod.maxRank;
+        let chosenIndexs = cloneDeep(this.state.chosenIndexs);
+        chosenIndexs = chosenIndexs.filter(idx => idx !== chosenMods[slot].index);
         chosenMods[slot] = {};
-        if (mods[mod.index].set) mods[mod.index].set.setCurr = 1;
         let totalModsCost = this.calcCost(chosenMods, this.state.slotPolarities, this.state.chosenAuraMod, this.state.auraPolarity, this.state.chosenExilusMod, this.state.exilusPolarity);
         let chosenModsSets = this.checkModSets(chosenMods)
         this.setState({
-            mods: mods,
+            chosenIndexs: chosenIndexs,
             chosenMods: chosenModsSets,
             forSlot: null,
             forSwap: null,
@@ -673,11 +662,11 @@ export class EightSlotModding extends Component {
 
     render() {
         let onLine = navigator.onLine;
-        const { mods, chosenAuraMod, auraPolarity, chosenExilusMod, exilusPolarity, chosenMods, modPicker, orokin, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSlot, forSwap, polarityPicker } = this.state;
+        const { chosenAuraMod, chosenIndexs, auraPolarity, chosenExilusMod, exilusPolarity, chosenMods, modPicker, orokin, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSlot, forSwap, polarityPicker } = this.state;
         return (
             <CSSTransition classNames="fade" in={true} appear={true} timeout={200} >
                 <div className="ranged-modding">
-                    <ModPicker type={'warframe'} mods={mods} active={modPicker} closeModPicker={this.closeModPicker} pickMod={this.pickMod} viewWidth={this.props.viewWidth} drop={this.drop} forSlot={forSlot} />
+                    <ModPicker type={'warframe'} mods={this.props.mods} chosenIndexs={chosenIndexs} active={modPicker} closeModPicker={this.closeModPicker} pickMod={this.pickMod} viewWidth={this.props.viewWidth} drop={this.drop} forSlot={forSlot} />
                     <div className="mod-stack">
                         <div className="interactable-wrapper">
                             {onLine &&
@@ -712,7 +701,7 @@ export class EightSlotModding extends Component {
                                 </div>
                             </div>
                             <div className="aug-wrapper">
-                                <div className={"interactable " + (orokin ? "interactable-active" : "interactable-inactive")} onClick={this.toggleReactor}>
+                                <div className={"interactable " + (orokin ? "interactable-active" : "interactable-inactive")} onClick={this.toggleOrokin}>
                                     {orokin
                                         ? <img className="aug-image orokin" src={require(`../../assets/${this.props.orokin}.png`)} alt={'Remove Reactor'} />
                                         : <img className="aug-image orokin" src={require('../../assets/nocatalyst.png')} alt={'Apply Reactor'} />}

@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import cloneDeep from 'lodash/cloneDeep';
-import '../rangedweaponstats/RangedWeaponStats.css';
-import './WarframeStats.css';
+import './Stats.css';
 
 export class WarframeStats extends PureComponent {
     constructor(props) {
@@ -79,7 +78,6 @@ export class WarframeStats extends PureComponent {
         let newEffects = cloneDeep(this.state.effects);
         if (this.state.growingPowerActive) {
             newEffects.strength -= this.state.growingPowerEffect;
-            console.log(newEffects.strength);
             this.setState({
                 growingPowerActive: false,
                 effects: newEffects
@@ -477,7 +475,7 @@ export class WarframeStats extends PureComponent {
                             <div className="stats-item">
                                 <p className="stat-name">Shields: </p>
                                 {effects.shields
-                                    ? <div className={"warframe-stat " + (frame.shields < frame.shields + (frame.shields * effects.shields) ? "increased-stat" : "decreased-stat")}><p>{Math.round(frame.shields + (frame.baseShield * effects.shields))}</p></div>
+                                    ? <div className={"warframe-stat " + (frame.shields < frame.shields + (frame.shields * effects.shields) ? "increased-stat" : "decreased-stat")}><p>{Math.round(frame.shields + (frame.baseShields * effects.shields))}</p></div>
                                     : <div className="warframe-stat"><p>{frame.shields}</p></div>
                                 }
                             </div>

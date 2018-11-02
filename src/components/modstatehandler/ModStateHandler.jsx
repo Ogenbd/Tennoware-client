@@ -130,7 +130,7 @@ export class ModStateHandler extends Component {
 
   removeMod = (e) => {
     e.stopPropagation();
-    this.props.removeMod(this.props.slot, this.state.mod);
+    this.props.removeMod(this.props.slot);
     this.closeHandler(e);
   }
 

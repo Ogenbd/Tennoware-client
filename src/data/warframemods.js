@@ -221,7 +221,7 @@ const warframeMods = [
                 }
             ]
         },
-        description() { return `Spectral Scream Augment: On deactivation, a projectile is launched dealing ${Math.round(this.effects.none[0] * (this.currRank + 1))} damage per second the ability was active, to a maximum of ${100 + this.effects.none[1] * (this.currRank + 1)} damage` }
+        description() { return `Spectral Scream Augment: On deactivation, a projectile is launched dealing ${Math.round(this.effects.none[0] * (this.currRank + 1))} damage per second the ability was active, to a max of ${100 + this.effects.none[1] * (this.currRank + 1)} damage` }
     },
     {
         abrev: 'a6',
@@ -3123,7 +3123,7 @@ const warframeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
-        set: { setName: 'augur', setMax: 6, setCurr: 1 },
+        set: { setName: 'hunter', setMax: 6, setCurr: 1 },
         description() { return [`Convert +${this.effects.none[0] * (this.currRank + 1)}% of Damage on Health to Energy`, `Set Bonus: ${this.set.setCurr}/6: +${this.effects.none[1] * (this.currRank + 1)} Companion Damage on enemies effected by Slash Status`] }
     },
     {

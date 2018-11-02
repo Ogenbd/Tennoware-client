@@ -11,7 +11,7 @@ const archwings = [
         health: 1200,
         baseHealth: 400,
         shields: 600,
-        baseShield: 200,
+        baseShields: 200,
         speed: 1.1,
         abilities: abilities.amesha
     },
@@ -25,7 +25,7 @@ const archwings = [
         health: 1350,
         baseHealth: 450,
         shields: 1350,
-        baseShield: 450,
+        baseShields: 450,
         speed: 0.9,
         abilities: abilities.elytron
     },
@@ -39,7 +39,7 @@ const archwings = [
         health: 600,
         baseHealth: 200,
         shields: 600,
-        baseShield: 200,
+        baseShields: 200,
         speed: 1.2,
         abilities: abilities.itzal
     },
@@ -53,7 +53,7 @@ const archwings = [
         health: 900,
         baseHealth: 300,
         shields: 900,
-        baseShield: 300,
+        baseShields: 300,
         speed: 1,
         abilities: abilities.odonata
     },
@@ -67,7 +67,7 @@ const archwings = [
         health: 1200,
         baseHealth: 400,
         shields: 1200,
-        baseShield: 400,
+        baseShields: 400,
         speed: 1.05,
         abilities: abilities.odonata
     },

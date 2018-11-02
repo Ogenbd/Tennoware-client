@@ -12,10 +12,6 @@
     z-index: 2;
 }
 
-.pull-tab {
-    display: none;
-}
-
 .top-bar-margin {
     display: flex;
     flex-direction: column;
@@ -149,8 +145,72 @@
 .increased-stat {
     color: #15E610;
 }
+
 .decreased-stat {
     color: red;
+}
+
+.frame-ability {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    flex-shrink: 0;
+    width: 200px;
+    margin-bottom: 5px;
+    padding: 2px 0 1px 0;
+    justify-content: flex-start;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: solid 1px;
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
+    font-weight: 600;
+    box-sizing: border-box;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.ability-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    vertical-align: middle;
+    margin-left: 5px;
+    font-size: 18px;
+}
+
+.ability-title p {
+    text-decoration: underline;
+}
+
+.warframe-stat {
+    display: flex;
+    /* align-self: flex-end; */
+    align-items: center;
+    margin-right: 4px;
+    transition: all 200ms;
+}
+
+.ability-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2px;
+    margin: 1px 5px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.25);
+}
+
+.ability-stat:last-child {
+    border-bottom: 0px;
+}
+
+.ability-stat-name {
+    width: 140px;
+}
+
+.ability-stat-amount {
+    display: flex;
+    align-items: center;
+    transition: all 200ms;
 }
 
 @media screen and (min-width: 537px) {
@@ -185,55 +245,6 @@
     .open-ranged-stats {
         transform: translateX(0);
         border-left: solid 1px rgba(255, 249, 160, 0.73);
-    }
-    .pull-tab {
-        display: flex;
-        position: fixed;
-        justify-content: center;
-        align-items: center;
-        top: 94px;
-        right: 0;
-        width: 60px;
-        height: 50px;
-        font-size: 12px;
-        color: rgb(255, 249, 160);
-        background-color: rgba(0, 0, 0, 0.95);
-        border-top: solid 1px rgba(255, 249, 160, 0.3);
-        border-left: solid 1px rgba(255, 249, 160, 0.3);
-        border-bottom: solid 1px rgba(255, 249, 160, 0.3);
-        border-top-left-radius: 30px;
-        border-bottom-left-radius: 30px;
-        cursor: pointer;
-        transition: all 0.2s ease-in-out;
-        z-index: 3;
-    }
-    .pull-tab-arrow {
-        position: relative;
-        left: 12px;
-        height: 22px;
-        line-height: 22px;
-        transition: transform 0.2s ease-in-out;
-    }
-    .pull-tab p {
-        position: relative;
-        transform: rotate(-90deg);
-        left: 5px;
-        font-weight: 600;
-    }
-    .point-left {
-        transform: rotate(0);
-    }
-    .point-right {
-        transform: rotate(180deg);
-    }
-    .closed-pull-tab {
-        transform: translateX(1px);
-    }
-    .open-pull-tab {
-        transform: translateX(-224px);
-        border-top: solid 1px rgba(255, 249, 160, 0.73);
-        border-left: solid 1px rgba(255, 249, 160, 0.73);
-        border-bottom: solid 1px rgba(255, 249, 160, 0.73);
     }
     .modes {
         direction: ltr;

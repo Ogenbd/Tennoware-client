@@ -5,7 +5,7 @@ import Loading from '../components/loading/Loading';
 
 
 const EightSlotModding = Loadable({
-    loader: () => import('../components/eightslotmodding/EightSlotModding'),
+    loader: () => import('../components/modding/EightSlotModding'),
     loading: Loading,
 });
 

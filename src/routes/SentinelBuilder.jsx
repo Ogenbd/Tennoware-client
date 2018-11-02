@@ -4,8 +4,8 @@ import Loadable from 'react-loadable';
 import Loading from '../components/loading/Loading';
 
 
-const EightSlotModding = Loadable({
-    loader: () => import('../components/modding/EightSlotModding'),
+const TenSlotModding = Loadable({
+    loader: () => import('../components/modding/TenSlotModding'),
     loading: Loading,
 });
 
@@ -24,11 +24,11 @@ class RangedBuilder extends Component {
     }
 
     componentDidMount() {
-        // let weaponList = [] 
-        // this.props.weapons.forEach(weapon => {
-        //     weaponList.push(weapon.name)
+        // let itemList = [] 
+        // this.props.items.forEach(item => {
+        //     itemList.push(item.name)
         // })
-        // console.log(weaponList);
+        // console.log(itemList);
         // let sortedMods = this.props.mods.sort((a, b) => {
         //     if (a.abrev[0] > b.abrev[0]) return 1
         //     if (a.abrev[0] < b.abrev[0]) return -1
@@ -53,13 +53,16 @@ class RangedBuilder extends Component {
     setupBuilder = async (metaInfo) => {
         let items = await this.props.items();
         let mods = await this.props.mods();
-        let item = items.find(weapon => {
-            return weapon.name.toLowerCase() === this.props.match.params.id.toLowerCase();
+        let item = items.find(sentinel => {
+            return sentinel.name.toLowerCase() === this.props.match.params.id.toLowerCase();
         });
         if (item !== undefined) {
             let slotPolarities = [];
             let originalPolarityCount = { madurai: 0, naramon: 0, vazarin: 0, zenurik: 0, unairu: 0, penjaga: 0, umbra: 0 };
-            mods.forEach((mod, index) => mod.index = index);
+            let filteredMods = mods.filter(mod => {
+                return mod.type === 'ROBOTIC' || item.name.includes(mod.type);
+            });
+            filteredMods.forEach((mod, index) => mod.index = index);
             if (item.polarities.length > 0) {
                 item.polarities.forEach(polarity => {
                     slotPolarities.push(polarity);
@@ -69,7 +72,7 @@ class RangedBuilder extends Component {
             this.setState({
                 title: item.name,
                 item: item,
-                relevantMods: mods,
+                relevantMods: filteredMods,
                 slotPolarities: slotPolarities,
                 originalPolarityCount: originalPolarityCount,
                 metaInfo: metaInfo
@@ -111,7 +114,7 @@ class RangedBuilder extends Component {
                     <Loading />
                 }
                 {this.state.item.name &&
-                    <EightSlotModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={'catalyst'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} />
+                    <TenSlotModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={'reactor'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} />
                 }
             </div>
         )

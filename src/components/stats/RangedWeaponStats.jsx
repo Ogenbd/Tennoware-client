@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './RangedWeaponStats.css';
+import './Stats.css';
 
 export class RangedWeaponStats extends Component {
     constructor(props) {

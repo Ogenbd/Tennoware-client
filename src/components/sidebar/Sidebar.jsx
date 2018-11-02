@@ -40,6 +40,18 @@ export class Sidebar extends Component {
     return JSON.stringify(window.location.href).includes('archguns');
   }
 
+  sentinelsActive = () => {
+    return JSON.stringify(window.location.href).includes('sentinels');
+  }
+  
+  sentinelWeaponsActive = () => {
+    return JSON.stringify(window.location.href).includes('sentinelweapons');
+  }
+  
+  beastsActive = () => {
+    return JSON.stringify(window.location.href).includes('beasts');
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -62,11 +74,14 @@ export class Sidebar extends Component {
         </div>
         <div className="sidebar-content">
           <NavLink exact to="/" className="nav-item" activeClassName="selected" onClick={this.closeSidebar}><p>News</p></NavLink>
-          <NavLink exact to="/warframes" className="nav-item" activeClassName="selected" isActive={this.warframeActive} onClick={this.closeSidebar}><p>Warframe Builder</p></NavLink>
-          <NavLink exact to="/primaryweapons" className="nav-item" activeClassName="selected" isActive={this.primaryActive} onClick={this.closeSidebar}><p>Primary Builder</p></NavLink>
-          <NavLink exact to="/secondaryweapons" className="nav-item" activeClassName="selected" isActive={this.secondaryActive} onClick={this.closeSidebar}><p>Secondary Builder</p></NavLink>
-          <NavLink exact to="/archwings" className="nav-item" activeClassName="selected" isActive={this.archwingActive} onClick={this.closeSidebar}><p>Archwing Builder</p></NavLink>
-          <NavLink exact to="/archguns" className="nav-item" activeClassName="selected" isActive={this.archgunActive} onClick={this.closeSidebar}><p>Arch-Gun Builder</p></NavLink>
+          <NavLink exact to="/warframes" className="nav-item" activeClassName="selected" isActive={this.warframeActive} onClick={this.closeSidebar}><p>Warframes</p></NavLink>
+          <NavLink exact to="/primaryweapons" className="nav-item" activeClassName="selected" isActive={this.primaryActive} onClick={this.closeSidebar}><p>Primary Weapons</p></NavLink>
+          <NavLink exact to="/secondaryweapons" className="nav-item" activeClassName="selected" isActive={this.secondaryActive} onClick={this.closeSidebar}><p>Secondary Weapons</p></NavLink>
+          <NavLink exact to="/beasts" className="nav-item" activeClassName="selected" isActive={this.beastsActive} onClick={this.closeSidebar}><p>Beasts</p></NavLink>
+          <NavLink exact to="/sentinels" className="nav-item" activeClassName="selected" isActive={this.sentinelsActive} onClick={this.closeSidebar}><p>Sentinels</p></NavLink>
+          <NavLink exact to="/sentinelweapons" className="nav-item" activeClassName="selected" isActive={this.sentinelWeaponsActive} onClick={this.closeSidebar}><p>Sentinel Weapons</p></NavLink>
+          <NavLink exact to="/archwings" className="nav-item" activeClassName="selected" isActive={this.archwingActive} onClick={this.closeSidebar}><p>Archwings</p></NavLink>
+          <NavLink exact to="/archguns" className="nav-item" activeClassName="selected" isActive={this.archgunActive} onClick={this.closeSidebar}><p>Arch-Guns</p></NavLink>
         </div>
       </div>
       </React.Fragment>

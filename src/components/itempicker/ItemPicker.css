@@ -80,7 +80,7 @@
     transition: all 0.2s ease-in-out;
 }
 
-@media (hover: hover) {
+@media screen and (min-width: 1223px) and (hover: hover) {
     .item-wrapper:hover {
         border: solid 1px rgba(255, 249, 160, 0.73);
     }

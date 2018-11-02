@@ -4,7 +4,7 @@ import Loadable from 'react-loadable';
 import Loading from '../components/loading/Loading';
 
 const WarframeModding = Loadable({
-    loader: () => import('../components/warframe/WarframeModding'),
+    loader: () => import('../components/modding/WarframeModding'),
     loading: Loading,
     delay: 400
 });

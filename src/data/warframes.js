@@ -13,7 +13,7 @@ const warframes = [
         health: 450,
         baseHealth: 150,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 1.15,
         abilities: abilities.ash
     },
@@ -29,7 +29,7 @@ const warframes = [
         health: 450,
         baseHealth: 150,
         shields: 375,
-        baseShield: 125,
+        baseShields: 125,
         speed: 1.2,
         abilities: abilities.ash
     },
@@ -45,7 +45,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 0.9,
         abilities: abilities.atlas
     },
@@ -61,7 +61,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 1.1,
         abilities: abilities.banshee
     },
@@ -77,7 +77,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 1.15,
         abilities: abilities.banshee
     },
@@ -93,7 +93,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 1,
         abilities: abilities.chroma
     },
@@ -109,7 +109,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 1,
         abilities: abilities.chroma
     },
@@ -125,7 +125,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 1.1,
         abilities: abilities.ember
     },
@@ -141,7 +141,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 375,
-        baseShield: 125,
+        baseShields: 125,
         speed: 1.1,
         abilities: abilities.ember
     },
@@ -157,7 +157,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 1.15,
         abilities: abilities.equinox
     },
@@ -173,7 +173,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 1,
         abilities: abilities.excalibur
     },
@@ -189,7 +189,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 1,
         abilities: abilities.excalibur
     },
@@ -205,7 +205,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 1,
         abilities: abilities.excalibur
     },
@@ -221,7 +221,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 450,
-        baseShield: 150,
+        baseShields: 150,
         speed: 0.95,
         abilities: abilities.frost
     },
@@ -237,7 +237,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 525,
-        baseShield: 175,
+        baseShields: 175,
         speed: 0.95,
         abilities: abilities.frost
     },
@@ -253,7 +253,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 1.15,
         abilities: abilities.gara
     },
@@ -269,7 +269,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 450,
-        baseShield: 150,
+        baseShields: 150,
         speed: 1,
         abilities: abilities.harrow
     },
@@ -285,7 +285,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 375,
-        baseShield: 125,
+        baseShields: 125,
         speed: 1.05,
         abilities: abilities.hydroid
     },
@@ -301,7 +301,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 375,
-        baseShield: 125,
+        baseShields: 125,
         speed: 1.05,
         abilities: abilities.hydroid
     },
@@ -317,7 +317,7 @@ const warframes = [
         health: 2200,
         baseHealth: 550,
         shields: 0,
-        baseShield: 0,
+        baseShields: 0,
         speed: 1,
         abilities: abilities.inaros
     },
@@ -333,7 +333,7 @@ const warframes = [
         health: 225,
         baseHealth: 75,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 1.15,
         abilities: abilities.ivara
     },
@@ -349,7 +349,7 @@ const warframes = [
         health: 375,
         baseHealth: 125,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 1.05,
         abilities: abilities.khora
     },
@@ -365,7 +365,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 225,
-        baseShield: 75,
+        baseShields: 75,
         speed: 1.15,
         abilities: abilities.limbo
     },
@@ -381,7 +381,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 1.15,
         abilities: abilities.limbo
     },
@@ -397,7 +397,7 @@ const warframes = [
         health: 225,
         baseHealth: 75,
         shields: 225,
-        baseShield: 75,
+        baseShields: 75,
         speed: 1.25,
         abilities: abilities.loki
     },
@@ -413,7 +413,7 @@ const warframes = [
         health: 225,
         baseHealth: 75,
         shields: 225,
-        baseShield: 75,
+        baseShields: 75,
         speed: 1.25,
         abilities: abilities.loki
     },
@@ -429,7 +429,7 @@ const warframes = [
         health: 225,
         baseHealth: 75,
         shields: 450,
-        baseShield: 150,
+        baseShields: 150,
         speed: 1,
         abilities: abilities.mag
     },
@@ -445,7 +445,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 450,
-        baseShield: 150,
+        baseShields: 150,
         speed: 1,
         abilities: abilities.mag
     },
@@ -461,7 +461,7 @@ const warframes = [
         health: 375,
         baseHealth: 125,
         shields: 225,
-        baseShield: 75,
+        baseShields: 75,
         speed: 1.1,
         abilities: abilities.mesa
     },
@@ -477,7 +477,7 @@ const warframes = [
         health: 240,
         baseHealth: 80,
         shields: 240,
-        baseShield: 80,
+        baseShields: 80,
         speed: 1.2,
         abilities: abilities.mirage
     },
@@ -493,7 +493,7 @@ const warframes = [
         health: 240,
         baseHealth: 80,
         shields: 330,
-        baseShield: 110,
+        baseShields: 110,
         speed: 1.2,
         abilities: abilities.mirage
     },
@@ -509,7 +509,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 270,
-        baseShield: 90,
+        baseShields: 90,
         speed: 1.1,
         abilities: abilities.nekros
     },
@@ -525,7 +525,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 450,
-        baseShield: 150,
+        baseShields: 150,
         speed: 1.1,
         abilities: abilities.nekros
     },
@@ -541,7 +541,7 @@ const warframes = [
         health: 375,
         baseHealth: 125,
         shields: 150,
-        baseShield: 50,
+        baseShields: 50,
         speed: 1.15,
         abilities: abilities.nezha
     },
@@ -557,7 +557,7 @@ const warframes = [
         health: 450,
         baseHealth: 150,
         shields: 0,
-        baseShield: 0,
+        baseShields: 0,
         speed: 1,
         abilities: abilities.nidus
     },
@@ -573,7 +573,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 225,
-        baseShield: 75,
+        baseShields: 75,
         speed: 1.2,
         abilities: abilities.nova
     },
@@ -589,7 +589,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 1.2,
         abilities: abilities.nova
     },
@@ -605,7 +605,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 1.1,
         abilities: abilities.nyx
     },
@@ -621,7 +621,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 375,
-        baseShield: 125,
+        baseShields: 125,
         speed: 1.12,
         abilities: abilities.nyx
     },
@@ -637,7 +637,7 @@ const warframes = [
         health: 375,
         baseHealth: 125,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 1,
         abilities: abilities.oberon
     },
@@ -653,7 +653,7 @@ const warframes = [
         health: 375,
         baseHealth: 125,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 1,
         abilities: abilities.oberon
     },
@@ -669,7 +669,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 225,
-        baseShield: 75,
+        baseShields: 75,
         speed: 1.05,
         abilities: abilities.octavia
     },
@@ -685,7 +685,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 675,
-        baseShield: 225,
+        baseShields: 225,
         speed: 1,
         abilities: abilities.revenant
     },
@@ -701,7 +701,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 450,
-        baseShield: 150,
+        baseShields: 150,
         speed: 0.95,
         abilities: abilities.rhino
     },
@@ -717,7 +717,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 450,
-        baseShield: 150,
+        baseShields: 150,
         speed: 1,
         abilities: abilities.rhino
     },
@@ -733,7 +733,7 @@ const warframes = [
         health: 375,
         baseHealth: 125,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 0.95,
         abilities: abilities.saryn
     },
@@ -749,7 +749,7 @@ const warframes = [
         health: 375,
         baseHealth: 125,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 0.95,
         abilities: abilities.saryn
     },
@@ -765,7 +765,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 1,
         abilities: abilities.titania
     },
@@ -781,7 +781,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 1,
         abilities: abilities.trinity
     },
@@ -797,7 +797,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 450,
-        baseShield: 150,
+        baseShields: 150,
         speed: 1.1,
         abilities: abilities.trinity
     },
@@ -813,7 +813,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 150,
-        baseShield: 50,
+        baseShields: 50,
         speed: 1.1,
         abilities: abilities.valkyr
     },
@@ -829,7 +829,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 150,
-        baseShield: 50,
+        baseShields: 50,
         speed: 1.1,
         abilities: abilities.valkyr
     },
@@ -845,7 +845,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 225,
-        baseShield: 75,
+        baseShields: 75,
         speed: 1,
         abilities: abilities.vauban
     },
@@ -861,7 +861,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 300,
-        baseShield: 100,
+        baseShields: 100,
         speed: 1,
         abilities: abilities.vauban
     },
@@ -877,7 +877,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 450,
-        baseShield: 150,
+        baseShields: 150,
         speed: 1,
         abilities: abilities.volt
     },
@@ -893,7 +893,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 450,
-        baseShield: 150,
+        baseShields: 150,
         speed: 1,
         abilities: abilities.volt
     },
@@ -909,7 +909,7 @@ const warframes = [
         health: 300,
         baseHealth: 100,
         shields: 375,
-        baseShield: 125,
+        baseShields: 125,
         speed: 0.95,
         abilities: abilities.wukong
     },
@@ -925,7 +925,7 @@ const warframes = [
         health: 450,
         baseHealth: 150,
         shields: 450,
-        baseShield: 150,
+        baseShields: 150,
         speed: 1.15,
         abilities: abilities.zephyr
     },
@@ -941,7 +941,7 @@ const warframes = [
         health: 450,
         baseHealth: 150,
         shields: 450,
-        baseShield: 150,
+        baseShields: 150,
         speed: 1.2,
         abilities: abilities.zephyr
     },
@@ -957,7 +957,7 @@ const warframes = [
     //     health: ,
     //     baseHealth: ,
     //     shields: ,
-    //     baseShield: ,
+    //     baseShields: ,
     //     speed: ,
     //     abilities: abilities.
     // },

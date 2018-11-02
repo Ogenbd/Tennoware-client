@@ -135,8 +135,8 @@
     }
 }
 
-@media (hover:hover) {
+@media screen and (min-width: 1223px) and (hover: hover) {
     .mod-wrapper:hover {
-        transform: translateZ(0) scale(1.1,1.1);
+        transform: translateZ(0) scale(1.1, 1.1);
     }
 }

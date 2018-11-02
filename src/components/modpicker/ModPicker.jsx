@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 // import { CSSTransition } from "react-transition-group";
 import './ModPicker.css';
 
 import { SimpleModCardGenerator } from '../modcardgenerator/SimpleModCardGenerator.jsx';
 
-export class ModPicker extends Component {
+export class ModPicker extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -94,6 +94,7 @@ export class ModPicker extends Component {
             });
         }
         this.state.search.length > 0 ? filteredMods = this.filterBySearch(initial) : filteredMods = initial;
+        filteredMods = filteredMods.filter(mod => !this.props.chosenIndexs.includes(mod.index));
         return filteredMods;
     }
 

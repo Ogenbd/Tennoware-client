@@ -1891,7 +1891,7 @@ const primaryMods = [
         numThree: '',
         effectFour: 'None',
         numFour: '',
-        desc: '',
+        desc: 'Only shows custom stats when slotted.',
         description() { return this.desc }
     },
     {
