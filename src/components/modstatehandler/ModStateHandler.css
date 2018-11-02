@@ -229,7 +229,7 @@
     pointer-events: none;
 }
 
-@media screen and (min-width: 1223) and (hover: hover) {
+@media screen and (min-width: 1223px) and (hover: hover) {
     .mod-card-wrapper:hover {
         transform: translateZ(0) scale(1.1, 1.1);
     }
