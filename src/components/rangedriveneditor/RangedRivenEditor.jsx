@@ -346,7 +346,7 @@ export class RangedRivenEditor extends Component {
       showRivenEditor: true
     });
   }
-  
+
   hideRivenEditor = () => {
     document.body.classList.remove('noscroll');
     this.setState({
@@ -370,101 +370,105 @@ export class RangedRivenEditor extends Component {
             </div>
           </div>
           <div className="popup-content riven-editor">
-            <div className="riven-polarity">
-              <div className="riven-window-title">Riven Polarity</div>
-              <div className="hexa-wrapper hexa-first">
-                <div className={"riven-hexagon hexagon " + (this.state.polarity === 'madurai' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'madurai') }}>
-                  <span>
-                    <img className="hex-polarity" src={require('../../assets/maduraiblack.png')} alt="madurai" />
-                  </span>
+            <div className="riven-window">
+              <div className="riven-polarity">
+                <div className="riven-window-title">Riven Polarity</div>
+                <div className="hexa-wrapper hexa-first">
+                  <div className={"riven-hexagon hexagon " + (this.state.polarity === 'madurai' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'madurai') }}>
+                    <span>
+                      <img className="hex-polarity" src={require('../../assets/maduraiblack.png')} alt="madurai" />
+                    </span>
+                  </div>
+                  <div className={"riven-hexagon hexagon " + (this.state.polarity === 'naramon' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'naramon') }}>
+                    <span>
+                      <img className="hex-polarity" src={require('../../assets/naramonblack.png')} alt="naramon" />
+                    </span>
+                  </div>
+                  <div className={"riven-hexagon hexagon " + (this.state.polarity === 'vazarin' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'vazarin') }}>
+                    <span>
+                      <img className="hex-polarity" src={require('../../assets/vazarinblack.png')} alt="vazarin" />
+                    </span>
+                  </div>
                 </div>
-                <div className={"riven-hexagon hexagon " + (this.state.polarity === 'naramon' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'naramon') }}>
-                  <span>
-                    <img className="hex-polarity" src={require('../../assets/naramonblack.png')} alt="naramon" />
-                  </span>
-                </div>
-                <div className={"riven-hexagon hexagon " + (this.state.polarity === 'vazarin' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'vazarin') }}>
-                  <span>
-                    <img className="hex-polarity" src={require('../../assets/vazarinblack.png')} alt="vazarin" />
-                  </span>
+                <div className="hexa-wrapper hexa-second">
+                  <div className={"riven-hexagon hexagon " + (this.state.polarity === 'zenurik' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'zenurik') }}>
+                    <span>
+                      <img className="hex-polarity" src={require('../../assets/zenurikblack.png')} alt="zenurik" />
+                    </span>
+                  </div>
+                  <div className={"riven-hexagon hexagon " + (this.state.polarity === 'unairu' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'unairu') }}>
+                    <span>
+                      <img className="hex-polarity" src={require('../../assets/unairublack.png')} alt="unairu" />
+                    </span>
+                  </div>
+                  <div className={"riven-hexagon hexagon " + (this.state.polarity === 'penjaga' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'penjaga') }}>
+                    <span>
+                      <img className="hex-polarity" src={require('../../assets/penjagablack.png')} alt="penjaga" />
+                    </span>
+                  </div>
                 </div>
               </div>
-              <div className="hexa-wrapper hexa-second">
-                <div className={"riven-hexagon hexagon " + (this.state.polarity === 'zenurik' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'zenurik') }}>
-                  <span>
-                    <img className="hex-polarity" src={require('../../assets/zenurikblack.png')} alt="zenurik" />
-                  </span>
+              <div className="riven-effects">
+                <div className="riven-window-title">Riven Effects</div>
+                <div className="riven-effect-wrapper">
+                  <div className="riven-effect" onClick={(e) => this.openEffect(e, 1)}>
+                    <div className="chosen-stat"><p>{this.state.effectOne}</p></div>
+                  </div>
+                  <div className="riven-effect-amount">
+                    <input className="riven-amount-input riven-input-one" type="tel" value={this.state.numOne} name="numOne" placeholder={0} onFocus={this.focusSoftInput} onChange={this.handleChange} />
+                    {this.state.effectOne !== 'Punch Through'
+                      ? <p className="percent">%</p>
+                      : <p className="percent">m</p>
+                    }
+                  </div>
                 </div>
-                <div className={"riven-hexagon hexagon " + (this.state.polarity === 'unairu' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'unairu') }}>
-                  <span>
-                    <img className="hex-polarity" src={require('../../assets/unairublack.png')} alt="unairu" />
-                  </span>
-                </div>
-                <div className={"riven-hexagon hexagon " + (this.state.polarity === 'penjaga' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'penjaga') }}>
-                  <span>
-                    <img className="hex-polarity" src={require('../../assets/penjagablack.png')} alt="penjaga" />
-                  </span>
-                </div>
+                {this.state.effectOne !== 'None' &&
+                  <div className="riven-effect-wrapper">
+                    <div className="riven-effect" onClick={(e) => this.openEffect(e, 2)}>
+                      <div className="chosen-stat"><p>{this.state.effectTwo}</p></div>
+                    </div>
+                    <div className="riven-effect-amount">
+                      <input className="riven-amount-input riven-input-two" type="tel" value={this.state.numTwo} name="numTwo" placeholder={0} onFocus={this.focusSoftInput} onChange={this.handleChange} />
+                      {this.state.effectTwo !== 'Punch Through'
+                        ? <p className="percent">%</p>
+                        : <p className="percent">m</p>
+                      }
+                    </div>
+                  </div>
+                }
+                {this.state.effectTwo !== 'None' &&
+                  <div className="riven-effect-wrapper">
+                    <div className="riven-effect" onClick={(e) => this.openEffect(e, 3)}>
+                      <div className="chosen-stat"><p>{this.state.effectThree}</p></div>
+                    </div>
+                    <div className="riven-effect-amount">
+                      <input className="riven-amount-input riven-input-three" type="tel" value={this.state.numThree} name="numThree" placeholder={0} onFocus={this.focusSoftInput} onChange={this.handleChange} />
+                      {this.state.effectThree !== 'Punch Through'
+                        ? <p className="percent">%</p>
+                        : <p className="percent">m</p>
+                      }
+                    </div>
+                  </div>
+                }
+                {this.state.effectThree !== 'None' &&
+                  <div className="riven-effect-wrapper">
+                    <div className="riven-effect" onClick={(e) => this.openEffect(e, 4)}>
+                      <div className="chosen-stat"><p>{this.state.effectFour}</p></div>
+                    </div>
+                    <div className="riven-effect-amount">
+                      <input className="riven-amount-input riven-input-four" type="tel" value={this.state.numFour} name="numFour" placeholder={0} onFocus={this.focusSoftInput} onChange={this.handleChange} />
+                      {this.state.effectFour !== 'Punch Through'
+                        ? <p className="percent">%</p>
+                        : <p className="percent">m</p>
+                      }
+                    </div>
+                  </div>
+                }
+              </div>
+              <div className="bottom-wrapper">
+                <div className="interactable interactable-semi-inactive" onClick={this.updateRiven}><p className="interactable-p">Update</p></div>
               </div>
             </div>
-            <div className="riven-effects">
-              <div className="riven-window-title">Riven Effects</div>
-              <div className="riven-effect-wrapper">
-                <div className="riven-effect" onClick={(e) => this.openEffect(e, 1)}>
-                  <div className="chosen-stat"><p>{this.state.effectOne}</p></div>
-                </div>
-                <div className="riven-effect-amount">
-                  <input className="riven-amount-input riven-input-one" type="tel" value={this.state.numOne} name="numOne" placeholder={0} onFocus={this.focusSoftInput} onChange={this.handleChange} />
-                  {this.state.effectOne !== 'Punch Through'
-                    ? <p className="percent">%</p>
-                    : <p className="percent">m</p>
-                  }
-                </div>
-              </div>
-              {this.state.effectOne !== 'None' &&
-                <div className="riven-effect-wrapper">
-                  <div className="riven-effect" onClick={(e) => this.openEffect(e, 2)}>
-                    <div className="chosen-stat"><p>{this.state.effectTwo}</p></div>
-                  </div>
-                  <div className="riven-effect-amount">
-                    <input className="riven-amount-input riven-input-two" type="tel" value={this.state.numTwo} name="numTwo" placeholder={0} onFocus={this.focusSoftInput} onChange={this.handleChange} />
-                    {this.state.effectTwo !== 'Punch Through'
-                      ? <p className="percent">%</p>
-                      : <p className="percent">m</p>
-                    }
-                  </div>
-                </div>
-              }
-              {this.state.effectTwo !== 'None' &&
-                <div className="riven-effect-wrapper">
-                  <div className="riven-effect" onClick={(e) => this.openEffect(e, 3)}>
-                    <div className="chosen-stat"><p>{this.state.effectThree}</p></div>
-                  </div>
-                  <div className="riven-effect-amount">
-                    <input className="riven-amount-input riven-input-three" type="tel" value={this.state.numThree} name="numThree" placeholder={0} onFocus={this.focusSoftInput} onChange={this.handleChange} />
-                    {this.state.effectThree !== 'Punch Through'
-                      ? <p className="percent">%</p>
-                      : <p className="percent">m</p>
-                    }
-                  </div>
-                </div>
-              }
-              {this.state.effectThree !== 'None' &&
-                <div className="riven-effect-wrapper">
-                  <div className="riven-effect" onClick={(e) => this.openEffect(e, 4)}>
-                    <div className="chosen-stat"><p>{this.state.effectFour}</p></div>
-                  </div>
-                  <div className="riven-effect-amount">
-                    <input className="riven-amount-input riven-input-four" type="tel" value={this.state.numFour} name="numFour" placeholder={0} onFocus={this.focusSoftInput} onChange={this.handleChange} />
-                    {this.state.effectFour !== 'Punch Through'
-                      ? <p className="percent">%</p>
-                      : <p className="percent">m</p>
-                    }
-                  </div>
-                </div>
-              }
-            </div>
-            <div className="interactable interactable-semi-inactive" onClick={this.updateRiven}><p className="interactable-p">Update</p></div>
           </div>
         </div>
         <div className="soft-input-wrapper">

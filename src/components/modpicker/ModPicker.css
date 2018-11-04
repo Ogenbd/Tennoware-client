@@ -92,7 +92,7 @@
     }
 }
 
-@media screen and (min-width: 1223px) and (max-width: 1392px) {
+/* @media screen and (min-width: 1223px) and (max-width: 1392px) {
     .mod-picker,
     .mod-list-topbar,
     .mod-list {
@@ -112,7 +112,7 @@
         margin-right: 3px;
         margin-left: 3px;
     }
-}
+} */
 
 @media screen and (max-width: 1222px) {
     .mod-list {
@@ -131,12 +131,12 @@
         margin-left: 20px;
     }
     .mod-list-topbar {
-        justify-content: space-between;
+        justify-content: flex-end;
     }
 }
 
 @media screen and (min-width: 1223px) and (hover: hover) {
     .mod-wrapper:hover {
-        transform: translateZ(0) scale(1.1, 1.1);
+        transform: translateZ(0) scale(1.06, 1.06);
     }
 }

@@ -290,6 +290,7 @@
         background-color: rgba(0, 0, 0, 0.8);
     }
     .popup-x {
+        position: absolute;
         padding: 20px 32px 24px 24px;
         cursor: pointer;
     }
@@ -342,6 +343,8 @@
         background-color: rgba(0, 0, 0, 0.8);
     }
     .popup-x {
+        position: absolute;
+        left: 0;
         padding: 20px 32px 24px 24px;
         cursor: pointer;
     }
@@ -419,7 +422,7 @@
     }
 }
 
-@media screen and (min-width: 1223) and (hover: hover) {
+@media screen and (min-width: 1223px) and (hover: hover) {
     .interactable:hover {
         color: rgba(255, 249, 160, 1);
         box-shadow: inset 0px -17px 15px -11px rgba(255, 249, 160, 0.73);

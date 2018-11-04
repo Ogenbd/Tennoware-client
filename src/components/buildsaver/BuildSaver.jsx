@@ -11,6 +11,7 @@ export class BuildSaver extends Component {
         super(props);
         this.state = {
             showBuildSaver: false,
+            exact: false,
             private: false,
             buildName: '',
             buildDesc: ''
@@ -30,8 +31,14 @@ export class BuildSaver extends Component {
 
     showBuildSaver = () => {
         document.body.classList.add('noscroll');
+        let exact = false;
+        if (this.props.match.params.build) {
+            let buildState = this.props.getBuildStr();
+            if (buildState.buildStr === this.props.match.params.pre && !this.props.metaInfo.Owner) exact = true;
+        }
         this.setState({
-            showBuildSaver: true
+            showBuildSaver: true,
+            exact: exact
         });
     }
 
@@ -42,10 +49,16 @@ export class BuildSaver extends Component {
         });
     }
 
-    togglePrivate = () => {
-        this.setState(prevState => ({
-            private: !prevState.private
-        }));
+    makePrivate = () => {
+        this.setState({
+            private: true
+        });
+    }
+
+    makePublic = () => {
+        this.setState({
+            private: false
+        });
     }
 
     handleBuildName = ({ target }) => {
@@ -126,11 +139,9 @@ export class BuildSaver extends Component {
         return (
             <React.Fragment>
                 <div className="interactable interactable-semi-inactive" onClick={this.showBuildSaver}>
-                    {!this.props.metaInfo.Owner &&
-                        <p className="interactable-p">Save</p>
-                    }
-                    {this.props.metaInfo.Owner &&
-                        <p className="interactable-p">Update</p>
+                    {this.props.metaInfo.Owner
+                        ? <p className="interactable-p">Update</p>
+                        : <p className="interactable-p">Save</p>
                     }
                 </div>
                 <div className={"popup " + (this.state.showBuildSaver ? "popup-active" : "popup-inactive")}>
@@ -141,21 +152,32 @@ export class BuildSaver extends Component {
                         </div>
                     </div>
                     <div className="popup-content build-saver">
-                        <label className="check-private" name="private">
-                            <p>Private?</p>
-                            <input name="private" type="checkbox" value={this.state.private} onChange={this.togglePrivate} />
-                        </label>
-                        <label className="build-name-input-label" name="build-name">
-                            <p>Build Name</p>
-                            <input className="build-name-input" name="build-name" type="text" placeholder="Build Name" value={this.state.buildName} onChange={this.handleBuildName} />
-                        </label>
-                        <label className="build-name-input-label" name="build-desc">
-                            <p>Build Description</p>
-                            <textarea className="build-name-input build-desc-box" name="build-desc" type="text" placeholder="Build Description" value={this.state.buildDesc} onChange={this.handleBuildDesc} />
-                        </label>
-                        <div className="interactable interactable-semi-inactive" onClick={this.saveBuild}>
-                            <p className="interactable-p">Save</p>
-                        </div>
+                        {this.state.exact &&
+                            <div className="exact-build">This exact build was already saved by another community member. Consider liking this build, it will be added to your My Builds list.</div>
+                        }
+                        {!this.state.exact &&
+                            <React.Fragment>
+                                <div className="check-private">
+                                    <div className={"activatable " + (this.state.private ? "interactable-inactive" : "interactable-active")} onClick={this.makePublic}>
+                                        <p className="interactable-p">Public</p>
+                                    </div>
+                                    <div className={"activatable " + (this.state.private ? "interactable-active" : "interactable-inactive")} onClick={this.makePrivate}>
+                                        <p className="interactable-p">Private</p>
+                                    </div>
+                                </div>
+                                <label className="build-label build-name" name="build-name">
+                                    <p>Build Name</p>
+                                    <input className="build-input" name="build-name" type="text" spellCheck="false" placeholder="Minimum 8 characters" value={this.state.buildName} onChange={this.handleBuildName} />
+                                </label>
+                                <label className="build-label build-desc" name="build-desc">
+                                    <p>Build Description</p>
+                                    <textarea className="build-input build-desc-box" name="build-desc" type="text" spellCheck="false" placeholder="Optional" value={this.state.buildDesc} onChange={this.handleBuildDesc} />
+                                </label>
+                                <div className="interactable interactable-semi-inactive" onClick={this.saveBuild}>
+                                    <p className="interactable-p">Save</p>
+                                </div>
+                            </React.Fragment>
+                        }
                     </div>
                 </div>
             </React.Fragment>

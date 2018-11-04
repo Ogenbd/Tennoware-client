@@ -8,6 +8,7 @@
     resize: none;
     height: 40px;
     width: 85%;
+    max-width: 400px;
     margin-top: 10px;
     margin-bottom: 10px;
     background-color: black;
@@ -18,8 +19,8 @@
 
 .link-area:focus {
     outline: none;
-    border-bottom: solid 2px rgb(255, 249, 160);
-    box-shadow: inset 0px -17px 15px -11px rgba(255, 249, 160, 0.73);
+    /* border-bottom: solid 2px rgb(255, 249, 160); */
+    /* box-shadow: inset 0px -17px 15px -11px rgba(255, 249, 160, 0.73); */
     border-color: rgba(255, 249, 160, 0.73);
 }
 

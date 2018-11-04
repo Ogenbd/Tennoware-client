@@ -1,0 +1,29 @@
+.build-description {
+    flex-direction: column;
+    flex-shrink: 0;
+    align-items: center;
+    padding: 10px 0;
+    box-sizing: border-box;
+    /* overflow-y: scroll; */
+    /* overflow-x: hidden; */
+}
+
+.build-title {
+    color: rgba(255, 249, 160, 1);
+    font-size: 2em;
+    padding: 20px;
+    text-align: center;
+}
+
+.build-description-box {
+    color: white;
+    flex-grow: 1;
+    font-size: 0.95em;
+    width: 85%;
+    max-width: 600px;
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid rgba(255, 249, 160, 0.73);
+    overflow: auto;
+    background-color: black;
+}

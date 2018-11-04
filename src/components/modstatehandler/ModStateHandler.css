@@ -231,7 +231,7 @@
 
 @media screen and (min-width: 1223px) and (hover: hover) {
     .mod-card-wrapper:hover {
-        transform: translateZ(0) scale(1.1, 1.1);
+        transform: translateZ(0) scale(1.06, 1.06);
     }
     .mod-card-wrapper:hover .hover-buttons {
         opacity: 1;

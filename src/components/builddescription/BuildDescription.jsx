@@ -28,6 +28,10 @@ export class BuildDescription extends Component {
                             <div className="popup-x-bar two-bar"></div>
                         </div>
                     </div>
+                    <div className="popup-content build-description">
+                        <div className="build-title">{this.props.metaInfo.BuildName}</div>
+                        <div className="build-description-box">{this.props.metaInfo.BuildDesc}</div>
+                    </div>
                 </div>
             </React.Fragment>
         )

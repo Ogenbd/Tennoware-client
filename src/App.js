@@ -14,7 +14,7 @@ class App extends Component {
       showLogin: false,
       title: '',
       viewWidth: window.innerWidth,
-      user: 2,
+      user: 1,
       indicator: !navigator.onLine
     }
     this.debouncedSetWidth = debounce(this.setViewWidth, 100)

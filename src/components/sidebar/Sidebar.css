@@ -53,7 +53,7 @@
     /* overflow: hidden !important; */
 }
 
-@media screen and (max-width: 1222px) {
+@media screen and (max-width: 1392px) {
     .noscroll {
         position: initial;
         overflow-y: initial;
@@ -144,7 +144,7 @@
     }
 }
 
-@media screen and (min-width: 1223) and (hover: hover) {
+@media screen and (min-width: 1223px) and (hover: hover) {
     .nav-item:hover {
         background-color: rgba(240, 240, 240, 0.8);
     }

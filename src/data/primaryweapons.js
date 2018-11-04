@@ -206,7 +206,7 @@ const primaryWeapons = [
                 ]
             },
             {
-                name: 'Glass Explosion',
+                name: 'Slug',
                 trigger: 'Auto',
                 fireRate: 4.33,
                 accuracy: 25,
@@ -216,7 +216,7 @@ const primaryWeapons = [
                 status: 0.33,
                 falloffMin: 30,
                 falloffMax: 60,
-                damage: 120,
+                damage: 70,
                 split: [
                     {
                         type: 'Impact',
@@ -233,7 +233,7 @@ const primaryWeapons = [
                 ]
             },
             {
-                name: 'Slug',
+                name: 'Glass Explosion',
                 trigger: 'Auto',
                 fireRate: 4.33,
                 accuracy: 25,
@@ -243,7 +243,7 @@ const primaryWeapons = [
                 status: 0.33,
                 falloffMin: 30,
                 falloffMax: 60,
-                damage: 70,
+                damage: 120,
                 split: [
                     {
                         type: 'Impact',

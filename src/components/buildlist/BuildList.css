@@ -1,28 +1,103 @@
+.build-list {
+    flex-wrap: wrap;
+    align-items: center;
+    /* align-items: flex-start; */
+    /* justify-content: center; */
+    flex-direction: column;
+}
+
+.topbar-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    height: 56px;
+}
+
+.topbar-title p {
+    color: rgba(255, 249, 160, 1);
+    font-size: 1.1em;
+    font-weight: 900;
+}
+
+.build-list-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    max-width: 525px;
+    padding: 0 5px;
+    height: 75px;
+    min-height: 56px;
+    background-color: black;
+    margin: 3px;
+    border: 1px solid rgba(255, 249, 160, 0.73);
+    color: rgba(255, 249, 160, 1);
+}
+
+.build-item-row {
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.name-row {
+    justify-content: space-between;
+}
+
+.info-row {
+    justify-content: space-around;
+}
+
+.build-list-name {
+    /* width: 190px; */
+    position: relative;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 18px;
+    overflow: hidden;
+}
+
+.build-list-img {
+    max-width: 50px;
+    max-height: 39px;
+    width: auto;
+    height: auto;
+}
+
+.build-list-forma-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-builds-wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-builds {
+    width: 90%;
+    max-width: 380px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 1);
+    border: 1px solid rgba(255, 249, 160, 0.73);
+    color: white;
+    text-align: justify;
+}
+
 @media screen and (min-width: 1223px) {
-    .build-list {
-        height: calc(100vh - 112px);
-        flex-direction: column;
-        align-items: center;
-    }
-    .build-item {
-        width: 90%;
-        height: 56px;
-        min-height: 56px;
-        background-color: aliceblue;
-        margin: 3px;
+    .topbar-title p {
+        font-size: 1.5em;
     }
 }
 
 @media screen and (max-width: 1222px) {
-    .build-list {
-        flex-direction: column;
-        align-items: center;
-    }
-    .build-item {
-        width: 90%;
-        height: 56px;
-        min-height: 56px;
-        background-color: aliceblue;
-        margin: 3px;
+    .topbar-title p {
+        font-size: 1.2em;
     }
 }

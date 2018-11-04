@@ -147,11 +147,11 @@
     transition: opacity 100ms ease-out;
 } */
 
-@media screen and (min-width: 1223px) {
+/* @media screen and (min-width: 1223px) {
 
-}
+} */
 
-@media screen and (max-width: 1222px) {
+@media screen and (max-width: 1392px) {
     .background-image {
         background-image: url('./assets/Warframe0001small.jpg');
     }

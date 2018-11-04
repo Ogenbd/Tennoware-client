@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import cloneDeep from 'lodash/cloneDeep';
+import { Link } from 'react-router-dom';
 import './BuildList.css';
+
+import Loading from '../loading/Loading';
 
 export class BuildList extends Component {
     constructor(props) {
@@ -7,17 +11,28 @@ export class BuildList extends Component {
         this.state = {
             showBuildList: false,
             builds: [],
-            requested: false
+            requested: false,
+            loader: false
         }
     }
 
     showBuildList = () => {
-        this.setState({
-            showBuildList: true
-        });
+        document.body.classList.add('noscroll');
+        if (this.state.requested) {
+            this.setState({
+                showBuildList: true,
+            });
+        } else {
+            this.setState({
+                showBuildList: true,
+                loader: true
+            });
+            this.requestBuilds();
+        }
     }
 
     hideBuildList = () => {
+        document.body.classList.remove('noscroll');
         this.setState({
             showBuildList: false
         });
@@ -28,21 +43,69 @@ export class BuildList extends Component {
         fetch('http://192.168.1.114:50000/getbuilds', {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ itemName: this.props.itemName })
+            body: JSON.stringify({ itemName: this.props.match.params.id })
         })
             .then(res => res.json())
             .then(res => {
                 this.setState({
                     builds: res,
-                    requested: true
-                })
+                    requested: true,
+                    loader: false
+                });
             })
             .catch(err => {
                 console.log('error')
             });
     }
 
+    generateBuildList = () => {
+        let builds = [];
+        if (this.state.builds.length > 0) {
+            let sortedBuilds = cloneDeep(this.state.builds)
+            sortedBuilds.sort((a, b) => {
+                if (a.Likes < b.Likes) return 1
+                if (a.Likes > b.Likes) return -1
+                if (a.CreateDT < b.CreateDT) return 1
+                if (a.CreateDT > b.CreateDT) return -1
+                return 0;
+            });
+            sortedBuilds.forEach((build, index) => {
+                let date = new Date(build.CreateDT).toLocaleDateString();
+                let orokinStr;
+                let riven;
+                build.Orokin === 1 ? orokinStr = this.props.orokin : orokinStr = 'nocatalyst';
+                build.Riven === 1 ? riven = 'rivenon' : riven = 'rivenoff';
+                builds.push(
+                    <Link to={`/${this.props.type}/${this.props.match.params.id}/${build.BuildStr}/${build.BuildID}`} key={index} className="build-list-item">
+                        <div className="build-item-row name-row">
+                            <div className="build-list-name">{build.BuildName}</div>
+                            <div className="build-list-date">{date}</div>
+                        </div>
+                        <div className="build-item-row info-row">
+                            <div className="build-list-likes">Likes: {build.Likes}</div>
+                            <img className="build-list-img" src={require(`../../assets/${orokinStr}.png`)} alt={"orokin"} />
+                            <div className="build-list-forma-block"><img className="build-list-img" src={require('../../assets/forma.png')} alt={""} /><p>: {build.Forma}</p></div>
+                            {this.props.riven &&
+                                <img className="build-list-img" src={require(`../../assets/${riven}.png`)} alt={"riven"} />
+                            }
+                        </div>
+                    </Link>
+                )
+            })
+        } else {
+            builds.push(
+                <div key={1} className="no-builds-wrapper">
+                    <p className="no-builds">
+                        There are no public community builds for {this.props.match.params.id.toUpperCase()} yet. If you can suggest a good build please do so by creating and saving it as a public build!
+                    </p>
+                </div>
+            )
+        }
+        return builds;
+    }
+
     render() {
+        let buildList = this.generateBuildList()
         return (
             <React.Fragment>
                 <div className="interactable interactable-semi-inactive" onClick={this.showBuildList}><p className="interactable-p">Community Builds</p></div>
@@ -52,36 +115,16 @@ export class BuildList extends Component {
                             <div className="popup-x-bar one-bar"></div>
                             <div className="popup-x-bar two-bar"></div>
                         </div>
+                        <div className="topbar-title">
+                            <p>Community Builds</p>
+                        </div>
                     </div>
-                    <div className="popup-content build-list">
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                        <div className="build-item"></div>
-                    </div>
+                    {this.state.loader
+                        ? <Loading />
+                        : <div className="popup-content build-list">
+                            {buildList}
+                        </div>
+                    }
                 </div>
             </React.Fragment>
         )

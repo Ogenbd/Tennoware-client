@@ -454,7 +454,7 @@ export class TenSlotModding extends Component {
                     <div className="mod-stack">
                         <div className="interactable-wrapper">
                             {onLine &&
-                                <BuildList itemName={this.props.match.params.id} />
+                                <BuildList match={this.props.match} type={this.props.type} riven={this.props.riven} orokin={this.props.orokin} />
                             }
                             {this.props.metaInfo.BuildDesc && this.props.metaInfo.BuildDesc.length > 0 &&
                                 <BuildDescription metaInfo={this.props.metaInfo} />
@@ -464,7 +464,7 @@ export class TenSlotModding extends Component {
                             }
                             <LinkGenerator type={this.props.type} getBuildStr={this.convertBuildToString} match={this.props.match} />
                             {onLine && this.props.user && this.props.match.params.build && !this.props.metaInfo.Owner &&
-                                <Like />
+                                <Like user={this.props.user} match={this.props.match} metaInfo={this.props.metaInfo} />
                             }
                             {/* {onLine && this.props.match.params.build && !this.props.metaInfo.UserID &&
                             <div className="interactable interactable-semi-inactive"><p className="interactable-p">Report</p></div>
