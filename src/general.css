@@ -13,6 +13,9 @@
     font-size: 18px;
     height: 56px;
     z-index: 8088;
+    color: white;
+    /* color: rgba(255, 244, 190, 1); */
+    /* text-shadow: 0 0 10px rgba(255, 249, 160, 1); */
 }
 
 .pull-tab {

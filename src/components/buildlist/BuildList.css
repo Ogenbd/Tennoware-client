@@ -16,8 +16,8 @@
 
 .topbar-title p {
     color: rgba(255, 249, 160, 1);
-    font-size: 1.1em;
-    font-weight: 900;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .build-list-item {
@@ -92,12 +92,12 @@
 
 @media screen and (min-width: 1223px) {
     .topbar-title p {
-        font-size: 1.5em;
+        /* font-size: 1.5em; */
     }
 }
 
 @media screen and (max-width: 1222px) {
     .topbar-title p {
-        font-size: 1.2em;
+        /* font-size: 1.2em; */
     }
 }
