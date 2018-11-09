@@ -14,6 +14,11 @@ const ItemPicker = Loadable({
     loading: () => null,
 });
 
+const MyBuilds = Loadable({
+    loader: () => import('./components/mybuilds/MyBuilds'),
+    loading: () => null,
+});
+
 const RangedBuilder = Loadable({
     loader: () => import('./routes/RangedBuilder'),
     loading: () => null,
@@ -130,14 +135,14 @@ export class Routing extends Component {
         return weapons.default;
     }
 
-    secondaryWeapons = async () => {
-        let weapons = await getSecondaryWeapons();
-        return weapons.default;
-    }
-
     primaryMods = async () => {
         let mods = await getPrimaryMods();
         return mods.default;
+    }
+
+    secondaryWeapons = async () => {
+        let weapons = await getSecondaryWeapons();
+        return weapons.default;
     }
 
     secondaryMods = async () => {
@@ -159,17 +164,17 @@ export class Routing extends Component {
         let frames = await getArchwings();
         return frames.default;
     }
-    
+
     archwingMods = async () => {
         let mods = await getArchwingMods();
         return mods.default;
     }
-    
+
     archguns = async () => {
         let weapons = await getArchguns();
         return weapons.default;
     }
-    
+
     archgunMods = async () => {
         let mods = await getArchgunMods();
         return mods.default;
@@ -180,22 +185,21 @@ export class Routing extends Component {
         return frames.default;
     }
 
-    
     sentinelMods = async () => {
         let mods = await getSentinelMods();
         return mods.default;
     }
-    
+
     sentinelWeapons = async () => {
         let weapons = await getSentinelWeapons();
         return weapons.default;
     }
-    
+
     beasts = async () => {
         let frames = await getBeasts();
         return frames.default;
     }
-    
+
     beastMods = async () => {
         let mods = await getBeastMods();
         return mods.default;
@@ -205,6 +209,7 @@ export class Routing extends Component {
         let nonRouterPropPass = {
             viewWidth: this.props.viewWidth,
             user: this.props.user,
+            online: this.props.online
         }
         return (
             // <TransitionGroup className="main">
@@ -212,6 +217,7 @@ export class Routing extends Component {
             <div className="main">
                 <Switch key={this.props.location.key}>
                     <Route exact path='/' render={props => <News {...props} />} />
+                    <Route exact path='/mybuilds' render={props => <MyBuilds {...props} {...nonRouterPropPass} warframes={this.warframes} primaryWeapons={this.primaryWeapons} secondaryWeapons={this.secondaryWeapons} archwings={this.archwings} archguns={this.archguns} sentinels={this.sentinels} sentinelWeapons={this.sentinelWeapons} beasts={this.beasts} />} />
                     <Route exact path='/primaryweapons' render={props => <ItemPicker {...props} {...nonRouterPropPass} title={'PRIMARY WEAPONS'} items={this.primaryWeapons} />} />
                     <Route exact path='/primaryweapons/:id/:pre/:build' render={props => <RangedBuilder {...props} {...nonRouterPropPass} type={'primaryweapons'} items={this.primaryWeapons} mods={this.primaryMods} />} />
                     <Route exact path='/primaryweapons/:id/:pre' render={props => <RangedBuilder {...props} {...nonRouterPropPass} type={'primaryweapons'} items={this.primaryWeapons} mods={this.primaryMods} />} />

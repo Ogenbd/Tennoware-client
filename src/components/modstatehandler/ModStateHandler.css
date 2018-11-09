@@ -229,7 +229,7 @@
     pointer-events: none;
 }
 
-@media screen and (min-width: 1223px) and (hover: hover) {
+@media screen and (min-width: 1203px) and (hover: hover) {
     .mod-card-wrapper:hover {
         transform: translateZ(0) scale(1.06, 1.06);
     }
@@ -253,7 +253,7 @@
     }
 }
 
-@media screen and (max-width: 1222px) {
+@media screen and (max-width: 1202px) {
     .slot-wrapper {
         perspective: unset;
         perspective-origin: unset;

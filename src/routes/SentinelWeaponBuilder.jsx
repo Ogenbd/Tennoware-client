@@ -49,6 +49,27 @@ class RangedBuilder extends Component {
         }
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.match.params.build && !prevProps.user && this.props.user) {
+            let token = localStorage.getItem('jwt');
+            fetch('http://192.168.1.114:50000/getbuild', {
+                method: 'post',
+                headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` },
+                body: JSON.stringify({ buildId: this.props.match.params.build })
+            })
+                .then(res => res.json())
+                .then(({ res }) => {
+                    if (res.ItemName === this.props.match.params.id.toLowerCase() && res.BuildStr === this.props.match.params.pre) {
+                        this.setState({ metaInfo: res });
+                    } else {
+                        this.redirectToVoid();
+                    }
+                })
+                .catch(err => {
+                    console.log('error')
+                });
+        }
+    }
 
     setupBuilder = async (metaInfo) => {
         let items = await this.props.items();
@@ -88,10 +109,11 @@ class RangedBuilder extends Component {
 
     confirmBuild = () => {
         // fix url
+        let token = localStorage.getItem('jwt');
         fetch('http://192.168.1.114:50000/getbuild', {
             method: 'post',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ buildId: this.props.match.params.build, userId: this.props.user })
+            headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` },
+            body: JSON.stringify({ buildId: this.props.match.params.build })
         })
             .then(res => res.json())
             .then(({ res }) => {
@@ -118,7 +140,7 @@ class RangedBuilder extends Component {
                     <Loading />
                 }
                 {this.state.item.name && (this.state.item.mods === 'primary' || this.state.item.mods === 'secondary') &&
-                    <EightSlotModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={'catalyst'} riven={'ranged'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} />
+                    <EightSlotModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={'catalyst'} riven={'ranged'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} />
                 }
             </div>
         )

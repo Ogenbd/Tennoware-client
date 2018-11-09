@@ -14,7 +14,6 @@ class FrameBuilder extends Component {
         super(props);
         this.state = {
             title: '',
-            loading: false,
             item: {},
             relevantMods: [],
             slotPolarities: [],
@@ -28,16 +27,35 @@ class FrameBuilder extends Component {
 
     componentDidMount() {
         if (this.props.match.params.build) {
-            this.setState({
-                loading: true
-            }, this.confirmBuild)
+            this.confirmBuild()
         } else {
-            this.setupBuilder()
+            this.setupBuilder({})
         }
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.match.params.build && !prevProps.user && this.props.user) {
+            let token = localStorage.getItem('jwt');
+            fetch('http://192.168.1.114:50000/getbuild', {
+                method: 'post',
+                headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` },
+                body: JSON.stringify({ buildId: this.props.match.params.build })
+            })
+                .then(res => res.json())
+                .then(({ res }) => {
+                    if (res.ItemName === this.props.match.params.id.toLowerCase() && res.BuildStr === this.props.match.params.pre) {
+                        this.setState({ metaInfo: res });
+                    } else {
+                        this.redirectToVoid();
+                    }
+                })
+                .catch(err => {
+                    console.log('error')
+                });
+        }
+    }
 
-    setupBuilder = async () => {
+    setupBuilder = async (metaInfo) => {
         let items = await this.props.items();
         let mods = await this.props.mods();
         let selected = items.find(item => {
@@ -61,7 +79,8 @@ class FrameBuilder extends Component {
                 item: selected,
                 relevantMods: filteredMods,
                 slotPolarities: slotPolarities,
-                originalPolarityCount: originalPolarityCount
+                originalPolarityCount: originalPolarityCount,
+                metaInfo: metaInfo
             });
         } else {
             this.redirectToVoid();
@@ -70,18 +89,16 @@ class FrameBuilder extends Component {
 
     confirmBuild = () => {
         // fix url
+        let token = localStorage.getItem('jwt');
         fetch('http://192.168.1.114:50000/getbuild', {
             method: 'post',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ buildId: this.props.match.params.build, userId: this.props.user })
+            headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` },
+            body: JSON.stringify({ buildId: this.props.match.params.build })
         })
             .then(res => res.json())
             .then(({ res }) => {
                 if (res.ItemName === this.props.match.params.id.toLowerCase() && res.BuildStr === this.props.match.params.pre) {
-                    this.setState({
-                        metaInfo: res
-                    });
-                    this.setupBuilder();
+                    this.setupBuilder(res);
                 } else {
                     this.redirectToVoid();
                 }
@@ -99,11 +116,11 @@ class FrameBuilder extends Component {
         return (
             <div className="screen">
                 <div className="top-title"><p>{this.state.title}</p></div>
-                {this.state.loading &&
+                {!this.state.item.name &&
                     <Loading />
                 }
                 {this.state.item.name &&
-                    <WarframeModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={'reactor'} frame={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} />
+                    <WarframeModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={'reactor'} frame={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} />
                 }
             </div>
         )

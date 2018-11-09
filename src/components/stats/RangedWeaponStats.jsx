@@ -433,7 +433,7 @@ export class RangedWeaponStats extends Component {
     }
 
     focusSoftInput = () => {
-        if (this.props.viewWidth < 1223) {
+        if (this.props.viewWidth < 1203) {
             this.softInput.current.focus();
         }
     }

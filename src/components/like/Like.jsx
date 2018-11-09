@@ -20,6 +20,16 @@ export class Like extends Component {
         }
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.metaInfo.Liked !== this.props.metaInfo.Liked) {
+            if (this.props.metaInfo.Liked === 1) {
+                this.setState({ liked: true });
+            } else {
+                this.setState({ liked: false });
+            }
+        }
+    }
+
     likeButtonPress = () => {
         this.setState(prevState => ({
             liked: !prevState.liked,
@@ -55,11 +65,11 @@ export class Like extends Component {
             }, () => {
                 let comp = this.state.liked ? 'like' : 'unlike';
                 // fix url
+                let token = localStorage.getItem('jwt');
                 fetch(`http://192.168.1.114:50000/${comp}`, {
                     method: 'post',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` },
                     body: JSON.stringify({
-                        user: this.props.user,
                         build: this.props.match.params.build
                     })
                 })

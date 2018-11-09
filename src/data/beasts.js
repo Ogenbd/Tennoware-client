@@ -1,7 +1,7 @@
 const beasts = [
     {
         name: 'ADARZA KAVAT',
-        img: require('../assets/companions/adarza-kavat.png'),
+        img: require('../assets/itemimages/adarza-kavat.png'),
         type: [
             'KAVAT',
             'ADARZA KAVAT'
@@ -25,7 +25,7 @@ const beasts = [
     },
     {
         name: 'CHESA KUBROW',
-        img: require('../assets/companions/chesa-kubrow.png'),
+        img: require('../assets/itemimages/chesa-kubrow.png'),
         type: [
             'CHESA KUBROW'
         ],
@@ -48,7 +48,7 @@ const beasts = [
     },
     {
         name: 'HELMINTH CHARGER',
-        img: require('../assets/companions/helminth-charger.png'),
+        img: require('../assets/itemimages/helminth-charger.png'),
         type: [
             'HELMINTH CHARGER'
         ],
@@ -75,7 +75,7 @@ const beasts = [
     },
     {
         name: 'HURAS KUBROW',
-        img: require('../assets/companions/huras-kubrow.png'),
+        img: require('../assets/itemimages/huras-kubrow.png'),
         type: [
             'HURAS KUBROW'
         ],
@@ -98,7 +98,7 @@ const beasts = [
     },
     {
         name: 'RAKSA KUBROW',
-        img: require('../assets/companions/raksa-kubrow.png'),
+        img: require('../assets/itemimages/raksa-kubrow.png'),
         type: [
             'RAKSA KUBROW'
         ],
@@ -121,7 +121,7 @@ const beasts = [
     },
     {
         name: 'SAHASA KUBROW',
-        img: require('../assets/companions/sahasa-kubrow.png'),
+        img: require('../assets/itemimages/sahasa-kubrow.png'),
         type: [
             'SAHASA KUBROW'
         ],
@@ -144,7 +144,7 @@ const beasts = [
     },
     {
         name: 'SMEETA KAVAT',
-        img: require('../assets/companions/smeeta-kavat.png'),
+        img: require('../assets/itemimages/smeeta-kavat.png'),
         type: [
             'KAVAT',
             'SMEETA KAVAT'
@@ -168,7 +168,7 @@ const beasts = [
     },
     {
         name: 'SUNIKA KUBROW',
-        img: require('../assets/companions/sunika-kubrow.png'),
+        img: require('../assets/itemimages/sunika-kubrow.png'),
         type: [
             'SUNIKA KUBROW'
         ],

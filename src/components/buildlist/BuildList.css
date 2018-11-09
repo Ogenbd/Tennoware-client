@@ -25,8 +25,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 90%;
+    width: 95%;
     max-width: 525px;
+    min-width: 267px;
     padding: 0 5px;
     height: 75px;
     min-height: 56px;
@@ -90,13 +91,13 @@
     text-align: justify;
 }
 
-@media screen and (min-width: 1223px) {
+@media screen and (min-width: 1203px) {
     .topbar-title p {
         /* font-size: 1.5em; */
     }
 }
 
-@media screen and (max-width: 1222px) {
+@media screen and (max-width: 1202px) {
     .topbar-title p {
         /* font-size: 1.2em; */
     }

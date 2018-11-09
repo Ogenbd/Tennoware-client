@@ -221,7 +221,7 @@
     }
 }
 
-@media screen and (max-width: 1222px) {
+@media screen and (max-width: 1202px) {
     .mod-stack {
         flex: 1 50 auto;
     }

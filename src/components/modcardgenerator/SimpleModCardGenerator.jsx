@@ -51,7 +51,7 @@ export class SimpleModCardGenerator extends PureComponent {
         let description = mod.description();
         let fontColor = this.determineFontColor();
         return (
-            <div draggable={viewWidth >= 1223} className="mod simple-mod" style={fontColor}>
+            <div draggable={viewWidth >= 1203} className="mod simple-mod" style={fontColor}>
                 <img className="mod-image" src={mod.img} alt="" />
                 {mod.aura &&
                     <img className="aura-topper" src={require('../../assets/auratopper.png')} alt="" />

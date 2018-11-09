@@ -2,7 +2,7 @@ const abilities = {
     amesha: [
         {
             name: 'Watchful Swarm',
-            img: require('../assets/archwings/watchfulswarm.png'),
+            img: require('../assets/itemimages/watchfulswarm.png'),
             details: [
                 {
                     strength: [
@@ -22,7 +22,7 @@ const abilities = {
         },
         {
             name: 'Benevolent Decoy',
-            img: require('../assets/archwings/benevolentdecoy.png'),
+            img: require('../assets/itemimages/benevolentdecoy.png'),
             details: [
                 {
                     strength: [
@@ -62,7 +62,7 @@ const abilities = {
         },
         {
             name: 'Warding Grace',
-            img: require('../assets/archwings/wardinggrace.png'),
+            img: require('../assets/itemimages/wardinggrace.png'),
             details: [
                 {
                     strength: [
@@ -100,7 +100,7 @@ const abilities = {
             ]
         },{
             name: 'Vengful Rush',
-            img: require('../assets/archwings/vengfulrush.png'),
+            img: require('../assets/itemimages/vengfulrush.png'),
             details: [
                 {
                     strength: [
@@ -147,7 +147,7 @@ const abilities = {
     odonata: [
         {
             name: 'Energy Shell',
-            img: require('../assets/archwings/energyshell.png'),
+            img: require('../assets/itemimages/energyshell.png'),
             details: [
                 {
                     none: [
@@ -181,7 +181,7 @@ const abilities = {
         },
         {
             name: 'Disarray',
-            img: require('../assets/archwings/disarray.png'),
+            img: require('../assets/itemimages/disarray.png'),
             details: [
                 {
                     duration: [
@@ -214,7 +214,7 @@ const abilities = {
         },
         {
             name: 'Seeking Fire',
-            img: require('../assets/archwings/seekingfire.png'),
+            img: require('../assets/itemimages/seekingfire.png'),
             details: [
                 {
                     strength: [
@@ -256,7 +256,7 @@ const abilities = {
         },
         {
             name: 'Repel',
-            img: require('../assets/archwings/repel.png'),
+            img: require('../assets/itemimages/repel.png'),
             details: [
                 {
                     strength: [
@@ -298,7 +298,7 @@ const abilities = {
     elytron: [
         {
             name: 'Bloomer',
-            img: require('../assets/archwings/bloomer.png'),
+            img: require('../assets/itemimages/bloomer.png'),
             details: [
                 {
                     strength: [
@@ -331,7 +331,7 @@ const abilities = {
         },
         {
             name: 'Core Vent',
-            img: require('../assets/archwings/corevent.png'),
+            img: require('../assets/itemimages/corevent.png'),
             details: [
                 {
                     duration: [
@@ -357,7 +357,7 @@ const abilities = {
         },
         {
             name: 'Thumper',
-            img: require('../assets/archwings/thumper.png'),
+            img: require('../assets/itemimages/thumper.png'),
             details: [
                 {
                     strength: [
@@ -412,7 +412,7 @@ const abilities = {
         },
         {
             name: 'Warhead',
-            img: require('../assets/archwings/warhead.png'),
+            img: require('../assets/itemimages/warhead.png'),
             details: [
                 {
                     strength: [
@@ -448,7 +448,7 @@ const abilities = {
     itzal: [
         {
             name: 'Blink',
-            img: require('../assets/archwings/blink.png'),
+            img: require('../assets/itemimages/blink.png'),
             details: [
                 {
                     duration: [
@@ -498,7 +498,7 @@ const abilities = {
         },
         {
             name: 'Penumbra',
-            img: require('../assets/archwings/penumbra.png'),
+            img: require('../assets/itemimages/penumbra.png'),
             details: [
                 {
                     range: [
@@ -530,7 +530,7 @@ const abilities = {
         },
         {
             name: 'Cosmic Crush',
-            img: require('../assets/archwings/cosmiccrush.png'),
+            img: require('../assets/itemimages/cosmiccrush.png'),
             details: [
                 {
                     strength: [
@@ -563,7 +563,7 @@ const abilities = {
         },
         {
             name: 'Fighter Escort',
-            img: require('../assets/archwings/fighterescort.png'),
+            img: require('../assets/itemimages/fighterescort.png'),
             details: [
                 {
                     strength: [
@@ -609,7 +609,7 @@ const abilities = {
     // frame: [
         // {
         //     name: '',
-        //     img: require('../assets/archwings/.png'),
+        //     img: require('../assets/itemimages/.png'),
         //     details: [
         //         {
         //             strength: [

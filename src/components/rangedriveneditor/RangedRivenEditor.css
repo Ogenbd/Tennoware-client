@@ -159,7 +159,7 @@
     padding: 0 3px;
 }
 
-@media screen and (min-width: 1223px) {
+@media screen and (min-width: 1203px) {
     .riven-editor {
         flex-direction: column;
         align-items: center;
@@ -192,7 +192,7 @@
     }
 }
 
-@media screen and (max-width: 1222px) {
+@media screen and (max-width: 1202px) {
     .riven-editor {
         position: fixed;
         /* display: flex; */

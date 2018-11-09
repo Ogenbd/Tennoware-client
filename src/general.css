@@ -2,22 +2,6 @@
     z-index: 9099;
 }
 
-.top-title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    align-self: center;
-    top: 0;
-    font-weight: 600;
-    font-size: 18px;
-    height: 56px;
-    z-index: 8088;
-    color: white;
-    /* color: rgba(255, 244, 190, 1); */
-    /* text-shadow: 0 0 10px rgba(255, 249, 160, 1); */
-}
-
 .pull-tab {
     display: none;
 }
@@ -258,10 +242,13 @@
 
 /* loading spinner end */
 
-@media screen and (min-width: 1223px) {
+@media screen and (min-width: 1392px) {
     .lds-default {
         left: 96px;
     }
+}
+
+@media screen and (min-width: 1203px) {
     .centerize {
         display: flex;
         flex-grow: 1;
@@ -273,8 +260,8 @@
         left: 0;
         top: 0;
         width: 100%;
-        height: calc(100vh - 56px);
-        background-color: rgba(0, 0, 0, 0.8);
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.95);
         transition: opacity 200ms, transform 200ms;
     }
     .popup-active {
@@ -290,10 +277,11 @@
         align-items: center;
         width: 100%;
         height: 56px;
-        background-color: rgba(0, 0, 0, 0.8);
+        /* background-color: rgba(0, 0, 0, 0.8); */
     }
     .popup-x {
-        position: absolute;
+        position: fixed;
+        /* position: absolute; */
         padding: 20px 32px 24px 24px;
         cursor: pointer;
     }
@@ -313,13 +301,13 @@
     .popup-content {
         display: flex;
         width: 100%;
-        height: calc(100vh - 112px);
-        max-height: calc(100vh - 112px);
+        height: calc(100% - 56px);
+        max-height: calc(100% - 56px);
         overflow: auto;
     }
 }
 
-@media screen and (max-width: 1222px) {
+@media screen and (max-width: 1202px) {
     .popup {
         position: fixed;
         height: 100vh;
@@ -425,7 +413,7 @@
     }
 }
 
-@media screen and (min-width: 1223px) and (hover: hover) {
+@media screen and (min-width: 1203px) and (hover: hover) {
     .interactable:hover {
         color: rgba(255, 249, 160, 1);
         box-shadow: inset 0px -17px 15px -11px rgba(255, 249, 160, 0.73);

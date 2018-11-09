@@ -31,7 +31,7 @@ export class ModStateHandler extends Component {
 
   handleClick = (e) => {
     // e.stopPropagation();
-    if (this.props.viewWidth < 1223) {
+    if (this.props.viewWidth < 1203) {
       if (this.props.forSwap !== null) {
         this.props.doSwap(this.props.slot);
       } else if (this.props.forma) {
@@ -193,9 +193,9 @@ export class ModStateHandler extends Component {
           }
         </div>
         {this.props.mod.name &&
-          <div draggable className="mod-card-wrapper" style={this.state.handlerActive || this.props.viewWidth < 1223 ? this.state.cardStyle : {}}>
+          <div draggable className="mod-card-wrapper" style={this.state.handlerActive || this.props.viewWidth < 1203 ? this.state.cardStyle : {}}>
             <ModCardGenerator mod={this.state.mod} slotPolarity={this.props.slotPolarity} handlerActive={this.state.showHandler} />
-            {this.props.mod.name && this.props.viewWidth >= 1223 &&
+            {this.props.mod.name && this.props.viewWidth >= 1203 &&
               <div draggable="false" className="hover-buttons">
                 <div className="hover-button max-rank-button" onClick={this.maxRank}>➤</div>
                 <div className="hover-button up-rank-button" onClick={this.incRank}>+</div>

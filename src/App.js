@@ -1,41 +1,59 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 import './App.css';
 import './general.css';
 
 import Routing from './Routing';
 import Sidebar from './components/sidebar/Sidebar';
-// import Login from './components/login/Login';
+import Login from './components/login/Login';
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       showLogin: false,
-      title: '',
       viewWidth: window.innerWidth,
-      user: 1,
-      indicator: !navigator.onLine
+      user: false,
+      online: navigator.onLine
     }
     this.debouncedSetWidth = debounce(this.setViewWidth, 100)
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     window.addEventListener('resize', this.debouncedSetWidth)
-    window.addEventListener('online', this.indicatorOff)
-    window.addEventListener('offline', this.indicatorOn)
+    if (localStorage.jwt) {
+      // if (navigator.onLine) {
+      this.setState({ user: true })
+      // }
+    }
+    window.addEventListener('online', this.setOnline)
+    window.addEventListener('offline', this.setOffline)
   }
 
-  indicatorOff = () => {
+  // autoAuthenticate = () => {
+  //   let token = localStorage.getItem('jwt');
+  //   var decoded = jwt.decode(token, 'a', true);
+  //   console.log(decoded);
+  // fetch('http://192.168.1.114:50000/authenticate', {
+  //   method: 'get',
+  //   headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` }
+  // })
+  //   .then(res => res.json())
+  //   .then(res => {
+  //   })
+  // }
+
+  setOffline = () => {
     this.setState({
-      indicator: false
+      online: false
     });
+    console.log('off');
   }
-  
-  indicatorOn = () => {
+
+  setOnline = () => {
     this.setState({
-      indicator: true
-    });  
+      online: true
+    });
+    console.log('on');
   }
 
   setViewWidth = () => {
@@ -48,19 +66,29 @@ class App extends Component {
       showLogin: true
     })
   }
-  
-  logUser = (id) => {
+
+  hideLogin = () => {
     document.body.classList.remove('noscroll');
     this.setState({
-      user: id,
+      showLogin: false
+    });
+  }
+
+  logUser = (res) => {
+    document.body.classList.remove('noscroll');
+    // console.log(res.token);
+    localStorage.setItem('jwt', res.token);
+    this.setState({
+      user: true,
       showLogin: false
     });
   }
 
   logout = () => {
+    localStorage.removeItem('jwt');
     this.setState({
       user: undefined
-    })
+    });
   }
 
   render() {
@@ -75,19 +103,21 @@ class App extends Component {
           </div>
           <div className="page-title"></div>
           <div className="top-buttons">
-            {/* {this.state.user
-              ? <div className="user-account">
-                <Link className="user-account-item" to="/mystuff">My Stuff</Link> | <p className="user-account-item" onClick={this.logout}>Log out</p>
-              </div>
-              : <p className="user-account-item" onClick={this.showLogin}>Login</p>
-            } */}
+            {this.state.online &&
+              <React.Fragment>
+                {this.state.user
+                  ? <p className="user-account-item" onClick={this.logout}>Logout</p>
+                  : <p className="user-account-item" onClick={this.showLogin}>Login</p>
+                }
+              </React.Fragment>
+            }
           </div>
         </div>
         <div className="main-view">
-          <Routing viewWidth={this.state.viewWidth} user={this.state.user} />
+          <Routing viewWidth={this.state.viewWidth} user={this.state.user} online={this.state.online} />
         </div>
-        <Sidebar />
-        {/* <Login showLogin={this.state.showLogin} logUser={this.logUser} /> */}
+        <Sidebar user={this.state.user} online={this.state.online} />
+        <Login showLogin={this.state.showLogin} hideLogin={this.hideLogin} logUser={this.logUser} user={this.state.user} />
       </div>
     );
   }

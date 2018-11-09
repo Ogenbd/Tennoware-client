@@ -153,7 +153,7 @@
     height: 2px;
 }
 
-@media screen and (min-width: 1223px) and (hover: hover) {
+@media screen and (min-width: 1203px) and (hover: hover) {
     .mod-info-wrapper {
         max-height: 250px;
         transition: all 200ms ease-in-out;

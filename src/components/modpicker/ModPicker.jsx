@@ -22,7 +22,7 @@ export class ModPicker extends PureComponent {
     // }
 
     handlePick = (mod) => {
-        if (this.props.viewWidth < 1223) {
+        if (this.props.viewWidth < 1203) {
             // this.setState({ loader: true })
             // setTimeout(() => {
             this.props.pickMod(mod);
@@ -34,7 +34,7 @@ export class ModPicker extends PureComponent {
     }
 
     handleDrag = (e, index) => {
-        if (this.props.viewWidth >= 1223) {
+        if (this.props.viewWidth >= 1203) {
             e.dataTransfer.setData('payload', JSON.stringify({ from: 'picker', index: index }));
         }
     }
@@ -58,7 +58,7 @@ export class ModPicker extends PureComponent {
         display.forEach(mod => {
             if (mod.name) {
                 modList.push(
-                    // <div draggable={this.props.viewWidth >= 1223} className="mod-wrapper" key={mod.index} onClick={() => { this.handlePick(mod) }} onDragStart={(e) => { this.handleDrag(e, mod.index) }}>
+                    // <div draggable={this.props.viewWidth >= 1203} className="mod-wrapper" key={mod.index} onClick={() => { this.handlePick(mod) }} onDragStart={(e) => { this.handleDrag(e, mod.index) }}>
                     <div draggable="false" className="mod-wrapper" key={mod.index} onClick={() => { this.handlePick(mod) }} onDragStart={(e) => { this.handleDrag(e, mod.index) }}>
                         <SimpleModCardGenerator mod={mod} viewWidth={this.props.viewWidth} />
                     </div>
@@ -102,14 +102,16 @@ export class ModPicker extends PureComponent {
 
     filterBySearch = (mods) => {
         let desc;
-        let regExp = new RegExp(this.state.search, 'i');
+        // let regExp = new RegExp(this.state.search, 'i');
         let filteredMods = mods.filter(mod => {
             if (mod.name) {
                 desc = mod.description();
                 if (typeof desc === 'string') {
-                    return (mod.name && (mod.name.search(regExp) !== -1 || desc.search(regExp) !== -1 || mod.type.search(regExp) !== -1));
+                    return (mod.name && (mod.name.toLowerCase().includes(this.state.search.toLowerCase()) || desc.toLowerCase().includes(this.state.search.toLowerCase()) || mod.type.toLowerCase().includes(this.state.search.toLowerCase())));
+                    // return (mod.name && (mod.name.search(regExp) !== -1 || desc.search(regExp) !== -1 || mod.type.search(regExp) !== -1));
                 } else {
-                    return (mod.name && (mod.name.search(regExp) !== -1 || desc[0].search(regExp) !== -1 || desc[1].search(regExp) !== -1 || mod.type.search(regExp) !== -1));
+                    return (mod.name && (mod.name.toLowerCase().includes(this.state.search.toLowerCase()) || desc[0].toLowerCase().includes(this.state.search.toLowerCase()) || desc[1].toLowerCase().includes(this.state.search.toLowerCase()) || mod.type.includes(this.state.search.toLowerCase())));
+                    // return (mod.name && (mod.name.search(regExp) !== -1 || desc[0].search(regExp) !== -1 || desc[1].search(regExp) !== -1 || mod.type.search(regExp) !== -1));
                 }
             } else {
                 return false;
@@ -141,19 +143,19 @@ export class ModPicker extends PureComponent {
     render() {
         let display = this.filterMods();
         return (
-            <div className={this.props.viewWidth < 1223 ? "popup " + (this.props.active ? "popup-active" : "popup-inactive") : 'mod-picker'}>
-                <div className={this.props.viewWidth < 1223 ? "mod-list-topbar popup-topbar " + (this.props.active ? "popup-active" : "popup-inactive") : "mod-list-topbar"}>
-                    {this.props.viewWidth < 1223 &&
+            <div className={this.props.viewWidth < 1203 ? "popup " + (this.props.active ? "popup-active" : "popup-inactive") : 'mod-picker'}>
+                <div className={this.props.viewWidth < 1203 ? "mod-list-topbar popup-topbar " + (this.props.active ? "popup-active" : "popup-inactive") : "mod-list-topbar"}>
+                    {this.props.viewWidth < 1203 &&
                         <div className="popup-x" onClick={this.closeModPicker}>
                             <div className="popup-x-bar one-bar"></div>
                             <div className="popup-x-bar two-bar"></div>
                         </div>
                     }
                     <div className={"interactable topbar-filter " + (this.state.conclave ? "interactable-active" : "interactable-inactive")} onClick={this.toggleConclave}><div className={"conclave-placeholder " + (this.state.conclave ? "conclave-placeholder-active" : "conclave-placeholder-inactive")}></div></div>
-                    {this.props.viewWidth > 1223 && this.props.type === 'warframe' &&
+                    {this.props.viewWidth > 1203 && this.props.type === 'warframe' &&
                         <div className={"interactable topbar-filter " + (this.state.aura ? "interactable-active" : "interactable-inactive")} onClick={this.toggleAura}><div className={"aura-placeholder " + (this.state.aura ? "aura-placeholder-active" : "aura-placeholder-inactive")}></div></div>
                     }
-                    {this.props.viewWidth > 1223 && this.props.type === 'warframe' &&
+                    {this.props.viewWidth > 1203 && this.props.type === 'warframe' &&
                         <div className={"interactable topbar-filter " + (this.state.exilus ? "interactable-active" : "interactable-inactive")} onClick={this.toggleExilus}><div className={"exilus-placeholder " + (this.state.exilus ? "exilus-placeholder-active" : "exilus-placeholder-inactive")}></div></div>
                     }
                     <div className="search-wrapper mod-list-search-wrapper">

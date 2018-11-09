@@ -65,6 +65,7 @@ export class EightSlotModding extends PureComponent {
     }
 
     componentDidMount() {
+        document.body.classList.remove('noscroll');
         if (this.props.match.params.pre) {
             let build = this.props.match.params.pre;
             let orokin = build[0] === '0' ? false : true;
@@ -72,6 +73,7 @@ export class EightSlotModding extends PureComponent {
             let preMods = this.createPreMods(build.slice(9, 41));
             let totalModsCost = this.calcCost(preMods.chosenMods, prePolarities);
             let formaCount = this.countForma(prePolarities);
+            this.checkModSets(preMods.chosenMods);
             this.setState({
                 orokin: orokin,
                 slotPolarities: prePolarities,
@@ -535,7 +537,6 @@ export class EightSlotModding extends PureComponent {
     }
 
     render() {
-        let onLine = navigator.onLine;
         const { chosenMods, chosenIndexs, modPicker, orokin, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSwap, polarityPicker } = this.state;
         return (
             <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
@@ -543,20 +544,20 @@ export class EightSlotModding extends PureComponent {
                     <ModPicker mods={this.props.mods} chosenIndexs={chosenIndexs} active={modPicker} closeModPicker={this.closeModPicker} pickMod={this.pickMod} viewWidth={this.props.viewWidth} drop={this.drop} />
                     <div className="mod-stack">
                         <div className="interactable-wrapper">
-                            {onLine &&
+                            {this.props.online &&
                                 <BuildList match={this.props.match} type={this.props.type} riven={this.props.riven} orokin={this.props.orokin} />
                             }
                             {this.props.metaInfo.BuildDesc && this.props.metaInfo.BuildDesc.length > 0 &&
                                 <BuildDescription metaInfo={this.props.metaInfo} />
                             }
-                            {onLine && this.props.user &&
+                            {this.props.online && this.props.user &&
                                 <BuildSaver orokin={orokin} formaCount={formaCount} user={this.props.user} type={this.props.type} getBuildStr={this.convertBuildToString} metaInfo={this.props.metaInfo} />
                             }
                             <LinkGenerator type={this.props.type} getBuildStr={this.convertBuildToString} match={this.props.match} />
-                            {onLine && this.props.user && this.props.match.params.build && !this.props.metaInfo.Owner &&
+                            {this.props.online && this.props.user && this.props.match.params.build && !this.props.metaInfo.Owner &&
                                 <Like user={this.props.user} match={this.props.match} metaInfo={this.props.metaInfo} />
                             }
-                            {/* {onLine && this.props.match.params.build && !this.props.metaInfo.UserID &&
+                            {/* {this.props.online && this.props.match.params.build && !this.props.metaInfo.UserID &&
                             <div className="interactable interactable-semi-inactive"><p className="interactable-p">Report</p></div>
                         } */}
                         </div>

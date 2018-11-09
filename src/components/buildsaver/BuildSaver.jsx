@@ -81,22 +81,24 @@ export class BuildSaver extends Component {
             let buildData = {
                 orokin: this.props.orokin,
                 forma: this.props.formaCount,
-                user: this.props.user,
                 buildStr: buildState.buildStr,
                 riven: buildState.riven,
                 private: this.state.private,
                 buildName: this.state.buildName,
                 buildDesc: this.state.buildDesc,
-                item: this.props.match.params.id
+                item: this.props.match.params.id,
+                type: this.props.type
             }
             this.state.private ? buildData.private = 1 : buildData.private = 0;
             this.props.orokin ? buildData.orokin = 1 : buildData.orokin = 0;
+            let token = localStorage.getItem('jwt');
             if (this.props.match.params.build && this.props.metaInfo.Owner) {
                 buildData.buildId = this.props.match.params.build;
                 // fix url
+                let token = localStorage.getItem('jwt');
                 fetch('http://192.168.1.114:50000/updatebuild', {
                     method: 'post',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` },
                     body: JSON.stringify(buildData)
                 })
                     .then(res => res.json())
@@ -110,7 +112,7 @@ export class BuildSaver extends Component {
                 // fix url
                 fetch('http://192.168.1.114:50000/savebuild', {
                     method: 'post',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` },
                     body: JSON.stringify(buildData)
                 })
                     .then(res => res.json())
@@ -128,7 +130,7 @@ export class BuildSaver extends Component {
         // fix url
         let newUrl = `/${this.props.type}/${this.props.match.params.id}/${buildData.buildStr}/${buildId}`;
         document.body.classList.remove('noscroll');
-        this.props.history.push(newUrl, { req: true });
+        this.props.history.push(newUrl);
     }
 
     stopPropagation = (e) => {

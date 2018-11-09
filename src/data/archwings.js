@@ -1,9 +1,9 @@
 import abilities from './archwingabilities'
 
-const archwings = [
+const itemimages = [
     {
         name: 'AMESHA',
-        img: require('../assets/archwings/amesha.png'),
+        img: require('../assets/itemimages/amesha.png'),
         polarities: ['naramon', 'vazarin', 'madurai'],
         armor: 200,
         energy: 360,
@@ -17,7 +17,7 @@ const archwings = [
     },
     {
         name: 'ELYTRON',
-        img: require('../assets/archwings/elytron.png'),
+        img: require('../assets/itemimages/elytron.png'),
         polarities: ['madurai', 'madurai'],
         armor: 150,
         energy: 225,
@@ -31,7 +31,7 @@ const archwings = [
     },
     {
         name: 'ITZAL',
-        img: require('../assets/archwings/itzal.png'),
+        img: require('../assets/itemimages/itzal.png'),
         polarities: ['madurai', 'vazarin', 'naramon'],
         armor: 50,
         energy: 360,
@@ -45,7 +45,7 @@ const archwings = [
     },
     {
         name: 'ODONATA',
-        img: require('../assets/archwings/odonata.png'),
+        img: require('../assets/itemimages/odonata.png'),
         polarities: ['madurai', 'vazarin', 'naramon'],
         armor: 100,
         energy: 180,
@@ -59,7 +59,7 @@ const archwings = [
     },
     {
         name: 'ODONATA PRIME',
-        img: require('../assets/archwings/odonata-prime.png'),
+        img: require('../assets/itemimages/odonata-prime.png'),
         polarities: ['madurai', 'vazarin', 'naramon', 'naramon'],
         armor: 150,
         energy: 180,
@@ -73,4 +73,4 @@ const archwings = [
     },
 ]
 
-export default archwings;
+export default itemimages;

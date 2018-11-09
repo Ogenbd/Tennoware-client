@@ -28,10 +28,10 @@ export class ItemPicker extends Component {
         if (target.value.length < 1) {
             this.setState({ displayItems: this.state.items })
         } else {
-            let regExp = new RegExp(target.value, 'i')
+            // let regExp = new RegExp(target.value, 'i')
             let searchResaults = this.state.items.filter(item => {
-                return (item.name.search(regExp) !== -1 || (item.noise && item.noise.search(regExp) !== -1) || (item.type && item.type.some(type => {
-                    return type.search(regExp) !== -1
+                return (item.name.toLowerCase().includes(target.value.toLowerCase()) || (item.noise && item.noise.toLowerCase().includes(target.value.toLowerCase())) || (item.type && item.type.some(type => {
+                    return type.toLowerCase().includes(target.value.toLowerCase())
                 })));
             });
             this.setState({ displayItems: searchResaults });

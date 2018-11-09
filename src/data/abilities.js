@@ -2,7 +2,7 @@ const abilities = {
     ash: [
         {
             name: 'Shuriken',
-            img: require('../assets/warframes/shuriken.png'),
+            img: require('../assets/itemimages/shuriken.png'),
             details: [
                 {
                     strength: [
@@ -29,7 +29,7 @@ const abilities = {
         },
         {
             name: 'Smoke Screen',
-            img: require('../assets/warframes/smokescreen.png'),
+            img: require('../assets/itemimages/smokescreen.png'),
             details: [
                 {
                     duration: [
@@ -57,7 +57,7 @@ const abilities = {
         },
         {
             name: 'Teleport',
-            img: require('../assets/warframes/teleport.png'),
+            img: require('../assets/itemimages/teleport.png'),
             details: [
                 {
                     range: [
@@ -78,7 +78,7 @@ const abilities = {
         },
         {
             name: 'Blade Storm',
-            img: require('../assets/warframes/bladestorm.png'),
+            img: require('../assets/itemimages/bladestorm.png'),
             details: [
                 {
                     strength: [
@@ -112,7 +112,7 @@ const abilities = {
     atlas: [
         {
             name: 'Landslide',
-            img: require('../assets/warframes/landslide.png'),
+            img: require('../assets/itemimages/landslide.png'),
             details: [
                 {
                     strength: [
@@ -182,7 +182,7 @@ const abilities = {
         },
         {
             name: 'Tectonics',
-            img: require('../assets/warframes/tectonics.png'),
+            img: require('../assets/itemimages/tectonics.png'),
             details: [
                 {
                     armor: [
@@ -240,7 +240,7 @@ const abilities = {
         },
         {
             name: 'Petrify',
-            img: require('../assets/warframes/petrify.png'),
+            img: require('../assets/itemimages/petrify.png'),
             details: [
                 {
                     duration: [
@@ -289,7 +289,7 @@ const abilities = {
         },
         {
             name: 'Rumblers',
-            img: require('../assets/warframes/rumblers.png'),
+            img: require('../assets/itemimages/rumblers.png'),
             details: [
                 {
                     exception: [
@@ -370,7 +370,7 @@ const abilities = {
     banshee: [
         {
             name: 'Sonic Boom',
-            img: require('../assets/warframes/sonicboom.png'),
+            img: require('../assets/itemimages/sonicboom.png'),
             details: [
                 {
                     strength: [
@@ -405,7 +405,7 @@ const abilities = {
         },
         {
             name: 'Sonar',
-            img: require('../assets/warframes/sonar.png'),
+            img: require('../assets/itemimages/sonar.png'),
             details: [
                 {
                     strength: [
@@ -440,7 +440,7 @@ const abilities = {
         },
         {
             name: 'Silence',
-            img: require('../assets/warframes/silence.png'),
+            img: require('../assets/itemimages/silence.png'),
             details: [
                 {
                     duration: [
@@ -468,7 +468,7 @@ const abilities = {
         },
         {
             name: 'Sound Quake',
-            img: require('../assets/warframes/soundquake.png'),
+            img: require('../assets/itemimages/soundquake.png'),
             details: [
                 {
                     strength: [
@@ -504,7 +504,7 @@ const abilities = {
     chroma: [
         {
             name: 'Spectral Scream',
-            img: require('../assets/warframes/spectralscream.png'),
+            img: require('../assets/itemimages/spectralscream.png'),
             details: [
                 {
                     strength: [
@@ -544,7 +544,7 @@ const abilities = {
         },
         {
             name: 'Elemental Ward',
-            img: require('../assets/warframes/elementalward.png'),
+            img: require('../assets/itemimages/elementalward.png'),
             details: [
                 {
                     mode: 'Heat',
@@ -727,7 +727,7 @@ const abilities = {
         },
         {
             name: 'Vex Armor',
-            img: require('../assets/warframes/vexarmor.png'),
+            img: require('../assets/itemimages/vexarmor.png'),
             details: [
                 {
                     strength: [
@@ -767,7 +767,7 @@ const abilities = {
         },
         {
             name: 'Effigy',
-            img: require('../assets/warframes/effigy.png'),
+            img: require('../assets/itemimages/effigy.png'),
             details: [
                 {
                     strength: [
@@ -835,7 +835,7 @@ const abilities = {
     ember: [
         {
             name: 'Fireball',
-            img: require('../assets/warframes/fireball.png'),
+            img: require('../assets/itemimages/fireball.png'),
             details: [
                 {
                     strength: [
@@ -868,7 +868,7 @@ const abilities = {
         },
         {
             name: 'Accelerant',
-            img: require('../assets/warframes/accelerant.png'),
+            img: require('../assets/itemimages/accelerant.png'),
             details: [
                 {
                     strength: [
@@ -910,7 +910,7 @@ const abilities = {
         },
         {
             name: 'Fire Blast',
-            img: require('../assets/warframes/fireblast.png'),
+            img: require('../assets/itemimages/fireblast.png'),
             details: [
                 {
                     strength: [
@@ -960,7 +960,7 @@ const abilities = {
         },
         {
             name: 'World On Fire',
-            img: require('../assets/warframes/worldonfire.png'),
+            img: require('../assets/itemimages/worldonfire.png'),
             details: [
                 {
                     strength: [
@@ -1015,7 +1015,7 @@ const abilities = {
     equinox: [
         {
             name: 'Metamorphosis',
-            img: require('../assets/warframes/metamorphosis.png'),
+            img: require('../assets/itemimages/metamorphosis.png'),
             details: [
                 {
                     mode: 'Night',
@@ -1075,7 +1075,7 @@ const abilities = {
         },
         {
             name: 'Rest & Rage',
-            img: require('../assets/warframes/restrage.png'),
+            img: require('../assets/itemimages/restrage.png'),
             details: [
                 {
                     mode: 'Rest',
@@ -1156,7 +1156,7 @@ const abilities = {
         },
         {
             name: 'Pacify & Provoke',
-            img: require('../assets/warframes/pacifyprovoke.png'),
+            img: require('../assets/itemimages/pacifyprovoke.png'),
             details: [
                 {
                     mode: 'Pacify',
@@ -1220,7 +1220,7 @@ const abilities = {
         },
         {
             name: 'Mend & Maim',
-            img: require('../assets/warframes/mendmaim.png'),
+            img: require('../assets/itemimages/mendmaim.png'),
             details: [
                 {
                     mode: 'Mend',
@@ -1299,7 +1299,7 @@ const abilities = {
     excalibur: [
         {
             name: 'Slash Dash',
-            img: require('../assets/warframes/slashdash.png'),
+            img: require('../assets/itemimages/slashdash.png'),
             details: [
                 {
                     strength: [
@@ -1326,7 +1326,7 @@ const abilities = {
         },
         {
             name: 'Radial Blind',
-            img: require('../assets/warframes/radialblind.png'),
+            img: require('../assets/itemimages/radialblind.png'),
             details: [
                 {
                     duration: [
@@ -1354,7 +1354,7 @@ const abilities = {
         },
         {
             name: 'Radial Javelin',
-            img: require('../assets/warframes/radialjavelin.png'),
+            img: require('../assets/itemimages/radialjavelin.png'),
             details: [
                 {
                     strength: [
@@ -1387,7 +1387,7 @@ const abilities = {
         },
         {
             name: 'Exalted Blade',
-            img: require('../assets/warframes/exaltedblade.png'),
+            img: require('../assets/itemimages/exaltedblade.png'),
             details: [
                 {
                     strength: [
@@ -1441,7 +1441,7 @@ const abilities = {
     frost: [
         {
             name: 'Freeze',
-            img: require('../assets/warframes/freeze.png'),
+            img: require('../assets/itemimages/freeze.png'),
             details: [
                 {
                     strength: [
@@ -1479,7 +1479,7 @@ const abilities = {
         },
         {
             name: 'Ice wave',
-            img: require('../assets/warframes/icewave.png'),
+            img: require('../assets/itemimages/icewave.png'),
             details: [
                 {
                     strength: [
@@ -1519,7 +1519,7 @@ const abilities = {
         },
         {
             name: 'Snow Globe',
-            img: require('../assets/warframes/snowglobe.png'),
+            img: require('../assets/itemimages/snowglobe.png'),
             details: [
                 {
                     armor: [
@@ -1554,7 +1554,7 @@ const abilities = {
         },
         {
             name: 'Avalanche',
-            img: require('../assets/warframes/avalanche.png'),
+            img: require('../assets/itemimages/avalanche.png'),
             details: [
                 {
                     strength: [
@@ -1606,7 +1606,7 @@ const abilities = {
     gara: [
         {
             name: 'Shattered Lash',
-            img: require('../assets/warframes/shatteredlash.png'),
+            img: require('../assets/itemimages/shatteredlash.png'),
             details: [
                 {
                     mode: 'Tap',
@@ -1672,7 +1672,7 @@ const abilities = {
         },
         {
             name: 'Splinter Storm',
-            img: require('../assets/warframes/splinterstorm.png'),
+            img: require('../assets/itemimages/splinterstorm.png'),
             details: [
                 {
                     exception: [
@@ -1723,7 +1723,7 @@ const abilities = {
         },
         {
             name: 'Spectrorage',
-            img: require('../assets/warframes/spectrorage.png'),
+            img: require('../assets/itemimages/spectrorage.png'),
             details: [
                 {
                     strength: [
@@ -1769,7 +1769,7 @@ const abilities = {
         },
         {
             name: 'Mass Vitrify',
-            img: require('../assets/warframes/massvitrify.png'),
+            img: require('../assets/itemimages/massvitrify.png'),
             details: [
                 {
                     armor: [
@@ -1864,7 +1864,7 @@ const abilities = {
     harrow: [
         {
             name: 'Condemn',
-            img: require('../assets/warframes/condemn.png'),
+            img: require('../assets/itemimages/condemn.png'),
             details: [
                 {
                     strength: [
@@ -1898,7 +1898,7 @@ const abilities = {
         },
         {
             name: 'Penance',
-            img: require('../assets/warframes/penance.png'),
+            img: require('../assets/itemimages/penance.png'),
             details: [
                 {
                     strength: [
@@ -1948,7 +1948,7 @@ const abilities = {
         },
         {
             name: 'Thurible',
-            img: require('../assets/warframes/thurible.png'),
+            img: require('../assets/itemimages/thurible.png'),
             details: [
                 {
                     strength: [
@@ -1990,7 +1990,7 @@ const abilities = {
         },
         {
             name: 'Covenant',
-            img: require('../assets/warframes/covenant.png'),
+            img: require('../assets/itemimages/covenant.png'),
             details: [
                 {
                     strength: [
@@ -2037,7 +2037,7 @@ const abilities = {
     hydroid: [
         {
             name: 'Tempest Barrage',
-            img: require('../assets/warframes/tempestbarrage.png'),
+            img: require('../assets/itemimages/tempestbarrage.png'),
             details: [
                 {
                     strength: [
@@ -2093,7 +2093,7 @@ const abilities = {
         },
         {
             name: 'Tidal Surge',
-            img: require('../assets/warframes/tidalsurge.png'),
+            img: require('../assets/itemimages/tidalsurge.png'),
             details: [
                 {
                     strength: [
@@ -2140,7 +2140,7 @@ const abilities = {
         },
         {
             name: 'Undertow',
-            img: require('../assets/warframes/undertow.png'),
+            img: require('../assets/itemimages/undertow.png'),
             details: [
                 {
                     strength: [
@@ -2192,7 +2192,7 @@ const abilities = {
         },
         {
             name: 'Tentacle Swarm',
-            img: require('../assets/warframes/tentacleswarm.png'),
+            img: require('../assets/itemimages/tentacleswarm.png'),
             details: [
                 {
                     strength: [
@@ -2243,7 +2243,7 @@ const abilities = {
     inaros: [
         {
             name: 'Desiccation',
-            img: require('../assets/warframes/desiccation.png'),
+            img: require('../assets/itemimages/desiccation.png'),
             details: [
                 {
                     strength: [
@@ -2288,7 +2288,7 @@ const abilities = {
         },
         {
             name: 'Devour',
-            img: require('../assets/warframes/devour.png'),
+            img: require('../assets/itemimages/devour.png'),
             details: [
                 {
                     strength: [
@@ -2328,7 +2328,7 @@ const abilities = {
         },
         {
             name: 'Sandstorm',
-            img: require('../assets/warframes/sandstorm.png'),
+            img: require('../assets/itemimages/sandstorm.png'),
             details: [
                 {
                     strength: [
@@ -2362,7 +2362,7 @@ const abilities = {
         },
         {
             name: 'Scarab Swarm',
-            img: require('../assets/warframes/scarabswarm.png'),
+            img: require('../assets/itemimages/scarabswarm.png'),
             details: [
                 {
                     strength: [
@@ -2411,7 +2411,7 @@ const abilities = {
     ivara: [
         {
             name: 'Quiver',
-            img: require('../assets/warframes/quiver.png'),
+            img: require('../assets/itemimages/quiver.png'),
             details: [
                 {
                     mode: 'Cloak',
@@ -2512,7 +2512,7 @@ const abilities = {
         },
         {
             name: 'Navigator',
-            img: require('../assets/warframes/navigator.png'),
+            img: require('../assets/itemimages/navigator.png'),
             details: [
                 {
                     strength: [
@@ -2540,7 +2540,7 @@ const abilities = {
         },
         {
             name: 'Prowl',
-            img: require('../assets/warframes/prowl.png'),
+            img: require('../assets/itemimages/prowl.png'),
             details: [
                 {
                     strength: [
@@ -2592,7 +2592,7 @@ const abilities = {
         },
         {
             name: 'Artemis Bow',
-            img: require('../assets/warframes/artemisbow.png'),
+            img: require('../assets/itemimages/artemisbow.png'),
             details: [
                 {
                     strength: [
@@ -2624,7 +2624,7 @@ const abilities = {
     khora: [
         {
             name: 'Whipclaw',
-            img: require('../assets/warframes/whipclaw.png'),
+            img: require('../assets/itemimages/whipclaw.png'),
             details: [
                 {
                     strength: [
@@ -2656,7 +2656,7 @@ const abilities = {
         },
         {
             name: 'Ensnare',
-            img: require('../assets/warframes/ensnare.png'),
+            img: require('../assets/itemimages/ensnare.png'),
             details: [
                 {
                     duration: [
@@ -2696,7 +2696,7 @@ const abilities = {
         },
         {
             name: 'Venari',
-            img: require('../assets/warframes/venari.png'),
+            img: require('../assets/itemimages/venari.png'),
             details: [
                 {
                     mode: 'Attack',
@@ -2801,7 +2801,7 @@ const abilities = {
         },
         {
             name: 'Strangledome',
-            img: require('../assets/warframes/strangledome.png'),
+            img: require('../assets/itemimages/strangledome.png'),
             details: [
                 {
                     strength: [
@@ -2853,7 +2853,7 @@ const abilities = {
     limbo: [
         {
             name: 'Banish',
-            img: require('../assets/warframes/banish.png'),
+            img: require('../assets/itemimages/banish.png'),
             details: [
                 {
                     strength: [
@@ -2888,7 +2888,7 @@ const abilities = {
         },
         {
             name: 'Stasis',
-            img: require('../assets/warframes/stasis.png'),
+            img: require('../assets/itemimages/stasis.png'),
             details: [
                 {
                     duration: [
@@ -2909,7 +2909,7 @@ const abilities = {
         },
         {
             name: 'Rift Surge',
-            img: require('../assets/warframes/riftsurge.png'),
+            img: require('../assets/itemimages/riftsurge.png'),
             details: [
                 {
                     duration: [
@@ -2947,7 +2947,7 @@ const abilities = {
         },
         {
             name: 'Cataclysm',
-            img: require('../assets/warframes/cataclysm.png'),
+            img: require('../assets/itemimages/cataclysm.png'),
             details: [
                 {
                     strength: [
@@ -2989,7 +2989,7 @@ const abilities = {
     loki: [
         {
             name: 'Decoy',
-            img: require('../assets/warframes/decoy.png'),
+            img: require('../assets/itemimages/decoy.png'),
             details: [
                 {
                     duration: [
@@ -3010,7 +3010,7 @@ const abilities = {
         },
         {
             name: 'Invisibility',
-            img: require('../assets/warframes/invisibility.png'),
+            img: require('../assets/itemimages/invisibility.png'),
             details: [
                 {
                     duration: [
@@ -3031,7 +3031,7 @@ const abilities = {
         },
         {
             name: 'Switch Teleport',
-            img: require('../assets/warframes/switchteleport.png'),
+            img: require('../assets/itemimages/switchteleport.png'),
             details: [
                 {
                     range: [
@@ -3052,7 +3052,7 @@ const abilities = {
         },
         {
             name: 'Radial Disarm',
-            img: require('../assets/warframes/radialdisarm.png'),
+            img: require('../assets/itemimages/radialdisarm.png'),
             details: [
                 {
                     strength: [
@@ -3082,7 +3082,7 @@ const abilities = {
     mag: [
         {
             name: 'Pull',
-            img: require('../assets/warframes/pull.png'),
+            img: require('../assets/itemimages/pull.png'),
             details: [
                 {
                     strength: [
@@ -3110,7 +3110,7 @@ const abilities = {
         },
         {
             name: 'Magnetize',
-            img: require('../assets/warframes/magnetize.png'),
+            img: require('../assets/itemimages/magnetize.png'),
             details: [
                 {
                     strength: [
@@ -3155,7 +3155,7 @@ const abilities = {
         },
         {
             name: 'Polarize',
-            img: require('../assets/warframes/polarize.png'),
+            img: require('../assets/itemimages/polarize.png'),
             details: [
                 {
                     strength: [
@@ -3202,7 +3202,7 @@ const abilities = {
         },
         {
             name: 'Crush',
-            img: require('../assets/warframes/crush.png'),
+            img: require('../assets/itemimages/crush.png'),
             details: [
                 {
                     strength: [
@@ -3243,7 +3243,7 @@ const abilities = {
     mesa: [
         {
             name: 'Ballistic Battery',
-            img: require('../assets/warframes/ballisticbattery.png'),
+            img: require('../assets/itemimages/ballisticbattery.png'),
             details: [
                 {
                     strength: [
@@ -3272,7 +3272,7 @@ const abilities = {
         },
         {
             name: 'Shooting Gallery',
-            img: require('../assets/warframes/shootinggallery.png'),
+            img: require('../assets/itemimages/shootinggallery.png'),
             details: [
                 {
                     strength: [
@@ -3314,7 +3314,7 @@ const abilities = {
         },
         {
             name: 'Shatter Shield',
-            img: require('../assets/warframes/shattershield.png'),
+            img: require('../assets/itemimages/shattershield.png'),
             details: [
                 {
                     exception: [
@@ -3348,7 +3348,7 @@ const abilities = {
         },
         {
             name: 'Peacemaker',
-            img: require('../assets/warframes/peacemaker.png'),
+            img: require('../assets/itemimages/peacemaker.png'),
             details: [
                 {
                     strength: [
@@ -3377,7 +3377,7 @@ const abilities = {
     mirage: [
         {
             name: 'Hall of Mirrors',
-            img: require('../assets/warframes/hallofmirrors.png'),
+            img: require('../assets/itemimages/hallofmirrors.png'),
             details: [
                 {
                     strength: [
@@ -3405,7 +3405,7 @@ const abilities = {
         },
         {
             name: 'Slight of Hand',
-            img: require('../assets/warframes/slightofhand.png'),
+            img: require('../assets/itemimages/slightofhand.png'),
             details: [
                 {
                     strength: [
@@ -3466,7 +3466,7 @@ const abilities = {
         },
         {
             name: 'Eclipse',
-            img: require('../assets/warframes/eclipse.png'),
+            img: require('../assets/itemimages/eclipse.png'),
             details: [
                 {
                     mode: 'Light',
@@ -3518,7 +3518,7 @@ const abilities = {
         },
         {
             name: 'Prism',
-            img: require('../assets/warframes/prism.png'),
+            img: require('../assets/itemimages/prism.png'),
             details: [
                 {
                     strength: [
@@ -3576,7 +3576,7 @@ const abilities = {
     nekros: [
         {
             name: 'Soul Punch',
-            img: require('../assets/warframes/soulpunch.png'),
+            img: require('../assets/itemimages/soulpunch.png'),
             details: [
                 {
                     strength: [
@@ -3604,7 +3604,7 @@ const abilities = {
         },
         {
             name: 'Terrify',
-            img: require('../assets/warframes/terrify.png'),
+            img: require('../assets/itemimages/terrify.png'),
             details: [
                 {
                     strength: [
@@ -3643,7 +3643,7 @@ const abilities = {
         },
         {
             name: 'Desecrate',
-            img: require('../assets/warframes/desecrate.png'),
+            img: require('../assets/itemimages/desecrate.png'),
             details: [
                 {
                     range: [
@@ -3675,7 +3675,7 @@ const abilities = {
         },
         {
             name: 'Shadows of the Dead',
-            img: require('../assets/warframes/shadowsofthedead.png'),
+            img: require('../assets/itemimages/shadowsofthedead.png'),
             details: [
                 {
                     strength: [
@@ -3710,7 +3710,7 @@ const abilities = {
     nezha: [
         {
             name: 'Firewalker',
-            img: require('../assets/warframes/firewalker.png'),
+            img: require('../assets/itemimages/firewalker.png'),
             details: [
                 {
                     strength: [
@@ -3762,7 +3762,7 @@ const abilities = {
         },
         {
             name: 'Blazing Chakram',
-            img: require('../assets/warframes/blazingchakram.png'),
+            img: require('../assets/itemimages/blazingchakram.png'),
             details: [
                 {
                     strength: [
@@ -3812,7 +3812,7 @@ const abilities = {
         },
         {
             name: 'Warding Halo',
-            img: require('../assets/warframes/wardinghalo.png'),
+            img: require('../assets/itemimages/wardinghalo.png'),
             details: [
                 {
                     armor: [
@@ -3847,7 +3847,7 @@ const abilities = {
         },
         {
             name: 'Divine Spears',
-            img: require('../assets/warframes/divinespears.png'),
+            img: require('../assets/itemimages/divinespears.png'),
             details: [
                 {
                     strength: [
@@ -3889,7 +3889,7 @@ const abilities = {
     nidus: [
         {
             name: 'Virulence',
-            img: require('../assets/warframes/virulence.png'),
+            img: require('../assets/itemimages/virulence.png'),
             details: [
                 {
                     strength: [
@@ -3916,7 +3916,7 @@ const abilities = {
         },
         {
             name: 'Larva',
-            img: require('../assets/warframes/larva.png'),
+            img: require('../assets/itemimages/larva.png'),
             details: [
                 {
                     duration: [
@@ -3944,7 +3944,7 @@ const abilities = {
         },
         {
             name: 'Parasitic Link',
-            img: require('../assets/warframes/parasiticlink.png'),
+            img: require('../assets/itemimages/parasiticlink.png'),
             details: [
                 {
                     strength: [
@@ -3991,7 +3991,7 @@ const abilities = {
         },
         {
             name: 'Ravenous',
-            img: require('../assets/warframes/ravenous.png'),
+            img: require('../assets/itemimages/ravenous.png'),
             details: [
                 {
                     strength: [
@@ -4037,7 +4037,7 @@ const abilities = {
     nova: [
         {
             name: 'Null Star',
-            img: require('../assets/warframes/nullstar.png'),
+            img: require('../assets/itemimages/nullstar.png'),
             details: [
                 {
                     strength: [
@@ -4078,7 +4078,7 @@ const abilities = {
         },
         {
             name: 'Antimatter Drop',
-            img: require('../assets/warframes/antimatterdrop.png'),
+            img: require('../assets/itemimages/antimatterdrop.png'),
             details: [
                 {
                     strength: [
@@ -4106,7 +4106,7 @@ const abilities = {
         },
         {
             name: 'Worm Hole',
-            img: require('../assets/warframes/wormhole.png'),
+            img: require('../assets/itemimages/wormhole.png'),
             details: [
                 {
                     duration: [
@@ -4140,7 +4140,7 @@ const abilities = {
         },
         {
             name: 'Molecular Prime',
-            img: require('../assets/warframes/molecularprime.png'),
+            img: require('../assets/itemimages/molecularprime.png'),
             details: [
                 {
                     strength: [
@@ -4196,7 +4196,7 @@ const abilities = {
     nyx: [
         {
             name: 'Mind Control',
-            img: require('../assets/warframes/mindcontrol.png'),
+            img: require('../assets/itemimages/mindcontrol.png'),
             details: [
                 {
                     duration: [
@@ -4224,7 +4224,7 @@ const abilities = {
         },
         {
             name: 'Psychic Bolts',
-            img: require('../assets/warframes/psychicbolts.png'),
+            img: require('../assets/itemimages/psychicbolts.png'),
             details: [
                 {
                     strength: [
@@ -4261,7 +4261,7 @@ const abilities = {
         },
         {
             name: 'Chaos',
-            img: require('../assets/warframes/chaos.png'),
+            img: require('../assets/itemimages/chaos.png'),
             details: [
                 {
                     duration: [
@@ -4289,7 +4289,7 @@ const abilities = {
         },
         {
             name: 'Absorb',
-            img: require('../assets/warframes/absorb.png'),
+            img: require('../assets/itemimages/absorb.png'),
             details: [
                 {
                     strength: [
@@ -4329,7 +4329,7 @@ const abilities = {
     oberon: [
         {
             name: 'Smite',
-            img: require('../assets/warframes/smite.png'),
+            img: require('../assets/itemimages/smite.png'),
             details: [
                 {
                     strength: [
@@ -4379,7 +4379,7 @@ const abilities = {
         },
         {
             name: 'Hallowed Ground',
-            img: require('../assets/warframes/hallowedground.png'),
+            img: require('../assets/itemimages/hallowedground.png'),
             details: [
                 {
                     strength: [
@@ -4429,7 +4429,7 @@ const abilities = {
         },
         {
             name: 'Renewal',
-            img: require('../assets/warframes/renewal.png'),
+            img: require('../assets/itemimages/renewal.png'),
             details: [
                 {
                     strength: [
@@ -4486,7 +4486,7 @@ const abilities = {
         },
         {
             name: 'Reckoning',
-            img: require('../assets/warframes/reckoning.png'),
+            img: require('../assets/itemimages/reckoning.png'),
             details: [
                 {
                     strength: [
@@ -4543,7 +4543,7 @@ const abilities = {
     octavia: [
         {
             name: 'Mallet',
-            img: require('../assets/warframes/mallet.png'),
+            img: require('../assets/itemimages/mallet.png'),
             details: [
                 {
                     strength: [
@@ -4578,7 +4578,7 @@ const abilities = {
         },
         {
             name: 'Resonator',
-            img: require('../assets/warframes/resonator.png'),
+            img: require('../assets/itemimages/resonator.png'),
             details: [
                 {
                     strength: [
@@ -4618,7 +4618,7 @@ const abilities = {
         },
         {
             name: 'Metronome',
-            img: require('../assets/warframes/metronome.png'),
+            img: require('../assets/itemimages/metronome.png'),
             details: [
                 {
                     strength: [
@@ -4673,7 +4673,7 @@ const abilities = {
         },
         {
             name: 'Amp',
-            img: require('../assets/warframes/amp.png'),
+            img: require('../assets/itemimages/amp.png'),
             details: [
                 {
                     strength: [
@@ -4715,7 +4715,7 @@ const abilities = {
     revenant: [
         {
             name: 'Enthrall',
-            img: require('../assets/warframes/enthrall.png'),
+            img: require('../assets/itemimages/enthrall.png'),
             details: [
                 {
                     strength: [
@@ -4765,7 +4765,7 @@ const abilities = {
         },
         {
             name: 'Mesmer Skin',
-            img: require('../assets/warframes/mesmerskin.png'),
+            img: require('../assets/itemimages/mesmerskin.png'),
             details: [
                 {
                     strength: [
@@ -4792,7 +4792,7 @@ const abilities = {
         },
         {
             name: 'Reave',
-            img: require('../assets/warframes/reave.png'),
+            img: require('../assets/itemimages/reave.png'),
             details: [
                 {
                     strength: [
@@ -4836,7 +4836,7 @@ const abilities = {
         },
         {
             name: 'Danse Macabre',
-            img: require('../assets/warframes/dansemacabre.png'),
+            img: require('../assets/itemimages/dansemacabre.png'),
             details: [
                 {
                     strength: [
@@ -4884,7 +4884,7 @@ const abilities = {
     rhino: [
         {
             name: 'Rhino Charge',
-            img: require('../assets/warframes/rhinocharge.png'),
+            img: require('../assets/itemimages/rhinocharge.png'),
             details: [
                 {
                     strength: [
@@ -4952,7 +4952,7 @@ const abilities = {
         },
         {
             name: 'Iron Skin',
-            img: require('../assets/warframes/ironskin.png'),
+            img: require('../assets/itemimages/ironskin.png'),
             details: [
                 {
                     armor: [
@@ -4974,7 +4974,7 @@ const abilities = {
         },
         {
             name: 'Roar',
-            img: require('../assets/warframes/roar.png'),
+            img: require('../assets/itemimages/roar.png'),
             details: [
                 {
                     strength: [
@@ -5010,7 +5010,7 @@ const abilities = {
         },
         {
             name: 'Rhino Stomp',
-            img: require('../assets/warframes/rhinostomp.png'),
+            img: require('../assets/itemimages/rhinostomp.png'),
             details: [
                 {
                     strength: [
@@ -5048,7 +5048,7 @@ const abilities = {
     saryn: [
         {
             name: 'Spores',
-            img: require('../assets/warframes/spores.png'),
+            img: require('../assets/itemimages/spores.png'),
             details: [
                 {
                     strength: [
@@ -5104,7 +5104,7 @@ const abilities = {
         },
         {
             name: 'Molt',
-            img: require('../assets/warframes/molt.png'),
+            img: require('../assets/itemimages/molt.png'),
             details: [
                 {
                     strength: [
@@ -5153,7 +5153,7 @@ const abilities = {
         },
         {
             name: 'Toxic Lash',
-            img: require('../assets/warframes/toxiclash.png'),
+            img: require('../assets/itemimages/toxiclash.png'),
             details: [
                 {
                     strength: [
@@ -5194,7 +5194,7 @@ const abilities = {
         },
         {
             name: 'Miasma',
-            img: require('../assets/warframes/miasma.png'),
+            img: require('../assets/itemimages/miasma.png'),
             details: [
                 {
                     strength: [
@@ -5236,7 +5236,7 @@ const abilities = {
     titania: [
         {
             name: 'Spellbind',
-            img: require('../assets/warframes/spellbind.png'),
+            img: require('../assets/itemimages/spellbind.png'),
             details: [
                 {
                     duration: [
@@ -5269,7 +5269,7 @@ const abilities = {
         },
         {
             name: 'Tribute',
-            img: require('../assets/warframes/tribute.png'),
+            img: require('../assets/itemimages/tribute.png'),
             details: [
                 {
                     strength: [
@@ -5312,7 +5312,7 @@ const abilities = {
         },
         {
             name: 'Lantern',
-            img: require('../assets/warframes/lantern.png'),
+            img: require('../assets/itemimages/lantern.png'),
             details: [
                 {
                     strength: [
@@ -5365,7 +5365,7 @@ const abilities = {
         },
         {
             name: 'Razorwing',
-            img: require('../assets/warframes/razorwing.png'),
+            img: require('../assets/itemimages/razorwing.png'),
             details: [
                 {
                     strength: [
@@ -5406,7 +5406,7 @@ const abilities = {
     trinity: [
         {
             name: 'Well of Life',
-            img: require('../assets/warframes/welloflife.png'),
+            img: require('../assets/itemimages/welloflife.png'),
             details: [
                 {
                     strength: [
@@ -5445,7 +5445,7 @@ const abilities = {
         },
         {
             name: 'Energy Vampire',
-            img: require('../assets/warframes/energyvampire.png'),
+            img: require('../assets/itemimages/energyvampire.png'),
             details: [
                 {
                     strength: [
@@ -5495,7 +5495,7 @@ const abilities = {
         },
         {
             name: 'Link',
-            img: require('../assets/warframes/link.png'),
+            img: require('../assets/itemimages/link.png'),
             details: [
                 {
                     none: [
@@ -5534,7 +5534,7 @@ const abilities = {
         },
         {
             name: 'Blessing',
-            img: require('../assets/warframes/blessing.png'),
+            img: require('../assets/itemimages/blessing.png'),
             details: [
                 {
                     strength: [
@@ -5578,7 +5578,7 @@ const abilities = {
     valkyr: [
         {
             name: 'Rip Line',
-            img: require('../assets/warframes/ripline.png'),
+            img: require('../assets/itemimages/ripline.png'),
             details: [
                 {
                     strength: [
@@ -5631,7 +5631,7 @@ const abilities = {
         },
         {
             name: 'Warcry',
-            img: require('../assets/warframes/warcry.png'),
+            img: require('../assets/itemimages/warcry.png'),
             details: [
                 {
                     strength: [
@@ -5678,7 +5678,7 @@ const abilities = {
         },
         {
             name: 'Paralysis',
-            img: require('../assets/warframes/paralysis.png'),
+            img: require('../assets/itemimages/paralysis.png'),
             details: [
                 {
                     strength: [
@@ -5706,7 +5706,7 @@ const abilities = {
         },
         {
             name: 'Hysteria',
-            img: require('../assets/warframes/hysteria.png'),
+            img: require('../assets/itemimages/hysteria.png'),
             details: [
                 {
                     strength: [
@@ -5745,7 +5745,7 @@ const abilities = {
     vauban: [
         {
             name: 'Tesla',
-            img: require('../assets/warframes/tesla.png'),
+            img: require('../assets/itemimages/tesla.png'),
             details: [
                 {
                     strength: [
@@ -5796,7 +5796,7 @@ const abilities = {
         },
         {
             name: 'Minelayer',
-            img: require('../assets/warframes/minelayer.png'),
+            img: require('../assets/itemimages/minelayer.png'),
             details: [
                 {
                     mode: 'Bounce',
@@ -5925,7 +5925,7 @@ const abilities = {
         },
         {
             name: 'Bastille',
-            img: require('../assets/warframes/bastille.png'),
+            img: require('../assets/itemimages/bastille.png'),
             details: [
                 {
                     strength: [
@@ -5959,7 +5959,7 @@ const abilities = {
         },
         {
             name: 'Vortex',
-            img: require('../assets/warframes/vortex.png'),
+            img: require('../assets/itemimages/vortex.png'),
             details: [
                 {
                     strength: [
@@ -5996,7 +5996,7 @@ const abilities = {
     volt: [
         {
             name: 'Shock',
-            img: require('../assets/warframes/shock.png'),
+            img: require('../assets/itemimages/shock.png'),
             details: [
                 {
                     strength: [
@@ -6030,7 +6030,7 @@ const abilities = {
         },
         {
             name: 'Speed',
-            img: require('../assets/warframes/speed.png'),
+            img: require('../assets/itemimages/speed.png'),
             details: [
                 {
                     strength: [
@@ -6070,7 +6070,7 @@ const abilities = {
         },
         {
             name: 'Electric Shield',
-            img: require('../assets/warframes/electricshield.png'),
+            img: require('../assets/itemimages/electricshield.png'),
             details: [
                 {
                     duration: [
@@ -6108,7 +6108,7 @@ const abilities = {
         },
         {
             name: 'Discharge',
-            img: require('../assets/warframes/discharge.png'),
+            img: require('../assets/itemimages/discharge.png'),
             details: [
                 {
                     strength: [
@@ -6150,7 +6150,7 @@ const abilities = {
     wukong: [
         {
             name: 'Iron Jab',
-            img: require('../assets/warframes/ironjab.png'),
+            img: require('../assets/itemimages/ironjab.png'),
             details: [
                 {
                     strength: [
@@ -6185,7 +6185,7 @@ const abilities = {
         },
         {
             name: 'Defy',
-            img: require('../assets/warframes/defy.png'),
+            img: require('../assets/itemimages/defy.png'),
             details: [
                 {
                     duration: [
@@ -6212,7 +6212,7 @@ const abilities = {
         },
         {
             name: 'Cloud Walker',
-            img: require('../assets/warframes/cloudwalker.png'),
+            img: require('../assets/itemimages/cloudwalker.png'),
             details: [
                 {
                     duration: [
@@ -6244,7 +6244,7 @@ const abilities = {
         },
         {
             name: 'Primal Fury',
-            img: require('../assets/warframes/primalfury.png'),
+            img: require('../assets/itemimages/primalfury.png'),
             details: [
                 {
                     strength: [
@@ -6279,7 +6279,7 @@ const abilities = {
     zephyr: [
         {
             name: 'Tail Wind',
-            img: require('../assets/warframes/tailwind.png'),
+            img: require('../assets/itemimages/tailwind.png'),
             details: [
                 {
                     strength: [
@@ -6327,7 +6327,7 @@ const abilities = {
         },
         {
             name: 'Airburst',
-            img: require('../assets/warframes/airburst.png'),
+            img: require('../assets/itemimages/airburst.png'),
             details: [
                 {
                     strength: [
@@ -6358,7 +6358,7 @@ const abilities = {
         },
         {
             name: 'Turbulence',
-            img: require('../assets/warframes/turbulence.png'),
+            img: require('../assets/itemimages/turbulence.png'),
             details: [
                 {
                     duration: [
@@ -6386,7 +6386,7 @@ const abilities = {
         },
         {
             name: 'Tornado',
-            img: require('../assets/warframes/tornado.png'),
+            img: require('../assets/itemimages/tornado.png'),
             details: [
                 {
                     strength: [
@@ -6422,7 +6422,7 @@ const abilities = {
     // frame: [
     //     {
     //         name: '',
-    //         img: require('../assets/warframes/.png'),
+    //         img: require('../assets/itemimages/.png'),
     //         details: [
     //             {
     //                 strength: [

@@ -1,7 +1,7 @@
 const archguns = [
     {
         name: 'CORVAS',
-        img: require('../assets/weapons/archguns/corvas.png'),
+        img: require('../assets/itemimages/corvas.png'),
         mastery: 0,
         type: [
             'ARCH-GUN'
@@ -68,7 +68,7 @@ const archguns = [
     },
     {
         name: 'CYNGAS',
-        img: require('../assets/weapons/archguns/cyngas.png'),
+        img: require('../assets/itemimages/cyngas.png'),
         mastery: 4,
         type: [
             'ARCH-GUN'
@@ -107,7 +107,7 @@ const archguns = [
     },
     {
         name: 'DUAL DECURION',
-        img: require('../assets/weapons/archguns/dual-decurion.png'),
+        img: require('../assets/itemimages/dual-decurion.png'),
         mastery: 0,
         type: [
             'ARCH-GUN'
@@ -145,7 +145,7 @@ const archguns = [
     },
     {
         name: 'FLUCTUS',
-        img: require('../assets/weapons/archguns/fluctus.png'),
+        img: require('../assets/itemimages/fluctus.png'),
         mastery: 0,
         type: [
             'ARCH-GUN'
@@ -186,7 +186,7 @@ const archguns = [
     },
     {
         name: 'GRATTLER',
-        img: require('../assets/weapons/archguns/grattler.png'),
+        img: require('../assets/itemimages/grattler.png'),
         mastery: 0,
         type: [
             'ARCH-GUN'
@@ -226,7 +226,7 @@ const archguns = [
     },
     {
         name: 'IMPERATOR',
-        img: require('../assets/weapons/archguns/imperator.png'),
+        img: require('../assets/itemimages/imperator.png'),
         mastery: 0,
         type: [
             'ARCH-GUN'
@@ -266,7 +266,7 @@ const archguns = [
     },
     {
         name: 'IMPERATOR VANDAL',
-        img: require('../assets/weapons/archguns/imperator-vandal.png'),
+        img: require('../assets/itemimages/imperator-vandal.png'),
         mastery: 0,
         type: [
             'ARCH-GUN'
@@ -304,7 +304,7 @@ const archguns = [
     },
     {
         name: 'PHAEDRA',
-        img: require('../assets/weapons/archguns/phaedra.png'),
+        img: require('../assets/itemimages/phaedra.png'),
         mastery: 0,
         type: [
             'ARCH-GUN'
@@ -344,7 +344,7 @@ const archguns = [
     },
     {
         name: 'VELOCITUS',
-        img: require('../assets/weapons/archguns/velocitus.png'),
+        img: require('../assets/itemimages/velocitus.png'),
         mastery: 0,
         type: [
             'ARCH-GUN'

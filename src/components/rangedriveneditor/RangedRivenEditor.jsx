@@ -314,7 +314,7 @@ export class RangedRivenEditor extends Component {
   }
 
   focusSoftInput = ({ target }) => {
-    if (this.props.viewWidth < 1223) {
+    if (this.props.viewWidth < 1203) {
       switch (target.name) {
         case 'numOne':
           this.softInputOne.current.focus();

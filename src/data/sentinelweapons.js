@@ -1,7 +1,7 @@
 const sentinelWeapons = [
     {
         name: 'ARTAX',
-        img: require('../assets/weapons/sentinel/artax.png'),
+        img: require('../assets/itemimages/artax.png'),
         mastery: 0,
         mods: 'primary',
         type: [
@@ -35,7 +35,7 @@ const sentinelWeapons = [
     },
     {
         name: 'BURST LASER',
-        img: require('../assets/weapons/sentinel/burst-laser.png'),
+        img: require('../assets/itemimages/burst-laser.png'),
         mastery: 0,
         mods: 'secondary',
         type: [
@@ -75,7 +75,7 @@ const sentinelWeapons = [
     },
     // {
     //   name: 'DECONSTRUCTOR',
-    //   img: require('../assets/weapons/sentinel/deconstructor.png'),
+    //   img: require('../assets/itemimages/deconstructor.png'),
     //   mastery: 0,
     //   type: [
     //     'GLAIVE'
@@ -106,7 +106,7 @@ const sentinelWeapons = [
     // },
     // {
     //   name: 'DECONSTRUCTOR PRIME',
-    //   img: require('../assets/weapons/sentinel/deconstructor-prime.png'),
+    //   img: require('../assets/itemimages/deconstructor-prime.png'),
     //   mastery: 8,
     //   type: [
     //     'GLAIVE'
@@ -137,7 +137,7 @@ const sentinelWeapons = [
     // },
     {
         name: 'DETH MACHINE RIFLE',
-        img: require('../assets/weapons/sentinel/deth-machine-rifle.png'),
+        img: require('../assets/itemimages/deth-machine-rifle.png'),
         mastery: 0,
         mods: 'primary',
         type: [
@@ -178,7 +178,7 @@ const sentinelWeapons = [
     },
     {
         name: 'LASER RIFLE',
-        img: require('../assets/weapons/sentinel/laser-rifle.png'),
+        img: require('../assets/itemimages/laser-rifle.png'),
         mastery: 0,
         mods: 'primary',
         type: [
@@ -219,7 +219,7 @@ const sentinelWeapons = [
     },
     {
         name: 'PRIME LASER RIFLE',
-        img: require('../assets/weapons/sentinel/prime-laser-rifle.png'),
+        img: require('../assets/itemimages/prime-laser-rifle.png'),
         mastery: 0,
         mods: 'primary',
         type: [
@@ -260,7 +260,7 @@ const sentinelWeapons = [
     },
     {
         name: 'PRISMA BURST LASER',
-        img: require('../assets/weapons/sentinel/prisma-burst-laser.png'),
+        img: require('../assets/itemimages/prisma-burst-laser.png'),
         mastery: 0,
         mods: 'secondary',
         type: [
@@ -301,7 +301,7 @@ const sentinelWeapons = [
     },
     {
         name: 'STINGER',
-        img: require('../assets/weapons/sentinel/stinger.png'),
+        img: require('../assets/itemimages/stinger.png'),
         mastery: 0,
         mods: 'primary',
         type: [
@@ -335,7 +335,7 @@ const sentinelWeapons = [
     },
     {
         name: 'SWEEPER',
-        img: require('../assets/weapons/sentinel/sweeper.png'),
+        img: require('../assets/itemimages/sweeper.png'),
         mastery: 0,
         mods: 'primary',
         type: [
@@ -379,7 +379,7 @@ const sentinelWeapons = [
     },
     {
         name: 'SWEEPER PRIME',
-        img: require('../assets/weapons/sentinel/sweeper-prime.png'),
+        img: require('../assets/itemimages/sweeper-prime.png'),
         mastery: 0,
         mods: 'primary',
         type: [
@@ -422,7 +422,7 @@ const sentinelWeapons = [
     },
     {
         name: 'VULKLOK',
-        img: require('../assets/weapons/sentinel/vulklok.png'),
+        img: require('../assets/itemimages/vulklok.png'),
         mastery: 0,
         mods: 'primary',
         type: [

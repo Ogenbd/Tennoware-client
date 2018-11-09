@@ -100,7 +100,7 @@
      border-color: rgba(255, 249, 160, 0.73);
  }
 
- @media screen and (max-width: 1222px) {
+ @media screen and (max-width: 1202px) {
      .build-saver {
          justify-content: flex-start;
      }

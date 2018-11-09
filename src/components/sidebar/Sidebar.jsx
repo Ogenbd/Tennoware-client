@@ -20,6 +20,10 @@ export class Sidebar extends Component {
     this.setState({ open: false })
   }
 
+  myBuildsActive = () => {
+    return JSON.stringify(window.location.href).includes('mybuilds');
+  }
+
   primaryActive = () => {
     return JSON.stringify(window.location.href).includes('primaryweapons');
   }
@@ -74,6 +78,9 @@ export class Sidebar extends Component {
         </div>
         <div className="sidebar-content">
           <NavLink exact to="/" className="nav-item" activeClassName="selected" onClick={this.closeSidebar}><p>News</p></NavLink>
+          {this.props.user && this.props.online &&
+          <NavLink exact to="/mybuilds" className="nav-item" activeClassName="selected" isActive={this.myBuildsActive} onClick={this.closeSidebar}><p>My Builds</p></NavLink>
+          }
           <NavLink exact to="/warframes" className="nav-item" activeClassName="selected" isActive={this.warframeActive} onClick={this.closeSidebar}><p>Warframes</p></NavLink>
           <NavLink exact to="/primaryweapons" className="nav-item" activeClassName="selected" isActive={this.primaryActive} onClick={this.closeSidebar}><p>Primary Weapons</p></NavLink>
           <NavLink exact to="/secondaryweapons" className="nav-item" activeClassName="selected" isActive={this.secondaryActive} onClick={this.closeSidebar}><p>Secondary Weapons</p></NavLink>

@@ -24,8 +24,8 @@
 
 .top-left {
     display: flex;
-    width: 160px;
-    padding: 0 16px;
+    /* width: 160px; */
+    padding: 0 6px;
     align-items: center;
     color: white;
 }
@@ -41,13 +41,30 @@
     flex: 1 0 auto;
 }
 
+.top-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    align-self: center;
+    top: 0;
+    font-weight: 600;
+    font-size: 18px;
+    height: 56px;
+    z-index: 8088;
+    color: white;
+    /* color: rgba(255, 244, 190, 1); */
+    /* text-shadow: 0 0 10px rgba(255, 249, 160, 1); */
+}
+
 .top-buttons {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 160px;
-    padding: 0 16px;
+    /* width: 160px; */
+    /* padding: 0 6px; */
     font-size: 0.7em;
+    color: white;
 }
 
 .user-account {
@@ -150,11 +167,19 @@
     transition: opacity 100ms ease-out;
 } */
 
-/* @media screen and (min-width: 1223px) {
+/* @media screen and (min-width: 1203px) {
 
 } */
+@media screen and (min-width: 1203px) {
+    .topbar {
+        z-index: 9100;
+    }
+    .top-title {
+        z-index: 9101;
+    }
+}
 
-@media screen and (max-width: 1392px) {
+@media screen and (max-width: 1391px) {
     .background-image {
         background-image: url('./assets/Warframe0001small.jpg');
     }
