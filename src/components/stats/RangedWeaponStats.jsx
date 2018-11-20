@@ -368,10 +368,13 @@ export class RangedWeaponStats extends Component {
         }
         // lanka zoom
         if (this.props.weapon.name === 'LANKA' && this.state.zoom > 0) {
-            return (Math.round((this.props.weapon.modes[this.state.mode].critChance * critChanceMult) * 1000) / 10) + this.props.weapon.zoom[this.state.zoom].effect;
+            return {
+                display: this.props.weapon.modes[this.state.mode].critChance * critChanceMult + this.props.weapon.zoom[this.state.zoom].effect / 100,
+                mult: critChanceMult
+            }
         }
         return {
-            display: Math.round((this.props.weapon.modes[this.state.mode].critChance * critChanceMult) * 1000) / 10,
+            display: this.props.weapon.modes[this.state.mode].critChance * critChanceMult,
             mult: critChanceMult
         };
     }
@@ -394,7 +397,7 @@ export class RangedWeaponStats extends Component {
             critMultMult += this.props.weapon.zoom[this.state.zoom].effect;
         }
         return {
-            display: Math.round((this.props.weapon.modes[this.state.mode].critMult * critMultMult) * 10) / 10,
+            display: this.props.weapon.modes[this.state.mode].critMult * critMultMult,
             mult: critMultMult
         };
     }
@@ -420,9 +423,45 @@ export class RangedWeaponStats extends Component {
             fireRateMult += this.state.effects.chargeRate;
         }
         return {
-            display: Math.round((this.props.weapon.modes[this.state.mode].fireRate * fireRateMult) * 10) / 10,
+            display: this.props.weapon.modes[this.state.mode].fireRate * fireRateMult,
             mult: fireRateMult
         };
+    }
+
+    calcDPS = (damage, fireRate, critChance, critMult) => {
+        // let multishot = this.state.effects.multishot ? 1 + this.state.effects.multishot : 1;
+        let magSize = this.state.effects.magSize ? this.props.weapon.magSize * (1 + this.state.effects.magSize) : this.props.weapon.magSize;
+        let reload = this.state.effects.reload ? this.props.weapon.reload * (1 + this.state.effects.reload) : this.props.weapon.reload;
+        let averageShotDamage;
+        let burstDPS;
+        let sustainedDPS;
+        let totalDamage = 0;
+        if (this.props.weapon.modes[this.state.mode].ammoCost) magSize = magSize / this.props.weapon.modes[this.state.mode].ammoCost;
+        damage.forEach(type => { totalDamage += type.damage });
+        averageShotDamage = totalDamage * (1 + critChance * (critMult - 1));
+        if (this.props.weapon.modes[this.state.mode].chargeRate) {
+            burstDPS = averageShotDamage * (1 / (this.props.weapon.modes[this.state.mode].chargeRate / fireRate.mult));
+        } else if (this.props.weapon.modes[this.state.mode].fireRate) {
+            burstDPS = averageShotDamage * fireRate.display
+        } else {
+            burstDPS = averageShotDamage;
+        }
+        if (this.props.weapon.modes[this.state.mode].chargeRate) {
+            sustainedDPS = burstDPS * (magSize / (1 / (this.props.weapon.modes[this.state.mode].chargeRate / fireRate.mult))) / (magSize / (1 / (this.props.weapon.modes[this.state.mode].chargeRate / fireRate.mult)) + reload)
+        } else if (this.props.weapon.modes[this.state.mode].fireRate) {
+            sustainedDPS = burstDPS * (magSize / fireRate.display) / (magSize / fireRate.display + reload);
+        } else {
+            sustainedDPS = burstDPS * (magSize + reload);
+        }
+        if (this.props.weapon.modes[this.state.mode].burst) {
+            averageShotDamage = averageShotDamage * this.props.weapon.modes[this.state.mode].burst;
+        }
+        // console.log(totalDamage, averageShotDamage, burstDPS, sustainedDPS);
+        return {
+            averageShotDamage: averageShotDamage,
+            burst: burstDPS,
+            sustained: sustainedDPS
+        }
     }
 
     handleChange = ({ target }) => {
@@ -452,6 +491,7 @@ export class RangedWeaponStats extends Component {
         const fireRate = this.calcFireRate();
         const status = this.calcStatus();
         const damage = this.calcDamage();
+        const DPS = this.calcDPS(damage, fireRate, critChance.display, critMult.display);
         return (
             <React.Fragment>
                 <div className={"pull-tab " + (this.state.open ? 'open-pull-tab' : 'closed-pull-tab')} onClick={this.toggleStats}>
@@ -471,6 +511,14 @@ export class RangedWeaponStats extends Component {
                             </div>
                         }
                         <div className="stats-wrapper">
+                            <div className="stats-item">
+                                <p className="stat-name">Sustained DPS: </p>
+                                <div className="stat"><p>{Math.round(DPS.sustained * 10) / 10}</p></div>
+                                <p className="stat-name">Burst DPS: </p>
+                                <div className="stat"><p>{Math.round(DPS.burst * 10) / 10}</p></div>
+                                <p className="stat-name">Damage Average: </p>
+                                <div className="stat"><p>{Math.round(DPS.averageShotDamage * 10) / 10}</p></div>
+                            </div>
                             <div className="stats-item damage">
                                 <p className="stat-name">Damage: </p>
                                 <div className="damage">
@@ -499,7 +547,7 @@ export class RangedWeaponStats extends Component {
                                 <div className="stats-item">
                                     <p className="stat-name">Fire Rate: </p>
                                     <div className={"stat " + (fireRate.mult > 1 ? "increased-stat" : fireRate.mult === 1 ? "" : "decreased-stat")}>
-                                        <p>{fireRate.display}</p>
+                                        <p>{Math.round(fireRate.display * 10) / 10}</p>
                                     </div>
                                 </div>
                             }
@@ -534,7 +582,7 @@ export class RangedWeaponStats extends Component {
                                 <div className="stats-item">
                                     <p className="stat-name">Pellets: </p>
                                     {effects.multishot
-                                        ? <div className="stat"><p>{weapon.modes[mode].pellets * (1 + effects.multishot)}</p></div>
+                                        ? <div className="stat"><p>{Math.round(weapon.modes[mode].pellets * (1 + effects.multishot) * 10) / 10}</p></div>
                                         : <div className="stat"><p>{weapon.modes[mode].pellets}</p></div>
                                     }
                                 </div>
@@ -588,11 +636,11 @@ export class RangedWeaponStats extends Component {
                             }
                             <div className="stats-item">
                                 <p className="stat-name">Critical Chance: </p>
-                                <div className={"stat " + (critChance.mult > 1 ? "increased-stat" : critChance.mult === 1 ? "" : "decreased-stat")}><p>{critChance.display}%</p></div>
+                                <div className={"stat " + (critChance.mult > 1 ? "increased-stat" : critChance.mult === 1 ? "" : "decreased-stat")}><p>{Math.round(critChance.display * 1000) / 10}%</p></div>
                             </div>
                             <div className="stats-item">
                                 <p className="stat-name">Critical Multiplier: </p>
-                                <div className={"stat " + (critMult.mult > 1 ? "increased-stat" : critMult.mult === 1 ? "" : "decreased-stat")}><p>{critMult.display}x</p></div>
+                                <div className={"stat " + (critMult.mult > 1 ? "increased-stat" : critMult.mult === 1 ? "" : "decreased-stat")}><p>{Math.round(critMult.display * 10) / 10}x</p></div>
                             </div>
                             <div className="stats-item">
                                 <p className="stat-name">Status: </p>

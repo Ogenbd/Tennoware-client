@@ -91,10 +91,11 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding-top: 4px;
-    padding-bottom: 2px;
+    /* padding-top: 4px; */
+    /* padding-bottom: 2px; */
+    padding: 4px 2px 2px 2px;
     font-size: 17px;
-    width: 100%;
+    max-width: 100%;
     min-height: 32px;
 }
 
@@ -120,7 +121,7 @@
 }
 
 .set-bar {
-    width: 23px;
+    width: 19px;
     height: 3px;
     margin: 4px 0;
     border-style: solid;
@@ -128,8 +129,8 @@
 }
 
 .set-desc {
-    font-size: 11px;
-    line-height: 11px;
+    font-size: 12px;
+    line-height: 12px;
 }
 
 .info-bottom {

@@ -27,7 +27,8 @@ const beasts = [
         name: 'CHESA KUBROW',
         img: require('../assets/itemimages/chesa-kubrow.png'),
         type: [
-            'CHESA KUBROW'
+            'KUBROW',
+            'CHESA KUBROW',
         ],
         polarities: ['penjaga', 'penjaga', 'vazarin'],
         armor: 50,
@@ -50,7 +51,7 @@ const beasts = [
         name: 'HELMINTH CHARGER',
         img: require('../assets/itemimages/helminth-charger.png'),
         type: [
-            'HELMINTH CHARGER'
+            'HELMINTH'
         ],
         polarities: ['penjaga', 'penjaga', 'madurai'],
         armor: 50,
@@ -77,7 +78,8 @@ const beasts = [
         name: 'HURAS KUBROW',
         img: require('../assets/itemimages/huras-kubrow.png'),
         type: [
-            'HURAS KUBROW'
+            'KUBROW',
+            'HURAS KUBROW',
         ],
         polarities: ['penjaga', 'penjaga', 'madurai'],
         armor: 50,
@@ -100,7 +102,8 @@ const beasts = [
         name: 'RAKSA KUBROW',
         img: require('../assets/itemimages/raksa-kubrow.png'),
         type: [
-            'RAKSA KUBROW'
+            'KUBROW',
+            'RAKSA KUBROW',
         ],
         polarities: ['penjaga', 'penjaga', 'vazarin'],
         armor: 50,
@@ -123,7 +126,8 @@ const beasts = [
         name: 'SAHASA KUBROW',
         img: require('../assets/itemimages/sahasa-kubrow.png'),
         type: [
-            'SAHASA KUBROW'
+            'KUBROW',
+            'SAHASA KUBROW',
         ],
         polarities: ['penjaga', 'penjaga', 'vazarin'],
         armor: 50,
@@ -170,7 +174,8 @@ const beasts = [
         name: 'SUNIKA KUBROW',
         img: require('../assets/itemimages/sunika-kubrow.png'),
         type: [
-            'SUNIKA KUBROW'
+            'KUBROW',
+            'SUNIKA KUBROW',
         ],
         polarities: ['penjaga', 'penjaga', 'vazarin'],
         armor: 50,
@@ -188,7 +193,30 @@ const beasts = [
                 percent: 1
             }
         ]
-    }
+    },
+    {
+        name: 'VENARI',
+        img: require('../assets/itemimages/venari.png'),
+        type: [
+            'KAVAT',
+        ],
+        polarities: ['penjaga', 'madurai', 'vazarin', 'naramon'],
+        armor: 350,
+        health: 900,
+        baseHealth: 300,
+        shields: 0,
+        baseShields: 0,
+        critChance: 0.2,
+        critMult: 2,
+        status: 0.3,
+        damage: 80,
+        split: [
+            {
+                type: 'Slash',
+                percent: 1
+            }
+        ]
+    },
 ]
 
 export default beasts;

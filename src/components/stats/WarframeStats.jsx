@@ -292,13 +292,25 @@ export class WarframeStats extends PureComponent {
                                 </div>
                             )
                         }
-                        if (this.props.frame.name === 'IVARA') {
+                        if (this.props.frame.name === 'IVARA' || (this.props.frame.name === 'GARUDA' && abilityNum === 3)) {
                             stats.push(
                                 <div key={`${coefficient}${index}`} className="ability-stat">
                                     <div className="ability-stat-name">{stat.name}</div>
                                     {this.state.effects.strength
                                         ? <div className={"ability-stat-amount " + ((this.state.effects.strength > 0 ? "increased-stat" : "decreased-stat"))}>{stat.base + stat.base * this.state.effects.strength < 100 ? Math.round((stat.base + stat.base * this.state.effects.strength) * 10) / 10 : 100}%</div>
                                         : <div className="ability-stat-amount">{stat.base}%</div>
+                                    }
+                                </div>
+                            )
+                        }
+                        if (this.props.frame.name === 'GARUDA' && abilityNum === 2) {
+                            let efficiencyMult = this.state.effects.efficiency ? this.state.effects.efficiency + 1 : 1;
+                            stats.push(
+                                <div key={`${coefficient}${index}`} className="ability-stat">
+                                    <div className="ability-stat-name">{stat.name}</div>
+                                    {this.state.effects.efficiency
+                                        ? <div className={"ability-stat-amount " + ((this.state.effects.efficiency > 0 ? "increased-stat" : "decreased-stat"))}>{Math.round((3.2391 * efficiencyMult ** 6 - 19.996 * efficiencyMult ** 5 + 50.42 * efficiencyMult ** 4 - 65.961 * efficiencyMult ** 3 + 47.108 * efficiencyMult ** 2 - 17.238 * efficiencyMult + 2.673) * 1000) / 10}%</div>
+                                        : <div className="ability-stat-amount">25%</div>
                                     }
                                 </div>
                             )

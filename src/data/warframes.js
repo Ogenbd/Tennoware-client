@@ -258,6 +258,22 @@ const itemimages = [
         abilities: abilities.gara
     },
     {
+        name: 'GARUDA',
+        img: require('../assets/itemimages/garuda.png'),
+        polarities: ['naramon', 'vazarin'],
+        aura: 'madurai',
+        exilus: undefined,
+        armor: 300,
+        energy: 180,
+        baseEnergy: 120,
+        health: 300,
+        baseHealth: 100,
+        shields: 300,
+        baseShields: 120,
+        speed: 1,
+        abilities: abilities.garuda
+    },
+    {
         name: 'HARROW',
         img: require('../assets/itemimages/harrow.png'),
         polarities: ['vazarin', 'naramon'],

@@ -78,7 +78,14 @@ export class SimpleModCardGenerator extends PureComponent {
                     <p className="cost" style={fontColor}>{mod.baseCost + mod.currRank}</p>
                     <img className="polarity-icon" src={require(`../../assets/${mod.polarity}${mod.rarity}.png`)} alt={''} />
                 </div>
-                <div className="mod-type"><p>{mod.type}</p></div>
+                <div className="mod-type">
+                    <p>
+                        {mod.set &&
+                            <span>SET: </span>
+                        }
+                        {mod.type}
+                    </p>
+                </div>
                 <img className="max-rank" src={require('../../assets/maxrank.png')} alt={''} />
                 <div className="rank-wrapper">
                     {this.determineRank()}

@@ -378,7 +378,7 @@ export class EightSlotModding extends PureComponent {
     }
 
     checkModSets = (newMods) => {
-        let sets = { hunter: 0, vigilante: 0, augur: 0 }
+        let sets = { hunter: 0, vigilante: 0, augur: 0, gladiator: 0, umbral: 0, mecha: 0, tek: 0, synth: 0, sacrificial: 0, }
         newMods.forEach(mod => {
             if (mod.set) {
                 sets[mod.set.setName]++;
@@ -472,6 +472,7 @@ export class EightSlotModding extends PureComponent {
         } else {
             formaCount = missing;
         }
+        if (this.props.type === 'kitguns') formaCount--;
         return formaCount
     }
 

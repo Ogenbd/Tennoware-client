@@ -15,7 +15,7 @@
     min-height: 56px;
     box-sizing: border-box;
     background-color: rgb(0,0,0);
-    border-bottom: 1px solid rgba(255, 244, 190, 0.3);
+    border-bottom: 1px solid rgba(255, 249, 160, 0.3);
     /* box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.5); */
     font-weight: 600;
     font-size: 18px;
@@ -43,6 +43,7 @@
 
 .top-title {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: fixed;
@@ -53,8 +54,12 @@
     height: 56px;
     z-index: 8088;
     color: white;
-    /* color: rgba(255, 244, 190, 1); */
+    /* color: rgba(255, 249, 160, 1); */
     /* text-shadow: 0 0 10px rgba(255, 249, 160, 1); */
+}
+
+.modular-subtitle {
+    font-size: 12px;
 }
 
 .top-buttons {
@@ -194,5 +199,11 @@
     }
     .app-name {
         display: none;
+    }
+}
+                                                                
+@media screen and (max-width: 330px) {
+    .modular-subtitle {
+        font-size: 10px;
     }
 }

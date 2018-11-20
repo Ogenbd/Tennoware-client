@@ -100,7 +100,14 @@ export class ModCardGenerator extends PureComponent {
           }
           <img className="polarity-icon" src={require(`../../assets/${mod.polarity}${match}.png`)} alt={''} />
         </div>
-        <div className="mod-type"><p>{mod.type}</p></div>
+        <div className="mod-type">
+          <p>
+            {mod.set &&
+              <span>SET: </span>
+            }
+            {mod.type}
+          </p>
+        </div>
         {mod.maxRank === mod.currRank &&
           <img className={"max-rank " + (handlerActive ? 'second-layer' : '')} src={require('../../assets/maxrank.png')} alt={''} />
         }

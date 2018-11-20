@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CSSTransition } from 'react-transition-group';
+// import { CSSTransition } from 'react-transition-group';
 import cloneDeep from 'lodash/cloneDeep';
 import '../../general.css';
 import './MyBuilds.css';
@@ -49,7 +49,6 @@ export default class MyBuilds extends Component {
                     source: build.Source,
                     buildStr: build.BuildStr,
                     date: build.CreateDT,
-                    img: require(`../../assets/itemimages/${build.ItemName.replace(/\s+/g, '-').toLowerCase()}.png`),
                     forma: build.Forma,
                     orokin: build.Orokin,
                     type: build.Type,
@@ -57,7 +56,13 @@ export default class MyBuilds extends Component {
                     riven: build.Riven,
                     loading: false
                 }
-                if (build.Type === 'primaryweapons' || build.Type === 'secondaryweapons' || build.Type === 'sentinelweapons' || build.Type === 'meleeweapons') arsenalItem.hasRivens = true;
+                if (build.Type === 'primaryweapons' || build.Type === 'secondaryweapons' || build.Type === 'sentinelweapons' || build.Type === 'meleeweapons' || build.Type === 'kitguns') arsenalItem.hasRivens = true;
+                if (build.Type === 'kitguns') {
+                    let parts = build.ItemName.split(' ');
+                    arsenalItem.img = require(`../../assets/itemimages/${parts[0]}.png`);
+                } else {
+                    arsenalItem.img = require(`../../assets/itemimages/${build.ItemName.replace(/\s+/g, '-')}.png`)
+                }
                 arsenal.push(arsenalItem);
             });
             arsenal.sort((a, b) => {
@@ -260,59 +265,59 @@ export default class MyBuilds extends Component {
     render() {
         let list = this.generateList();
         return (
-            <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
-                <div className="screen">
-                    <div className="top-title"><p>My Builds</p></div>
-                    <div className="my-builds">
-                        {this.state.getting
-                            ? <Loading />
-                            : <div className="builds-wrapper">
-                                {this.state.arsenal.length < 1
-                                    ? <div className="no-builds">You have not saved or liked any builds yet.</div>
-                                    : <React.Fragment>
-                                        {list.saved.length > 0 &&
-                                            <React.Fragment>
-                                                <div className="my-builds-subtitle">Saved Builds</div>
-                                                {list.saved}
-                                            </React.Fragment>
-                                        }
-                                        {list.liked.length > 0 &&
-                                            <React.Fragment>
-                                                <div className="my-builds-subtitle">Liked Builds</div>
-                                                {list.liked}
-                                            </React.Fragment>
-                                        }
-                                    </React.Fragment>
-                                }
-                            </div>
-                        }
-                        <div className={"popup " + (this.state.unlike ? "popup-active" : "popup-inactive")}>
-                            <div className={"popup-topbar " + (this.state.unlike ? "popup-active" : "popup-inactive")}></div>
-                            <div className="popup-content conformation-wrapper">
-                                <div className="conformation-box">
-                                    <div className="conformation-dialog">Are you sure?</div>
-                                    <div className="conformation-buttons">
-                                        <div className="interactable interactable-semi-inactive" onClick={this.unsetRemoval}><p className="interactable-p">Cancel</p></div>
-                                        <div className="interactable interactable-semi-inactive delete-button" onClick={this.unlikeBuild}><p className="interactable-p">Unlike</p></div>
-                                    </div>
+            // <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
+            <div className="screen">
+                <div className="top-title"><p>My Builds</p></div>
+                <div className="my-builds">
+                    {this.state.getting
+                        ? <Loading />
+                        : <div className="builds-wrapper">
+                            {this.state.arsenal.length < 1
+                                ? <div className="no-builds">You have not saved or liked any builds yet.</div>
+                                : <React.Fragment>
+                                    {list.saved.length > 0 &&
+                                        <React.Fragment>
+                                            <div className="my-builds-subtitle">Saved Builds</div>
+                                            {list.saved}
+                                        </React.Fragment>
+                                    }
+                                    {list.liked.length > 0 &&
+                                        <React.Fragment>
+                                            <div className="my-builds-subtitle">Liked Builds</div>
+                                            {list.liked}
+                                        </React.Fragment>
+                                    }
+                                </React.Fragment>
+                            }
+                        </div>
+                    }
+                    <div className={"popup " + (this.state.unlike ? "popup-active" : "popup-inactive")}>
+                        <div className={"popup-topbar " + (this.state.unlike ? "popup-active" : "popup-inactive")}></div>
+                        <div className="popup-content conformation-wrapper">
+                            <div className="conformation-box">
+                                <div className="conformation-dialog">Are you sure?</div>
+                                <div className="conformation-buttons">
+                                    <div className="interactable interactable-semi-inactive" onClick={this.unsetRemoval}><p className="interactable-p">Cancel</p></div>
+                                    <div className="interactable interactable-semi-inactive delete-button" onClick={this.unlikeBuild}><p className="interactable-p">Unlike</p></div>
                                 </div>
                             </div>
                         </div>
-                        <div className={"popup " + (this.state.delete ? "popup-active" : "popup-inactive")}>
-                            <div className={"popup-topbar " + (this.state.delete ? "popup-active" : "popup-inactive")}></div>
-                            <div className="popup-content conformation-wrapper">
-                                <div className="conformation-box">
-                                    <div className="conformation-dialog">Are you sure?</div>
-                                    <div className="conformation-buttons">
-                                        <div className="interactable interactable-semi-inactive" onClick={this.unsetRemoval}><p className="interactable-p">Cancel</p></div>
-                                        <div className="interactable interactable-semi-inactive delete-button" onClick={this.deleteBuild}><p className="interactable-p">Delete</p></div>
-                                    </div>
+                    </div>
+                    <div className={"popup " + (this.state.delete ? "popup-active" : "popup-inactive")}>
+                        <div className={"popup-topbar " + (this.state.delete ? "popup-active" : "popup-inactive")}></div>
+                        <div className="popup-content conformation-wrapper">
+                            <div className="conformation-box">
+                                <div className="conformation-dialog">Are you sure?</div>
+                                <div className="conformation-buttons">
+                                    <div className="interactable interactable-semi-inactive" onClick={this.unsetRemoval}><p className="interactable-p">Cancel</p></div>
+                                    <div className="interactable interactable-semi-inactive delete-button" onClick={this.deleteBuild}><p className="interactable-p">Delete</p></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </CSSTransition>
+            </div>
+            // </CSSTransition>
         )
     }
 }

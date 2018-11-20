@@ -56,6 +56,14 @@ const sentinels = [
         shields: 100
     },
     {
+        name: 'OXYLUS',
+        img: require('../assets/itemimages/oxylus.png'),
+        polarities: ['penjaga', 'penjaga', 'penjaga', 'penjaga'],
+        armor: 50,
+        health: 200,
+        shields: 100
+    },
+    {
         name: 'PRISMA SHADE',
         img: require('../assets/itemimages/prisma-shade.png'),
         polarities: ['penjaga', 'penjaga', 'penjaga', 'penjaga', 'naramon'],

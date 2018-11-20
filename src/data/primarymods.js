@@ -1072,14 +1072,13 @@ const primaryMods = [
         type: 'PRIMARY',
         rarity: 'uncommon',
         polarity: 'madurai',
-        effects: { none: [0.05, 0.25] },
+        effects: { none: 0.05 },
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
         set: { setName: 'hunter', setMax: 6, setCurr: 1 },
         description() {
-            return [`+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% chance to apply Slash status to an enemy on Critical Hit`, `Set Bonus ${this.set.setCurr}/6:
-            Companions deal ${Math.round(this.effects.none[1] * this.set.setCurr * 100)}% Extra Damage against enemies affected by Slash status`]
+            return [`+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% chance to apply Slash proc on Critical`, `+${25 * this.set.setCurr}% Companion Damage on enemies effected by Slash proc.`]
         }
     },
     {
@@ -1089,14 +1088,13 @@ const primaryMods = [
         type: 'PRIMARY',
         rarity: 'rare',
         polarity: 'madurai',
-        effects: { none: [0.05, 0.25] },
+        effects: { none: 0.05 },
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
         set: { setName: 'hunter', setMax: 6, setCurr: 1 },
         description() {
-            return [`+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Status Duration`, `Set Bonus ${this.set.setCurr}/6:
-            Companions deal ${Math.round(this.effects.none[1] * this.set.setCurr * 100)}% Extra Damage against enemies affected by Slash status`]
+            return [`+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Status Duration`, `+${25 * this.set.setCurr}% Companion Damage on enemies effected by Slash proc.`]
         }
     },
     {
@@ -2536,14 +2534,13 @@ const primaryMods = [
         type: 'PRIMARY',
         rarity: 'common',
         polarity: 'naramon',
-        effects: { multishot: 0.1, none: 0.05 },
+        effects: { multishot: 0.1 },
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
         set: { setName: 'vigilante', setMax: 6, setCurr: 1 },
         description() {
-            return [`+${Math.round(this.effects.multishot * (this.currRank + 1) * 100)}% Multishot`, `Set Bonus ${this.set.setCurr}/6:
-                ${Math.round(this.effects.none * this.set.setCurr * 100)}% chance to enhance Critical Hits from Primary weapons`]
+            return [`+${Math.round(this.effects.multishot * (this.currRank + 1) * 100)}% Multishot`, `${5 * this.set.setCurr}% chance to enhance Critical Hits from Primary Weapons.`]
         }
     },
     {
@@ -2553,14 +2550,13 @@ const primaryMods = [
         type: 'PRIMARY',
         rarity: 'uncommon',
         polarity: 'madurai',
-        effects: { fireRate: 0.075, none: 0.05 },
+        effects: { fireRate: 0.075 },
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
         set: { setName: 'vigilante', setMax: 6, setCurr: 1 },
         description() {
-            return [`+${Math.round(this.effects.fireRate * (this.currRank + 1) * 1000) / 10}% Fire Rate (x2 for Bows)`, `Set Bonus ${this.set.setCurr}/6:
-                ${Math.round(this.effects.none * this.set.setCurr * 100)}% chance to enhance Critical Hits from Primary weapons`]
+            return [`+${Math.round(this.effects.fireRate * (this.currRank + 1) * 1000) / 10}% Fire Rate (x2 for Bows)`, `${5 * this.set.setCurr}% chance to enhance Critical Hits from Primary Weapons.`]
         }
     },
     {
@@ -2570,14 +2566,13 @@ const primaryMods = [
         type: 'PRIMARY',
         rarity: 'rare',
         polarity: 'naramon',
-        effects: { punchThrough: 0.25, none: 0.05 },
+        effects: { punchThrough: 0.25 },
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
         set: { setName: 'vigilante', setMax: 6, setCurr: 1 },
         description() {
-            return [`+${this.effects.punchThrough * (this.currRank + 1)}m Punch Through`, `Set Bonus ${this.set.setCurr}/6:
-                ${Math.round(this.effects.none * this.set.setCurr * 100)}% chance to enhance Critical Hits from Primary weapons`]
+            return [`+${this.effects.punchThrough * (this.currRank + 1)}m Punch Through`, `${5 * this.set.setCurr}% chance to enhance Critical Hits from Primary Weapons.`]
         }
     },
     {
@@ -2587,14 +2582,13 @@ const primaryMods = [
         type: 'PRIMARY',
         rarity: 'rare',
         polarity: 'naramon',
-        effects: { none: [1, 2.2, 0.05] },
+        effects: {},
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
         set: { setName: 'vigilante', setMax: 6, setCurr: 1 },
         description() {
-            return [`Converts unused ammo pickups into Primary weapon ammo`, `Set Bonus ${this.set.setCurr}/6:
-                ${Math.round(this.effects.none[2] * this.set.setCurr * 100)}% chance to enhance Critical Hits from Primary weapons`]
+            return [`Converts unused ammo pickups into Primary weapon ammo`, `${5 * this.set.setCurr}% chance to enhance Critical Hits from Primary Weapons.`]
         }
     },
     {

@@ -1861,6 +1861,179 @@ const abilities = {
             ]
         },
     ],
+    garuda: [
+        {
+            name: 'Dread Mirror',
+            img: require('../assets/itemimages/dreadmirror.png'),
+            details: [
+                {
+                    strength: [
+                        {
+                            name: 'Damage conversion multiplier',
+                            suffix: 'x',
+                            base: 2,
+                        },
+                    ],
+                    duration: [
+                        {
+                            name: 'Mirror duration',
+                            suffix: 's',
+                            base: 20
+                        },
+                    ],
+                    range: [
+                        {
+                            name: 'Pounce range',
+                            suffix: 'm',
+                            base: 30
+                        },
+                        {
+                            name: 'Dread heart explosion radius',
+                            suffix: 'm',
+                            base: 10
+                        },
+                    ],
+                    none: [
+                        {
+                            name: 'Victim health to shield conversion',
+                            suffix: '%',
+                            base: 10,
+                        },
+                        {
+                            name: 'Instant kill threshold',
+                            suffix: '%',
+                            base: 35,
+                        },
+                        {
+                            name: 'Dread heart charge damage/s',
+                            suffix: '%',
+                            base: 50,
+                        },
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Energy',
+                            base: 25
+                        },
+                        {
+                            name: 'Dread heart charge energy/s',
+                            base: 50
+                        },
+                    ],
+                }
+            ]
+        },
+        {
+            name: 'Blood Alter',
+            img: require('../assets/itemimages/bloodalter.png'),
+            details: [
+                {
+                    strength: [
+                        {
+                            name: 'Health absorb/s',
+                            suffix: '%',
+                            base: 25,
+                        },
+                    ],
+                    none: [
+                        {
+                            name: 'Damage/s',
+                            suffix: '%',
+                            base: 1,
+                        },
+                    ],
+                    duration: [
+                        {
+                            name: 'Duration',
+                            suffix: 's',
+                            base: 15
+                        },
+                    ],
+                    range: [
+                        {
+                            name: 'Pounce range',
+                            suffix: 'm',
+                            base: 30
+                        },
+                        {
+                            name: 'Alter heal Radius',
+                            suffix: 'm',
+                            base: 6
+                        },
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Energy',
+                            base: 50
+                        },
+                    ],
+                }
+            ]
+        },
+        {
+            name: 'Bloodletting',
+            img: require('../assets/itemimages/bloodletting.png'),
+            details: [
+                {
+                    none: [
+                        {
+                            name: 'Health deduction',
+                            suffix: '%',
+                            base: 50
+                        },
+                    ],
+                    exception: [
+                        {
+                            name: 'Energy gain',
+                            suffix: '%',
+                            base: 25
+                        },
+                    ],
+                }
+            ]
+        },
+        // 50% = 16%
+        // 80% = 20%
+        // 100% = 25%
+        // 130% = 35%
+        // 160% = 62%
+        // 170% = 83%
+        // 175(?)190(?)% = 100%
+        {
+            name: 'Seeking Talons',
+            img: require('../assets/itemimages/seekingtalons.png'),
+            details: [
+                {
+                    strength: [
+                        {
+                            name: 'Damage',
+                            base: 150,
+                        },
+                    ],
+                    exception: [
+                        {
+                            name: 'Bleed chance',
+                            suffix: '%',
+                            base: 50,
+                        },
+                    ],
+                    duration: [
+                        {
+                            name: 'Mark duration',
+                            suffix: 's',
+                            base: 10
+                        },
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Energy',
+                            base: 100
+                        },
+                    ],
+                }
+            ]
+        },
+    ],
     harrow: [
         {
             name: 'Condemn',

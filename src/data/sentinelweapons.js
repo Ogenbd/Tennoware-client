@@ -73,6 +73,40 @@ const sentinelWeapons = [
             }
         ]
     },
+    {
+        name: 'CRYOTRA',
+        img: require('../assets/itemimages/cryotra.png'),
+        mastery: 3,
+        mods: 'primary',
+        type: [
+            'RIFLE',
+            'ASSAULT RIFLE',
+            'BEAM'
+        ],
+        polarities: [],
+        noise: 'Alarming',
+        reload: 4,
+        magSize: 80,
+        disposition: 3,
+        modes: [
+            {
+                trigger: 'Held',
+                fireRate: 1,
+                accuracy: 12.5,
+                punchThrough: 0,
+                critChance: 0.05,
+                critMult: 2,
+                status: 0.35,
+                damage: 10,
+                split: [
+                    {
+                        type: 'Cold',
+                        percent: 1
+                    }
+                ]
+            }
+        ]
+    },
     // {
     //   name: 'DECONSTRUCTOR',
     //   img: require('../assets/itemimages/deconstructor.png'),
@@ -212,6 +246,43 @@ const sentinelWeapons = [
                     {
                         type: 'Puncture',
                         percent: 0.8
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        name: 'MULTRON',
+        img: require('../assets/itemimages/multron.png'),
+        mastery: 3,
+        mods: 'primary',
+        type: [
+            'RIFLE',
+            'ASSAULT RIFLE'
+        ],
+        polarities: ['madurai'],
+        noise: 'Alarming',
+        reload: 3,
+        magSize: 60,
+        disposition: 3,
+        modes: [
+            {
+                trigger: 'Auto',
+                fireRate: 3.33,
+                accuracy: 18.2,
+                punchThrough: 0.1,
+                critChance: 0.125,
+                critMult: 1.8,
+                status: 0.05,
+                damage: 5,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.25
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.75
                     }
                 ]
             }
@@ -415,6 +486,72 @@ const sentinelWeapons = [
                     {
                         type: 'Puncture',
                         percent: 0.05
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        name: 'TAZICOR',
+        img: require('../assets/itemimages/tazicor.png'),
+        mastery: 3,
+        mods: 'primary',
+        type: [
+            'RIFLE',
+            'ASSAULT RIFLE',
+        ],
+        polarities: [],
+        noise: 'Alarming',
+        reload: 2.5,
+        magSize: 4,
+        disposition: 3,
+        modes: [
+            {
+                trigger: 'Auto',
+                fireRate: 8.33,
+                accuracy: 25,
+                punchThrough: 0,
+                critChance: 0.02,
+                critMult: 1.5,
+                status: 0.15,
+                damage: 6,
+                split: [
+                    {
+                        type: 'Electricity',
+                        percent: 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        name: 'VULCAX',
+        img: require('../assets/itemimages/vulcax.png'),
+        mastery: 3,
+        mods: 'primary',
+        type: [
+            'RIFLE',
+            'ASSAULT RIFLE',
+        ],
+        polarities: [],
+        noise: 'Alarming',
+        reload: 6,
+        magSize: 1,
+        disposition: 3,
+        modes: [
+            {
+                trigger: 'Charge',
+                chargeRate: 1,
+                accuracy: 100,
+                punchThrough: 1,
+                critChance: 0.2,
+                critMult: 2.5,
+                status: 0.1,
+                damage: 35,
+                split: [
+                    {
+                        type: 'Heat',
+                        percent: 1
                     }
                 ]
             }

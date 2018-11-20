@@ -619,6 +619,46 @@ const secondaryWeapons = [
         ]
     },
     {
+        name: 'AKVASTO PRIME',
+        img: require('../assets/itemimages/akvasto-prime.png'),
+        mastery: 12,
+        type: [
+            'PISTOL'
+        ],
+        polarities: ['madurai', 'madurai'],
+        noise: 'Alarming',
+        reload: 1.4,
+        magSize: 12,
+        maxAmmo: 210,
+        disposition: 4,
+        modes: [
+            {
+                trigger: 'Semi-Auto',
+                fireRate: 6.33,
+                accuracy: 16,
+                punchThrough: 0,
+                critChance: 0.22,
+                critMult: 2.4,
+                status: 0.22,
+                damage: 66,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.15
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.7
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.15
+                    }
+                ]
+            }
+        ]
+    },
+    {
         name: 'AKZANI',
         img: require('../assets/itemimages/akzani.png'),
         mastery: 4,
@@ -2603,6 +2643,45 @@ const secondaryWeapons = [
         ]
     },
     {
+        name: 'OCUCOR',
+        img: require('../assets/itemimages/ocucor.png'),
+        mastery: 8,
+        type: [
+            'PISTOL',
+            'BEAM',
+        ],
+        polarities: [],
+        noise: 'Alarming',
+        reload: 1.6,
+        magSize: 40,
+        maxAmmo: 360,
+        disposition: 3,
+        modes: [
+            {
+                trigger: 'Held',
+                rangeLimit: 25,
+                fireRate: 12,
+                accuracy: 100,
+                punchThrough: 0,
+                ammoCost: 0.5,
+                critChance: 0.16,
+                critMult: 1.8,
+                status: 0.24,
+                damage: 22,
+                split: [
+                    {
+                        type: 'Puncture',
+                        percent: 0.09
+                    },
+                    {
+                        type: 'Radiation',
+                        percent: 0.91
+                    },
+                ]
+            }
+        ]
+    },
+    {
         name: 'PANDERO',
         img: require('../assets/itemimages/pandero.png'),
         mastery: 8,
@@ -3665,15 +3744,15 @@ const secondaryWeapons = [
                 split: [
                     {
                         type: 'Impact',
-                        percent: 1/3
+                        percent: 1 / 3
                     },
                     {
                         type: 'Slash',
-                        percent: 1/3
+                        percent: 1 / 3
                     },
                     {
                         type: 'Puncture',
-                        percent: 1/3
+                        percent: 1 / 3
                     }
                 ]
             }
@@ -4160,15 +4239,15 @@ const secondaryWeapons = [
                 split: [
                     {
                         type: 'Gas',
-                        percent: 80/110
+                        percent: 80 / 110
                     },
                     {
                         type: 'Impact',
-                        percent: 12/110
+                        percent: 12 / 110
                     },
                     {
                         type: 'Puncture',
-                        percent: 18/110
+                        percent: 18 / 110
                     }
                 ]
             },
@@ -4237,7 +4316,7 @@ const secondaryWeapons = [
                 split: [
                     {
                         type: 'Impact',
-                        percent: 0.32+120
+                        percent: 0.32 + 120
                     },
                     {
                         type: 'Slash',

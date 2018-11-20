@@ -1,4 +1,4 @@
-// currently at abrev 0n
+// currently at abrev 0r
 const warframeMods = [
     {
         abrev: 'a0',
@@ -473,12 +473,12 @@ const warframeMods = [
         type: 'WARFRAME',
         rarity: 'uncommon',
         polarity: 'vazarin',
-        effects: { shields: 0.3, none: 0.4 },
+        effects: { shields: 0.3 },
         maxRank: 5,
         currRank: 5,
         baseCost: 2,
         set: { setName: 'augur', setMax: 6, setCurr: 1 },
-        description() { return [`+${Math.round(this.effects.shields * (this.currRank + 1) * 100)}% Shield Capacity`, `Set Bonus ${this.set.setCurr}/6: ${Math.round(this.effects.none * this.set.setCurr * 100)}% Energy spent is converted to shields.`] }
+        description() { return [`+${Math.round(this.effects.shields * (this.currRank + 1) * 100)}% Shield Capacity`, `${40 * this.set.setCurr}% Energy spent on abilities is converted to shields.`] }
     },
     {
         abrev: 'b9',
@@ -487,12 +487,12 @@ const warframeMods = [
         type: 'WARFRAME',
         rarity: 'common',
         polarity: 'naramon',
-        effects: { duration: 0.04, none: 0.4 },
+        effects: { duration: 0.04 },
         maxRank: 5,
         currRank: 5,
         baseCost: 2,
         set: { setName: 'augur', setMax: 6, setCurr: 1 },
-        description() { return [`+${Math.round(this.effects.duration * (this.currRank + 1) * 100)}% Ability Duration`, `Set Bonus ${this.set.setCurr}/6: ${Math.round(this.effects.none * this.set.setCurr * 100)}% Energy spent is converted to shields.`] }
+        description() { return [`+${Math.round(this.effects.duration * (this.currRank + 1) * 100)}% Ability Duration`, `${40 * this.set.setCurr}% Energy spent on abilities is converted to shields.`] }
     },
     {
         abrev: 'c0',
@@ -501,12 +501,12 @@ const warframeMods = [
         type: 'WARFRAME',
         rarity: 'uncommon',
         polarity: 'naramon',
-        effects: { range: 0.04, none: 0.4 },
+        effects: { range: 0.04 },
         maxRank: 5,
         currRank: 5,
         baseCost: 2,
         set: { setName: 'augur', setMax: 6, setCurr: 1 },
-        description() { return [`+${Math.round(this.effects.range * (this.currRank + 1) * 100)}% Ability Range`, `Set Bonus ${this.set.setCurr}/6: ${Math.round(this.effects.none * this.set.setCurr * 100)}% Energy spent is converted to shields.`] }
+        description() { return [`+${Math.round(this.effects.range * (this.currRank + 1) * 100)}% Ability Range`, `${40 * this.set.setCurr}% Energy spent on abilities is converted to shields.`] }
     },
     {
         abrev: 'c1',
@@ -515,12 +515,12 @@ const warframeMods = [
         type: 'WARFRAME',
         rarity: 'rare',
         polarity: 'naramon',
-        effects: { strength: 0.04, none: 0.4 },
+        effects: { strength: 0.04 },
         maxRank: 5,
         currRank: 5,
         baseCost: 2,
         set: { setName: 'augur', setMax: 6, setCurr: 1 },
-        description() { return [`+${Math.round(this.effects.strength * (this.currRank + 1) * 100)}% Ability Strength`, `Set Bonus ${this.set.setCurr}/6: ${Math.round(this.effects.none * this.set.setCurr * 100)}% Energy spent is converted to shields.`] }
+        description() { return [`+${Math.round(this.effects.strength * (this.currRank + 1) * 100)}% Ability Strength`, `${40 * this.set.setCurr}% Energy spent on abilities is converted to shields.`] }
     },
     {
         abrev: 'c2',
@@ -2697,12 +2697,12 @@ const warframeMods = [
         type: 'WARFRAME',
         rarity: 'common',
         polarity: 'vazarin',
-        effects: { armor: 0.075, none: 0.15 },
+        effects: { armor: 0.075 },
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
         set: { setName: 'gladiator', setMax: 6, setCurr: 1 },
-        description() { return [`+${Math.round(this.effects.armor * (this.currRank + 1) * 1000) / 10}% Armor`, `Set Bonus ${this.set.setCurr}/6: ${Math.round(this.effects.none * this.set.setCurr * 100)}% Critical Chance stacks with Combo Multiplier.`] }
+        description() { return [`+${Math.round(this.effects.armor * (this.currRank + 1) * 1000) / 10}% Armor`, `${15 * this.set.setCurr}% Critical Chance per Combo Multiplier.`] }
     },
     {
         abrev: 'h9',
@@ -2711,12 +2711,12 @@ const warframeMods = [
         type: 'WARFRAME',
         rarity: 'rare',
         polarity: 'vazarin',
-        effects: { none: [10, 0.15] },
+        effects: { none: 10 },
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
         set: { setName: 'gladiator', setMax: 6, setCurr: 1 },
-        description() { return [`Drains Energy to stop Lethal Damage with ${this.effects.none[0] * (this.currRank + 1)}% Efficiency.`, `Set Bonus ${this.set.setCurr}/6: ${Math.round(this.effects.none[1] * this.set.setCurr * 100)}% Critical Chance stacks with Combo Multiplier.`] }
+        description() { return [`Drains Energy to stop Lethal Damage with ${this.effects.none * (this.currRank + 1)}% Efficiency.`, `${15 * this.set.setCurr}% Critical Chance per Combo Multiplier.`] }
     },
     {
         abrev: 'i0',
@@ -2725,12 +2725,12 @@ const warframeMods = [
         type: 'WARFRAME',
         rarity: 'uncommon',
         polarity: 'vazarin',
-        effects: { health: 0.3, none: 15 },
+        effects: { health: 0.3 },
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
         set: { setName: 'gladiator', setMax: 6, setCurr: 1 },
-        description() { return [`+${Math.round(this.effects.health * (this.currRank + 1))}% Health`, `Set Bonus ${this.set.setCurr}/6: ${Math.round(this.effects.none * this.set.setCurr * 100)}% Critical Chance stacks with Combo Multiplier.`] }
+        description() { return [`+${Math.round(this.effects.health * (this.currRank + 1) * 100)}% Health`, `${15 * this.set.setCurr}% Critical Chance per Combo Multiplier.`] }
     },
     {
         abrev: 'i1',
@@ -3119,12 +3119,12 @@ const warframeMods = [
         type: 'WARFRAME',
         rarity: 'common',
         polarity: 'madurai',
-        effects: { none: [7.5, 25] },
+        effects: { none: 7.5 },
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
         set: { setName: 'hunter', setMax: 6, setCurr: 1 },
-        description() { return [`Convert +${this.effects.none[0] * (this.currRank + 1)}% of Damage on Health to Energy`, `Set Bonus: ${this.set.setCurr}/6: +${this.effects.none[1] * (this.currRank + 1)} Companion Damage on enemies effected by Slash Status`] }
+        description() { return [`Convert +${this.effects.none * (this.currRank + 1)}% of Damage on Health to Energy`, `+${25 * this.set.setCurr}% Companion Damage on enemies effected by Slash proc.`] }
     },
     {
         abrev: 'j5',
@@ -4038,6 +4038,35 @@ const warframeMods = [
         currRank: 3,
         baseCost: 10,
         description() { return `+${10 * (this.currRank + 1)}% chance to unlock locked lockers` }
+    },
+    {
+        abrev: '0q',
+        name: 'Mecha Empowered',
+        img: require('../assets/modimages/mecha-empowered.jpg'),
+        type: 'AURA',
+        aura: true,
+        rarity: 'rare',
+        polarity: 'naramon',
+        effects: {},
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 2,
+        set: { setName: 'mecha', setMax: 4, setCurr: 1 },
+        description() { return [`+${25 * (this.currRank + 1)}% Extra Damage against a Marked Enemy`, `Kubrow Marks an enemy every ${60 - (15 * (this.set.setCurr - 1))}s for ${3 * this.set.setCurr}s. Kill them to apply their Status Effects to all enemies within ${7.5 * this.set.setCurr}m.`] }
+    },
+    {
+        abrev: '0r',
+        name: 'Mecha Pulse',
+        img: require('../assets/modimages/mecha-pulse.jpg'),
+        type: 'WARFRAME',
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: {},
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 2,
+        set: { setName: 'mecha', setMax: 4, setCurr: 1 },
+        description() { return [`Killing a Marked Enemy grants +${15 * (this.currRank + 1)}% Armor for ${5 * (this.currRank + 1)}s for each enemy within ${7.5 * (this.currRank + 1)}m`, `Kubrow Marks an enemy every ${60 - (15 * (this.set.setCurr - 1))}s for ${3 * this.set.setCurr}s. Kill them to apply their Status Effects to all enemies within ${7.5 * this.set.setCurr}m.`] }
     },
     {
         abrev: 'm1',
@@ -7051,6 +7080,20 @@ const warframeMods = [
         description() { return `Rip Line Augment: After using Rip Line, the next ${this.currRank + 1} Rip Lines will have no Energy cost while Airborne.` }
     },
     {
+        abrev: '0p',
+        name: 'Synth Reflex',
+        img: require('../assets/modimages/synth-reflex.jpg'),
+        type: 'WARFRAME',
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: {},
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 4,
+        set: { setName: 'synth', setMax: 4, setCurr: 1 },
+        description() { return [`+${25 * (this.currRank + 1)}% Holster Speed`, `Holstering Primary and Secondary weapons reload ${5 * this.set.setCurr}% of Magazine/s.`] }
+    },
+    {
         abrev: 'x3',
         name: 'Tactical Retreat',
         img: require('../assets/modimages/tactical-retreat.jpg'),
@@ -7105,6 +7148,20 @@ const warframeMods = [
         currRank: 3,
         baseCost: 6,
         description() { return `Tectonics Augment: Create up to ${this.effects.none[0][this.currRank]} walls with ${this.effects.none[1][this.currRank]}% Health. Walls can no longer be turned into boulders.` }
+    },
+    {
+        abrev: '0o',
+        name: 'Tek Collateral',
+        img: require('../assets/modimages/tek-collateral.jpg'),
+        type: 'WARFRAME',
+        rarity: 'rare',
+        polarity: 'naramon',
+        effects: {},
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 2,
+        set: { setName: 'tek', setMax: 4, setCurr: 1 },
+        description() { return [`+${25 * (this.currRank + 1)}% Critical Damage when inside the Marked Zone.`, `Mark a 3m zone every ${60 - (15 * (this.set.setCurr - 1))}s that inflicts ${50 * this.set.setCurr} Damage/s to enemies.`] }
     },
     {
         abrev: 'x7',
@@ -7561,7 +7618,7 @@ const warframeMods = [
         currRank: 10,
         baseCost: 6,
         set: { setName: 'umbral', setMax: 3, setCurr: 1 },
-        description() { return [`+${Math.round(this.effects.armor[this.set.setCurr - 1] * (this.currRank + 1) * 1000) / 10}% Armor +${this.currRank + 1}% Tau Resistance`, `Set Bonus: Enhance mods in this set (Level ${this.set.setCurr})`] }
+        description() { return [`+${Math.round(this.effects.armor[this.set.setCurr - 1] * (this.currRank + 1) * 1000) / 10}% Armor +${this.currRank + 1}% Tau Resistance`, `Enhance mods in this set.`] }
     },
     {
         abrev: 'y8',
@@ -7576,7 +7633,7 @@ const warframeMods = [
         currRank: 10,
         baseCost: 6,
         set: { setName: 'umbral', setMax: 3, setCurr: 1 },
-        description() { return [`+${Math.round(this.effects.strength[this.set.setCurr - 1] * (this.currRank + 1) * 100)}% Ability Strength +${this.currRank + 1}% Tau Resistance`, `Set Bonus: Enhance mods in this set (Level ${this.set.setCurr})`] }
+        description() { return [`+${Math.round(this.effects.strength[this.set.setCurr - 1] * (this.currRank + 1) * 100)}% Ability Strength +${this.currRank + 1}% Tau Resistance`, `Enhance mods in this set`] }
     },
     {
         abrev: 'y9',
@@ -7591,7 +7648,7 @@ const warframeMods = [
         currRank: 10,
         baseCost: 6,
         set: { setName: 'umbral', setMax: 3, setCurr: 1 },
-        description() { return [`+${Math.round(this.effects.health[this.set.setCurr - 1] * (this.currRank + 1) * 100)}% Health +${this.currRank + 1}% Tau Resistance`, `Set Bonus: Enhance mods in this set (Level ${this.set.setCurr})`] }
+        description() { return [`+${Math.round(this.effects.health[this.set.setCurr - 1] * (this.currRank + 1) * 100)}% Health +${this.currRank + 1}% Tau Resistance`, `Enhance mods in this set`] }
     },
     {
         abrev: 'z0',
@@ -7785,7 +7842,7 @@ const warframeMods = [
         currRank: 5,
         baseCost: 4,
         set: { setName: 'vigilante', setMax: 6, setCurr: 1 },
-        description() { return [`+${5 * (this.currRank + 1)} Enemy Radar`, `Set Bonus ${this.set.setCurr}/6: ${Math.round(5 * this.set.setCurr * 100)}% chance to enhance Critical Hits from Primary weapons`] }
+        description() { return [`+${5 * (this.currRank + 1)} Enemy Radar`, `${5 * this.set.setCurr}% chance to enhance Critical Hits from Primary Weapons`] }
     },
     {
         abrev: 'z6',
@@ -7799,7 +7856,7 @@ const warframeMods = [
         currRank: 5,
         baseCost: 4,
         set: { setName: 'vigilante', setMax: 6, setCurr: 1 },
-        description() { return [`+${10 * (this.currRank + 1)}% Shield Recharge`, `Set Bonus ${this.set.setCurr}/6: ${Math.round(5 * this.set.setCurr * 100)}% chance to enhance Critical Hits from Primary weapons`] }
+        description() { return [`+${10 * (this.currRank + 1)}% Shield Recharge`, `${5 * this.set.setCurr}% chance to enhance Critical Hits from Primary Weapons`] }
     },
     {
         abrev: 'z7',

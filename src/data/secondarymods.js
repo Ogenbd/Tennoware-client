@@ -1,4 +1,4 @@
-// abrev at i9
+// abrev at j0
 const secondaryMods = [
     {
         abrev: 'a0',
@@ -34,12 +34,12 @@ const secondaryMods = [
         type: 'PISTOL',
         rarity: 'common',
         polarity: 'naramon',
-        effects: { baseDamage: 0.15, none: 0.4 },
+        effects: { baseDamage: 0.15 },
         maxRank: 5,
         currRank: 5,
         baseCost: 2,
         set: { setName: 'augur', setMax: 6, setCurr: 1 },
-        description() { return [`+${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Damage`, `Set Bonus ${this.set.setCurr}/6: ${Math.round(this.effects.none * this.set.setCurr * 100)}% Energy spent is converted to shields.`] }
+        description() { return [`+${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Damage`, `${40 * this.set.setCurr}% Energy spent on abilities is converted to shields.`] }
     },
     {
         abrev: 'a3',
@@ -48,12 +48,12 @@ const secondaryMods = [
         type: 'PISTOL',
         rarity: 'rare',
         polarity: 'madurai',
-        effects: { none: 0.4 },
+        effects: {},
         maxRank: 5,
         currRank: 5,
         baseCost: 2,
         set: { setName: 'augur', setMax: 6, setCurr: 1 },
-        description() { return [`+${5 * (this.currRank + 1)}% Status Duration`, `Set Bonus ${this.set.setCurr}/6: ${Math.round(this.effects.none * this.set.setCurr * 100)}% Energy spent is converted to shields.`] }
+        description() { return [`+${5 * (this.currRank + 1)}% Status Duration`, `${40 * this.set.setCurr}% Energy spent on abilities is converted to shields.`] }
     },
     {
         abrev: 'a4',
@@ -911,7 +911,7 @@ const secondaryMods = [
         numThree: '',
         effectFour: 'None',
         numFour: '',
-        desc: '',
+        desc: 'Only shows custom stats when slotted.',
         description() { return this.desc }
     },
     {
@@ -966,7 +966,7 @@ const secondaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 10,
-        description() { return `+${this.effects.punchThrough * (this.currRank + 1)} Punch Through` }
+        description() { return `+${Math.round(this.effects.punchThrough * (this.currRank + 1) * 10) / 10} Punch Through` }
     },
     {
         abrev: 'g9',
@@ -1157,6 +1157,20 @@ const secondaryMods = [
         description() { return `${Math.round(this.effects.status * (this.currRank + 1) * 1000) / 10}% Status Chance` }
     },
     {
+        abrev: 'j0',
+        name: 'Synth Charge',
+        img: require('../assets/modimages/synth-charge.jpg'),
+        type: 'PISTOL',
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: {},
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 6,
+        set: { setName: 'synth', setMax: 4, setCurr: 1 },
+        description() { return [`+${50 * (this.currRank + 1)}% Bonus Damage on final shot in Magazine`, `Holstering Primary and Secondary weapons reload ${5 * this.set.setCurr}% of Magazine/s.`] }
+    },
+    {
         abrev: 'i3',
         name: 'Tainted Clip',
         img: require('../assets/modimages/tainted-clip.jpg'),
@@ -1239,7 +1253,7 @@ const secondaryMods = [
         abrev: 'i8',
         name: 'Winds Of Purity',
         img: require('../assets/modimages/winds-of-purity.jpg'),
-        type: 'PISTOL',
+        type: 'FURIS',
         rarity: 'rare',
         polarity: 'vazarin',
         effects: {},

@@ -418,7 +418,7 @@ export class EightSlotModding extends Component {
     }
 
     checkModSets = (auraMod, exilusMod, chosenMods) => {
-        let sets = { hunter: 0, vigilante: 0, augur: 0, umbral: 0, mecha: 0, tek: 0, synth: 0 }
+        let sets = { hunter: 0, vigilante: 0, augur: 0, gladiator: 0, umbral: 0, mecha: 0, tek: 0, synth: 0, sacrificial: 0, }
         if (auraMod.set) sets[auraMod.set.setName]++;
         if (exilusMod.set) sets[exilusMod.set.setName]++;
         chosenMods.forEach(mod => {

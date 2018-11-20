@@ -1,3 +1,5 @@
+//abrev at b8
+
 const archgunMods = [
     {
         abrev: 'a0',
@@ -11,6 +13,19 @@ const archgunMods = [
         currRank: 5,
         baseCost: 10,
         description() { return `+${Math.round(this.effects.fireRate * (this.currRank + 1) * 1000) / 10}% Fire Rate` }
+    },
+    {
+        abrev: 'b6',
+        name: 'Charged Bullets',
+        img: require('../assets/modimages/unavail.jpg'),
+        type: 'ARCH-GUN',
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { elemental: { damage: 0.15, type: 'Electicity' }, status: 0.15 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 4,
+        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Electricity +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
         abrev: 'a1',
@@ -38,7 +53,19 @@ const archgunMods = [
         baseCost: 2,
         description() { return `+${Math.round(this.effects.impact * (this.currRank + 1) * 100)}% Impact` }
     },
-
+    {
+        abrev: 'b8',
+        name: 'Contamination Casing',
+        img: require('../assets/modimages/unavail.jpg'),
+        type: 'ARCH-GUN',
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { elemental: { damage: 0.15, type: 'Toxin' }, status: 0.15 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 4,
+        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Toxin +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
+    },
     {
         abrev: 'a3',
         name: 'Dual Rounds',
@@ -77,6 +104,19 @@ const archgunMods = [
         currRank: 3,
         baseCost: 4,
         description() { return `+${Math.round(this.effects.critMult * (this.currRank + 1) * 100)}% Critical Damage` }
+    },
+    {
+        abrev: 'b7',
+        name: 'Hypothermic Shell',
+        img: require('../assets/modimages/unavail.jpg'),
+        type: 'ARCH-GUN',
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { elemental: { damage: 0.15, type: 'Cold' }, status: 0.15 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 4,
+        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Cold +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
         abrev: 'a6',

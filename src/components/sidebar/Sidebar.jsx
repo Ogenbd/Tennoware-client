@@ -56,6 +56,10 @@ export class Sidebar extends Component {
     return JSON.stringify(window.location.href).includes('beasts');
   }
 
+  kitgunsActive = () => {
+    return JSON.stringify(window.location.href).includes('kitguns');
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -84,9 +88,10 @@ export class Sidebar extends Component {
           <NavLink exact to="/warframes" className="nav-item" activeClassName="selected" isActive={this.warframeActive} onClick={this.closeSidebar}><p>Warframes</p></NavLink>
           <NavLink exact to="/primaryweapons" className="nav-item" activeClassName="selected" isActive={this.primaryActive} onClick={this.closeSidebar}><p>Primary Weapons</p></NavLink>
           <NavLink exact to="/secondaryweapons" className="nav-item" activeClassName="selected" isActive={this.secondaryActive} onClick={this.closeSidebar}><p>Secondary Weapons</p></NavLink>
+          <NavLink exact to="/kitguns" className="nav-item" activeClassName="selected" isActive={this.kitgunsActive} onClick={this.closeSidebar}><p>Kitguns</p></NavLink>
           <NavLink exact to="/beasts" className="nav-item" activeClassName="selected" isActive={this.beastsActive} onClick={this.closeSidebar}><p>Beasts</p></NavLink>
           <NavLink exact to="/sentinels" className="nav-item" activeClassName="selected" isActive={this.sentinelsActive} onClick={this.closeSidebar}><p>Sentinels</p></NavLink>
-          <NavLink exact to="/sentinelweapons" className="nav-item" activeClassName="selected" isActive={this.sentinelWeaponsActive} onClick={this.closeSidebar}><p>Sentinel Weapons</p></NavLink>
+          <NavLink exact to="/sentinelweapons" className="nav-item" activeClassName="selected" isActive={this.sentinelWeaponsActive} onClick={this.closeSidebar}><p>Robotic Weapons</p></NavLink>
           <NavLink exact to="/archwings" className="nav-item" activeClassName="selected" isActive={this.archwingActive} onClick={this.closeSidebar}><p>Archwings</p></NavLink>
           <NavLink exact to="/archguns" className="nav-item" activeClassName="selected" isActive={this.archgunActive} onClick={this.closeSidebar}><p>Arch-Guns</p></NavLink>
         </div>

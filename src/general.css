@@ -32,7 +32,7 @@
 
 .interactable-inactive {
     border-color: rgba(255, 249, 160, 0.3);
-    color: rgba(255, 244, 190, 0.5);
+    color: rgba(255, 249, 160, 0.5);
 }
 
 .interactable-semi-inactive {

@@ -140,9 +140,33 @@ const primaryWeapons = [
         exalted: true,
         modes: [
             {
-                name: 'Normal',
+                name: 'Charged',
                 trigger: 'Charge',
                 chargeRate: 1,
+                accuracy: 100,
+                punchThrough: 1,
+                critChance: 0.25,
+                critMult: 2,
+                status: 0.2,
+                damage: 1680,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.14
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.8
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.06
+                    },
+                ]
+            },
+            {
+                name: 'Uncharged',
+                trigger: 'Charge',
                 accuracy: 100,
                 punchThrough: 1,
                 critChance: 0.25,
@@ -297,6 +321,76 @@ const primaryWeapons = [
                     },
                 ]
             }
+        ]
+    },
+    {
+        name: 'BATTACOR',
+        img: require('../assets/itemimages/battacor.png'),
+        mastery: 0,
+        type: ['RIFLE', 'ASSAULT RIFLE', 'PROJECTILE'],
+        polarities: [],
+        noise: 'Alarming',
+        reload: 2,
+        magSize: 60,
+        maxAmmo: 540,
+        disposition: 3,
+        modes: [
+            {
+                name: 'Auto-Burst',
+                trigger: 'Auto-Burst',
+                burst: 2,
+                fireRate: 3.57,
+                accuracy: 100,
+                punchThrough: 0,
+                critChance: 0.32,
+                critMult: 2.4,
+                status: 0.18,
+                damage: 66,
+                split: [
+                    {
+                        type: 'Puncture',
+                        percent: 0.36
+                    },
+                    {
+                        type: 'Magnetic',
+                        percent: 0.64
+                    },
+                ]
+            },
+            {
+                name: 'One Charge',
+                trigger: 'Charge',
+                chargeRate: 0.4,
+                accuracy: 100,
+                punchThrough: 2,
+                critChance: 0.34,
+                critMult: 3,
+                status: 0.08,
+                damage: 208,
+                split: [
+                    {
+                        type: 'Radiation',
+                        percent: 1
+                    }
+                ]
+            },
+            {
+                name: 'Full Charge',
+                trigger: 'Charge',
+                chargeRate: 0.4,
+                accuracy: 100,
+                punchThrough: 2,
+                critChance: 0.34,
+                critMult: 3,
+                status: 0.08,
+                damage: 624,
+                split: [
+                    {
+                        type: 'Radiation',
+                        percent: 1
+                    }
+                ]
+            },
         ]
     },
     {
@@ -764,7 +858,6 @@ const primaryWeapons = [
             {
                 name: 'Uncharged',
                 trigger: 'Charge',
-                chargeRate: 0.5,
                 accuracy: 16.7,
                 punchThrough: 0,
                 critChance: 0.18,
@@ -795,7 +888,8 @@ const primaryWeapons = [
         type: ['RIFLE', 'BOW', 'PROJECTILE'],
         polarities: ['madurai', 'madurai'],
         noise: 'Silent',
-        reload: 0.65,
+        reload: 1,
+        // reload: 0.65,
         magSize: 1,
         maxAmmo: 72,
         bow: true,
@@ -830,8 +924,6 @@ const primaryWeapons = [
             {
                 name: 'Uncharged',
                 trigger: 'Charge',
-                chargeRate: 0.5,
-                pellets: 3,
                 accuracy: 16.7,
                 punchThrough: 0,
                 critChance: 0.175,
@@ -1124,7 +1216,6 @@ const primaryWeapons = [
             {
                 name: 'Charged',
                 trigger: 'Charge',
-                fireRate: 3.33,
                 chargeRate: 0.5,
                 pellets: 10,
                 accuracy: 1.4,
@@ -2328,7 +2419,7 @@ const primaryWeapons = [
             {
                 name: 'Charged',
                 trigger: 'Charge',
-                fireRate: 2.5,
+                // fireRate: 2.5,
                 chargeRate: 0.75,
                 accuracy: 100,
                 punchThrough: 2.5,
@@ -2355,7 +2446,7 @@ const primaryWeapons = [
                 name: 'Uncharged',
                 trigger: 'Charge',
                 fireRate: 2.5,
-                chargeRate: 0.75,
+                // chargeRate: 0.75,
                 accuracy: 100,
                 punchThrough: 0,
                 critChance: 0.05,
@@ -2458,7 +2549,6 @@ const primaryWeapons = [
             {
                 name: 'Uncharged',
                 trigger: 'Charge',
-                chargeRate: 0.5,
                 accuracy: 16.7,
                 punchThrough: 0,
                 critChance: 0.15,
@@ -2564,7 +2654,6 @@ const primaryWeapons = [
             {
                 name: 'Uncharged',
                 trigger: 'Charge',
-                chargeRate: 0.5,
                 accuracy: 16.7,
                 punchThrough: 0,
                 critChance: 0.1,
@@ -2676,6 +2765,44 @@ const primaryWeapons = [
                     }
                 ]
             }
+        ]
+    },
+    {
+        name: 'NAGANTAKA',
+        img: require('../assets/itemimages/nagantaka.png'),
+        mastery: 9,
+        type: ['RIFLE', 'BOW', 'PROJECTILE'],
+        polarities: ['madurai'],
+        noise: 'Silent',
+        reload: 2,
+        magSize: 9,
+        maxAmmo: 540,
+        disposition: 3,
+        modes: [
+            {
+                trigger: 'Semi-Auto',
+                fireRate: 2.5,
+                accuracy: 40,
+                punchThrough: 0,
+                critChance: 0.15,
+                critMult: 2.3,
+                status: 0.39,
+                damage: 159,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.01
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.09
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.9
+                    },
+                ]
+            },
         ]
     },
     {
@@ -4524,7 +4651,6 @@ const primaryWeapons = [
             {
                 name: 'Secondary',
                 trigger: 'Charge',
-                fireRate: 10,
                 chargeRate: 0.8,
                 accuracy: 12.5,
                 punchThrough: 1,
@@ -4895,7 +5021,7 @@ const primaryWeapons = [
         name: 'VAYKOR HEK',
         img: require('../assets/itemimages/vaykor-hek.png'),
         mastery: 12,
-        type: ['SHOTGUN', 'HEK'],
+        type: ['SHOTGUN'],
         polarities: ['vazarin', 'madurai'],
         noise: 'Alarming',
         reload: 2.25,
@@ -5290,7 +5416,7 @@ const primaryWeapons = [
                 critMult: 2.5,
                 status: 0.08,
                 ammoCost: 5,
-                damage: 15,
+                damage: 150,
                 split: [
                     {
                         type: 'Impact',
