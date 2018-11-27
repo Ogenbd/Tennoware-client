@@ -200,19 +200,29 @@ export class TenSlotModding extends Component {
     closeModPicker = () => {
         this.setState({
             modPicker: false,
-            errorBlinker: null
+            // errorBlinker: null
         })
         document.body.classList.remove('noscroll');
     }
 
     pickMod = (mod) => {
         let sameFamilySlot = -1;
+        let legal = true;
+        if (mod.type === 'MOA') {
+            let count = 0;
+            this.state.chosenMods.forEach(chosenMod => {
+                if (chosenMod.type === 'MOA') count++;
+            });
+            if ((count === 2 && this.state.chosenMods[this.state.forSlot].type !== 'MOA') || count > 2) {
+                legal = false;
+            }
+        }
         if (mod.family) {
             sameFamilySlot = this.state.chosenMods.findIndex(slottedMod => {
                 return mod.family === slottedMod.family;
             });
         }
-        if (sameFamilySlot === -1) {
+        if (sameFamilySlot === -1 && legal) {
             let pickedMod = cloneDeep(mod);
             let chosenMods = cloneDeep(this.state.chosenMods);
             let chosenIndexs = cloneDeep(this.state.chosenIndexs);
@@ -228,10 +238,15 @@ export class TenSlotModding extends Component {
                 totalModsCost: totalModsCost,
                 errorBlinker: null
             });
-        } else {
+        } else if (sameFamilySlot !== -1) {
             this.setState({
                 forSlot: null,
                 errorBlinker: sameFamilySlot
+            });
+        } else {
+            this.setState({
+                forSlot: null,
+                errorBlinker: 'MOA'
             });
         }
     }
@@ -239,12 +254,22 @@ export class TenSlotModding extends Component {
     dragInMod = (modIndex, targetSlot) => {
         let mod = cloneDeep(this.props.mods[modIndex]);
         let sameFamilySlot = -1;
+        let legal = true;
+        if (mod.type === 'MOA') {
+            let count = 0;
+            this.state.chosenMods.forEach(chosenMod => {
+                if (chosenMod.type === 'MOA') count++;
+            });
+            if ((count === 2 && this.state.chosenMods[targetSlot].type !== 'MOA') || count > 2) {
+                legal = false;
+            }
+        }
         if (mod.family) {
             sameFamilySlot = this.state.chosenMods.findIndex((slottedMod, index) => {
                 return mod.family === slottedMod.family && index !== targetSlot;
             });
         }
-        if (sameFamilySlot === -1) {
+        if (sameFamilySlot === -1 && legal) {
             let chosenMods = cloneDeep(this.state.chosenMods);
             let chosenIndexs = cloneDeep(this.state.chosenIndexs);
             if (chosenMods[targetSlot].name) {
@@ -262,10 +287,15 @@ export class TenSlotModding extends Component {
                 totalModsCost: totalModsCost,
                 errorBlinker: null
             });
-        } else {
+        } else if (sameFamilySlot !== -1) {
             this.setState({
                 forSlot: null,
                 errorBlinker: sameFamilySlot
+            });
+        } else {
+            this.setState({
+                forSlot: null,
+                errorBlinker: 'MOA'
             });
         }
     }
@@ -431,7 +461,13 @@ export class TenSlotModding extends Component {
     }
 
     displayMessage = () => {
-        if (this.state.errorBlinker !== null) {
+        if (this.state.errorBlinker === 'MOA') {
+            return (
+                <div className="message-wrapper show-error-message">
+                    <p className="display-message">Can only slot in two MOA precepts at a time.</p>
+                </div>
+            )
+        } else if (this.state.errorBlinker !== null) {
             return (
                 <div className="message-wrapper show-error-message">
                     <p className="display-message">This mod cannot be use with {this.state.chosenMods[this.state.errorBlinker].name}.</p>
@@ -544,7 +580,7 @@ export class TenSlotModding extends Component {
                         </div>
                         {this.displayMessage()}
                     </div>
-                    {(this.props.type === 'sentinels') &&
+                    {(this.props.type === 'sentinels' || this.props.type === 'moas') &&
                         <SentinelStats frame={this.props.item} mods={this.state.chosenMods} viewWidth={this.props.viewWidth} />
                     }
                     {(this.props.type === 'beasts') &&

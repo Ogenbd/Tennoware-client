@@ -186,8 +186,10 @@
 }
 
 .error-flash {
+    z-index: 10;
     background: radial-gradient(circle, rgba(255, 0, 0, 0.75) 0%, rgba(255, 0, 0, 0.4) 100%);
     animation: blinker 0.3s linear 4;
+    pointer-events: none;
 }
 
 @keyframes blinker {

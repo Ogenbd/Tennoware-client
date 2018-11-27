@@ -26,12 +26,14 @@ export class News extends Component {
     if (this.state.platform !== platform) {
       this.state.loading ? this.setState({ platform: platform }) : this.setState({ loading: true, platform: platform })
       fetch(`https://api.warframestat.us/${platform}/news`)
-        .then(res => res.json())
         .then(res => {
-          localStorage.setItem('news', `${platform}`);
-          this.sortForDisplay(res, platform);
-        })
-        .catch(err => console.log(err))
+          if (res.status === 200) {
+            res.json().then(res => {
+              localStorage.setItem('news', `${platform}`);
+              this.sortForDisplay(res, platform);
+            });
+          }
+        });
     }
   }
 

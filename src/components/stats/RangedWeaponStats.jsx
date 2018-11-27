@@ -429,7 +429,6 @@ export class RangedWeaponStats extends Component {
     }
 
     calcDPS = (damage, fireRate, critChance, critMult) => {
-        // let multishot = this.state.effects.multishot ? 1 + this.state.effects.multishot : 1;
         let magSize = this.state.effects.magSize ? this.props.weapon.magSize * (1 + this.state.effects.magSize) : this.props.weapon.magSize;
         let reload = this.state.effects.reload ? this.props.weapon.reload * (1 + this.state.effects.reload) : this.props.weapon.reload;
         let averageShotDamage;
@@ -456,7 +455,6 @@ export class RangedWeaponStats extends Component {
         if (this.props.weapon.modes[this.state.mode].burst) {
             averageShotDamage = averageShotDamage * this.props.weapon.modes[this.state.mode].burst;
         }
-        // console.log(totalDamage, averageShotDamage, burstDPS, sustainedDPS);
         return {
             averageShotDamage: averageShotDamage,
             burst: burstDPS,

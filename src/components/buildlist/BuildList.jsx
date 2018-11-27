@@ -12,7 +12,8 @@ export class BuildList extends Component {
             showBuildList: false,
             builds: [],
             requested: false,
-            loader: false
+            loader: false,
+            error: null,
         }
     }
 
@@ -45,16 +46,29 @@ export class BuildList extends Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ itemName: this.props.match.params.id })
         })
-            .then(res => res.json())
             .then(res => {
-                this.setState({
-                    builds: res,
-                    requested: true,
-                    loader: false
-                });
+                if (res.status === 200) {
+                    res.json().then(res => {
+                        this.setState({
+                            builds: res,
+                            requested: true,
+                            loader: false
+                        });
+                    });
+                } else {
+                    this.setState({
+                        requested: true,
+                        loader: false,
+                        error: 'Server error! Please try again later.'
+                    })
+                }
             })
-            .catch(err => {
-                console.log('error')
+            .catch(() => {
+                this.setState({
+                    requested: true,
+                    loader: false,
+                    error: 'Unable to connect to Tennoware server! Please try again later.'
+                })
             });
     }
 
@@ -63,10 +77,12 @@ export class BuildList extends Component {
         if (this.state.builds.length > 0) {
             let sortedBuilds = cloneDeep(this.state.builds)
             sortedBuilds.sort((a, b) => {
+                let dateA = Date.parse(a.CreateDT)
+                let dateB = Date.parse(b.CreateDT)
                 if (a.Likes < b.Likes) return 1
                 if (a.Likes > b.Likes) return -1
-                if (a.CreateDT < b.CreateDT) return 1
-                if (a.CreateDT > b.CreateDT) return -1
+                if (dateA < dateB) return 1
+                if (dateA > dateB) return -1
                 return 0;
             });
             sortedBuilds.forEach((build, index) => {
@@ -121,9 +137,20 @@ export class BuildList extends Component {
                     </div>
                     {this.state.loader
                         ? <Loading />
-                        : <div className="popup-content build-list">
-                            {buildList}
-                        </div>
+                        : <React.Fragment>
+                            {this.state.error === null
+                                ? <div className="popup-content build-list">
+                                    {buildList}
+                                </div>
+                                : <div className="popup-content build-list">
+                                    <div className="no-builds-wrapper">
+                                        <p className="no-builds">
+                                            {this.state.error}
+                                        </p>
+                                    </div>
+                                </div>
+                            }
+                        </React.Fragment>
                     }
                 </div>
             </React.Fragment>

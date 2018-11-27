@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+// import './Like.css';
 
 export class Like extends Component {
     constructor(props) {
@@ -6,6 +7,7 @@ export class Like extends Component {
         this.timer = null;
         this.state = {
             liked: false,
+            error: null,
             lastLikePress: 0,
             lastLikeSent: false,
         }
@@ -73,26 +75,48 @@ export class Like extends Component {
                         build: this.props.match.params.build
                     })
                 })
-                    .then(res => res.json())
-                    .then(({ res }) => {
-                        this.setState({ likeDispatched: false }, () => {
-                            if (res !== this.state.liked) {
-                                this.spammerMan();
-                            }
-                        });
+                    .then(res => {
+                        if (res.status === 200) {
+                            res.json().then(({ res }) => {
+                                this.setState({ likeDispatched: false }, () => {
+                                    if (res !== this.state.liked) {
+                                        this.spammerMan();
+                                    }
+                                });
+                            });
+                        } else if (res.status === 401) {
+                            this.props.history.replace('/unauthorized');
+                        } else {
+                            this.setState({ error: 'Server error! Please try again later.' })
+                        }
                     })
                     .catch(err => {
-                        console.log('error')
+                        this.setState({ error: 'Unable to connect to Tennoware server! Please try again later.' })
                     });
             });
         }
     }
 
+    confirmError = () => {
+        this.setState(prevState => ({
+            liked: !prevState.liked,
+            error: null
+        }));
+    }
+
     render() {
         return (
-            <div className={"activatable " + (this.state.liked ? "interactable-active" : "interactable-inactive")} onClick={this.likeButtonPress}><p className="interactable-p">Like</p></div>
+            <React.Fragment>
+                <div className={"activatable " + (this.state.liked ? "interactable-active" : "interactable-inactive")} onClick={this.likeButtonPress}><p className="interactable-p">Like</p></div>
+                <div className={"general-error " + (this.state.error !== null ? 'show-general-error' : 'hide-general-error')}>
+                    <div className="general-error-box">
+                        <p>{this.state.error}</p>
+                        <div className="interactable interactable-semi-inactive general-button" onClick={this.confirmError}><p className="interactable-p">Confirm</p></div>
+                    </div>
+                </div>
+            </React.Fragment>
         )
     }
 }
 
-export default Like
+export default Like;

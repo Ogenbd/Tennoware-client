@@ -32,7 +32,6 @@ class App extends Component {
   // autoAuthenticate = () => {
   //   let token = localStorage.getItem('jwt');
   //   var decoded = jwt.decode(token, 'a', true);
-  //   console.log(decoded);
   // fetch('http://192.168.1.114:50000/authenticate', {
   //   method: 'get',
   //   headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` }
@@ -46,14 +45,12 @@ class App extends Component {
     this.setState({
       online: false
     });
-    console.log('off');
   }
 
   setOnline = () => {
     this.setState({
       online: true
     });
-    console.log('on');
   }
 
   setViewWidth = () => {
@@ -76,7 +73,6 @@ class App extends Component {
 
   logUser = (res) => {
     document.body.classList.remove('noscroll');
-    // console.log(res.token);
     localStorage.setItem('jwt', res.token);
     this.setState({
       user: true,

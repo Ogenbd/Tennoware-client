@@ -13,6 +13,7 @@ export class BuildSaver extends Component {
             showBuildSaver: false,
             exact: false,
             private: false,
+            error: null,
             buildName: '',
             buildDesc: ''
         }
@@ -38,7 +39,8 @@ export class BuildSaver extends Component {
         }
         this.setState({
             showBuildSaver: true,
-            exact: exact
+            exact: exact,
+            error: null
         });
     }
 
@@ -101,12 +103,17 @@ export class BuildSaver extends Component {
                     headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` },
                     body: JSON.stringify(buildData)
                 })
-                    .then(res => res.json())
-                    .then(({ res }) => {
-                        this.redirectToSaved(buildData, buildData.buildId);
+                    .then(res => {
+                        if (res.status === 200) {
+                            res.json().then(res => this.redirectToSaved(buildData, buildData.buildId))
+                        } else if (res.status === 401) {
+                            this.props.history.replace('/unauthorized');
+                        } else {
+                            this.setState({ error: 'Server error! Please try again later.' })
+                        }
                     })
                     .catch(err => {
-                        console.log('error')
+                        this.setState({ error: 'Unable to connect to Tennoware server! Please try again later.' })
                     });
             } else {
                 // fix url
@@ -115,12 +122,17 @@ export class BuildSaver extends Component {
                     headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` },
                     body: JSON.stringify(buildData)
                 })
-                    .then(res => res.json())
-                    .then(({ res }) => {
-                        this.redirectToSaved(buildData, res);
+                    .then(res => {
+                        if (res.status === 200) {
+                            res.json().then(({ res }) => this.redirectToSaved(buildData, res))
+                        } else if (res.status === 401) {
+                            this.props.history.replace('/unauthorized');
+                        } else {
+                            this.setState({ error: 'Server error! Please try again later.' })
+                        }
                     })
                     .catch(err => {
-                        console.log(err)
+                        this.setState({ error: 'Unable to connect to Tennoware server! Please try again later.' })
                     });
             }
         }
@@ -157,7 +169,10 @@ export class BuildSaver extends Component {
                         {this.state.exact &&
                             <div className="exact-build">This exact build was already saved by another community member. Consider liking this build, it will be added to your My Builds list.</div>
                         }
-                        {!this.state.exact &&
+                        {this.state.error !== null &&
+                            <div className="exact-build">{this.state.error}</div>
+                        }
+                        {!this.state.exact && this.state.error === null &&
                             <React.Fragment>
                                 <div className="check-private">
                                     <div className={"activatable " + (this.state.private ? "interactable-inactive" : "interactable-active")} onClick={this.makePublic}>

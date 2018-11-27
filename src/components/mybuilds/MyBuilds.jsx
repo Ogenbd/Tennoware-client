@@ -14,23 +14,28 @@ export default class MyBuilds extends Component {
             getting: true,
             unlike: false,
             delete: false,
-            target: null
+            target: null,
+            error: null
         }
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         let token = localStorage.getItem('jwt');
         fetch('http://192.168.1.114:50000/mybuilds', {
             method: 'get',
             headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` },
         })
-            .then(res => res.json())
-            .then(({ res }) => {
-                this.generateBuildArsenal(res);
-                // this.generateBuildArsenal(res, allItems);
+            .then(res => {
+                if (res.status === 200) {
+                    res.json().then(({ res }) => this.generateBuildArsenal(res))
+                } else if (res.status === 401) {
+                    this.props.history.replace('/unauthorized');
+                } else {
+                    this.setState({ getting: false, error: 'Server error! Please try again later.' })
+                }
             })
-            .catch(err => {
-                console.log('error')
+            .catch(res => {
+                this.setState({ getting: false, error: 'Unable to connect to Tennoware server! Please try again later.' })
             });
     }
 
@@ -48,7 +53,7 @@ export default class MyBuilds extends Component {
                     name: build.ItemName,
                     source: build.Source,
                     buildStr: build.BuildStr,
-                    date: build.CreateDT,
+                    date: Date.parse(build.CreateDT),
                     forma: build.Forma,
                     orokin: build.Orokin,
                     type: build.Type,
@@ -179,7 +184,6 @@ export default class MyBuilds extends Component {
 
     handleUnlike = (arsenalIndex) => {
         if (this.state.target === null) {
-            console.log(arsenalIndex);
             this.setState({
                 unlike: true,
                 target: arsenalIndex
@@ -189,7 +193,6 @@ export default class MyBuilds extends Component {
 
     handleDelete = (arsenalIndex) => {
         if (this.state.target === null) {
-            console.log(arsenalIndex);
             this.setState({
                 delete: true,
                 target: arsenalIndex
@@ -221,16 +224,21 @@ export default class MyBuilds extends Component {
                 build: arsenal[temp].id
             })
         })
-            .then(res => res.json())
-            .then(() => {
-                arsenal.splice(temp, 1);
-                this.setState({
-                    arsenal: arsenal,
-                    target: null
-                })
+            .then(res => {
+                if (res.status === 200) {
+                    arsenal.splice(temp, 1);
+                    this.setState({
+                        arsenal: arsenal,
+                        target: null
+                    })
+                } else if (res.status === 401) {
+                    this.props.history.replace('/unauthorized');
+                } else {
+                    this.setState({ error: 'Server error! Please try again later.' })
+                }
             })
-            .catch(err => {
-                console.log('error')
+            .catch(res => {
+                this.setState({ error: 'Unable to connect to Tennoware server! Please try again later.' })
             });
     }
 
@@ -250,15 +258,21 @@ export default class MyBuilds extends Component {
                 build: arsenal[temp].id
             })
         })
-            .then(() => {
-                arsenal.splice(temp, 1);
-                this.setState({
-                    arsenal: arsenal,
-                    target: null
-                })
+            .then(res => {
+                if (res.status === 200) {
+                    arsenal.splice(temp, 1);
+                    this.setState({
+                        arsenal: arsenal,
+                        target: null
+                    })
+                } else if (res.status === 401) {
+                    this.props.history.replace('/unauthorized');
+                } else {
+                    this.setState({ error: 'Server error! Please try again later.' })
+                }
             })
-            .catch(err => {
-                console.log('error')
+            .catch(res => {
+                this.setState({ error: 'Unable to connect to Tennoware server! Please try again later.' })
             });
     }
 
@@ -271,25 +285,30 @@ export default class MyBuilds extends Component {
                 <div className="my-builds">
                     {this.state.getting
                         ? <Loading />
-                        : <div className="builds-wrapper">
-                            {this.state.arsenal.length < 1
-                                ? <div className="no-builds">You have not saved or liked any builds yet.</div>
-                                : <React.Fragment>
-                                    {list.saved.length > 0 &&
-                                        <React.Fragment>
-                                            <div className="my-builds-subtitle">Saved Builds</div>
-                                            {list.saved}
+                        : <React.Fragment>
+                            {this.state.error !== null
+                                ? <div className="builds-wrapper"><div className="no-builds">{this.state.error}</div></div>
+                                : <div className="builds-wrapper">
+                                    {this.state.arsenal.length < 1
+                                        ? <div className="no-builds">You have not saved or liked any builds yet.</div>
+                                        : <React.Fragment>
+                                            {list.saved.length > 0 &&
+                                                <React.Fragment>
+                                                    <div className="my-builds-subtitle">Saved Builds</div>
+                                                    {list.saved}
+                                                </React.Fragment>
+                                            }
+                                            {list.liked.length > 0 &&
+                                                <React.Fragment>
+                                                    <div className="my-builds-subtitle">Liked Builds</div>
+                                                    {list.liked}
+                                                </React.Fragment>
+                                            }
                                         </React.Fragment>
                                     }
-                                    {list.liked.length > 0 &&
-                                        <React.Fragment>
-                                            <div className="my-builds-subtitle">Liked Builds</div>
-                                            {list.liked}
-                                        </React.Fragment>
-                                    }
-                                </React.Fragment>
+                                </div>
                             }
-                        </div>
+                        </React.Fragment>
                     }
                     <div className={"popup " + (this.state.unlike ? "popup-active" : "popup-inactive")}>
                         <div className={"popup-topbar " + (this.state.unlike ? "popup-active" : "popup-inactive")}></div>

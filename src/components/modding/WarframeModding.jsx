@@ -229,7 +229,7 @@ export class EightSlotModding extends Component {
         this.setState({
             modPicker: false,
             forSlot: null,
-            errorBlinker: null
+            // errorBlinker: null
         })
         document.body.classList.remove('noscroll');
     }

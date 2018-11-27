@@ -19,7 +19,8 @@ class RangedBuilder extends Component {
             relevantMods: [],
             slotPolarities: [],
             originalPolarityCount: {},
-            metaInfo: {}
+            metaInfo: {},
+            error: null
         }
     }
 
@@ -57,16 +58,29 @@ class RangedBuilder extends Component {
                 headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` },
                 body: JSON.stringify({ buildId: this.props.match.params.build })
             })
-                .then(res => res.json())
-                .then(({ res }) => {
-                    if (res.ItemName === this.props.match.params.id.toLowerCase() && res.BuildStr === this.props.match.params.pre) {
-                        this.setState({ metaInfo: res });
+                .then(res => {
+                    if (res.status === 200) {
+                        res.json().then(({ res }) => {
+                            if (res && res.ItemName === this.props.match.params.id.toLowerCase() && res.BuildStr === this.props.match.params.pre) {
+                                this.setState({ metaInfo: res });
+                            } else if (res.status === 401) {
+                                this.props.history.replace('/unauthorized');
+                            } else {
+                                this.setState({
+                                    error: 'Build does not exist in our database.'
+                                })
+                            }
+                        });
                     } else {
-                        this.redirectToVoid();
+                        this.setState({
+                            error: 'Server error! Please try again later.'
+                        })
                     }
                 })
-                .catch(err => {
-                    console.log('error')
+                .catch(() => {
+                    this.setState({
+                        error: 'Unable to connect to Tennoware server! Please try again later.'
+                    })
                 });
         }
     }
@@ -111,16 +125,29 @@ class RangedBuilder extends Component {
             headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` },
             body: JSON.stringify({ buildId: this.props.match.params.build })
         })
-            .then(res => res.json())
-            .then(({ res }) => {
-                if (res.ItemName === this.props.match.params.id.toLowerCase() && res.BuildStr === this.props.match.params.pre) {
-                    this.setupBuilder(res);
+            .then(res => {
+                if (res.status === 200) {
+                    res.json().then(({ res }) => {
+                        if (res && res.ItemName === this.props.match.params.id.toLowerCase() && res.BuildStr === this.props.match.params.pre) {
+                            this.setupBuilder(res);
+                        } else if (res.status === 401) {
+                            this.props.history.replace('/unauthorized');
+                        } else {
+                            this.setState({
+                                error: 'This build does not exist in our database.'
+                            })
+                        }
+                    });
                 } else {
-                    this.redirectToVoid();
+                    this.setState({
+                        error: 'Server error! Please try again later.'
+                    })
                 }
             })
-            .catch(err => {
-                console.log('error')
+            .catch(() => {
+                this.setState({
+                    error: 'Unable to connect to Tennoware server! Please try again later.'
+                })
             });
     }
 
@@ -128,15 +155,27 @@ class RangedBuilder extends Component {
         this.props.history.replace('/void');
     }
 
+    confirmError = () => {
+        this.props.history.replace(`/${this.props.type}/${this.props.match.params.id}`);
+    }
+
     render() {
         return (
             <div className="screen">
                 <div className="top-title"><p>{this.state.title}</p></div>
-                {!this.state.item.name &&
-                    <Loading />
-                }
-                {this.state.item.name &&
-                    <EightSlotModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={'reactor'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} />
+                {this.state.error !== null
+                    ? <div className={"general-error " + (this.state.error !== null ? 'show-general-error' : 'hide-general-error')}>
+                        <div className="general-error-box">
+                            <p>{this.state.error}</p>
+                            <div className="interactable interactable-semi-inactive general-button" onClick={this.confirmError}><p className="interactable-p">Confirm</p></div>
+                        </div>
+                    </div>
+                    : <React.Fragment>
+                        {this.state.item.name
+                            ? <EightSlotModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={'reactor'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} />
+                            : <Loading />
+                        }
+                    </React.Fragment>
                 }
             </div>
         )

@@ -258,9 +258,31 @@ export class EightSlotModding extends PureComponent {
     closeModPicker = () => {
         this.setState({
             modPicker: false,
-            errorBlinker: null
+            // errorBlinker: null
         })
         document.body.classList.remove('noscroll');
+    }
+
+    handleRiven = (rivenUpdate) => {
+        let findRivenInChosenMods = this.state.chosenMods.findIndex(mod => {
+            return mod.name === 'Riven Mod';
+        });
+        if (findRivenInChosenMods !== -1) {
+            let chosenMods = cloneDeep(this.state.chosenMods);
+            for (let key in rivenUpdate) {
+                chosenMods[findRivenInChosenMods][key] = rivenUpdate[key];
+            }
+            this.setState({
+                rivenEditor: false,
+                chosenMods: chosenMods,
+                rivenMod: rivenUpdate
+            });
+        } else {
+            this.setState({
+                rivenEditor: false,
+                rivenMod: rivenUpdate
+            });
+        }
     }
 
     pickMod = (mod) => {
@@ -295,28 +317,6 @@ export class EightSlotModding extends PureComponent {
             this.setState({
                 forSlot: null,
                 errorBlinker: sameFamilySlot
-            });
-        }
-    }
-
-    handleRiven = (rivenUpdate) => {
-        let findRivenInChosenMods = this.state.chosenMods.findIndex(mod => {
-            return mod.name === 'Riven Mod';
-        });
-        if (findRivenInChosenMods !== -1) {
-            let chosenMods = cloneDeep(this.state.chosenMods);
-            for (let key in rivenUpdate) {
-                chosenMods[findRivenInChosenMods][key] = rivenUpdate[key];
-            }
-            this.setState({
-                rivenEditor: false,
-                chosenMods: chosenMods,
-                rivenMod: rivenUpdate
-            });
-        } else {
-            this.setState({
-                rivenEditor: false,
-                rivenMod: rivenUpdate
             });
         }
     }

@@ -62,7 +62,6 @@ export class KitgunPicker extends Component {
       if (this.state.items.gripCombo[chamber].falloffMax) kitgun.falloffMax = this.state.items.gripCombo[chamber].falloffMax;
       if (this.state.items.gripCombo[chamber][grip].rangeLimit) kitgun.rangeLimit = this.state.items.gripCombo[chamber][grip].rangeLimit;
       if (this.state.items.gripCombo[chamber].ammoCost) kitgun.ammoCost = this.state.items.gripCombo[chamber].ammoCost;
-      console.log(kitgun);
       return kitgun;
     }
     return null;

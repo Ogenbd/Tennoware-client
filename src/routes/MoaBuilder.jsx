@@ -88,14 +88,28 @@ class RangedBuilder extends Component {
     setupBuilder = async (metaInfo) => {
         let items = await this.props.items();
         let mods = await this.props.mods();
-        let item = items.find(pet => {
-            return pet.name.toLowerCase() === this.props.match.params.id.toLowerCase();
+        let parts = this.props.match.params.id.split(' ');
+        let bracket = items.first.find(part => {
+            return part.name.toLowerCase() === parts[0].toLowerCase();
         });
-        if (item !== undefined) {
+        let core = items.second.find(part => {
+            return part.name.toLowerCase() === parts[1].toLowerCase();
+        });
+        let gyro = items.third.find(part => {
+            return part.name.toLowerCase() === parts[2].toLowerCase();
+        });
+        try {
+            let item = {
+                name: `${parts[0].toUpperCase()}-${parts[1].toUpperCase()}-${parts[2].toUpperCase()}`,
+                health: items.base.health + items.base.health * core.health + items.base.health * gyro.health,
+                shields: items.base.shields + items.base.shields * core.shields + items.base.shields * gyro.shields,
+                armor: items.base.armor + items.base.armor * core.armor + items.base.armor * gyro.armor,
+                polarities: bracket.polarities
+            }
             let slotPolarities = [];
             let originalPolarityCount = { madurai: 0, naramon: 0, vazarin: 0, zenurik: 0, unairu: 0, penjaga: 0, umbra: 0 };
             let filteredMods = mods.filter(mod => {
-                return mod.type === 'COMPANION' || mod.type === 'BEAST' || item.name.includes(mod.type) || mod.type === 'ALL';
+                return mod.type === 'COMPANION' || mod.type === 'ROBOTIC' || mod.type === 'MOA' || mod.type === 'ALL';
             });
             filteredMods.forEach((mod, index) => mod.index = index);
             if (item.polarities.length > 0) {
@@ -112,7 +126,8 @@ class RangedBuilder extends Component {
                 originalPolarityCount: originalPolarityCount,
                 metaInfo: metaInfo
             });
-        } else {
+        }
+        catch {
             this.redirectToVoid();
         }
     }
@@ -152,7 +167,7 @@ class RangedBuilder extends Component {
     }
 
     redirectToVoid = () => {
-        this.props.history.replace('/void');
+        // this.props.history.replace('/void');
     }
 
     confirmError = () => {
@@ -162,7 +177,10 @@ class RangedBuilder extends Component {
     render() {
         return (
             <div className="screen">
-                <div className="top-title"><p>{this.state.title}</p></div>
+                <div className="top-title">
+                    <p>MOAS</p>
+                    <p className="modular-subtitle">{this.state.title}</p>
+                </div>
                 {this.state.error !== null
                     ? <div className={"general-error " + (this.state.error !== null ? 'show-general-error' : 'hide-general-error')}>
                         <div className="general-error-box">

@@ -1,0 +1,40 @@
+.like-error {
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 3;
+}
+
+.show-like-error {
+    visibility: visible;
+    pointer-events: all;
+}
+
+.hide-like-error {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.like-error-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 380px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 1);
+    border: 1px solid rgba(255, 249, 160, 0.73);
+    color: white;
+    text-align: justify;
+}
+
+.like-button {
+    width: 75px;
+    margin-top: 25px;
+}

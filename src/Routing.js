@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import Loadable from 'react-loadable';
 import { Switch, Route, withRouter } from 'react-router-dom';
-// import { TransitionGroup, CSSTransition } from "react-transition-group";
 import TheVoid from './components/thevoid/TheVoid';
 import News from './components/news/News';
-import KitgunPicker from './components/modularpicker/KitgunPicker';
+import Unauthorized from './components/unauthorized/Unauthorized';
 
 // const Loading = () => <img className="loading-gif" src={require('./assets/loader.svg')} alt="Loading..." />
 // const Loading = () => <div className="screen loading-screen"><div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
@@ -12,6 +11,16 @@ import KitgunPicker from './components/modularpicker/KitgunPicker';
 // async imports for react/webpack code-splitting
 const ItemPicker = Loadable({
     loader: () => import('./components/itempicker/ItemPicker'),
+    loading: () => null,
+});
+
+const KitgunPicker = Loadable({
+    loader: () => import('./components/modularpicker/KitgunPicker'),
+    loading: () => null,
+});
+
+const MoaPicker = Loadable({
+    loader: () => import('./components/modularpicker/MoaPicker'),
     loading: () => null,
 });
 
@@ -57,6 +66,11 @@ const BeastBuilder = Loadable({
 
 const KitgunBuilder = Loadable({
     loader: () => import('./routes/KitgunBuilder'),
+    loading: () => null,
+});
+
+const MoaBuilder = Loadable({
+    loader: () => import('./routes/MoaBuilder'),
     loading: () => null,
 });
 
@@ -131,6 +145,11 @@ const getBeasts = () => {
 
 const getKitguns = () => {
     let data = import('./data/kitguns');
+    return data;
+}
+
+const getMoas = () => {
+    let data = import('./data/moas');
     return data;
 }
 
@@ -211,6 +230,11 @@ export class Routing extends Component {
         return data.default;
     }
 
+    moas = async () => {
+        let data = await getMoas();
+        return data.default;
+    }
+
     render() {
         let nonRouterPropPass = {
             viewWidth: this.props.viewWidth,
@@ -260,6 +284,11 @@ export class Routing extends Component {
                     <Route exact path='/kitguns/:id/:pre' render={props => <KitgunBuilder {...props} {...nonRouterPropPass} type={'kitguns'} items={this.kitguns} mods={this.secondaryMods} />} />
                     <Route exact path='/kitguns/:id' render={props => <KitgunBuilder {...props} {...nonRouterPropPass} type={'kitguns'} items={this.kitguns} mods={this.secondaryMods} />} />
                     <Route exact path='/kitguns' render={props => <KitgunPicker {...props} {...nonRouterPropPass} items={this.kitguns} />} />
+                    <Route exact path='/moas/:id/:pre/:build' render={props => <MoaBuilder {...props} {...nonRouterPropPass} type={'moas'} items={this.moas} mods={this.companionMods} />} />
+                    <Route exact path='/moas/:id/:pre' render={props => <MoaBuilder {...props} {...nonRouterPropPass} type={'moas'} items={this.moas} mods={this.companionMods} />} />
+                    <Route exact path='/moas/:id' render={props => <MoaBuilder {...props} {...nonRouterPropPass} type={'moas'} items={this.moas} mods={this.companionMods} />} />
+                    <Route exact path='/moas' render={props => <MoaPicker {...props} {...nonRouterPropPass} items={this.moas} />} />
+                    <Route exact path='/unauthorized' component={Unauthorized} />
                     <Route component={TheVoid} />
                 </Switch>
             </div>

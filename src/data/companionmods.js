@@ -1,4 +1,4 @@
-// at abrev i6
+// at abrev j2
 
 const companionMods = [
     {
@@ -52,6 +52,19 @@ const companionMods = [
         currRank: 5,
         baseCost: 6,
         description() { return `+${5 * (this.currRank + 1)} Loot Radar +${3 * (this.currRank + 1)} Enemy Radar` }
+    },
+    {
+        abrev: 'j1',
+        name: 'Anti-Grav Grenade',
+        img: require('../assets/modimages/unavail.jpg'),
+        type: 'MOA',
+        rarity: 'common',
+        polarity: 'penjaga',
+        effects: { none: [[1, 2, 3, 3], [20, 40, 60, 60]] },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 2,
+        description() { return `A grenade that reverses gravity in a ${this.effects.none[0][this.currRank]}m radius, inflicting ${this.effects.none[1][this.currRank]} Impact Damage. Target sustains additional damage based on the amount sustained while airborne.` }
     },
     {
         abrev: 'a4',
@@ -835,6 +848,19 @@ const companionMods = [
         description() { return `+${15 * (this.currRank + 1)}% chance for the pet to pry open a locked locker.` }
     },
     {
+        abrev: 'i7',
+        name: 'Security Override',
+        img: require('../assets/modimages/unavail.jpg'),
+        type: 'MOA',
+        rarity: 'common',
+        polarity: 'penjaga',
+        effects: {},
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 2,
+        description() { return `Auto-hacks consoles over ${12 - (2 * this.currRank)}s. ${5 * (this.currRank + 1)}% chance to mind control basic robotic enemies and turrets in 30m for ${2 + 2 * (this.currRank + 1)}s after Hacking.` }
+    },
+    {
         abrev: 'g0',
         name: 'Self Destruct',
         img: require('../assets/modimages/self-destruct.jpg'),
@@ -890,7 +916,7 @@ const companionMods = [
         abrev: 'g4',
         name: 'Shield Charger',
         img: require('../assets/modimages/shield-charger.jpg'),
-        type: 'ROBOTICS',
+        type: 'ROBOTIC',
         rarity: 'rare',
         polarity: 'penjaga',
         effects: { shields: 0.1 },
@@ -911,6 +937,19 @@ const companionMods = [
         currRank: 3,
         baseCost: 4,
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Electricity +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
+    },
+    {
+        abrev: 'i9',
+        name: 'Shockwave Actuators',
+        img: require('../assets/modimages/unavail.jpg'),
+        type: 'MOA',
+        rarity: 'common',
+        polarity: 'penjaga',
+        effects: { none: [60, 40, 20, 10] },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 2,
+        description() { return `Readies a shockwave every ${this.effects.none[this.currRank]}s that knocks down nearby enemies.` }
     },
     {
         abrev: 'g5',
@@ -937,6 +976,19 @@ const companionMods = [
         currRank: 5,
         baseCost: 0,
         description() { return `The kubrow cloaks itself and its master to stalk down its prey when they are within ${14 + 2 * this.currRank}m.` }
+    },
+    {
+        abrev: 'j0',
+        name: 'Stasis Field',
+        img: require('../assets/modimages/unavail.jpg'),
+        type: 'MOA',
+        rarity: 'common',
+        polarity: 'penjaga',
+        effects: {},
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 4,
+        description() { return `Creates a stasis field for ${5 * (this.currRank + 1)}s. While inside the field, all enemy projectiles move ${15 * (this.currRank + 1)}% slower and deal ${10 * (this.currRank + 1)}% less Damage.` }
     },
     {
         abrev: 'g7',
@@ -1075,6 +1127,19 @@ const companionMods = [
         description() { return `Djinn will attack the first visible enemy within ${35 + 5 * this.currRank}m.` }
     },
     {
+        abrev: 'i8',
+        name: 'Tractor Beam',
+        img: require('../assets/modimages/unavail.jpg'),
+        type: 'MOA',
+        rarity: 'common',
+        polarity: 'penjaga',
+        effects: {},
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 2,
+        description() { return `+${25 * (this.currRank + 1)}% Aim Glide Duration -${12.5 * (this.currRank + 1)}% Gravity` }
+    },
+    {
         abrev: 'h7',
         name: 'Trample',
         img: require('../assets/modimages/trample.jpg'),
@@ -1152,7 +1217,20 @@ const companionMods = [
         currRank: 5,
         baseCost: 0,
         description() { return `Sentinel will attack first visible enemy within ${17.5 + 2.5 * this.currRank}m.` }
-    }
+    },
+    {
+        abrev: 'j2',
+        name: 'Whiplash Mine',
+        img: require('../assets/modimages/unavail.jpg'),
+        type: 'MOA',
+        rarity: 'common',
+        polarity: 'penjaga',
+        effects: { none: [[1, 2, 3, 3], [20, 40, 60, 60]] },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 2,
+        description() { return `Deplys a mine that tethers all enemies in ${5 * (this.currRank +1)}m. After 3s, all enemies still in range get pulled to the mine.` }
+    },
 ]
 
 export default companionMods;
