@@ -8,7 +8,7 @@ export class ItemPicker extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: '',
+            title: props.title,
             items: [],
             displayItems: [],
             picked: false
@@ -20,7 +20,6 @@ export class ItemPicker extends Component {
         this.setState({
             items: items,
             displayItems: items,
-            title: this.props.title
         });
     }
 

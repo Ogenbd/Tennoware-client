@@ -3,6 +3,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import { Link } from 'react-router-dom';
 import './BuildList.css';
 
+import apiUrl from '../../apiUrl';
 import Loading from '../loading/Loading';
 
 export class BuildList extends Component {
@@ -41,7 +42,7 @@ export class BuildList extends Component {
 
     requestBuilds = () => {
         // fix url
-        fetch('http://192.168.1.114:50000/getbuilds', {
+        fetch(`${apiUrl}/getbuilds`, {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ itemName: this.props.match.params.id })

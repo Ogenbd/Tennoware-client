@@ -61,9 +61,10 @@ body {
 .articles {
     display: flex;
     flex-direction: column;
+    align-items: center;
     /* flex-wrap: wrap; */
     padding: 15px;
-    /* width: 95%; */
+    width: 95%;
     /* margin-top */
     color: white;
 }
@@ -95,6 +96,26 @@ body {
     background-color: rgba(0, 0, 0, 0.7);
     box-shadow: 0 -10px 15px 3px rgba(0, 0, 0, 0.7);
     /* max-width: 700px; */
+}
+
+.tennoware-updates {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 700px;
+    padding: 10px;
+}
+
+.update-content {
+    width: 100%;
+    /* max-width: 400px; */
+}
+
+.reddit-link {
+    color: rgb(255, 249, 160);
+    text-decoration: underline;
+    font-weight: 600;
 }
 
 @media screen and (max-width: 450px) {

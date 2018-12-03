@@ -1,7 +1,6 @@
-const secondaryWeapons = [
+const secondaryWeaponStats = [
     {
         name: 'ACRID',
-        img: require('../assets/itemimages/acrid.png'),
         mastery: 7,
         type: [
             'PISTOL', 'ACRID'
@@ -33,7 +32,6 @@ const secondaryWeapons = [
     },
     {
         name: 'AFURIS',
-        img: require('../assets/itemimages/afuris.png'),
         mastery: 4,
         type: [
             'PISTOL'
@@ -75,7 +73,6 @@ const secondaryWeapons = [
     },
     {
         name: 'AKBOLTO',
-        img: require('../assets/itemimages/akbolto.png'),
         mastery: 9,
         type: [
             'PISTOL'
@@ -113,7 +110,6 @@ const secondaryWeapons = [
     },
     {
         name: 'AKBOLTO PRIME',
-        img: require('../assets/itemimages/akbolto-prime.png'),
         mastery: 13,
         type: [
             'PISTOL'
@@ -158,7 +154,6 @@ const secondaryWeapons = [
     },
     {
         name: 'AKBRONCO',
-        img: require('../assets/itemimages/akbronco.png'),
         mastery: 2,
         type: [
             'PISTOL'
@@ -203,7 +198,6 @@ const secondaryWeapons = [
     },
     {
         name: 'AKBRONCO PRIME',
-        img: require('../assets/itemimages/akbronco-prime.png'),
         mastery: 10,
         type: [
             'PISTOL'
@@ -249,7 +243,6 @@ const secondaryWeapons = [
     },
     {
         name: 'AKJAGARA',
-        img: require('../assets/itemimages/akjagara.png'),
         mastery: 8,
         type: [
             'PISTOL'
@@ -293,7 +286,6 @@ const secondaryWeapons = [
     },
     {
         name: 'AKLATO',
-        img: require('../assets/itemimages/aklato.png'),
         mastery: 3,
         type: [
             'PISTOL'
@@ -333,7 +325,6 @@ const secondaryWeapons = [
     },
     {
         name: 'AKLEX',
-        img: require('../assets/itemimages/aklex.png'),
         mastery: 4,
         type: [
             'PISTOL'
@@ -373,7 +364,6 @@ const secondaryWeapons = [
     },
     {
         name: 'AKLEX PRIME',
-        img: require('../assets/itemimages/aklex-prime.png'),
         mastery: 15,
         type: [
             'PISTOL'
@@ -413,7 +403,6 @@ const secondaryWeapons = [
     },
     {
         name: 'AKMAGNUS',
-        img: require('../assets/itemimages/akmagnus.png'),
         mastery: 12,
         type: [
             'PISTOL'
@@ -452,7 +441,6 @@ const secondaryWeapons = [
     },
     {
         name: 'AKSOMATI',
-        img: require('../assets/itemimages/aksomati.png'),
         mastery: 9,
         type: [
             'PISTOL'
@@ -495,7 +483,6 @@ const secondaryWeapons = [
     },
     {
         name: 'AKSTILETTO',
-        img: require('../assets/itemimages/akstiletto.png'),
         mastery: 8,
         type: [
             'PISTOL'
@@ -537,7 +524,6 @@ const secondaryWeapons = [
     },
     {
         name: 'AKSTILETTO PRIME',
-        img: require('../assets/itemimages/akstiletto-prime.png'),
         mastery: 10,
         type: [
             'PISTOL'
@@ -580,7 +566,6 @@ const secondaryWeapons = [
     },
     {
         name: 'AKVASTO',
-        img: require('../assets/itemimages/akvasto.png'),
         mastery: 8,
         type: [
             'PISTOL'
@@ -620,7 +605,6 @@ const secondaryWeapons = [
     },
     {
         name: 'AKVASTO PRIME',
-        img: require('../assets/itemimages/akvasto-prime.png'),
         mastery: 12,
         type: [
             'PISTOL'
@@ -660,7 +644,6 @@ const secondaryWeapons = [
     },
     {
         name: 'AKZANI',
-        img: require('../assets/itemimages/akzani.png'),
         mastery: 4,
         type: [
             'PISTOL'
@@ -702,7 +685,6 @@ const secondaryWeapons = [
     },
     {
         name: 'ANGSTRUM',
-        img: require('../assets/itemimages/angstrum.png'),
         mastery: 4,
         type: [
             'PISTOL',
@@ -774,7 +756,6 @@ const secondaryWeapons = [
     },
     {
         name: 'ARCA SCISCO',
-        img: require('../assets/itemimages/arca-scisco.png'),
         mastery: 10,
         type: [
             'PISTOL'
@@ -813,7 +794,6 @@ const secondaryWeapons = [
     },
     {
         name: 'ATOMOS',
-        img: require('../assets/itemimages/atomos.png'),
         mastery: 5,
         type: [
             'PISTOL'
@@ -848,7 +828,6 @@ const secondaryWeapons = [
     },
     {
         name: 'AZIMA',
-        img: require('../assets/itemimages/azima.png'),
         mastery: 6,
         type: [
             'PISTOL'
@@ -891,7 +870,6 @@ const secondaryWeapons = [
     },
     {
         name: 'BALLISTICA',
-        img: require('../assets/itemimages/ballistica.png'),
         mastery: 2,
         type: [
             'PISTOL'
@@ -958,7 +936,6 @@ const secondaryWeapons = [
     },
     {
         name: 'BALLISTICA PRIME',
-        img: require('../assets/itemimages/ballistica-prime.png'),
         mastery: 14,
         type: [
             'PISTOL'
@@ -1028,7 +1005,6 @@ const secondaryWeapons = [
     },
     {
         name: 'BOLTO',
-        img: require('../assets/itemimages/bolto.png'),
         mastery: 7,
         type: [
             'PISTOL',
@@ -1067,7 +1043,6 @@ const secondaryWeapons = [
     },
     {
         name: 'BRAKK',
-        img: require('../assets/itemimages/brakk.png'),
         mastery: 6,
         type: [
             'PISTOL'
@@ -1114,7 +1089,6 @@ const secondaryWeapons = [
     },
     {
         name: 'BRONCO',
-        img: require('../assets/itemimages/bronco.png'),
         mastery: 0,
         type: [
             'PISTOL'
@@ -1157,7 +1131,6 @@ const secondaryWeapons = [
     },
     {
         name: 'BRONCO PRIME',
-        img: require('../assets/itemimages/bronco-prime.png'),
         mastery: 4,
         type: [
             'PISTOL'
@@ -1200,7 +1173,6 @@ const secondaryWeapons = [
     },
     {
         name: 'CASTANAS',
-        img: require('../assets/itemimages/castanas.png'),
         mastery: 3,
         type: [
             'PISTOL',
@@ -1236,7 +1208,6 @@ const secondaryWeapons = [
     },
     {
         name: 'CESTRA',
-        img: require('../assets/itemimages/cestra.png'),
         mastery: 4,
         type: [
             'PISTOL'
@@ -1272,7 +1243,6 @@ const secondaryWeapons = [
     },
     {
         name: 'CYCRON',
-        img: require('../assets/itemimages/cycron.png'),
         mastery: 8,
         type: [
             'PISTOL',
@@ -1317,7 +1287,6 @@ const secondaryWeapons = [
     },
     {
         name: 'DESPAIR',
-        img: require('../assets/itemimages/despair.png'),
         mastery: 4,
         type: [
             'PISTOL',
@@ -1362,7 +1331,6 @@ const secondaryWeapons = [
     },
     {
         name: 'DETRON',
-        img: require('../assets/itemimages/detron.png'),
         mastery: 6,
         type: [
             'PISTOL',
@@ -1398,7 +1366,6 @@ const secondaryWeapons = [
     },
     {
         name: 'DEX FURIS',
-        img: require('../assets/itemimages/dex-furis.png'),
         mastery: 10,
         type: [
             'PISTOL'
@@ -1439,8 +1406,50 @@ const secondaryWeapons = [
         ]
     },
     {
+        name: 'DEX PIXIA',
+        mastery: 0,
+        type: [
+            'PISTOL',
+        ],
+        polarities: [
+            'madurai',
+            'madurai',
+            'naramon'
+        ],
+        exalted: true,
+        noise: 'Alarming',
+        reload: 0.3,
+        magSize: 60,
+        maxAmmo: 210,
+        modes: [
+            {
+                trigger: 'Auto',
+                fireRate: 5.83,
+                accuracy: 23,
+                punchThrough: 0,
+                critChance: 0.1,
+                critMult: 2,
+                status: 0.25,
+                damage: 160,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.1
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.8
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.1
+                    }
+                ]
+            }
+        ]
+    },
+    {
         name: 'DUAL CESTRA',
-        img: require('../assets/itemimages/dual-cestra.png'),
         mastery: 7,
         type: [
             'PISTOL'
@@ -1478,7 +1487,6 @@ const secondaryWeapons = [
     },
     {
         name: 'DUAL TOXOCYST',
-        img: require('../assets/itemimages/dual-toxocyst.png'),
         mastery: 11,
         type: [
             'PISTOL'
@@ -1518,7 +1526,6 @@ const secondaryWeapons = [
     },
     {
         name: 'EMBOLIST',
-        img: require('../assets/itemimages/embolist.png'),
         mastery: 9,
         type: [
             'PISTOL',
@@ -1556,7 +1563,6 @@ const secondaryWeapons = [
     },
     {
         name: 'EUPHONA PRIME',
-        img: require('../assets/itemimages/euphona-prime.png'),
         mastery: 14,
         type: [
             'PISTOL'
@@ -1629,7 +1635,6 @@ const secondaryWeapons = [
     },
     {
         name: 'FURIS',
-        img: require('../assets/itemimages/furis.png'),
         mastery: 2,
         type: [
             'PISTOL',
@@ -1672,7 +1677,6 @@ const secondaryWeapons = [
     },
     {
         name: 'FUSILAI',
-        img: require('../assets/itemimages/fusilai.png'),
         mastery: 7,
         type: [
             'PISTOL',
@@ -1735,7 +1739,6 @@ const secondaryWeapons = [
     },
     {
         name: 'GAMMACOR',
-        img: require('../assets/itemimages/gammacor.png'),
         mastery: 2,
         type: [
             'PISTOL',
@@ -1772,7 +1775,6 @@ const secondaryWeapons = [
     },
     {
         name: 'HIKOU',
-        img: require('../assets/itemimages/hikou.png'),
         mastery: 2,
         type: [
             'PISTOL',
@@ -1816,7 +1818,6 @@ const secondaryWeapons = [
     },
     {
         name: 'HIKOU PRIME',
-        img: require('../assets/itemimages/hikou-prime.png'),
         mastery: 4,
         type: [
             'PISTOL',
@@ -1860,7 +1861,6 @@ const secondaryWeapons = [
     },
     {
         name: 'HYSTRIX',
-        img: require('../assets/itemimages/hystrix.png'),
         mastery: 7,
         type: [
             'PISTOL'
@@ -1928,7 +1928,6 @@ const secondaryWeapons = [
     },
     {
         name: 'KNELL',
-        img: require('../assets/itemimages/knell.png'),
         mastery: 10,
         type: [
             'PISTOL'
@@ -1968,7 +1967,6 @@ const secondaryWeapons = [
     },
     {
         name: 'KOHMAK',
-        img: require('../assets/itemimages/kohmak.png'),
         mastery: 5,
         type: [
             'PISTOL'
@@ -2039,7 +2037,6 @@ const secondaryWeapons = [
     },
     {
         name: 'KRAKEN',
-        img: require('../assets/itemimages/kraken.png'),
         mastery: 0,
         type: [
             'PISTOL'
@@ -2080,7 +2077,6 @@ const secondaryWeapons = [
     },
     {
         name: 'KULSTAR',
-        img: require('../assets/itemimages/kulstar.png'),
         mastery: 5,
         type: [
             'PISTOL',
@@ -2150,7 +2146,6 @@ const secondaryWeapons = [
     },
     {
         name: 'KUNAI',
-        img: require('../assets/itemimages/kunai.png'),
         mastery: 2,
         type: [
             'PISTOL',
@@ -2195,7 +2190,6 @@ const secondaryWeapons = [
     },
     {
         name: 'LATO',
-        img: require('../assets/itemimages/lato.png'),
         mastery: 0,
         type: [
             'PISTOL'
@@ -2235,7 +2229,6 @@ const secondaryWeapons = [
     },
     {
         name: 'LATO PRIME',
-        img: require('../assets/itemimages/lato-prime.png'),
         mastery: 14,
         type: [
             'PISTOL'
@@ -2278,7 +2271,6 @@ const secondaryWeapons = [
     },
     {
         name: 'LATO VANDAL',
-        img: require('../assets/itemimages/lato-vandal.png'),
         mastery: 7,
         type: [
             'PISTOL'
@@ -2320,7 +2312,6 @@ const secondaryWeapons = [
     },
     {
         name: 'LEX',
-        img: require('../assets/itemimages/lex.png'),
         mastery: 3,
         type: [
             'PISTOL'
@@ -2362,7 +2353,6 @@ const secondaryWeapons = [
     },
     {
         name: 'LEX PRIME',
-        img: require('../assets/itemimages/lex-prime.png'),
         mastery: 8,
         type: [
             'PISTOL'
@@ -2404,7 +2394,6 @@ const secondaryWeapons = [
     },
     {
         name: 'MAGNUS',
-        img: require('../assets/itemimages/magnus.png'),
         mastery: 10,
         type: [
             'PISTOL'
@@ -2450,7 +2439,6 @@ const secondaryWeapons = [
     },
     {
         name: 'MARA DETRON',
-        img: require('../assets/itemimages/mara-detron.png'),
         mastery: 9,
         type: [
             'PISTOL',
@@ -2485,7 +2473,6 @@ const secondaryWeapons = [
     },
     {
         name: 'MARELOK',
-        img: require('../assets/itemimages/marelok.png'),
         mastery: 7,
         type: [
             'PISTOL',
@@ -2527,7 +2514,6 @@ const secondaryWeapons = [
     },
     {
         name: 'MK1-FURIS',
-        img: require('../assets/itemimages/mk1-furis.png'),
         mastery: 0,
         type: [
             'PISTOL'
@@ -2565,7 +2551,6 @@ const secondaryWeapons = [
     },
     {
         name: 'MK1-KUNAI',
-        img: require('../assets/itemimages/mk1-kunai.png'),
         mastery: 0,
         type: [
             'PISTOL',
@@ -2609,7 +2594,6 @@ const secondaryWeapons = [
     },
     {
         name: 'NUKOR',
-        img: require('../assets/itemimages/nukor.png'),
         mastery: 4,
         type: [
             'PISTOL',
@@ -2644,7 +2628,6 @@ const secondaryWeapons = [
     },
     {
         name: 'OCUCOR',
-        img: require('../assets/itemimages/ocucor.png'),
         mastery: 8,
         type: [
             'PISTOL',
@@ -2683,7 +2666,6 @@ const secondaryWeapons = [
     },
     {
         name: 'PANDERO',
-        img: require('../assets/itemimages/pandero.png'),
         mastery: 8,
         type: [
             'PISTOL'
@@ -2723,7 +2705,6 @@ const secondaryWeapons = [
     },
     {
         name: 'POX',
-        img: require('../assets/itemimages/pox.png'),
         mastery: 9,
         type: [
             'PISTOL',
@@ -2759,7 +2740,6 @@ const secondaryWeapons = [
     },
     {
         name: 'PRISMA ANGSTRUM',
-        img: require('../assets/itemimages/prisma-angstrum.png'),
         mastery: 8,
         type: [
             'PISTOL',
@@ -2831,7 +2811,6 @@ const secondaryWeapons = [
     },
     {
         name: 'PRISMA TWIN GREMLINS',
-        img: require('../assets/itemimages/prisma-twin-gremlins.png'),
         mastery: 11,
         type: [
             'PISTOL'
@@ -2873,7 +2852,6 @@ const secondaryWeapons = [
     },
     {
         name: 'PYRANA',
-        img: require('../assets/itemimages/pyrana.png'),
         mastery: 12,
         type: [
             'PISTOL'
@@ -2915,7 +2893,6 @@ const secondaryWeapons = [
     },
     {
         name: 'PYRANA PRIME',
-        img: require('../assets/itemimages/pyrana-prime.png'),
         mastery: 13,
         type: [
             'PISTOL'
@@ -2961,7 +2938,6 @@ const secondaryWeapons = [
     },
     {
         name: 'RAKTA BALLISTICA',
-        img: require('../assets/itemimages/rakta-ballistica.png'),
         mastery: 6,
         type: [
             'PISTOL'
@@ -3029,8 +3005,50 @@ const secondaryWeapons = [
         ]
     },
     {
+        name: 'REGULATORS',
+        mastery: 0,
+        type: [
+            'PISTOL',
+        ],
+        polarities: [
+            'madurai',
+            'naramon',
+            'naramon'
+        ],
+        exalted: true,
+        noise: 'Alarming',
+        reload: 1.8,
+        magSize: 100,
+        maxAmmo: 210,
+        modes: [
+            {
+                trigger: 'Auto',
+                fireRate: 14.8,
+                accuracy: 100,
+                punchThrough: 0,
+                critChance: 0.25,
+                critMult: 3,
+                status: 0.10,
+                damage: 50,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.5
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.25
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.25
+                    }
+                ]
+            }
+        ]
+    },
+    {
         name: 'SANCTI CASTANAS',
-        img: require('../assets/itemimages/sancti-castanas.png'),
         mastery: 10,
         type: [
             'PISTOL',
@@ -3071,7 +3089,6 @@ const secondaryWeapons = [
     },
     {
         name: 'SECURA DUAL CESTRA',
-        img: require('../assets/itemimages/secura-dual-cestra.png'),
         mastery: 10,
         type: [
             'PISTOL'
@@ -3110,7 +3127,6 @@ const secondaryWeapons = [
     },
     {
         name: 'SEER',
-        img: require('../assets/itemimages/seer.png'),
         mastery: 0,
         type: [
             'PISTOL'
@@ -3150,7 +3166,6 @@ const secondaryWeapons = [
     },
     {
         name: 'SICARUS',
-        img: require('../assets/itemimages/sicarus.png'),
         mastery: 3,
         type: [
             'PISTOL'
@@ -3192,7 +3207,6 @@ const secondaryWeapons = [
     },
     {
         name: 'SICARUS PRIME',
-        img: require('../assets/itemimages/sicarus-prime.png'),
         mastery: 14,
         type: [
             'PISTOL'
@@ -3235,7 +3249,6 @@ const secondaryWeapons = [
     },
     {
         name: 'SONICOR',
-        img: require('../assets/itemimages/sonicor.png'),
         mastery: 2,
         type: [
             'PISTOL'
@@ -3289,7 +3302,6 @@ const secondaryWeapons = [
     },
     {
         name: 'SPECTRA',
-        img: require('../assets/itemimages/spectra.png'),
         mastery: 4,
         type: [
             'PISTOL',
@@ -3329,7 +3341,6 @@ const secondaryWeapons = [
     },
     {
         name: 'SPIRA',
-        img: require('../assets/itemimages/spira.png'),
         mastery: 8,
         type: [
             'PISTOL',
@@ -3373,7 +3384,6 @@ const secondaryWeapons = [
     },
     {
         name: 'SPIRA PRIME',
-        img: require('../assets/itemimages/spira-prime.png'),
         mastery: 10,
         type: [
             'PISTOL'
@@ -3416,7 +3426,6 @@ const secondaryWeapons = [
     },
     {
         name: 'STATICOR',
-        img: require('../assets/itemimages/staticor.png'),
         mastery: 10,
         type: [
             'PISTOL',
@@ -3470,7 +3479,6 @@ const secondaryWeapons = [
     },
     {
         name: 'STUBBA',
-        img: require('../assets/itemimages/stubba.png'),
         mastery: 7,
         type: [
             'PISTOL'
@@ -3510,7 +3518,6 @@ const secondaryWeapons = [
     },
     {
         name: 'STUG',
-        img: require('../assets/itemimages/stug.png'),
         mastery: 2,
         type: [
             'PISTOL'
@@ -3561,7 +3568,6 @@ const secondaryWeapons = [
     },
     {
         name: 'SYNOID GAMMACOR',
-        img: require('../assets/itemimages/synoid-gammacor.png'),
         mastery: 7,
         type: [
             'PISTOL',
@@ -3599,7 +3605,6 @@ const secondaryWeapons = [
     },
     {
         name: 'TALONS',
-        img: require('../assets/itemimages/talons.png'),
         mastery: 8,
         type: [
             'PISTOL',
@@ -3635,7 +3640,6 @@ const secondaryWeapons = [
     },
     {
         name: 'TELOS AKBOLTO',
-        img: require('../assets/itemimages/telos-akbolto.png'),
         mastery: 11,
         type: [
             'PISTOL'
@@ -3674,7 +3678,6 @@ const secondaryWeapons = [
     },
     {
         name: 'TWIN GRAKATAS',
-        img: require('../assets/itemimages/twin-grakatas.png'),
         mastery: 9,
         type: [
             'PISTOL'
@@ -3718,7 +3721,6 @@ const secondaryWeapons = [
     },
     {
         name: 'TWIN GREMLINS',
-        img: require('../assets/itemimages/twin-gremlins.png'),
         mastery: 5,
         type: [
             'PISTOL'
@@ -3760,7 +3762,6 @@ const secondaryWeapons = [
     },
     {
         name: 'TWIN KOHMAK',
-        img: require('../assets/itemimages/twin-kohmak.png'),
         mastery: 10,
         type: [
             'PISTOL'
@@ -3834,7 +3835,6 @@ const secondaryWeapons = [
     },
     {
         name: 'TWIN ROGGA',
-        img: require('../assets/itemimages/twin-rogga.png'),
         mastery: 9,
         type: [
             'PISTOL'
@@ -3880,7 +3880,6 @@ const secondaryWeapons = [
     },
     {
         name: 'TWIN VIPERS',
-        img: require('../assets/itemimages/twin-vipers.png'),
         mastery: 5,
         type: [
             'PISTOL'
@@ -3922,7 +3921,6 @@ const secondaryWeapons = [
     },
     {
         name: 'TWIN VIPERS WRAITH',
-        img: require('../assets/itemimages/twin-vipers-wraith.png'),
         mastery: 7,
         type: [
             'PISTOL'
@@ -3965,7 +3963,6 @@ const secondaryWeapons = [
     },
     {
         name: 'TYSIS',
-        img: require('../assets/itemimages/tysis.png'),
         mastery: 9,
         type: [
             'PISTOL'
@@ -3997,7 +3994,6 @@ const secondaryWeapons = [
     },
     {
         name: 'VASTO',
-        img: require('../assets/itemimages/vasto.png'),
         mastery: 4,
         type: [
             'PISTOL'
@@ -4039,7 +4035,6 @@ const secondaryWeapons = [
     },
     {
         name: 'VASTO PRIME',
-        img: require('../assets/itemimages/vasto-prime.png'),
         mastery: 10,
         type: [
             'PISTOL'
@@ -4081,7 +4076,6 @@ const secondaryWeapons = [
     },
     {
         name: 'VAYKOR MARELOK',
-        img: require('../assets/itemimages/vaykor-marelok.png'),
         mastery: 10,
         type: [
             'PISTOL',
@@ -4124,7 +4118,6 @@ const secondaryWeapons = [
     },
     {
         name: 'VIPER',
-        img: require('../assets/itemimages/viper.png'),
         mastery: 4,
         type: [
             'PISTOL',
@@ -4167,7 +4160,6 @@ const secondaryWeapons = [
     },
     {
         name: 'VIPER WRAITH',
-        img: require('../assets/itemimages/viper-wraith.png'),
         mastery: 4,
         type: [
             'PISTOL',
@@ -4210,7 +4202,6 @@ const secondaryWeapons = [
     },
     {
         name: 'ZAKTI',
-        img: require('../assets/itemimages/zakti.png'),
         mastery: 10,
         type: [
             'PISTOL',
@@ -4293,7 +4284,6 @@ const secondaryWeapons = [
     },
     {
         name: 'ZYLOK',
-        img: require('../assets/itemimages/zylok.png'),
         mastery: 6,
         type: [
             'PISTOL'
@@ -4332,4 +4322,4 @@ const secondaryWeapons = [
     }
 ]
 
-export default secondaryWeapons;
+export default secondaryWeaponStats;

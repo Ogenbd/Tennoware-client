@@ -1,7 +1,6 @@
-const beasts = [
+const beastStats = [
     {
         name: 'ADARZA KAVAT',
-        img: require('../assets/itemimages/adarza-kavat.png'),
         type: [
             'KAVAT',
             'ADARZA KAVAT'
@@ -25,7 +24,6 @@ const beasts = [
     },
     {
         name: 'CHESA KUBROW',
-        img: require('../assets/itemimages/chesa-kubrow.png'),
         type: [
             'KUBROW',
             'CHESA KUBROW',
@@ -49,7 +47,6 @@ const beasts = [
     },
     {
         name: 'HELMINTH CHARGER',
-        img: require('../assets/itemimages/helminth-charger.png'),
         type: [
             'HELMINTH'
         ],
@@ -76,7 +73,6 @@ const beasts = [
     },
     {
         name: 'HURAS KUBROW',
-        img: require('../assets/itemimages/huras-kubrow.png'),
         type: [
             'KUBROW',
             'HURAS KUBROW',
@@ -100,7 +96,6 @@ const beasts = [
     },
     {
         name: 'RAKSA KUBROW',
-        img: require('../assets/itemimages/raksa-kubrow.png'),
         type: [
             'KUBROW',
             'RAKSA KUBROW',
@@ -124,7 +119,6 @@ const beasts = [
     },
     {
         name: 'SAHASA KUBROW',
-        img: require('../assets/itemimages/sahasa-kubrow.png'),
         type: [
             'KUBROW',
             'SAHASA KUBROW',
@@ -148,7 +142,6 @@ const beasts = [
     },
     {
         name: 'SMEETA KAVAT',
-        img: require('../assets/itemimages/smeeta-kavat.png'),
         type: [
             'KAVAT',
             'SMEETA KAVAT'
@@ -172,7 +165,6 @@ const beasts = [
     },
     {
         name: 'SUNIKA KUBROW',
-        img: require('../assets/itemimages/sunika-kubrow.png'),
         type: [
             'KUBROW',
             'SUNIKA KUBROW',
@@ -196,7 +188,6 @@ const beasts = [
     },
     {
         name: 'VENARI',
-        img: require('../assets/itemimages/venari.png'),
         type: [
             'KAVAT',
         ],
@@ -219,4 +210,4 @@ const beasts = [
     },
 ]
 
-export default beasts;
+export default beastStats;

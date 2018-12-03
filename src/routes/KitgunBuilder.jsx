@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import Loadable from 'react-loadable';
 
+import apiUrl from '../apiUrl';
 import Loading from '../components/loading/Loading';
-
 
 const EightSlotModding = Loadable({
     loader: () => import('../components/modding/EightSlotModding'),
     loading: Loading,
 });
-
 
 class KitgunBuilder extends Component {
     constructor(props) {
@@ -53,7 +52,7 @@ class KitgunBuilder extends Component {
     componentDidUpdate(prevProps) {
         if (this.props.match.params.build && !prevProps.user && this.props.user) {
             let token = localStorage.getItem('jwt');
-            fetch('http://192.168.1.114:50000/getbuild', {
+            fetch(`${apiUrl}/getbuild`, {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` },
                 body: JSON.stringify({ buildId: this.props.match.params.build })
@@ -146,7 +145,7 @@ class KitgunBuilder extends Component {
     confirmBuild = () => {
         // fix url
         let token = localStorage.getItem('jwt');
-        fetch('http://192.168.1.114:50000/getbuild', {
+        fetch(`${apiUrl}/getbuild`, {
             method: 'post',
             headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` },
             body: JSON.stringify({ buildId: this.props.match.params.build })

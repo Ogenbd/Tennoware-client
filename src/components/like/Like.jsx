@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-// import './Like.css';
+import './Like.css';
+
+import apiUrl from '../../apiUrl';
 
 export class Like extends Component {
     constructor(props) {
@@ -66,9 +68,9 @@ export class Like extends Component {
                 likeDispatched: true
             }, () => {
                 let comp = this.state.liked ? 'like' : 'unlike';
-                // fix url
                 let token = localStorage.getItem('jwt');
-                fetch(`http://192.168.1.114:50000/${comp}`, {
+                // fix url
+                fetch(`${apiUrl}/${comp}`, {
                     method: 'post',
                     headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` },
                     body: JSON.stringify({
@@ -107,7 +109,7 @@ export class Like extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className={"activatable " + (this.state.liked ? "interactable-active" : "interactable-inactive")} onClick={this.likeButtonPress}><p className="interactable-p">Like</p></div>
+                <div className={"activatable like-button " + (this.state.liked ? "like-active" : "interactable-inactive")} onClick={this.likeButtonPress}><p className="interactable-p">Like</p></div>
                 <div className={"general-error " + (this.state.error !== null ? 'show-general-error' : 'hide-general-error')}>
                     <div className="general-error-box">
                         <p>{this.state.error}</p>

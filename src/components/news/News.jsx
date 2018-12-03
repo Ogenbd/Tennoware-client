@@ -10,7 +10,7 @@ export class News extends Component {
     this.state = {
       news: [],
       platform: undefined,
-      loading: true
+      loading: false
     }
   }
 
@@ -66,11 +66,11 @@ export class News extends Component {
             }
           </div>
           <div className="articles">
-            <div className="article tennoware-article">
+            <div className="article tennoware-updates">
               <h1>Tennoware Updates</h1>
-              <div>
-                <h3>Initial release!</h3>
-                <p>Please submit bugs here</p>
+              <div className="update-content">
+                <p>Initial release!</p>
+                <p>To submit feedback, feature suggestions, bug reports and general discussion go <a className="reddit-link" href="https://www.reddit.com/r/tennoware">here.</a></p>
               </div>
             </div>
             {this.props.online &&
@@ -82,7 +82,7 @@ export class News extends Component {
                         return (
                           <a key={index} href={item.link} className="article">
                             <img className="article-image" src={item.imageLink} alt="" />
-                            <p className="article-message">{item.message}</p>
+                            <p className="article-message">{item.translations.en}</p>
                           </a>
                         )
                       })}

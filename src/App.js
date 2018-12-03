@@ -29,18 +29,6 @@ class App extends Component {
     window.addEventListener('offline', this.setOffline)
   }
 
-  // autoAuthenticate = () => {
-  //   let token = localStorage.getItem('jwt');
-  //   var decoded = jwt.decode(token, 'a', true);
-  // fetch('http://192.168.1.114:50000/authenticate', {
-  //   method: 'get',
-  //   headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` }
-  // })
-  //   .then(res => res.json())
-  //   .then(res => {
-  //   })
-  // }
-
   setOffline = () => {
     this.setState({
       online: false

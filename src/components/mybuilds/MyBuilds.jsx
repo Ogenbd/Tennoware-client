@@ -4,6 +4,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import '../../general.css';
 import './MyBuilds.css';
 
+import apiUrl from '../../apiUrl';
 import Loading from '../loading/Loading';
 
 export default class MyBuilds extends Component {
@@ -21,7 +22,7 @@ export default class MyBuilds extends Component {
 
     componentDidMount() {
         let token = localStorage.getItem('jwt');
-        fetch('http://192.168.1.114:50000/mybuilds', {
+        fetch(`${apiUrl}/mybuilds`, {
             method: 'get',
             headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` },
         })
@@ -162,7 +163,7 @@ export default class MyBuilds extends Component {
                             <div className="interactable interactable-semi-inactive" onClick={() => { this.navigateToBuild(index) }}><p className="interactable-p">Open</p></div>
                             <div className="interactable interactable-semi-inactive delete-button" onClick={() => { this.handleUnlike(index) }}>
                                 {item.loading
-                                    ? <div className="spinner">
+                                    ? <div className="spinner red-spinner">
                                         <div className="bounce1"></div>
                                         <div className="bounce2"></div>
                                         <div className="bounce3"></div>
@@ -217,7 +218,8 @@ export default class MyBuilds extends Component {
             unlike: false
         });
         let token = localStorage.getItem('jwt');
-        fetch(`http://192.168.1.114:50000/unlike`, {
+        // fetch(`http://192.168.1.114:50000/unlike`, {
+        fetch(`${apiUrl}/unlike`, {
             method: 'post',
             headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` },
             body: JSON.stringify({
@@ -251,7 +253,8 @@ export default class MyBuilds extends Component {
             delete: false,
         });
         let token = localStorage.getItem('jwt');
-        fetch(`http://192.168.1.114:50000/delete`, {
+        // fetch(`http://192.168.1.114:50000/delete`, {
+        fetch(`${apiUrl}/delete`, {
             method: 'post',
             headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` },
             body: JSON.stringify({

@@ -1,0 +1,76 @@
+.build-report {
+    flex-direction: column;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.report-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 380px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 1);
+    border: 1px solid rgba(255, 249, 160, 0.73);
+    color: white;
+    text-align: justify;
+}
+
+.report-error-text {
+    margin-bottom: 10px;
+}
+
+.report-par {
+    padding: 5px 10px 5px 10px;
+    /* width: 90%; */
+    color: white;
+    box-sizing: border-box;
+    /* max-width: 540px; */
+    background-color: rgba(0, 0, 0, 1);
+    border: 1px solid rgba(255, 249, 160, 0.73);
+    margin-bottom: 10px;
+}
+
+.report-par p {
+    margin: 5px 0;
+    text-align: justify;
+    line-height: 15px;
+}
+
+.reasons {
+    padding: 10px;
+    border: 1px solid rgba(255, 249, 160, 0.73);
+    background-color: rgba(0, 0, 0, 0.7);
+    margin-bottom: 10px;
+}
+
+.submit-report-button {
+    width: 86px;
+}
+
+.report-button {
+    border: solid 1px rgba(255, 0, 0, 0.3);
+}
+
+.report-button:after {
+    border-bottom: solid 2px red;
+}
+
+.report-button p {
+    color: red;
+}
+
+@media screen and (min-width: 1203px) and (hover: hover) {
+    .report-button:hover {
+        color: red;
+        box-shadow: inset 0px -17px 15px -11px rgba(255, 0, 0, 0.73);
+        border-color: rgba(255, 0, 0, 0.73);
+        text-shadow: 0px 0px 8px rgba(255, 0, 0, 1);
+    }
+}

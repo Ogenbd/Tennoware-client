@@ -1902,7 +1902,7 @@ const abilities = {
                         {
                             name: 'Instant kill threshold',
                             suffix: '%',
-                            base: 35,
+                            base: 40,
                         },
                         {
                             name: 'Dread heart charge damage/s',
@@ -1958,7 +1958,7 @@ const abilities = {
                         {
                             name: 'Alter heal Radius',
                             suffix: 'm',
-                            base: 6
+                            base: 8
                         },
                     ],
                     efficiency: [

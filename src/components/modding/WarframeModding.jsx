@@ -10,6 +10,7 @@ import LinkGenerator from '../linkgenerator/LinkGenerator';
 import BuildSaver from '../buildsaver/BuildSaver';
 import BuildList from '../buildlist/BuildList';
 import Like from '../like/Like';
+import Report from '../report/Report';
 import BuildDescription from '../builddescription/BuildDescription';
 import ModPicker from '../modpicker/ModPicker';
 
@@ -97,7 +98,8 @@ export class EightSlotModding extends Component {
         });
         let rank = parseInt(`${modAbrev[2]}${modAbrev[3]}`, 10);
         if (foundMod === undefined || typeof rank !== 'number' || rank < 0 || rank > foundMod.maxRank) {
-            this.props.redirectToVoid();
+            return {};
+            // this.props.redirectToVoid();
         } else {
             foundMod.currRank = rank;
             chosenIndexs.push(foundMod.index);
@@ -711,16 +713,16 @@ export class EightSlotModding extends Component {
                             {this.props.metaInfo.BuildDesc && this.props.metaInfo.BuildDesc.length > 0 &&
                                 <BuildDescription metaInfo={this.props.metaInfo} />
                             }
-                            {this.props.online && this.props.user &&
+                            {this.props.online && this.props.user && chosenIndexs.length > 0 &&
                                 <BuildSaver orokin={orokin} formaCount={formaCount} user={this.props.user} type={this.props.type} getBuildStr={this.convertBuildToString} metaInfo={this.props.metaInfo} />
                             }
                             <LinkGenerator type={this.props.type} getBuildStr={this.convertBuildToString} match={this.props.match} />
                             {this.props.online && this.props.user && this.props.match.params.build && !this.props.metaInfo.Owner &&
                                 <Like user={this.props.user} match={this.props.match} metaInfo={this.props.metaInfo} />
                             }
-                            {/* {this.props.online && this.props.match.params.build && !this.props.metaInfo.UserID &&
-                            <div className="interactable interactable-semi-inactive"><p className="interactable-p">Report</p></div>
-                        } */}
+                            {this.props.online && this.props.match.params.build && !this.props.metaInfo.Owner &&
+                                <Report user={this.props.user} match={this.props.match} />
+                            }
                         </div>
                         <div className="aug-container frame-aug-container">
                             <div className="aug-wrapper">

@@ -1,7 +1,6 @@
-const sentinels = [
+const sentinelStats = [
     {
         name: 'CARRIER',
-        img: require('../assets/itemimages/carrier.png'),
         polarities: ['penjaga', 'penjaga', 'penjaga', 'penjaga', 'vazarin'],
         armor: 50,
         health: 200,
@@ -9,7 +8,6 @@ const sentinels = [
     },
     {
         name: 'CARRIER PRIME',
-        img: require('../assets/itemimages/carrier-prime.png'),
         polarities: ['penjaga', 'penjaga', 'penjaga', 'penjaga', 'vazarin', 'madurai'],
         armor: 150,
         health: 400,
@@ -17,7 +15,6 @@ const sentinels = [
     },
     {
         name: 'DETHCUBE',
-        img: require('../assets/itemimages/dethcube.png'),
         polarities: ['penjaga', 'penjaga', 'penjaga', 'penjaga'],
         armor: 50,
         health: 200,
@@ -25,7 +22,6 @@ const sentinels = [
     },
     {
         name: 'DIRIGA',
-        img: require('../assets/itemimages/diriga.png'),
         polarities: ['penjaga', 'penjaga', 'penjaga', 'penjaga'],
         armor: 50,
         health: 350,
@@ -33,7 +29,6 @@ const sentinels = [
     },
     {
         name: 'DJINN',
-        img: require('../assets/itemimages/djinn.png'),
         polarities: ['penjaga', 'penjaga', 'penjaga', 'penjaga', 'naramon'],
         armor: 50,
         health: 200,
@@ -41,7 +36,6 @@ const sentinels = [
     },
     {
         name: 'HELIOS',
-        img: require('../assets/itemimages/helios.png'),
         polarities: ['penjaga', 'penjaga', 'penjaga', 'penjaga', 'vazarin'],
         armor: 50,
         health: 200,
@@ -49,7 +43,6 @@ const sentinels = [
     },
     {
         name: 'HELIOS PRIME',
-        img: require('../assets/itemimages/helios-prime.png'),
         polarities: ['penjaga', 'penjaga', 'penjaga', 'penjaga', 'vazarin'],
         armor: 100,
         health: 250,
@@ -57,7 +50,6 @@ const sentinels = [
     },
     {
         name: 'OXYLUS',
-        img: require('../assets/itemimages/oxylus.png'),
         polarities: ['penjaga', 'penjaga', 'penjaga', 'penjaga'],
         armor: 50,
         health: 200,
@@ -65,7 +57,6 @@ const sentinels = [
     },
     {
         name: 'PRISMA SHADE',
-        img: require('../assets/itemimages/prisma-shade.png'),
         polarities: ['penjaga', 'penjaga', 'penjaga', 'penjaga', 'naramon'],
         armor: 75,
         health: 350,
@@ -73,7 +64,6 @@ const sentinels = [
     },
     {
         name: 'SHADE',
-        img: require('../assets/itemimages/shade.png'),
         polarities: ['penjaga', 'penjaga', 'penjaga', 'penjaga'],
         armor: 50,
         health: 350,
@@ -81,7 +71,6 @@ const sentinels = [
     },
     {
         name: 'TAXON',
-        img: require('../assets/itemimages/taxon.png'),
         polarities: ['penjaga', 'penjaga', 'penjaga', 'penjaga'],
         armor: 50,
         health: 200,
@@ -89,7 +78,6 @@ const sentinels = [
     },
     {
         name: 'WYRM',
-        img: require('../assets/itemimages/wyrm.png'),
         polarities: ['penjaga', 'penjaga', 'penjaga', 'penjaga'],
         armor: 50,
         health: 200,
@@ -97,7 +85,6 @@ const sentinels = [
     },
     {
         name: 'WYRM PRIME',
-        img: require('../assets/itemimages/wyrm-prime.png'),
         polarities: ['penjaga', 'penjaga', 'penjaga', 'penjaga'],
         armor: 150,
         health: 225,
@@ -105,4 +92,4 @@ const sentinels = [
     }
 ]
 
-export default sentinels;
+export default sentinelStats;

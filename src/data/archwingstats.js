@@ -1,9 +1,8 @@
-import abilities from './archwingabilities'
+import abilities from './archwingabilities';
 
-const itemimages = [
+const archwingStats = [
     {
         name: 'AMESHA',
-        img: require('../assets/itemimages/amesha.png'),
         polarities: ['naramon', 'vazarin', 'madurai'],
         armor: 200,
         energy: 360,
@@ -17,7 +16,6 @@ const itemimages = [
     },
     {
         name: 'ELYTRON',
-        img: require('../assets/itemimages/elytron.png'),
         polarities: ['madurai', 'madurai'],
         armor: 150,
         energy: 225,
@@ -31,7 +29,6 @@ const itemimages = [
     },
     {
         name: 'ITZAL',
-        img: require('../assets/itemimages/itzal.png'),
         polarities: ['madurai', 'vazarin', 'naramon'],
         armor: 50,
         energy: 360,
@@ -45,7 +42,6 @@ const itemimages = [
     },
     {
         name: 'ODONATA',
-        img: require('../assets/itemimages/odonata.png'),
         polarities: ['madurai', 'vazarin', 'naramon'],
         armor: 100,
         energy: 180,
@@ -59,7 +55,6 @@ const itemimages = [
     },
     {
         name: 'ODONATA PRIME',
-        img: require('../assets/itemimages/odonata-prime.png'),
         polarities: ['madurai', 'vazarin', 'naramon', 'naramon'],
         armor: 150,
         energy: 180,
@@ -73,4 +68,4 @@ const itemimages = [
     },
 ]
 
-export default itemimages;
+export default archwingStats;

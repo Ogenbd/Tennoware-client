@@ -1,9 +1,8 @@
 import abilities from './abilities';
 
-const itemimages = [
+const warframeStats = [
     {
         name: 'ASH',
-        img: require('../assets/itemimages/ash.png'),
         polarities: ['madurai', 'madurai'],
         aura: 'madurai',
         exilus: undefined,
@@ -19,7 +18,6 @@ const itemimages = [
     },
     {
         name: 'ASH PRIME',
-        img: require('../assets/itemimages/ash-prime.png'),
         polarities: ['naramon', 'madurai', 'madurai'],
         aura: 'madurai',
         exilus: undefined,
@@ -35,7 +33,6 @@ const itemimages = [
     },
     {
         name: 'ATLAS',
-        img: require('../assets/itemimages/atlas.png'),
         polarities: ['naramon', 'vazarin', 'madurai'],
         aura: 'madurai',
         exilus: undefined,
@@ -51,7 +48,6 @@ const itemimages = [
     },
     {
         name: 'BANSHEE',
-        img: require('../assets/itemimages/banshee.png'),
         polarities: ['madurai', 'madurai'],
         aura: 'madurai',
         exilus: undefined,
@@ -67,7 +63,6 @@ const itemimages = [
     },
     {
         name: 'BANSHEE PRIME',
-        img: require('../assets/itemimages/banshee-prime.png'),
         polarities: ['naramon', 'madurai', 'madurai'],
         aura: 'madurai',
         exilus: undefined,
@@ -83,7 +78,6 @@ const itemimages = [
     },
     {
         name: 'CHROMA',
-        img: require('../assets/itemimages/chroma.png'),
         polarities: ['naramon', 'madurai'],
         aura: 'madurai',
         exilus: undefined,
@@ -99,7 +93,6 @@ const itemimages = [
     },
     {
         name: 'CHROMA PRIME',
-        img: require('../assets/itemimages/chroma-prime.png'),
         polarities: ['naramon', 'vazarin', 'madurai', 'naramon'],
         aura: 'madurai',
         exilus: undefined,
@@ -115,7 +108,6 @@ const itemimages = [
     },
     {
         name: 'EMBER',
-        img: require('../assets/itemimages/ember.png'),
         polarities: ['naramon', 'naramon'],
         aura: 'madurai',
         exilus: undefined,
@@ -131,7 +123,6 @@ const itemimages = [
     },
     {
         name: 'EMBER PRIME',
-        img: require('../assets/itemimages/ember-prime.png'),
         polarities: ['madurai', 'vazarin'],
         aura: 'madurai',
         exilus: undefined,
@@ -147,7 +138,6 @@ const itemimages = [
     },
     {
         name: 'EQUINOX',
-        img: require('../assets/itemimages/equinox.png'),
         polarities: ['vazarin', 'madurai'],
         aura: 'naramon',
         exilus: undefined,
@@ -163,7 +153,6 @@ const itemimages = [
     },
     {
         name: 'EXCALIBUR',
-        img: require('../assets/itemimages/excalibur.png'),
         polarities: ['vazarin', 'madurai'],
         aura: undefined,
         exilus: undefined,
@@ -179,7 +168,6 @@ const itemimages = [
     },
     {
         name: 'EXCALIBUR PRIME',
-        img: require('../assets/itemimages/excalibur-prime.png'),
         polarities: ['vazarin', 'madurai', 'madurai'],
         aura: 'madurai',
         exilus: undefined,
@@ -195,7 +183,6 @@ const itemimages = [
     },
     {
         name: 'EXCALIBUR UMBRA',
-        img: require('../assets/itemimages/excalibur-umbra.png'),
         polarities: ['madurai', 'umbra', 'umbra', 'umbra'],
         aura: 'madurai',
         exilus: undefined,
@@ -211,7 +198,6 @@ const itemimages = [
     },
     {
         name: 'FROST',
-        img: require('../assets/itemimages/frost.png'),
         polarities: ['naramon', 'vazarin'],
         aura: 'vazarin',
         exilus: undefined,
@@ -227,7 +213,6 @@ const itemimages = [
     },
     {
         name: 'FROST PRIME',
-        img: require('../assets/itemimages/frost-prime.png'),
         polarities: ['naramon', 'vazarin', 'vazarin'],
         aura: 'vazarin',
         exilus: undefined,
@@ -243,7 +228,6 @@ const itemimages = [
     },
     {
         name: 'GARA',
-        img: require('../assets/itemimages/gara.png'),
         polarities: ['madurai', 'madurai'],
         aura: 'vazarin',
         exilus: undefined,
@@ -259,7 +243,6 @@ const itemimages = [
     },
     {
         name: 'GARUDA',
-        img: require('../assets/itemimages/garuda.png'),
         polarities: ['naramon', 'vazarin'],
         aura: 'madurai',
         exilus: undefined,
@@ -275,7 +258,6 @@ const itemimages = [
     },
     {
         name: 'HARROW',
-        img: require('../assets/itemimages/harrow.png'),
         polarities: ['vazarin', 'naramon'],
         aura: 'naramon',
         exilus: undefined,
@@ -291,7 +273,6 @@ const itemimages = [
     },
     {
         name: 'HYDROID',
-        img: require('../assets/itemimages/hydroid.png'),
         polarities: ['madurai', 'naramon'],
         aura: 'naramon',
         exilus: undefined,
@@ -307,7 +288,6 @@ const itemimages = [
     },
     {
         name: 'HYDROID PRIME',
-        img: require('../assets/itemimages/hydroid-prime.png'),
         polarities: ['madurai', 'naramon'],
         aura: 'naramon',
         exilus: undefined,
@@ -323,7 +303,6 @@ const itemimages = [
     },
     {
         name: 'INAROS',
-        img: require('../assets/itemimages/inaros.png'),
         polarities: ['vazarin', 'vazarin'],
         aura: 'naramon',
         exilus: 'naramon',
@@ -339,7 +318,6 @@ const itemimages = [
     },
     {
         name: 'IVARA',
-        img: require('../assets/itemimages/ivara.png'),
         polarities: ['vazarin', 'naramon'],
         aura: 'naramon',
         exilus: undefined,
@@ -355,7 +333,6 @@ const itemimages = [
     },
     {
         name: 'KHORA',
-        img: require('../assets/itemimages/khora.png'),
         polarities: ['madurai', 'naramon'],
         aura: 'vazarin',
         exilus: 'naramon',
@@ -371,7 +348,6 @@ const itemimages = [
     },
     {
         name: 'LIMBO',
-        img: require('../assets/itemimages/limbo.png'),
         polarities: ['madurai', 'madurai'],
         aura: 'naramon',
         exilus: undefined,
@@ -387,7 +363,6 @@ const itemimages = [
     },
     {
         name: 'LIMBO PRIME',
-        img: require('../assets/itemimages/limbo-prime.png'),
         polarities: ['madurai', 'madurai', 'naramon', 'vazarin'],
         aura: 'naramon',
         exilus: undefined,
@@ -403,7 +378,6 @@ const itemimages = [
     },
     {
         name: 'LOKI',
-        img: require('../assets/itemimages/loki.png'),
         polarities: ['vazarin', 'madurai'],
         aura: 'naramon',
         exilus: undefined,
@@ -419,7 +393,6 @@ const itemimages = [
     },
     {
         name: 'LOKI PRIME',
-        img: require('../assets/itemimages/loki-prime.png'),
         polarities: ['vazarin', 'vazarin', 'madurai', 'naramon'],
         aura: 'naramon',
         exilus: undefined,
@@ -435,7 +408,6 @@ const itemimages = [
     },
     {
         name: 'MAG',
-        img: require('../assets/itemimages/mag.png'),
         polarities: ['naramon', 'naramon'],
         aura: 'madurai',
         exilus: undefined,
@@ -451,7 +423,6 @@ const itemimages = [
     },
     {
         name: 'MAG PRIME',
-        img: require('../assets/itemimages/mag-prime.png'),
         polarities: ['naramon', 'naramon', 'madurai'],
         aura: 'madurai',
         exilus: undefined,
@@ -467,7 +438,6 @@ const itemimages = [
     },
     {
         name: 'MESA',
-        img: require('../assets/itemimages/mesa.png'),
         polarities: ['naramon', 'naramon'],
         aura: 'madurai',
         exilus: undefined,
@@ -483,7 +453,6 @@ const itemimages = [
     },
     {
         name: 'MIRAGE',
-        img: require('../assets/itemimages/mirage.png'),
         polarities: ['vazarin', 'madurai'],
         aura: 'naramon',
         exilus: undefined,
@@ -499,7 +468,6 @@ const itemimages = [
     },
     {
         name: 'MIRAGE PRIME',
-        img: require('../assets/itemimages/mirage-prime.png'),
         polarities: ['vazarin', 'vazarin', 'naramon', 'madurai'],
         aura: 'naramon',
         exilus: undefined,
@@ -515,7 +483,6 @@ const itemimages = [
     },
     {
         name: 'NEKROS',
-        img: require('../assets/itemimages/nekros.png'),
         polarities: ['vazarin', 'madurai'],
         aura: undefined,
         exilus: undefined,
@@ -531,7 +498,6 @@ const itemimages = [
     },
     {
         name: 'NEKROS PRIME',
-        img: require('../assets/itemimages/nekros-prime.png'),
         polarities: ['madurai', 'vazarin', 'naramon'],
         aura: undefined,
         exilus: undefined,
@@ -547,7 +513,6 @@ const itemimages = [
     },
     {
         name: 'NEZHA',
-        img: require('../assets/itemimages/nezha.png'),
         polarities: ['vazarin', 'madurai'],
         aura: 'naramon',
         exilus: undefined,
@@ -563,7 +528,6 @@ const itemimages = [
     },
     {
         name: 'NIDUS',
-        img: require('../assets/itemimages/nidus.png'),
         polarities: ['madurai', 'vazarin'],
         aura: 'madurai',
         exilus: undefined,
@@ -579,7 +543,6 @@ const itemimages = [
     },
     {
         name: 'NOVA',
-        img: require('../assets/itemimages/nova.png'),
         polarities: ['madurai', 'madurai'],
         aura: 'naramon',
         exilus: undefined,
@@ -595,7 +558,6 @@ const itemimages = [
     },
     {
         name: 'NOVA PRIME',
-        img: require('../assets/itemimages/nova-prime.png'),
         polarities: ['madurai', 'madurai', 'madurai'],
         aura: 'naramon',
         exilus: undefined,
@@ -611,7 +573,6 @@ const itemimages = [
     },
     {
         name: 'NYX',
-        img: require('../assets/itemimages/nyx.png'),
         polarities: ['madurai', 'naramon'],
         aura: 'naramon',
         exilus: undefined,
@@ -627,7 +588,6 @@ const itemimages = [
     },
     {
         name: 'NYX PRIME',
-        img: require('../assets/itemimages/nyx-prime.png'),
         polarities: ['madurai', 'naramon', 'vazarin'],
         aura: 'naramon',
         exilus: undefined,
@@ -643,7 +603,6 @@ const itemimages = [
     },
     {
         name: 'OBERON',
-        img: require('../assets/itemimages/oberon.png'),
         polarities: ['madurai', 'madurai'],
         aura: 'madurai',
         exilus: undefined,
@@ -659,7 +618,6 @@ const itemimages = [
     },
     {
         name: 'OBERON PRIME',
-        img: require('../assets/itemimages/oberon-prime.png'),
         polarities: ['naramon', 'naramon', 'madurai', 'madurai'],
         aura: 'madurai',
         exilus: undefined,
@@ -675,7 +633,6 @@ const itemimages = [
     },
     {
         name: 'OCTAVIA',
-        img: require('../assets/itemimages/octavia.png'),
         polarities: ['naramon', 'naramon'],
         aura: 'naramon',
         exilus: undefined,
@@ -691,7 +648,6 @@ const itemimages = [
     },
     {
         name: 'REVENANT',
-        img: require('../assets/itemimages/revenant.png'),
         polarities: ['madurai', 'vazarin'],
         aura: 'naramon',
         exilus: undefined,
@@ -707,7 +663,6 @@ const itemimages = [
     },
     {
         name: 'RHINO',
-        img: require('../assets/itemimages/rhino.png'),
         polarities: ['vazarin', 'vazarin'],
         aura: 'madurai',
         exilus: undefined,
@@ -723,7 +678,6 @@ const itemimages = [
     },
     {
         name: 'RHINO PRIME',
-        img: require('../assets/itemimages/rhino-prime.png'),
         polarities: ['vazarin', 'vazarin', 'naramon'],
         aura: 'madurai',
         exilus: undefined,
@@ -739,7 +693,6 @@ const itemimages = [
     },
     {
         name: 'SARYN',
-        img: require('../assets/itemimages/saryn.png'),
         polarities: ['naramon', 'vazarin'],
         aura: 'vazarin',
         exilus: undefined,
@@ -755,7 +708,6 @@ const itemimages = [
     },
     {
         name: 'SARYN PRIME',
-        img: require('../assets/itemimages/saryn-prime.png'),
         polarities: ['naramon', 'vazarin'],
         aura: 'vazarin',
         exilus: undefined,
@@ -771,7 +723,6 @@ const itemimages = [
     },
     {
         name: 'TITANIA',
-        img: require('../assets/itemimages/titania.png'),
         polarities: ['madurai', 'vazarin'],
         aura: 'madurai',
         exilus: undefined,
@@ -787,7 +738,6 @@ const itemimages = [
     },
     {
         name: 'TRINITY',
-        img: require('../assets/itemimages/trinity.png'),
         polarities: ['vazarin', 'vazarin'],
         aura: 'vazarin',
         exilus: undefined,
@@ -803,7 +753,6 @@ const itemimages = [
     },
     {
         name: 'TRINITY PRIME',
-        img: require('../assets/itemimages/trinity-prime.png'),
         polarities: ['vazarin', 'vazarin', 'madurai', 'naramon'],
         aura: 'vazarin',
         exilus: undefined,
@@ -819,7 +768,6 @@ const itemimages = [
     },
     {
         name: 'VALKYR',
-        img: require('../assets/itemimages/valkyr.png'),
         polarities: ['madurai', 'madurai'],
         aura: 'madurai',
         exilus: undefined,
@@ -835,7 +783,6 @@ const itemimages = [
     },
     {
         name: 'VALKYR PRIME',
-        img: require('../assets/itemimages/valkyr-prime.png'),
         polarities: ['madurai', 'madurai', 'madurai'],
         aura: 'madurai',
         exilus: undefined,
@@ -851,7 +798,6 @@ const itemimages = [
     },
     {
         name: 'VAUBAN',
-        img: require('../assets/itemimages/vauban.png'),
         polarities: ['naramon', 'madurai'],
         aura: 'naramon',
         exilus: undefined,
@@ -867,7 +813,6 @@ const itemimages = [
     },
     {
         name: 'VAUBAN PRIME',
-        img: require('../assets/itemimages/vauban-prime.png'),
         polarities: ['naramon', 'madurai', 'vazarin'],
         aura: 'naramon',
         exilus: undefined,
@@ -883,7 +828,6 @@ const itemimages = [
     },
     {
         name: 'VOLT',
-        img: require('../assets/itemimages/volt.png'),
         polarities: ['naramon', 'madurai'],
         aura: 'madurai',
         exilus: undefined,
@@ -899,7 +843,6 @@ const itemimages = [
     },
     {
         name: 'VOLT PRIME',
-        img: require('../assets/itemimages/volt-prime.png'),
         polarities: ['naramon', 'madurai', 'madurai'],
         aura: 'madurai',
         exilus: undefined,
@@ -915,7 +858,6 @@ const itemimages = [
     },
     {
         name: 'WUKONG',
-        img: require('../assets/itemimages/wukong.png'),
         polarities: ['naramon', 'vazarin'],
         aura: 'madurai',
         exilus: undefined,
@@ -931,7 +873,6 @@ const itemimages = [
     },
     {
         name: 'ZEPHYR',
-        img: require('../assets/itemimages/zephyr.png'),
         polarities: ['madurai', 'naramon'],
         aura: 'vazarin',
         exilus: undefined,
@@ -947,7 +888,6 @@ const itemimages = [
     },
     {
         name: 'ZEPHYR PRIME',
-        img: require('../assets/itemimages/zephyr-prime.png'),
         polarities: ['madurai', 'madurai', 'vazarin', 'naramon'],
         aura: 'vazarin',
         exilus: undefined,
@@ -980,4 +920,4 @@ const itemimages = [
 ]
 
 
-export default itemimages;
+export default warframeStats;

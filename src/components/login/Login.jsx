@@ -4,10 +4,12 @@ import FacebookLogin from 'react-facebook-login';
 import './Login.css';
 import '../../general.css';
 
+import apiUrl from '../../apiUrl';
+
 export class Login extends Component {
     login = (id) => {
         let data = JSON.stringify({ id: id })
-        fetch('http://192.168.1.114:50000/login', {
+        fetch(`${apiUrl}/login`, {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: data
@@ -31,11 +33,11 @@ export class Login extends Component {
     }
 
     failGoogle = (response) => {
-        console.log(response);
+        // console.log(response);
     }
 
     failFacebook = (response) => {
-        console.log(response);
+        // console.log(response);
     }
 
     render() {

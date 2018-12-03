@@ -291,7 +291,7 @@ const companionMods = [
     {
         abrev: 'i3',
         name: 'Flame Gland',
-        img: require('../assets/modimages/unavail.jpg'),
+        img: require('../assets/modimages/flame-gland.jpg'),
         type: 'BEAST',
         rarity: 'rare',
         polarity: 'madurai',
@@ -304,7 +304,7 @@ const companionMods = [
     {
         abrev: 'i4',
         name: 'Frost Jaw',
-        img: require('../assets/modimages/unavail.jpg'),
+        img: require('../assets/modimages/frost-jaw.jpg'),
         type: 'BEAST',
         rarity: 'rare',
         polarity: 'madurai',
@@ -928,7 +928,7 @@ const companionMods = [
     {
         abrev: 'i5',
         name: 'Shock Collar',
-        img: require('../assets/modimages/unavail.jpg'),
+        img: require('../assets/modimages/shock-collar.jpg'),
         type: 'BEAST',
         rarity: 'rare',
         polarity: 'madurai',
@@ -1194,7 +1194,7 @@ const companionMods = [
     {
         abrev: 'i6',
         name: 'Venom Teeth',
-        img: require('../assets/modimages/unavail.jpg'),
+        img: require('../assets/modimages/venom-teeth.jpg'),
         type: 'BEAST',
         rarity: 'rare',
         polarity: 'madurai',
