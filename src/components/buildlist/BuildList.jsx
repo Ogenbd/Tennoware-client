@@ -100,10 +100,10 @@ export class BuildList extends Component {
                         </div>
                         <div className="build-item-row info-row">
                             <div className="build-list-likes">Likes: {build.Likes}</div>
-                            <img className="build-list-img" src={require(`../../assets/${orokinStr}.png`)} alt={"orokin"} />
-                            <div className="build-list-forma-block"><img className="build-list-img" src={require('../../assets/forma.png')} alt={""} /><p>: {build.Forma}</p></div>
+                            <img className="build-list-img" src={require(`../../assets/general/${orokinStr}.png`)} alt={"orokin"} />
+                            <div className="build-list-forma-block"><img className="build-list-img" src={require('../../assets/general/forma.png')} alt={""} /><p>: {build.Forma}</p></div>
                             {this.props.riven &&
-                                <img className="build-list-img" src={require(`../../assets/${riven}.png`)} alt={"riven"} />
+                                <img className="build-list-img" src={require(`../../assets/general/${riven}.png`)} alt={"riven"} />
                             }
                         </div>
                     </Link>

@@ -1873,7 +1873,7 @@ const primaryMods = [
     {
         abrev: 'ri',
         name: 'Riven Mod',
-        img: require('../assets/squareriven.jpg'),
+        img: require('../assets/general/squareriven.jpg'),
         type: 'PRIMARY',
         rarity: 'riven',
         polarity: 'madurai',

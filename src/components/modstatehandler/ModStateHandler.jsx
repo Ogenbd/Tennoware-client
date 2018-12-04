@@ -165,16 +165,16 @@ export class ModStateHandler extends Component {
         <div className={"handler-bottom-buttons " + (this.state.handlerActive ? "handler-active" : "handler-inactive")} style={this.state.bottomButtons}>
           <div className="bottom-button-wrapper">
             <div className="interactable interactable-semi-inactive handler-rank" onClick={this.minRank}>
-              <img className="handler-icon" src={require('../../assets/rankdownmax.png')} alt='--' />
+              <img className="handler-icon" src={require('../../assets/general/rankdownmax.png')} alt='--' />
             </div>
             <div className="interactable interactable-semi-inactive handler-rank" onClick={this.decRank}>
-              <img className="handler-icon" src={require('../../assets/rankdownone.png')} alt='-' />
+              <img className="handler-icon" src={require('../../assets/general/rankdownone.png')} alt='-' />
             </div>
             <div className="interactable interactable-semi-inactive handler-rank" onClick={this.incRank}>
-              <img className="handler-icon" src={require('../../assets/rankupone.png')} alt='+' />
+              <img className="handler-icon" src={require('../../assets/general/rankupone.png')} alt='+' />
             </div>
             <div className="interactable interactable-semi-inactive handler-rank" onClick={this.maxRank}>
-              <img className="handler-icon" src={require('../../assets/rankupmax.png')} alt='++' />
+              <img className="handler-icon" src={require('../../assets/general/rankupmax.png')} alt='++' />
             </div>
           </div>
           <div className="bottom-button-wrapper">
@@ -183,13 +183,13 @@ export class ModStateHandler extends Component {
         </div>
         <div className="empty-slot" draggable="false" style={this.props.forma ? { cursor: 'pointer' } : {}}>
           {this.props.slot === 'aura' && !this.props.mod.name &&
-            <img className="top-type" src={require(`../../assets/aura.png`)} alt='' />
+            <img className="top-type" src={require(`../../assets/general/aura.png`)} alt='' />
           }
           {this.props.slot === 'exilus' && !this.props.mod.name &&
-            <img className="top-type top-type-exilus" src={require(`../../assets/exilusblack.png`)} alt='' />
+            <img className="top-type top-type-exilus" src={require(`../../assets/general/exilusblack.png`)} alt='' />
           }
           {this.props.slotPolarity && !this.props.mod.name &&
-            <img className="slot-polarity" src={require(`../../assets/${this.props.slotPolarity}black.png`)} alt='' />
+            <img className="slot-polarity" src={require(`../../assets/general/${this.props.slotPolarity}black.png`)} alt='' />
           }
         </div>
         {this.props.mod.name &&

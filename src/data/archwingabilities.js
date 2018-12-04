@@ -155,7 +155,7 @@ const abilities = {
                             name: 'Heat damage bonus',
                             suffix: '%',
                             base: 50,
-                            icon: require('../assets/Heat.png')
+                            icon: require('../assets/general/Heat.png')
                         },
                         {
                             name: 'Critical damage multiplier',
@@ -225,12 +225,12 @@ const abilities = {
                         {
                             name: 'Initial damage',
                             base: 300,
-                            icon: require('../assets/Blast.png')
+                            icon: require('../assets/general/Blast.png')
                         },
                         {
                             name: 'Area damage',
                             base: 40,
-                            icon: require('../assets/Blast.png')
+                            icon: require('../assets/general/Blast.png')
                         },
                     ],
                     range: [
@@ -263,7 +263,7 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 1500,
-                            icon: require('../assets/Impact.png')
+                            icon: require('../assets/general/Impact.png')
                         },
                     ],
                     duration: [
@@ -305,7 +305,7 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 1000,
-                            icon: require('../assets/Blast.png')
+                            icon: require('../assets/general/Blast.png')
                         },
                     ],
                     range: [
@@ -364,7 +364,7 @@ const abilities = {
                         {
                             name: 'Explosion damage',
                             base: 500,
-                            icon: require('../assets/Blast.png')
+                            icon: require('../assets/general/Blast.png')
                         },
                     ],
                     duration: [
@@ -420,7 +420,7 @@ const abilities = {
                             name: 'Explosion damage',
                             suffix: '',
                             base: 1750,
-                            icon: require('../assets/Blast.png')
+                            icon: require('../assets/general/Blast.png')
                         },
                     ],
                     range: [
@@ -537,7 +537,7 @@ const abilities = {
                         {
                             name: 'Explosion damage',
                             base: 1500,
-                            icon: require('../assets/Blast.png')
+                            icon: require('../assets/general/Blast.png')
                         },
                     ],
                     range: [
@@ -574,7 +574,7 @@ const abilities = {
                         {
                             name: 'Explosion damage',
                             base: 2500,
-                            icon: require('../assets/Blast.png')
+                            icon: require('../assets/general/Blast.png')
                         },
                     ],
                     duration: [

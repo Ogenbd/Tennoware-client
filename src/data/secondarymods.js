@@ -895,7 +895,7 @@ const secondaryMods = [
     {
         abrev: 'ri',
         name: 'Riven Mod',
-        img: require('../assets/squareriven.jpg'),
+        img: require('../assets/general/squareriven.jpg'),
         type: 'PISTOL',
         rarity: 'riven',
         polarity: 'madurai',

@@ -376,34 +376,34 @@ export class RangedRivenEditor extends Component {
                 <div className="hexa-wrapper hexa-first">
                   <div className={"riven-hexagon hexagon " + (this.state.polarity === 'madurai' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'madurai') }}>
                     <span>
-                      <img className="hex-polarity" src={require('../../assets/maduraiblack.png')} alt="madurai" />
+                      <img className="hex-polarity" src={require('../../assets/general/maduraiblack.png')} alt="madurai" />
                     </span>
                   </div>
                   <div className={"riven-hexagon hexagon " + (this.state.polarity === 'naramon' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'naramon') }}>
                     <span>
-                      <img className="hex-polarity" src={require('../../assets/naramonblack.png')} alt="naramon" />
+                      <img className="hex-polarity" src={require('../../assets/general/naramonblack.png')} alt="naramon" />
                     </span>
                   </div>
                   <div className={"riven-hexagon hexagon " + (this.state.polarity === 'vazarin' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'vazarin') }}>
                     <span>
-                      <img className="hex-polarity" src={require('../../assets/vazarinblack.png')} alt="vazarin" />
+                      <img className="hex-polarity" src={require('../../assets/general/vazarinblack.png')} alt="vazarin" />
                     </span>
                   </div>
                 </div>
                 <div className="hexa-wrapper hexa-second">
                   <div className={"riven-hexagon hexagon " + (this.state.polarity === 'zenurik' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'zenurik') }}>
                     <span>
-                      <img className="hex-polarity" src={require('../../assets/zenurikblack.png')} alt="zenurik" />
+                      <img className="hex-polarity" src={require('../../assets/general/zenurikblack.png')} alt="zenurik" />
                     </span>
                   </div>
                   <div className={"riven-hexagon hexagon " + (this.state.polarity === 'unairu' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'unairu') }}>
                     <span>
-                      <img className="hex-polarity" src={require('../../assets/unairublack.png')} alt="unairu" />
+                      <img className="hex-polarity" src={require('../../assets/general/unairublack.png')} alt="unairu" />
                     </span>
                   </div>
                   <div className={"riven-hexagon hexagon " + (this.state.polarity === 'penjaga' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'penjaga') }}>
                     <span>
-                      <img className="hex-polarity" src={require('../../assets/penjagablack.png')} alt="penjaga" />
+                      <img className="hex-polarity" src={require('../../assets/general/penjagablack.png')} alt="penjaga" />
                     </span>
                   </div>
                 </div>

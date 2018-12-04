@@ -112,8 +112,8 @@ export class KitgunPicker extends Component {
                     <p className="smaller">Mag Size</p>
                     {/* <p>🡅</p>
                     <p>🡇</p> */}
-                    <img className="loader-arrow" src={require('../../assets/point-arrow.png')} alt="" />
-                    <img className="loader-arrow down-arrow" src={require('../../assets/point-arrow.png')} alt="" />
+                    <img className="loader-arrow" src={require('../../assets/general/point-arrow.png')} alt="" />
+                    <img className="loader-arrow down-arrow" src={require('../../assets/general/point-arrow.png')} alt="" />
                     <p className="smaller">Reload</p>
                     <p>Status</p>
                   </div>
@@ -133,7 +133,7 @@ export class KitgunPicker extends Component {
               </div> */}
             </div>
             <div className={"kitgun-pull-tab " + (this.state.open ? 'kitgun-open-pull-tab' : 'kitgun-closed-pull-tab')} onClick={this.toggleStats}>
-              <img src={require('../../assets/arrowicong.png')} alt=">>" className={"kitgun-pull-tab-arrow " + (this.state.open ? 'kitgun-point-left' : 'kitgun-point-right')} />
+              <img src={require('../../assets/general/arrowicong.png')} alt=">>" className={"kitgun-pull-tab-arrow " + (this.state.open ? 'kitgun-point-left' : 'kitgun-point-right')} />
               <p>STATS</p>
             </div>
             <div className={"kitgun-ranged-stats " + (this.state.open ? 'kitgun-open-ranged-stats' : 'kitgun-closed-ranged-stats')}>
@@ -157,7 +157,7 @@ export class KitgunPicker extends Component {
                         <p className="stat-name">Damage: </p>
                         <div className="damage">
                           {kitgun.split.map(instance => (
-                            <div key={instance.type} className="stat"><p>{instance.type}: </p><p className="stat-frag">{Math.round(instance.percent * kitgun.damage * 10) / 10}</p><img className="damage-icon" src={require(`../../assets/${instance.type}.png`)} alt="" /></div>
+                            <div key={instance.type} className="stat"><p>{instance.type}: </p><p className="stat-frag">{Math.round(instance.percent * kitgun.damage * 10) / 10}</p><img className="damage-icon" src={require(`../../assets/general/${instance.type}.png`)} alt="" /></div>
                           ))}
                         </div>
                       </div>

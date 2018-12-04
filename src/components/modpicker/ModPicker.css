@@ -10,11 +10,11 @@
 }
 
 .conclave-placeholder-active {
-    background-image: url('../../assets/conclaverare.png');
+    background-image: url('../../assets/general/conclaverare.png');
 }
 
 .conclave-placeholder-inactive {
-    background-image: url('../../assets/conclave.png');
+    background-image: url('../../assets/general/conclave.png');
 }
 
 .aura-placeholder {
@@ -26,11 +26,11 @@
 }
 
 .aura-placeholder-active {
-    background-image: url('../../assets/aurarare.png');
+    background-image: url('../../assets/general/aurarare.png');
 }
 
 .aura-placeholder-inactive {
-    background-image: url('../../assets/auraprime.png');
+    background-image: url('../../assets/general/auraprime.png');
 }
 
 .exilus-placeholder {
@@ -41,11 +41,11 @@
 }
 
 .exilus-placeholder-active {
-    background-image: url('../../assets/exilusrare.png');
+    background-image: url('../../assets/general/exilusrare.png');
 }
 
 .exilus-placeholder-inactive {
-    background-image: url('../../assets/exilusprime.png');
+    background-image: url('../../assets/general/exilusprime.png');
 }
 
 @media screen and (min-width: 1203px) {

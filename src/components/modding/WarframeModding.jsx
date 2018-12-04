@@ -741,13 +741,13 @@ class WarframeModding extends Component {
                             <div className="aug-wrapper">
                                 <div className={"interactable " + (orokin ? "interactable-active" : "interactable-inactive")} onClick={this.toggleOrokin}>
                                     {orokin
-                                        ? <img className="aug-image orokin" src={require(`../../assets/${this.props.orokin}.png`)} alt={'Remove Reactor'} />
-                                        : <img className="aug-image orokin" src={require('../../assets/nocatalyst.png')} alt={'Apply Reactor'} />}
+                                        ? <img className="aug-image orokin" src={require(`../../assets/general/${this.props.orokin}.png`)} alt={'Remove Reactor'} />
+                                        : <img className="aug-image orokin" src={require('../../assets/general/nocatalyst.png')} alt={'Apply Reactor'} />}
                                 </div>
                                 <div className={"interactable " + (forma ? "interactable-active" : "interactable-inactive")} onClick={this.toggleForma}>
                                     {forma
-                                        ? <img className="aug-image forma" src={require('../../assets/forma.png')} alt={'Cancel Forma Application'} />
-                                        : <img className="aug-image forma" src={require('../../assets/noforma.png')} alt={'Apply Forma'} />}
+                                        ? <img className="aug-image forma" src={require('../../assets/general/forma.png')} alt={'Cancel Forma Application'} />
+                                        : <img className="aug-image forma" src={require('../../assets/general/noforma.png')} alt={'Apply Forma'} />}
                                 </div>
                             </div>
                         </div>

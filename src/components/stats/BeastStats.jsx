@@ -182,7 +182,7 @@ export class BeastStats extends PureComponent {
             })
         }
         finalDamageArray.forEach(damageType => {
-            damageType.icon = require(`../../assets/${damageType.type}.png`)
+            damageType.icon = require(`../../assets/general/${damageType.type}.png`)
         })
         return finalDamageArray;
     }
@@ -198,7 +198,7 @@ export class BeastStats extends PureComponent {
         return (
             <React.Fragment>
                 <div className={"pull-tab " + (this.state.open ? 'open-pull-tab' : 'closed-pull-tab')} onClick={this.toggleStats}>
-                    <img src={require('../../assets/arrowicong.png')} alt=">>" className={"pull-tab-arrow " + (open ? 'point-left' : 'point-right')} />
+                    <img src={require('../../assets/general/arrowicong.png')} alt=">>" className={"pull-tab-arrow " + (open ? 'point-left' : 'point-right')} />
                     <p>STATS</p>
                 </div>
                 <div className={"ranged-stats " + (open ? 'open-ranged-stats' : 'closed-ranged-stats')}>

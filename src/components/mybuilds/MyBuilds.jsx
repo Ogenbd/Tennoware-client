@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { CSSTransition } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import cloneDeep from 'lodash/cloneDeep';
 import '../../general.css';
 import './MyBuilds.css';
@@ -44,10 +44,11 @@ export default class MyBuilds extends Component {
         if (!this.props.user || !this.props.online) this.props.history.replace('/');
     }
 
-    generateBuildArsenal = (builds) => {
+    generateBuildArsenal = async (builds) => {
+        console.log('start')
         let arsenal = [];
         if (builds.length > 0) {
-            builds.forEach(build => {
+            await Promise.all(builds.map(async (build) => {
                 let arsenalItem = {
                     id: build.BuildID,
                     buildName: build.BuildName,
@@ -63,14 +64,17 @@ export default class MyBuilds extends Component {
                     loading: false
                 }
                 if (build.Type === 'primaryweapons' || build.Type === 'secondaryweapons' || build.Type === 'sentinelweapons' || build.Type === 'meleeweapons' || build.Type === 'kitguns') arsenalItem.hasRivens = true;
-                if (build.Type === 'kitguns') {
-                    let parts = build.ItemName.split(' ');
-                    arsenalItem.img = require(`../../assets/itemimages/${parts[0]}.png`);
-                } else {
-                    arsenalItem.img = require(`../../assets/itemimages/${build.ItemName.replace(/\s+/g, '-')}.png`)
-                }
+                arsenalItem.img = await this.getItemImage(build);
+                // if (build.Type === 'kitguns') {
+                //     let parts = build.ItemName.split(' ');
+                //     arsenalItem.img = require(`../../assets/itemimages/${parts[0]}.png`);
+                // } else if (build.Type === 'moas') {
+                //     arsenalItem.img = require('../../assets/itemimages/drimper-bracket.png');
+                // } else {
+                //     arsenalItem.img = require(`../../assets/itemimages/${build.ItemName.replace(/\s+/g, '-')}.png`)
+                // }
                 arsenal.push(arsenalItem);
-            });
+            }));
             arsenal.sort((a, b) => {
                 return b.date - a.date
             });
@@ -82,6 +86,53 @@ export default class MyBuilds extends Component {
             this.setState({
                 getting: false
             });
+        }
+    }
+
+    getItemImage = async (build) => {
+        let itemImage;
+        let itemIdx;
+        let list = await this.getImageList(build.Type);
+        if (build.Type === 'moas') {
+            itemImage = list.first[0].img;
+        } else if (build.Type === 'kitguns') {
+            itemIdx = list.first.findIndex(item => {
+                return item.name.toLowerCase() === build.ItemName.toLowerCase().split(' ')[0];
+            });
+            itemImage = list.first[itemIdx].img;
+        } else {
+            itemIdx = list.findIndex(item => {
+                return item.name.toLowerCase() === build.ItemName.toLowerCase();
+            });
+            itemImage = list[itemIdx].img;
+        }
+        return itemImage
+    }
+
+    getImageList = (type) => {
+        switch (type) {
+            case 'warframes':
+                return this.props.warframes();
+            case 'primaryweapons':
+                return this.props.primaryweapons();
+            case 'secondaryweapons':
+                return this.props.secondaryweapons();
+            case 'archwings':
+                return this.props.archwings();
+            case 'archguns':
+                return this.props.archguns();
+            case 'sentinels':
+                return this.props.sentinels();
+            case 'sentinelweapons':
+                return this.props.sentinelweapons();
+            case 'beasts':
+                return this.props.beasts();
+            case 'kitguns':
+                return this.props.kitguns();
+            case 'moas':
+                return this.props.moas();
+            default:
+                return undefined;
         }
     }
 
@@ -114,10 +165,10 @@ export default class MyBuilds extends Component {
                             </div>
                             <div className="my-build-item-row info-row">
                                 <div className="my-build-list-likes">Likes: {item.likes}</div>
-                                <img className="my-build-list-img" src={require(`../../assets/${orokinStr}.png`)} alt={"orokin"} />
-                                <div className="my-build-list-forma-block"><img className="my-build-list-img" src={require('../../assets/forma.png')} alt={""} /><p>: {item.forma}</p></div>
+                                <img className="my-build-list-img" src={require(`../../assets/general/${orokinStr}.png`)} alt={"orokin"} />
+                                <div className="my-build-list-forma-block"><img className="my-build-list-img" src={require('../../assets/general/forma.png')} alt={""} /><p>: {item.forma}</p></div>
                                 {item.hasRivens
-                                    ? <img className="my-build-list-img" src={require(`../../assets/${riven}.png`)} alt={"riven"} />
+                                    ? <img className="my-build-list-img" src={require(`../../assets/general/${riven}.png`)} alt={"riven"} />
                                     : <div className="my-riven-placeholder"></div>
                                 }
                             </div>
@@ -151,10 +202,10 @@ export default class MyBuilds extends Component {
                             </div>
                             <div className="my-build-item-row info-row">
                                 <div className="my-build-list-likes">Likes: {item.likes}</div>
-                                <img className="my-build-list-img" src={require(`../../assets/${orokinStr}.png`)} alt={"orokin"} />
-                                <div className="my-build-list-forma-block"><img className="my-build-list-img" src={require('../../assets/forma.png')} alt={""} /><p>: {item.forma}</p></div>
+                                <img className="my-build-list-img" src={require(`../../assets/general/${orokinStr}.png`)} alt={"orokin"} />
+                                <div className="my-build-list-forma-block"><img className="my-build-list-img" src={require('../../assets/general/forma.png')} alt={""} /><p>: {item.forma}</p></div>
                                 {item.hasRivens
-                                    ? <img className="my-build-list-img" src={require(`../../assets/${riven}.png`)} alt={"riven"} />
+                                    ? <img className="my-build-list-img" src={require(`../../assets/general/${riven}.png`)} alt={"riven"} />
                                     : <div className="my-riven-placeholder"></div>
                                 }
                             </div>
@@ -280,66 +331,69 @@ export default class MyBuilds extends Component {
     }
 
     render() {
+        console.log('render');
         let list = this.generateList();
         return (
-            // <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
-            <div className="screen">
-                <div className="top-title"><p>My Builds</p></div>
-                <div className="my-builds">
-                    {this.state.getting
-                        ? <Loading />
-                        : <React.Fragment>
-                            {this.state.error !== null
-                                ? <div className="builds-wrapper"><div className="no-builds">{this.state.error}</div></div>
-                                : <div className="builds-wrapper">
-                                    {this.state.arsenal.length < 1
-                                        ? <div className="no-builds">You have not saved or liked any builds yet.</div>
-                                        : <React.Fragment>
-                                            {list.saved.length > 0 &&
-                                                <React.Fragment>
-                                                    <div className="my-builds-subtitle">Saved Builds</div>
-                                                    {list.saved}
+            <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
+                <div className="screen">
+                    <div className="top-title"><p>My Builds</p></div>
+                    <div className="my-builds">
+                        {this.state.getting
+                            ? <Loading />
+                            : <React.Fragment>
+                                <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
+                                    {this.state.error !== null
+                                        ? <div className="builds-wrapper"><div className="no-builds">{this.state.error}</div></div>
+                                        : <div className="builds-wrapper">
+                                            {this.state.arsenal.length < 1
+                                                ? <div className="no-builds">You have not saved or liked any builds yet.</div>
+                                                : <React.Fragment>
+                                                    {list.saved.length > 0 &&
+                                                        <React.Fragment>
+                                                            <div className="my-builds-subtitle">Saved Builds</div>
+                                                            {list.saved}
+                                                        </React.Fragment>
+                                                    }
+                                                    {list.liked.length > 0 &&
+                                                        <React.Fragment>
+                                                            <div className="my-builds-subtitle">Liked Builds</div>
+                                                            {list.liked}
+                                                        </React.Fragment>
+                                                    }
                                                 </React.Fragment>
                                             }
-                                            {list.liked.length > 0 &&
-                                                <React.Fragment>
-                                                    <div className="my-builds-subtitle">Liked Builds</div>
-                                                    {list.liked}
-                                                </React.Fragment>
-                                            }
-                                        </React.Fragment>
+                                        </div>
                                     }
-                                </div>
-                            }
-                        </React.Fragment>
-                    }
-                    <div className={"popup " + (this.state.unlike ? "popup-active" : "popup-inactive")}>
-                        <div className={"popup-topbar " + (this.state.unlike ? "popup-active" : "popup-inactive")}></div>
-                        <div className="popup-content conformation-wrapper">
-                            <div className="conformation-box">
-                                <div className="conformation-dialog">Are you sure?</div>
-                                <div className="conformation-buttons">
-                                    <div className="interactable interactable-semi-inactive" onClick={this.unsetRemoval}><p className="interactable-p">Cancel</p></div>
-                                    <div className="interactable interactable-semi-inactive delete-button" onClick={this.unlikeBuild}><p className="interactable-p">Unlike</p></div>
+                                </CSSTransition>
+                            </React.Fragment>
+                        }
+                        <div className={"popup " + (this.state.unlike ? "popup-active" : "popup-inactive")}>
+                            <div className={"popup-topbar " + (this.state.unlike ? "popup-active" : "popup-inactive")}></div>
+                            <div className="popup-content conformation-wrapper">
+                                <div className="conformation-box">
+                                    <div className="conformation-dialog">Are you sure?</div>
+                                    <div className="conformation-buttons">
+                                        <div className="interactable interactable-semi-inactive" onClick={this.unsetRemoval}><p className="interactable-p">Cancel</p></div>
+                                        <div className="interactable interactable-semi-inactive delete-button" onClick={this.unlikeBuild}><p className="interactable-p">Unlike</p></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className={"popup " + (this.state.delete ? "popup-active" : "popup-inactive")}>
-                        <div className={"popup-topbar " + (this.state.delete ? "popup-active" : "popup-inactive")}></div>
-                        <div className="popup-content conformation-wrapper">
-                            <div className="conformation-box">
-                                <div className="conformation-dialog">Are you sure?</div>
-                                <div className="conformation-buttons">
-                                    <div className="interactable interactable-semi-inactive" onClick={this.unsetRemoval}><p className="interactable-p">Cancel</p></div>
-                                    <div className="interactable interactable-semi-inactive delete-button" onClick={this.deleteBuild}><p className="interactable-p">Delete</p></div>
+                        <div className={"popup " + (this.state.delete ? "popup-active" : "popup-inactive")}>
+                            <div className={"popup-topbar " + (this.state.delete ? "popup-active" : "popup-inactive")}></div>
+                            <div className="popup-content conformation-wrapper">
+                                <div className="conformation-box">
+                                    <div className="conformation-dialog">Are you sure?</div>
+                                    <div className="conformation-buttons">
+                                        <div className="interactable interactable-semi-inactive" onClick={this.unsetRemoval}><p className="interactable-p">Cancel</p></div>
+                                        <div className="interactable interactable-semi-inactive delete-button" onClick={this.deleteBuild}><p className="interactable-p">Delete</p></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            // </CSSTransition>
+            </CSSTransition>
         )
     }
 }

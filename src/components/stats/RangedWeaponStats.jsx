@@ -348,7 +348,7 @@ export class RangedWeaponStats extends Component {
             })
         }
         finalDamageArray.forEach(damageType => {
-            damageType.icon = require(`../../assets/${damageType.type}.png`)
+            damageType.icon = require(`../../assets/general/${damageType.type}.png`)
         })
         return finalDamageArray;
     }
@@ -493,7 +493,7 @@ export class RangedWeaponStats extends Component {
         return (
             <React.Fragment>
                 <div className={"pull-tab " + (this.state.open ? 'open-pull-tab' : 'closed-pull-tab')} onClick={this.toggleStats}>
-                    <img src={require('../../assets/arrowicong.png')} alt=">>" className={"pull-tab-arrow " + (this.state.open ? 'point-left' : 'point-right')} />
+                    <img src={require('../../assets/general/arrowicong.png')} alt=">>" className={"pull-tab-arrow " + (this.state.open ? 'point-left' : 'point-right')} />
                     <p>STATS</p>
                 </div>
                 <div className={"ranged-stats " + (this.state.open ? 'open-ranged-stats' : 'closed-ranged-stats')}>

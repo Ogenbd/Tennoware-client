@@ -333,7 +333,7 @@ export class Routing extends Component {
             <div className="main">
                 <Switch key={this.props.location.key}>
                     <Route exact path='/' render={props => <News {...props} {...nonRouterPropPass} />} />
-                    <Route exact path='/mybuilds' render={props => <MyBuilds {...props} {...nonRouterPropPass} />} />
+                    <Route exact path='/mybuilds' render={props => <MyBuilds {...props} {...nonRouterPropPass} primaryweapons={this.primaryWeaponList} secondaryweapons={this.secondaryWeaponList} warframes={this.warframeList} archwings={this.archwingList} archguns={this.archgunList} sentinels={this.sentinelList} sentinelweapons={this.sentinelWeaponList} beasts={this.beastList} kitguns={this.kitguns} moas={this.moas}/>} />
                     <Route exact path='/primaryweapons/:id/:pre/:build' render={props => <RangedBuilder {...props} {...nonRouterPropPass} type={'primaryweapons'} items={this.primaryWeaponStats} mods={this.primaryMods} />} />
                     <Route exact path='/primaryweapons/:id/:pre' render={props => <RangedBuilder {...props} {...nonRouterPropPass} type={'primaryweapons'} items={this.primaryWeaponStats} mods={this.primaryMods} />} />
                     <Route exact path='/primaryweapons/:id' render={props => <RangedBuilder {...props} {...nonRouterPropPass} type={'primaryweapons'} items={this.primaryWeaponStats} mods={this.primaryMods} />} />

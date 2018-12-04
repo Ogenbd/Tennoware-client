@@ -66,13 +66,13 @@ export class Login extends Component {
                                 tag="div"
                                 theme="dark"
                             >
-                                <img src={require('../../assets/googleicon.png')} alt='' />
+                                <img src={require('../../assets/general/googleicon.png')} alt='' />
                                 <span> Login with Google</span>
                             </GoogleLogin>
                             <FacebookLogin
                                 appId="707507742959348"
                                 cssClass="auth-button facebook"
-                                icon={<img src={require('../../assets/facebookicon.png')} alt='' />}
+                                icon={<img src={require('../../assets/general/facebookicon.png')} alt='' />}
                                 tag="div"
                                 fields=""
                                 cookie="false"
