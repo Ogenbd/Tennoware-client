@@ -14,7 +14,7 @@
     "source-map-explorer": "^1.6.0"
   },
   "scripts": {
-    "analyze": "source-map-explorer build/static/js/4.*",
+    "analyze": "source-map-explorer build/static/js/26.*",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

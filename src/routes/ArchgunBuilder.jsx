@@ -157,7 +157,6 @@ class RangedBuilder extends Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <div className="screen">
                 <div className="top-title"><p>{this.state.title}</p></div>

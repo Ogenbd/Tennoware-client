@@ -45,7 +45,6 @@ export default class MyBuilds extends Component {
     }
 
     generateBuildArsenal = async (builds) => {
-        console.log('start')
         let arsenal = [];
         if (builds.length > 0) {
             await Promise.all(builds.map(async (build) => {
@@ -331,7 +330,6 @@ export default class MyBuilds extends Component {
     }
 
     render() {
-        console.log('render');
         let list = this.generateList();
         return (
             <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
