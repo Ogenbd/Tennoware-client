@@ -903,7 +903,6 @@ const warframeStats = [
     },
     // {
     //     name: '',
-    //     img: require('../assets/itemimages/.png'),
     //     polarities: [],
     //     aura: '',
     //     exilus: undefined,

@@ -2,7 +2,7 @@ const warframeList = [
     {
         name: 'ASH',
         img: require('../assets/itemimages/ash.png')
-        },
+    },
     {
         name: 'ASH PRIME',
         img: require('../assets/itemimages/ash-prime.png')

@@ -1,11 +1,9 @@
-// import React, { Component } from 'react';
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import Loadable from 'react-loadable';
 import { CSSTransition } from "react-transition-group";
 import cloneDeep from 'lodash/cloneDeep';
 import './Modding.css'
 
-// import RangedWeaponStats from '../rangedweaponstats/RangedWeaponStats';
 import ModStateHandler from '../modstatehandler/ModStateHandler';
 import PolarityPicker from '../polaritypicker/PolarityPicker';
 import RangedRivenEditor from '../rangedriveneditor/RangedRivenEditor';
@@ -32,8 +30,7 @@ const WarframeStats = Loadable({
     loading: StatsPlaceholder,
 });
 
-export class EightSlotModding extends PureComponent {
-    // export class EightSlotModding extends Component {
+class EightSlotModding extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -654,4 +651,4 @@ export class EightSlotModding extends PureComponent {
     }
 }
 
-export default EightSlotModding
+export default EightSlotModding;

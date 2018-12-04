@@ -14,7 +14,7 @@ import Report from '../report/Report';
 import BuildDescription from '../builddescription/BuildDescription';
 import ModPicker from '../modpicker/ModPicker';
 
-export class EightSlotModding extends Component {
+class WarframeModding extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -807,4 +807,4 @@ export class EightSlotModding extends Component {
     }
 }
 
-export default EightSlotModding
+export default WarframeModding

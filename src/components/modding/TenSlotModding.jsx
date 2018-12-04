@@ -4,7 +4,6 @@ import { CSSTransition } from "react-transition-group";
 import cloneDeep from 'lodash/cloneDeep';
 import './Modding.css'
 
-// import RangedWeaponStats from '../rangedweaponstats/RangedWeaponStats';
 import ModStateHandler from '../modstatehandler/ModStateHandler';
 import PolarityPicker from '../polaritypicker/PolarityPicker';
 import LinkGenerator from '../linkgenerator/LinkGenerator';
@@ -30,7 +29,7 @@ const BeastStats = Loadable({
     loading: StatsPlaceholder,
 });
 
-export class TenSlotModding extends Component {
+class TenSlotModding extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -595,4 +594,4 @@ export class TenSlotModding extends Component {
     }
 }
 
-export default TenSlotModding
+export default TenSlotModding;
