@@ -58,7 +58,8 @@ export class Login extends Component {
                         <div className="consentorama"><p>Note: You should not login to sites/apps that use Social Authentication on public computers/devices. If you are still intending to login on a public computer remember to logout of this app AND google/facebook.</p></div>
                         <div className="auth-wrapper">
                             <GoogleLogin
-                                clientId="739460553448-jgjkog0elfmiivoclc482h8bnl52p7gv.apps.googleusercontent.com"
+                                // clientId="739460553448-jgjkog0elfmiivoclc482h8bnl52p7gv.apps.googleusercontent.com" // dev
+                                clientId="447751559919-plpvda85naihs6is6chim2u9jnd3ult1.apps.googleusercontent.com" // prod
                                 className="auth-button google"
                                 onSuccess={this.responseGoogle}
                                 onFailure={this.failGoogle}
@@ -70,7 +71,8 @@ export class Login extends Component {
                                 <span> Login with Google</span>
                             </GoogleLogin>
                             <FacebookLogin
-                                appId="707507742959348"
+                                // appId="707507742959348" //dev
+                                appId="713698015671816" // prod
                                 cssClass="auth-button facebook"
                                 icon={<img src={require('../../assets/general/facebookicon.png')} alt='' />}
                                 tag="div"

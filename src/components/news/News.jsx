@@ -38,7 +38,10 @@ export class News extends Component {
   }
 
   sortForDisplay = (news, platform) => {
-    let sortedNews = news.filter(item => item.translations.en)
+    let sortedNews = news.filter(item => item.translations.en && !item.imageLink.includes('forums'))
+    sortedNews.forEach(item => {
+      item.imageLink = item.imageLink.replace('http:', 'https:');
+    });
     sortedNews.sort((a, b) => {
       let dateA = new Date(a.date);
       let dateB = new Date(b.date);
@@ -53,31 +56,32 @@ export class News extends Component {
 
   render() {
     return (
-      <div className="screen">
-        <div className="top-title"><p>News</p></div>
-        <div className="news-container">
-          <div className="wf-news">
-            {this.props.online &&
-              <div className="news-toggle">
-                <div className={"platform-button " + (this.state.platform === 'pc' ? 'platform-picked' : 'platform-unpicked')} onClick={() => { this.getNews('pc') }}><img className={"platform-icon " + (this.state.platform === 'pc' ? 'platform-picked-icon' : 'platform-unpicked-icon')} src={require('../../assets/general/pc.png')} alt="PC" /></div>
-                <div className={"platform-button " + (this.state.platform === 'ps4' ? 'platform-picked' : 'platform-unpicked')} onClick={() => { this.getNews('ps4') }}><img className={"platform-icon " + (this.state.platform === 'ps4' ? 'platform-picked-icon' : 'platform-unpicked-icon')} src={require('../../assets/general/ps4.png')} alt="PS4" /></div>
-                <div className={"platform-button " + (this.state.platform === 'xb1' ? 'platform-picked' : 'platform-unpicked')} onClick={() => { this.getNews('xb1') }}><img className={"platform-icon " + (this.state.platform === 'xb1' ? 'platform-picked-icon' : 'platform-unpicked-icon')} src={require('../../assets/general/xb1.png')} alt="XB1" /></div>
-              </div>
-            }
-          </div>
-          <div className="articles">
-            <div className="article tennoware-updates">
-              <h1>Tennoware Updates</h1>
-              <div className="update-content">
-                <p>Initial release!</p>
-                <p>To submit feedback, feature suggestions, bug reports and general discussion go <a className="reddit-link" href="https://www.reddit.com/r/tennoware">here.</a></p>
-              </div>
+      <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
+        <div className="screen">
+          <div className="top-title"><p>News</p></div>
+          <div className="news-container">
+            <div className="wf-news">
+              {this.props.online &&
+                <div className="news-toggle">
+                  <div className={"platform-button " + (this.state.platform === 'pc' ? 'platform-picked' : 'platform-unpicked')} onClick={() => { this.getNews('pc') }}><img className={"platform-icon " + (this.state.platform === 'pc' ? 'platform-picked-icon' : 'platform-unpicked-icon')} src={require('../../assets/general/pc.png')} alt="PC" /></div>
+                  <div className={"platform-button " + (this.state.platform === 'ps4' ? 'platform-picked' : 'platform-unpicked')} onClick={() => { this.getNews('ps4') }}><img className={"platform-icon " + (this.state.platform === 'ps4' ? 'platform-picked-icon' : 'platform-unpicked-icon')} src={require('../../assets/general/ps4.png')} alt="PS4" /></div>
+                  <div className={"platform-button " + (this.state.platform === 'xb1' ? 'platform-picked' : 'platform-unpicked')} onClick={() => { this.getNews('xb1') }}><img className={"platform-icon " + (this.state.platform === 'xb1' ? 'platform-picked-icon' : 'platform-unpicked-icon')} src={require('../../assets/general/xb1.png')} alt="XB1" /></div>
+                </div>
+              }
             </div>
-            {this.props.online &&
-              <React.Fragment>
-                {!this.state.loading
-                  ? <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
-                    <React.Fragment>
+            <div className="articles">
+              <div className="article tennoware-news">
+                <h1>Introduction</h1>
+                <div className="update-content">
+                  <p>Tennoware is a Warframe build calculator, it is also a fully featured <a className="reddit-link" href="https://en.wikipedia.org/wiki/Progressive_web_applications">Progressive Web App</a>, meaning it is both mobile and desktop friendly, can be installed on your mobile device and has offline functionality.</p>
+                  <p>This is the initial release release of Tennoware and it is still in active development. Please understand that some server issues or bugs might be lurking around.</p>
+                  <p>To submit feedback, feature suggestions, bug reports and for general discussion go <a className="reddit-link" href="https://www.reddit.com/r/tennoware">here.</a></p>
+                </div>
+              </div>
+              {this.props.online &&
+                <React.Fragment>
+                  {!this.state.loading
+                    ? <React.Fragment>
                       {this.state.news.map((item, index) => {
                         return (
                           <a key={index} href={item.link} className="article">
@@ -87,14 +91,14 @@ export class News extends Component {
                         )
                       })}
                     </React.Fragment>
-                  </CSSTransition>
-                  : <Loading />
-                }
-              </React.Fragment>
-            }
+                    : <Loading />
+                  }
+                </React.Fragment>
+              }
+            </div>
           </div>
         </div>
-      </div>
+      </CSSTransition>
     )
   }
 }

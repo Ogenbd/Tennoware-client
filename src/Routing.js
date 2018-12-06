@@ -12,6 +12,16 @@ const News = Loadable({
     loading: () => null,
 });
 
+const Privacy = Loadable({
+    loader: () => import('./components/privacy/Privacy'),
+    loading: () => null,
+});
+
+const Terms = Loadable({
+    loader: () => import('./components/terms/Terms'),
+    loading: () => null,
+});
+
 const ItemPicker = Loadable({
     loader: () => import('./components/itempicker/ItemPicker'),
     loading: () => null,
@@ -374,6 +384,8 @@ export class Routing extends Component {
                     <Route exact path='/moas/:id/:pre' render={props => <MoaBuilder {...props} {...nonRouterPropPass} type={'moas'} items={this.moas} mods={this.companionMods} />} />
                     <Route exact path='/moas/:id' render={props => <MoaBuilder {...props} {...nonRouterPropPass} type={'moas'} items={this.moas} mods={this.companionMods} />} />
                     <Route exact path='/moas' render={props => <MoaPicker {...props} {...nonRouterPropPass} items={this.moas} />} />
+                    <Route exact path='/terms' component={Terms} />
+                    <Route exact path='/privacy' component={Privacy} />
                     <Route exact path='/unauthorized' component={Unauthorized} />
                     <Route component={TheVoid} />
                 </Switch>

@@ -85,20 +85,26 @@ export class Sidebar extends Component {
             </div>
           </div>
           <div className="sidebar-content">
-            <NavLink exact to="/" className="nav-item" activeClassName="selected" onClick={this.closeSidebar}><p>News</p></NavLink>
-            {this.props.user && this.props.online &&
-              <NavLink exact to="/mybuilds" className="nav-item" activeClassName="selected" isActive={this.myBuildsActive} onClick={this.closeSidebar}><p>My Builds</p></NavLink>
-            }
-            <NavLink exact to="/warframes" className="nav-item" activeClassName="selected" isActive={this.warframeActive} onClick={this.closeSidebar}><p>Warframes</p></NavLink>
-            <NavLink exact to="/primaryweapons" className="nav-item" activeClassName="selected" isActive={this.primaryActive} onClick={this.closeSidebar}><p>Primary Weapons</p></NavLink>
-            <NavLink exact to="/secondaryweapons" className="nav-item" activeClassName="selected" isActive={this.secondaryActive} onClick={this.closeSidebar}><p>Secondary Weapons</p></NavLink>
-            <NavLink exact to="/kitguns" className="nav-item" activeClassName="selected" isActive={this.kitgunsActive} onClick={this.closeSidebar}><p>Kitguns</p></NavLink>
-            <NavLink exact to="/beasts" className="nav-item" activeClassName="selected" isActive={this.beastsActive} onClick={this.closeSidebar}><p>Beasts</p></NavLink>
-            <NavLink exact to="/sentinels" className="nav-item" activeClassName="selected" isActive={this.sentinelsActive} onClick={this.closeSidebar}><p>Sentinels</p></NavLink>
-            <NavLink exact to="/moas" className="nav-item" activeClassName="selected" isActive={this.moasActive} onClick={this.closeSidebar}><p>MOAs</p></NavLink>
-            <NavLink exact to="/sentinelweapons" className="nav-item" activeClassName="selected" isActive={this.sentinelWeaponsActive} onClick={this.closeSidebar}><p>Robotic Weapons</p></NavLink>
-            <NavLink exact to="/archwings" className="nav-item" activeClassName="selected" isActive={this.archwingActive} onClick={this.closeSidebar}><p>Archwings</p></NavLink>
-            <NavLink exact to="/archguns" className="nav-item" activeClassName="selected" isActive={this.archgunActive} onClick={this.closeSidebar}><p>Arch-Guns</p></NavLink>
+            <div className="nav-links">
+              <NavLink exact to="/" className="nav-item" activeClassName="selected" onClick={this.closeSidebar}><p>News</p></NavLink>
+              {this.props.user && this.props.online &&
+                <NavLink exact to="/mybuilds" className="nav-item" activeClassName="selected" isActive={this.myBuildsActive} onClick={this.closeSidebar}><p>My Builds</p></NavLink>
+              }
+              <NavLink exact to="/warframes" className="nav-item" activeClassName="selected" isActive={this.warframeActive} onClick={this.closeSidebar}><p>Warframes</p></NavLink>
+              <NavLink exact to="/primaryweapons" className="nav-item" activeClassName="selected" isActive={this.primaryActive} onClick={this.closeSidebar}><p>Primary Weapons</p></NavLink>
+              <NavLink exact to="/secondaryweapons" className="nav-item" activeClassName="selected" isActive={this.secondaryActive} onClick={this.closeSidebar}><p>Secondary Weapons</p></NavLink>
+              <NavLink exact to="/kitguns" className="nav-item" activeClassName="selected" isActive={this.kitgunsActive} onClick={this.closeSidebar}><p>Kitguns</p></NavLink>
+              <NavLink exact to="/beasts" className="nav-item" activeClassName="selected" isActive={this.beastsActive} onClick={this.closeSidebar}><p>Beasts</p></NavLink>
+              <NavLink exact to="/sentinels" className="nav-item" activeClassName="selected" isActive={this.sentinelsActive} onClick={this.closeSidebar}><p>Sentinels</p></NavLink>
+              <NavLink exact to="/moas" className="nav-item" activeClassName="selected" isActive={this.moasActive} onClick={this.closeSidebar}><p>MOAs</p></NavLink>
+              <NavLink exact to="/sentinelweapons" className="nav-item" activeClassName="selected" isActive={this.sentinelWeaponsActive} onClick={this.closeSidebar}><p>Robotic Weapons</p></NavLink>
+              <NavLink exact to="/archwings" className="nav-item" activeClassName="selected" isActive={this.archwingActive} onClick={this.closeSidebar}><p>Archwings</p></NavLink>
+              <NavLink exact to="/archguns" className="nav-item" activeClassName="selected" isActive={this.archgunActive} onClick={this.closeSidebar}><p>Arch-Guns</p></NavLink>
+            </div>
+            <div className="botton-info">
+              <p className="bs-container"><a className="bottom-info-link" href="https://tennoware.com/terms">terms of service</a>  <a className="bottom-info-link" href="https://tennoware.com/privacy">privacy policy</a></p>
+              <p className="bs-para">Copyright © 2018 - Today. All rights reserved. For personal use only. Tennoware.com has no affiliation with Digital Extremes Ltd or Warframe. All artwork, screenshots, characters or other recognizable features of the intellectual property relating to Warframe are the intellectual property of Digital Extreme Ltd.</p>
+            </div>
           </div>
         </div>
       </React.Fragment>

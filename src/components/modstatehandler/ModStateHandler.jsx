@@ -191,6 +191,7 @@ export class ModStateHandler extends Component {
           {this.props.slotPolarity && !this.props.mod.name &&
             <img className="slot-polarity" src={require(`../../assets/general/${this.props.slotPolarity}black.png`)} alt='' />
           }
+          {/* <p className="tapper">Tap To Mod</p> */}
         </div>
         {this.props.mod.name &&
           <div draggable className="mod-card-wrapper" style={this.state.handlerActive || this.props.viewWidth < 1203 ? this.state.cardStyle : {}}>
