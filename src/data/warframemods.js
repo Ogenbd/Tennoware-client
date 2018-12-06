@@ -1047,7 +1047,7 @@ const warframeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 10,
-        description() { return `+${Math.round(this.effects.none * (this.currRank + 1))}% Faster Knockdown Recovery +${Math.round(this.effects.duration * (this.currRank + 1))}% Ability Duration` }
+        description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Faster Knockdown Recovery +${Math.round(this.effects.duration * (this.currRank + 1) * 100)}% Ability Duration` }
     },
     {
         abrev: 'd0',
@@ -1349,7 +1349,7 @@ const warframeMods = [
         exilus: true,
         rarity: 'rare',
         polarity: 'madurai',
-        effects: { none: [2, -5], duration: 0.025 },
+        effects: { none: [2, -5], range: 0.025 },
         maxRank: 5,
         currRank: 5,
         baseCost: 4,

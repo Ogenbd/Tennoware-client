@@ -69,7 +69,7 @@ export class ItemPicker extends Component {
                         <div className="item-picker-content">
                             <div className="item-picker-topbar">
                                 <div className="search-wrapper item-picker-search">
-                                    <input className="search" type="text" placeholder="Sreach..." onChange={this.filterItems} onKeyUp={this.blurInput} />
+                                    <input className="search" type="text" placeholder="Search..." onChange={this.filterItems} onKeyUp={this.blurInput} />
                                 </div>
                             </div>
                             <div className="items-display">

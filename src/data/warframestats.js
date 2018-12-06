@@ -708,17 +708,17 @@ const warframeStats = [
     },
     {
         name: 'SARYN PRIME',
-        polarities: ['naramon', 'vazarin'],
+        polarities: ['naramon', 'vazarin','madurai'],
         aura: 'vazarin',
         exilus: undefined,
-        armor: 225,
-        energy: 225,
-        baseEnergy: 150,
+        armor: 300,
+        energy: 300,
+        baseEnergy: 200,
         health: 375,
         baseHealth: 125,
         shields: 300,
         baseShields: 100,
-        speed: 0.95,
+        speed: 1,
         abilities: abilities.saryn
     },
     {

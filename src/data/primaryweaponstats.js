@@ -3615,7 +3615,7 @@ const primaryWeaponStats = [
                 fireRate: 2.67,
                 accuracy: 13.3,
                 punchThrough: 1,
-                critChance: 0.3,
+                critChance: 0.38,
                 critMult: 3,
                 status: 0.12,
                 damage: 187,

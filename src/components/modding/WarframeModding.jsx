@@ -46,16 +46,16 @@ class WarframeModding extends Component {
             let preMods = this.createPreMods(build.slice(11, 51));
             let totalModsCost = this.calcCost(preMods.chosenMods, prePolarities.stack, preMods.auraMod, prePolarities.aura, preMods.exilusMod, prePolarities.exilus);
             let formaCount = this.countForma(prePolarities.stack, prePolarities.aura, prePolarities.exilus);
-            this.checkModSets(preMods.auraMod, preMods.exilusMod, preMods.chosenMods);
+            let modSets = this.checkModSets(preMods.auraMod, preMods.exilusMod, preMods.chosenMods);
             this.setState({
                 orokin: orokin,
                 auraPolarity: prePolarities.aura,
                 exilusPolarity: prePolarities.exilus,
                 slotPolarities: prePolarities.stack,
                 chosenIndexs: preMods.chosenIndexs,
-                chosenAuraMod: preMods.auraMod,
-                chosenExilusMod: preMods.exilusMod,
-                chosenMods: preMods.chosenMods,
+                chosenAuraMod: modSets.auraMod,
+                chosenExilusMod: modSets.exilusMod,
+                chosenMods: modSets.chosenMods,
                 totalModsCost: totalModsCost,
                 formaCount: formaCount,
             });

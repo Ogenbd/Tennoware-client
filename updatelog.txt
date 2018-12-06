@@ -1,0 +1,13 @@
+UPDATE LOG
+
+06/12/2018 - v1.0.0.
+Initial Release.
+
+UPCOMMING
+
+Fixes:
+Fixed some embarrassing typo's.
+Saryn Prime now has the correct stats.
+Fixed Cunning Drift to add Range and not duration.
+Rubico Prime now has its propper Crit chance.
+Fixed an issue where warframe builds with Set mods would not display the correct Set count and stats.
