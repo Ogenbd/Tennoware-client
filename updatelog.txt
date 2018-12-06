@@ -1,9 +1,18 @@
 UPDATE LOG
 
-06/12/2018 - v1.0.0.
-Initial Release.
+06/10/2018 - v1.0.2.
 
-UPCOMMING
+Fixes:
+Fixed an issue where updating a previously saved build's description sometimes didn't work.
+Fixed Speed Drift's description.
+Fixed Escape Velocity not being considered an Exilus mod.
+Fixed Enemy Sense not being considered an Exilus mod.
+Fixed Hysterical Assault not being considered an Exilus mod.
+Fixed Piercing Step not being considered an Exilus mod.
+Fixed Rending Turn not being considered an Exilus mod.
+Fixed Toxic Flight not being considered an Exilus mod.
+
+06/12/2018 - v1.0.1.
 
 Fixes:
 Fixed some embarrassing typo's.
@@ -11,3 +20,8 @@ Saryn Prime now has the correct stats.
 Fixed Cunning Drift to add Range and not duration.
 Rubico Prime now has its propper Crit chance.
 Fixed an issue where warframe builds with Set mods would not display the correct Set count and stats.
+
+06/12/2018 - v1.0.0.
+
+Initial Release.
+
