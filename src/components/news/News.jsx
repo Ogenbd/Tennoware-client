@@ -74,7 +74,7 @@ export class News extends Component {
                 <h1>Introduction</h1>
                 <div className="update-content">
                   <p>Tennoware is a Warframe build calculator, it is also a fully featured <a className="reddit-link" href="https://en.wikipedia.org/wiki/Progressive_web_applications">Progressive Web App</a>, meaning it is both mobile and desktop friendly, can be installed on your mobile device and has offline functionality.</p>
-                  <p>This is the initial release release of Tennoware and it is still in active development. Please understand that some server issues or bugs might be lurking around.</p>
+                  <p>This is an early release of Tennoware and it is still in active development. Please understand that some server issues or bugs are lurking around. Update Log <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">here</a>.</p>
                   <p>To submit feedback, feature suggestions, bug reports and for general discussion go <a className="reddit-link" href="https://www.reddit.com/r/tennoware">here.</a></p>
                 </div>
               </div>

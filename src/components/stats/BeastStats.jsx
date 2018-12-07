@@ -219,7 +219,7 @@ export class BeastStats extends PureComponent {
                                 <p className="stat-name">Damage: </p>
                                 <div className="damage">
                                     {damage.map(instance => (
-                                        <div key={instance.type} className="stat"><p>{instance.type}: </p><p className="stat-frag">{Math.round(instance.damage * 10) / 10}</p><img className="damage-icon" src={instance.icon} alt="" /></div>
+                                        <div key={instance.type} className="stat"><p>{instance.type}: </p><p className="stat-frag">{(Math.round(instance.damage * 10) / 10).toFixed(1)}</p><img className="damage-icon" src={instance.icon} alt="" /></div>
                                     ))}
                                 </div>
                             </div>

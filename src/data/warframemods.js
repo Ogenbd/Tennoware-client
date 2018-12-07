@@ -1355,7 +1355,7 @@ const warframeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `+${this.effects.none[0] * (this.currRank + 1)}% Slide ${this.effects.none[1] * (this.currRank + 1)}% Friction +${Math.round(this.effects.duration * (this.currRank + 1) * 1000) / 10}% Ability Range` }
+        description() { return `+${this.effects.none[0] * (this.currRank + 1)}% Slide ${this.effects.none[1] * (this.currRank + 1)}% Friction +${Math.round(this.effects.range * (this.currRank + 1) * 1000) / 10}% Ability Range` }
     },
     {
         abrev: 'd7',

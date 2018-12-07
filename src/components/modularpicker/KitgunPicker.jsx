@@ -145,19 +145,19 @@ export class KitgunPicker extends Component {
                       <div className="stats-item">
                         <p className="stat-name">Sustained DPS: </p>
                         {kitgun.ammoCost
-                          ? <div className="stat"><p>{Math.round((kitgun.damage * (1 + kitgun.critChance * (kitgun.critMult - 1))) * kitgun.fireRate * ((kitgun.magSize / kitgun.ammoCost) / kitgun.fireRate) / ((kitgun.magSize / kitgun.ammoCost) / kitgun.fireRate + kitgun.reload) * 10) / 10}</p></div>
-                          : <div className="stat"><p>{Math.round((kitgun.damage * (1 + kitgun.critChance * (kitgun.critMult - 1))) * kitgun.fireRate * (kitgun.magSize / kitgun.fireRate) / (kitgun.magSize / kitgun.fireRate + kitgun.reload) * 10) / 10}</p></div>
+                          ? <div className="stat"><p>{(Math.round((kitgun.damage * (1 + kitgun.critChance * (kitgun.critMult - 1))) * kitgun.fireRate * ((kitgun.magSize / kitgun.ammoCost) / kitgun.fireRate) / ((kitgun.magSize / kitgun.ammoCost) / kitgun.fireRate + kitgun.reload) * 10) / 10).toFixed(1)}</p></div>
+                          : <div className="stat"><p>{(Math.round((kitgun.damage * (1 + kitgun.critChance * (kitgun.critMult - 1))) * kitgun.fireRate * (kitgun.magSize / kitgun.fireRate) / (kitgun.magSize / kitgun.fireRate + kitgun.reload) * 10) / 10).toFixed(1)}</p></div>
                         }
                         <p className="stat-name">Burst DPS: </p>
-                        <div className="stat"><p>{Math.round((kitgun.damage * (1 + kitgun.critChance * (kitgun.critMult - 1))) * kitgun.fireRate * 10) / 10}</p></div>
+                        <div className="stat"><p>{(Math.round((kitgun.damage * (1 + kitgun.critChance * (kitgun.critMult - 1))) * kitgun.fireRate * 10) / 10).toFixed(1)}</p></div>
                         <p className="stat-name">Damage Average: </p>
-                        <div className="stat"><p>{Math.round(kitgun.damage * (1 + kitgun.critChance * (kitgun.critMult - 1)) * 10) / 10}</p></div>
+                        <div className="stat"><p>{(Math.round(kitgun.damage * (1 + kitgun.critChance * (kitgun.critMult - 1)) * 10) / 10).toFixed(1)}</p></div>
                       </div>
                       <div className="stats-item damage">
                         <p className="stat-name">Damage: </p>
                         <div className="damage">
                           {kitgun.split.map(instance => (
-                            <div key={instance.type} className="stat"><p>{instance.type}: </p><p className="stat-frag">{Math.round(instance.percent * kitgun.damage * 10) / 10}</p><img className="damage-icon" src={require(`../../assets/general/${instance.type}.png`)} alt="" /></div>
+                            <div key={instance.type} className="stat"><p>{instance.type}: </p><p className="stat-frag">{(Math.round(instance.percent * kitgun.damage * 10) / 10).toFixed(1)}</p><img className="damage-icon" src={require(`../../assets/general/${instance.type}.png`)} alt="" /></div>
                           ))}
                         </div>
                       </div>

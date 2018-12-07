@@ -1,6 +1,16 @@
 UPDATE LOG
 
-06/10/2018 - v1.0.2.
+07/12/2018 - v1.0.3.
+
+Fixes:
+Morphic Transformer and Primed Morphic Transformer can no longer be used at the same time.
+Fixed an issue where the last 2 slots on a loaded companion build did not apply polarity correctly.
+Fixed an issue that made slotting exilus and aura set mods inconsistent.
+Damage values will always have 1 decimel place as requested.
+Fixed an issue where efficiency can visually go over 175% even though it didnt actaully do anything (except on channeled abilties with -duration).
+Fixed Cunning Drift's description.
+
+06/12/2018 - v1.0.2.
 
 Fixes:
 Fixed an issue where updating a previously saved build's description sometimes didn't work.

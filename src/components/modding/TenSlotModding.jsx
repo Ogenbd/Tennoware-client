@@ -53,7 +53,7 @@ class TenSlotModding extends Component {
         if (this.props.match.params.pre) {
             let build = this.props.match.params.pre;
             let orokin = build[0] === '0' ? false : true;
-            let prePolarities = this.createPrePolarities(build.slice(1, 9).split(''));
+            let prePolarities = this.createPrePolarities(build.slice(1, 11).split(''));
             let preMods = this.createPreMods(build.slice(11, 51));
             let totalModsCost = this.calcCost(preMods.chosenMods, prePolarities);
             let formaCount = this.countForma(prePolarities);

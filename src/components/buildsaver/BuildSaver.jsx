@@ -22,7 +22,6 @@ export class BuildSaver extends Component {
     componentDidMount() {
         if (this.props.metaInfo.Owner) {
             let isPrivate = this.props.metaInfo.Private ? true : false
-            console.log(this.props.metaInfo);
             this.setState({
                 private: isPrivate,
                 buildName: this.props.metaInfo.BuildName,
@@ -108,7 +107,6 @@ export class BuildSaver extends Component {
                 let token = localStorage.getItem('jwt');
                 if (this.props.match.params.build && this.props.metaInfo.Owner) {
                     buildData.buildId = this.props.match.params.build;
-                    // fix url
                     fetch(`${apiUrl}/updatebuild`, {
                         method: 'post',
                         headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` },
@@ -154,7 +152,6 @@ export class BuildSaver extends Component {
                                         buildId: res,
                                         loading: false
                                     })
-                                    // this.redirectToSaved(buildData, res)
                                 })
                             } else if (res.status === 401) {
                                 this.props.history.replace('/unauthorized');

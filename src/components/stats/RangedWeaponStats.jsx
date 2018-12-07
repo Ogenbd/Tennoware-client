@@ -511,17 +511,17 @@ export class RangedWeaponStats extends Component {
                         <div className="stats-wrapper">
                             <div className="stats-item">
                                 <p className="stat-name">Sustained DPS: </p>
-                                <div className="stat"><p>{Math.round(DPS.sustained * 10) / 10}</p></div>
+                                <div className="stat"><p>{(Math.round(DPS.sustained * 10) / 10).toFixed(1)}</p></div>
                                 <p className="stat-name">Burst DPS: </p>
-                                <div className="stat"><p>{Math.round(DPS.burst * 10) / 10}</p></div>
+                                <div className="stat"><p>{(Math.round(DPS.burst * 10) / 10).toFixed(1)}</p></div>
                                 <p className="stat-name">Damage Average: </p>
-                                <div className="stat"><p>{Math.round(DPS.averageShotDamage * 10) / 10}</p></div>
+                                <div className="stat"><p>{(Math.round(DPS.averageShotDamage * 10) / 10).toFixed(1)}</p></div>
                             </div>
                             <div className="stats-item damage">
                                 <p className="stat-name">Damage: </p>
                                 <div className="damage">
                                     {damage.map(instance => (
-                                        <div key={instance.type} className="stat"><p>{instance.type}: </p><p className="stat-frag">{Math.round(instance.damage * 10) / 10}</p><img className="damage-icon" src={instance.icon} alt="" /></div>
+                                        <div key={instance.type} className="stat"><p>{instance.type}: </p><p className="stat-frag">{(Math.round(instance.damage * 10) / 10).toFixed(1)}</p><img className="damage-icon" src={instance.icon} alt="" /></div>
                                     ))}
                                 </div>
                             </div>

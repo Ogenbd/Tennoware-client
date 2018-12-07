@@ -431,8 +431,8 @@ class WarframeModding extends Component {
         let chosen = cloneDeep(chosenMods);
         let aura = cloneDeep(auraMod);
         let exilus = cloneDeep(exilusMod)
-        if (aura.set) auraMod.set.setCurr = sets[auraMod.set.setName];
-        if (exilus.set) auraMod.set.setCurr = sets[auraMod.set.setName];
+        if (aura.set) aura.set.setCurr = sets[aura.set.setName];
+        if (exilus.set) exilus.set.setCurr = sets[exilus.set.setName];
         chosen.forEach(mod => {
             if (mod.set) {
                 mod.set.setCurr = sets[mod.set.setName]

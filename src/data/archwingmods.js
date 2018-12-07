@@ -265,6 +265,7 @@ const archwingMods = [
     {
         abrev: 'b1',
         name: 'Morphic Transformer',
+        family: 'Morphic Transformer',
         img: require('../assets/modimages/morphic-transformer.jpg'),
         type: 'ARCHWING',
         rarity: 'rare',
@@ -278,6 +279,7 @@ const archwingMods = [
     {
         abrev: 'b2',
         name: 'Primed Morphic Transformer',
+        family: 'Morphic Transformer',
         img: require('../assets/modimages/primed-morphic-transformer.jpg'),
         type: 'ARCHWING',
         rarity: 'prime',

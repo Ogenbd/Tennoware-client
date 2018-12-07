@@ -508,7 +508,7 @@ export class WarframeStats extends PureComponent {
                             <div className="stats-item">
                                 <p className="stat-name">Efficiency: </p>
                                 {effects.efficiency
-                                    ? <div className={"warframe-stat " + (effects.efficiency > 0 ? "increased-stat" : "decreased-stat")}><p>{Math.round((1 + effects.efficiency) * 1000) / 10}%</p></div>
+                                    ? <div className={"warframe-stat " + (effects.efficiency > 0 ? "increased-stat" : "decreased-stat")}><p>{effects.efficiency < 0.75 ? Math.round((1 + effects.efficiency) * 1000) / 10 : 175}%</p></div>
                                     : <div className="warframe-stat"><p>100%</p></div>
                                 }
                             </div>
