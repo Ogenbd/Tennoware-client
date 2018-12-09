@@ -1,6 +1,6 @@
 UPDATE LOG
 
-upcoming - v1.0.4.
+09/12/2018 - v1.0.4.
 
 Updates:
 Firefox users using Firefox Quantom version 64+ on non-mobile devices should now have sleeker themed scrollbars that take up much less space.

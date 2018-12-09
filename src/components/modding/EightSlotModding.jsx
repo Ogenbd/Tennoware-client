@@ -271,9 +271,11 @@ class EightSlotModding extends Component {
             for (let key in rivenUpdate) {
                 chosenMods[findRivenInChosenMods][key] = rivenUpdate[key];
             }
+            let totalModsCost = this.calcCost(chosenMods, this.state.slotPolarities);
             this.setState({
                 rivenEditor: false,
                 chosenMods: chosenMods,
+                totalModsCost: totalModsCost,
                 rivenMod: rivenUpdate
             });
         } else {

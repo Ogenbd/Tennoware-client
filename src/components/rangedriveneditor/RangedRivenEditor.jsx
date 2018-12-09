@@ -67,7 +67,6 @@ export class RangedRivenEditor extends Component {
     rivenMod.numThree = this.findRivenAmount(statsArr[2].slice(2));
     rivenMod.effectFour = this.findRivenStat(parseInt(statsArr[3].slice(0, 2), 10));
     rivenMod.numFour = this.findRivenAmount(statsArr[3].slice(2));
-    console.log(rivenMod);
     return rivenMod;
   }
 
@@ -81,7 +80,6 @@ export class RangedRivenEditor extends Component {
   findRivenAmount = (amountStr) => {
     let number = 0;
     let amount = parseFloat(amountStr.slice(1));
-    console.log(amount);
     if (isNaN(amount)) {
       this.props.redirectToVoid();
     } else if (amountStr[0] === 'p') {
