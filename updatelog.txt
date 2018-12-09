@@ -4,7 +4,9 @@ upcoming - v1.0.5.
 
 Fixed an issue that caused Community Builds lists that were larger than the space available to them to scroll horizontally instead of vertically. 
 Fixed an issue where the sustained DPS calculation was wrong when mods effecting reload speed were in play.
-need to "bring mod to center" functionality on safari.
+Fixed a Safari mobile issue where the mod handler (where you can rank and remove mods when on mobile) would be tossed WAY down. This issue caused me to rewrite for that entire section of code and it should now run better on all mobile platforms.
+Venari is now capable of equipping kavat mods.
+Fixed an issue where dragging a mod in Firefox would highlight a bunch of stuff.
 
 
 09/12/2018 - v1.0.4.

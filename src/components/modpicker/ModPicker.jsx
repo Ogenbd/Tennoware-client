@@ -59,7 +59,7 @@ export class ModPicker extends PureComponent {
             if (mod.name) {
                 modList.push(
                     // <div draggable={this.props.viewWidth >= 1203} className="mod-wrapper" key={mod.index} onClick={() => { this.handlePick(mod) }} onDragStart={(e) => { this.handleDrag(e, mod.index) }}>
-                    <div draggable="false" className="mod-wrapper" key={mod.index} onClick={() => { this.handlePick(mod) }} onDragStart={(e) => { this.handleDrag(e, mod.index) }}>
+                    <div draggable="false" className="mod-wrapper no-highlight" key={mod.index} onClick={() => { this.handlePick(mod) }} onDragStart={(e) => { this.handleDrag(e, mod.index) }}>
                         <SimpleModCardGenerator mod={mod} viewWidth={this.props.viewWidth} />
                     </div>
                 );

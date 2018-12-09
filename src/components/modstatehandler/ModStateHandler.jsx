@@ -50,25 +50,16 @@ export class ModStateHandler extends Component {
 
   activateHandler = (element) => {
     if (!this.state.handlerActive) {
+      let coords = element.getBoundingClientRect()
       let style = {};
       let topButtons = {};
       let bottomButtons = {};
-      let viewHeight = window.innerHeight;
-      let viewWidth = this.props.viewWidth;
-      let yCenter = window.pageYOffset;
-      let xPosition = 0;
-      let yPosition = 0;
-      while (element) {
-        xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
-        yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
-        element = element.offsetParent;
-      }
-      style.transform = `translate(${viewWidth / 2 - xPosition - 75}px,${viewHeight / 2 + yCenter - yPosition - 109.775}px) scale(1.3,1.3)`;
+      style.transform = `translate(${this.props.viewWidth / 2 - coords.left - 75}px,${window.innerHeight / 2 - coords.top - 109}px) scale(1.3,1.3)`;
       style.zIndex = '9091';
-      topButtons.top = `${viewHeight / 2 + yCenter - yPosition - 190}px`;
-      topButtons.left = `${viewWidth / 2 - xPosition}px`;
-      bottomButtons.top = `${viewHeight / 2 + yCenter - yPosition + 141}px`;
-      bottomButtons.left = `${viewWidth / 2 - xPosition}px`;
+      topButtons.top = `${window.innerHeight / 2 - coords.top - 189}px`
+      topButtons.left = `${this.props.viewWidth / 2 - coords.left}px`
+      bottomButtons.top = `${window.innerHeight / 2 - coords.top + 146}px`
+      bottomButtons.left = `${this.props.viewWidth / 2 - coords.left}px`
       this.setState({
         handlerActive: true,
         cardStyle: style,
@@ -154,7 +145,7 @@ export class ModStateHandler extends Component {
 
   render() {
     return (
-      <div className="slot-wrapper" onClick={this.handleClick} onContextMenu={this.rightClickRemove}>
+      <div className="slot-wrapper no-highlight" onClick={this.handleClick} onContextMenu={this.rightClickRemove}>
         <div className={"handler-background " + (this.state.handlerActive ? "handler-active" : "handler-inactive")} onClick={this.closeHandler}></div>
         <div className={"handler-top-buttons " + (this.state.handlerActive ? "handler-active" : "handler-inactive")} style={this.state.topButtons}>
           <div className="interactable interactable-semi-inactive handler-remove" onClick={this.removeMod}><p className="interactable-p">Remove</p></div>
