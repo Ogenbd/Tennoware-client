@@ -135,7 +135,7 @@ class EightSlotModding extends Component {
         } else {
             effectStr += 'p';
         }
-        let absNum = Math.abs(num);
+        let absNum = Math.abs(num).toFixed(1);
         if (absNum < 10) {
             effectStr += '00';
             effectStr += absNum;
@@ -583,7 +583,7 @@ class EightSlotModding extends Component {
                             </div>
                             <div className="aug-wrapper">
                                 {!this.props.item.exalted && this.props.riven === 'ranged' &&
-                                    <RangedRivenEditor viewWidth={this.props.viewWidth} chosenMods={chosenMods} handleRiven={this.handleRiven} buildStr={this.props.match.params.pre} transPolarity={this.transPolarity} />
+                                    <RangedRivenEditor viewWidth={this.props.viewWidth} chosenMods={chosenMods} handleRiven={this.handleRiven} buildStr={this.props.match.params.pre} transPolarity={this.transPolarity} redirectToVoid={this.props.redirectToVoid} />
                                 }
                                 {/* {!this.props.item.exalted && this.props.riven === 'melee' &&
                                     <RangedRivenEditor viewWidth={this.props.viewWidth} chosenMods={chosenMods} handleRiven={this.handleRiven} buildStr={this.props.match.params.pre} transPolarity={this.transPolarity} />

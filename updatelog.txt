@@ -1,5 +1,17 @@
 UPDATE LOG
 
+upcoming - v1.0.4.
+
+Updates:
+Firefox users using Firefox Quantom version 64+ on non-mobile devices should now have sleeker themed scrollbars that take up much less space.
+
+Fixes:
+Firefox users using Firefox Quantom version 64+ on non-mobile devices should now have the ability to increase and decrease mod rank.
+Fixed an issue where builds with rivens that had fractional stats resulted in an invalid riven error.
+Fixed an issue where invalid riven errors would completely crash the app instead of gracefully redirecting to an error page.
+Fixed Soul Survivor's Health restore, it now applies correctly to Soul Punch.
+Augur Reach's added range is now the same as it is in game.
+
 07/12/2018 - v1.0.3.
 
 Fixes:

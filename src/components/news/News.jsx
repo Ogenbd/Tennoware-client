@@ -74,8 +74,15 @@ export class News extends Component {
                 <h1>Introduction</h1>
                 <div className="update-content">
                   <p>Tennoware is a Warframe build calculator, it is also a fully featured <a className="reddit-link" href="https://en.wikipedia.org/wiki/Progressive_web_applications">Progressive Web App</a>, meaning it is both mobile and desktop friendly, can be installed on your mobile device and has offline functionality.</p>
-                  <p>This is an early release of Tennoware and it is still in active development. Please understand that some server issues or bugs are lurking around. Update Log <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">here</a>.</p>
-                  <p>To submit feedback, feature suggestions, bug reports and for general discussion go <a className="reddit-link" href="https://www.reddit.com/r/tennoware">here.</a></p>
+                  <p>Tennoware is still in early stages of development. Please understand that some server issues and/or bugs are lurking around.</p>
+                  <p>For bug reports, feedback, feature suggestions and general Tennoware discussion go <a className="reddit-link" href="https://www.reddit.com/r/tennoware">here.</a></p>
+                </div>
+              </div>
+              <div className="article tennoware-news">
+                <h1>Update 1.0.4!</h1>
+                <div className="update-content">
+                  <p>This update fixed an issue that caused builds with rivens that had fractional stats to crash the app. I ran a database update query to fix affected builds. If you saved a build with a fractional riven stat and are still unable to access it please let me know at the <a className="reddit-link" href="https://www.reddit.com/r/tennoware">Tennoware subreddit.</a></p>
+                  <p>For the complete update notes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log.</a></p>
                 </div>
               </div>
               {this.props.online &&

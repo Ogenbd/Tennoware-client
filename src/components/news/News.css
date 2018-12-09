@@ -108,13 +108,13 @@ body {
     justify-content: flex-start;
     width: 402px;
     max-width: 402px;
-    height: unset;
+    /* height: unset; */
     padding: 5px;
     box-sizing: border-box;
 }
 
 .tennoware-news h1 {
-    margin-bottom: 5px;
+    margin-bottom: 1px;
     font-weight: 900;
 }
 
@@ -126,7 +126,7 @@ body {
 }
 
 .update-content p {
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .reddit-link {

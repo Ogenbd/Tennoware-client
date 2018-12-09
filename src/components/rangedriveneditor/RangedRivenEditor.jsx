@@ -26,7 +26,7 @@ export class RangedRivenEditor extends Component {
   componentDidMount() {
     // this.updateRiven();
     if (this.props.buildStr && this.props.buildStr[41] === 'x') {
-      let preRiven = this.createPreRiven(this.props.buildStr.slice(41, 67));
+      let preRiven = this.createPreRiven(this.props.buildStr.slice(41, 75));
       this.setState({
         polarity: preRiven.polarity,
         effectOne: preRiven.effectOne,
@@ -58,7 +58,7 @@ export class RangedRivenEditor extends Component {
     }
     rivenMod.polarity = this.props.transPolarity(rivenStr[1]);
     let statsStr = rivenStr.slice(2);
-    let statsArr = statsStr.match(/.{1,6}/g)
+    let statsArr = statsStr.match(/.{1,8}/g)
     rivenMod.effectOne = this.findRivenStat(parseInt(statsArr[0].slice(0, 2), 10));
     rivenMod.numOne = this.findRivenAmount(statsArr[0].slice(2));
     rivenMod.effectTwo = this.findRivenStat(parseInt(statsArr[1].slice(0, 2), 10));
@@ -67,6 +67,7 @@ export class RangedRivenEditor extends Component {
     rivenMod.numThree = this.findRivenAmount(statsArr[2].slice(2));
     rivenMod.effectFour = this.findRivenStat(parseInt(statsArr[3].slice(0, 2), 10));
     rivenMod.numFour = this.findRivenAmount(statsArr[3].slice(2));
+    console.log(rivenMod);
     return rivenMod;
   }
 
@@ -79,7 +80,8 @@ export class RangedRivenEditor extends Component {
 
   findRivenAmount = (amountStr) => {
     let number = 0;
-    let amount = parseInt(amountStr.slice(1), 10);
+    let amount = parseFloat(amountStr.slice(1));
+    console.log(amount);
     if (isNaN(amount)) {
       this.props.redirectToVoid();
     } else if (amountStr[0] === 'p') {

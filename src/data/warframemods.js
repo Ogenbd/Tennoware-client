@@ -502,7 +502,7 @@ const warframeMods = [
         type: 'WARFRAME',
         rarity: 'uncommon',
         polarity: 'naramon',
-        effects: { range: 0.04 },
+        effects: { range: 0.05 },
         maxRank: 5,
         currRank: 5,
         baseCost: 2,
@@ -6833,7 +6833,7 @@ const warframeMods = [
                         {
                             name: 'Downed ally health restore',
                             suffix: '%',
-                            base(augEffects, augRank) { return augEffects.none[augEffects] }
+                            base(augEffects, augRank) { return augEffects.none[augRank] }
                         },
                     ],
                     range: [
