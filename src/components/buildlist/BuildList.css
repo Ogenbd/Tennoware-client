@@ -1,9 +1,11 @@
 .build-list {
     flex-wrap: wrap;
-    align-items: center;
-    /* align-items: flex-start; */
-    /* justify-content: center; */
-    flex-direction: column;
+    justify-content: center;
+    flex-direction: row;
+    height: unset;
+    flex-grow: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .topbar-title {
@@ -53,7 +55,6 @@
 }
 
 .build-list-name {
-    /* width: 190px; */
     position: relative;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -89,16 +90,4 @@
     border: 1px solid rgba(255, 249, 160, 0.73);
     color: white;
     text-align: justify;
-}
-
-@media screen and (min-width: 1203px) {
-    .topbar-title p {
-        /* font-size: 1.5em; */
-    }
-}
-
-@media screen and (max-width: 1202px) {
-    .topbar-title p {
-        /* font-size: 1.2em; */
-    }
 }

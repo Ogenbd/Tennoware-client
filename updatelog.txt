@@ -1,5 +1,11 @@
 UPDATE LOG
 
+upcoming - v1.0.5.
+
+need to fix horizontal scroll on large community builds lists
+need to "bring mod to center" functionality on safari.
+
+
 09/12/2018 - v1.0.4.
 
 Updates:
