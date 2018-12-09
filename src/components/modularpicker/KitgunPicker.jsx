@@ -145,7 +145,7 @@ export class KitgunPicker extends Component {
                       <div className="stats-item">
                         <p className="stat-name">Sustained DPS: </p>
                         {kitgun.ammoCost
-                          ? <div className="stat"><p>{(Math.round((kitgun.damage * (1 + kitgun.critChance * (kitgun.critMult - 1))) * kitgun.fireRate * ((kitgun.magSize / kitgun.ammoCost) / kitgun.fireRate) / ((kitgun.magSize / kitgun.ammoCost) / kitgun.fireRate + kitgun.reload) * 10) / 10).toFixed(1)}</p></div>
+                          ? <div className="stat"><p>{(Math.round(((kitgun.damage * (1 + kitgun.critChance * (kitgun.critMult - 1))) * kitgun.fireRate * ((kitgun.magSize / kitgun.ammoCost) / kitgun.fireRate) / ((kitgun.magSize / kitgun.ammoCost) / kitgun.fireRate + kitgun.reload)) * 10) / 10).toFixed(1)}</p></div>
                           : <div className="stat"><p>{(Math.round((kitgun.damage * (1 + kitgun.critChance * (kitgun.critMult - 1))) * kitgun.fireRate * (kitgun.magSize / kitgun.fireRate) / (kitgun.magSize / kitgun.fireRate + kitgun.reload) * 10) / 10).toFixed(1)}</p></div>
                         }
                         <p className="stat-name">Burst DPS: </p>

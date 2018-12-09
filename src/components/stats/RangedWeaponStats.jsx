@@ -430,7 +430,8 @@ export class RangedWeaponStats extends Component {
 
     calcDPS = (damage, fireRate, critChance, critMult) => {
         let magSize = this.state.effects.magSize ? this.props.weapon.magSize * (1 + this.state.effects.magSize) : this.props.weapon.magSize;
-        let reload = this.state.effects.reload ? this.props.weapon.reload * (1 + this.state.effects.reload) : this.props.weapon.reload;
+        let reload = this.state.effects.reload ? this.props.weapon.reload / (1 + this.state.effects.reload) : this.props.weapon.reload;
+        console.log(reload);
         let averageShotDamage;
         let burstDPS;
         let sustainedDPS;

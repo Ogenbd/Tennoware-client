@@ -2,7 +2,8 @@ UPDATE LOG
 
 upcoming - v1.0.5.
 
-need to fix horizontal scroll on large community builds lists
+Fixed an issue that caused Community Builds lists that were larger than the space available to them to scroll horizontally instead of vertically. 
+Fixed an issue where the sustained DPS calculation was wrong when mods effecting reload speed were in play.
 need to "bring mod to center" functionality on safari.
 
 
