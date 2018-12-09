@@ -1,6 +1,6 @@
 UPDATE LOG
 
-upcoming - v1.0.5.
+9/12/2018 - v1.0.5.
 
 Fixed an issue that caused Community Builds lists that were larger than the space available to them to scroll horizontally instead of vertically. 
 Fixed an issue where the sustained DPS calculation was wrong when mods effecting reload speed were in play.

@@ -79,9 +79,9 @@ export class News extends Component {
                 </div>
               </div>
               <div className="article tennoware-news">
-                <h1>Update 1.0.4!</h1>
+                <h1>Update 1.0.5!</h1>
                 <div className="update-content">
-                  <p>This update fixed an issue that caused builds with rivens that had fractional stats to crash the app. I ran a database update query to fix affected builds. If you saved a build with a fractional riven stat and are still unable to access it please let me know at the <a className="reddit-link" href="https://www.reddit.com/r/tennoware">Tennoware subreddit.</a></p>
+                  <p>More bug and UI fixes! iOS mod rank handler is fixed! If you saved a build with a riven and you cant access it please let me know at the <a className="reddit-link" href="https://www.reddit.com/r/tennoware">Tennoware subreddit.</a></p>
                   <p>For the complete update notes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log.</a></p>
                 </div>
               </div>
