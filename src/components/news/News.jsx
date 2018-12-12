@@ -81,9 +81,9 @@ export class News extends Component {
                 </div>
               </div>
               <div className="article tennoware-news">
-                <h1>Update 1.0.5!</h1>
+                <h1>Update 1.0.6!</h1>
                 <div className="update-content">
-                  <p>More bug and UI fixes! iOS mod rank handler is fixed! If you saved a build with a riven and you cant access it please let me know at the <a className="reddit-link" href="https://www.reddit.com/r/tennoware">Tennoware subreddit.</a></p>
+                  <p>Added the option to look at all public Kitgun/MOA builds, a toggle for Arbitrations bonus and a status proc breakdown on weapons. If you saved a build with a riven and you cant access it please let me know at the <a className="reddit-link" href="https://www.reddit.com/r/tennoware">Tennoware subreddit.</a></p>
                   <p>For the complete update notes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log.</a></p>
                 </div>
               </div>
