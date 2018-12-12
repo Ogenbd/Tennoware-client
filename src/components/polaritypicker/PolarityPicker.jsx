@@ -30,32 +30,32 @@ export class PolarityPicker extends Component {
                         <div className="hexa-wrapper">
                             <div className="hexagon" onClick={(e) => { this.polarizeSlot(e, 'madurai') }}>
                                 <span>
-                                    <img className="hex-polarity" src={require('../../assets/general/maduraiblack.png')} alt="madurai" />
+                                    <img className="hex-polarity" src={require('../../assets/dynamic/polarities/maduraiblack.png')} alt="madurai" />
                                 </span>
                             </div>
                             <div className="hexagon" onClick={(e) => { this.polarizeSlot(e, 'naramon') }}>
                                 <span>
-                                    <img className="hex-polarity" src={require('../../assets/general/naramonblack.png')} alt="naramon" />
+                                    <img className="hex-polarity" src={require('../../assets/dynamic/polarities/naramonblack.png')} alt="naramon" />
                                 </span>
                             </div>
                             <div className="hexagon" onClick={(e) => { this.polarizeSlot(e, 'vazarin') }}>
                                 <span>
-                                    <img className="hex-polarity" src={require('../../assets/general/vazarinblack.png')} alt="vazarin" />
+                                    <img className="hex-polarity" src={require('../../assets/dynamic/polarities/vazarinblack.png')} alt="vazarin" />
                                 </span>
                             </div>
                             <div className="hexagon" onClick={(e) => { this.polarizeSlot(e, 'zenurik') }}>
                                 <span>
-                                    <img className="hex-polarity" src={require('../../assets/general/zenurikblack.png')} alt="zenurik" />
+                                    <img className="hex-polarity" src={require('../../assets/dynamic/polarities/zenurikblack.png')} alt="zenurik" />
                                 </span>
                             </div>
                             <div className="hexagon" onClick={(e) => { this.polarizeSlot(e, 'unairu') }}>
                                 <span>
-                                    <img className="hex-polarity" src={require('../../assets/general/unairublack.png')} alt="unairu" />
+                                    <img className="hex-polarity" src={require('../../assets/dynamic/polarities/unairublack.png')} alt="unairu" />
                                 </span>
                             </div>
                             <div className="hexagon" onClick={(e) => { this.polarizeSlot(e, 'penjaga') }}>
                                 <span>
-                                    <img className="hex-polarity" src={require('../../assets/general/penjagablack.png')} alt="penjaga" />
+                                    <img className="hex-polarity" src={require('../../assets/dynamic/polarities/penjagablack.png')} alt="penjaga" />
                                 </span>
                             </div>
                             <div className="hexagon" onClick={(e) => { this.polarizeSlot(e, undefined) }}>

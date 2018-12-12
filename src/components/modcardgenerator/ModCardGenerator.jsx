@@ -70,7 +70,7 @@ export class ModCardGenerator extends PureComponent {
           <img className="aura-topper" src={require('../../assets/general/auratopper.png')} alt="" />
         }
         {mod.exilus &&
-          <img className="exilus-mod-icon" src={require(`../../assets/general/exilus${mod.rarity}.png`)} alt="" />
+          <img className="exilus-mod-icon" src={require(`../../assets/dynamic/modcards/exilus${mod.rarity}.png`)} alt="" />
         }
         <div className="mod-info-wrapper">
           <div className="mod-name"><p>{mod.name}</p></div>
@@ -86,7 +86,7 @@ export class ModCardGenerator extends PureComponent {
           }
           <div className="info-bottom"></div>
         </div>
-        <img src={require(`../../assets/general/${mod.rarity}.png`)} alt={''} className={"rarity " + (mod.rarity === 'riven' ? "riven-border" : "")} />
+        <img src={require(`../../assets/dynamic/modcards/${mod.rarity}.png`)} alt={''} className={"rarity " + (mod.rarity === 'riven' ? "riven-border" : "")} />
         <div className="polarity-wrapper">
           {match === 'green'
             ? (mod.aura || mod.stance)
@@ -98,7 +98,7 @@ export class ModCardGenerator extends PureComponent {
                 : <p className="cost" style={{ color: 'red' }}>{Math.round((mod.baseCost + mod.currRank) * 1.25)}</p>
               : <p className="cost" style={fontColor}>{mod.baseCost + mod.currRank}</p>
           }
-          <img className="polarity-icon" src={require(`../../assets/general/${mod.polarity}${match}.png`)} alt={''} />
+          <img className="polarity-icon" src={require(`../../assets/dynamic/polarities/${mod.polarity}${match}.png`)} alt={''} />
         </div>
         <div className="mod-type">
           <p>

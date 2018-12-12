@@ -57,7 +57,7 @@ export class SimpleModCardGenerator extends PureComponent {
                     <img className="aura-topper" src={require('../../assets/general/auratopper.png')} alt="" />
                 }
                 {mod.exilus &&
-                    <img className="exilus-mod-icon" src={require(`../../assets/general/exilus${mod.rarity}.png`)} alt="" />
+                    <img className="exilus-mod-icon" src={require(`../../assets/dynamic/modcards/exilus${mod.rarity}.png`)} alt="" />
                 }
                 <div className="mod-info-wrapper">
                     <div className="mod-name"><p>{mod.name}</p></div>
@@ -73,10 +73,10 @@ export class SimpleModCardGenerator extends PureComponent {
                     }
                     <div className="info-bottom"></div>
                 </div>
-                <img src={require(`../../assets/general/${mod.rarity}.png`)} alt={''} className={"rarity " + (mod.rarity === 'riven' ? "riven-border" : "")} />
+                <img src={require(`../../assets/dynamic/modcards/${mod.rarity}.png`)} alt={''} className={"rarity " + (mod.rarity === 'riven' ? "riven-border" : "")} />
                 <div className="polarity-wrapper">
                     <p className="cost" style={fontColor}>{mod.baseCost + mod.currRank}</p>
-                    <img className="polarity-icon" src={require(`../../assets/general/${mod.polarity}${mod.rarity}.png`)} alt={''} />
+                    <img className="polarity-icon" src={require(`../../assets/dynamic/polarities/${mod.polarity}${mod.rarity}.png`)} alt={''} />
                 </div>
                 <div className="mod-type">
                     <p>

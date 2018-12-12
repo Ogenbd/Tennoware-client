@@ -9,7 +9,7 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 500,
-                            icon: require('../assets/general/Slash.png')
+                            icon: require('../assets/dynamic/damage/Slash.png')
                         }
                     ],
                     none: [
@@ -85,7 +85,7 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 2000,
-                            icon: require('../assets/general/True.png')
+                            icon: require('../assets/dynamic/damage/True.png')
                         }
                     ],
                     range: [
@@ -119,17 +119,17 @@ const abilities = {
                         {
                             name: '1st hit damage',
                             base: 350,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
                             name: '2nd hit damage',
                             base: 700,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
                             name: '3rd+ hit damage',
                             base: 1400,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                     ],
                     exception: [
@@ -196,12 +196,12 @@ const abilities = {
                         {
                             name: 'Boulder roll damage',
                             suffix: '/s',
-                            icon: require('../assets/general/Impact.png'),
+                            icon: require('../assets/dynamic/damage/Impact.png'),
                             base: 600
                         },
                         {
                             name: 'Boulder explosion damage',
-                            icon: require('../assets/general/Puncture.png'),
+                            icon: require('../assets/dynamic/damage/Puncture.png'),
                             base: 500
                         },
                     ],
@@ -310,17 +310,17 @@ const abilities = {
                         {
                             name: 'Melee damage',
                             base: 2000,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
                             name: 'Rock throw damage',
                             base: 500,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
                             name: 'Explosion damage',
                             base: 1250,
-                            icon: require('../assets/general/Blast.png')
+                            icon: require('../assets/dynamic/damage/Blast.png')
                         },
                     ],
                     duration: [
@@ -377,7 +377,7 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 50,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                     ],
                     range: [
@@ -475,7 +475,7 @@ const abilities = {
                         {
                             name: 'Damage/s',
                             base: 200,
-                            icon: require('../assets/general/Blast.png')
+                            icon: require('../assets/dynamic/damage/Blast.png')
                         },
                     ],
                     range: [
@@ -552,7 +552,7 @@ const abilities = {
                         {
                             name: 'Damage/s',
                             base: 100,
-                            icon: require('../assets/general/Heat.png'),
+                            icon: require('../assets/dynamic/damage/Heat.png'),
                         },
                         {
                             name: 'Health bonus',
@@ -614,7 +614,7 @@ const abilities = {
                         {
                             name: 'Minimum arc damage',
                             base: 200,
-                            icon: require('../assets/general/Electricity.png')
+                            icon: require('../assets/dynamic/damage/Electricity.png')
                         },
                     ],
                     duration: [
@@ -842,12 +842,12 @@ const abilities = {
                         {
                             name: 'Initial damage',
                             base: 400,
-                            icon: require('../assets/general/Heat.png')
+                            icon: require('../assets/dynamic/damage/Heat.png')
                         },
                         {
                             name: 'Area damage',
                             base: 150,
-                            icon: require('../assets/general/Heat.png')
+                            icon: require('../assets/dynamic/damage/Heat.png')
                         },
                     ],
                     none: [
@@ -917,12 +917,12 @@ const abilities = {
                         {
                             name: 'Wave damage',
                             base: 200,
-                            icon: require('../assets/general/Heat.png')
+                            icon: require('../assets/dynamic/damage/Heat.png')
                         },
                         {
                             name: 'Ring damage/s',
                             base: 225,
-                            icon: require('../assets/general/Heat.png')
+                            icon: require('../assets/dynamic/damage/Heat.png')
                         },
                     ],
                     duration: [
@@ -967,12 +967,12 @@ const abilities = {
                         {
                             name: 'Damage at 0%',
                             base: 400,
-                            icon: require('../assets/general/Heat.png')
+                            icon: require('../assets/dynamic/damage/Heat.png')
                         },
                         {
                             name: 'Damage at 100%',
                             base: 800,
-                            icon: require('../assets/general/Heat.png')
+                            icon: require('../assets/dynamic/damage/Heat.png')
                         },
                         {
                             name: 'Status chance',
@@ -1263,7 +1263,7 @@ const abilities = {
                         {
                             name: 'Aura damage',
                             base: 150,
-                            icon: require('../assets/general/Slash.png')
+                            icon: require('../assets/dynamic/damage/Slash.png')
                         },
                     ],
                     none: [
@@ -1448,12 +1448,12 @@ const abilities = {
                         {
                             name: 'Initial damage',
                             base: 350,
-                            icon: require('../assets/general/Cold.png')
+                            icon: require('../assets/dynamic/damage/Cold.png')
                         },
                         {
                             name: 'Area damage',
                             base: 150,
-                            icon: require('../assets/general/Cold.png')
+                            icon: require('../assets/dynamic/damage/Cold.png')
                         },
                     ],
                     duration: [
@@ -1486,7 +1486,7 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 700,
-                            icon: require('../assets/general/Cold.png')
+                            icon: require('../assets/dynamic/damage/Cold.png')
                         },
                     ],
                     range: [
@@ -1533,7 +1533,7 @@ const abilities = {
                         {
                             name: 'Globe explosion',
                             base: 150,
-                            icon: require('../assets/general/Cold.png')
+                            icon: require('../assets/dynamic/damage/Cold.png')
                         },
                     ],
                     range: [
@@ -1561,12 +1561,12 @@ const abilities = {
                         {
                             name: 'Initial damage',
                             base: 1500,
-                            icon: require('../assets/general/Cold.png')
+                            icon: require('../assets/dynamic/damage/Cold.png')
                         },
                         {
                             name: 'Explosion damage',
                             base: 400,
-                            icon: require('../assets/general/Cold.png')
+                            icon: require('../assets/dynamic/damage/Cold.png')
                         },
                         {
                             name: 'Armor reduction',
@@ -1614,7 +1614,7 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 800,
-                            icon: require('../assets/general/Puncture.png')
+                            icon: require('../assets/dynamic/damage/Puncture.png')
                         },
                     ],
                     range: [
@@ -1644,7 +1644,7 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 800,
-                            icon: require('../assets/general/Slash.png')
+                            icon: require('../assets/dynamic/damage/Slash.png')
                         },
                     ],
                     range: [
@@ -2217,12 +2217,12 @@ const abilities = {
                         {
                             name: 'Base damage',
                             base: 150,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
                             name: 'Charged damage',
                             base: 300,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                     ],
                     duration: [
@@ -2273,12 +2273,12 @@ const abilities = {
                         {
                             name: 'Initial damage',
                             base: 300,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
                             name: 'Wave crash damage',
                             base: 300,
-                            icon: require('../assets/general/Slash.png')
+                            icon: require('../assets/dynamic/damage/Slash.png')
                         },
                     ],
                     duration: [
@@ -2320,7 +2320,7 @@ const abilities = {
                         {
                             name: 'Damage/s',
                             base: 25,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
                             name: 'Damage increase/s',
@@ -2372,12 +2372,12 @@ const abilities = {
                         {
                             name: 'Contact damage',
                             base: 300,
-                            icon: require('../assets/general/Magnetic.png')
+                            icon: require('../assets/dynamic/damage/Magnetic.png')
                         },
                         {
                             name: 'Damage/s',
                             base: 200,
-                            icon: require('../assets/general/True.png')
+                            icon: require('../assets/dynamic/damage/True.png')
                         },
                     ],
                     duration: [
@@ -2468,12 +2468,12 @@ const abilities = {
                         {
                             name: 'Initial Damage',
                             base: 125,
-                            icon: require('../assets/general/True.png')
+                            icon: require('../assets/dynamic/damage/True.png')
                         },
                         {
                             name: 'Max Damage',
                             base: 250,
-                            icon: require('../assets/general/True.png')
+                            icon: require('../assets/dynamic/damage/True.png')
                         },
                     ],
                     duration: [
@@ -2508,7 +2508,7 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 500,
-                            icon: require('../assets/general/Slash.png')
+                            icon: require('../assets/dynamic/damage/Slash.png')
                         },
                     ],
                     range: [
@@ -2542,7 +2542,7 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 200,
-                            icon: require('../assets/general/Corrosive.png')
+                            icon: require('../assets/dynamic/damage/Corrosive.png')
                         },
                     ],
                     duration: [
@@ -2882,7 +2882,7 @@ const abilities = {
                         {
                             name: 'Snare damage',
                             base: 350,
-                            icon: require('../assets/general/Slash.png')
+                            icon: require('../assets/dynamic/damage/Slash.png')
                         },
                     ],
                     none: [
@@ -3033,7 +3033,7 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 250,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                     ],
                     duration: [
@@ -3127,7 +3127,7 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 500,
-                            icon: require('../assets/general/Blast.png')
+                            icon: require('../assets/dynamic/damage/Blast.png')
                         },
                     ],
                     duration: [
@@ -3232,7 +3232,7 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 20,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         }
                     ],
                     range: [
@@ -3262,7 +3262,7 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 300,
-                            icon: require('../assets/general/Magnetic.png')
+                            icon: require('../assets/dynamic/damage/Magnetic.png')
                         },
                     ],
                     range: [
@@ -3295,7 +3295,7 @@ const abilities = {
                         {
                             name: 'Explosion damage',
                             base: 300,
-                            icon: require('../assets/general/Magnetic.png')
+                            icon: require('../assets/dynamic/damage/Magnetic.png')
                         },
                     ],
                     duration: [
@@ -3335,7 +3335,7 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 400,
-                            icon: require('../assets/general/Magnetic.png')
+                            icon: require('../assets/dynamic/damage/Magnetic.png')
                         },
                         {
                             name: 'Damage multiplier',
@@ -3382,12 +3382,12 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 1500,
-                            icon: require('../assets/general/Magnetic.png')
+                            icon: require('../assets/dynamic/damage/Magnetic.png')
                         },
                         {
                             name: 'Shields gained / enemy / tick',
                             base: 25,
-                            icon: require('../assets/general/Magnetic.png')
+                            icon: require('../assets/dynamic/damage/Magnetic.png')
                         },
                     ],
                     range: [
@@ -3698,12 +3698,12 @@ const abilities = {
                         {
                             name: 'Minimum damage',
                             base: 250,
-                            icon: require('../assets/general/Radiation.png')
+                            icon: require('../assets/dynamic/damage/Radiation.png')
                         },
                         {
                             name: 'Maximum damage',
                             base: 500,
-                            icon: require('../assets/general/Radiation.png')
+                            icon: require('../assets/dynamic/damage/Radiation.png')
                         },
                     ],
                     duration: [
@@ -3756,7 +3756,7 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 500,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                     ],
                     range: [
@@ -3890,12 +3890,12 @@ const abilities = {
                         {
                             name: 'Damage/s',
                             base: 200,
-                            icon: require('../assets/general/Heat.png')
+                            icon: require('../assets/dynamic/damage/Heat.png')
                         },
                         {
                             name: 'Explosion damage',
                             base: 1250,
-                            icon: require('../assets/general/Heat.png')
+                            icon: require('../assets/dynamic/damage/Heat.png')
                         },
                     ],
                     duration: [
@@ -3942,12 +3942,12 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 250,
-                            icon: require('../assets/general/Heat.png')
+                            icon: require('../assets/dynamic/damage/Heat.png')
                         },
                         {
                             name: 'Charge damage',
                             base: 1000,
-                            icon: require('../assets/general/Heat.png')
+                            icon: require('../assets/dynamic/damage/Heat.png')
                         },
                         {
                             name: 'Damage vulnerability',
@@ -3993,7 +3993,7 @@ const abilities = {
                             name: 'Health',
                             base: 999.5,
                             mult: 2.5,
-                            icon: require('../assets/general/Slash.png')
+                            icon: require('../assets/dynamic/damage/Slash.png')
                         },
                     ],
                     strength: [
@@ -4027,12 +4027,12 @@ const abilities = {
                         {
                             name: 'Impale damage',
                             base: 600,
-                            icon: require('../assets/general/Puncture.png')
+                            icon: require('../assets/dynamic/damage/Puncture.png')
                         },
                         {
                             name: 'Slam damage',
                             base: 600,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                     ],
                     duration: [
@@ -4171,7 +4171,7 @@ const abilities = {
                         {
                             name: 'Base maggot explosion',
                             base: 150,
-                            icon: require('../assets/general/Blast.png')
+                            icon: require('../assets/dynamic/damage/Blast.png')
                         },
                         {
                             name: 'Health regen/s',
@@ -4217,7 +4217,7 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 200,
-                            icon: require('../assets/general/Slash.png')
+                            icon: require('../assets/dynamic/damage/Slash.png')
                         },
                     ],
                     duration: [
@@ -4258,7 +4258,7 @@ const abilities = {
                         {
                             name: 'Base damage',
                             base: 200,
-                            icon: require('../assets/general/Radiation.png')
+                            icon: require('../assets/dynamic/damage/Radiation.png')
                         },
                     ],
                     none: [
@@ -4320,7 +4320,7 @@ const abilities = {
                         {
                             name: 'On-death explosion',
                             base: 800,
-                            icon: require('../assets/general/Blast.png')
+                            icon: require('../assets/dynamic/damage/Blast.png')
                         },
                     ],
                     exception: [
@@ -4404,12 +4404,12 @@ const abilities = {
                         {
                             name: 'Bolt damage',
                             base: 200,
-                            icon: require('../assets/general/Slash.png')
+                            icon: require('../assets/dynamic/damage/Slash.png')
                         },
                         {
                             name: 'Area damage',
                             base: 15,
-                            icon: require('../assets/general/Radiation.png')
+                            icon: require('../assets/dynamic/damage/Radiation.png')
                         },
                     ],
                     none: [
@@ -4473,7 +4473,7 @@ const abilities = {
                         {
                             name: 'Minimum damage',
                             base: 1500,
-                            icon: require('../assets/general/Magnetic.png')
+                            icon: require('../assets/dynamic/damage/Magnetic.png')
                         },
                     ],
                     range: [
@@ -4513,7 +4513,7 @@ const abilities = {
                         {
                             name: 'Orb base damage',
                             base: 150,
-                            icon: require('../assets/general/Radiation.png')
+                            icon: require('../assets/dynamic/damage/Radiation.png')
                         },
                     ],
                     exception: [
@@ -4559,7 +4559,7 @@ const abilities = {
                         {
                             name: 'Damage / tick',
                             base: 100,
-                            icon: require('../assets/general/Radiation.png')
+                            icon: require('../assets/dynamic/damage/Radiation.png')
                         },
                         {
                             name: 'Status chance',
@@ -4758,7 +4758,7 @@ const abilities = {
                         {
                             name: 'Damage / Beat',
                             base: 125,
-                            icon: require('../assets/general/Blast.png')
+                            icon: require('../assets/dynamic/damage/Blast.png')
                         },
                     ],
                     duration: [
@@ -4895,12 +4895,12 @@ const abilities = {
                         {
                             name: 'Pillar damage/s',
                             base: 1000,
-                            icon: require('../assets/general/Puncture.png')
+                            icon: require('../assets/dynamic/damage/Puncture.png')
                         },
                         {
                             name: 'Projectile damage',
                             base: 1000,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                     ],
                     duration: [
@@ -5064,17 +5064,17 @@ const abilities = {
                         {
                             name: '1st charge damage',
                             base: 650,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
                             name: '2nd hit damage',
                             base: 1300,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
                             name: '3rd+ hit damage',
                             base: 2600,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                     ],
                     duration: [
@@ -5190,7 +5190,7 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 800,
-                            icon: require('../assets/general/Blast.png')
+                            icon: require('../assets/dynamic/damage/Blast.png')
                         },
 
                     ],
@@ -5228,7 +5228,7 @@ const abilities = {
                         {
                             name: 'Initial damage',
                             base: 10,
-                            icon: require('../assets/general/Corrosive.png')
+                            icon: require('../assets/dynamic/damage/Corrosive.png')
                         },
                         {
                             name: 'Damage growth / enemy',
@@ -5288,7 +5288,7 @@ const abilities = {
                         {
                             name: 'Explosion damage',
                             base: 500,
-                            icon: require('../assets/general/Toxin.png')
+                            icon: require('../assets/dynamic/damage/Toxin.png')
                         },
                         {
                             name: 'Speed multiplier',
@@ -5334,13 +5334,13 @@ const abilities = {
                             name: 'Added ranged Damage',
                             suffix: '%',
                             base: 30,
-                            icon: require('../assets/general/Toxin.png')
+                            icon: require('../assets/dynamic/damage/Toxin.png')
                         },
                         {
                             name: 'Added melee Damage',
                             suffix: '%',
                             base: 60,
-                            icon: require('../assets/general/Toxin.png')
+                            icon: require('../assets/dynamic/damage/Toxin.png')
                         },
                     ],
                     exception: [
@@ -5374,12 +5374,12 @@ const abilities = {
                         {
                             name: 'Damage/s',
                             base: 150,
-                            icon: require('../assets/general/Viral.png')
+                            icon: require('../assets/dynamic/damage/Viral.png')
                         },
                         {
                             name: 'Infected damage/s',
                             base: 600,
-                            icon: require('../assets/general/Viral.png')
+                            icon: require('../assets/dynamic/damage/Viral.png')
                         },
                     ],
                     duration: [
@@ -5758,17 +5758,17 @@ const abilities = {
                         {
                             name: '1st rip line damage',
                             base: 600,
-                            icon: require('../assets/general/Slash.png')
+                            icon: require('../assets/dynamic/damage/Slash.png')
                         },
                         {
                             name: '2nd rip line damage',
                             base: 1200,
-                            icon: require('../assets/general/Slash.png')
+                            icon: require('../assets/dynamic/damage/Slash.png')
                         },
                         {
                             name: '3rd+ rip line damage',
                             base: 2400,
-                            icon: require('../assets/general/Slash.png')
+                            icon: require('../assets/dynamic/damage/Slash.png')
                         },
                     ],
                     exception: [
@@ -5925,7 +5925,7 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 150,
-                            icon: require('../assets/general/Electricity.png')
+                            icon: require('../assets/dynamic/damage/Electricity.png')
                         },
                     ],
                     duration: [
@@ -5977,7 +5977,7 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 175,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                     ],
                     none: [
@@ -6028,7 +6028,7 @@ const abilities = {
                             name: 'Damage',
                             suffix: '',
                             base: 400,
-                            icon: require('../assets/general/Blast.png')
+                            icon: require('../assets/dynamic/damage/Blast.png')
                         },
                         {
                             name: 'Armor reduction',
@@ -6139,7 +6139,7 @@ const abilities = {
                         {
                             name: 'Damage/s',
                             base: 50,
-                            icon: require('../assets/general/Magnetic.png')
+                            icon: require('../assets/dynamic/damage/Magnetic.png')
                         },
                     ],
                     duration: [
@@ -6176,7 +6176,7 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 200,
-                            icon: require('../assets/general/Electricity.png')
+                            icon: require('../assets/dynamic/damage/Electricity.png')
                         },
                     ],
                     range: [
@@ -6258,7 +6258,7 @@ const abilities = {
                             name: 'Damage bonus',
                             suffix: '%',
                             base: 50,
-                            icon: require('../assets/general/Electricity.png')
+                            icon: require('../assets/dynamic/damage/Electricity.png')
                         },
                         {
                             name: 'Critical damage bonus',
@@ -6288,7 +6288,7 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 1200,
-                            icon: require('../assets/general/Electricity.png')
+                            icon: require('../assets/dynamic/damage/Electricity.png')
                         },
                     ],
                     duration: [
@@ -6330,7 +6330,7 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 800,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                     ],
                     none: [

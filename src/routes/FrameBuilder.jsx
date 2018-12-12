@@ -154,7 +154,7 @@ class FrameBuilder extends Component {
                     </div>
                     : <React.Fragment>
                         {this.state.item.name
-                            ? <WarframeModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={'reactor'} frame={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} />
+                            ? <WarframeModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={require('../assets/general/reactor.png')} frame={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} />
                             : <Loading />
                         }
                     </React.Fragment>

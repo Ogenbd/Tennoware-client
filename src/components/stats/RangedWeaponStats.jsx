@@ -24,11 +24,12 @@ export class RangedWeaponStats extends Component {
             headshotToggle: false,
             reloadToggle: false,
             castToggle: false,
-            firstToggle: false
+            firstToggle: false,
+            arbitrations: false
         }
     }
 
-    static getDerivedStateFromProps(props) {
+    static getDerivedStateFromProps(props, state) {
         let effects = {};
         let elemental = [];
         let conditionalEffects = [];
@@ -40,6 +41,7 @@ export class RangedWeaponStats extends Component {
             cast: false,
             first: false
         }
+        if (state.arbitrations) effects.baseDamage = 3;
         props.mods.forEach(mod => {
             if (mod.name) {
                 if (mod.name !== 'Riven Mod') {
@@ -148,6 +150,10 @@ export class RangedWeaponStats extends Component {
 
     toggleFirst = () => {
         this.setState(prevState => ({ firstToggle: !prevState.firstToggle }))
+    }
+
+    toggleArbitrations = () => {
+        this.setState(prevState => ({ arbitrations: !prevState.arbitrations }))
     }
 
     toggleZoom = () => {
@@ -348,7 +354,7 @@ export class RangedWeaponStats extends Component {
             })
         }
         finalDamageArray.forEach(damageType => {
-            damageType.icon = require(`../../assets/general/${damageType.type}.png`)
+            damageType.icon = require(`../../assets/dynamic/damage/${damageType.type}.png`)
         })
         return finalDamageArray;
     }
@@ -462,6 +468,28 @@ export class RangedWeaponStats extends Component {
         }
     }
 
+    calcProcWeights = (damage) => {
+        let totalDamage = damage.reduce((acc, damage) => {
+            if (damage.type === 'Impact' || damage.type === 'Puncture' || damage.type === 'Slash') {
+                return acc + damage.damage * 4
+            } else {
+                return acc + damage.damage
+            }
+        }, 0);
+        let procBreakdown = damage.map(instance => {
+            if (instance.type === 'Impact' || instance.type === 'Puncture' || instance.type === 'Slash') {
+                return {
+                    type: instance.type,
+                    chance: Math.round(instance.damage * 4 / totalDamage * 1000) / 10,
+                    icon: require(`../../assets/dynamic/damage/${instance.type}.png`)
+                }
+            } else {
+                return { type: instance.type, chance: Math.round(instance.damage / totalDamage * 1000) / 10 }
+            }
+        })
+        return procBreakdown;
+    }
+
     handleChange = ({ target }) => {
         let value = target.value;
         if (value > 999) value = 999;
@@ -490,6 +518,7 @@ export class RangedWeaponStats extends Component {
         const status = this.calcStatus();
         const damage = this.calcDamage();
         const DPS = this.calcDPS(damage, fireRate, critChance.display, critMult.display);
+        const procBreakdown = this.calcProcWeights(damage);
         return (
             <React.Fragment>
                 <div className={"pull-tab " + (this.state.open ? 'open-pull-tab' : 'closed-pull-tab')} onClick={this.toggleStats}>
@@ -514,7 +543,7 @@ export class RangedWeaponStats extends Component {
                                 <div className="stat"><p>{(Math.round(DPS.sustained * 10) / 10).toFixed(1)}</p></div>
                                 <p className="stat-name">Burst DPS: </p>
                                 <div className="stat"><p>{(Math.round(DPS.burst * 10) / 10).toFixed(1)}</p></div>
-                                <p className="stat-name">Damage Average: </p>
+                                <p className="stat-name">Shot Average: </p>
                                 <div className="stat"><p>{(Math.round(DPS.averageShotDamage * 10) / 10).toFixed(1)}</p></div>
                             </div>
                             <div className="stats-item damage">
@@ -580,7 +609,7 @@ export class RangedWeaponStats extends Component {
                                 <div className="stats-item">
                                     <p className="stat-name">Pellets: </p>
                                     {effects.multishot
-                                        ? <div className="stat"><p>{Math.round(weapon.modes[mode].pellets * (1 + effects.multishot) * 10) / 10}</p></div>
+                                        ? <div className={"stat " + (effects.multishot > 0 ? "increased-stat" : "decreased-stat")}><p>{Math.round(weapon.modes[mode].pellets * (1 + effects.multishot) * 10) / 10}</p></div>
                                         : <div className="stat"><p>{weapon.modes[mode].pellets}</p></div>
                                     }
                                 </div>
@@ -650,6 +679,14 @@ export class RangedWeaponStats extends Component {
                                     <div className={"stat " + (status.chance > Math.round(weapon.modes[mode].status * 1000) / 10 ? "increased-stat" : status.chance === Math.round(weapon.modes[mode].status * 1000) / 10 ? "" : "decreased-stat")}><p>{status.chancePerPellet}%</p></div>
                                 </div>
                             }
+                            <div className="stats-item damage">
+                                <p className="status-breakdown">Status Type Breakdown: </p>
+                                <div className="damage">
+                                    {procBreakdown.map(instance => (
+                                        <div key={instance.type} className="stat"><p>{instance.type}: </p><p className="stat-frag">{instance.chance.toFixed(1)}%</p></div>
+                                    ))}
+                                </div>
+                            </div>
                             {/* headshot damage on sniper zoom */}
                             {weapon.headshotDamage && zoom > 0 &&
                                 <div className="stats-item">
@@ -703,6 +740,11 @@ export class RangedWeaponStats extends Component {
                                     <p className="interactable-p">First Shot</p>
                                 </div>
                             }
+                        </div>
+                        <div className="modes">
+                            <div className={"activatable " + (this.state.arbitrations ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleArbitrations}>
+                                <p className="interactable-p">Arbitrations Bonus</p>
+                            </div>
                         </div>
                     </div>
                 </div>

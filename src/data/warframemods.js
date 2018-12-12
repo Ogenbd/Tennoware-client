@@ -302,7 +302,7 @@ const warframeMods = [
                         {
                             name: 'Base damage',
                             base: 200,
-                            icon: require('../assets/general/Radiation.png')
+                            icon: require('../assets/dynamic/damage/Radiation.png')
                         },
                     ],
                     none: [
@@ -440,7 +440,7 @@ const warframeMods = [
                         {
                             name: 'Minimum damage',
                             base: 1500,
-                            icon: require('../assets/general/Magnetic.png')
+                            icon: require('../assets/dynamic/damage/Magnetic.png')
                         },
                     ],
                     range: [
@@ -742,7 +742,7 @@ const warframeMods = [
                         {
                             name: 'Damage',
                             base: 1200,
-                            icon: require('../assets/general/Electricity.png')
+                            icon: require('../assets/dynamic/damage/Electricity.png')
                         },
                         {
                             name: 'Shields conversion',
@@ -864,7 +864,7 @@ const warframeMods = [
                         {
                             name: 'Globe explosion',
                             base: 150,
-                            icon: require('../assets/general/Cold.png')
+                            icon: require('../assets/dynamic/damage/Cold.png')
                         },
                     ],
                     duration: [
@@ -1071,18 +1071,18 @@ const warframeMods = [
                             name: 'Added ranged Damage',
                             suffix: '%',
                             base: 30,
-                            icon: require('../assets/general/Toxin.png')
+                            icon: require('../assets/dynamic/damage/Toxin.png')
                         },
                         {
                             name: 'Added melee Damage',
                             suffix: '%',
                             base: 60,
-                            icon: require('../assets/general/Toxin.png')
+                            icon: require('../assets/dynamic/damage/Toxin.png')
                         },
                         {
                             name: 'Cloud damage',
                             base(augEffects, augRank) { return augEffects.none[augRank] },
-                            icon: require('../assets/general/Toxin.png')
+                            icon: require('../assets/dynamic/damage/Toxin.png')
                         },
                     ],
                     exception: [
@@ -1153,12 +1153,12 @@ const warframeMods = [
                         {
                             name: 'Base damage',
                             base: 150,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
                             name: 'Charged damage',
                             base: 300,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                     ],
                     duration: [
@@ -1240,7 +1240,7 @@ const warframeMods = [
                         {
                             name: 'Damage',
                             base: 400,
-                            icon: require('../assets/general/Magnetic.png')
+                            icon: require('../assets/dynamic/damage/Magnetic.png')
                         },
                         {
                             name: 'Damage multiplier',
@@ -1376,7 +1376,7 @@ const warframeMods = [
                         {
                             name: 'Damage/s',
                             base: 25,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
                             name: 'Damage increase/s',
@@ -1649,7 +1649,7 @@ const warframeMods = [
                         {
                             name: 'Damage',
                             base: 500,
-                            icon: require('../assets/general/Slash.png')
+                            icon: require('../assets/dynamic/damage/Slash.png')
                         },
                         {
                             name: 'Status chance',
@@ -2301,18 +2301,18 @@ const warframeMods = [
                         {
                             name: 'Initial damage',
                             base: 400,
-                            icon: require('../assets/general/Heat.png')
+                            icon: require('../assets/dynamic/damage/Heat.png')
                         },
                         {
                             name: 'Area damage',
                             base: 150,
-                            icon: require('../assets/general/Heat.png')
+                            icon: require('../assets/dynamic/damage/Heat.png')
                         },
                         {
                             name: 'Ally bonus damage',
                             suffix: '%',
                             base(augEffects, augRank) { return augEffects.none[augRank] },
-                            icon: require('../assets/general/Heat.png')
+                            icon: require('../assets/dynamic/damage/Heat.png')
                         },
                     ],
                     duration: [
@@ -2517,12 +2517,12 @@ const warframeMods = [
                         {
                             name: 'Damage',
                             base: 1500,
-                            icon: require('../assets/general/Magnetic.png')
+                            icon: require('../assets/dynamic/damage/Magnetic.png')
                         },
                         {
                             name: 'Shields gained / enemy / tick',
                             base: 25,
-                            icon: require('../assets/general/Magnetic.png')
+                            icon: require('../assets/dynamic/damage/Magnetic.png')
                         },
                     ],
                     exception: [
@@ -2582,18 +2582,18 @@ const warframeMods = [
                         {
                             name: 'Initial damage',
                             base: 350,
-                            icon: require('../assets/general/Cold.png')
+                            icon: require('../assets/dynamic/damage/Cold.png')
                         },
                         {
                             name: 'Area damage',
                             base: 150,
-                            icon: require('../assets/general/Cold.png')
+                            icon: require('../assets/dynamic/damage/Cold.png')
                         },
                         {
                             name: 'Ally bonus damage',
                             suffix: '%',
                             base(augEffects, augRank) { return augEffects.none[augRank] },
-                            icon: require('../assets/general/Cold.png')
+                            icon: require('../assets/dynamic/damage/Cold.png')
                         },
                     ],
                     duration: [
@@ -2946,7 +2946,7 @@ const warframeMods = [
                         {
                             name: 'Hallowed zone damage/s',
                             base(augEffects, augRank) { return augEffects.none[1][augRank] },
-                            icon: require('../assets/general/Radiation.png')
+                            icon: require('../assets/dynamic/damage/Radiation.png')
                         },
                     ],
                     duration: [
@@ -3044,7 +3044,7 @@ const warframeMods = [
                         {
                             name: 'Damage',
                             base: 250,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
                             name: 'Ally health restored',
@@ -3250,7 +3250,7 @@ const warframeMods = [
                         {
                             name: 'Damage',
                             base: 700,
-                            icon: require('../assets/general/Cold.png')
+                            icon: require('../assets/dynamic/damage/Cold.png')
                         },
                     ],
                     duration: [
@@ -3309,12 +3309,12 @@ const warframeMods = [
                         {
                             name: 'Initial damage',
                             base: 1500,
-                            icon: require('../assets/general/Cold.png')
+                            icon: require('../assets/dynamic/damage/Cold.png')
                         },
                         {
                             name: 'Explosion damage',
                             base: 400,
-                            icon: require('../assets/general/Cold.png')
+                            icon: require('../assets/dynamic/damage/Cold.png')
                         },
                         {
                             name: 'Armor reduction',
@@ -3553,7 +3553,7 @@ const warframeMods = [
                         {
                             name: 'Damage',
                             base: 800,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
                             name: 'Iron vault bonus damage',
@@ -3610,17 +3610,17 @@ const warframeMods = [
                         {
                             name: '1st charge damage',
                             base: 650,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
                             name: '2nd hit damage',
                             base: 1300,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
                             name: '3rd+ hit damage',
                             base: 2600,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
                             name: 'Armor bonus / Hit',
@@ -3700,7 +3700,7 @@ const warframeMods = [
                         {
                             name: 'Damage',
                             base: 20,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         }
                     ],
                     duration: [
@@ -3814,7 +3814,7 @@ const warframeMods = [
                         {
                             name: 'Detonation damage / Enemy',
                             base(augEffects, augRank) { return augEffects.none[0][augRank] },
-                            icon: require('../assets/general/Toxin.png')
+                            icon: require('../assets/dynamic/damage/Toxin.png')
                         }
                     ],
                     duration: [
@@ -3993,7 +3993,7 @@ const warframeMods = [
                         {
                             name: 'Explosion damage',
                             base: 300,
-                            icon: require('../assets/general/Magnetic.png')
+                            icon: require('../assets/dynamic/damage/Magnetic.png')
                         },
                         {
                             name: 'Disarm chance',
@@ -4339,12 +4339,12 @@ const warframeMods = [
                         {
                             name: 'Damage',
                             base: 200,
-                            icon: require('../assets/general/Slash.png')
+                            icon: require('../assets/dynamic/damage/Slash.png')
                         },
                         {
                             name: 'Detonation damage',
                             base(augEffects, augRank) { return 60 + 20 * augRank },
-                            icon: require('../assets/general/Blast.png')
+                            icon: require('../assets/dynamic/damage/Blast.png')
                         },
                     ],
                     duration: [
@@ -4527,12 +4527,12 @@ const warframeMods = [
                         {
                             name: 'Bolt damage',
                             base: 200,
-                            icon: require('../assets/general/Slash.png')
+                            icon: require('../assets/dynamic/damage/Slash.png')
                         },
                         {
                             name: 'Area damage',
                             base: 15,
-                            icon: require('../assets/general/Radiation.png')
+                            icon: require('../assets/dynamic/damage/Radiation.png')
                         },
                     ],
                     duration: [
@@ -4658,17 +4658,17 @@ const warframeMods = [
                         {
                             name: '1st hit damage',
                             base: 350,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
                             name: '2nd hit damage',
                             base: 700,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
                             name: '3rd+ hit damage',
                             base: 1400,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                     ],
                     exception: [
@@ -4983,7 +4983,7 @@ const warframeMods = [
                         {
                             name: 'Damage',
                             base: 150,
-                            icon: require('../assets/general/Puncture.png')
+                            icon: require('../assets/dynamic/damage/Puncture.png')
                         },
                     ],
                     duration: [
@@ -5417,12 +5417,12 @@ const warframeMods = [
                         {
                             name: 'Damage/s',
                             base: 200,
-                            icon: require('../assets/general/Heat.png')
+                            icon: require('../assets/dynamic/damage/Heat.png')
                         },
                         {
                             name: 'Explosion damage',
                             base: 1250,
-                            icon: require('../assets/general/Heat.png')
+                            icon: require('../assets/dynamic/damage/Heat.png')
                         },
                     ],
                     duration: [
@@ -5731,7 +5731,7 @@ const warframeMods = [
                         {
                             name: 'Explosion damage',
                             base: 500,
-                            icon: require('../assets/general/Toxin.png')
+                            icon: require('../assets/dynamic/damage/Toxin.png')
                         },
                         {
                             name: 'Speed multiplier',
@@ -5797,7 +5797,7 @@ const warframeMods = [
                         {
                             name: 'Damage',
                             base: 800,
-                            icon: require('../assets/general/Blast.png')
+                            icon: require('../assets/dynamic/damage/Blast.png')
                         },
                         {
                             name: 'Iron skin health restored / Enemy',
@@ -5902,7 +5902,7 @@ const warframeMods = [
                         {
                             name: 'Damage',
                             base(augEffects, augRank) { return 200 * augEffects.none[augRank] },
-                            icon: require('../assets/general/Blast.png')
+                            icon: require('../assets/dynamic/damage/Blast.png')
                         },
                     ],
                     range: [
@@ -6073,7 +6073,7 @@ const warframeMods = [
                         {
                             name: 'Damage',
                             base: 2000,
-                            icon: require('../assets/general/True.png')
+                            icon: require('../assets/dynamic/damage/True.png')
                         }
                     ],
                     duration: [
@@ -6310,7 +6310,7 @@ const warframeMods = [
                         {
                             name: 'Damage',
                             base: 500,
-                            icon: require('../assets/general/Slash.png')
+                            icon: require('../assets/dynamic/damage/Slash.png')
                         },
                         {
                             name: 'Armor reduction',
@@ -6461,13 +6461,13 @@ const warframeMods = [
                         {
                             name: 'Damage',
                             base: 200,
-                            icon: require('../assets/general/Electricity.png')
+                            icon: require('../assets/dynamic/damage/Electricity.png')
                         },
                         {
                             name: 'Ally bonus damage',
                             suffix: '%',
                             base(augEffects, augRank) { return augEffects.none[augRank] },
-                            icon: require('../assets/general/Electricity.png')
+                            icon: require('../assets/dynamic/damage/Electricity.png')
                         },
                     ],
                     duration: [
@@ -6530,7 +6530,7 @@ const warframeMods = [
                         {
                             name: 'Shocking speed damage',
                             base(augEffects, augRank) { return augEffects.none[augRank] },
-                            icon: require('../assets/general/Electricity.png')
+                            icon: require('../assets/dynamic/damage/Electricity.png')
                         },
                     ],
                     duration: [
@@ -6639,13 +6639,13 @@ const warframeMods = [
                         {
                             name: 'Orb base damage',
                             base: 150,
-                            icon: require('../assets/general/Radiation.png')
+                            icon: require('../assets/dynamic/damage/Radiation.png')
                         },
                         {
                             name: 'Ally bonus damage',
                             suffix: '%',
                             base(augEffects, augRank) { return augEffects.none[augRank] },
-                            icon: require('../assets/general/Radiation.png')
+                            icon: require('../assets/dynamic/damage/Radiation.png')
                         },
                     ],
                     exception: [
@@ -6745,7 +6745,7 @@ const warframeMods = [
         effects: {},
         maxRank: 5,
         currRank: 5,
-        baseCost: -2,
+        baseCost: 2,
         description() { return `Increased Sniper Ammo recovery. +${25 * (this.currRank + 1)}% Ammo Pickup` }
     },
     {
@@ -6767,7 +6767,7 @@ const warframeMods = [
                         {
                             name: 'Damage',
                             base: 50,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                     ],
                     exception: [
@@ -6828,7 +6828,7 @@ const warframeMods = [
                         {
                             name: 'Damage',
                             base: 500,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
                             name: 'Downed ally health restore',
@@ -7210,12 +7210,12 @@ const warframeMods = [
                         {
                             name: 'Damage',
                             base: 150,
-                            icon: require('../assets/general/Electricity.png')
+                            icon: require('../assets/dynamic/damage/Electricity.png')
                         },
                         {
                             name: 'Link damage',
                             base(augEffects, augRank) { return augEffects.none[augRank] },
-                            icon: require('../assets/general/Slash.png')
+                            icon: require('../assets/dynamic/damage/Slash.png')
                         },
                     ],
                     duration: [
@@ -7292,12 +7292,12 @@ const warframeMods = [
                         {
                             name: 'Initial damage',
                             base: 300,
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
                             name: 'Wave crash damage',
                             base: 300,
-                            icon: require('../assets/general/Slash.png')
+                            icon: require('../assets/dynamic/damage/Slash.png')
                         },
                     ],
                     duration: [
@@ -7370,17 +7370,17 @@ const warframeMods = [
                         {
                             name: 'Melee damage',
                             base(augEffects, augRank) { return 2000 * augEffects.none[1][augRank] },
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
                             name: 'Rock throw damage',
                             base(augEffects, augRank) { return 50 * augEffects.none[1][augRank] },
-                            icon: require('../assets/general/Impact.png')
+                            icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
                             name: 'Explosion damage',
                             base: 1250,
-                            icon: require('../assets/general/Blast.png')
+                            icon: require('../assets/dynamic/damage/Blast.png')
                         },
                     ],
                     duration: [
@@ -7595,7 +7595,7 @@ const warframeMods = [
                             name: 'Damage bonus',
                             suffix: '%',
                             base: 50,
-                            icon: require('../assets/general/Electricity.png')
+                            icon: require('../assets/dynamic/damage/Electricity.png')
                         },
                         {
                             name: 'Critical damage bonus',
@@ -7708,7 +7708,7 @@ const warframeMods = [
                         {
                             name: 'Initial damage',
                             base: 10,
-                            icon: require('../assets/general/Corrosive.png')
+                            icon: require('../assets/dynamic/damage/Corrosive.png')
                         },
                         {
                             name: 'Damage growth / enemy',
@@ -7723,7 +7723,7 @@ const warframeMods = [
                             name: 'Ally bonus damage',
                             suffix: '%',
                             base(augEffects, augRank) { return augEffects.none[augRank] },
-                            icon: require('../assets/general/Electricity.png')
+                            icon: require('../assets/dynamic/damage/Electricity.png')
                         },
                     ],
                     duration: [

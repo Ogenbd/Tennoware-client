@@ -1,7 +1,20 @@
 UPDATE LOG
 
-9/12/2018 - v1.0.5.
+12/12/2018 - v1.0.6.
 
+New:
+Added the option to apply Arbitrations bonus to calculations.
+Added the option to look at all public Kitgun/MOA build. Felt like hiding those community builds behind specific setup was to restrictive.
+Added a status type breakdown where applicable. The breakdown means if there is a proc what are the chances for each type.
+
+Fixes:
+Fixed yet another crash caused by rivens. Please let me know if you come across any more issues with riven builds.
+Sniper Scavanger now adds the correct capacity amount.
+Gave the News & Updates page a facelift, loading news should now be much smoother.
+
+10/12/2018 - v1.0.5.
+
+Fixes:
 Fixed an issue that caused Community Builds lists that were larger than the space available to them to scroll horizontally instead of vertically. 
 Fixed an issue where the sustained DPS calculation was wrong when mods effecting reload speed were in play.
 Fixed a Safari mobile issue where the mod handler (where you can rank and remove mods when on mobile) would be tossed WAY down. This issue caused me to rewrite for that entire section of code and it should now run better on all mobile platforms.
@@ -11,7 +24,7 @@ Fixed an issue where dragging a mod in Firefox would highlight a bunch of stuff.
 
 09/12/2018 - v1.0.4.
 
-Updates:
+Changes:
 Firefox users using Firefox Quantom version 64+ on non-mobile devices should now have sleeker themed scrollbars that take up much less space.
 
 Fixes:

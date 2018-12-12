@@ -8,20 +8,6 @@
     overflow-x: hidden;
 }
 
-.topbar-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-    height: 56px;
-}
-
-.topbar-title p {
-    color: rgba(255, 249, 160, 1);
-    font-size: 18px;
-    font-weight: 600;
-}
-
 .build-list-item {
     display: flex;
     flex-direction: column;

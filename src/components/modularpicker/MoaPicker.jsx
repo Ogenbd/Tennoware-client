@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { CSSTransition } from "react-transition-group";
 import './ModularPicker.css';
-import '../../general.css';
 import '../stats/Stats.css';
+
+import ModularBuildList from '../modularbuildlist/ModularBuildList';
 
 export class MoaPicker extends Component {
     constructor(props) {
@@ -65,6 +66,7 @@ export class MoaPicker extends Component {
                     <div className="top-title"><p>MOAS</p></div>
                     <div className="kitgun-picker">
                         <div className="part-select">
+                        <ModularBuildList type={'moas'} orokin={require('../../assets/general/reactor.png')} items={this.state.items} />
                             <div className="picker-section">
                                 <div className="section-title">Brackets</div>
                                 {this.state.items.first.map((bracket, index) => (

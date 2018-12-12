@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './BuildList.css';
 
 import apiUrl from '../../apiUrl';
-import Loading from '../loading/Loading';
+import ContainedLoading from '../loading/ContainedLoading';
 
 export class BuildList extends Component {
     constructor(props) {
@@ -90,8 +90,8 @@ export class BuildList extends Component {
                 let date = new Date(build.CreateDT).toLocaleDateString();
                 let orokinStr;
                 let riven;
-                build.Orokin === 1 ? orokinStr = this.props.orokin : orokinStr = 'nocatalyst';
-                build.Riven === 1 ? riven = 'rivenon' : riven = 'rivenoff';
+                build.Orokin === 1 ? orokinStr = this.props.orokin : orokinStr = require('../../assets/general/nocatalyst.png');
+                build.Riven === 1 ? riven = require('../../assets/general/rivenon.png') : riven = require('../../assets/general/rivenoff.png');
                 builds.push(
                     <Link to={`/${this.props.type}/${this.props.match.params.id}/${build.BuildStr}/${build.BuildID}`} key={index} className="build-list-item">
                         <div className="build-item-row name-row">
@@ -100,10 +100,10 @@ export class BuildList extends Component {
                         </div>
                         <div className="build-item-row info-row">
                             <div className="build-list-likes">Likes: {build.Likes}</div>
-                            <img className="build-list-img" src={require(`../../assets/general/${orokinStr}.png`)} alt={"orokin"} />
+                            <img className="build-list-img" src={orokinStr} alt={"orokin"} />
                             <div className="build-list-forma-block"><img className="build-list-img" src={require('../../assets/general/forma.png')} alt={""} /><p>: {build.Forma}</p></div>
                             {this.props.riven &&
-                                <img className="build-list-img" src={require(`../../assets/general/${riven}.png`)} alt={"riven"} />
+                                <img className="build-list-img" src={riven} alt={"riven"} />
                             }
                         </div>
                     </Link>
@@ -137,7 +137,9 @@ export class BuildList extends Component {
                         </div>
                     </div>
                     {this.state.loader
-                        ? <Loading />
+                        ? <div className="popup-content">
+                            <ContainedLoading />
+                        </div>
                         : <React.Fragment>
                             {this.state.error === null
                                 ? <div className="popup-content build-list">

@@ -86,7 +86,7 @@ export class Sidebar extends Component {
           </div>
           <div className="sidebar-content">
             <div className="nav-links">
-              <NavLink exact to="/" className="nav-item" activeClassName="selected" onClick={this.closeSidebar}><p>News</p></NavLink>
+              <NavLink exact to="/" className="nav-item" activeClassName="selected" onClick={this.closeSidebar}><p>News & Updates</p></NavLink>
               {this.props.user && this.props.online &&
                 <NavLink exact to="/mybuilds" className="nav-item" activeClassName="selected" isActive={this.myBuildsActive} onClick={this.closeSidebar}><p>My Builds</p></NavLink>
               }

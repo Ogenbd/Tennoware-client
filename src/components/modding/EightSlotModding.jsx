@@ -135,15 +135,15 @@ class EightSlotModding extends Component {
         } else {
             effectStr += 'p';
         }
-        let absNum = Math.abs(num).toFixed(1);
+        let absNum = Math.abs(num);
         if (absNum < 10) {
             effectStr += '00';
-            effectStr += absNum;
+            effectStr += absNum.toFixed(1);
         } else if (absNum < 100) {
             effectStr += '0';
-            effectStr += absNum;
+            effectStr += absNum.toFixed(1);
         } else {
-            effectStr += absNum;
+            effectStr += absNum.toFixed(1);
         }
         return effectStr;
     }
@@ -592,7 +592,7 @@ class EightSlotModding extends Component {
                                 } */}
                                 <div className={"interactable " + (orokin ? "interactable-active" : "interactable-inactive")} onClick={this.toggleOrokin}>
                                     {orokin
-                                        ? <img className="aug-image orokin" src={require(`../../assets/general/${this.props.orokin}.png`)} alt={'Remove Catalyst'} />
+                                        ? <img className="aug-image orokin" src={this.props.orokin} alt={'Remove Catalyst'} />
                                         : <img className="aug-image orokin" src={require('../../assets/general/nocatalyst.png')} alt={'Apply Catalyst'} />}
                                 </div>
                                 <div className={"interactable " + (forma ? "interactable-active" : "interactable-inactive")} onClick={this.toggleForma}>

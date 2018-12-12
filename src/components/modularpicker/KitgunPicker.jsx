@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { CSSTransition } from "react-transition-group";
 import './ModularPicker.css';
-import '../../general.css';
 import '../stats/Stats.css';
+
+import ModularBuildList from '../modularbuildlist/ModularBuildList';
 
 export class KitgunPicker extends Component {
   constructor(props) {
@@ -42,7 +43,6 @@ export class KitgunPicker extends Component {
       let loader = this.state.items.third[this.state.third].name.toLowerCase();
       let kitgun = {
         name: `${this.state.items.first[this.state.first].name} ${this.state.items.second[this.state.second].name} ${this.state.items.third[this.state.third].name}`,
-        // img: this.state.items.first[this.state.first].img,
         mastery: 0,
         type: this.state.items.gripCombo[chamber].type,
         noise: this.state.items.gripCombo[chamber].noise,
@@ -79,58 +79,57 @@ export class KitgunPicker extends Component {
         <div className="screen">
           <div className="top-title"><p>KITGUNS</p></div>
           <div className="kitgun-picker">
-            <div className="part-select">
-              <div className="picker-section">
-                <div className="section-title">Chamber</div>
-                {this.state.items.first.map((chamber, index) => (
-                  <div key={index} className={"modular-part " + (this.state.first === index ? 'modular-part-picked' : '')} onClick={() => { this.setFirst(index) }}>
-                    <div className="part-info">
-                      <p className="part-name">{chamber.name}</p>
-                      <p className="part-desc">{chamber.desc}</p>
+            <div className="part-select-wrapper">
+              <div className="part-select">
+                <ModularBuildList type={'kitguns'} orokin={require('../../assets/general/catalyst.png')} items={this.state.items} />
+                <div className="picker-section">
+                  <div className="section-title">Chamber</div>
+                  {this.state.items.first.map((chamber, index) => (
+                    <div key={index} className={"modular-part " + (this.state.first === index ? 'modular-part-picked' : '')} onClick={() => { this.setFirst(index) }}>
+                      <div className="part-info">
+                        <p className="part-name">{chamber.name}</p>
+                        <p className="part-desc">{chamber.desc}</p>
+                      </div>
+                      <img className="part-image" src={chamber.img} alt="" />
                     </div>
-                    <img className="part-image" src={chamber.img} alt="" />
-                  </div>
-                ))}
-              </div>
-              <div className="picker-section">
-                <div className="section-title">Grip</div>
-                {this.state.items.second.map((grip, index) => (
-                  <div key={index} className={"modular-part " + (this.state.second === index ? 'modular-part-picked' : '')} onClick={() => { this.setSecond(index) }}>
-                    <div className="part-info">
-                      <p className="part-name">{grip.name}</p>
-                      <p className="part-desc">{grip.desc}</p>
+                  ))}
+                </div>
+                <div className="picker-section">
+                  <div className="section-title">Grip</div>
+                  {this.state.items.second.map((grip, index) => (
+                    <div key={index} className={"modular-part " + (this.state.second === index ? 'modular-part-picked' : '')} onClick={() => { this.setSecond(index) }}>
+                      <div className="part-info">
+                        <p className="part-name">{grip.name}</p>
+                        <p className="part-desc">{grip.desc}</p>
+                      </div>
+                      <img className="part-image" src={grip.img} alt="" />
                     </div>
-                    <img className="part-image" src={grip.img} alt="" />
-                  </div>
-                ))}
-              </div>
-              <div className="picker-section">
-                {/* <div className="loaders-top"> */}
+                  ))}
+                </div>
+                <div className="picker-section">
                   <div className="section-title">Loader</div>
                   <div className="loaders-chart">
                     <p>Crit</p>
                     <p className="smaller">Mag Size</p>
-                    {/* <p>🡅</p>
-                    <p>🡇</p> */}
                     <img className="loader-arrow" src={require('../../assets/general/point-arrow.png')} alt="" />
                     <img className="loader-arrow down-arrow" src={require('../../assets/general/point-arrow.png')} alt="" />
                     <p className="smaller">Reload</p>
                     <p>Status</p>
                   </div>
-                {/* </div> */}
-                {this.state.items.third.map((loader, index) => (
-                  <div key={index} className={"modular-part " + (this.state.third === index ? 'modular-part-picked' : '')} onClick={() => { this.setThird(index) }}>
-                    <div className="part-info">
-                      <p className="part-name">{loader.name}</p>
-                      <p className="part-desc">{loader.desc}</p>
+                  {this.state.items.third.map((loader, index) => (
+                    <div key={index} className={"modular-part " + (this.state.third === index ? 'modular-part-picked' : '')} onClick={() => { this.setThird(index) }}>
+                      <div className="part-info">
+                        <p className="part-name">{loader.name}</p>
+                        <p className="part-desc">{loader.desc}</p>
+                      </div>
+                      <img className="part-image" src={loader.img} alt="" />
                     </div>
-                    <img className="part-image" src={loader.img} alt="" />
-                  </div>
-                ))}
-              </div>
-              {/* <div className={"mod-it-button " + ((this.state.first !== undefined && this.state.second !== undefined && this.state.third !== undefined) ? 'activatable interactable-semi-inactive' : 'disabled-button interactable-inactive')} onClick={this.modIt}>
+                  ))}
+                </div>
+                {/* <div className={"mod-it-button " + ((this.state.first !== undefined && this.state.second !== undefined && this.state.third !== undefined) ? 'activatable interactable-semi-inactive' : 'disabled-button interactable-inactive')} onClick={this.modIt}>
                 <p className="interactable-p">Mod Kitgun</p>
               </div> */}
+              </div>
             </div>
             <div className={"kitgun-pull-tab " + (this.state.open ? 'kitgun-open-pull-tab' : 'kitgun-closed-pull-tab')} onClick={this.toggleStats}>
               <img src={require('../../assets/general/arrowicong.png')} alt=">>" className={"kitgun-pull-tab-arrow " + (this.state.open ? 'kitgun-point-left' : 'kitgun-point-right')} />
@@ -157,7 +156,7 @@ export class KitgunPicker extends Component {
                         <p className="stat-name">Damage: </p>
                         <div className="damage">
                           {kitgun.split.map(instance => (
-                            <div key={instance.type} className="stat"><p>{instance.type}: </p><p className="stat-frag">{(Math.round(instance.percent * kitgun.damage * 10) / 10).toFixed(1)}</p><img className="damage-icon" src={require(`../../assets/general/${instance.type}.png`)} alt="" /></div>
+                            <div key={instance.type} className="stat"><p>{instance.type}: </p><p className="stat-frag">{(Math.round(instance.percent * kitgun.damage * 10) / 10).toFixed(1)}</p><img className="damage-icon" src={require(`../../assets/dynamic/damage/${instance.type}.png`)} alt="" /></div>
                           ))}
                         </div>
                       </div>

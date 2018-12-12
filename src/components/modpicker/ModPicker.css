@@ -41,11 +41,11 @@
 }
 
 .exilus-placeholder-active {
-    background-image: url('../../assets/general/exilusrare.png');
+    background-image: url('../../assets/dynamic/modcards/exilusrare.png');
 }
 
 .exilus-placeholder-inactive {
-    background-image: url('../../assets/general/exilusprime.png');
+    background-image: url('../../assets/dynamic/modcards/exilusprime.png');
 }
 
 @media screen and (min-width: 1203px) {
@@ -58,6 +58,7 @@
     }
     .mod-list-topbar {
         position: fixed;
+        flex-direction: row;
         width: 315px;
         display: flex;
         align-items: center;
@@ -80,6 +81,7 @@
         flex-wrap: wrap;
         height: calc(100vh - 113px);
         top: 113px;
+        margin-top: 0;
         align-items: flex-start;
         justify-content: center;
         padding: 10px 0 15px 0;
@@ -132,6 +134,10 @@
     }
     .mod-list-topbar {
         justify-content: flex-end;
+        flex-direction: row;
+    }
+    .mod-list-x {
+        padding: 28px 32px 28px 15px;
     }
 }
 

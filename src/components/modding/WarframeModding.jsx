@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { CSSTransition } from "react-transition-group";
+import Loadable from 'react-loadable';
 import cloneDeep from 'lodash/cloneDeep';
 import './Modding.css'
 
-import WarframeStats from '../stats/WarframeStats';
 import ModStateHandler from '../modstatehandler/ModStateHandler';
 import PolarityPicker from '../polaritypicker/PolarityPicker';
 import LinkGenerator from '../linkgenerator/LinkGenerator';
@@ -13,6 +13,16 @@ import Like from '../like/Like';
 import Report from '../report/Report';
 import BuildDescription from '../builddescription/BuildDescription';
 import ModPicker from '../modpicker/ModPicker';
+
+const StatsPlaceholder = () => <React.Fragment><div className={"pull-tab closed-pull-tab"}>
+    <img src={require('../../assets/general/arrowicong.png')} alt=">>" className={"pull-tab-arrow point-right"} />
+    <p>STATS</p>
+</div><div className="stats-placeholder"></div></React.Fragment>
+
+const WarframeStats = Loadable({
+    loader: () => import('../stats/WarframeStats'),
+    loading: StatsPlaceholder,
+});
 
 class WarframeModding extends Component {
     constructor(props) {
@@ -741,7 +751,7 @@ class WarframeModding extends Component {
                             <div className="aug-wrapper">
                                 <div className={"interactable " + (orokin ? "interactable-active" : "interactable-inactive")} onClick={this.toggleOrokin}>
                                     {orokin
-                                        ? <img className="aug-image orokin" src={require(`../../assets/general/${this.props.orokin}.png`)} alt={'Remove Reactor'} />
+                                        ? <img className="aug-image orokin" src={this.props.orokin} alt={'Remove Reactor'} />
                                         : <img className="aug-image orokin" src={require('../../assets/general/nocatalyst.png')} alt={'Apply Reactor'} />}
                                 </div>
                                 <div className={"interactable " + (forma ? "interactable-active" : "interactable-inactive")} onClick={this.toggleForma}>

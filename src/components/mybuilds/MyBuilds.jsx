@@ -64,14 +64,6 @@ export default class MyBuilds extends Component {
                 }
                 if (build.Type === 'primaryweapons' || build.Type === 'secondaryweapons' || build.Type === 'sentinelweapons' || build.Type === 'meleeweapons' || build.Type === 'kitguns') arsenalItem.hasRivens = true;
                 arsenalItem.img = await this.getItemImage(build);
-                // if (build.Type === 'kitguns') {
-                //     let parts = build.ItemName.split(' ');
-                //     arsenalItem.img = require(`../../assets/itemimages/${parts[0]}.png`);
-                // } else if (build.Type === 'moas') {
-                //     arsenalItem.img = require('../../assets/itemimages/drimper-bracket.png');
-                // } else {
-                //     arsenalItem.img = require(`../../assets/itemimages/${build.ItemName.replace(/\s+/g, '-')}.png`)
-                // }
                 arsenal.push(arsenalItem);
             }));
             arsenal.sort((a, b) => {
@@ -142,14 +134,14 @@ export default class MyBuilds extends Component {
             let date = new Date(item.date).toLocaleDateString();
             let potato;
             if (item.type === 'primaryweapons' || item.type === 'secondaryweapons' || item.type === 'sentinelweapons' || item.type === 'meleeweapons' || item.type === 'archguns' || item.type === 'archmelees' || item.type === 'zaws' || item.type === 'kitguns') {
-                potato = 'catalyst'
+                potato = require('../../assets/general/catalyst.png')
             } else {
-                potato = 'reactor'
+                potato = require('../../assets/general/reactor.png')
             }
             let orokinStr;
             let riven;
-            item.orokin === 1 ? orokinStr = potato : orokinStr = 'nocatalyst';
-            item.riven === 1 ? riven = 'rivenon' : riven = 'rivenoff';
+            item.orokin === 1 ? orokinStr = potato : orokinStr = require('../../assets/general/nocatalyst.png');
+            item.riven === 1 ? riven = require('../../assets/general/rivenon.png') : riven = require('../../assets/general/rivenoff.png');
             if (item.source === 'builds') {
                 saved.push(
                     <div key={index} className="build-container">
@@ -164,10 +156,10 @@ export default class MyBuilds extends Component {
                             </div>
                             <div className="my-build-item-row info-row">
                                 <div className="my-build-list-likes">Likes: {item.likes}</div>
-                                <img className="my-build-list-img" src={require(`../../assets/general/${orokinStr}.png`)} alt={"orokin"} />
+                                <img className="my-build-list-img" src={orokinStr} alt={"orokin"} />
                                 <div className="my-build-list-forma-block"><img className="my-build-list-img" src={require('../../assets/general/forma.png')} alt={""} /><p>: {item.forma}</p></div>
                                 {item.hasRivens
-                                    ? <img className="my-build-list-img" src={require(`../../assets/general/${riven}.png`)} alt={"riven"} />
+                                    ? <img className="my-build-list-img" src={riven} alt={"riven"} />
                                     : <div className="my-riven-placeholder"></div>
                                 }
                             </div>
@@ -201,10 +193,10 @@ export default class MyBuilds extends Component {
                             </div>
                             <div className="my-build-item-row info-row">
                                 <div className="my-build-list-likes">Likes: {item.likes}</div>
-                                <img className="my-build-list-img" src={require(`../../assets/general/${orokinStr}.png`)} alt={"orokin"} />
+                                <img className="my-build-list-img" src={orokinStr} alt={"orokin"} />
                                 <div className="my-build-list-forma-block"><img className="my-build-list-img" src={require('../../assets/general/forma.png')} alt={""} /><p>: {item.forma}</p></div>
                                 {item.hasRivens
-                                    ? <img className="my-build-list-img" src={require(`../../assets/general/${riven}.png`)} alt={"riven"} />
+                                    ? <img className="my-build-list-img" src={riven} alt={"riven"} />
                                     : <div className="my-riven-placeholder"></div>
                                 }
                             </div>

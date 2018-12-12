@@ -1,6 +1,15 @@
 body {
     overflow-y: scroll;
 }
+
+.page-subtitle {
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 25px;
+    text-decoration: underline white;
+}
+
 .news-container {
     display: flex;
     flex-direction: column;
@@ -66,8 +75,12 @@ body {
     flex-wrap: wrap;
     padding: 15px;
     width: 95%;
-    /* margin-top */
     color: white;
+}
+
+.news-articles {
+    flex-grow: 1;
+    min-height: 90vh;
 }
 
 .article {
@@ -82,12 +95,12 @@ body {
     overflow: hidden;
     margin: 5px;
     border: solid 1px rgba(255, 249, 160, 0.3);
+    transition: opacity 200ms ease-in;
 }
 
 .article-image {
     object-fit: cover;
     height: 100%;
-    /* width: 100%; */
 }
 
 .article-message {
@@ -99,7 +112,6 @@ body {
     color: rgba(255, 249, 160, 1);
     background-color: rgba(0, 0, 0, 0.7);
     box-shadow: 0 -10px 15px 3px rgba(0, 0, 0, 0.7);
-    /* max-width: 700px; */
 }
 
 .tennoware-news {
@@ -108,7 +120,6 @@ body {
     justify-content: flex-start;
     width: 402px;
     max-width: 402px;
-    /* height: unset; */
     padding: 5px;
     box-sizing: border-box;
 }
@@ -121,8 +132,6 @@ body {
 .update-content {
     width: 100%;
     text-align: justify;
-    /* margin: auto 0; */
-    /* max-width: 400px; */
 }
 
 .update-content p {
@@ -135,8 +144,16 @@ body {
     font-weight: 600;
 }
 
-@media screen and (max-width: 450px) {
-    .article-message {
-        font-size: 18px;
+.article-loaded {
+    opacity: 1;
+}
+
+.article-not-loaded {
+    opacity: 0;
+}
+
+@media screen and (max-width: 867px) {
+    .tennoware-news {
+        height: unset;
     }
 }

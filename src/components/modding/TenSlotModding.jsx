@@ -525,7 +525,7 @@ class TenSlotModding extends Component {
                             <div className="aug-wrapper">
                                 <div className={"interactable " + (orokin ? "interactable-active" : "interactable-inactive")} onClick={this.toggleOrokin}>
                                     {orokin
-                                        ? <img className="aug-image orokin" src={require(`../../assets/general/${this.props.orokin}.png`)} alt={'Remove Catalyst'} />
+                                        ? <img className="aug-image orokin" src={this.props.orokin} alt={'Remove Catalyst'} />
                                         : <img className="aug-image orokin" src={require('../../assets/general/nocatalyst.png')} alt={'Apply Catalyst'} />}
                                 </div>
                                 <div className={"interactable " + (forma ? "interactable-active" : "interactable-inactive")} onClick={this.toggleForma}>

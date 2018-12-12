@@ -8,6 +8,7 @@ export class WarframeStats extends PureComponent {
         this.state = {
             open: false,
             effects: {},
+            arbitrations: false,
             growingPowerSlotted: false,
             growingPowerActive: true,
             abilityOne: 0,
@@ -27,6 +28,13 @@ export class WarframeStats extends PureComponent {
         let growingPowerSlotted = false;
         if (props.full) {
             if (props.frame.name === 'NIDUS') effects.strength = 0.15;
+            if (state.arbitrations) {
+                if (effects.strength) {
+                    effects.strength += 3;
+                } else {
+                    effects.strength = 3;
+                }
+            }
             if (props.chosenAuraMod.name === 'Growing Power') {
                 growingPowerSlotted = true;
                 if (effects.strength && state.growingPowerActive) {
@@ -439,11 +447,14 @@ export class WarframeStats extends PureComponent {
         return stats;
     }
 
-
     toggleStats = () => {
-        this.setState(prevState => ({ open: !prevState.open }))
+        this.setState(prevState => ({ open: !prevState.open }));
     }
 
+    toggleArbitrations = () => {
+        this.setState(prevState => ({ arbitrations: !prevState.arbitrations }));
+    }
+    
     render() {
         let { frame } = this.props;
         let { effects, open, abilityOne, abilityTwo, abilityThree, abilityFour } = this.state;
@@ -597,6 +608,13 @@ export class WarframeStats extends PureComponent {
                                 }
                                 {this.generateAbilityFour()}
                             </div>
+                            {this.props.full &&
+                                <div className="modes">
+                                    <div className={"activatable " + (this.state.arbitrations ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleArbitrations}>
+                                        <p className="interactable-p">Arbitration Bonus</p>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>

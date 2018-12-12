@@ -6,6 +6,20 @@
     display: none;
 }
 
+.topbar-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    height: 56px;
+}
+
+.topbar-title p {
+    color: rgba(255, 249, 160, 1);
+    font-size: 18px;
+    font-weight: 600;
+}
+
 .interactable {
     margin: 3px;
     min-width: 70px;
@@ -206,10 +220,21 @@
     justify-content: center;
     height: 100vh;
     width: 100vw;
+    flex-grow: 1;
+}
+
+.contained-loading {
+    /* position: absolute; */
+    /* top: 0; */
+    /* left: 0; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
 }
 
 .lds-default {
-    /* align-self: center; */
     display: inline-block;
     position: relative;
     width: 64px;
@@ -374,7 +399,7 @@
 /* loading spinner end */
 
 @media screen and (min-width: 1392px) {
-    .lds-default {
+    .uncontained {
         left: 96px;
     }
     .general-error {
@@ -407,15 +432,20 @@
         pointer-events: none;
     }
     .popup-topbar {
+        position: fixed;
         display: flex;
+        flex-direction: column;
         align-items: center;
+        justify-content: center;
         width: 100%;
+        max-width: 1200px;
         height: 56px;
-        /* background-color: rgba(0, 0, 0, 0.8); */
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 9111;
     }
     .popup-x {
-        position: fixed;
-        /* position: absolute; */
+        position: absolute;
+        align-self: flex-start;
         padding: 20px 32px 24px 24px;
         cursor: pointer;
     }
@@ -435,8 +465,9 @@
     .popup-content {
         display: flex;
         width: 100%;
-        height: calc(100% - 56px);
-        max-height: calc(100% - 56px);
+        height: calc(100% - 112px);
+        max-height: calc(100% - 112px);
+        margin-top: 56px;
         overflow: auto;
     }
 }
@@ -462,6 +493,8 @@
     }
     .popup-topbar {
         display: flex;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
         width: 100vw;
         height: 56px;
@@ -469,6 +502,7 @@
     }
     .popup-x {
         position: absolute;
+        align-self: flex-start;
         left: 0;
         padding: 20px 32px 24px 15px;
         cursor: pointer;

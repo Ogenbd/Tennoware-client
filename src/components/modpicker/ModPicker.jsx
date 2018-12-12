@@ -146,7 +146,7 @@ export class ModPicker extends PureComponent {
             <div className={this.props.viewWidth < 1203 ? "popup " + (this.props.active ? "popup-active" : "popup-inactive") : 'mod-picker'}>
                 <div className={this.props.viewWidth < 1203 ? "mod-list-topbar popup-topbar " + (this.props.active ? "popup-active" : "popup-inactive") : "mod-list-topbar"}>
                     {this.props.viewWidth < 1203 &&
-                        <div className="popup-x" onClick={this.closeModPicker}>
+                        <div className="popup-x mod-list-x" onClick={this.closeModPicker}>
                             <div className="popup-x-bar one-bar"></div>
                             <div className="popup-x-bar two-bar"></div>
                         </div>
@@ -162,12 +162,7 @@ export class ModPicker extends PureComponent {
                         <input className="search" type="text" placeholder="Search..." value={this.state.search} onChange={this.handleChange} onKeyUp={this.blurInput} />
                     </div>
                 </div>
-                {/* <CSSTransition classNames="fade" in={true} appear={true} timeout={200}> */}
-                {/* {this.state.loader */}
-                {/* ? <div className="popup-content mod-list"><div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div> */}
                 <div className="popup-content mod-list">{this.generateModList(display)}</div>
-                {/* } */}
-                {/* </CSSTransition> */}
             </div>
         )
     }

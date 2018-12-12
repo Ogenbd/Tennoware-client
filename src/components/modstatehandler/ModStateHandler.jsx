@@ -174,13 +174,13 @@ export class ModStateHandler extends Component {
         </div>
         <div className="empty-slot" draggable="false" style={this.props.forma ? { cursor: 'pointer' } : {}}>
           {this.props.slot === 'aura' && !this.props.mod.name &&
-            <img className="top-type" src={require(`../../assets/general/aura.png`)} alt='' />
+            <img className="top-type" src={require('../../assets/general/aura.png')} alt='' />
           }
           {this.props.slot === 'exilus' && !this.props.mod.name &&
-            <img className="top-type top-type-exilus" src={require(`../../assets/general/exilusblack.png`)} alt='' />
+            <img className="top-type top-type-exilus" src={require('../../assets/dynamic/modcards/exilusblack.png')} alt='' />
           }
           {this.props.slotPolarity && !this.props.mod.name &&
-            <img className="slot-polarity" src={require(`../../assets/general/${this.props.slotPolarity}black.png`)} alt='' />
+            <img className="slot-polarity" src={require(`../../assets/dynamic/polarities/${this.props.slotPolarity}black.png`)} alt='' />
           }
           {/* <p className="tapper">Tap To Mod</p> */}
         </div>

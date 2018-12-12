@@ -182,7 +182,7 @@ export class BeastStats extends PureComponent {
             })
         }
         finalDamageArray.forEach(damageType => {
-            damageType.icon = require(`../../assets/general/${damageType.type}.png`)
+            damageType.icon = require(`../../assets/dynamic/damage/${damageType.type}.png`)
         })
         return finalDamageArray;
     }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { CSSTransition } from "react-transition-group";
 import './News.css';
 
-import Loading from '../loading/Loading';
+import ContainedLoading from '../loading/ContainedLoading';
 
 export class News extends Component {
   constructor(props) {
@@ -10,7 +10,8 @@ export class News extends Component {
     this.state = {
       news: [],
       platform: undefined,
-      loading: false
+      loading: false,
+      loaded: 0
     }
   }
 
@@ -24,7 +25,11 @@ export class News extends Component {
 
   getNews = (platform) => {
     if (this.state.platform !== platform) {
-      this.state.loading ? this.setState({ platform: platform }) : this.setState({ loading: true, platform: platform })
+      this.setState({
+        loading: true,
+        platform: platform,
+        loaded: 0
+      });
       fetch(`https://api.warframestat.us/${platform}/news`)
         .then(res => {
           if (res.status === 200) {
@@ -38,7 +43,8 @@ export class News extends Component {
   }
 
   sortForDisplay = (news, platform) => {
-    let sortedNews = news.filter(item => item.translations.en && !item.imageLink.includes('forums'))
+    let sortedNews = [];
+    sortedNews = news.filter(item => item.translations.en && !item.imageLink.includes('forums'))
     sortedNews.forEach(item => {
       item.imageLink = item.imageLink.replace('http:', 'https:');
     });
@@ -50,25 +56,21 @@ export class News extends Component {
     this.setState({
       news: sortedNews,
       platform: platform,
-      loading: false
+      loading: false,
     })
+  }
+
+  imageLoaded = () => {
+    this.setState(prevState => ({ loaded: prevState.loaded + 1 }));
   }
 
   render() {
     return (
       <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
         <div className="screen">
-          <div className="top-title"><p>News</p></div>
+          <div className="top-title"><p>News & Updates</p></div>
           <div className="news-container">
-            <div className="wf-news">
-              {this.props.online &&
-                <div className="news-toggle">
-                  <div className={"platform-button " + (this.state.platform === 'pc' ? 'platform-picked' : 'platform-unpicked')} onClick={() => { this.getNews('pc') }}><img className={"platform-icon " + (this.state.platform === 'pc' ? 'platform-picked-icon' : 'platform-unpicked-icon')} src={require('../../assets/general/pc.png')} alt="PC" /></div>
-                  <div className={"platform-button " + (this.state.platform === 'ps4' ? 'platform-picked' : 'platform-unpicked')} onClick={() => { this.getNews('ps4') }}><img className={"platform-icon " + (this.state.platform === 'ps4' ? 'platform-picked-icon' : 'platform-unpicked-icon')} src={require('../../assets/general/ps4.png')} alt="PS4" /></div>
-                  <div className={"platform-button " + (this.state.platform === 'xb1' ? 'platform-picked' : 'platform-unpicked')} onClick={() => { this.getNews('xb1') }}><img className={"platform-icon " + (this.state.platform === 'xb1' ? 'platform-picked-icon' : 'platform-unpicked-icon')} src={require('../../assets/general/xb1.png')} alt="XB1" /></div>
-                </div>
-              }
-            </div>
+            <div className="page-subtitle">Tennoware Updates</div>
             <div className="articles">
               <div className="article tennoware-news">
                 <h1>Introduction</h1>
@@ -85,21 +87,35 @@ export class News extends Component {
                   <p>For the complete update notes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log.</a></p>
                 </div>
               </div>
+            </div>
+            <div className="page-subtitle">Warframe News</div>
+            <div className="wf-news">
+              {this.props.online &&
+                <div className="news-toggle">
+                  <div className={"platform-button " + (this.state.platform === 'pc' ? 'platform-picked' : 'platform-unpicked')} onClick={() => { this.getNews('pc') }}><img className={"platform-icon " + (this.state.platform === 'pc' ? 'platform-picked-icon' : 'platform-unpicked-icon')} src={require('../../assets/general/pc.png')} alt="PC" /></div>
+                  <div className={"platform-button " + (this.state.platform === 'ps4' ? 'platform-picked' : 'platform-unpicked')} onClick={() => { this.getNews('ps4') }}><img className={"platform-icon " + (this.state.platform === 'ps4' ? 'platform-picked-icon' : 'platform-unpicked-icon')} src={require('../../assets/general/ps4.png')} alt="PS4" /></div>
+                  <div className={"platform-button " + (this.state.platform === 'xb1' ? 'platform-picked' : 'platform-unpicked')} onClick={() => { this.getNews('xb1') }}><img className={"platform-icon " + (this.state.platform === 'xb1' ? 'platform-picked-icon' : 'platform-unpicked-icon')} src={require('../../assets/general/xb1.png')} alt="XB1" /></div>
+                </div>
+              }
+            </div>
+            <div className="articles news-articles">
               {this.props.online &&
                 <React.Fragment>
-                  {!this.state.loading
-                    ? <React.Fragment>
-                      {this.state.news.map((item, index) => {
-                        return (
-                          <a key={index} href={item.link} className="article">
-                            <img className="article-image" src={item.imageLink} alt="" />
-                            <p className="article-message">{item.translations.en}</p>
-                          </a>
-                        )
-                      })}
-                    </React.Fragment>
-                    : <Loading />
-                  }
+                  <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
+                    {!this.state.loading
+                      ? <React.Fragment>
+                        {this.state.news.map((item, index) => {
+                          return (
+                            <a key={index} href={item.link} className={"article " + (this.state.news.length === this.state.loaded ? 'article-loaded' : 'article-not-loaded')}>
+                              <img className="article-image" onLoad={this.imageLoaded} src={item.imageLink} alt="" />
+                              <p className="article-message">{item.translations.en}</p>
+                            </a>
+                          )
+                        })}
+                      </React.Fragment>
+                      : <ContainedLoading />
+                    }
+                  </CSSTransition>
                 </React.Fragment>
               }
             </div>

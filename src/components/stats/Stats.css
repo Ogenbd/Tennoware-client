@@ -124,6 +124,11 @@
     height: 56px;
 }
 
+.status-breakdown {
+    margin-left: 4px;
+    margin-bottom: 2px;
+}
+
 .zoom {
     width: 96px;
 }

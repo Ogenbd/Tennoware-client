@@ -111,7 +111,7 @@ export class RangedRivenEditor extends Component {
         rivenMod.effects.push(effectOneObj);
       }
       rivenMod.effectOne = this.state.effectOne;
-      rivenMod.numOne = this.state.numOne;
+      rivenMod.numOne = parseFloat(this.state.numOne);
       rivenMod.desc += `${this.state.numOne >= 0 ? '+' : ''}${this.state.numOne}${this.state.effectOne === 'Punch Through' ? 'm ' : '% '}${this.state.effectOne}\n`;
       if (this.state.effectTwo !== 'None') {
         let effectTwoObj = this.constructEffect(this.state.effectTwo, this.state.numTwo / 100);
@@ -119,7 +119,7 @@ export class RangedRivenEditor extends Component {
           rivenMod.effects.push(effectTwoObj);
         }
         rivenMod.effectTwo = this.state.effectTwo;
-        rivenMod.numTwo = this.state.numTwo;
+        rivenMod.numTwo = parseFloat(this.state.numTwo);
         rivenMod.desc += `${this.state.numTwo >= 0 ? '+' : ''}${this.state.numTwo}${this.state.effectTwo === 'Punch Through' ? 'm ' : '% '}${this.state.effectTwo}\n`;
         if (this.state.effectThree !== 'None') {
           let effectThreeObj = this.constructEffect(this.state.effectThree, this.state.numThree / 100);
@@ -127,7 +127,7 @@ export class RangedRivenEditor extends Component {
             rivenMod.effects.push(effectThreeObj);
           }
           rivenMod.effectThree = this.state.effectThree;
-          rivenMod.numThree = this.state.numThree;
+          rivenMod.numThree = parseFloat(this.state.numThree);
           rivenMod.desc += `${this.state.numThree >= 0 ? '+' : ''}${this.state.numThree}${this.state.effectThree === 'Punch Through' ? 'm ' : '% '}${this.state.effectThree}\n`;
           if (this.state.effectFour !== 'None') {
             let effectFourObj = this.constructEffect(this.state.effectFour, this.state.numFour / 100);
@@ -135,7 +135,7 @@ export class RangedRivenEditor extends Component {
               rivenMod.effects.push(effectFourObj);
             }
             rivenMod.effectFour = this.state.effectFour;
-            rivenMod.numFour = this.state.numFour;
+            rivenMod.numFour = parseFloat(this.state.numFour);
             rivenMod.desc += `${this.state.numFour >= 0 ? '+' : ''}${this.state.numFour}${this.state.effectFour === 'Punch Through' ? 'm ' : '% '}${this.state.effectFour}`;
           }
         }
@@ -376,34 +376,34 @@ export class RangedRivenEditor extends Component {
                 <div className="hexa-wrapper hexa-first">
                   <div className={"riven-hexagon hexagon " + (this.state.polarity === 'madurai' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'madurai') }}>
                     <span>
-                      <img className="hex-polarity" src={require('../../assets/general/maduraiblack.png')} alt="madurai" />
+                      <img className="hex-polarity" src={require('../../assets/dynamic/polarities/maduraiblack.png')} alt="madurai" />
                     </span>
                   </div>
                   <div className={"riven-hexagon hexagon " + (this.state.polarity === 'naramon' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'naramon') }}>
                     <span>
-                      <img className="hex-polarity" src={require('../../assets/general/naramonblack.png')} alt="naramon" />
+                      <img className="hex-polarity" src={require('../../assets/dynamic/polarities/naramonblack.png')} alt="naramon" />
                     </span>
                   </div>
                   <div className={"riven-hexagon hexagon " + (this.state.polarity === 'vazarin' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'vazarin') }}>
                     <span>
-                      <img className="hex-polarity" src={require('../../assets/general/vazarinblack.png')} alt="vazarin" />
+                      <img className="hex-polarity" src={require('../../assets/dynamic/polarities/vazarinblack.png')} alt="vazarin" />
                     </span>
                   </div>
                 </div>
                 <div className="hexa-wrapper hexa-second">
                   <div className={"riven-hexagon hexagon " + (this.state.polarity === 'zenurik' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'zenurik') }}>
                     <span>
-                      <img className="hex-polarity" src={require('../../assets/general/zenurikblack.png')} alt="zenurik" />
+                      <img className="hex-polarity" src={require('../../assets/dynamic/polarities/zenurikblack.png')} alt="zenurik" />
                     </span>
                   </div>
                   <div className={"riven-hexagon hexagon " + (this.state.polarity === 'unairu' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'unairu') }}>
                     <span>
-                      <img className="hex-polarity" src={require('../../assets/general/unairublack.png')} alt="unairu" />
+                      <img className="hex-polarity" src={require('../../assets/dynamic/polarities/unairublack.png')} alt="unairu" />
                     </span>
                   </div>
                   <div className={"riven-hexagon hexagon " + (this.state.polarity === 'penjaga' ? 'polarity-large' : '')} onClick={(e) => { this.setPolarity(e, 'penjaga') }}>
                     <span>
-                      <img className="hex-polarity" src={require('../../assets/general/penjagablack.png')} alt="penjaga" />
+                      <img className="hex-polarity" src={require('../../assets/dynamic/polarities/penjagablack.png')} alt="penjaga" />
                     </span>
                   </div>
                 </div>

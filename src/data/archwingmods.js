@@ -93,7 +93,7 @@ const archwingMods = [
                         {
                             name: 'Explosion damage',
                             base: 1500,
-                            icon: require('../assets/general/Blast.png')
+                            icon: require('../assets/dynamic/damage/Blast.png')
                         },
                     ],
                     duration: [
@@ -172,7 +172,7 @@ const archwingMods = [
                             name: 'Heat damage bonus',
                             suffix: '%',
                             base: 50,
-                            icon: require('../assets/general/Heat.png')
+                            icon: require('../assets/dynamic/damage/Heat.png')
                         },
                         {
                             name: 'Critical damage multiplier',
