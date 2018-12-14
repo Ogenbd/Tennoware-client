@@ -1,6 +1,6 @@
 {
   "name": "tennoware",
-  "version": "1.0.7",
+  "version": "1.0.71",
   "private": true,
   "dependencies": {
     "react": "^16.4.1",

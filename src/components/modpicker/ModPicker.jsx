@@ -226,13 +226,19 @@ export class ModPicker extends PureComponent {
     }
 
     sortName = () => {
-        let sorted = this.sortByName(this.state.mods);
-        localStorage.setItem('sortby', 'name');
-        this.setState({
-            mods: sorted,
-            sort: 'name',
-            sortToggle: false
-        });
+        if (this.state.sort === 'name') {
+            this.setState({
+                sortToggle: false
+            });
+        } else {
+            let sorted = this.sortByName(this.state.mods);
+            localStorage.setItem('sortby', 'name');
+            this.setState({
+                mods: sorted,
+                sort: 'name',
+                sortToggle: false
+            });
+        }
     }
 
     sortByName = (mods) => {
@@ -243,13 +249,19 @@ export class ModPicker extends PureComponent {
     }
 
     sortDrain = () => {
-        let sorted = this.sortByDrain(this.state.mods);
-        localStorage.setItem('sortby', 'drain');
-        this.setState({
-            mods: sorted,
-            sort: 'drain',
-            sortToggle: false
-        });
+        if (this.state.sort === 'drain') {
+            this.setState({
+                sortToggle: false
+            });
+        } else {
+            let sorted = this.sortByDrain(this.state.mods);
+            localStorage.setItem('sortby', 'drain');
+            this.setState({
+                mods: sorted,
+                sort: 'drain',
+                sortToggle: false
+            });
+        }
     }
 
     sortByDrain = (mods) => {
@@ -260,13 +272,19 @@ export class ModPicker extends PureComponent {
     }
 
     sortRank = () => {
-        let sorted = this.sortByRank(this.state.mods);
-        localStorage.setItem('sortby', 'rank');
-        this.setState({
-            mods: sorted,
-            sort: 'rank',
-            sortToggle: false
-        });
+        if (this.state.sort === 'rank') {
+            this.setState({
+                sortToggle: false
+            });
+        } else {
+            let sorted = this.sortByRank(this.state.mods);
+            localStorage.setItem('sortby', 'rank');
+            this.setState({
+                mods: sorted,
+                sort: 'rank',
+                sortToggle: false
+            });
+        }
     }
 
     sortByRank = (mods) => {
