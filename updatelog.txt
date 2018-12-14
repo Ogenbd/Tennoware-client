@@ -1,5 +1,9 @@
 UPDATE LOG
 
+upcoming - v1.0.7.
+
+Added filtering by polarity and different sorting options for the mod picker.
+
 12/12/2018 - v1.0.6.
 
 New:

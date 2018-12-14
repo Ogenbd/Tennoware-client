@@ -48,6 +48,84 @@
     background-image: url('../../assets/dynamic/modcards/exilusprime.png');
 }
 
+.mod-options-wrapper {
+    display: flex;
+    height: 100%;
+}
+
+.mod-dropdown-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 249, 160, 0.7);
+    font-weight: 600;
+    width: 75px;
+    height: 100%;
+    box-sizing: border-box;
+    transition: all 100ms ease-in-out;
+    cursor: pointer;
+}
+
+.dropdown-block {
+    position: absolute;
+    color: white;
+    z-index: 2;
+    width: 105px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-right: 1px solid rgba(255, 249, 160, 0.3);
+    border-left: 1px solid rgba(255, 249, 160, 0.3);
+    overflow: hidden;
+    transition: height 200ms ease-out;
+}
+
+.sort-block {
+    left: 75px;
+}
+
+.filter-inactive {
+    height: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.filter-active {
+    height: 379px;
+    pointer-events: all;
+    border-bottom: 1px solid rgba(255, 249, 160, 0.3);
+}
+
+.sort-inactive {
+    height: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.sort-active {
+    height: 127px;
+    pointer-events: all;
+    border-bottom: 1px solid rgba(255, 249, 160, 0.3);
+}
+
+.filter-active-warframes {
+    height: 463px;
+    pointer-events: all;
+}
+
+.dropdown-option {
+    display: flex;
+    align-items: center;
+    height: 42px;
+    min-height: 42px;
+    padding: 0 5px;
+    cursor: pointer;
+    transition: all 200ms ease-in-out;
+}
+
+.filter-pol {
+    width: 20px;
+    margin-right: 3px;
+}
+
 @media screen and (min-width: 1203px) {
     .mod-picker {
         display: flex;
@@ -59,7 +137,7 @@
     .mod-list-topbar {
         position: fixed;
         flex-direction: row;
-        width: 315px;
+        width: 313px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -67,12 +145,14 @@
         height: 56px;
         min-height: 56px;
         border-bottom: 1px solid rgba(255, 249, 160, 0.3);
+        border-left: 1px solid rgba(255, 249, 160, 0.3);
+        border-right: 1px solid rgba(255, 249, 160, 0.3);
     }
     .mod-list-search-wrapper {
         display: flex;
         flex-direction: column;
         flex-shrink: 1;
-        margin-right: 10px;
+        margin-right: 5px;
     }
     .mod-list {
         position: fixed;
@@ -92,29 +172,10 @@
     .mod-wrapper {
         transition: all 150ms ease-in-out;
     }
+    .dropdown-block {
+        top: 56px;
+    }
 }
-
-/* @media screen and (min-width: 1203px) and (max-width: 1203px) {
-    .mod-picker,
-    .mod-list-topbar,
-    .mod-list {
-        width: 170px;
-    }
-    .mod-list-topbar {
-        height: 112px;
-        align-items: flex-start;
-        justify-content: space-around;
-        flex-wrap: wrap;
-    }
-    .mod-list {
-        top: 169px;
-        height: calc(100vh - 169px);
-    }
-    .mod-list-search-wrapper {
-        margin-right: 3px;
-        margin-left: 3px;
-    }
-} */
 
 @media screen and (max-width: 1202px) {
     .mod-list {
@@ -124,25 +185,50 @@
         height: initial;
         padding: 10px 0;
         box-sizing: border-box;
-        border-top: 1px solid rgba(255, 249, 160, 0.3);
         overflow-y: scroll;
         overflow-x: hidden;
-    }
-    .mod-list-search-wrapper {
-        margin-right: 24px;
-        margin-left: 20px;
     }
     .mod-list-topbar {
         justify-content: flex-end;
         flex-direction: row;
+        border-bottom: 1px solid rgba(255, 249, 160, 0.3);
+    }
+    .mod-options-wrapper {
+        /* align-self: flex-start; */
+        margin-left: 47px;
+        margin-right: auto;
+    }
+    .mod-list-search-wrapper {
+        margin-right: 5px;
+        margin-left: 5px;
     }
     .mod-list-x {
-        padding: 28px 32px 28px 15px;
+        padding: 25px 32px 31px 15px;
+    }
+    .dropdown-block {
+        top: 56px;
+        background-color: black;
+    }
+    .filter-block {
+        left: 47px;
+    }
+    .sort-block {
+        left: 122px;
     }
 }
 
 @media screen and (min-width: 1203px) and (hover: hover) {
+    .mod-dropdown-trigger:hover {
+        color: rgba(255, 249, 160, 1);
+        text-shadow: 0 0 15px rgba(255, 249, 160, 1);
+    }
     .mod-wrapper:hover {
         transform: translateZ(0) scale(1.06, 1.06);
     }
+}
+
+.active-option {
+    color: rgba(255, 249, 160, 1);
+    text-shadow: 0px 0px 8px rgba(255, 249, 160, 1);
+    font-weight: 600;
 }

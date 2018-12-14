@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import debounce from 'lodash/debounce';
 import './App.css';
 import './general.css';
 
@@ -109,15 +110,15 @@ class App extends Component {
 
 export default App;
 
-const debounce = (fn, delay) => {
-  var timer = null;
-  return function () {
-    var context = this, args = arguments;
-    clearTimeout(timer);
-    timer = setTimeout(function () {
-      fn.apply(context, args);
-    }, delay);
-  };
-}
+// const debounce = (fn, delay) => {
+//   var timer = null;
+//   return function () {
+//     var context = this, args = arguments;
+//     clearTimeout(timer);
+//     timer = setTimeout(function () {
+//       fn.apply(context, args);
+//     }, delay);
+//   };
+// }
 
 
