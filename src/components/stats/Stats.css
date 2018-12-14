@@ -239,7 +239,7 @@
         height: calc(100vh - 56px);
         background-color: rgba(0, 0, 0, 0.95);
         border-left: solid 1px rgba(255, 249, 160, 0.3);
-        transition: all 0.2s ease-in-out;
+        transition: all 0.35s cubic-bezier(.45,.7,.28,.96);
     }
     .top-bar-margin {
         display: none;

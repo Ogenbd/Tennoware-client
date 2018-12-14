@@ -75,7 +75,8 @@ export class Sidebar extends Component {
           </div>
         </div>
         <div className={"sidebar " + (this.state.open ? 'opened-sidebar' : 'closed-sidebar')}>
-          <div className={"sidebar-title " + (this.state.open ? 'opened-sidebar' : 'closed-sidebar')}>
+          <div className="sidebar-title">
+          {/* <div className={"sidebar-title " + (this.state.open ? 'opened-sidebar' : 'closed-sidebar')}> */}
             <div className="menu-x-wrapper" onClick={this.closeSidebar}>
               <div className="menu-bar top"></div>
               <div className="menu-bar bot"></div>

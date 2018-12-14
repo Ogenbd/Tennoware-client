@@ -115,7 +115,7 @@
     .sidebar {
         position: fixed;
         background-color: rgba(0, 0, 0, 0.95);
-        transition: all ease-in-out 0.15s;
+        transition: transform 0.35s cubic-bezier(.45,.7,.28,.96);
         z-index: 9100;
         box-sizing: border-box;
         border-right: 1px solid rgba(255, 249, 160, 0.73);
@@ -129,7 +129,7 @@
         width: 192px;
         padding: 0 6px;
         align-items: center;
-        transition: all ease-in-out 0.15s;
+        /* transition: all 0.01s cubic-bezier(.45,.7,.28,.96); */
         font-weight: 600;
         color: white;
         font-size: 18px;

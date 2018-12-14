@@ -548,7 +548,7 @@
         border-top-left-radius: 30px;
         border-bottom-left-radius: 30px;
         cursor: pointer;
-        transition: all 0.2s ease-in-out;
+        transition: all 0.35s cubic-bezier(.45,.7,.28,.96);
         z-index: 3;
     }
     .pull-tab-arrow {
@@ -556,7 +556,7 @@
         left: 12px;
         height: 22px;
         line-height: 22px;
-        transition: transform 0.2s ease-in-out;
+        transition: transform 0.35s cubic-bezier(.45,.7,.28,.96);
     }
     .pull-tab p {
         position: relative;
