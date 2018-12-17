@@ -184,6 +184,7 @@
     color: rgb(255, 249, 160);
     text-decoration: underline;
     font-weight: 600;
+    cursor: pointer;
 }
 
 /* .fade-exit {
