@@ -10,10 +10,6 @@
 
 const updateAvail = new Event('updateavail');
 
-setTimeout(() => {
-  window.dispatchEvent(updateAvail)
-}, 5000);
-
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
     // [::1] is the IPv6 localhost address.
