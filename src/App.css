@@ -154,6 +154,38 @@
     transition: opacity 300ms;
 }
 
+.update-popup {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 0vh;
+    height: 80px;
+    width: 100vw;
+    background-color: rgb(50, 50, 60);
+    z-index: 9200;
+    transition: transform 200ms ease-in-out;
+}
+
+.show-update {
+    transform: translateY(0px);
+}
+
+.hide-update {
+    transform: translateY(80px);
+}
+
+.update-touch {
+    color: white;
+    font-size: 16px;
+}
+
+.update-button {
+    color: rgb(255, 249, 160);
+    text-decoration: underline;
+    font-weight: 600;
+}
+
 /* .fade-exit {
     opacity: 1;
 }

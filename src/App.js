@@ -14,20 +14,24 @@ class App extends Component {
       showLogin: false,
       viewWidth: window.innerWidth,
       user: false,
-      online: navigator.onLine
+      online: navigator.onLine,
+      update: false
     }
     this.debouncedSetWidth = debounce(this.setViewWidth, 100)
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     window.addEventListener('resize', this.debouncedSetWidth)
+    window.addEventListener('updateavail', this.promptUpdate)
     if (localStorage.jwt) {
-      // if (navigator.onLine) {
       this.setState({ user: true })
-      // }
     }
     window.addEventListener('online', this.setOnline)
     window.addEventListener('offline', this.setOffline)
+  }
+
+  promptUpdate = () => {
+    this.setState({ update: true })
   }
 
   setOffline = () => {
@@ -76,6 +80,10 @@ class App extends Component {
     });
   }
 
+  updateInit = () => {
+    window.location.reload()
+  }
+
   render() {
     return (
       <div className="app">
@@ -99,10 +107,13 @@ class App extends Component {
           </div>
         </div>
         <div className="main-view">
-          <Routing viewWidth={this.state.viewWidth} user={this.state.user} online={this.state.online} logUser={this.logUser}/>
+          <Routing viewWidth={this.state.viewWidth} user={this.state.user} online={this.state.online} logUser={this.logUser} />
         </div>
         <Sidebar user={this.state.user} online={this.state.online} />
         <Login showLogin={this.state.showLogin} hideLogin={this.hideLogin} logUser={this.logUser} user={this.state.user} />
+        <div className={"update-popup " + (this.state.update ? 'show-update' : 'hide-update')}>
+          <p className="update-touch">An update is available! <span className="update-button" onClick={this.updateInit}>Get Update</span></p>
+        </div>
       </div>
     );
   }

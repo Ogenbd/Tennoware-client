@@ -1,5 +1,9 @@
 UPDATE LOG
 
+upcoming - v1.1.1.
+
+adding update available
+
 17/12/2018 - v1.1.0.
 
 New:
