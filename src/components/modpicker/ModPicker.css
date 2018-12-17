@@ -1,4 +1,4 @@
-.topbar-filter {
+/* .topbar-filter {
     width: 40px;
     min-width: 40px;
 }
@@ -46,7 +46,7 @@
 
 .exilus-placeholder-inactive {
     background-image: url('../../assets/dynamic/modcards/exilusprime.png');
-}
+} */
 
 .mod-options-wrapper {
     display: flex;
@@ -124,6 +124,13 @@
 .filter-pol {
     width: 20px;
     margin-right: 3px;
+}
+
+.hidden-mod {
+    pointer-events: none;
+    display: none;
+    /* visibility: hidden; */
+    /* position: fixed; */
 }
 
 @media screen and (min-width: 1203px) {

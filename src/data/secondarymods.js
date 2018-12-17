@@ -898,7 +898,7 @@ const secondaryMods = [
         img: require('../assets/general/squareriven.jpg'),
         type: 'PISTOL',
         rarity: 'riven',
-        polarity: 'madurai',
+        polarity: '',
         effects: [],
         maxRank: 8,
         currRank: 8,

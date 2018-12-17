@@ -44,6 +44,17 @@
     flex-wrap: wrap;
     justify-content: center;
     padding: 66px 0 10px 0;
+    transition: opacity 200ms;
+}
+
+.show-list {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.hide-list {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .item-wrapper {

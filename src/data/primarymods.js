@@ -1876,7 +1876,7 @@ const primaryMods = [
         img: require('../assets/general/squareriven.jpg'),
         type: 'PRIMARY',
         rarity: 'riven',
-        polarity: 'madurai',
+        polarity: '',
         effects: [],
         maxRank: 8,
         currRank: 8,

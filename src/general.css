@@ -480,15 +480,14 @@
         background-color: rgba(0, 0, 0, 0.9);
         left: 0;
         top: 0;
+        transition: opacity 200ms, transform 300ms cubic-bezier(.45,.7,.28,.96);
     }
     .popup-active {
         transform: translateY(0);
         opacity: 1;
-        transition: opacity 200ms, transform 200ms;
     }
     .popup-inactive {
         transform: translateY(101vh);
-        transition: opacity 200ms, transform 200ms;
         opacity: 0;
     }
     .popup-topbar {

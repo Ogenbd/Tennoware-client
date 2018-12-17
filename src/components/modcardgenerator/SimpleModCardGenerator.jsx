@@ -76,7 +76,9 @@ export class SimpleModCardGenerator extends PureComponent {
                 <img src={require(`../../assets/dynamic/modcards/${mod.rarity}.png`)} alt={''} className={"rarity " + (mod.rarity === 'riven' ? "riven-border" : "")} />
                 <div className="polarity-wrapper">
                     <p className="cost" style={fontColor}>{mod.baseCost + mod.currRank}</p>
-                    <img className="polarity-icon" src={require(`../../assets/dynamic/polarities/${mod.polarity}${mod.rarity}.png`)} alt={''} />
+                    {mod.polarity !== '' &&
+                        <img className="polarity-icon" src={require(`../../assets/dynamic/polarities/${mod.polarity}${mod.rarity}.png`)} alt={''} />
+                    }
                 </div>
                 <div className="mod-type">
                     <p>

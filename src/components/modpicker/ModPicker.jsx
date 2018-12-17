@@ -1,10 +1,10 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 // import { CSSTransition } from "react-transition-group";
 import './ModPicker.css';
 
 import SimpleModCardGenerator from '../modcardgenerator/SimpleModCardGenerator.jsx';
 
-export class ModPicker extends PureComponent {
+export class ModPicker extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,6 +13,7 @@ export class ModPicker extends PureComponent {
             conclave: false,
             aura: false,
             exilus: false,
+            polarity: null,
             filterToggle: false,
             sortToggle: false,
             sort: 'name'
@@ -65,15 +66,47 @@ export class ModPicker extends PureComponent {
         }
     }
 
-    generateModList = (display) => {
+    // generateModList = (display) => {
+    generateModList = () => {
         let modList = [];
-        display.forEach(mod => {
+        this.state.mods.forEach(mod => {
             if (mod.name) {
-                modList.push(
-                    <div draggable="false" className="mod-wrapper no-highlight" key={mod.index} onClick={() => { this.handlePick(mod) }} onDragStart={(e) => { this.handleDrag(e, mod.index) }}>
-                        <SimpleModCardGenerator mod={mod} viewWidth={this.props.viewWidth} />
-                    </div>
-                );
+                let showType = true;
+                let showPolarity = true;
+                if (this.props.type === 'warframes') {
+                    if ((this.state.aura || this.props.forSlot === 'aura') && !mod.aura) {
+                        showType = false;
+                    } else if ((this.state.exilus || this.props.forSlot === 'exilus') && !mod.exilus) {
+                        showType = false;
+                    } else if (typeof this.props.forSlot === 'number' && mod.aura) {
+                        showType = false;
+                    }
+                }
+                if (this.state.polarity !== null) {
+                    if (this.state.polarity !== mod.polarity) showPolarity = false;
+                }
+                if (this.props.chosenIndexs.includes(mod.index)) showType = false;
+                if (this.state.search.length > 0) {
+                    let desc = mod.description();
+                    if (typeof desc === 'string') {
+                        showType = (mod.name && (mod.name.toLowerCase().includes(this.state.search.toLowerCase()) || desc.toLowerCase().includes(this.state.search.toLowerCase()) || mod.type.toLowerCase().includes(this.state.search.toLowerCase())));
+                    } else {
+                        showType = (mod.name && (mod.name.toLowerCase().includes(this.state.search.toLowerCase()) || desc[0].toLowerCase().includes(this.state.search.toLowerCase()) || desc[1].toLowerCase().includes(this.state.search.toLowerCase()) || mod.type.includes(this.state.search.toLowerCase())));
+                    }
+                }
+                if (showType && showPolarity) {
+                    modList.push(
+                        <div draggable="false" className="mod-wrapper no-highlight" key={mod.index} onClick={() => { this.handlePick(mod) }} onDragStart={(e) => { this.handleDrag(e, mod.index) }}>
+                            <SimpleModCardGenerator mod={mod} viewWidth={this.props.viewWidth} />
+                        </div>
+                    );
+                } else {
+                    modList.push(
+                        <div draggable="false" className="mod-wrapper no-highlight hidden-mod" key={mod.index} onClick={() => { this.handlePick(mod) }} onDragStart={(e) => { this.handleDrag(e, mod.index) }}>
+                            <SimpleModCardGenerator mod={mod} viewWidth={this.props.viewWidth} />
+                        </div>
+                    );
+                }
             }
         });
         return modList;
@@ -143,7 +176,6 @@ export class ModPicker extends PureComponent {
         } else if (this.state.sort === 'rank') {
             filtered = this.sortByRank(filtered);
         }
-        console.log(filtered);
         this.setState(prevState => ({
             conclave: !prevState.conclave,
             mods: filtered,
@@ -295,7 +327,7 @@ export class ModPicker extends PureComponent {
     }
 
     render() {
-        let display = this.filterMods();
+        // let display = this.filterMods();
         return (
             <div className={this.props.viewWidth < 1203 ? "popup " + (this.props.active ? "popup-active" : "popup-inactive") : 'mod-picker'}>
                 <div className={this.props.viewWidth < 1203 ? "mod-list-topbar popup-topbar " + (this.props.active ? "popup-active" : "popup-inactive") : "mod-list-topbar"}>
@@ -342,7 +374,7 @@ export class ModPicker extends PureComponent {
                     <div className={"dropdown-option " + (this.state.sort === 'drain' ? 'active-option' : 'inactive-option')} onClick={this.sortDrain}>Drain</div>
                     <div className={"dropdown-option " + (this.state.sort === 'rank' ? 'active-option' : 'inactive-option')} onClick={this.sortRank}>Rank</div>
                 </div>
-                <div className="popup-content mod-list">{this.generateModList(display)}</div>
+                <div className="popup-content mod-list">{this.generateModList()}</div>
             </div>
         )
     }

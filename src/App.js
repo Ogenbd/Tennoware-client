@@ -99,7 +99,7 @@ class App extends Component {
           </div>
         </div>
         <div className="main-view">
-          <Routing viewWidth={this.state.viewWidth} user={this.state.user} online={this.state.online} />
+          <Routing viewWidth={this.state.viewWidth} user={this.state.user} online={this.state.online} logUser={this.logUser}/>
         </div>
         <Sidebar user={this.state.user} online={this.state.online} />
         <Login showLogin={this.state.showLogin} hideLogin={this.hideLogin} logUser={this.logUser} user={this.state.user} />

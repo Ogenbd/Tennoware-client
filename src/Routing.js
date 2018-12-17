@@ -7,6 +7,11 @@ import Unauthorized from './components/unauthorized/Unauthorized';
 // async imports for react/webpack code-splitting
 
 // route components
+const Register = Loadable({
+    loader: () => import('./components/register/Register'),
+    loading: () => null,
+});
+
 const News = Loadable({
     loader: () => import('./components/news/News'),
     loading: () => null,
@@ -384,6 +389,7 @@ export class Routing extends Component {
                     <Route exact path='/moas/:id/:pre' render={props => <MoaBuilder {...props} {...nonRouterPropPass} type={'moas'} items={this.moas} mods={this.companionMods} />} />
                     <Route exact path='/moas/:id' render={props => <MoaBuilder {...props} {...nonRouterPropPass} type={'moas'} items={this.moas} mods={this.companionMods} />} />
                     <Route exact path='/moas' render={props => <MoaPicker {...props} {...nonRouterPropPass} items={this.moas} />} />
+                    <Route exact path='/register' render={props => <Register logUser={this.props.logUser} user={this.props.user}/>} />
                     <Route exact path='/terms' component={Terms} />
                     <Route exact path='/privacy' component={Privacy} />
                     <Route exact path='/unauthorized' component={Unauthorized} />

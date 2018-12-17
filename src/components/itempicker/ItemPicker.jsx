@@ -74,10 +74,12 @@ export class ItemPicker extends Component {
                             </div>
                             <div className="items-display">
                                 {this.state.displayItems.map(item => (
-                                    <div key={item.name} className="item-wrapper" onClick={() => this.handlePick(item.name)}>
-                                        <img className="item-image" src={item.img} alt="" />
-                                        <div className="item-name"><p>{item.name}</p></div>
-                                    </div>
+                                    <CSSTransition key={item.name} classNames="fade" in={true} appear={true} timeout={200}>
+                                        <div className="item-wrapper" onClick={() => this.handlePick(item.name)}>
+                                            <img className="item-image" src={item.img} alt="" />
+                                            <div className="item-name"><p>{item.name}</p></div>
+                                        </div>
+                                    </CSSTransition>
                                 ))}
                             </div>
                         </div>

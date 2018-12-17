@@ -1,8 +1,17 @@
 UPDATE LOG
 
-upcoming - v1.0.7.
+17/12/2018 - v1.1.0.
 
+New:
+Added standalone Tennoware accounts.
 Added filtering by polarity and different sorting options for the mod picker.
+
+Changes:
+Reviewing the code for the mod picker while implementing filtering and sorting led to fairly chunky optimization in and around the mod picker. Said optimization should make the mod picker more responsive.
+Added some some custom timing curves to some animations.
+
+Fixes:
+Added Image loading error handling to the warframe news section. Now if theres an error loading one (or more) image it should still load up the rest.
 
 12/12/2018 - v1.0.6.
 

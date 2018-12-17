@@ -28,7 +28,8 @@ export class News extends Component {
       this.setState({
         loading: true,
         platform: platform,
-        loaded: 0
+        loaded: 0,
+        news: []
       });
       fetch(`https://api.warframestat.us/${platform}/news`)
         .then(res => {
@@ -47,6 +48,7 @@ export class News extends Component {
     sortedNews = news.filter(item => item.translations.en && !item.imageLink.includes('forums'))
     sortedNews.forEach(item => {
       item.imageLink = item.imageLink.replace('http:', 'https:');
+      if (item.translations.en === 'Tennobaum Has Begun! Get Gifting, Tenno!') item.imageLink = 'https://n9e5v4d8.ssl.hwcdn.net/uploads/62fbad11ef9f0593634fccceac474742.jpg';
     });
     sortedNews.sort((a, b) => {
       let dateA = new Date(a.date);
@@ -56,12 +58,33 @@ export class News extends Component {
     this.setState({
       news: sortedNews,
       platform: platform,
-      loading: false,
+      // loading: false,
     })
   }
 
   imageLoaded = () => {
-    this.setState(prevState => ({ loaded: prevState.loaded + 1 }));
+    if (this.state.news.length === this.state.loaded + 1) {
+      this.setState(prevState => ({ loaded: prevState.loaded + 1, loading: false }));
+    } else {
+      this.setState(prevState => ({ loaded: prevState.loaded + 1 }));
+    }
+  }
+
+  handleError = (idx) => {
+    let news = this.state.news.map((item, index) => {
+      if (idx === index) {
+        let newItem = item;
+        item.imageLink = require('../../assets/general/unavail.jpg')
+        return newItem;
+      } else {
+        return item;
+      }
+    });
+    this.setState(prevState => ({
+      news: news,
+      loaded: prevState.loaded + 1,
+      loading: false
+    }));
   }
 
   render() {
@@ -75,15 +98,18 @@ export class News extends Component {
               <div className="article tennoware-news">
                 <h1>Introduction</h1>
                 <div className="update-content">
-                  <p>Tennoware is a Warframe build calculator, it is also a fully featured <a className="reddit-link" href="https://en.wikipedia.org/wiki/Progressive_web_applications">Progressive Web App</a>, meaning it is both mobile and desktop friendly, can be installed on your mobile device and has offline functionality.</p>
+                  <p>Tennoware is a Warframe builds calculator, it is both mobile and desktop friendly, can be installed on your mobile device and has offline functionality.</p>
+                  <p>Creating and account is optional and free and it lets you save your builds and like other peoples public community builds.</p>
                   <p>Tennoware is still in early stages of development. Please understand that some server issues and/or bugs are lurking around.</p>
-                  <p>For bug reports, feedback, feature suggestions and general Tennoware discussion go <a className="reddit-link" href="https://www.reddit.com/r/tennoware">here.</a></p>
+                  <p>If you encounter a bug or wish to provide feedback or a feature suggestion, I would appreciate if you would let me know over at the <a className="reddit-link" href="https://www.reddit.com/r/tennoware">Tennoware subreddit.</a></p>
                 </div>
               </div>
               <div className="article tennoware-news">
-                <h1>Update 1.0.6!</h1>
+                <h1>Update 1.1.0!</h1>
                 <div className="update-content">
-                  <p>Added the option to look at all public Kitgun/MOA builds, a toggle for Arbitrations bonus and a status proc breakdown on weapons. If you saved a build with a riven and you cant access it please let me know at the <a className="reddit-link" href="https://www.reddit.com/r/tennoware">Tennoware subreddit.</a></p>
+                  <p>Added standalone Tennoware accounts without a Google/Facebook requirment.</p>
+                  <p>Added more filtering and sorting options to the mod picker.</p>
+                  <p>General improvments to make the app feel more responsive, mostly around things popping in and out of the screen and general mod picker behavior. The Warframe news section will display the news even if there were errors loading the images. No more empty news page unless you are offline!</p>
                   <p>For the complete update notes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log.</a></p>
                 </div>
               </div>
@@ -98,27 +124,42 @@ export class News extends Component {
                 </div>
               }
             </div>
-            <div className="articles news-articles">
-              {this.props.online &&
-                <React.Fragment>
-                  <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
-                    {!this.state.loading
-                      ? <React.Fragment>
-                        {this.state.news.map((item, index) => {
-                          return (
-                            <a key={index} href={item.link} className={"article " + (this.state.news.length === this.state.loaded ? 'article-loaded' : 'article-not-loaded')}>
-                              <img className="article-image" onLoad={this.imageLoaded} src={item.imageLink} alt="" />
-                              <p className="article-message">{item.translations.en}</p>
-                            </a>
-                          )
-                        })}
-                      </React.Fragment>
-                      : <ContainedLoading />
-                    }
-                  </CSSTransition>
-                </React.Fragment>
-              }
-            </div>
+            {this.props.online &&
+              <div className="loading-articles-coupler">
+                <div className={"news-loading " + (!this.state.loading ? 'hide-it' : 'show-it')}>
+                  <ContainedLoading />
+                </div>
+                <div className={"articles-wrapper articles " + (this.state.loading ? 'hide-it' : 'show-it')}>
+                  {this.state.news.map((item, index) => {
+                    return (
+                      <a key={index} href={item.link} className="article">
+                        <img className="article-image" onError={() => { this.handleError(index) }} onLoad={this.imageLoaded} src={item.imageLink} alt="" />
+                        <p className="article-message">{item.translations.en}</p>
+                      </a>
+                    )
+                  })}
+                </div>
+              </div>
+              // <div className="news-articles">
+              //   <React.Fragment>
+              //      <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
+              //        {!this.state.loading
+              //         ? <React.Fragment>
+              //           {this.state.news.map((item, index) => {
+              //             return (
+              //               <a key={index} href={item.link} className={"article " + (this.state.news.length === this.state.loaded ? 'article-loaded' : 'article-not-loaded')}>
+              //                 <img className="article-image" onError={() => { this.handleError(index) }} onLoad={this.imageLoaded} src={item.imageLink} alt="" />
+              //                 <p className="article-message">{item.translations.en}</p>
+              //               </a>
+              //             )
+              //           })}
+              //         </React.Fragment>
+              //         : <ContainedLoading />
+              //       }
+              //     </CSSTransition>
+              //   </React.Fragment>
+              // </div>
+            }
           </div>
         </div>
       </CSSTransition>

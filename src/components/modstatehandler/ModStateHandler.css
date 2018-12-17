@@ -140,7 +140,7 @@
 .mod-card-wrapper {
     position: absolute;
     cursor: pointer;
-    transition: transform 150ms ease-in-out;
+    transition: transform 250ms cubic-bezier(.45,.7,.28,.96);
     /* -webkit-tap-highlight-color: transparent; */
 }
 

@@ -98,7 +98,9 @@ export class ModCardGenerator extends PureComponent {
                 : <p className="cost" style={{ color: 'red' }}>{Math.round((mod.baseCost + mod.currRank) * 1.25)}</p>
               : <p className="cost" style={fontColor}>{mod.baseCost + mod.currRank}</p>
           }
-          <img className="polarity-icon" src={require(`../../assets/dynamic/polarities/${mod.polarity}${match}.png`)} alt={''} />
+          {mod.polarity !== '' &&
+            <img className="polarity-icon" src={require(`../../assets/dynamic/polarities/${mod.polarity}${match}.png`)} alt={''} />
+          }
         </div>
         <div className="mod-type">
           <p>
