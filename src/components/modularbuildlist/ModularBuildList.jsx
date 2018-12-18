@@ -49,11 +49,7 @@ export class ModularBuildList extends PureComponent {
             .then(res => {
                 if (res.status === 200) {
                     res.json().then(res => {
-                        this.setState({
-                            builds: res,
-                            requested: true,
-                            loader: false
-                        });
+                        this.sortBuilds(res);
                     });
                 } else {
                     this.setState({
@@ -70,6 +66,25 @@ export class ModularBuildList extends PureComponent {
                     error: 'Unable to connect to Tennoware server! Please try again later.'
                 })
             });
+    }
+
+    sortBuilds = (builds) => {
+        if (builds.length > 0) {
+            builds.sort((a, b) => {
+                let dateA = Date.parse(a.CreateDT)
+                let dateB = Date.parse(b.CreateDT)
+                if (a.Likes < b.Likes) return 1
+                if (a.Likes > b.Likes) return -1
+                if (dateA < dateB) return 1
+                if (dateA > dateB) return -1
+                return 0;
+            });
+        }
+        this.setState({
+            builds: builds,
+            requested: true,
+            loader: false
+        });
     }
 
     setFirst = (name) => {

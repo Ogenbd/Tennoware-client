@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import cloneDeep from 'lodash/cloneDeep';
 import { Link } from 'react-router-dom';
 import './BuildList.css';
 
@@ -50,11 +49,7 @@ export class BuildList extends Component {
             .then(res => {
                 if (res.status === 200) {
                     res.json().then(res => {
-                        this.setState({
-                            builds: res,
-                            requested: true,
-                            loader: false
-                        });
+                        this.sortBuilds(res)
                     });
                 } else {
                     this.setState({
@@ -73,11 +68,9 @@ export class BuildList extends Component {
             });
     }
 
-    generateBuildList = () => {
-        let builds = [];
-        if (this.state.builds.length > 0) {
-            let sortedBuilds = cloneDeep(this.state.builds)
-            sortedBuilds.sort((a, b) => {
+    sortBuilds = (builds) => {
+        if (builds.length > 0) {
+            builds.sort((a, b) => {
                 let dateA = Date.parse(a.CreateDT)
                 let dateB = Date.parse(b.CreateDT)
                 if (a.Likes < b.Likes) return 1
@@ -86,30 +79,40 @@ export class BuildList extends Component {
                 if (dateA > dateB) return -1
                 return 0;
             });
-            sortedBuilds.forEach((build, index) => {
-                let date = new Date(build.CreateDT).toLocaleDateString();
-                let orokinStr;
-                let riven;
-                build.Orokin === 1 ? orokinStr = this.props.orokin : orokinStr = require('../../assets/general/nocatalyst.png');
-                build.Riven === 1 ? riven = require('../../assets/general/rivenon.png') : riven = require('../../assets/general/rivenoff.png');
-                builds.push(
-                    <Link to={`/${this.props.type}/${this.props.match.params.id}/${build.BuildStr}/${build.BuildID}`} key={index} className="build-list-item">
-                        <div className="build-item-row name-row">
-                            <div className="build-list-name">{build.BuildName}</div>
-                            <div className="build-list-date">{date}</div>
-                        </div>
-                        <div className="build-item-row info-row">
-                            <div className="build-list-likes">Likes: {build.Likes}</div>
-                            <img className="build-list-img" src={orokinStr} alt={"orokin"} />
-                            <div className="build-list-forma-block"><img className="build-list-img" src={require('../../assets/general/forma.png')} alt={""} /><p>: {build.Forma}</p></div>
-                            {this.props.riven &&
-                                <img className="build-list-img" src={riven} alt={"riven"} />
-                            }
-                        </div>
-                    </Link>
-                )
-            })
-        } else {
+        }
+        this.setState({
+            builds: builds,
+            requested: true,
+            loader: false
+        });
+    }
+
+    generateBuildList = () => {
+        let builds = [];
+        this.state.builds.forEach((build, index) => {
+            let date = new Date(build.CreateDT).toLocaleDateString();
+            let orokinStr;
+            let riven;
+            build.Orokin === 1 ? orokinStr = this.props.orokin : orokinStr = require('../../assets/general/nocatalyst.png');
+            build.Riven === 1 ? riven = require('../../assets/general/rivenon.png') : riven = require('../../assets/general/rivenoff.png');
+            builds.push(
+                <Link to={`/${this.props.type}/${this.props.match.params.id}/${build.BuildStr}/${build.BuildID}`} key={index} className="build-list-item">
+                    <div className="build-item-row name-row">
+                        <div className="build-list-name">{build.BuildName}</div>
+                        <div className="build-list-date">{date}</div>
+                    </div>
+                    <div className="build-item-row info-row">
+                        <div className="build-list-likes">Likes: {build.Likes}</div>
+                        <img className="build-list-img" src={orokinStr} alt={"orokin"} />
+                        <div className="build-list-forma-block"><img className="build-list-img" src={require('../../assets/general/forma.png')} alt={""} /><p>: {build.Forma}</p></div>
+                        {this.props.riven &&
+                            <img className="build-list-img" src={riven} alt={"riven"} />
+                        }
+                    </div>
+                </Link>
+            )
+        })
+        if (builds.length === 0) {
             builds.push(
                 <div key={1} className="no-builds-wrapper">
                     <p className="no-builds">

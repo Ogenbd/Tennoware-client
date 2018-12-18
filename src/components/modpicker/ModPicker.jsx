@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { CSSTransition } from "react-transition-group";
 import './ModPicker.css';
 
 import SimpleModCardGenerator from '../modcardgenerator/SimpleModCardGenerator.jsx';
@@ -25,7 +24,7 @@ export class ModPicker extends Component {
             return !mod.conclaveOnly;
         });
         let sort = localStorage.getItem('sortby');
-        if (sort === undefined || sort === 'name') {
+        if (sort === null || sort === 'name') {
             sort = 'name';
             localStorage.setItem('sortby', 'name');
         } else if (sort === 'drain') {
@@ -66,35 +65,12 @@ export class ModPicker extends Component {
         }
     }
 
-    // generateModList = (display) => {
     generateModList = () => {
         let modList = [];
         this.state.mods.forEach(mod => {
             if (mod.name) {
-                let showType = true;
-                let showPolarity = true;
-                if (this.props.type === 'warframes') {
-                    if ((this.state.aura || this.props.forSlot === 'aura') && !mod.aura) {
-                        showType = false;
-                    } else if ((this.state.exilus || this.props.forSlot === 'exilus') && !mod.exilus) {
-                        showType = false;
-                    } else if (typeof this.props.forSlot === 'number' && mod.aura) {
-                        showType = false;
-                    }
-                }
-                if (this.state.polarity !== null) {
-                    if (this.state.polarity !== mod.polarity) showPolarity = false;
-                }
-                if (this.props.chosenIndexs.includes(mod.index)) showType = false;
-                if (this.state.search.length > 0) {
-                    let desc = mod.description();
-                    if (typeof desc === 'string') {
-                        showType = (mod.name && (mod.name.toLowerCase().includes(this.state.search.toLowerCase()) || desc.toLowerCase().includes(this.state.search.toLowerCase()) || mod.type.toLowerCase().includes(this.state.search.toLowerCase())));
-                    } else {
-                        showType = (mod.name && (mod.name.toLowerCase().includes(this.state.search.toLowerCase()) || desc[0].toLowerCase().includes(this.state.search.toLowerCase()) || desc[1].toLowerCase().includes(this.state.search.toLowerCase()) || mod.type.includes(this.state.search.toLowerCase())));
-                    }
-                }
-                if (showType && showPolarity) {
+                let visible = this.determineVisibility(mod);
+                if (visible) {
                     modList.push(
                         <div draggable="false" className="mod-wrapper no-highlight" key={mod.index} onClick={() => { this.handlePick(mod) }} onDragStart={(e) => { this.handleDrag(e, mod.index) }}>
                             <SimpleModCardGenerator mod={mod} viewWidth={this.props.viewWidth} />
@@ -112,50 +88,31 @@ export class ModPicker extends Component {
         return modList;
     }
 
-    filterMods = () => {
-        let filteredMods;
-        if (this.state.aura || this.props.forSlot === 'aura') {
-            filteredMods = this.state.mods.filter(mod => {
-                return mod.aura;
-            });
-        } else if (this.state.exilus || this.props.forSlot === 'exilus') {
-            filteredMods = this.state.mods.filter(mod => {
-                return mod.exilus;
-            });
-        } else if (typeof this.props.forSlot === 'number') {
-            filteredMods = this.state.mods.filter(mod => {
-                return !mod.aura;
-            });
-        } else {
-            filteredMods = this.state.mods;
-        }
-        if (this.state.polarity) {
-            filteredMods = filteredMods.filter(mod => {
-                return mod.polarity === this.state.polarity;
-            })
-        }
-        if (this.state.search.length > 0) filteredMods = this.filterBySearch(filteredMods);
-        filteredMods = filteredMods.filter(mod => !this.props.chosenIndexs.includes(mod.index));
-        return filteredMods;
-    }
-
-
-
-    filterBySearch = (mods) => {
-        let desc;
-        let filteredMods = mods.filter(mod => {
-            if (mod.name) {
-                desc = mod.description();
-                if (typeof desc === 'string') {
-                    return (mod.name && (mod.name.toLowerCase().includes(this.state.search.toLowerCase()) || desc.toLowerCase().includes(this.state.search.toLowerCase()) || mod.type.toLowerCase().includes(this.state.search.toLowerCase())));
-                } else {
-                    return (mod.name && (mod.name.toLowerCase().includes(this.state.search.toLowerCase()) || desc[0].toLowerCase().includes(this.state.search.toLowerCase()) || desc[1].toLowerCase().includes(this.state.search.toLowerCase()) || mod.type.includes(this.state.search.toLowerCase())));
-                }
-            } else {
+    determineVisibility = (mod) => {
+        if (this.props.type === 'warframes') {
+            if ((this.state.aura || this.props.forSlot === 'aura') && !mod.aura) {
+                return false;
+            } else if ((this.state.exilus || this.props.forSlot === 'exilus') && !mod.exilus) {
+                return false;
+            } else if (typeof this.props.forSlot === 'number' && mod.aura) {
                 return false;
             }
-        });
-        return filteredMods
+        }
+        if (this.state.polarity !== null) {
+            if (this.state.polarity !== mod.polarity) return false;
+        }
+        if (this.props.chosenIndexs.includes(mod.index)) return false;
+        if (this.state.search.length > 0) {
+            let found;
+            let desc = mod.description();
+            if (typeof desc === 'string') {
+                found = (mod.name && (mod.name.toLowerCase().includes(this.state.search.toLowerCase()) || desc.toLowerCase().includes(this.state.search.toLowerCase()) || mod.type.toLowerCase().includes(this.state.search.toLowerCase())));
+            } else {
+                found = (mod.name && (mod.name.toLowerCase().includes(this.state.search.toLowerCase()) || desc[0].toLowerCase().includes(this.state.search.toLowerCase()) || desc[1].toLowerCase().includes(this.state.search.toLowerCase()) || mod.type.includes(this.state.search.toLowerCase())));
+            }
+            if (!found) return false;
+        }
+        return true;
     }
 
     toggleConclave = () => {
@@ -327,7 +284,6 @@ export class ModPicker extends Component {
     }
 
     render() {
-        // let display = this.filterMods();
         return (
             <div className={this.props.viewWidth < 1203 ? "popup " + (this.props.active ? "popup-active" : "popup-inactive") : 'mod-picker'}>
                 <div className={this.props.viewWidth < 1203 ? "mod-list-topbar popup-topbar " + (this.props.active ? "popup-active" : "popup-inactive") : "mod-list-topbar"}>
@@ -341,13 +297,6 @@ export class ModPicker extends Component {
                         <div className={"mod-dropdown-trigger " + (this.state.conclave || this.state.aura || this.state.exilus || this.state.polarity || this.state.filterToggle ? 'active-option' : 'inactive-option')} onClick={this.toggleFilter}>Filter</div>
                         <div className={"mod-dropdown-trigger " + (this.state.sortToggle ? 'active-option' : 'inactive-option')} onClick={this.toggleSort}>Sort</div>
                     </div>
-                    {/* <div className={"interactable topbar-filter " + (this.state.conclave ? "interactable-active" : "interactable-inactive")} onClick={this.toggleConclave}><div className={"conclave-placeholder " + (this.state.conclave ? "conclave-placeholder-active" : "conclave-placeholder-inactive")}></div></div>
-                    {this.props.viewWidth > 1203 && this.props.type === 'warframe' &&
-                    <div className={"interactable topbar-filter " + (this.state.aura ? "interactable-active" : "interactable-inactive")} onClick={this.toggleAura}><div className={"aura-placeholder " + (this.state.aura ? "aura-placeholder-active" : "aura-placeholder-inactive")}></div></div>
-                }
-                {this.props.viewWidth > 1203 && this.props.type === 'warframe' &&
-                <div className={"interactable topbar-filter " + (this.state.exilus ? "interactable-active" : "interactable-inactive")} onClick={this.toggleExilus}><div className={"exilus-placeholder " + (this.state.exilus ? "exilus-placeholder-active" : "exilus-placeholder-inactive")}></div></div>
-            } */}
                     <div className="search-wrapper mod-list-search-wrapper">
                         <input className="search" type="text" placeholder="Search..." value={this.state.search} onChange={this.handleChange} onKeyUp={this.blurInput} />
                     </div>
