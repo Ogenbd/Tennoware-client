@@ -1,8 +1,25 @@
 UPDATE LOG
 
-upcoming - v1.1.1.
+19/12/2018 - v1.1.1.
 
-adding update available
+About Tennoware Updates:
+Up to and including Tennoware v1.1.0 the caching strategy used for offline use (and more responsive and less bandwith heavy online use) was not letting updates go through in a conveniant manner. in v1.1.0 I added a nice little banner that pops up at the bottom of the page and lets you know theres an update ready with a button that was supposed to update it seamlessly, that didn't go quite as planned and that button didn't really do its job.
+Tennoware v1.1.1 changes the caching strategy and that also fixes the update button.
+In order to make sure you will have the most up to date version of Tennoware all you have to do is:
+Browser: If you have Tennoware tabs open close them, go to tennoware.com and wait a bit, 30 seconds should be enough, then close all browser windows and thats it. Next time you go to tennoware.com it should be the updated version and every time theres another update it should let you know with a banner and a button to just update.
+Installed App: make sure the App isn't running (on screen or in the background) and launch it. Wait a bit, 30 seconds should be enough, and close it completely (cant even be in the background). Next time you launch the app it should be the updated version and every time theres another update it should let you know with a banner and a button to just update.
+
+New:
+Added Mesa Prime to warframes.
+Added Akjagara Prime and Plinx to secondary weapons.
+Added Exergis to primary weapons.
+Added an Archgun - Land catagory.
+
+Changes:
+Updated Nyx, Nyx Prime, Titania, Tonkor, Simulor, Synoid Simulor, Staticor, Ocucor and various Kitgun Combos as per warframe update 24.2.
+Update Archgun Mods Automatic Trigger, Dual Rounds, Rubedo Lined Barrel, Parallax Scope and Hollowed Bullets as per warframe update 24.2.
+Calculated Redirection, Enhanced Vitality and Metal Fiber are now equipable by all companions, but are incompatible with Kubrow-Link Mods.
+
 
 17/12/2018 - v1.1.0.
 

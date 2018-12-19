@@ -4400,17 +4400,19 @@ const abilities = {
             img: require('../assets/itemimages/psychicbolts.png'),
             details: [
                 {
-                    strength: [
+                    exception: [
                         {
-                            name: 'Bolt damage',
-                            base: 200,
-                            icon: require('../assets/dynamic/damage/Slash.png')
-                        },
+                            name: 'Debuff amount',
+                            suffix: '%',
+                            base: 80,
+                        }
+                    ],
+                    duration: [
                         {
-                            name: 'Area damage',
-                            base: 15,
-                            icon: require('../assets/dynamic/damage/Radiation.png')
-                        },
+                            name: 'Debuff duration',
+                            suffix: 's',
+                            base: 11
+                        }
                     ],
                     none: [
                         {
@@ -4473,7 +4475,6 @@ const abilities = {
                         {
                             name: 'Minimum damage',
                             base: 1500,
-                            icon: require('../assets/dynamic/damage/Magnetic.png')
                         },
                     ],
                     range: [

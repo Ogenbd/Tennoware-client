@@ -30,6 +30,10 @@ class App extends Component {
     window.addEventListener('offline', this.setOffline)
   }
 
+  checkMessage = (e) => {
+    if (e.data === 'donewaiting') window.location.reload();
+  }
+
   promptUpdate = () => {
     this.setState({ update: true })
   }
@@ -81,7 +85,7 @@ class App extends Component {
   }
 
   updateInit = () => {
-    window.location.reload()
+    window.location.reload();
   }
 
   render() {

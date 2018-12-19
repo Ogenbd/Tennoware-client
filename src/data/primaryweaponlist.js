@@ -112,6 +112,10 @@ const primaryWeaponList = [
     img: require('../assets/itemimages/dread.png')
   },
   {
+    name: 'EXERGIS',
+    img: require('../assets/itemimages/exergis.png')
+  },
+  {
     name: 'FERROX',
     img: require('../assets/itemimages/ferrox.png')
   },

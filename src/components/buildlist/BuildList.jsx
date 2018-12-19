@@ -44,7 +44,7 @@ export class BuildList extends Component {
         fetch(`${apiUrl}/getbuilds`, {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ itemName: this.props.match.params.id })
+            body: JSON.stringify({ itemName: this.props.match.params.id, type: this.props.type })
         })
             .then(res => {
                 if (res.status === 200) {

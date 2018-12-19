@@ -640,7 +640,7 @@ class EightSlotModding extends Component {
                         </div>
                         {this.displayMessage()}
                     </div>
-                    {(this.props.type === 'archguns' || this.props.riven === 'ranged') &&
+                    {(this.props.type === 'archguns-space' || this.props.type === 'archguns-land' || this.props.riven === 'ranged') &&
                         <RangedWeaponStats weapon={this.props.item} mods={this.state.chosenMods} viewWidth={this.props.viewWidth} />
                     }
                     {(this.props.type === 'archwings') &&

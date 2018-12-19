@@ -40,8 +40,12 @@ export class Sidebar extends Component {
     return JSON.stringify(window.location.href).includes('archwings');
   }
 
-  archgunActive = () => {
-    return JSON.stringify(window.location.href).includes('archguns');
+  archgunLandActive = () => {
+    return JSON.stringify(window.location.href).includes('archguns-land');
+  }
+
+  archgunSpaceActive = () => {
+    return JSON.stringify(window.location.href).includes('archguns-space');
   }
 
   sentinelsActive = () => {
@@ -100,7 +104,8 @@ export class Sidebar extends Component {
               <NavLink exact to="/moas" className="nav-item" activeClassName="selected" isActive={this.moasActive} onClick={this.closeSidebar}><p>MOAs</p></NavLink>
               <NavLink exact to="/sentinelweapons" className="nav-item" activeClassName="selected" isActive={this.sentinelWeaponsActive} onClick={this.closeSidebar}><p>Robotic Weapons</p></NavLink>
               <NavLink exact to="/archwings" className="nav-item" activeClassName="selected" isActive={this.archwingActive} onClick={this.closeSidebar}><p>Archwings</p></NavLink>
-              <NavLink exact to="/archguns" className="nav-item" activeClassName="selected" isActive={this.archgunActive} onClick={this.closeSidebar}><p>Arch-Guns</p></NavLink>
+              <NavLink exact to="/archguns-land" className="nav-item" activeClassName="selected" isActive={this.archgunLandActive} onClick={this.closeSidebar}><p>Arch-Guns - Land</p></NavLink>
+              <NavLink exact to="/archguns-space" className="nav-item" activeClassName="selected" isActive={this.archgunSpaceActive} onClick={this.closeSidebar}><p>Arch-Guns - Space</p></NavLink>
             </div>
             <div className="botton-info">
               <p className="bs-container"><Link className="bottom-info-link" to="/terms" onClick={this.closeSidebar}>terms of service</Link>  <Link className="bottom-info-link" to="/privacy" onClick={this.closeSidebar}>privacy policy</Link></p>

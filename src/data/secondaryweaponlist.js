@@ -28,6 +28,10 @@ const secondaryWeaponList = [
       img: require('../assets/itemimages/akjagara.png')
     },
     {
+      name: 'AKJAGARA PRIME',
+      img: require('../assets/itemimages/akjagara-prime.png')
+    },
+    {
       name: 'AKLATO',
       img: require('../assets/itemimages/aklato.png')
     },
@@ -246,6 +250,10 @@ const secondaryWeaponList = [
     {
       name: 'PANDERO',
       img: require('../assets/itemimages/pandero.png')
+    },
+    {
+      name: 'PLINX',
+      img: require('../assets/itemimages/plinx.png')
     },
     {
       name: 'POX',

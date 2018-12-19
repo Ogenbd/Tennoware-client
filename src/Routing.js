@@ -98,6 +98,12 @@ const getArchgunStats = () => {
     let data = import('./data/archgunstats');
     return data;
 }
+
+const getArchgunLandStats = () => {
+    let data = import('./data/archgunlandstats');
+    return data;
+}
+
 const getArchgunList = () => {
     let data = import('./data/archgunlist');
     return data;
@@ -223,6 +229,11 @@ export class Routing extends Component {
 
     archgunStats = async () => {
         let weapons = await getArchgunStats();
+        return weapons.default;
+    }
+
+    archgunLandStats = async () => {
+        let weapons = await getArchgunLandStats();
         return weapons.default;
     }
 
@@ -365,10 +376,14 @@ export class Routing extends Component {
                     <Route exact path='/archwings/:id/:pre' render={props => <ArchwingBuilder {...props} {...nonRouterPropPass} type={'archwings'} items={this.archwingStats} mods={this.archwingMods} />} />
                     <Route exact path='/archwings/:id' render={props => <ArchwingBuilder {...props} {...nonRouterPropPass} type={'archwings'} items={this.archwingStats} mods={this.archwingMods} />} />
                     <Route exact path='/archwings' render={props => <ItemPicker {...props} {...nonRouterPropPass} title={'ARCHWINGS'} items={this.archwingList} />} />
-                    <Route exact path='/archguns/:id/:pre/:build' render={props => <ArchgunBuilder {...props} {...nonRouterPropPass} type={'archguns'} items={this.archgunStats} mods={this.archgunMods} />} />
-                    <Route exact path='/archguns/:id/:pre' render={props => <ArchgunBuilder {...props} {...nonRouterPropPass} type={'archguns'} items={this.archgunStats} mods={this.archgunMods} />} />
-                    <Route exact path='/archguns/:id' render={props => <ArchgunBuilder {...props} {...nonRouterPropPass} type={'archguns'} items={this.archgunStats} mods={this.archgunMods} />} />
-                    <Route exact path='/archguns' render={props => <ItemPicker {...props} {...nonRouterPropPass} title={'ARCHGUNS'} items={this.archgunList} />} />
+                    <Route exact path='/archguns-space/:id/:pre/:build' render={props => <ArchgunBuilder {...props} {...nonRouterPropPass} type={'archguns-space'} locType={'SPACE'} items={this.archgunStats} mods={this.archgunMods} />} />
+                    <Route exact path='/archguns-space/:id/:pre' render={props => <ArchgunBuilder {...props} {...nonRouterPropPass} type={'archguns-space'} locType={'SPACE'} items={this.archgunStats} mods={this.archgunMods} />} />
+                    <Route exact path='/archguns-space/:id' render={props => <ArchgunBuilder {...props} {...nonRouterPropPass} type={'archguns-space'} locType={'SPACE'} items={this.archgunStats} mods={this.archgunMods} />} />
+                    <Route exact path='/archguns-space' render={props => <ItemPicker {...props} {...nonRouterPropPass} title={'ARCHGUNS - SPACE'} items={this.archgunList} />} />
+                    <Route exact path='/archguns-land/:id/:pre/:build' render={props => <ArchgunBuilder {...props} {...nonRouterPropPass} type={'archguns-land'} locType={'LAND'} items={this.archgunLandStats} mods={this.archgunMods} />} />
+                    <Route exact path='/archguns-land/:id/:pre' render={props => <ArchgunBuilder {...props} {...nonRouterPropPass} type={'archguns-land'} locType={'LAND'} items={this.archgunLandStats} mods={this.archgunMods} />} />
+                    <Route exact path='/archguns-land/:id' render={props => <ArchgunBuilder {...props} {...nonRouterPropPass} type={'archguns-land'} locType={'LAND'} items={this.archgunLandStats} mods={this.archgunMods} />} />
+                    <Route exact path='/archguns-land' render={props => <ItemPicker {...props} {...nonRouterPropPass} title={'ARCHGUNS - LAND'} items={this.archgunList} />} />
                     <Route exact path='/sentinels/:id/:pre/:build' render={props => <SentinelBuilder {...props} {...nonRouterPropPass} type={'sentinels'} items={this.sentinelStats} mods={this.companionMods} />} />
                     <Route exact path='/sentinels/:id/:pre' render={props => <SentinelBuilder {...props} {...nonRouterPropPass} type={'sentinels'} items={this.sentinelStats} mods={this.companionMods} />} />
                     <Route exact path='/sentinels/:id' render={props => <SentinelBuilder {...props} {...nonRouterPropPass} type={'sentinels'} items={this.sentinelStats} mods={this.companionMods} />} />

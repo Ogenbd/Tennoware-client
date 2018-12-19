@@ -452,6 +452,21 @@ const warframeStats = [
         abilities: abilities.mesa
     },
     {
+        name: 'MESA PRIME',
+        polarities: ['naramon', 'vazarin', 'naramon', 'madurai'],
+        aura: 'madurai',
+        exilus: undefined,
+        armor: 85,
+        energy: 188,
+        baseEnergy: 125,
+        health: 405,
+        baseHealth: 135,
+        shields: 225,
+        baseShields: 75,
+        speed: 1.1,
+        abilities: abilities.mesa
+    },
+    {
         name: 'MIRAGE',
         polarities: ['vazarin', 'madurai'],
         aura: 'naramon',
@@ -727,8 +742,8 @@ const warframeStats = [
         aura: 'madurai',
         exilus: undefined,
         armor: 65,
-        energy: 150,
-        baseEnergy: 100,
+        energy: 225,
+        baseEnergy: 150,
         health: 300,
         baseHealth: 100,
         shields: 300,

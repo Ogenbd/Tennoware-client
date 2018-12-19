@@ -1304,6 +1304,50 @@ const primaryWeaponStats = [
         ]
     },
     {
+        name: 'EXERGIS',
+        mastery: 8,
+        type: ['SHOTGUN'],
+        polarities: ['vazarin'],
+        noise: 'Alarming',
+        reload: 1.6,
+        magSize: 1,
+        maxAmmo: 33,
+        disposition: 3,
+        modes: [
+            {
+                trigger: 'Semi-Auto',
+                fireRate: 3.33,
+                pellets: 7,
+                accuracy: 15.4,
+                punchThrough: 0.5,
+                critChance: 0.08,
+                critMult: 1.4,
+                status: 0.36,
+                falloffMin: 30,
+                falloffMax: 60,
+                damage: 1620,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 60 / 1620
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 360 / 1620
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 780 / 1620
+                    },
+                    {
+                        type: 'Radiation',
+                        percent: 420 / 1620
+                    },
+                ]
+            }
+        ]
+    },
+    {
         name: 'FERROX',
         mastery: 14,
         type: ['RIFLE', 'ASSAULT RIFLE', 'PROJECTILE'],
@@ -3821,18 +3865,18 @@ const primaryWeaponStats = [
     {
         name: 'SIMULOR',
         mastery: 5,
-        type: ['RIFLE', 'ASSAULT RIFLE'],
+        type: ['RIFLE', 'ASSAULT RIFLE', 'PROJECTILE', 'EXPLOSIVE'],
         polarities: ['vazarin', 'naramon'],
         noise: 'Alarming',
         reload: 3,
-        magSize: 10,
-        maxAmmo: 60,
+        magSize: 8,
+        maxAmmo: 72,
         disposition: 1,
         modes: [
             {
                 name: 'Orb Detonation',
                 trigger: 'Active',
-                fireRate: 2,
+                fireRate: 3,
                 accuracy: 100,
                 punchThrough: 0,
                 critChance: 0.12,
@@ -3848,8 +3892,8 @@ const primaryWeaponStats = [
             },
             {
                 name: 'Orb Merge',
-                trigger: 'Semi-Auto',
-                fireRate: 2,
+                trigger: 'Auto',
+                fireRate: 3,
                 accuracy: 100,
                 punchThrough: 0,
                 critChance: 0.12,
@@ -3865,8 +3909,8 @@ const primaryWeaponStats = [
             },
             {
                 name: 'Orb Damage',
-                trigger: 'Semi-Auto',
-                fireRate: 2,
+                trigger: 'Auto',
+                fireRate: 3,
                 accuracy: 100,
                 punchThrough: 0,
                 critChance: 0.12,
@@ -4423,21 +4467,21 @@ const primaryWeaponStats = [
     {
         name: 'SYNOID SIMULOR',
         mastery: 5,
-        type: ['RIFLE', 'ASSAULT RIFLE'],
+        type: ['RIFLE', 'ASSAULT RIFLE', 'PROJECTILE', 'EXPLOSIVE'],
         polarities: ['madurai', 'vazarin', 'naramon'],
         noise: 'Alarming',
         reload: 2,
-        magSize: 15,
-        maxAmmo: 75,
+        magSize: 16,
+        maxAmmo: 96,
         disposition: 1,
         modes: [
             {
                 name: 'Orb Detonation',
                 trigger: 'Active',
-                fireRate: 2.67,
+                fireRate: 3.33,
                 accuracy: 100,
                 punchThrough: 0,
-                critChance: 0.5,
+                critChance: 0.14,
                 critMult: 2,
                 status: 0.35,
                 damage: 75,
@@ -4451,10 +4495,10 @@ const primaryWeaponStats = [
             {
                 name: 'Orb Merge',
                 trigger: 'Semi-Auto',
-                fireRate: 2.67,
+                fireRate: 3.33,
                 accuracy: 100,
                 punchThrough: 0,
-                critChance: 0.5,
+                critChance: 0.14,
                 critMult: 2,
                 status: 0.35,
                 damage: 50,
@@ -4468,10 +4512,10 @@ const primaryWeaponStats = [
             {
                 name: 'Orb Damage',
                 trigger: 'Semi-Auto',
-                fireRate: 2.67,
+                fireRate: 3.33,
                 accuracy: 100,
                 punchThrough: 0,
-                critChance: 0.5,
+                critChance: 0.14,
                 critMult: 2,
                 status: 0.35,
                 damage: 20,
@@ -4827,21 +4871,21 @@ const primaryWeaponStats = [
         type: ['RIFLE', 'ASSAULT RIFLE', 'PROJECTILE', 'EXPLOSIVE', 'UNIQUE', 'TONKOR'],
         polarities: [],
         noise: 'Alarming',
-        reload: 2,
-        magSize: 2,
-        maxAmmo: 40,
+        reload: 1.7,
+        magSize: 1,
+        maxAmmo: 30,
         disposition: 1,
         modes: [
             {
                 name: 'Explosion',
                 trigger: 'Semi-Auto',
-                fireRate: 2,
+                fireRate: 3.17,
                 accuracy: 100,
                 punchThrough: 0,
                 critChance: 0.25,
                 critMult: 2.5,
                 status: 0.1,
-                damage: 325,
+                damage: 650,
                 split: [
                     {
                         type: 'Blast',
@@ -4852,7 +4896,7 @@ const primaryWeaponStats = [
             {
                 name: 'Grenade Impact',
                 trigger: 'Semi-Auto',
-                fireRate: 2,
+                fireRate: 3.17,
                 accuracy: 100,
                 punchThrough: 0,
                 critChance: 0.25,

@@ -474,7 +474,7 @@ const kitguns = {
                 reload: 1.3,
                 critChance: 0.35,
                 critMult: 2.3,
-                status: 0.11
+                status: 0.13
             },
             ramflare: {
                 magSize: 11,
@@ -620,7 +620,7 @@ const kitguns = {
             },
             splat: {
                 magSize: 43,
-                reload: 1.9,
+                reload: 1.7,
                 critChance: 0.39,
                 critMult: 2.3,
                 status: 0.17

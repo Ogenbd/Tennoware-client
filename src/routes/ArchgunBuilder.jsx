@@ -159,7 +159,7 @@ class RangedBuilder extends Component {
     render() {
         return (
             <div className="screen">
-                <div className="top-title"><p>{this.state.title}</p></div>
+                <div className="top-title"><p>{this.state.title} - {this.props.locType}</p></div>
                 {this.state.error !== null
                     ? <div className={"general-error " + (this.state.error !== null ? 'show-general-error' : 'hide-general-error')}>
                         <div className="general-error-box">

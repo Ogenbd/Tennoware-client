@@ -262,7 +262,6 @@ const secondaryWeaponStats = [
                 fireRate: 8.33,
                 accuracy: 15.4,
                 punchThrough: 0,
-                ammoCost: 0,
                 critChance: 0.06,
                 critMult: 2,
                 status: 0.28,
@@ -279,6 +278,49 @@ const secondaryWeaponStats = [
                     {
                         type: 'Puncture',
                         percent: 0.15
+                    }
+                ],
+            }
+        ]
+    },
+    {
+        name: 'AKJAGARA PRIME',
+        mastery: 12,
+        type: [
+            'PISTOL'
+        ],
+        polarities: [
+            'madurai',
+            'madurai'
+        ],
+        noise: 'Alarming',
+        reload: 1.4,
+        magSize: 40,
+        maxAmmo: 210,
+        disposition: 5,
+        modes: [
+            {
+                trigger: 'Burst',
+                burst: 2,
+                fireRate: 10,
+                accuracy: 33.3,
+                punchThrough: 0.2,
+                critChance: 0.18,
+                critMult: 2.2,
+                status: 0.32,
+                damage: 36,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.1
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.8
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.1
                     }
                 ],
             }
@@ -2636,8 +2678,8 @@ const secondaryWeaponStats = [
         polarities: [],
         noise: 'Alarming',
         reload: 1.6,
-        magSize: 40,
-        maxAmmo: 360,
+        magSize: 60,
+        maxAmmo: 300,
         disposition: 3,
         modes: [
             {
@@ -2698,6 +2740,40 @@ const secondaryWeaponStats = [
                     {
                         type: 'Puncture',
                         percent: 0.25
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        name: 'PLINX',
+        mastery: 6,
+        type: [
+            'PISTOL',
+        ],
+        polarities: [],
+        noise: 'Alarming',
+        reload: 1,
+        magSize: 10,
+        disposition: 3,
+        modes: [
+            {
+                trigger: 'Semi-Auto',
+                fireRate: 3.33,
+                accuracy: 50,
+                punchThrough: 0,
+                critChance: 0.32,
+                critMult: 3,
+                status: 0.04,
+                damage: 46,
+                split: [
+                    {
+                        type: 'Puncture',
+                        percent: 26 / 46
+                    },
+                    {
+                        type: 'Heat',
+                        percent: 20 / 46
                     }
                 ]
             }
@@ -3429,6 +3505,7 @@ const secondaryWeaponStats = [
         mastery: 10,
         type: [
             'PISTOL',
+            'EXPLOSIVE',
             'STATICOR'
         ],
         polarities: [
@@ -3436,8 +3513,8 @@ const secondaryWeaponStats = [
         ],
         noise: 'Alarming',
         reload: 1.5,
-        magSize: 0,
-        maxAmmo: 270,
+        magSize: 48,
+        maxAmmo: 288,
         disposition: 1,
         modes: [
             {
@@ -3460,7 +3537,7 @@ const secondaryWeaponStats = [
             {
                 name: 'Charged',
                 trigger: 'Charge',
-                chargeRate: 3,
+                chargeRate: 1,
                 accuracy: 16.7,
                 punchThrough: 0,
                 ammoCost: 5,

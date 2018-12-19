@@ -1,4 +1,4 @@
-const archgunStats = [
+const archgunLandStats = [
     {
         name: 'CORVAS',
         mastery: 1,
@@ -9,8 +9,9 @@ const archgunStats = [
             'naramon'
         ],
         noise: 'Alarming',
-        reload: 5,
+        reload: 2,
         magSize: 25,
+        maxAmmo: 50,
         modes: [
             {
                 name: 'Uncharged',
@@ -18,10 +19,12 @@ const archgunStats = [
                 fireRate: 2,
                 accuracy: 9.1,
                 punchThrough: 0,
-                critChance: 0.15,
-                critMult: 2,
-                status: 0.1,
-                damage: 420,
+                critChance: 0.4,
+                critMult: 2.6,
+                status: 0.14,
+                falloffMin: 60,
+                falloffMax: 120,
+                damage: 480,
                 split: [
                     {
                         type: 'Impact',
@@ -44,10 +47,12 @@ const archgunStats = [
                 fireRate: 2,
                 accuracy: 9.1,
                 punchThrough: 0,
-                critChance: 0.15,
-                critMult: 2,
-                status: 0.1,
-                damage: 840,
+                critChance: 0.4,
+                critMult: 2.6,
+                status: 0.14,
+                falloffMin: 60,
+                falloffMax: 120,
+                damage: 960,
                 split: [
                     {
                         type: 'Impact',
@@ -73,8 +78,9 @@ const archgunStats = [
         ],
         polarities: [],
         noise: 'Alarming',
-        reload: 0.6,
+        reload: 1.2,
         magSize: 30,
+        ammoMax: 240,
         modes: [
             {
                 trigger: 'Burst',
@@ -82,10 +88,10 @@ const archgunStats = [
                 fireRate: 9.09,
                 accuracy: 33.3,
                 punchThrough: 0,
-                critChance: 0.05,
-                critMult: 2,
+                critChance: 0.2,
+                critMult: 2.2,
                 status: 0.3,
-                damage: 200,
+                damage: 120,
                 split: [
                     {
                         type: 'Impact',
@@ -111,18 +117,19 @@ const archgunStats = [
         ],
         polarities: [],
         noise: 'Alarming',
-        reload: 0.64,
+        reload: 1.4,
         magSize: 32,
+        maxAmmo: 256,
         modes: [
             {
                 trigger: 'Auto',
                 fireRate: 8.3,
                 accuracy: 100,
                 punchThrough: 0,
-                critChance: 0.25,
-                critMult: 2,
-                status: 0.1,
-                damage: 60,
+                critChance: 0.28,
+                critMult: 2.2,
+                status: 0.14,
+                damage: 110,
                 split: [
                     {
                         type: 'Impact',
@@ -150,8 +157,9 @@ const archgunStats = [
             'naramon'
         ],
         noise: 'Alarming',
-        reload: 2.5,
+        reload: 2,
         magSize: 25,
+        maxAmmo: 80,
         modes: [
             {
                 trigger: 'Semi-Auto',
@@ -159,10 +167,10 @@ const archgunStats = [
                 fireRate: 5,
                 accuracy: 100,
                 punchThrough: 99,
-                critChance: 0.15,
+                critChance: 0.22,
                 critMult: 2,
-                status: 0.1,
-                damage: 200,
+                status: 0.16,
+                damage: 250,
                 split: [
                     {
                         type: 'Impact',
@@ -190,8 +198,9 @@ const archgunStats = [
             'madurai'
         ],
         noise: 'Alarming',
-        reload: 6,
-        magSize: 60,
+        reload: 2,
+        magSize: 30,
+        maxAmmo: 90,
         modes: [
             {
                 trigger: 'Auto',
@@ -201,7 +210,7 @@ const archgunStats = [
                 critChance: 0.25,
                 critMult: 2,
                 status: 0.25,
-                damage: 275,
+                damage: 310,
                 split: [
                     {
                         type: 'Impact',
@@ -229,18 +238,19 @@ const archgunStats = [
             'madurai'
         ],
         noise: 'Alarming',
-        reload: 5,
-        magSize: 250,
+        reload: 2,
+        magSize: 200,
+        maxAmmo: 400,
         modes: [
             {
                 trigger: 'Auto',
                 fireRate: 16.7,
                 accuracy: 25,
                 punchThrough: 0,
-                critChance: 0.1,
+                critChance: 0.24,
                 critMult: 2,
-                status: 0.05,
-                damage: 40,
+                status: 0.12,
+                damage: 50,
                 split: [
                     {
                         type: 'Impact',
@@ -268,16 +278,17 @@ const archgunStats = [
         noise: 'Alarming',
         reload: 4,
         magSize: 300,
+        maxAmmo: 600,
         modes: [
             {
                 trigger: 'Auto',
                 fireRate: 25,
                 accuracy: 25,
                 punchThrough: 0,
-                critChance: 0.15,
-                critMult: 2,
-                status: 0.1,
-                damage: 40,
+                critChance: 0.28,
+                critMult: 2.4,
+                status: 0.12,
+                damage: 50,
                 split: [
                     {
                         type: 'Impact',
@@ -305,18 +316,19 @@ const archgunStats = [
             'madurai'
         ],
         noise: 'Alarming',
-        reload: 5,
-        magSize: 250,
+        reload: 2,
+        magSize: 240,
+        maxAmmo: 480,
         modes: [
             {
                 trigger: 'Auto',
                 fireRate: 18.75,
                 accuracy: 11.8,
                 punchThrough: 0,
-                critChance: 0.1,
+                critChance: 0.14,
                 critMult: 2,
-                status: 0.25,
-                damage: 45,
+                status: 0.3,
+                damage: 56,
                 split: [
                     {
                         type: 'Impact',
@@ -342,19 +354,21 @@ const archgunStats = [
         ],
         polarities: [],
         noise: 'Alarming',
-        reload: 4,
-        magSize: 100,
+        reload: 2,
+        magSize: 10,
+        maxAmmo: 30,
         disposition: 3,
         modes: [
             {
+                name: 'Uncharged',
                 trigger: 'Charge',
                 fireRate: 5,
                 accuracy: 28.6,
                 punchThrough: 0,
-                critChance: 0.25,
+                critChance: 0.3,
                 critMult: 3,
                 status: 0.25,
-                damage: 200,
+                damage: 66.667,
                 split: [
                     {
                         type: 'Magnetic',
@@ -363,14 +377,15 @@ const archgunStats = [
                 ]
             },
             {
+                name: 'Charged',
                 trigger: 'Charge',
                 chargeRate: 1,
                 accuracy: 28.6,
                 punchThrough: 0,
-                critChance: 0.25,
+                critChance: 0.3,
                 critMult: 3,
                 status: 0.25,
-                damage: 1800,
+                damage: 1200,
                 split: [
                     {
                         type: 'Magnetic',
@@ -382,4 +397,4 @@ const archgunStats = [
     }
 ]
 
-export default archgunStats;
+export default archgunLandStats;

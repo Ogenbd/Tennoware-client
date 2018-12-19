@@ -8,11 +8,11 @@ const archgunMods = [
         type: 'ARCH-GUN',
         rarity: 'rare',
         polarity: 'madurai',
-        effects: { fireRate: 0.075 },
+        effects: { fireRate: 0.1 },
         maxRank: 5,
         currRank: 5,
         baseCost: 10,
-        description() { return `+${Math.round(this.effects.fireRate * (this.currRank + 1) * 1000) / 10}% Fire Rate` }
+        description() { return `+${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate` }
     },
     {
         abrev: 'b6',
@@ -21,7 +21,7 @@ const archgunMods = [
         type: 'ARCH-GUN',
         rarity: 'rare',
         polarity: 'madurai',
-        effects: { elemental: { damage: 0.15, type: 'Electicity' }, status: 0.15 },
+        effects: { elemental: { damage: 0.15, type: 'Electricity' }, status: 0.15 },
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
@@ -73,7 +73,7 @@ const archgunMods = [
         type: 'ARCH-GUN',
         rarity: 'rare',
         polarity: 'madurai',
-        effects: { Multishot: 0.05 },
+        effects: { Multishot: 0.1 },
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
@@ -99,7 +99,7 @@ const archgunMods = [
         type: 'ARCH-GUN',
         rarity: 'rare',
         polarity: 'madurai',
-        effects: { critMult: 0.15 },
+        effects: { critMult: 0.2 },
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
@@ -164,7 +164,7 @@ const archgunMods = [
         type: 'ARCH-GUN',
         rarity: 'common',
         polarity: 'naramon',
-        effects: { critChance: 0.2 },
+        effects: { critChance: 0.25 },
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
@@ -203,11 +203,11 @@ const archgunMods = [
         type: 'ARCH-GUN',
         rarity: 'uncommon',
         polarity: 'madurai',
-        effects: { baseDamage: 0.1 },
+        effects: { baseDamage: 0.1667 },
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Damage` }
+        description() { return `+${Math.round(this.effects.baseDamage * (this.currRank + 1) * 1000) / 10}% Damage` }
     },
     {
         abrev: 'b3',

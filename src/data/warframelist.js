@@ -120,6 +120,10 @@ const warframeList = [
         img: require('../assets/itemimages/mesa.png')
     },
     {
+        name: 'MESA PRIME',
+        img: require('../assets/itemimages/mesa-prime.png')
+    },
+    {
         name: 'MIRAGE',
         img: require('../assets/itemimages/mirage.png')
     },

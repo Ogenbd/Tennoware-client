@@ -105,11 +105,9 @@ export class News extends Component {
                 </div>
               </div>
               <div className="article tennoware-news">
-                <h1>Update 1.1.0!</h1>
+                <h1>Update 1.1.1!</h1>
                 <div className="update-content">
-                  <p>Added standalone Tennoware accounts without a Google/Facebook requirment.</p>
-                  <p>Added more filtering and sorting options to the mod picker.</p>
-                  <p>General improvments to make the app feel more responsive, mostly around things popping in and out of the screen and general mod picker behavior. The Warframe news section will display the news even if there were errors loading the images. No more empty news page unless you are offline!</p>
+                  <p>Fortuna 2 and Mesa Prime Access is upon us! I'm pretty sure everything except the new mods and Baruuk are in this update. If you have those new mods or Baaruk and wish to speed up the next update feel free to stop by the Tennoware subreddit and let me in on the details!</p>
                   <p>For the complete update notes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log.</a></p>
                 </div>
               </div>

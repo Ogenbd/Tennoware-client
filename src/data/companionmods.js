@@ -109,8 +109,9 @@ const companionMods = [
     {
         abrev: 'a7',
         name: 'Calculated Redirection',
+        family: 'Shields',
         img: require('../assets/modimages/calculated-redirection.jpg'),
-        type: 'SENTINEL',
+        type: 'ALL',
         rarity: 'common',
         polarity: 'vazarin',
         effects: { shields: 0.25 },
@@ -239,8 +240,9 @@ const companionMods = [
     {
         abrev: 'b7',
         name: 'Enhanced Vitality',
+        family: 'Health',
         img: require('../assets/modimages/enhanced-vitality.jpg'),
-        type: 'SENTINEL',
+        type: 'ALL',
         rarity: 'common',
         polarity: 'vazarin',
         effects: { health: 0.2 },
@@ -443,6 +445,7 @@ const companionMods = [
     {
         abrev: 'c9',
         name: 'Link Armor',
+        family: 'Armor',
         img: require('../assets/modimages/link-armor.jpg'),
         type: 'COMPANION',
         rarity: 'uncommon',
@@ -456,6 +459,7 @@ const companionMods = [
     {
         abrev: 'd0',
         name: 'Link Health',
+        family: 'Health',
         img: require('../assets/modimages/link-health.jpg'),
         type: 'COMPANION',
         rarity: 'uncommon',
@@ -469,6 +473,7 @@ const companionMods = [
     {
         abrev: 'd1',
         name: 'Link Shields',
+        family: 'Shields',
         img: require('../assets/modimages/link-shields.jpg'),
         type: 'COMPANION',
         rarity: 'uncommon',
@@ -575,8 +580,9 @@ const companionMods = [
     {
         abrev: 'd9',
         name: 'Metal Fiber',
+        family: 'Armor',
         img: require('../assets/modimages/metal-fiber.jpg'),
-        type: 'SENTINEL',
+        type: 'ALL',
         rarity: 'common',
         polarity: 'vazarin',
         effects: { armor: 0.1 },
@@ -810,16 +816,16 @@ const companionMods = [
     },
     {
         abrev: 'f7',
-        name: 'Scan Lifeforms',
+        name: 'Scan Aquatic Lifeforms',
         img: require('../assets/modimages/scan-lifeforms.jpg'),
         type: 'OXYLUS',
         rarity: 'common',
         polarity: 'penjaga',
-        effects: {},
+        effects: {none: [20, 10]},
         maxRank: 3,
         currRank: 3,
         baseCost: 0,
-        description() { return `+${1 + this.currRank} Maximum Active Conservation Encounters` }
+        description() { return `Reveals hotspots within ${this.effects.none[0] * (this.currRank + 1)}m and applies Luminous Dye to fish within ${this.effects.none[1] * (this.currRank + 1)}m.` }
     },
     {
         abrev: 'f8',
