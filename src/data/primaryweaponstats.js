@@ -1317,7 +1317,7 @@ const primaryWeaponStats = [
             {
                 trigger: 'Semi-Auto',
                 fireRate: 3.33,
-                pellets: 7,
+                pellets: 3,
                 accuracy: 15.4,
                 punchThrough: 0.5,
                 critChance: 0.08,

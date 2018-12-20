@@ -19,12 +19,14 @@ export class RangedWeaponStats extends Component {
             reload: false,
             cast: false,
             first: false,
+            headshotKill: false,
             aimingToggle: false,
             killToggle: false,
             headshotToggle: false,
             reloadToggle: false,
             castToggle: false,
             firstToggle: false,
+            headshotKillToggle: false,
             arbitrations: false
         }
     }
@@ -39,7 +41,8 @@ export class RangedWeaponStats extends Component {
             headshot: false,
             reload: false,
             cast: false,
-            first: false
+            first: false,
+            headshotKill: false
         }
         if (state.arbitrations) effects.baseDamage = 3;
         props.mods.forEach(mod => {
@@ -120,7 +123,8 @@ export class RangedWeaponStats extends Component {
             headshot: conditional.headshot,
             reload: conditional.reload,
             cast: conditional.cast,
-            first: conditional.first
+            first: conditional.first,
+            headshotKill: conditional.headshotKill
         };
     }
 
@@ -152,6 +156,10 @@ export class RangedWeaponStats extends Component {
         this.setState(prevState => ({ firstToggle: !prevState.firstToggle }))
     }
 
+    toggleHeadshotKill = () => {
+        this.setState(prevState => ({ headshotKillToggle: !prevState.headshotKillToggle }))
+    }
+
     toggleArbitrations = () => {
         this.setState(prevState => ({ arbitrations: !prevState.arbitrations }))
     }
@@ -173,17 +181,29 @@ export class RangedWeaponStats extends Component {
         let statusMult = 1;
         let multishotMult = 1;
         let baseStatus = 0;
+        let conditionalStatusEffects = this.state.conditionalEffects.filter(conditional => conditional.effects.status);
+        if (conditionalStatusEffects.length > 0) {
+            conditionalStatusEffects.forEach(conditional => {
+                let conditionsToMeet = Object.keys(conditional.conditions).length;
+                let conditionsMet = 0;
+                for (let condition in conditional.conditions) {
+                    if (this.state[`${condition}Toggle`]) conditionsMet++;
+                }
+                if (conditionsToMeet === conditionsMet) statusMult += conditional.effects.status;
+            });
+        }
         if (this.state.effects.status) {
             statusMult += this.state.effects.status;
         }
-        let conditionalStatusEffects = this.state.conditionalEffects.filter(conditional => {
-            return conditional.effects.status;
-        });
-        conditionalStatusEffects.forEach(conditionalEffect => {
-            if (this.state.aimingToggle === conditionalEffect.conditions.aiming && this.state.castToggle === conditionalEffect.conditions.cast) {
-                statusMult += conditionalEffect.effects.status;
-            }
-        });
+
+        // let conditionalStatusEffects = this.state.conditionalEffects.filter(conditional => {
+        //     return conditional.effects.status;
+        // });
+        // conditionalStatusEffects.forEach(conditionalEffect => {
+        //     if (this.state.aimingToggle === conditionalEffect.conditions.aiming && this.state.castToggle === conditionalEffect.conditions.cast) {
+        //         statusMult += conditionalEffect.effects.status;
+        //     }
+        // });
         if (this.state.effects.multishot && this.props.weapon.modes[this.state.mode].trigger !== 'Held' && !this.props.weapon.modes[this.state.mode].singleProjectile) {
             multishotMult += this.state.effects.multishot
         }
@@ -237,14 +257,25 @@ export class RangedWeaponStats extends Component {
         let typeIndex;
         let nativeElementPosition;
         let nativeElementType;
-        let conditionalBaseDamageEffects = this.state.conditionalEffects.filter(conditional => {
-            return conditional.effects.baseDamage;
-        });
-        conditionalBaseDamageEffects.forEach(conditionalEffect => {
-            if (this.state.firstToggle === conditionalEffect.conditions.first) {
-                baseDamageMult += conditionalEffect.effects.baseDamage;
-            }
-        });
+        let conditionalBaseDamageEffects = this.state.conditionalEffects.filter(conditional => conditional.effects.baseDamage)
+        if (conditionalBaseDamageEffects.length > 0) {
+            conditionalBaseDamageEffects.forEach(conditional => {
+                let conditionsToMeet = Object.keys(conditional.conditions).length;
+                let conditionsMet = 0;
+                for (let condition in conditional.conditions) {
+                    if (this.state[`${condition}Toggle`]) conditionsMet++;
+                }
+                if (conditionsToMeet === conditionsMet) baseDamageMult += conditional.effects.baseDamage;
+            });
+        }
+        // let conditionalBaseDamageEffects = this.state.conditionalEffects.filter(conditional => {
+        //     return conditional.effects.baseDamage;
+        // });
+        // conditionalBaseDamageEffects.forEach(conditionalEffect => {
+        //     if (this.state.firstToggle === conditionalEffect.conditions.first) {
+        //         baseDamageMult += conditionalEffect.effects.baseDamage;
+        //     }
+        // });
         if (this.state.effects.baseDamage) {
             baseDamageMult += this.state.effects.baseDamage
         }
@@ -361,14 +392,17 @@ export class RangedWeaponStats extends Component {
 
     calcCritChance = () => {
         let critChanceMult = 1;
-        let conditionalCritChanceEffects = this.state.conditionalEffects.filter(conditional => {
-            return conditional.effects.critChance;
-        });
-        conditionalCritChanceEffects.forEach(conditionalEffect => {
-            if (this.state.aimingToggle === conditionalEffect.conditions.aiming && this.state.headshotToggle === conditionalEffect.conditions.headshot) {
-                critChanceMult += conditionalEffect.effects.critChance;
-            }
-        });
+        let conditionalCritChanceEffects = this.state.conditionalEffects.filter(conditional => conditional.effects.critChance)
+        if (conditionalCritChanceEffects.length > 0) {
+            conditionalCritChanceEffects.forEach(conditional => {
+                let conditionsToMeet = Object.keys(conditional.conditions).length;
+                let conditionsMet = 0;
+                for (let condition in conditional.conditions) {
+                    if (this.state[`${condition}Toggle`]) conditionsMet++;
+                }
+                if (conditionsToMeet === conditionsMet) critChanceMult += conditional.effects.critChance;
+            });
+        }
         if (this.state.effects.critChance) {
             critChanceMult += this.state.effects.critChance;
         }
@@ -387,14 +421,17 @@ export class RangedWeaponStats extends Component {
 
     calcCritMult = () => {
         let critMultMult = 1;
-        let conditionalCritMultEffects = this.state.conditionalEffects.filter(conditional => {
-            return conditional.effects.critMult;
-        });
-        conditionalCritMultEffects.forEach(conditionalEffect => {
-            if (this.state.aimingToggle === conditionalEffect.conditions.aiming && this.state.killToggle === conditionalEffect.conditions.kill) {
-                critMultMult += conditionalEffect.effects.critMult;
-            }
-        });
+        let conditionalCritMultEffects = this.state.conditionalEffects.filter(conditional => conditional.effects.critMult)
+        if (conditionalCritMultEffects.length > 0) {
+            conditionalCritMultEffects.forEach(conditional => {
+                let conditionsToMeet = Object.keys(conditional.conditions).length;
+                let conditionsMet = 0;
+                for (let condition in conditional.conditions) {
+                    if (this.state[`${condition}Toggle`]) conditionsMet++;
+                }
+                if (conditionsToMeet === conditionsMet) critMultMult += conditional.effects.critMult;
+            });
+        }
         if (this.state.effects.critMult) {
             critMultMult += this.state.effects.critMult;
         }
@@ -410,14 +447,17 @@ export class RangedWeaponStats extends Component {
 
     calcFireRate = () => {
         let fireRateMult = 1;
-        let conditionalFireRateEffects = this.state.conditionalEffects.filter(conditional => {
-            return conditional.effects.fireRate;
-        });
-        conditionalFireRateEffects.forEach(conditionalEffect => {
-            if (this.state.aimingToggle === conditionalEffect.conditions.aiming && this.state.reloadToggle === conditionalEffect.conditions.reload) {
-                fireRateMult += conditionalEffect.effects.fireRate;
-            }
-        });
+        let conditionalFireRateMultEffects = this.state.conditionalEffects.filter(conditional => conditional.effects.fireRate)
+        if (conditionalFireRateMultEffects.length > 0) {
+            conditionalFireRateMultEffects.forEach(conditional => {
+                let conditionsToMeet = Object.keys(conditional.conditions).length;
+                let conditionsMet = 0;
+                for (let condition in conditional.conditions) {
+                    if (this.state[`${condition}Toggle`]) conditionsMet++;
+                }
+                if (conditionsToMeet === conditionsMet) fireRateMult += conditional.effects.fireRate;
+            });
+        }
         if (this.state.effects.fireRate) {
             if (this.props.weapon.bow) {
                 fireRateMult += this.state.effects.fireRate * 2;
@@ -425,13 +465,35 @@ export class RangedWeaponStats extends Component {
                 fireRateMult += this.state.effects.fireRate;
             }
         }
-        if (this.state.effects.chargeRate) {
+        if (this.state.effects.chargeRate && this.props.weapon.modes[this.state.mode].chargeRate) {
             fireRateMult += this.state.effects.chargeRate;
         }
         return {
             display: this.props.weapon.modes[this.state.mode].fireRate * fireRateMult,
             mult: fireRateMult
         };
+    }
+
+    calcReload = () => {
+        let reloadMult = 1;
+        let conditionalReloadEffects = this.state.conditionalEffects.filter(conditional => conditional.effects.reload)
+        if (conditionalReloadEffects.length > 0) {
+            conditionalReloadEffects.forEach(conditional => {
+                let conditionsToMeet = Object.keys(conditional.conditions).length;
+                let conditionsMet = 0;
+                for (let condition in conditional.conditions) {
+                    if (this.state[`${condition}Toggle`]) conditionsMet++;
+                }
+                if (conditionsToMeet === conditionsMet) reloadMult += conditional.effects.reload;
+            });
+        }
+        if (this.state.effects.reload) {
+            reloadMult += this.state.effects.reload;
+        }
+        return {
+            display: this.props.weapon.reload / reloadMult,
+            mult: reloadMult
+        }
     }
 
     calcDPS = (damage, fireRate, critChance, critMult) => {
@@ -517,6 +579,7 @@ export class RangedWeaponStats extends Component {
         const fireRate = this.calcFireRate();
         const status = this.calcStatus();
         const damage = this.calcDamage();
+        const reload = this.calcReload();
         const DPS = this.calcDPS(damage, fireRate, critChance.display, critMult.display);
         const procBreakdown = this.calcProcWeights(damage);
         return (
@@ -647,10 +710,9 @@ export class RangedWeaponStats extends Component {
                             }
                             <div className="stats-item">
                                 <p className="stat-name">Reload: </p>
-                                {effects.reload
-                                    ? <div className={"stat " + (effects.reload > 0 ? "increased-stat" : "decreased-stat")}><p>{Math.round((weapon.reload / (1 + effects.reload)) * 10) / 10}s</p></div>
-                                    : <div className="stat"><p>{Math.round(weapon.reload * 10) / 10}s</p></div>
-                                }
+                                <div className={"stat " + (reload.mult > 1 ? "increased-stat" : reload.mult === 1 ? "" : "decreased-stat")}>
+                                    <p>{Math.round(reload.display * 10) / 10}</p>
+                                </div>
                             </div>
                             {(weapon.modes[mode].punchThrough > 0 || effects.punchThrough) &&
                                 <div className="stats-item">
@@ -738,6 +800,11 @@ export class RangedWeaponStats extends Component {
                             {this.state.first &&
                                 <div className={"activatable condition " + (this.state.firstToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleFirst}>
                                     <p className="interactable-p">First Shot</p>
+                                </div>
+                            }
+                            {this.state.headshotKill &&
+                                <div className={"activatable condition " + (this.state.headshotKillToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleHeadshotKill}>
+                                    <p className="interactable-p">Headshot Kill</p>
                                 </div>
                             }
                         </div>

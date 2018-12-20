@@ -1,6 +1,19 @@
-//abrev at b8
+//abrev at c6
 
 const archgunMods = [
+    {
+        abrev: 'c6',
+        name: 'Ammo Chain',
+        img: require('../assets/modimages/unavail.jpg'),
+        type: 'ARCH-GUN',
+        rarity: 'common',
+        polarity: 'madurai',
+        effects: { maxAmmo: 0.1667 },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 2,
+        description() { return `+${Math.round(this.effects.maxAmmo * (this.currRank + 1) * 100)}% Ammo Maximum` }
+    },
     {
         abrev: 'a0',
         name: 'Automatic Trigger',
@@ -15,9 +28,23 @@ const archgunMods = [
         description() { return `+${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate` }
     },
     {
+        abrev: 'c5',
+        name: 'Arch-Gun Ace',
+        img: require('../assets/modimages/arch-gun-ace.jpg'),
+        type: 'ARCH-GUN',
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { fireRate: 0.0833, reload: 0.1666 },
+        conditional: { headshotKill: true },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 6,
+        description() { return `On Headshot Kill: +${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire/Charge Rate +${Math.round(this.effects.reload * (this.currRank + 1) * 100)}% Reload Speed for ${1.5 * (this.currRank + 1)}s` }
+    },
+    {
         abrev: 'b6',
         name: 'Charged Bullets',
-        img: require('../assets/modimages/unavail.jpg'),
+        img: require('../assets/modimages/charged-bullets.jpg'),
         type: 'ARCH-GUN',
         rarity: 'rare',
         polarity: 'madurai',
@@ -56,7 +83,7 @@ const archgunMods = [
     {
         abrev: 'b8',
         name: 'Contamination Casing',
-        img: require('../assets/modimages/unavail.jpg'),
+        img: require('../assets/modimages/contamination-casing.jpg'),
         type: 'ARCH-GUN',
         rarity: 'rare',
         polarity: 'madurai',
@@ -65,6 +92,34 @@ const archgunMods = [
         currRank: 3,
         baseCost: 4,
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Toxin +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
+    },
+    {
+        abrev: 'b9',
+        name: 'Critical Focus',
+        img: require('../assets/modimages/critical-focus.jpg'),
+        type: 'ARCH-GUN',
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { critChance: 0.1, critMult: 0.1 },
+        conditional: { aiming: true },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 6,
+        description() { return `+${Math.round(this.effects.critChance * (this.currRank + 1) * 1000) / 10}% Critical Chance and Damage while aiming.` }
+    },
+    {
+        abrev: 'c3',
+        name: 'Deadly Efficiency',
+        img: require('../assets/modimages/deadly-efficiency.jpg'),
+        type: 'ARCH-GUN',
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { baseDamage: 0.2 },
+        conditional: { reload: true },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 4,
+        description() { return `On Realod From Empty: +${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Damage for ${1.5 * (this.currRank + 1)}s.` }
     },
     {
         abrev: 'a3',
@@ -108,7 +163,7 @@ const archgunMods = [
     {
         abrev: 'b7',
         name: 'Hypothermic Shell',
-        img: require('../assets/modimages/unavail.jpg'),
+        img: require('../assets/modimages/hypothermic-shell.jpg'),
         type: 'ARCH-GUN',
         rarity: 'rare',
         polarity: 'madurai',
@@ -143,6 +198,20 @@ const archgunMods = [
         currRank: 3,
         baseCost: 4,
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Heat +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
+    },
+    {
+        abrev: 'c0',
+        name: 'Marked Target',
+        img: require('../assets/modimages/marked-target.jpg'),
+        type: 'ARCH-GUN',
+        rarity: 'rare',
+        polarity: 'naramon',
+        effects: { status: 0.2 },
+        conditional: { aiming: true },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 6,
+        description() { return `+${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance while aiming.` }
     },
     {
         abrev: 'a8',
@@ -197,6 +266,32 @@ const archgunMods = [
         description() { return `+${Math.round(this.effects.puncture * (this.currRank + 1) * 100)}% Puncture` }
     },
     {
+        abrev: 'c2',
+        name: 'Quick Reload',
+        img: require('../assets/modimages/unavail.jpg'),
+        type: 'ARCH-GUN',
+        rarity: 'uncommon',
+        polarity: 'naramon',
+        effects: { reload: 0.25 },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 2,
+        description() { return `+${Math.round(this.effects.reload * (this.currRank + 1) * 100)}% Reload Speed` }
+    },
+    {
+        abrev: 'c1',
+        name: 'Resolute Focus',
+        img: require('../assets/modimages/resolute-focus.jpg'),
+        type: 'ARCH-GUN',
+        rarity: 'uncommon',
+        polarity: 'naramon',
+        effects: {},
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 4,
+        description() { return `+${Math.round(100 / 6 * (this.currRank + 1))}% Chance to resist Staggers/Knockdowns and -${Math.round(50 / 6 * (this.currRank + 1))}% Spread when Aiming.` }
+    },
+    {
         abrev: 'b2',
         name: 'Rubedo-Lined Barrel',
         img: require('../assets/modimages/rubedo-lined-barrel.jpg'),
@@ -208,6 +303,19 @@ const archgunMods = [
         currRank: 5,
         baseCost: 6,
         description() { return `+${Math.round(this.effects.baseDamage * (this.currRank + 1) * 1000) / 10}% Damage` }
+    },
+    {
+        abrev: 'c4',
+        name: 'Sabot Rounds',
+        img: require('../assets/modimages/sabot-rounds.jpg'),
+        type: 'ARCH-GUN',
+        rarity: 'rare',
+        polarity: 'naramon',
+        effects: { baseDamage: 0.1, punchThrough: 0.5 },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 10,
+        description() { return `+${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Damage +${this.effects.punchThrough * (this.currRank + 1)} Punch Through` }
     },
     {
         abrev: 'b3',

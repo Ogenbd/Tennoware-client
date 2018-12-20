@@ -105,9 +105,9 @@ export class News extends Component {
                 </div>
               </div>
               <div className="article tennoware-news">
-                <h1>Update 1.1.1!</h1>
+                <h1>Update 1.1.2!</h1>
                 <div className="update-content">
-                  <p>Fortuna 2 and Mesa Prime Access is upon us! I'm pretty sure everything except the new mods and Baruuk are in this update. If you have those new mods or Baaruk and wish to speed up the next update feel free to stop by the Tennoware subreddit and let me in on the details!</p>
+                  <p>Added the missing things from the fortuna 2 update. meaning Baruuk, the strain mod set and all of the new Archgun mods are here!</p>
                   <p>For the complete update notes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log.</a></p>
                 </div>
               </div>

@@ -41,7 +41,6 @@ const archgunStats = [
                 name: 'Charged',
                 trigger: 'Charge',
                 chargeRate: 0.5,
-                fireRate: 2,
                 accuracy: 9.1,
                 punchThrough: 0,
                 critChance: 0.15,
@@ -347,6 +346,7 @@ const archgunStats = [
         disposition: 3,
         modes: [
             {
+                name: 'Uncharged',
                 trigger: 'Charge',
                 fireRate: 5,
                 accuracy: 28.6,
@@ -363,6 +363,7 @@ const archgunStats = [
                 ]
             },
             {
+                name: 'Charged',
                 trigger: 'Charge',
                 chargeRate: 1,
                 accuracy: 28.6,

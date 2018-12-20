@@ -20,6 +20,10 @@ const warframeList = [
         img: require('../assets/itemimages/banshee-prime.png')
     },
     {
+        name: 'BARUUK',
+        img: require('../assets/itemimages/baruuk.png')
+    },
+    {
         name: 'CHROMA',
         img: require('../assets/itemimages/chroma.png')
     },

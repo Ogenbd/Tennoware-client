@@ -501,6 +501,139 @@ const abilities = {
             ]
         },
     ],
+    baruuk: [
+        {
+            name: 'Elude',
+            img: require('../assets/itemimages/elude.png'),
+            details: [
+                {
+                    exception: [
+                        {
+                            name: 'Angle',
+                            base: 180
+                        },
+                    ],
+                    channel: [
+                        {
+                            name: 'Energy drain/s',
+                            base: 2.5
+                        },
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Activation Cost',
+                            base: 25
+                        },
+                    ],
+                },
+            ]
+        },
+        {
+            name: 'Lull',
+            img: require('../assets/itemimages/lull.png'),
+            details: [
+                {
+                    duration: [
+                        {
+                            name: 'Wave duration',
+                            suffix: 's',
+                            base: 5
+                        },
+                        {
+                            name: 'Sleep duration',
+                            suffix: 's',
+                            base: 25
+                        },
+                    ],
+                    range: [
+                        {
+                            name: 'Radius',
+                            suffix: 'm',
+                            base: 25
+                        },
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Energy',
+                            base: 50
+                        },
+                    ],
+                }
+            ]
+        },
+        {
+            name: 'Desolate Hands',
+            img: require('../assets/itemimages/desolatehands.png'),
+            details: [
+                {
+                    strength: [
+                        {
+                            name: 'Damage',
+                            base: 250,
+                        },
+                        {
+                            name: 'Charges',
+                            base: 8,
+                        },
+                    ],
+                    range: [
+                        {
+                            name: 'Seek radius',
+                            suffix: 'm',
+                            base: 4
+                        },
+                        {
+                            name: 'Seek radius /w Elude',
+                            suffix: 'm',
+                            base: 8
+                        },
+                    ],
+                    none: [
+                        {
+                            name: 'Explosion Radius',
+                            suffix: 'm',
+                            base: 3
+                        },
+                        {
+                            name: 'Damage reduction / charge',
+                            suffix: '%',
+                            base: 10
+                        },
+                        {
+                            name: 'Maximum damage reduction',
+                            suffix: '%',
+                            base: 90
+                        },
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Energy',
+                            base: 75
+                        },
+                    ],
+                }
+            ]
+        },
+        {
+            name: 'Serene Storm',
+            img: require('../assets/itemimages/serenestorm.png'),
+            details: [
+                {
+                    strength: [
+                        {
+                            name: 'Damage',
+                            base: 250,
+                        },
+                        {
+                            name: 'Damage reduction while active',
+                            suffix: '%',
+                            base: 25,
+                        },
+                    ],
+                }
+            ]
+        },
+    ],
     chroma: [
         {
             name: 'Spectral Scream',
@@ -4238,6 +4371,11 @@ const abilities = {
                             name: 'Damage reduction / particle',
                             suffix: '%',
                             base: 5
+                        },
+                        {
+                            name: 'Maximum Damage reduction',
+                            suffix: '%',
+                            base: 90
                         }
                     ],
                     efficiency: [

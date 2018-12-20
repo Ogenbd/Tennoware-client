@@ -11,7 +11,7 @@ const archgunLandStats = [
         noise: 'Alarming',
         reload: 2,
         magSize: 25,
-        maxAmmo: 50,
+        maxAmmo: 100,
         modes: [
             {
                 name: 'Uncharged',
@@ -80,7 +80,7 @@ const archgunLandStats = [
         noise: 'Alarming',
         reload: 1.2,
         magSize: 30,
-        ammoMax: 240,
+        ammoMax: 480,
         modes: [
             {
                 trigger: 'Burst',
@@ -119,7 +119,7 @@ const archgunLandStats = [
         noise: 'Alarming',
         reload: 1.4,
         magSize: 32,
-        maxAmmo: 256,
+        maxAmmo: 512,
         modes: [
             {
                 trigger: 'Auto',
@@ -159,7 +159,7 @@ const archgunLandStats = [
         noise: 'Alarming',
         reload: 2,
         magSize: 25,
-        maxAmmo: 80,
+        maxAmmo: 160,
         modes: [
             {
                 trigger: 'Semi-Auto',
@@ -200,7 +200,7 @@ const archgunLandStats = [
         noise: 'Alarming',
         reload: 2,
         magSize: 30,
-        maxAmmo: 90,
+        maxAmmo: 210,
         modes: [
             {
                 trigger: 'Auto',
@@ -240,7 +240,7 @@ const archgunLandStats = [
         noise: 'Alarming',
         reload: 2,
         magSize: 200,
-        maxAmmo: 400,
+        maxAmmo: 800,
         modes: [
             {
                 trigger: 'Auto',
@@ -278,7 +278,7 @@ const archgunLandStats = [
         noise: 'Alarming',
         reload: 4,
         magSize: 300,
-        maxAmmo: 600,
+        maxAmmo: 1200,
         modes: [
             {
                 trigger: 'Auto',
@@ -318,7 +318,7 @@ const archgunLandStats = [
         noise: 'Alarming',
         reload: 2,
         magSize: 240,
-        maxAmmo: 480,
+        maxAmmo: 960,
         modes: [
             {
                 trigger: 'Auto',
@@ -356,7 +356,7 @@ const archgunLandStats = [
         noise: 'Alarming',
         reload: 2,
         magSize: 10,
-        maxAmmo: 30,
+        maxAmmo: 60,
         disposition: 3,
         modes: [
             {

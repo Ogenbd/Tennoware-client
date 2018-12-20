@@ -77,6 +77,21 @@ const warframeStats = [
         abilities: abilities.banshee
     },
     {
+        name: 'BARUUK',
+        polarities: ['naramon', 'vazarin', 'vazarin'],
+        aura: 'naramon',
+        exilus: undefined,
+        armor: 150,
+        energy: 300,
+        baseEnergy: 200,
+        health: 225,
+        baseHealth: 75,
+        shields: 300,
+        baseShields: 100,
+        speed: 1.2,
+        abilities: abilities.baruuk
+    },
+    {
         name: 'CHROMA',
         polarities: ['naramon', 'madurai'],
         aura: 'madurai',

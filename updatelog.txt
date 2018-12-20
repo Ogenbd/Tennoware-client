@@ -1,5 +1,19 @@
 UPDATE LOG
 
+upcoming - v1.1.2.
+
+New:
+Added Baruuk.
+Added the Strain mod set: Strain Fever (Helminth), Strain Eruption (Helminth), Strain Consume (Warframe).
+Added the new Archgun mods: Ammo Chain, Arch-Gun Ace, Deadly Efficiency, Resolute Focus, Marked Target, Sabot Rounds, Critical Focus, Quick Reload.
+
+Changes:
+Increased Archguns-Land Max Ammo as per Warframe update 24.2.4 and 24.2.5.
+Added mod images for some of the mods that were missing theirs.
+
+Fixes:
+Exergis now has 3 pellets.
+
 19/12/2018 - v1.1.1.
 
 About Tennoware Updates:

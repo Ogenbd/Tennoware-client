@@ -1,4 +1,4 @@
-// currently at abrev 0r
+// currently at abrev 0s
 const warframeMods = [
     {
         abrev: 'a0',
@@ -6116,7 +6116,7 @@ const warframeMods = [
         maxRank: 10,
         currRank: 10,
         baseCost: 2,
-        description() { return `On Dodge:rBecome invulnerable for ${2 + 0.1 * (this.currRank)}s and remove all Status Effects. ${12 - 0.5 * (this.currRank)}s cooldown.` }
+        description() { return `On Dodge: Become invulnerable for ${2 + 0.1 * (this.currRank)}s and remove all Status Effects. ${12 - 0.5 * (this.currRank)}s cooldown.` }
     },
     {
         abrev: 't4',
@@ -6964,6 +6964,20 @@ const warframeMods = [
         currRank: 10,
         baseCost: 4,
         description() { return `+${Math.round(this.effects.armor * (this.currRank + 1) * 100)}% Armor` }
+    },
+    {
+        abrev: '0s',
+        name: 'Strain Consume',
+        img: require('../assets/modimages/strain-consume.jpg'),
+        type: 'WARFRAME',
+        rarity: 'rare',
+        polarity: 'naramon',
+        effects: {},
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 2,
+        set: { setName: 'strain', setMax: 4, setCurr: 1 },
+        description() { return [`Dead maggots within 5m are consumed, restoring ${this.currRank + 1}% Missing Health.`, `Grows up to ${2 * (this.set.setCurr)} Cysts over ${6 * this.set.setCurr}s that erupt every 25s to spawn a maggot.`] }
     },
     {
         abrev: 'w6',

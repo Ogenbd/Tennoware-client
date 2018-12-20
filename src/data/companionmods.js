@@ -1,4 +1,4 @@
-// at abrev j2
+// at abrev j4
 
 const companionMods = [
     {
@@ -997,6 +997,34 @@ const companionMods = [
         description() { return `Creates a stasis field for ${5 * (this.currRank + 1)}s. While inside the field, all enemy projectiles move ${15 * (this.currRank + 1)}% slower and deal ${10 * (this.currRank + 1)}% less Damage.` }
     },
     {
+        abrev: 'j3',
+        name: 'Strain Eruption',
+        img: require('../assets/modimages/strain-eruption.jpg'),
+        type: 'HELMINTH',
+        rarity: 'rare',
+        polarity: 'naramon',
+        effects: {},
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 2,
+        set: { setName: 'strain', setMax: 4, setCurr: 1 },
+        description() { return [`Maggots explode on death, dealing ${this.currRank + 1}% of an enemy's current Health as Corrosive Damage to any enemy within ${2 * (this.currRank + 1)}m.`, `Grows up to ${2 * (this.set.setCurr)} Cysts over ${6 * this.set.setCurr}s that erupt every 25s to spawn a maggot.`] }
+    },
+    {
+        abrev: 'j4',
+        name: 'Strain Fever',
+        img: require('../assets/modimages/strain-fever.jpg'),
+        type: 'HELMINTH',
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: {},
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 6,
+        set: { setName: 'strain', setMax: 4, setCurr: 1 },
+        description() { return [`Helminth Charger gains +${Math.floor(7.5 * (this.currRank + 1))}% Damage per Cyst.`, `Grows up to ${2 * (this.set.setCurr)} Cysts over ${6 * this.set.setCurr}s that erupt every 25s to spawn a maggot.`] }
+    },
+    {
         abrev: 'g7',
         name: 'Striker',
         family: 'attack',
@@ -1047,7 +1075,8 @@ const companionMods = [
         effects: { none: [2, 5, 10, 15, 20, 25] },
         maxRank: 5,
         currRank: 5,
-        baseCost: 4, set: { setName: 'synth', setMax: 4, setCurr: 1 },
+        baseCost: 4,
+        set: { setName: 'synth', setMax: 4, setCurr: 1 },
         description() { return [`Enemies injured by Sentinel have ${this.effects.none[this.currRank]}% chance to drop a Health Orb when killed.`, `Holstering Primary and Secondary weapons reload ${5 * this.set.setCurr}% of Magazine/s.`] }
     },
     {
