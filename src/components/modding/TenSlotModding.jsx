@@ -413,6 +413,7 @@ class TenSlotModding extends Component {
         } else {
             formaCount = missing;
         }
+        if (this.props.type === 'moas') formaCount--;
         return formaCount
     }
 

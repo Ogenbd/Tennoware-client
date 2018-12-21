@@ -10,7 +10,25 @@ const moas = {
             img: require('../assets/itemimages/drimper-bracket.png'),
             desc: 'Penjaga x4.',
             polarities: ['penjaga', 'penjaga', 'penjaga', 'penjaga']
-        }
+        },
+        {
+            name: 'GAUTH',
+            img: require('../assets/itemimages/gauth-bracket.png'),
+            desc: 'Penjaga x4, Naramon x1.',
+            polarities: ['penjaga', 'penjaga', 'penjaga', 'penjaga', 'naramon']
+        },
+        {
+            name: 'JONSIN',
+            img: require('../assets/itemimages/jonsin-bracket.png'),
+            desc: 'Penjaga x4, Madurai x1.',
+            polarities: ['penjaga', 'penjaga', 'penjaga', 'penjaga', 'madurai']
+        },
+        {
+            name: 'TIAN',
+            img: require('../assets/itemimages/tian-bracket.png'),
+            desc: 'Penjaga x4, vazarin x1.',
+            polarities: ['penjaga', 'penjaga', 'penjaga', 'penjaga', 'vazarin']
+        },
     ],
     second: [
         {

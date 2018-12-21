@@ -107,7 +107,7 @@ export class News extends Component {
               <div className="article tennoware-news">
                 <h1>Update 1.1.2!</h1>
                 <div className="update-content">
-                  <p>Added the missing things from the fortuna 2 update. meaning Baruuk, the strain mod set and all of the new Archgun mods are here!</p>
+                  <p>Added the missing things from the fortuna 2 update. meaning Baruuk, the strain mod set, the new MOA brackets and all of the new Archgun mods are here!</p>
                   <p>For the complete update notes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log.</a></p>
                 </div>
               </div>
