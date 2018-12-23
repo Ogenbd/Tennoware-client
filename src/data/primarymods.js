@@ -11,7 +11,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate +${Math.round(this.effects.puncture * (this.currRank + 1) * 100)}% Puncture` }
+        description() { return `+${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate\n+${Math.round(this.effects.puncture * (this.currRank + 1) * 100)}% Puncture` }
     },
     {
         abrev: 'a1',
@@ -88,7 +88,7 @@ const primaryMods = [
         type: 'SHOTGUN',
         rarity: 'uncommon',
         polarity: 'naramon',
-        effects: { magSize: 0.05 },
+        effects: { magSize: 0.1 },
         maxRank: 5,
         currRank: 5,
         baseCost: 2,
@@ -229,7 +229,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
-        description() { return `${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Damage +${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Heat` }
+        description() { return `${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Damage\n+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Heat` }
     },
     {
         abrev: 'b4',
@@ -312,7 +312,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.magSize * (this.currRank + 1) * 100)}% Magazine Capacity ${Math.round(this.effects.reload * (this.currRank + 1) * 100)}% Reload Speed` }
+        description() { return `+${Math.round(this.effects.magSize * (this.currRank + 1) * 100)}% Magazine Capacity\n${Math.round(this.effects.reload * (this.currRank + 1) * 100)}% Reload Speed` }
     },
     {
         abrev: 'b8',
@@ -339,7 +339,7 @@ const primaryMods = [
         maxRank: 10,
         currRank: 10,
         baseCost: 2,
-        description() { return `${Math.round(this.effects.none[this.currRank] * 100)}% Self-damage ${Math.round(this.effects.totalDamage[this.currRank] * 100)}% Total Damage` }
+        description() { return `${Math.round(this.effects.none[this.currRank] * 100)}% Self-damage\n${Math.round(this.effects.totalDamage[this.currRank] * 100)}% Total Damage` }
     },
     {
         abrev: 'b9',
@@ -393,7 +393,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 2,
-        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Cold +${Math.round(this.effects.reload * (this.currRank + 1) * 100)}% Reload Speed` }
+        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Cold\n+${Math.round(this.effects.reload * (this.currRank + 1) * 100)}% Reload Speed` }
     },
     {
         abrev: 'c3',
@@ -542,7 +542,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.critChance * (this.currRank + 1) * 100)}% Critical Chance ${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate` }
+        description() { return `+${Math.round(this.effects.critChance * (this.currRank + 1) * 100)}% Critical Chance\n${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate` }
     },
     {
         abrev: 'd2',
@@ -555,7 +555,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.critChance * (this.currRank + 1) * 100)}% Critical Chance ${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate (x2 for Bows)` }
+        description() { return `+${Math.round(this.effects.critChance * (this.currRank + 1) * 100)}% Critical Chance\n${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate (x2 for Bows)` }
     },
     {
         abrev: 'd3',
@@ -582,7 +582,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.critChance * (this.currRank + 1) * 100)}% Critical Chance +${this.effects.none * (this.currRank + 1)} 'Sequence'` }
+        description() { return `+${Math.round(this.effects.critChance * (this.currRank + 1) * 100)}% Critical Chance\n+${this.effects.none * (this.currRank + 1)} 'Sequence'` }
     },
     {
         abrev: 'p3',
@@ -610,7 +610,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 2,
-        description() { return `${Math.round(this.effects.magSize * (this.currRank + 1) * 100)}% Magazine Capacity +${Math.round(this.effects.reload * (this.currRank + 1) * 100)}% Reload Speed` }
+        description() { return `${Math.round(this.effects.magSize * (this.currRank + 1) * 100)}% Magazine Capacity\n+${Math.round(this.effects.reload * (this.currRank + 1) * 100)}% Reload Speed` }
     },
     {
         abrev: 'p4',
@@ -638,7 +638,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `Secondary Fire mode has a ${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% chance to disarm enemies. +${this.effects.none[1] * (this.currRank + 1)} 'Purity'` }
+        description() { return `Secondary Fire mode has a ${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% chance to disarm enemies.\n+${this.effects.none[1] * (this.currRank + 1)} 'Purity'` }
     },
     {
         abrev: 'd7',
@@ -723,7 +723,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${this.effects.baseStatus * (this.currRank + 1)} Base Status Chance +${this.effects.none * (this.currRank + 1)} 'Entropy'` }
+        description() { return `+${this.effects.baseStatus * (this.currRank + 1)} Base Status Chance\n+${this.effects.none * (this.currRank + 1)} 'Entropy'` }
     },
     {
         abrev: 'e1',
@@ -778,7 +778,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 10,
-        description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Flight Speed ${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Damage` }
+        description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Flight Speed\n${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Damage` }
     },
     {
         abrev: 'p8',
@@ -889,7 +889,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate ${Math.round(this.effects.baseDamage * (this.currRank + 1) * 1000) / 10}% Damage` }
+        description() { return `+${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate\n${Math.round(this.effects.baseDamage * (this.currRank + 1) * 1000) / 10}% Damage` }
     },
     {
         abrev: 'e9',
@@ -902,7 +902,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Cold +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
+        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Cold\n+${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
         abrev: 'f0',
@@ -928,7 +928,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate +${this.effects.none * (this.currRank + 1)} 'Truth` }
+        description() { return `+${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate\n+${this.effects.none * (this.currRank + 1)} 'Truth` }
     },
     {
         abrev: 'q1',
@@ -998,7 +998,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.critMult * (this.currRank + 1) * 100)}% Critical Damage +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
+        description() { return `+${Math.round(this.effects.critMult * (this.currRank + 1) * 100)}% Critical Damage\n+${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
         abrev: 'f5',
@@ -1024,7 +1024,7 @@ const primaryMods = [
         maxRank: 10,
         currRank: 10,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Damage ${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Accuracy` }
+        description() { return `+${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Damage\n${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Accuracy` }
     },
     {
         abrev: 'f7',
@@ -1063,7 +1063,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Electricity +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
+        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Electricity\n+${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
         abrev: 'g0',
@@ -1124,7 +1124,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
-        description() { return `${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Weapon Recoil ${Math.round(this.effects.magSize * (this.currRank + 1) * 1000) / 10}% Magazine Capacity` }
+        description() { return `${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Weapon Recoil\n${Math.round(this.effects.magSize * (this.currRank + 1) * 1000) / 10}% Magazine Capacity` }
     },
     {
         abrev: 'q4',
@@ -1140,7 +1140,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
-        description() { return `${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Weapon Recoil ${Math.round(this.effects.magSize * (this.currRank + 1) * 1000) / 10}% Magazine Capacity` }
+        description() { return `${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Weapon Recoil\n${Math.round(this.effects.magSize * (this.currRank + 1) * 1000) / 10}% Magazine Capacity` }
     },
     {
         abrev: 'g3',
@@ -1221,7 +1221,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Dead Aim +${this.effects.none[1] * (this.currRank + 1)} 'Purity'` }
+        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Dead Aim\n+${this.effects.none[1] * (this.currRank + 1)} 'Purity'` }
     },
     {
         abrev: 'q6',
@@ -1236,7 +1236,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 10,
-        description() { return `-${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Reticle Sway +${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Weapon Recoil` }
+        description() { return `-${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Reticle Sway\n+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Weapon Recoil` }
     },
     {
         abrev: 'g8',
@@ -1265,7 +1265,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 10,
-        description() { return `+${Math.round(this.effects.magSize * (this.currRank + 1) * 100)}% Magazine Capacity ${Math.round(this.effects.reload * (this.currRank + 1) * 1000) / 10}% Reload Speed` }
+        description() { return `+${Math.round(this.effects.magSize * (this.currRank + 1) * 100)}% Magazine Capacity\n${Math.round(this.effects.reload * (this.currRank + 1) * 1000) / 10}% Reload Speed` }
     },
     {
         abrev: 'g9',
@@ -1295,7 +1295,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.reload * (this.currRank + 1) * 100)}% Reload Speed +${Math.round(this.effects.none * (this.currRank + 1) * 1000) / 10}% Weapon Recoil` }
+        description() { return `+${Math.round(this.effects.reload * (this.currRank + 1) * 100)}% Reload Speed\n+${Math.round(this.effects.none * (this.currRank + 1) * 1000) / 10}% Weapon Recoil` }
     },
     {
         abrev: 'q9',
@@ -1311,7 +1311,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.reload * (this.currRank + 1) * 100)}% Reload Speed +${Math.round(this.effects.none * (this.currRank + 1) * 1000) / 10}% Weapon Recoil` }
+        description() { return `+${Math.round(this.effects.reload * (this.currRank + 1) * 100)}% Reload Speed\n+${Math.round(this.effects.none * (this.currRank + 1) * 1000) / 10}% Weapon Recoil` }
     },
     {
         abrev: 'r0',
@@ -1326,7 +1326,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Flight Speed ${Math.round(this.effects.none[1] * (this.currRank + 1) * 1000) / 10}% Accuracy` }
+        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Flight Speed\n${Math.round(this.effects.none[1] * (this.currRank + 1) * 1000) / 10}% Accuracy` }
     },
     {
         abrev: 'h0',
@@ -1352,7 +1352,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Toxin +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
+        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Toxin\n+${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
         abrev: 'h2',
@@ -1381,7 +1381,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.magSize * (this.currRank + 1) * 100)}% Magazine Capacity ${Math.round(this.effects.reload * (this.currRank + 1) * 1000) / 10}% Reload Speed` }
+        description() { return `+${Math.round(this.effects.magSize * (this.currRank + 1) * 100)}% Magazine Capacity\n${Math.round(this.effects.reload * (this.currRank + 1) * 1000) / 10}% Reload Speed` }
     },
     {
         abrev: 'r2',
@@ -1396,7 +1396,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 10,
-        description() { return `When Aiming: ${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Fire Rate +${Math.round(this.effects.none[1] * (this.currRank + 1) * 1000) / 10}% Damage` }
+        description() { return `When Aiming: ${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Fire Rate\n+${Math.round(this.effects.none[1] * (this.currRank + 1) * 1000) / 10}% Damage` }
     },
     {
         abrev: 'r3',
@@ -1411,7 +1411,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 10,
-        description() { return `On Kill: +15 Heal Rate for 10 seconds. -25% from Health Orbs` }
+        description() { return `On Kill: +15 Heal Rate for 10 seconds.\n-25% from Health Orbs` }
     },
     {
         abrev: 'h3',
@@ -1451,7 +1451,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `Each blade has a +${Math.round(this.effects.none[0] * (this.currRank + 1) * 1000) / 10}% chance to destroy a Nullifier field. +${this.effects.none[1] * (this.currRank + 1)} 'Justice'` }
+        description() { return `Each blade has a +${Math.round(this.effects.none[0] * (this.currRank + 1) * 1000) / 10}% chance to destroy a Nullifier field.\n+${this.effects.none[1] * (this.currRank + 1)} 'Justice'` }
     },
     {
         abrev: 'h6',
@@ -1561,7 +1561,7 @@ const primaryMods = [
         maxRank: 0,
         currRank: 0,
         baseCost: 10,
-        description() { return `+100% Accuracy +50% Flight Speed -50% Magazine Capacity` }
+        description() { return `+100% Accuracy\n+50% Flight Speed\n-50% Magazine Capacity` }
     },
     {
         abrev: 'j0',
@@ -1717,32 +1717,6 @@ const primaryMods = [
         baseCost: 4,
         description() { return `+${Math.round(this.effects.critMult * (this.currRank + 1) * 100)}% Critical Damage` }
     },
-    // {
-    //     abrev: 'j0',
-    //     name: 'Primed Rifle Ammo Mutation',
-    //     family: 'Rifle Ammo Mutation',
-    //     type: 'ASSAULT RIFLE',
-    //     rarity: 'prime',
-    //     polarity: 'naramon',
-    //     effects: { none: 0 },
-    //     maxRank: 10,
-    //     currRank: 10,
-    //     baseCost: 4,
-    //     description() { return `Convert unused ammo drops into Rifle Ammo` }
-    // },
-    // {
-    //     abrev: 'j1',
-    //     name: 'Primed Shotgun Ammo Mutation',
-    //     family: 'Shotgun Ammo Mutation',
-    //     type: 'SHOTGUN',
-    //     rarity: 'prime',
-    //     polarity: 'naramon',
-    //     effects: { none: 0 },
-    //     maxRank: 10,
-    //     currRank: 10,
-    //     baseCost: 4,
-    //     description() { return `Convert unused ammo drops into Shotgun Ammo` }
-    // },
     {
         abrev: 'j2',
         name: 'Primed Shred',
@@ -1755,7 +1729,7 @@ const primaryMods = [
         maxRank: 10,
         currRank: 10,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate (x2 for Bows) +${Math.round(this.effects.punchThrough * (this.currRank + 1) * 10) / 10}m Punch Through` }
+        description() { return `+${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate (x2 for Bows)\n+${Math.round(this.effects.punchThrough * (this.currRank + 1) * 10) / 10}m Punch Through` }
     },
     {
         abrev: 'r6',
@@ -1770,7 +1744,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 10,
-        description() { return `On Kill: -100% Shield Recharge Delay for 10 seconds. -25% from Health Orbs` }
+        description() { return `On Kill: -100% Shield Recharge Delay for 10 seconds.\n-25% from Health Orbs` }
     },
     {
         abrev: 'j3',
@@ -1799,7 +1773,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 10,
-        description() { return `On Kill: +15 Heal Rate for 10 seconds. -25% from Health Orbs` }
+        description() { return `On Kill: +15 Heal Rate for 10 seconds.\n-25% from Health Orbs` }
     },
     {
         abrev: 'j4',
@@ -1852,7 +1826,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Cold +${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Status Chance` }
+        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Cold\n+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
         abrev: 'r8',
@@ -1929,7 +1903,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.multishot * (this.currRank + 1) * 100)}% Multishot +${this.effects.none * (this.currRank + 1)} 'Justice'` }
+        description() { return `+${Math.round(this.effects.multishot * (this.currRank + 1) * 100)}% Multishot\n+${this.effects.none * (this.currRank + 1)} 'Justice'` }
     },
     {
         abrev: 'k1',
@@ -1942,7 +1916,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Heat +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
+        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Heat\n+${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
         abrev: 'k2',
@@ -1968,7 +1942,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.reload * (this.currRank + 1) * 1000) / 10}% Reload Speed +${Math.round(this.effects.punchThrough * (this.currRank + 1) * 10) / 10}m Punch Through` }
+        description() { return `+${Math.round(this.effects.reload * (this.currRank + 1) * 1000) / 10}% Reload Speed\n+${Math.round(this.effects.punchThrough * (this.currRank + 1) * 10) / 10}m Punch Through` }
     },
     {
         abrev: 'r9',
@@ -2023,7 +1997,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${this.effects.baseStatus * (this.currRank + 1)}% Base Status Chance +${this.effects.none * (this.currRank + 1)} 'Justice'` }
+        description() { return `+${this.effects.baseStatus * (this.currRank + 1)}% Base Status Chance\n+${this.effects.none * (this.currRank + 1)} 'Justice'` }
     },
     {
         abrev: 'k6',
@@ -2049,21 +2023,8 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Electricity +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
+        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Electricity\n+${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
-    // {
-    //     abrev: 'k8',
-    //     name: 'Shotgun Ammo Mutation',
-    //     family: 'Shotgun Ammo Mutation',
-    //     type: 'SHOTGUN',
-    //     rarity: 'rare',
-    //     polarity: 'naramon',
-    //     effects: { none: 0 },
-    //     maxRank: 5,
-    //     currRank: 5,
-    //     baseCost: 4,
-    //     description() { return `Convert unused ammo drops into Shotgun Ammo` }
-    // },
     {
         abrev: 'k9',
         name: 'Shotgun Savvy',
@@ -2116,7 +2077,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate (x2 for Bows) +${Math.round(this.effects.punchThrough * (this.currRank + 1) * 10) / 10}m Punch Through` }
+        description() { return `+${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate (x2 for Bows)\n+${Math.round(this.effects.punchThrough * (this.currRank + 1) * 10) / 10}m Punch Through` }
     },
     {
         abrev: 's0',
@@ -2362,7 +2323,7 @@ const primaryMods = [
         maxRank: 10,
         currRank: 10,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.magSize * (this.currRank + 1) * 100)}% Magazine Capacity ${Math.round(this.effects.reload * (this.currRank + 1) * 100)}% Reload Speed` }
+        description() { return `+${Math.round(this.effects.magSize * (this.currRank + 1) * 100)}% Magazine Capacity\n${Math.round(this.effects.reload * (this.currRank + 1) * 100)}% Reload Speed` }
     },
     {
         abrev: 'm8',
@@ -2375,7 +2336,7 @@ const primaryMods = [
         maxRank: 10,
         currRank: 10,
         baseCost: 4,
-        description() { return `${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Spread ${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate` }
+        description() { return `${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Spread\n${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate` }
     },
     {
         abrev: 'm9',
@@ -2427,7 +2388,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Heat +${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Status Chance` }
+        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Heat\n+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
         abrev: 'n3',
@@ -2455,7 +2416,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 10,
-        description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% chance charged Projectiles explode ${Math.round(this.effects.magSize * (this.currRank + 1) * 100)} Magezine Capacity` }
+        description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% chance charged Projectiles explode\n${Math.round(this.effects.magSize * (this.currRank + 1) * 100)} Magezine Capacity` }
     },
     {
         abrev: 'n4',
@@ -2468,7 +2429,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Toxin +${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Status Chance` }
+        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Toxin\n+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
         abrev: 's3',
@@ -2512,7 +2473,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 10,
-        description() { return `On Kill: -100% Shield Recharge Delay for 10 seconds. -25% from Health Orbs` }
+        description() { return `On Kill: -100% Shield Recharge Delay for 10 seconds.\n-25% from Health Orbs` }
     },
     {
         abrev: 'n6',
@@ -2525,7 +2486,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Damage +${Math.round(this.effects.none * (this.currRank + 1) * 100)} Spread` }
+        description() { return `+${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Damage\n+${Math.round(this.effects.none * (this.currRank + 1) * 100)} Spread` }
     },
     {
         abrev: 'n7',
@@ -2602,7 +2563,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate (x2 forBows) ${Math.round(this.effects.baseDamage * (this.currRank + 1) * 1000) / 10}% Damage` }
+        description() { return `+${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate (x2 forBows)\n${Math.round(this.effects.baseDamage * (this.currRank + 1) * 1000) / 10}% Damage` }
     },
     {
         abrev: 'o2',
@@ -2615,7 +2576,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Weapon Recoil ${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate` }
+        description() { return `${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Weapon Recoil\n${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate` }
     },
     {
         abrev: 'o3',
@@ -2641,7 +2602,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `Killing a flying enemy creates a lightning trap from their remains, lasting +${this.effects.none[0] * this.currRank + 2}s +${this.effects.none[1] * (this.currRank + 1)} 'Sequence'` }
+        description() { return `Killing a flying enemy creates a lightning trap from their remains, lasting +${this.effects.none[0] * this.currRank + 2}s\n+${this.effects.none[1] * (this.currRank + 1)} 'Sequence'` }
     },
     {
         abrev: 'o5',
@@ -2654,7 +2615,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.magSize * (this.currRank + 1) * 100)}% Magazine Capacity +${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Heat` }
+        description() { return `+${Math.round(this.effects.magSize * (this.currRank + 1) * 100)}% Magazine Capacity\n+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Heat` }
     },
 ]
 

@@ -51,7 +51,7 @@ const companionMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
-        description() { return `+${5 * (this.currRank + 1)} Loot Radar +${3 * (this.currRank + 1)} Enemy Radar` }
+        description() { return `+${5 * (this.currRank + 1)} Loot Radar\n+${3 * (this.currRank + 1)} Enemy Radar` }
     },
     {
         abrev: 'j1',
@@ -104,7 +104,7 @@ const companionMods = [
         maxRank: 10,
         currRank: 10,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.critChance * (this.currRank + 1) * 100)}% Critical Chance +${Math.round(this.effects.critMult * (this.currRank + 1) * 100)}% Critical Damage` }
+        description() { return `+${Math.round(this.effects.critChance * (this.currRank + 1) * 100)}% Critical Chance\n+${Math.round(this.effects.critMult * (this.currRank + 1) * 100)}% Critical Damage` }
     },
     {
         abrev: 'a7',
@@ -301,7 +301,7 @@ const companionMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Heat +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
+        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Heat\n+${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
         abrev: 'i4',
@@ -314,7 +314,7 @@ const companionMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Cold +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
+        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Cold\n+${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
         abrev: 'c1',
@@ -535,7 +535,7 @@ const companionMods = [
         currRank: 5,
         baseCost: 4,
         set: { setName: 'mecha', setMax: 4, setCurr: 1 },
-        description() { return [`+${Math.round(this.effects.statusLink * (this.currRank + 1) * 100)}% Status-Link +${15 * (this.currRank + 1)}% Status Duration`, `Kubrow Marks an enemy every ${60 - (15 * (this.set.setCurr - 1))}s for ${3 * this.set.setCurr}s. Kill them to apply their Status Effects to all enemies within ${7.5 * this.set.setCurr}m.`] }
+        description() { return [`+${Math.round(this.effects.statusLink * (this.currRank + 1) * 100)}% Status-Link\n+${15 * (this.currRank + 1)}% Status Duration`, `Kubrow Marks an enemy every ${60 - (15 * (this.set.setCurr - 1))}s for ${3 * this.set.setCurr}s. Kill them to apply their Status Effects to all enemies within ${7.5 * this.set.setCurr}m.`] }
     },
     {
         abrev: 'd6',
@@ -575,7 +575,7 @@ const companionMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 0,
-        description() { return `Sentinel will occasionally heal its owner,,restoring ${2 * (this.currRank + 1)}% health over 4s` }
+        description() { return `Sentinel will occasionally heal its owner, restoring ${2 * (this.currRank + 1)}% health over 4s` }
     },
     {
         abrev: 'd9',
@@ -942,7 +942,7 @@ const companionMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Electricity +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
+        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Electricity\n+${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
         abrev: 'i9',
@@ -1172,7 +1172,7 @@ const companionMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 2,
-        description() { return `+${25 * (this.currRank + 1)}% Aim Glide Duration -${12.5 * (this.currRank + 1)}% Gravity` }
+        description() { return `+${25 * (this.currRank + 1)}% Aim Glide Duration\n-${12.5 * (this.currRank + 1)}% Gravity` }
     },
     {
         abrev: 'h7',
@@ -1237,7 +1237,7 @@ const companionMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Toxin +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
+        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Toxin\n+${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
         abrev: 'i1',

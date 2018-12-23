@@ -105,9 +105,11 @@ export class News extends Component {
                 </div>
               </div>
               <div className="article tennoware-news">
-                <h1>Update 1.1.2!</h1>
+                <h1>Update 1.1.3!</h1>
                 <div className="update-content">
-                  <p>Added the missing things from the fortuna 2 update. meaning Baruuk, the strain mod set, the new MOA brackets and all of the new Archgun mods are here!</p>
+                  <p>The build description will now respect the 'Enter' key, new line are now part of the description formatting.</p>
+                  <p>Did a formatting pass on all Mod descriptions, they now have line cuts and are more legible.</p>
+                  <p>couple more bugs got squashed.</p>
                   <p>For the complete update notes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log.</a></p>
                 </div>
               </div>

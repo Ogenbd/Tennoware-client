@@ -52,7 +52,7 @@ const archgunMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Electricity +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
+        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Electricity\n+${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
         abrev: 'a1',
@@ -91,7 +91,7 @@ const archgunMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Toxin +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
+        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Toxin\n+${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
         abrev: 'b9',
@@ -171,7 +171,7 @@ const archgunMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Cold +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
+        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Cold\n+${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
         abrev: 'a6',
@@ -197,7 +197,7 @@ const archgunMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Heat +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
+        description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Heat\n+${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
         abrev: 'c0',
@@ -315,7 +315,7 @@ const archgunMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 10,
-        description() { return `+${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Damage +${this.effects.punchThrough * (this.currRank + 1)} Punch Through` }
+        description() { return `+${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Damage\n+${this.effects.punchThrough * (this.currRank + 1)} Punch Through` }
     },
     {
         abrev: 'b3',

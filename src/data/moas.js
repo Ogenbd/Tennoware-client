@@ -26,7 +26,7 @@ const moas = {
         {
             name: 'TIAN',
             img: require('../assets/itemimages/tian-bracket.png'),
-            desc: 'Penjaga x4, vazarin x1.',
+            desc: 'Penjaga x4, Vazarin x1.',
             polarities: ['penjaga', 'penjaga', 'penjaga', 'penjaga', 'vazarin']
         },
     ],

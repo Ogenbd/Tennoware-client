@@ -1,5 +1,13 @@
 UPDATE LOG
 
+22/12/2018 - v1.1.3.
+
+Fixes:
+Ammo Stock now correctly adds 10% Mag size per rank.
+Fixed a crash in the "My Builds" page that happened under very specific circumstances.
+Build descriptions now respect the 'enter' key, build descriptions now are now formatted correctly when the input includes a new text line. All descriptions saved so far will include this fix.
+Did a formatting pass on all Mod descriptions, they now have line cuts and are more legible.
+
 20/12/2018 - v1.1.2.
 
 New:

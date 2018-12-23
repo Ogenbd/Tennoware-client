@@ -19,6 +19,7 @@
     color: white;
     flex-grow: 1;
     font-size: 0.95em;
+    white-space: pre-wrap;
     width: 85%;
     max-width: 600px;
     margin-bottom: 30px;

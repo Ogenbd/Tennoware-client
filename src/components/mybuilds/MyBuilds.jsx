@@ -81,6 +81,7 @@ export default class MyBuilds extends Component {
     }
 
     getItemImage = async (build) => {
+        console.log(build);
         let itemImage;
         let itemIdx;
         let list = await this.getImageList(build.Type);
@@ -110,7 +111,9 @@ export default class MyBuilds extends Component {
                 return this.props.secondaryweapons();
             case 'archwings':
                 return this.props.archwings();
-            case 'archguns':
+            case 'archguns-land':
+                return this.props.archguns();
+            case 'archguns-space':
                 return this.props.archguns();
             case 'sentinels':
                 return this.props.sentinels();

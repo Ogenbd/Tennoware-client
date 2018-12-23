@@ -146,7 +146,7 @@ const warframeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 2,
-        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 1000) / 10}% Mobility. ${Math.round(this.effects.none[1] * (this.currRank + 1))} Health` }
+        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 1000) / 10}% Mobility.\n${Math.round(this.effects.none[1] * (this.currRank + 1))} Health` }
     },
     {
         abrev: 'a4',
@@ -235,7 +235,7 @@ const warframeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `Reduces damage by ${Math.round(this.effects.airDamage * (this.currRank + 1) * 100)}% when airborne. +${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Evasion` }
+        description() { return `Reduces damage by ${Math.round(this.effects.airDamage * (this.currRank + 1) * 100)}% when airborne.\n+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Evasion` }
     },
     {
         abrev: 'a7',
@@ -251,7 +251,7 @@ const warframeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 2,
-        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Slide Boost when Airborne. ${Math.round(this.effects.none[1] * (this.currRank + 1) * 100)}% Mobilty` }
+        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Slide Boost when Airborne.\n${Math.round(this.effects.none[1] * (this.currRank + 1) * 100)}% Mobilty` }
     },
     {
         abrev: 'a8',
@@ -281,7 +281,7 @@ const warframeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
-        description() { return `Immune to Knockdown for an additional +${this.effects.none * (this.currRank + 1)} after being Knocked Down.,Immune to Stagger for an additional ${this.effects.none * (this.currRank + 1)} after being Staggered.` }
+        description() { return `Immune to Knockdown for an additional +${this.effects.none * (this.currRank + 1)} after being Knocked Down. Immune to Stagger for an additional ${this.effects.none * (this.currRank + 1)} after being Staggered.` }
     },
     {
         abrev: 'b0',
@@ -372,7 +372,7 @@ const warframeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Damage Resistance during Bullet Jump,${Math.round(this.effects.none[1] * (this.currRank + 1) * 1000) / 10} Mobility` }
+        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Damage Resistance during Bullet Jump, ${Math.round(this.effects.none[1] * (this.currRank + 1) * 1000) / 10} Mobility` }
     },
     {
         abrev: 'b4',
@@ -385,7 +385,7 @@ const warframeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.speed * (this.currRank + 1) * 1000) / 10}% Sprint Speed +${Math.round(this.effects.armor * (this.currRank + 1) * 1000) / 10}% Armor` }
+        description() { return `+${Math.round(this.effects.speed * (this.currRank + 1) * 1000) / 10}% Sprint Speed\n+${Math.round(this.effects.armor * (this.currRank + 1) * 1000) / 10}% Armor` }
     },
     {
         abrev: 'b5',
@@ -400,7 +400,7 @@ const warframeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Damage Resistance while Dodging,${Math.round(this.effects.none[1] * (this.currRank + 1) * 1000) / 10}% Mobility` }
+        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Damage Resistance while Dodging, ${Math.round(this.effects.none[1] * (this.currRank + 1) * 1000) / 10}% Mobility` }
     },
     {
         abrev: 'b6',
@@ -562,7 +562,7 @@ const warframeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% to Bullet Jump +${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Aim Glide and Wall Latch +${Math.round(this.effects.none[1] * (this.currRank + 1) * 100)}% Impact on Bullet Jump` }
+        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% to Bullet Jump\n+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Aim Glide and Wall Latch\n+${Math.round(this.effects.none[1] * (this.currRank + 1) * 100)}% Impact on Bullet Jump` }
     },
     {
         abrev: 'c5',
@@ -588,7 +588,7 @@ const warframeMods = [
         maxRank: 10,
         currRank: 10,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.strength * (this.currRank + 1) * 100)}% Ability Strength ${Math.round(this.effects.efficiency * (this.currRank + 1) * 100)}% Ability Efficiency` }
+        description() { return `+${Math.round(this.effects.strength * (this.currRank + 1) * 100)}% Ability Strength\n${Math.round(this.effects.efficiency * (this.currRank + 1) * 100)}% Ability Efficiency` }
     },
     {
         abrev: '0f',
@@ -618,7 +618,7 @@ const warframeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 2,
-        description() { return `${Math.round(this.effects.none[0] * (this.currRank + 1) * 1000) / 10}% Mobility +${Math.round(this.effects.none[1] * (this.currRank + 1) * 100) / 100}% Health` }
+        description() { return `${Math.round(this.effects.none[0] * (this.currRank + 1) * 1000) / 10}% Mobility\n+${Math.round(this.effects.none[1] * (this.currRank + 1) * 100) / 100}% Health` }
     },
     {
         abrev: '0h',
@@ -973,7 +973,7 @@ const warframeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `+${this.effects.none * (this.currRank + 1)}% Aura Strength ${this.effects.none * (this.currRank + 1)}% Aura Effectiveness` }
+        description() { return `+${this.effects.none * (this.currRank + 1)}% Aura Strength\n${this.effects.none * (this.currRank + 1)}% Aura Effectiveness` }
     },
     {
         abrev: 'c7',
@@ -1049,7 +1049,7 @@ const warframeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 10,
-        description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Faster Knockdown Recovery +${Math.round(this.effects.duration * (this.currRank + 1) * 100)}% Ability Duration` }
+        description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Faster Knockdown Recovery\n+${Math.round(this.effects.duration * (this.currRank + 1) * 100)}% Ability Duration` }
     },
     {
         abrev: 'd0',
@@ -1355,7 +1355,7 @@ const warframeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `+${this.effects.none[0] * (this.currRank + 1)}% Slide ${this.effects.none[1] * (this.currRank + 1)}% Friction +${Math.round(this.effects.range * (this.currRank + 1) * 1000) / 10}% Ability Range` }
+        description() { return `+${this.effects.none[0] * (this.currRank + 1)}% Slide\n${this.effects.none[1] * (this.currRank + 1)}% Friction\n+${Math.round(this.effects.range * (this.currRank + 1) * 1000) / 10}% Ability Range` }
     },
     {
         abrev: 'd7',
@@ -1444,7 +1444,7 @@ const warframeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 2,
-        description() { return `Sniper Rifle damage increased.,+${Math.round(this.effects.none * (this.currRank + 1) * 10) / 10}% Damage` }
+        description() { return `Sniper Rifle damage increased. +${Math.round(this.effects.none * (this.currRank + 1) * 10) / 10}% Damage` }
     },
     {
         abrev: 'd9',
@@ -1848,7 +1848,7 @@ const warframeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.energy * (this.currRank + 1) * 1000) / 10}% Energy Max +${this.effects.none * (this.currRank + 1)}% Parkour Velocity` }
+        description() { return `+${Math.round(this.effects.energy * (this.currRank + 1) * 1000) / 10}% Energy Max\n+${this.effects.none * (this.currRank + 1)}% Parkour Velocity` }
     },
     {
         abrev: 'f0',
@@ -2365,7 +2365,7 @@ const warframeMods = [
         maxRank: 10,
         currRank: 10,
         baseCost: 2,
-        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 10) / 10}% to Bullet Jump +${Math.round(this.effects.none[0] * (this.currRank + 1) * 10) / 10}% Aim Glide and Wall Latch +${this.effects.none[1] * (this.currRank + 1)}% Heat on Bullet Jump` }
+        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 10) / 10}% to Bullet Jump\n+${Math.round(this.effects.none[0] * (this.currRank + 1) * 10) / 10}% Aim Glide and Wall Latch\n+${this.effects.none[1] * (this.currRank + 1)}% Heat on Bullet Jump` }
     },
     {
         abrev: 'g8',
@@ -2455,7 +2455,7 @@ const warframeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.efficiency * (this.currRank + 1) * 100)}% Ability Efficiency ${Math.round(this.effects.duration * (this.currRank + 1) * 100)}% Ability Duration` }
+        description() { return `+${Math.round(this.effects.efficiency * (this.currRank + 1) * 100)}% Ability Efficiency\n${Math.round(this.effects.duration * (this.currRank + 1) * 100)}% Ability Duration` }
     },
     {
         abrev: 'h1',
@@ -2496,7 +2496,7 @@ const warframeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
-        description() { return `+${this.effects.none[0] * (this.currRank + 1)}% Chance to Resist Knockdown +${this.effects.none[0] * (this.currRank + 1)}% Shield Recharge` }
+        description() { return `+${this.effects.none[0] * (this.currRank + 1)}% Chance to Resist Knockdown\n+${this.effects.none[0] * (this.currRank + 1)}% Shield Recharge` }
     },
     {
         abrev: 'h4',
@@ -3023,7 +3023,7 @@ const warframeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 10,
-        description() { return `+${this.effects.none * (this.currRank + 1)}% Sprint Speed ${Math.round(this.effects.shields * (this.currRank + 1) * 100)}% Shield Capacity` }
+        description() { return `+${this.effects.none * (this.currRank + 1)}% Sprint Speed\n${Math.round(this.effects.shields * (this.currRank + 1) * 100)}% Shield Capacity` }
     },
     {
         abrev: 'i9',
@@ -3115,7 +3115,7 @@ const warframeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 10,
-        description() { return `+${this.effects.none * (this.currRank + 1)}% Casting Speed ${Math.round(this.effects.efficiency * (this.currRank + 1) * 100)}% Ability Efficiency` }
+        description() { return `+${this.effects.none * (this.currRank + 1)}% Casting Speed\n${Math.round(this.effects.efficiency * (this.currRank + 1) * 100)}% Ability Efficiency` }
     },
     {
         abrev: 'j4',
@@ -3228,7 +3228,7 @@ const warframeMods = [
         maxRank: 10,
         currRank: 10,
         baseCost: 2,
-        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 10) / 10}% to Bullet Jump +${Math.round(this.effects.none[0] * (this.currRank + 1) * 10) / 10}% Aim Glide and Wall Latch +${this.effects.none[1] * (this.currRank + 1)}% Cold on Bullet Jump` }
+        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 10) / 10}% to Bullet Jump\n+${Math.round(this.effects.none[0] * (this.currRank + 1) * 10) / 10}% Aim Glide and Wall Latch\n+${this.effects.none[1] * (this.currRank + 1)}% Cold on Bullet Jump` }
     },
     {
         abrev: 'j9',
@@ -3926,7 +3926,7 @@ const warframeMods = [
         maxRank: 10,
         currRank: 10,
         baseCost: 2,
-        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 10) / 10}% to Bullet Jump +$${Math.round(this.effects.none[0] * (this.currRank + 1) * 10) / 10}% Aim Glide and Wall Latch +${this.effects.none[1] * (this.currRank + 1)}% Electricity on Bullet Jump` }
+        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 10) / 10}% to Bullet Jump\n+$${Math.round(this.effects.none[0] * (this.currRank + 1) * 10) / 10}% Aim Glide and Wall Latch\n+${this.effects.none[1] * (this.currRank + 1)}% Electricity on Bullet Jump` }
     },
     {
         abrev: 'l6',
@@ -3953,7 +3953,7 @@ const warframeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 2,
-        description() { return `Minimap shows loot crates. +${5 * (this.currRank + 1)} Loot Radar` }
+        description() { return `Minimap shows loot crates.\n+${5 * (this.currRank + 1)} Loot Radar` }
     },
     {
         abrev: 'l8',
@@ -3967,7 +3967,7 @@ const warframeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
-        description() { return `+${5 * (this.currRank + 1)}% Slide -${5 * (this.currRank + 1)}% Friction` }
+        description() { return `+${5 * (this.currRank + 1)}% Slide\n-${5 * (this.currRank + 1)}% Friction` }
     },
     {
         abrev: 'l9',
@@ -4215,7 +4215,7 @@ const warframeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 2,
-        description() { return `+${this.effects.none * (this.currRank + 1)}% to Bullet Jump +${this.effects.none * (this.currRank + 1)}% Aim Glide and Wall Latch` }
+        description() { return `+${this.effects.none * (this.currRank + 1)}% to Bullet Jump\n+${this.effects.none * (this.currRank + 1)}% Aim Glide and Wall Latch` }
     },
     {
         abrev: 'm5',
@@ -4292,7 +4292,7 @@ const warframeMods = [
         maxRank: 10,
         currRank: 10,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.duration * (this.currRank + 1) * 100)}% Ability Duration ${Math.round(this.effects.range * (this.currRank + 1) * 100)}% Ability Range` }
+        description() { return `+${Math.round(this.effects.duration * (this.currRank + 1) * 100)}% Ability Duration\n${Math.round(this.effects.range * (this.currRank + 1) * 100)}% Ability Range` }
     },
     {
         abrev: 'm7',
@@ -4506,7 +4506,7 @@ const warframeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.range * (this.currRank + 1) * 100)}% Ability Range ${Math.round(this.effects.strength * (this.currRank + 1) * 100)}% Ability Strength` }
+        description() { return `+${Math.round(this.effects.range * (this.currRank + 1) * 100)}% Ability Range\n${Math.round(this.effects.strength * (this.currRank + 1) * 100)}% Ability Strength` }
     },
     {
         abrev: 'n5',
@@ -5028,7 +5028,7 @@ const warframeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% to Bullet Jump +${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Aim Glide and Wall Latch +${Math.round(this.effects.none[1] * (this.currRank + 1) * 100)}% Puncture on Bullet Jump` }
+        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% to Bullet Jump\n+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Aim Glide and Wall Latch\n+${Math.round(this.effects.none[1] * (this.currRank + 1) * 100)}% Puncture on Bullet Jump` }
     },
     {
         abrev: 'o9',
@@ -5139,7 +5139,7 @@ const warframeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `${Math.round(this.effects.strength * (this.currRank + 1) * 100)}% Ability Strength +${5 * (this.currRank + 1)}% Ability Strength of Squadmates` }
+        description() { return `${Math.round(this.effects.strength * (this.currRank + 1) * 100)}% Ability Strength\n+${5 * (this.currRank + 1)}% Ability Strength of Squadmates` }
     },
     {
         abrev: 'p4',
@@ -5153,7 +5153,7 @@ const warframeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.strength * (this.currRank + 1) * 1000) / 10}% Ability Strength +${5 * (this.currRank + 1)}% Chance to Resist Knockdown` }
+        description() { return `+${Math.round(this.effects.strength * (this.currRank + 1) * 1000) / 10}% Ability Strength\n+${5 * (this.currRank + 1)}% Chance to Resist Knockdown` }
     },
     {
         abrev: 'p5',
@@ -5278,7 +5278,7 @@ const warframeMods = [
         maxRank: 10,
         currRank: 10,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.shields * (this.currRank + 1) * 100)}% Shield Capacity +${Math.round(this.effects.health * (this.currRank + 1) * 100)}% Health` }
+        description() { return `+${Math.round(this.effects.shields * (this.currRank + 1) * 100)}% Shield Capacity\n+${Math.round(this.effects.health * (this.currRank + 1) * 100)}% Health` }
     },
     {
         abrev: 'q1',
@@ -5490,7 +5490,7 @@ const warframeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
-        description() { return `${-5 * (this.currRank + 1)}% Shield Recharge ${-5 * (this.currRank + 1)} Shield Capacity` }
+        description() { return `${-5 * (this.currRank + 1)}% Shield Recharge\n${-5 * (this.currRank + 1)} Shield Capacity` }
     },
     {
         abrev: 'q9',
@@ -5855,7 +5855,7 @@ const warframeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% to Bullet Jump +${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Aim Glide and Wall Latch +${Math.round(this.effects.none[1] * (this.currRank + 1) * 100)}% Slash on Bullet Jump` }
+        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% to Bullet Jump\n+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Aim Glide and Wall Latch\n+${Math.round(this.effects.none[1] * (this.currRank + 1) * 100)}% Slash on Bullet Jump` }
     },
     {
         abrev: 's3',
@@ -5935,7 +5935,7 @@ const warframeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
-        description() { return `+${15 * (this.currRank + 1)}% Chance to deal Electrical Damage when shield struck by melee enemies. +${20 * (this.currRank + 1)} Electricity` }
+        description() { return `+${15 * (this.currRank + 1)}% Chance to deal Electrical Damage when shield struck by melee enemies.\n+${20 * (this.currRank + 1)} Electricity` }
     },
     {
         abrev: 's7',
@@ -6052,7 +6052,7 @@ const warframeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 2,
-        description() { return `+${2.5 * (this.currRank + 1)}% Mobility -${Math.round(7.5 * (this.currRank + 1))} Shield Capacity` }
+        description() { return `+${2.5 * (this.currRank + 1)}% Mobility\n-${Math.round(7.5 * (this.currRank + 1))} Shield Capacity` }
     },
     {
         abrev: 't2',
@@ -6866,7 +6866,7 @@ const warframeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.speed * (this.currRank + 1) * 100)}% Sprint Speed +${2.5 * (this.currRank + 1)}% Casting Speed` }
+        description() { return `+${Math.round(this.effects.speed * (this.currRank + 1) * 100)}% Sprint Speed\n+${2.5 * (this.currRank + 1)}% Casting Speed` }
     },
     {
         abrev: 'v9',
@@ -6935,7 +6935,7 @@ const warframeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `+${3 * (this.currRank + 1)} Enemy Radar +${2 * (this.currRank + 1)}% Aim Glide/Latch Time` }
+        description() { return `+${3 * (this.currRank + 1)} Enemy Radar\n+${2 * (this.currRank + 1)}% Aim Glide/Latch Time` }
     },
     {
         abrev: 'w4',
@@ -7004,7 +7004,7 @@ const warframeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 2,
-        description() { return `+${10 * (this.currRank + 1)}% Holster Speed +${2.5 * (this.currRank + 1)}% Slide -${2.5 * (this.currRank + 1)}% Friction` }
+        description() { return `+${10 * (this.currRank + 1)}% Holster Speed\n+${2.5 * (this.currRank + 1)}% Slide\n-${2.5 * (this.currRank + 1)}% Friction` }
     },
     {
         abrev: 'w8',
@@ -7203,7 +7203,7 @@ const warframeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 2,
-        description() { return `-${2.5 * (this.currRank + 1)}% Mobility +${Math.round(7.5 * (this.currRank + 1))} Shield Capacity` }
+        description() { return `-${2.5 * (this.currRank + 1)}% Mobility\n+${Math.round(7.5 * (this.currRank + 1))} Shield Capacity` }
     },
     {
         abrev: 'x8',
@@ -7546,7 +7546,7 @@ const warframeMods = [
         maxRank: 10,
         currRank: 10,
         baseCost: 2,
-        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 10) / 10}% to Bullet Jump +${Math.round(this.effects.none[0] * (this.currRank + 1) * 10) / 10}% Aim Glide and Wall Latch +${this.effects.none[1] * (this.currRank + 1)}% Toxin on Bullet Jump` }
+        description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 10) / 10}% to Bullet Jump\n+${Math.round(this.effects.none[0] * (this.currRank + 1) * 10) / 10}% Aim Glide and Wall Latch\n+${this.effects.none[1] * (this.currRank + 1)}% Toxin on Bullet Jump` }
     },
     {
         abrev: 'y4',
@@ -7573,7 +7573,7 @@ const warframeMods = [
         maxRank: 10,
         currRank: 10,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.strength * (this.currRank + 1) * 100)}% Ability Strength ${Math.round(this.effects.duration * (this.currRank + 1) * 1000) / 10}% Ability Duration` }
+        description() { return `+${Math.round(this.effects.strength * (this.currRank + 1) * 100)}% Ability Strength\n${Math.round(this.effects.duration * (this.currRank + 1) * 1000) / 10}% Ability Duration` }
     },
     {
         abrev: 'y6',
@@ -7645,7 +7645,7 @@ const warframeMods = [
         currRank: 10,
         baseCost: 6,
         set: { setName: 'umbral', setMax: 3, setCurr: 1 },
-        description() { return [`+${Math.round(this.effects.armor[this.set.setCurr - 1] * (this.currRank + 1) * 1000) / 10}% Armor +${this.currRank + 1}% Tau Resistance`, `Enhance mods in this set.`] }
+        description() { return [`+${Math.round(this.effects.armor[this.set.setCurr - 1] * (this.currRank + 1) * 1000) / 10}% Armor\n+${this.currRank + 1}% Tau Resistance`, `Enhance mods in this set.`] }
     },
     {
         abrev: 'y8',
@@ -7660,7 +7660,7 @@ const warframeMods = [
         currRank: 10,
         baseCost: 6,
         set: { setName: 'umbral', setMax: 3, setCurr: 1 },
-        description() { return [`+${Math.round(this.effects.strength[this.set.setCurr - 1] * (this.currRank + 1) * 100)}% Ability Strength +${this.currRank + 1}% Tau Resistance`, `Enhance mods in this set`] }
+        description() { return [`+${Math.round(this.effects.strength[this.set.setCurr - 1] * (this.currRank + 1) * 100)}% Ability Strength\n+${this.currRank + 1}% Tau Resistance`, `Enhance mods in this set`] }
     },
     {
         abrev: 'y9',
@@ -7675,7 +7675,7 @@ const warframeMods = [
         currRank: 10,
         baseCost: 6,
         set: { setName: 'umbral', setMax: 3, setCurr: 1 },
-        description() { return [`+${Math.round(this.effects.health[this.set.setCurr - 1] * (this.currRank + 1) * 100)}% Health +${this.currRank + 1}% Tau Resistance`, `Enhance mods in this set`] }
+        description() { return [`+${Math.round(this.effects.health[this.set.setCurr - 1] * (this.currRank + 1) * 100)}% Health\n+${this.currRank + 1}% Tau Resistance`, `Enhance mods in this set`] }
     },
     {
         abrev: 'z0',
@@ -7897,7 +7897,7 @@ const warframeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.shields * (this.currRank + 1) * 100)}% Shield Capacity +${Math.round(this.effects.health * (this.currRank + 1) * 100)}% Health` }
+        description() { return `+${Math.round(this.effects.shields * (this.currRank + 1) * 100)}% Shield Capacity\n+${Math.round(this.effects.health * (this.currRank + 1) * 100)}% Health` }
     },
     {
         abrev: 'z8',
@@ -7910,7 +7910,7 @@ const warframeMods = [
         maxRank: 10,
         currRank: 10,
         baseCost: 2,
-        description() { return `On Equip: +${15 * (this.currRank + 1)}% Damage for 3s +${this.effects.none[this.currRank]}% Holster Speed` }
+        description() { return `On Equip: +${15 * (this.currRank + 1)}% Damage for 3s\n+${this.effects.none[this.currRank]}% Holster Speed` }
     },
     {
         abrev: 'z9',
@@ -7925,7 +7925,7 @@ const warframeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 10,
-        description() { return `+${0.25 * (this.currRank + 1)} Heal Rate/s +${12.5 * (this.currRank + 1)}% Shield Recharge Delay` }
+        description() { return `+${0.25 * (this.currRank + 1)} Heal Rate/s\n+${12.5 * (this.currRank + 1)}% Shield Recharge Delay` }
     },
     {
         abrev: '0a',
