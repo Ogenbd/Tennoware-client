@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { CSSTransition } from 'react-transition-group';
+import { Helmet } from "react-helmet";
 import cloneDeep from 'lodash/cloneDeep';
 import '../../general.css';
 import './MyBuilds.css';
@@ -81,7 +82,6 @@ export default class MyBuilds extends Component {
     }
 
     getItemImage = async (build) => {
-        console.log(build);
         let itemImage;
         let itemIdx;
         let list = await this.getImageList(build.Type);
@@ -263,7 +263,6 @@ export default class MyBuilds extends Component {
             unlike: false
         });
         let token = localStorage.getItem('jwt');
-        // fetch(`http://192.168.1.114:50000/unlike`, {
         fetch(`${apiUrl}/unlike`, {
             method: 'post',
             headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` },
@@ -298,7 +297,6 @@ export default class MyBuilds extends Component {
             delete: false,
         });
         let token = localStorage.getItem('jwt');
-        // fetch(`http://192.168.1.114:50000/delete`, {
         fetch(`${apiUrl}/delete`, {
             method: 'post',
             headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` },
@@ -329,6 +327,9 @@ export default class MyBuilds extends Component {
         return (
             <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
                 <div className="screen">
+                    <Helmet>
+                        <title>Tennoware - my builds</title>
+                    </Helmet>
                     <div className="top-title"><p>My Builds</p></div>
                     <div className="my-builds">
                         {this.state.getting

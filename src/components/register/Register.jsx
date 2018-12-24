@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { CSSTransition } from "react-transition-group";
 import ReCAPTCHA from "react-google-recaptcha";
+import { Helmet } from "react-helmet";
 import './Register.css';
 
 import apiUrl from '../../apiUrl';
@@ -113,6 +114,9 @@ export class Register extends Component {
     return (
       <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
         <div className="screen">
+          <Helmet>
+            <title>Tennoware - register</title>
+          </Helmet>
           <div className="top-title"><p>Register</p></div>
           <div className="register">
             <div className="register-window">

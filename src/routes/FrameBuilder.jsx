@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Loadable from 'react-loadable';
+import { Helmet } from "react-helmet";
 
 import apiUrl from '../apiUrl';
 import Loading from '../components/loading/Loading';
@@ -144,6 +145,9 @@ class FrameBuilder extends Component {
     render() {
         return (
             <div className="screen">
+                <Helmet>
+                    <title>Tennoware - {this.props.match.params.id}</title>
+                </Helmet>
                 <div className="top-title"><p>{this.state.title}</p></div>
                 {this.state.error !== null
                     ? <div className={"general-error " + (this.state.error !== null ? 'show-general-error' : 'hide-general-error')}>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { CSSTransition } from "react-transition-group";
+import { Helmet } from "react-helmet";
 import './News.css';
 
 import ContainedLoading from '../loading/ContainedLoading';
@@ -91,6 +92,9 @@ export class News extends Component {
     return (
       <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
         <div className="screen">
+          <Helmet>
+            <title>Tennoware, A Warframe Builds Calculator.</title>
+          </Helmet>
           <div className="top-title"><p>News & Updates</p></div>
           <div className="news-container">
             <div className="page-subtitle">Tennoware Updates</div>
@@ -107,58 +111,50 @@ export class News extends Component {
               <div className="article tennoware-news">
                 <h1>Update 1.1.3!</h1>
                 <div className="update-content">
-                  <p>The build description will now respect the 'Enter' key, new line are now part of the description formatting.</p>
-                  <p>Did a formatting pass on all Mod descriptions, they now have line cuts and are more legible.</p>
-                  <p>couple more bugs got squashed.</p>
+                  <p>The "Mod It" button in the modular part selection pages (Kitguns & MOAs) is now on the main screen for mobile users. You no longer have to open the stats tab to proceed to the modding page.</p>
+                  <p>Added Nintendo Switch Warframe news as a platform option. Now Nintennos wont feel left out.</p>
                   <p>For the complete update notes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log.</a></p>
                 </div>
               </div>
             </div>
             <div className="page-subtitle">Warframe News</div>
-            <div className="wf-news">
-              {this.props.online &&
-                <div className="news-toggle">
-                  <div className={"platform-button " + (this.state.platform === 'pc' ? 'platform-picked' : 'platform-unpicked')} onClick={() => { this.getNews('pc') }}><img className={"platform-icon " + (this.state.platform === 'pc' ? 'platform-picked-icon' : 'platform-unpicked-icon')} src={require('../../assets/general/pc.png')} alt="PC" /></div>
-                  <div className={"platform-button " + (this.state.platform === 'ps4' ? 'platform-picked' : 'platform-unpicked')} onClick={() => { this.getNews('ps4') }}><img className={"platform-icon " + (this.state.platform === 'ps4' ? 'platform-picked-icon' : 'platform-unpicked-icon')} src={require('../../assets/general/ps4.png')} alt="PS4" /></div>
-                  <div className={"platform-button " + (this.state.platform === 'xb1' ? 'platform-picked' : 'platform-unpicked')} onClick={() => { this.getNews('xb1') }}><img className={"platform-icon " + (this.state.platform === 'xb1' ? 'platform-picked-icon' : 'platform-unpicked-icon')} src={require('../../assets/general/xb1.png')} alt="XB1" /></div>
+            {this.props.online
+              ? <React.Fragment>
+                <div className="wf-news">
+                  <div className="news-toggle">
+                    <div className="platform-wrapper">
+                      <div className={"platform-button " + (this.state.platform === 'pc' ? 'platform-picked' : 'platform-unpicked')} onClick={() => { this.getNews('pc') }}><img className={"platform-icon " + (this.state.platform === 'pc' ? 'platform-picked-icon' : 'platform-unpicked-icon')} src={require('../../assets/general/pc.png')} alt="PC" /></div>
+                      <div className={"platform-button " + (this.state.platform === 'ps4' ? 'platform-picked' : 'platform-unpicked')} onClick={() => { this.getNews('ps4') }}><img className={"platform-icon " + (this.state.platform === 'ps4' ? 'platform-picked-icon' : 'platform-unpicked-icon')} src={require('../../assets/general/ps4.png')} alt="PS4" /></div>
+                      <div className={"platform-button " + (this.state.platform === 'xb1' ? 'platform-picked' : 'platform-unpicked')} onClick={() => { this.getNews('xb1') }}><img className={"platform-icon " + (this.state.platform === 'xb1' ? 'platform-picked-icon' : 'platform-unpicked-icon')} src={require('../../assets/general/xb1.png')} alt="XB1" /></div>
+                      <div className={"platform-button " + (this.state.platform === 'swi' ? 'platform-picked' : 'platform-unpicked')} onClick={() => { this.getNews('swi') }}><img className={"platform-icon " + (this.state.platform === 'swi' ? 'platform-picked-icon' : 'platform-unpicked-icon')} src={require('../../assets/general/swi.png')} alt="SWI" /></div>
+                    </div>
+                    <p>News data provided by the <a href="https://github.com/wfcd">Warframe Community Developers</a></p>
+                  </div>
                 </div>
-              }
-            </div>
-            {this.props.online &&
-              <div className="loading-articles-coupler">
-                <div className={"news-loading " + (!this.state.loading ? 'hide-it' : 'show-it')}>
-                  <ContainedLoading />
+                <div className="loading-articles-coupler">
+                  <div className={"news-loading " + (!this.state.loading ? 'hide-it' : 'show-it')}>
+                    <ContainedLoading />
+                  </div>
+                  <div className={"articles-wrapper articles " + (this.state.loading ? 'hide-it' : 'show-it')}>
+                    {this.state.news.map((item, index) => {
+                      return (
+                        <a key={index} href={item.link} className="article">
+                          <img className="article-image" onError={() => { this.handleError(index) }} onLoad={this.imageLoaded} src={item.imageLink} alt="" />
+                          <p className="article-message">{item.translations.en}</p>
+                        </a>
+                      )
+                    })}
+                  </div>
                 </div>
-                <div className={"articles-wrapper articles " + (this.state.loading ? 'hide-it' : 'show-it')}>
-                  {this.state.news.map((item, index) => {
-                    return (
-                      <a key={index} href={item.link} className="article">
-                        <img className="article-image" onError={() => { this.handleError(index) }} onLoad={this.imageLoaded} src={item.imageLink} alt="" />
-                        <p className="article-message">{item.translations.en}</p>
-                      </a>
-                    )
-                  })}
+              </React.Fragment>
+              : <div className="articles">
+                <div className="article tennoware-news">
+                  <h1>Offline Mode</h1>
+                  <div className="update-content">
+                    <p>Must be online to to get current Warframe news.</p>
+                  </div>
                 </div>
               </div>
-              // <div className="news-articles">
-              //   <React.Fragment>
-              //      <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
-              //        {!this.state.loading
-              //         ? <React.Fragment>
-              //           {this.state.news.map((item, index) => {
-              //             return (
-              //               <a key={index} href={item.link} className={"article " + (this.state.news.length === this.state.loaded ? 'article-loaded' : 'article-not-loaded')}>
-              //                 <img className="article-image" onError={() => { this.handleError(index) }} onLoad={this.imageLoaded} src={item.imageLink} alt="" />
-              //                 <p className="article-message">{item.translations.en}</p>
-              //               </a>
-              //             )
-              //           })}
-              //         </React.Fragment>
-              //         : <ContainedLoading />
-              //       }
-              //     </CSSTransition>
-              //   </React.Fragment>
-              // </div>
             }
           </div>
         </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Loadable from 'react-loadable';
+import { Helmet } from "react-helmet";
 
 import apiUrl from '../apiUrl';
 import Loading from '../components/loading/Loading';
@@ -151,7 +152,7 @@ class RangedBuilder extends Component {
     redirectToVoid = () => {
         this.props.history.replace('/void');
     }
-    
+
     confirmError = () => {
         this.props.history.replace(`/${this.props.type}/${this.props.match.params.id}`);
     }
@@ -159,6 +160,9 @@ class RangedBuilder extends Component {
     render() {
         return (
             <div className="screen">
+                <Helmet>
+                    <title>Tennoware - {this.props.match.params.id} - {this.props.locType.toLowerCase()}</title>
+                </Helmet>
                 <div className="top-title"><p>{this.state.title} - {this.props.locType}</p></div>
                 {this.state.error !== null
                     ? <div className={"general-error " + (this.state.error !== null ? 'show-general-error' : 'hide-general-error')}>

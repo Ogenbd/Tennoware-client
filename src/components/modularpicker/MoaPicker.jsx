@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { CSSTransition } from "react-transition-group";
+import { Helmet } from "react-helmet";
 import './ModularPicker.css';
 import '../stats/Stats.css';
 
@@ -63,10 +64,13 @@ export class MoaPicker extends Component {
         return (
             <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
                 <div className="screen">
+                    <Helmet>
+                        <title>Tennoware - MOAs</title>
+                    </Helmet>
                     <div className="top-title"><p>MOAS</p></div>
                     <div className="kitgun-picker">
                         <div className="part-select">
-                        <ModularBuildList type={'moas'} orokin={require('../../assets/general/reactor.png')} items={this.state.items} />
+                            <ModularBuildList type={'moas'} orokin={require('../../assets/general/reactor.png')} items={this.state.items} />
                             <div className="picker-section">
                                 <div className="section-title">Brackets</div>
                                 {this.state.items.first.map((bracket, index) => (
@@ -104,6 +108,7 @@ export class MoaPicker extends Component {
                                 ))}
                             </div>
                         </div>
+                        <div className={"mobile-mod-it " + (moa ? 'mobile-mod-it-active' : 'mobile-mod-it-inactive')} onClick={this.goToModding}>Mod It</div>
                         <div className={"kitgun-pull-tab " + (this.state.open ? 'kitgun-open-pull-tab' : 'kitgun-closed-pull-tab')} onClick={this.toggleStats}>
                             <img src={require('../../assets/general/arrowicong.png')} alt=">>" className={"kitgun-pull-tab-arrow " + (this.state.open ? 'kitgun-point-left' : 'kitgun-point-right')} />
                             <p>STATS</p>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { CSSTransition } from "react-transition-group";
+import { Helmet } from "react-helmet";
 import './ItemPicker.css';
 
 import Loading from '../loading/Loading';
@@ -61,7 +62,10 @@ export class ItemPicker extends Component {
         return (
             <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
                 <div className="screen">
-                    <div className="top-title"><p>{this.state.title}</p></div>
+                    <Helmet>
+                        <title>Tennoware - {this.props.title.toLowerCase()}</title>
+                    </Helmet>
+                    <div className="top-title"><p>{this.props.title}</p></div>
                     {this.state.picked &&
                         <Loading />
                     }

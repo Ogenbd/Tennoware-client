@@ -1,5 +1,13 @@
 UPDATE LOG
 
+24/12/2018 - v1.1.4.
+
+New:
+Added a Nintendo Switch to the news page.
+
+Changes:
+Changed the loction and behavior of the "Mod it" button in the modular part picking pages (kitguns and moas) on devices with smaller screens. You do not have to go open the Stats section to go to the modding page.
+
 22/12/2018 - v1.1.3.
 
 Fixes:
