@@ -109,7 +109,7 @@ export class News extends Component {
                 </div>
               </div>
               <div className="article tennoware-news">
-                <h1>Update 1.1.3!</h1>
+                <h1>Update 1.1.4!</h1>
                 <div className="update-content">
                   <p>The "Mod It" button in the modular part selection pages (Kitguns & MOAs) is now on the main screen for mobile users. You no longer have to open the stats tab to proceed to the modding page.</p>
                   <p>Added Nintendo Switch Warframe news as a platform option. Now Nintennos wont feel left out.</p>

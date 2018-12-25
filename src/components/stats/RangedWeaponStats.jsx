@@ -210,7 +210,7 @@ export class RangedWeaponStats extends Component {
         if (this.state.effects.baseStatus) {
             baseStatus += this.state.effects.baseStatus
         }
-        if (this.props.weapon.modes[this.state.mode].status * statusMult + baseStatus >= 1) {
+        if (this.props.weapon.modes[this.state.mode].status * statusMult + baseStatus / 100 >= 1) {
             status.chance = 100;
             status.chancePerPellet = 100;
         } else {
