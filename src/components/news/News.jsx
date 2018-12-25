@@ -113,6 +113,7 @@ export class News extends Component {
                 <div className="update-content">
                   <p>The "Mod It" button in the modular part selection pages (Kitguns & MOAs) is now on the main screen for mobile users. You no longer have to open the stats tab to proceed to the modding page.</p>
                   <p>Added Nintendo Switch Warframe news as a platform option. Now Nintennos wont feel left out.</p>
+                  <p>Fixed an issue affecting mods that give base status chance.</p>
                   <p>For the complete update notes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log.</a></p>
                 </div>
               </div>
