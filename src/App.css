@@ -154,11 +154,20 @@
     align-items: center;
     justify-content: center;
     bottom: 0vh;
-    height: 80px;
-    width: 100vw;
+    height: 100px;
+    width: 100%;
     background-color: rgb(50, 50, 60);
     z-index: 9200;
     transition: transform 200ms ease-in-out;
+}
+
+.update-popup-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    max-width: 900px;
+    flex-grow: 1;
+    padding: 10px 5px 10px 10px;
 }
 
 .show-update {
@@ -166,7 +175,7 @@
 }
 
 .hide-update {
-    transform: translateY(80px);
+    transform: translateY(105px);
 }
 
 .update-touch {

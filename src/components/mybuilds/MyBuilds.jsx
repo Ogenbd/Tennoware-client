@@ -8,6 +8,11 @@ import './MyBuilds.css';
 import apiUrl from '../../apiUrl';
 import Loading from '../loading/Loading';
 
+const updateTimesImport = () => {
+    let data = import('../../data/updatetimes');
+    return data;
+}
+
 export default class MyBuilds extends Component {
     constructor(props) {
         super(props);
@@ -47,6 +52,7 @@ export default class MyBuilds extends Component {
 
     generateBuildArsenal = async (builds) => {
         let arsenal = [];
+        let updateTimes = await updateTimesImport().then(data => data.default);
         if (builds.length > 0) {
             await Promise.all(builds.map(async (build) => {
                 let arsenalItem = {
@@ -65,6 +71,14 @@ export default class MyBuilds extends Component {
                 }
                 if (build.Type === 'primaryweapons' || build.Type === 'secondaryweapons' || build.Type === 'sentinelweapons' || build.Type === 'meleeweapons' || build.Type === 'kitguns') arsenalItem.hasRivens = true;
                 arsenalItem.img = await this.getItemImage(build);
+                let updateTimeIndex = updateTimes.findIndex(item => {
+                    return item.name === arsenalItem.name
+                });
+                if (updateTimeIndex === -1 || updateTimes[updateTimeIndex].updated < arsenalItem.date) {
+                    arsenalItem.outdated = false;
+                } else {
+                    arsenalItem.outdated = true;
+                }
                 arsenal.push(arsenalItem);
             }));
             arsenal.sort((a, b) => {
@@ -145,81 +159,56 @@ export default class MyBuilds extends Component {
             let riven;
             item.orokin === 1 ? orokinStr = potato : orokinStr = require('../../assets/general/nocatalyst.png');
             item.riven === 1 ? riven = require('../../assets/general/rivenon.png') : riven = require('../../assets/general/rivenoff.png');
-            if (item.source === 'builds') {
-                saved.push(
-                    <div key={index} className="build-container">
-                        <div className="my-item-wrapper">
-                            <img className="my-item-image" src={item.img} alt="" />
-                            <div className="my-item-name"><p>{item.name.toUpperCase()}</p></div>
-                        </div>
-                        <div className="my-build-list-item">
-                            <div className="my-build-item-row name-row">
-                                <div className="my-build-list-name">{item.buildName}</div>
-                                <div className="my-build-list-date">{date}</div>
-                            </div>
-                            <div className="my-build-item-row info-row">
-                                <div className="my-build-list-likes">Likes: {item.likes}</div>
-                                <img className="my-build-list-img" src={orokinStr} alt={"orokin"} />
-                                <div className="my-build-list-forma-block"><img className="my-build-list-img" src={require('../../assets/general/forma.png')} alt={""} /><p>: {item.forma}</p></div>
-                                {item.hasRivens
-                                    ? <img className="my-build-list-img" src={riven} alt={"riven"} />
-                                    : <div className="my-riven-placeholder"></div>
-                                }
-                            </div>
-                        </div>
-                        <div className="my-build-buttons">
-                            <div className="interactable interactable-semi-inactive" onClick={() => { this.navigateToBuild(index) }}><p className="interactable-p">Open</p></div>
-                            <div className="interactable interactable-semi-inactive delete-button" onClick={() => { this.handleDelete(index) }}>
-                                {item.loading
-                                    ? <div className="spinner">
-                                        <div className="bounce1"></div>
-                                        <div className="bounce2"></div>
-                                        <div className="bounce3"></div>
-                                    </div>
-                                    : <p className="interactable-p">Delete</p>
-                                }
-                            </div>
-                        </div>
+            let itemBlock = <div key={index} className="my-build-container">
+                <div className="my-item-wrapper">
+                    <img className="my-item-image" src={item.img} alt="" />
+                    <div className="my-item-name"><p>{item.name.toUpperCase()}</p></div>
+                </div>
+                <div className="my-build-list-item">
+                    <div className="my-build-item-row name-row">
+                        <div className="my-build-list-name">{item.buildName}</div>
+                        {item.outdated
+                            ? <div className="my-build-outdated">Possibly Outdated</div>
+                            : <div className="my-build-list-date">{date}</div>
+                        }
                     </div>
-                )
-            } else {
-                liked.push(
-                    <div key={index} className="build-container">
-                        <div className="my-item-wrapper">
-                            <img className="my-item-image" src={item.img} alt="" />
-                            <div className="my-item-name"><p>{item.name.toUpperCase()}</p></div>
-                        </div>
-                        <div className="my-build-list-item">
-                            <div className="my-build-item-row name-row">
-                                <div className="my-build-list-name">{item.buildName}</div>
-                                <div className="my-build-list-date">{date}</div>
-                            </div>
-                            <div className="my-build-item-row info-row">
-                                <div className="my-build-list-likes">Likes: {item.likes}</div>
-                                <img className="my-build-list-img" src={orokinStr} alt={"orokin"} />
-                                <div className="my-build-list-forma-block"><img className="my-build-list-img" src={require('../../assets/general/forma.png')} alt={""} /><p>: {item.forma}</p></div>
-                                {item.hasRivens
-                                    ? <img className="my-build-list-img" src={riven} alt={"riven"} />
-                                    : <div className="my-riven-placeholder"></div>
-                                }
-                            </div>
-                        </div>
-                        <div className="my-build-buttons">
-                            <div className="interactable interactable-semi-inactive" onClick={() => { this.navigateToBuild(index) }}><p className="interactable-p">Open</p></div>
-                            <div className="interactable interactable-semi-inactive delete-button" onClick={() => { this.handleUnlike(index) }}>
-                                {item.loading
-                                    ? <div className="spinner red-spinner">
-                                        <div className="bounce1"></div>
-                                        <div className="bounce2"></div>
-                                        <div className="bounce3"></div>
-                                    </div>
-                                    : <p className="interactable-p">Unlike</p>
-                                }
-                            </div>
-                        </div>
+                    <div className="my-build-item-row info-row">
+                        <div className="my-build-list-likes">Likes: {item.likes}</div>
+                        <img className="my-build-list-img" src={orokinStr} alt={"orokin"} />
+                        <div className="my-build-list-forma-block"><img className="my-build-list-img" src={require('../../assets/general/forma.png')} alt={""} /><p>: {item.forma}</p></div>
+                        {item.hasRivens
+                            ? <img className="my-build-list-img" src={riven} alt={"riven"} />
+                            : <div className="my-riven-placeholder"></div>
+                        }
                     </div>
-                )
-            }
+                </div>
+                <div className="my-build-buttons">
+                    <div className="interactable interactable-semi-inactive" onClick={() => { this.navigateToBuild(index) }}><p className="interactable-p">Open</p></div>
+                    {item.source === 'builds'
+                        ? <div className="interactable interactable-semi-inactive delete-button" onClick={() => { this.handleDelete(index) }}>
+                            {item.loading
+                                ? <div className="spinner">
+                                    <div className="bounce1"></div>
+                                    <div className="bounce2"></div>
+                                    <div className="bounce3"></div>
+                                </div>
+                                : <p className="interactable-p">Delete</p>
+                            }
+                        </div>
+                        : <div className="interactable interactable-semi-inactive delete-button" onClick={() => { this.handleUnlike(index) }}>
+                            {item.loading
+                                ? <div className="spinner red-spinner">
+                                    <div className="bounce1"></div>
+                                    <div className="bounce2"></div>
+                                    <div className="bounce3"></div>
+                                </div>
+                                : <p className="interactable-p">Unlike</p>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+            item.source === 'builds' ? saved.push(itemBlock) : liked.push(itemBlock)
         });
         return { saved: saved, liked: liked };
     }

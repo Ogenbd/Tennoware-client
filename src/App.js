@@ -117,7 +117,12 @@ class App extends Component {
         <Sidebar user={this.state.user} online={this.state.online} />
         <Login showLogin={this.state.showLogin} hideLogin={this.hideLogin} logUser={this.logUser} user={this.state.user} />
         <div className={"update-popup " + (this.state.update ? 'show-update' : 'hide-update')}>
-          <p className="update-touch">An update is available! <span className="update-button" onClick={this.updateInit}>Get Update</span></p>
+          <div className="update-popup-content">
+            <p className="update-touch">An update is available! Make sure to close all other instances of Tennoware before updating.</p>
+            <div className="interactable interactable-semi-inactive" onClick={this.updateInit}>
+              <p className="interactable-p">Get Update</p>
+            </div>
+          </div>
         </div>
       </div>
     );

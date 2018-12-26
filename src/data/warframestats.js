@@ -78,9 +78,9 @@ const warframeStats = [
     },
     {
         name: 'BARUUK',
-        polarities: ['naramon', 'vazarin', 'vazarin'],
+        polarities: ['vazarin', 'vazarin'],
         aura: 'naramon',
-        exilus: undefined,
+        exilus: 'naramon',
         armor: 150,
         energy: 300,
         baseEnergy: 200,

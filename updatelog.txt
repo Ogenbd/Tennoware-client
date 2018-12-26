@@ -1,5 +1,15 @@
 UPDATE LOG
 
+upcoming - v1.1.5.
+
+New:
+Added a system that checks if a specific item had any major updates (either in Warframe or as a result of an error in Tennoware) since a build was saved/updated last. If there was such an update the build will have a "possibly outdated" tag instead of a date. The "possibly outdated" tag can be removed by the owner of the build if he updates it.
+Users who saved a Baruuk before this update will see this tag on their build.
+
+Fixes:
+Fixed Baruuk's polarities, the naramon polarity is now on his exilus slot.
+Fixed an issue that caused the "My Builds" page to display incorrectly in specific circumstances.
+
 24/12/2018 - v1.1.4.
 
 New:

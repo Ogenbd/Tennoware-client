@@ -5,6 +5,11 @@ import './BuildList.css';
 import apiUrl from '../../apiUrl';
 import ContainedLoading from '../loading/ContainedLoading';
 
+const updateTimesImport = () => {
+    let data = import('../../data/updatetimes');
+    return data;
+}
+
 export class BuildList extends Component {
     constructor(props) {
         super(props);
@@ -68,8 +73,19 @@ export class BuildList extends Component {
             });
     }
 
-    sortBuilds = (builds) => {
+    sortBuilds = async (builds) => {
         if (builds.length > 0) {
+            let updateTimes = await updateTimesImport().then(data => data.default);
+            builds.forEach(buildsItem => {
+                let updateTimeIndex = updateTimes.findIndex(item => {
+                    return item.name === this.props.match.params.id
+                });
+                if (updateTimeIndex === -1 || updateTimes[updateTimeIndex].updated < Date.parse(buildsItem.CreateDT)) {
+                    buildsItem.outdated = false;
+                } else {
+                    buildsItem.outdated = true;
+                }
+            })
             builds.sort((a, b) => {
                 let dateA = Date.parse(a.CreateDT)
                 let dateB = Date.parse(b.CreateDT)
@@ -99,7 +115,10 @@ export class BuildList extends Component {
                 <Link to={`/${this.props.type}/${this.props.match.params.id}/${build.BuildStr}/${build.BuildID}`} key={index} className="build-list-item">
                     <div className="build-item-row name-row">
                         <div className="build-list-name">{build.BuildName}</div>
-                        <div className="build-list-date">{date}</div>
+                        {build.outdated
+                        ? <div className="my-build-outdated">Possibly Outdated</div>
+                        : <div className="build-list-date">{date}</div>
+                        }
                     </div>
                     <div className="build-item-row info-row">
                         <div className="build-list-likes">Likes: {build.Likes}</div>

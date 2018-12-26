@@ -77,3 +77,7 @@
     color: white;
     text-align: justify;
 }
+
+.my-build-outdated {
+    color: red;
+}

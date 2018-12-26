@@ -5,11 +5,13 @@ GoogleAnalytics.initialize("UA-131328202-1");
 
 const withGA = (WrappedComponent, options = {}) => {
   const trackPage = page => {
-    GoogleAnalytics.set({
-      page,
-      ...options,
-    });
-    GoogleAnalytics.pageview(page);
+    if (process.env.NODE_ENV !== 'development') {
+      GoogleAnalytics.set({
+        page,
+        ...options,
+      });
+      GoogleAnalytics.pageview(page);
+    }
   };
 
   // eslint-disable-next-line
