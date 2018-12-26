@@ -109,11 +109,10 @@ export class News extends Component {
                 </div>
               </div>
               <div className="article tennoware-news">
-                <h1>Update 1.1.4!</h1>
+                <h1>Update 1.1.5!</h1>
                 <div className="update-content">
-                  <p>The "Mod It" button in the modular part selection pages (Kitguns & MOAs) is now on the main screen for mobile users. You no longer have to open the stats tab to proceed to the modding page.</p>
-                  <p>Added Nintendo Switch Warframe news as a platform option. Now Nintennos wont feel left out.</p>
-                  <p>Fixed an issue affecting mods that give base status chance.</p>
+                  <p>Added a system that checks if a specific item had any major updates (either in Warframe or as a result of an error in Tennoware) since a build was saved/updated last. If there was such an update the build will have a "possibly outdated" tag instead of a date. The "possibly outdated" tag can be removed by the owner of the build if he updates it. Users who saved a Baruuk before this update will see this tag on their build.</p>
+                  <p>Baruuk now has the correct polarities.</p>
                   <p>For the complete update notes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log.</a></p>
                 </div>
               </div>
