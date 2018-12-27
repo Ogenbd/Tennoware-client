@@ -17,6 +17,7 @@ const archgunLandStats = [
                 name: 'Uncharged',
                 trigger: 'Charge',
                 fireRate: 2,
+                pellets: 12,
                 accuracy: 9.1,
                 punchThrough: 0,
                 critChance: 0.4,
@@ -44,7 +45,7 @@ const archgunLandStats = [
                 name: 'Charged',
                 trigger: 'Charge',
                 chargeRate: 0.5,
-                fireRate: 2,
+                pellets: 12,
                 accuracy: 9.1,
                 punchThrough: 0,
                 critChance: 0.4,
@@ -80,7 +81,7 @@ const archgunLandStats = [
         noise: 'Alarming',
         reload: 1.2,
         magSize: 30,
-        ammoMax: 480,
+        maxAmmo: 480,
         modes: [
             {
                 trigger: 'Burst',

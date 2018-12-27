@@ -2163,18 +2163,19 @@ const primaryWeaponStats = [
         type: ['RIFLE', 'SNIPER', 'PROJECTILE', 'LANKA'],
         zoom: [
             {
-                name: 'No Zoom'
+                name: 'None',
+                effect: 0
             },
             {
-                name: '3x Zoom',
+                name: '3x',
                 effect: 20
             },
             {
-                name: '5x Zoom',
+                name: '5x',
                 effect: 30
             },
             {
-                name: '8x Zoom',
+                name: '8x',
                 effect: 50
             },
         ],
@@ -3586,14 +3587,15 @@ const primaryWeaponStats = [
         type: ['RIFLE', 'SNIPER', 'RUBICO'],
         zoom: [
             {
-                name: 'No Zoom'
+                name: 'None',
+                effect: 0
             },
             {
-                name: '3.5x Zoom',
+                name: '3.5x',
                 effect: 0.35
             },
             {
-                name: '6x Zoom',
+                name: '6x',
                 effect: 0.5
             }
         ],
@@ -3636,14 +3638,15 @@ const primaryWeaponStats = [
         type: ['RIFLE', 'SNIPER', 'RUBICO'],
         zoom: [
             {
-                name: 'No Zoom'
+                name: 'None',
+                effect: 0
             },
             {
-                name: '2.5x Zoom',
+                name: '2.5x',
                 effect: 0.35
             },
             {
-                name: '5x Zoom',
+                name: '5x',
                 effect: 0.5
             }
         ],
@@ -3933,14 +3936,15 @@ const primaryWeaponStats = [
         headshotDamage: true,
         zoom: [
             {
-                name: 'No Zoom'
+                name: 'None',
+                effect: 0
             },
             {
-                name: '2.5x Zoom',
+                name: '2.5x',
                 effect: 30
             },
             {
-                name: '6x Zoom',
+                name: '6x',
                 effect: 50
             }
         ],
@@ -3984,14 +3988,15 @@ const primaryWeaponStats = [
         headshotDamage: true,
         zoom: [
             {
-                name: 'No Zoom'
+                name: 'None',
+                effect: 0
             },
             {
-                name: '2.5x Zoom',
+                name: '2.5x',
                 effect: 30
             },
             {
-                name: '6x Zoom',
+                name: '6x',
                 effect: 50
             }
         ],
@@ -5006,14 +5011,15 @@ const primaryWeaponStats = [
         headshotDamage: true,
         zoom: [
             {
-                name: 'No Zoom'
+                name: 'None',
+                effect: 0
             },
             {
-                name: '3x Zoom',
+                name: '3x',
                 effect: 30
             },
             {
-                name: '4.5x Zoom',
+                name: '4.5x',
                 effect: 50
             }
         ],
@@ -5057,14 +5063,15 @@ const primaryWeaponStats = [
         headshotDamage: true,
         zoom: [
             {
-                name: 'No Zoom'
+                name: 'None',
+                effect: 0
             },
             {
-                name: '3.5x Zoom',
+                name: '3.5x',
                 effect: 40
             },
             {
-                name: '6x Zoom',
+                name: '6x',
                 effect: 60
             }
         ],
@@ -5145,18 +5152,19 @@ const primaryWeaponStats = [
         headshotDamage: true,
         zoom: [
             {
-                name: 'No Zoom'
+                name: 'None',
+                effect: 0
             },
             {
-                name: '2.5x Zoom',
+                name: '2.5x',
                 effect: 35
             },
             {
-                name: '4x Zoom',
+                name: '4x',
                 effect: 55
             },
             {
-                name: '8x Zoom',
+                name: '8x',
                 effect: 70
             }
         ],
@@ -5200,18 +5208,19 @@ const primaryWeaponStats = [
         headshotDamage: true,
         zoom: [
             {
-                name: 'No Zoom'
+                name: 'None',
+                effect: 0
             },
             {
-                name: '2.5x Zoom',
+                name: '2.5x',
                 effect: 35
             },
             {
-                name: '4x Zoom',
+                name: '4x',
                 effect: 55
             },
             {
-                name: '8x Zoom',
+                name: '8x',
                 effect: 70
             }
         ],

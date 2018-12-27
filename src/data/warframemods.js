@@ -1885,11 +1885,11 @@ const warframeMods = [
         type: 'WARFRAME',
         rarity: 'rare',
         polarity: 'madurai',
-        effects: { none: 50 / 6 },
+        effects: { energyConversion: [0.09, 0.18, 0.26, 0.34, 0.42, 0.5] },
         maxRank: 5,
         currRank: 5,
         baseCost: 10,
-        description() { return `Energy orbs grant ${Math.round(this.effects.none * (this.currRank + 1))}% more Ability Strength to your next cast.` }
+        description() { return `Energy orbs grant ${Math.ceil(this.effects.energyConversion[this.currRank] * 100)}% more Ability Strength to your next cast.` }
     },
     {
         abrev: 'f3',

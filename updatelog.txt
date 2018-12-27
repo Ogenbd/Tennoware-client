@@ -1,6 +1,21 @@
 UPDATE LOG
 
-upcoming - v1.1.5.
+upcoming - v1.1.6.
+
+New:
+Added Energy Conversion calculation and toggle that appears when energy conversion is slotted.
+Added a slider and damage calculations for sniper shot combo.
+
+Changes:
+Sniper zoom was changed from a button to a slider. No more clicking/tapping through to the wanted zoom.
+
+Fixes:
+Fixed Ammo Chain mod, it is now uncommon with a naramon polarity.
+Fixed multishot calculation for archguns.
+Seperated Fire rate and Charge rate in archgun calculations, it now uses the same calculations as archguns ingame.
+Fixed land mode Cyngas missing its max ammo stat.
+
+26/12/2018 - v1.1.5.
 
 New:
 Added a system that checks if a specific item had any major updates (either in Warframe or as a result of an error in Tennoware) since a build was saved/updated last. If there was such an update the build will have a "possibly outdated" tag instead of a date. The "possibly outdated" tag can be removed by the owner of the build if he updates it.

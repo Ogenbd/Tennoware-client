@@ -641,7 +641,7 @@ class EightSlotModding extends Component {
                         {this.displayMessage()}
                     </div>
                     {(this.props.type === 'archguns-space' || this.props.type === 'archguns-land' || this.props.riven === 'ranged') &&
-                        <RangedWeaponStats weapon={this.props.item} mods={this.state.chosenMods} viewWidth={this.props.viewWidth} />
+                        <RangedWeaponStats weapon={this.props.item} mods={this.state.chosenMods} viewWidth={this.props.viewWidth} type={this.props.type} />
                     }
                     {(this.props.type === 'archwings') &&
                         <WarframeStats frame={this.props.item} mods={this.state.chosenMods} viewWidth={this.props.viewWidth} />

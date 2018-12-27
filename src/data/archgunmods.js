@@ -6,8 +6,8 @@ const archgunMods = [
         name: 'Ammo Chain',
         img: require('../assets/modimages/unavail.jpg'),
         type: 'ARCH-GUN',
-        rarity: 'common',
-        polarity: 'madurai',
+        rarity: 'uncommon',
+        polarity: 'naramon',
         effects: { maxAmmo: 0.1667 },
         maxRank: 5,
         currRank: 5,
@@ -34,7 +34,7 @@ const archgunMods = [
         type: 'ARCH-GUN',
         rarity: 'rare',
         polarity: 'madurai',
-        effects: { fireRate: 0.0833, reload: 0.1666 },
+        effects: { fireRate: 0.0833, chargeRate: 0.0833, reload: 0.1666 },
         conditional: { headshotKill: true },
         maxRank: 5,
         currRank: 5,
@@ -128,11 +128,11 @@ const archgunMods = [
         type: 'ARCH-GUN',
         rarity: 'rare',
         polarity: 'madurai',
-        effects: { Multishot: 0.1 },
+        effects: { multishot: 0.1 },
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.Multishot * (this.currRank + 1) * 100)}% Multishot` }
+        description() { return `+${Math.round(this.effects.multishot * (this.currRank + 1) * 100)}% Multishot` }
     },
     {
         abrev: 'a4',

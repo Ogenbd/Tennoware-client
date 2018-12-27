@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Slider from 'rc-slider/lib/Slider';
+import 'rc-slider/assets/index.css';
 import './Stats.css';
 
 export class RangedWeaponStats extends Component {
@@ -11,6 +13,7 @@ export class RangedWeaponStats extends Component {
             conditionalEffects: [],
             mode: 0,
             zoom: 0,
+            combo: 1,
             powerStr: 100,
             open: false,
             aiming: false,
@@ -164,16 +167,16 @@ export class RangedWeaponStats extends Component {
         this.setState(prevState => ({ arbitrations: !prevState.arbitrations }))
     }
 
-    toggleZoom = () => {
-        if (this.props.weapon.zoom[this.state.zoom + 1]) {
-            this.setState(prevState => ({
-                zoom: prevState.zoom + 1
-            }));
-        } else {
-            this.setState({
-                zoom: 0
-            });
-        }
+    setZoom = (value) => {
+        this.setState({
+            zoom: value
+        });
+    }
+
+    setCombo = (value) => {
+        this.setState({
+            combo: value
+        });
     }
 
     calcStatus = () => {
@@ -373,7 +376,12 @@ export class RangedWeaponStats extends Component {
         });
         totalElementalDamageArr.forEach(element => {
             finalDamageArray.push(element)
-        })
+        });
+        if (this.props.weapon.zoom) {
+            finalDamageArray.forEach(damageType => {
+                damageType.damage = damageType.damage * (this.state.combo);
+            })
+        }
         if (this.props.weapon.exalted) {
             finalDamageArray.forEach(damageType => {
                 damageType.damage = damageType.damage * (this.state.powerStr / 100);
@@ -465,13 +473,36 @@ export class RangedWeaponStats extends Component {
                 fireRateMult += this.state.effects.fireRate;
             }
         }
-        if (this.state.effects.chargeRate && this.props.weapon.modes[this.state.mode].chargeRate) {
-            fireRateMult += this.state.effects.chargeRate;
-        }
         return {
             display: this.props.weapon.modes[this.state.mode].fireRate * fireRateMult,
             mult: fireRateMult
         };
+    }
+
+    calcChargeRate = () => {
+        if (this.props.type.includes('archguns')) {
+            let chargeRateMult = 1;
+            let conditionalChargeRateMultEffects = this.state.conditionalEffects.filter(conditional => conditional.effects.chargeRate)
+            if (conditionalChargeRateMultEffects.length > 0) {
+                conditionalChargeRateMultEffects.forEach(conditional => {
+                    let conditionsToMeet = Object.keys(conditional.conditions).length;
+                    let conditionsMet = 0;
+                    for (let condition in conditional.conditions) {
+                        if (this.state[`${condition}Toggle`]) conditionsMet++;
+                    }
+                    if (conditionsToMeet === conditionsMet) chargeRateMult += conditional.effects.chargeRate;
+                });
+            }
+            if (this.state.effects.chargeRate) {
+                chargeRateMult += this.state.effects.chargeRate;
+            }
+            return {
+                display: this.props.weapon.modes[this.state.mode].chargeRate / chargeRateMult,
+                mult: chargeRateMult
+            };
+        } else {
+            return null;
+        }
     }
 
     calcReload = () => {
@@ -571,12 +602,33 @@ export class RangedWeaponStats extends Component {
         }
     }
 
+    zoomMarks = () => {
+        let marks = {};
+        this.props.weapon.zoom.forEach((level, index) => {
+            marks[index] = {}
+            marks[index].label = level.name;
+            index === this.state.zoom ? marks[index].style = { color: '#fff9a0', textShadow: '0px 0px 8px rgba(255, 249, 160, 1)' } : marks[index].style = { color: 'white' }
+        });
+        return marks;
+    }
+
+    comboMarks = () => {
+        let marks = {};
+        for (let i = 1; i < 4.5; i = i + 0.5) {
+            marks[i] = {}
+            marks[i].label = `${i}x`;
+            i === this.state.combo ? marks[i].style = { color: '#fff9a0', textShadow: '0px 0px 8px rgba(255, 249, 160, 1)' } : marks[i].style = { color: 'white'}
+        }
+        return marks;
+    }
+
     render() {
         const { weapon } = this.props;
-        const { mode, effects, zoom } = this.state;
+        const { mode, effects, zoom, combo } = this.state;
         const critChance = this.calcCritChance();
         const critMult = this.calcCritMult();
         const fireRate = this.calcFireRate();
+        const chargeRate = this.calcChargeRate();
         const status = this.calcStatus();
         const damage = this.calcDamage();
         const reload = this.calcReload();
@@ -642,12 +694,22 @@ export class RangedWeaponStats extends Component {
                                 </div>
                             }
                             {weapon.modes[mode].chargeRate &&
-                                <div className="stats-item">
-                                    <p className="stat-name">Charge Rate: </p>
-                                    <div className={"stat " + (fireRate.mult > 1 ? "increased-stat" : fireRate.mult === 1 ? "" : "decreased-stat")}>
-                                        <p>{Math.round(weapon.modes[mode].chargeRate / fireRate.mult * 100) / 100}</p>
-                                    </div>
-                                </div>
+                                <React.Fragment>
+                                    {!this.props.type.includes('archguns')
+                                        ? <div className="stats-item">
+                                            <p className="stat-name">Charge Rate: </p>
+                                            <div className={"stat " + (fireRate.mult > 1 ? "increased-stat" : fireRate.mult === 1 ? "" : "decreased-stat")}>
+                                                <p>{Math.round(weapon.modes[mode].chargeRate / fireRate.mult * 100) / 100}</p>
+                                            </div>
+                                        </div>
+                                        : <div className="stats-item">
+                                            <p className="stat-name">Charge Rate: </p>
+                                            <div className={"stat " + (chargeRate.mult > 1 ? "increased-stat" : chargeRate.mult === 1 ? "" : "decreased-stat")}>
+                                                <p>{Math.round(chargeRate.display * 100) / 100}</p>
+                                            </div>
+                                        </div>
+                                    }
+                                </React.Fragment>
                             }
                             {weapon.modes[mode].burst &&
                                 <div className="stats-item">
@@ -750,9 +812,9 @@ export class RangedWeaponStats extends Component {
                                 </div>
                             </div>
                             {/* headshot damage on sniper zoom */}
-                            {weapon.headshotDamage && zoom > 0 &&
+                            {weapon.headshotDamage &&
                                 <div className="stats-item">
-                                    <p className="stat-name">Headshot Damage: </p>
+                                    <p className="stat-name">Headshot Damage Bonus: </p>
                                     <div className="stat"><p>{weapon.zoom[zoom].effect}%</p></div>
                                 </div>
                             }
@@ -766,50 +828,57 @@ export class RangedWeaponStats extends Component {
                         </div>
                         <div className="modes">
                             {weapon.zoom &&
-                                <div className={"zoom activatable " + (this.state.zoom > 0 ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleZoom}>
-                                    <p className="interactable-p">{weapon.zoom[zoom].name}</p>
-                                </div>
+                                <React.Fragment>
+                                    <div className="slider-box">
+                                        <p className="slider-title">Zoom</p>
+                                        <div className="slider-wrapper">
+                                            <Slider min={0} max={weapon.zoom.length - 1} value={zoom} onChange={this.setZoom} dots={true} included={false} handleStyle={{ backgroundColor: '#96dbfa' }} marks={this.zoomMarks()} />
+                                        </div>
+                                    </div>
+                                    <div className="slider-box">
+                                        <p className="slider-title">Combo</p>
+                                        <div className="slider-wrapper">
+                                            <Slider min={1} max={4} value={combo} step={0.5} onChange={this.setCombo} dots={true} handleStyle={{ backgroundColor: '#96dbfa' }} marks={this.comboMarks()} />
+                                        </div>
+                                    </div>
+                                </React.Fragment>
                             }
-                        </div>
-                        <div className="modes">
                             {this.state.aiming &&
-                                <div className={"condition activatable " + (this.state.aimingToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleAiming}>
+                                <div className={"activatable toggle-button-full " + (this.state.aimingToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleAiming}>
                                     <p className="interactable-p">While Aiming</p>
                                 </div>
                             }
                             {this.state.headshot &&
-                                <div className={"activatable condition " + (this.state.headshotToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleHeadshot}>
+                                <div className={"activatable toggle-button-full " + (this.state.headshotToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleHeadshot}>
                                     <p className="interactable-p">After Headshot</p>
                                 </div>
                             }
                             {this.state.kill &&
-                                <div className={"activatable condition " + (this.state.killToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleKill}>
-                                    <p className="interactable-p kill-activatable">After Kill</p>
+                                <div className={"activatable toggle-button-full " + (this.state.killToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleKill}>
+                                    <p className="interactable-p">After Kill</p>
                                 </div>
                             }
                             {this.state.reload &&
-                                <div className={"activatable condition " + (this.state.reloadToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleReload}>
+                                <div className={"activatable toggle-button-full " + (this.state.reloadToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleReload}>
                                     <p className="interactable-p">After Reload</p>
                                 </div>
                             }
                             {this.state.cast &&
-                                <div className={"activatable condition " + (this.state.castToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleCast}>
+                                <div className={"activatable toggle-button-full " + (this.state.castToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleCast}>
                                     <p className="interactable-p">After Cast</p>
                                 </div>
                             }
                             {this.state.first &&
-                                <div className={"activatable condition " + (this.state.firstToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleFirst}>
+                                <div className={"activatable toggle-button-full " + (this.state.firstToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleFirst}>
                                     <p className="interactable-p">First Shot</p>
                                 </div>
                             }
                             {this.state.headshotKill &&
-                                <div className={"activatable condition " + (this.state.headshotKillToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleHeadshotKill}>
+                                <div className={"activatable toggle-button-full " + (this.state.headshotKillToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleHeadshotKill}>
                                     <p className="interactable-p">Headshot Kill</p>
                                 </div>
                             }
-                        </div>
-                        <div className="modes">
-                            <div className={"activatable " + (this.state.arbitrations ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleArbitrations}>
+                            <div className={"activatable toggle-button-full " + (this.state.arbitrations ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleArbitrations}>
                                 <p className="interactable-p">Arbitrations Bonus</p>
                             </div>
                         </div>

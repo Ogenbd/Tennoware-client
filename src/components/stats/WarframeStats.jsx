@@ -11,6 +11,8 @@ export class WarframeStats extends PureComponent {
             arbitrations: false,
             growingPowerSlotted: false,
             growingPowerActive: true,
+            energyConversionSlotted: false,
+            energyConversionActive: true,
             abilityOne: 0,
             abilityTwo: 0,
             abilityThree: 0,
@@ -26,6 +28,7 @@ export class WarframeStats extends PureComponent {
         let effects = {};
         let augments = []
         let growingPowerSlotted = false;
+        let energyConversionSlotted = false;
         if (props.full) {
             if (props.frame.name === 'NIDUS') effects.strength = 0.15;
             if (state.arbitrations) {
@@ -37,10 +40,10 @@ export class WarframeStats extends PureComponent {
             }
             if (props.chosenAuraMod.name === 'Growing Power') {
                 growingPowerSlotted = true;
-                if (effects.strength && state.growingPowerActive) {
-                    effects.strength += props.chosenAuraMod.effects.growingPower * (props.chosenAuraMod.currRank + 1);
-                } else if (!effects.strength && state.growingPowerActive) {
-                    effects.strength = props.chosenAuraMod.effects.growingPower * (props.chosenAuraMod.currRank + 1);
+                if (state.growingPowerActive) {
+                    effects.strength
+                        ? effects.strength += props.chosenAuraMod.effects.growingPower * (props.chosenAuraMod.currRank + 1)
+                        : effects.strength = props.chosenAuraMod.effects.growingPower * (props.chosenAuraMod.currRank + 1)
                 }
             }
             WarframeStats.groupEffects(props.chosenAuraMod, effects);
@@ -48,12 +51,24 @@ export class WarframeStats extends PureComponent {
             if (props.chosenExilusMod.name && props.chosenExilusMod.augment) augments[props.chosenExilusMod.augment.ability] = cloneDeep(props.chosenExilusMod);
         }
         props.mods.forEach(mod => {
-            if (mod.augment) augments[mod.augment.ability] = cloneDeep(mod)
-            WarframeStats.groupEffects(mod, effects);
+            if (mod.name) {
+                if (mod.effects.energyConversion) {
+                    energyConversionSlotted = true;
+                    if (state.energyConversionActive) {
+                        effects.strength
+                            ? effects.strength += mod.effects.energyConversion[mod.currRank]
+                            : effects.strength = mod.effects.energyConversion[mod.currRank]
+                    }
+                } else {
+                    if (mod.augment) augments[mod.augment.ability] = cloneDeep(mod)
+                    WarframeStats.groupEffects(mod, effects);
+                }
+            }
         });
         return {
             effects: effects,
             growingPowerSlotted: growingPowerSlotted,
+            energyConversionSlotted: energyConversionSlotted,
             augmentOne: augments[0],
             augmentTwo: augments[1],
             augmentThree: augments[2],
@@ -62,21 +77,19 @@ export class WarframeStats extends PureComponent {
     }
 
     static groupEffects(mod, effects) {
-        if (mod.name) {
-            for (let effect in mod.effects) {
-                if (effect !== 'none') {
-                    if (typeof mod.effects[effect] === 'object') {
-                        if (effects[effect]) {
-                            effects[effect] = effects[effect] + mod.effects[effect][mod.set.setCurr - 1] * (mod.currRank + 1);
-                        } else {
-                            effects[effect] = mod.effects[effect][mod.set.setCurr - 1] * (mod.currRank + 1);
-                        }
-                    }
-                    else if (effects[effect]) {
-                        effects[effect] = effects[effect] + mod.effects[effect] * (mod.currRank + 1);
+        for (let effect in mod.effects) {
+            if (effect !== 'none') {
+                if (typeof mod.effects[effect] === 'object') {
+                    if (effects[effect]) {
+                        effects[effect] = effects[effect] + mod.effects[effect][mod.set.setCurr - 1] * (mod.currRank + 1);
                     } else {
-                        effects[effect] = mod.effects[effect] * (mod.currRank + 1);
+                        effects[effect] = mod.effects[effect][mod.set.setCurr - 1] * (mod.currRank + 1);
                     }
+                }
+                else if (effects[effect]) {
+                    effects[effect] = effects[effect] + mod.effects[effect] * (mod.currRank + 1);
+                } else {
+                    effects[effect] = mod.effects[effect] * (mod.currRank + 1);
                 }
             }
         }
@@ -462,10 +475,14 @@ export class WarframeStats extends PureComponent {
         this.setState(prevState => ({ open: !prevState.open }));
     }
 
+    toggleEnergyConversion = () => {
+        this.setState(prevState => ({ energyConversionActive: !prevState.energyConversionActive }));
+    }
+
     toggleArbitrations = () => {
         this.setState(prevState => ({ arbitrations: !prevState.arbitrations }));
     }
-    
+
     render() {
         let { frame } = this.props;
         let { effects, open, abilityOne, abilityTwo, abilityThree, abilityFour } = this.state;
@@ -548,13 +565,20 @@ export class WarframeStats extends PureComponent {
                                     : <div className="warframe-stat"><p>100%</p></div>
                                 }
                             </div>
-                            {this.state.growingPowerSlotted &&
-                                <div className="modes">
-                                    <div className={"activatable " + (this.state.growingPowerActive ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleGrowingPower}>
+                            <div className="modes">
+                                {this.state.growingPowerSlotted &&
+                                    <div className={"activatable toggle-button-full " + (this.state.growingPowerActive ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleGrowingPower}>
                                         <p className="interactable-p">Growing Power</p>
                                     </div>
-                                </div>
-                            }
+                                    // </div>
+                                }
+                                {this.state.energyConversionSlotted &&
+                                    // <div className="modes">
+                                    <div className={"activatable toggle-button-full " + (this.state.energyConversionActive ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleEnergyConversion}>
+                                        <p className="interactable-p">Energy Conversion</p>
+                                    </div>
+                                }
+                            </div>
                             <div className="frame-ability">
                                 <div className="ability-title">
                                     <p>{frame.abilities[0].name}</p>
@@ -621,7 +645,7 @@ export class WarframeStats extends PureComponent {
                             </div>
                             {this.props.full &&
                                 <div className="modes">
-                                    <div className={"activatable " + (this.state.arbitrations ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleArbitrations}>
+                                    <div className={"activatable toggle-button-full " + (this.state.arbitrations ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleArbitrations}>
                                         <p className="interactable-p">Arbitration Bonus</p>
                                     </div>
                                 </div>

@@ -109,10 +109,10 @@ export class News extends Component {
                 </div>
               </div>
               <div className="article tennoware-news">
-                <h1>Update 1.1.5!</h1>
+                <h1>Update 1.1.6!</h1>
                 <div className="update-content">
-                  <p>Added a system that checks if a specific item had any major updates (either in Warframe or as a result of an error in Tennoware) since a build was saved/updated last. If there was such an update the build will have a "possibly outdated" tag instead of a date. The "possibly outdated" tag can be removed by the owner of the build if he updates it. Users who saved a Baruuk before this update will see this tag on their build.</p>
-                  <p>Baruuk now has the correct polarities.</p>
+                  <p>Added Energy Conversion toggle and calculations.</p>
+                  <p>Snipers got some love this update. Added a shot combo slider and calculations along with a change to the zoom functionality.</p>
                   <p>For the complete update notes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log.</a></p>
                 </div>
               </div>
