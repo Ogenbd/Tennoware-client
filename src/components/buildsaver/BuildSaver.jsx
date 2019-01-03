@@ -31,16 +31,18 @@ export class BuildSaver extends Component {
     }
 
     showBuildSaver = () => {
-        document.body.classList.add('noscroll');
-        let error = null;
-        if (this.props.match.params.build) {
-            let buildState = this.props.getBuildStr();
-            if (buildState.buildStr === this.props.match.params.pre && !this.props.metaInfo.Owner) error = 'This exact build was already saved by another community member. Consider liking this build, it will be added to your "My Builds" list.';
+        if (this.props.slottedAmount > 0) {
+            document.body.classList.add('noscroll');
+            let error = null;
+            if (this.props.match.params.build) {
+                let buildState = this.props.getBuildStr();
+                if (buildState.buildStr === this.props.match.params.pre && !this.props.metaInfo.Owner) error = 'This exact build was already saved by another community member. Consider liking this build, it will be added to your "My Builds" list.';
+            }
+            this.setState({
+                showBuildSaver: true,
+                error: error,
+            });
         }
-        this.setState({
-            showBuildSaver: true,
-            error: error,
-        });
     }
 
     hideBuildSaver = () => {
@@ -191,7 +193,7 @@ export class BuildSaver extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="interactable interactable-semi-inactive" onClick={this.showBuildSaver}>
+                <div className={this.props.slottedAmount > 0 ? 'interactable interactable-semi-inactive' : 'uninteractable interactable-inactive'} onClick={this.showBuildSaver}>
                     {this.props.metaInfo.Owner
                         ? <p className="interactable-p">Update</p>
                         : <p className="interactable-p">Save</p>

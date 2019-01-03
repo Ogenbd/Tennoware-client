@@ -17,7 +17,6 @@ export class ModStateHandler extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    // if (nextProps.mod.name !== prevState.mod.name || (nextProps.mod.name === 'Riven Mod' && nextProps.mod.currRank === prevState.mod.currRank && nextProps.mod.effects !== prevState.mod.effects)) {
     if (nextProps.mod.name !== prevState.mod.name || ((nextProps.mod.set || prevState.mod.set) && nextProps.mod.set.setCurr !== prevState.mod.set.setCurr) || (nextProps.mod.name === 'Riven Mod' && nextProps.mod.currRank === prevState.mod.currRank)) {
       return { mod: nextProps.mod };
     } else {
@@ -30,7 +29,6 @@ export class ModStateHandler extends Component {
   }
 
   handleClick = (e) => {
-    // e.stopPropagation();
     if (this.props.viewWidth < 1203) {
       if (this.props.forSwap !== null) {
         this.props.doSwap(this.props.slot);
@@ -182,7 +180,6 @@ export class ModStateHandler extends Component {
           {this.props.slotPolarity && !this.props.mod.name &&
             <img className="slot-polarity" src={require(`../../assets/dynamic/polarities/${this.props.slotPolarity}black.png`)} alt='' />
           }
-          {/* <p className="tapper">Tap To Mod</p> */}
         </div>
         {this.props.mod.name &&
           <div draggable className="mod-card-wrapper" style={this.state.handlerActive || this.props.viewWidth < 1203 ? this.state.cardStyle : {}}>

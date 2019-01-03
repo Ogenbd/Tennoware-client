@@ -359,7 +359,7 @@ export class RangedRivenEditor extends Component {
     let displayOptions = this.determineOptionSet();
     return (
       <React.Fragment>
-        <div className="interactable interactable-inactive riven" onClick={this.showRivenEditor}>
+        <div className="interactable interactable-inactive riven interactable-aug" onClick={this.showRivenEditor}>
           <div className="riven-placeholder"></div>
         </div>
         <div className={"popup " + (this.state.showRivenEditor ? "popup-active" : "popup-inactive")}>

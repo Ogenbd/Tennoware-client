@@ -9,6 +9,14 @@
     overflow-x: hidden;
 }
 
+.show-button {
+    display: block;
+}
+
+.hide-button {
+    display: none;
+}
+
 .build-saver-window {
     position: fixed;
     flex-shrink: 0;

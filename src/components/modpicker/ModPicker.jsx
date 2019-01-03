@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { CSSTransition } from "react-transition-group";
 import './ModPicker.css';
 
 import SimpleModCardGenerator from '../modcardgenerator/SimpleModCardGenerator.jsx';
@@ -133,84 +134,179 @@ export class ModPicker extends Component {
         } else if (this.state.sort === 'rank') {
             filtered = this.sortByRank(filtered);
         }
-        this.setState(prevState => ({
-            conclave: !prevState.conclave,
-            mods: filtered,
-            filterToggle: false
-        }));
+        if (this.props.viewWidth < 1203) {
+            this.setState(prevState => ({
+                conclave: !prevState.conclave,
+                mods: filtered,
+                filterToggle: false
+            }));
+        } else {
+            this.setState(prevState => ({
+                conclave: !prevState.conclave,
+                mods: filtered,
+            }));
+        }
     }
 
     toggleAura = () => {
-        this.setState(prevState => ({
-            aura: !prevState.aura,
-            exilus: false,
-            filterToggle: false
-        }));
+        if (this.props.viewWidth < 1203) {
+            this.setState(prevState => ({
+                aura: !prevState.aura,
+                exilus: false,
+                filterToggle: false
+            }));
+        } else {
+            this.setState(prevState => ({
+                aura: !prevState.aura,
+                exilus: false,
+            }));
+        }
     }
 
     toggleExilus = () => {
-        this.setState(prevState => ({
-            exilus: !prevState.exilus,
-            aura: false,
-            filterToggle: false
-        }));
+        if (this.props.viewWidth < 1203) {
+            this.setState(prevState => ({
+                exilus: !prevState.exilus,
+                aura: false,
+                filterToggle: false
+            }));
+        } else {
+            this.setState(prevState => ({
+                exilus: !prevState.exilus,
+                aura: false,
+            }));
+        }
     }
 
     filterPolarity = (polarity) => {
-        if (polarity === this.state.polarity) {
-            this.setState({
-                polarity: null,
-                filterToggle: false
-            });
+        if (this.props.viewWidth < 1203) {
+            if (polarity === this.state.polarity) {
+                this.setState({
+                    polarity: null,
+                    filterToggle: false
+                });
+            } else {
+                this.setState({
+                    polarity: polarity,
+                    filterToggle: false
+                });
+            }
         } else {
-            this.setState({
-                polarity: polarity,
-                filterToggle: false
-            });
+            if (polarity === this.state.polarity) {
+                this.setState({
+                    polarity: null,
+                });
+            } else {
+                this.setState({
+                    polarity: polarity,
+                });
+            }
         }
     }
 
     toggleFilter = () => {
-        this.setState(prevState => ({
-            filterToggle: !prevState.filterToggle,
-            sortToggle: false
-        }));
+        if (this.props.viewWidth < 1203) {
+            this.setState(prevState => ({
+                filterToggle: !prevState.filterToggle,
+                sortToggle: false
+            }));
+        }
     }
 
+    showFilter = () => {
+        if (this.props.viewWidth > 1202) {
+            this.setState({
+                filterToggle: true
+            });
+        }
+    }
+
+    hideFilter = () => {
+        if (this.props.viewWidth > 1202) {
+            this.setState({
+                filterToggle: false
+            });
+        }
+    }
+    
     toggleSort = () => {
         this.setState(prevState => ({
             sortToggle: !prevState.sortToggle,
             filterToggle: false
         }));
     }
+    
+    showSort = () => {
+        if (this.props.viewWidth > 1202) {
+            this.setState({
+                sortToggle: true
+            });
+        }
+    }
+
+    hideSort = () => {
+        if (this.props.viewWidth > 1202) {
+            this.setState({
+                sortToggle: false
+            });
+        }
+    }
 
     clearFilter = () => {
-        if (this.state.conclave) {
-            let mods = this.props.mods.filter(mod => {
-                return !mod.conclaveOnly;
-            });
-            if (this.state.sort === 'name') {
-                mods = this.sortByName(mods);
-            } else if (this.state.sort === 'drain') {
-                mods = this.sortByDrain(mods);
-            } else if (this.state.sort === 'rank') {
-                mods = this.sortByRank(mods);
+        if (this.props.viewWidth < 1203) {
+            if (this.state.conclave) {
+                let mods = this.props.mods.filter(mod => {
+                    return !mod.conclaveOnly;
+                });
+                if (this.state.sort === 'name') {
+                    mods = this.sortByName(mods);
+                } else if (this.state.sort === 'drain') {
+                    mods = this.sortByDrain(mods);
+                } else if (this.state.sort === 'rank') {
+                    mods = this.sortByRank(mods);
+                }
+                this.setState({
+                    mods: mods,
+                    aura: false,
+                    exilus: false,
+                    conclave: false,
+                    polarity: null,
+                    filterToggle: false
+                });
+            } else {
+                this.setState({
+                    aura: false,
+                    exilus: false,
+                    polarity: null,
+                    filterToggle: false
+                });
             }
-            this.setState({
-                mods: mods,
-                aura: false,
-                exilus: false,
-                conclave: false,
-                polarity: null,
-                filterToggle: false
-            });
         } else {
-            this.setState({
-                aura: false,
-                exilus: false,
-                polarity: null,
-                filterToggle: false
-            });
+            if (this.state.conclave) {
+                let mods = this.props.mods.filter(mod => {
+                    return !mod.conclaveOnly;
+                });
+                if (this.state.sort === 'name') {
+                    mods = this.sortByName(mods);
+                } else if (this.state.sort === 'drain') {
+                    mods = this.sortByDrain(mods);
+                } else if (this.state.sort === 'rank') {
+                    mods = this.sortByRank(mods);
+                }
+                this.setState({
+                    mods: mods,
+                    aura: false,
+                    exilus: false,
+                    conclave: false,
+                    polarity: null,
+                });
+            } else {
+                this.setState({
+                    aura: false,
+                    exilus: false,
+                    polarity: null,
+                });
+            }
         }
     }
 
@@ -286,7 +382,7 @@ export class ModPicker extends Component {
     render() {
         return (
             <div className={this.props.viewWidth < 1203 ? "popup " + (this.props.active ? "popup-active" : "popup-inactive") : 'mod-picker'}>
-                <div className={this.props.viewWidth < 1203 ? "mod-list-topbar popup-topbar " + (this.props.active ? "popup-active" : "popup-inactive") : "mod-list-topbar"}>
+                <div className={this.props.viewWidth < 1203 ? "popup-topbar " + (this.props.active ? "popup-active mod-list-topbar" : "popup-inactive mod-list-topbar") : "mod-list-topbar"}>
                     {this.props.viewWidth < 1203 &&
                         <div className="popup-x mod-list-x" onClick={this.closeModPicker}>
                             <div className="popup-x-bar one-bar"></div>
@@ -294,14 +390,56 @@ export class ModPicker extends Component {
                         </div>
                     }
                     <div className="mod-options-wrapper">
-                        <div className={"mod-dropdown-trigger " + (this.state.conclave || this.state.aura || this.state.exilus || this.state.polarity || this.state.filterToggle ? 'active-option' : 'inactive-option')} onClick={this.toggleFilter}>Filter</div>
-                        <div className={"mod-dropdown-trigger " + (this.state.sortToggle ? 'active-option' : 'inactive-option')} onClick={this.toggleSort}>Sort</div>
+                        <div className="mod-dropdown-trigger" onMouseLeave={this.hideFilter}>
+                            <p className={"mod-dropdown-trigger-fill " + (this.state.conclave || this.state.aura || this.state.exilus || this.state.polarity || this.state.filterToggle ? 'active-option' : 'inactive-option')} onMouseEnter={this.showFilter} onClick={this.toggleFilter}>Filter</p>
+                            <div className={"dropdown-container filter-block " + (this.props.type === 'warframes' ? 'filter-active-warframes' : '')}>
+                                <CSSTransition
+                                    in={this.state.filterToggle}
+                                    classNames="slide"
+                                    timeout={300}
+                                >
+                                    <div className="dropdown-block">
+                                        <div className="dropdown-option" onClick={this.clearFilter}>Clear All</div>
+                                        {this.props.type === 'warframes' && this.props.viewWidth > 1202 &&
+                                            <React.Fragment>
+                                                <div className={"dropdown-option " + (this.state.aura ? 'active-option' : 'inactive-option')} onClick={this.toggleAura}>Aura</div>
+                                                <div className={"dropdown-option " + (this.state.exilus ? 'active-option' : 'inactive-option')} onClick={this.toggleExilus}>Exilus</div>
+                                            </React.Fragment>
+                                        }
+                                        <div className={"dropdown-option " + (this.state.polarity === 'madurai' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('madurai') }}>{this.state.polarity === 'madurai' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/madurairare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/maduraiprime.png')} alt="" />}Madurai</div>
+                                        <div className={"dropdown-option " + (this.state.polarity === 'naramon' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('naramon') }}>{this.state.polarity === 'naramon' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/naramonrare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/naramonprime.png')} alt="" />}Naramon</div>
+                                        <div className={"dropdown-option " + (this.state.polarity === 'vazarin' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('vazarin') }}>{this.state.polarity === 'vazarin' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/vazarinrare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/vazarinprime.png')} alt="" />}Vazarin</div>
+                                        <div className={"dropdown-option " + (this.state.polarity === 'zenurik' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('zenurik') }}>{this.state.polarity === 'zenurik' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/zenurikrare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/zenurikprime.png')} alt="" />}Zenurik</div>
+                                        <div className={"dropdown-option " + (this.state.polarity === 'umbra' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('umbra') }}>{this.state.polarity === 'umbra' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/umbrarare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/umbraprime.png')} alt="" />}Umbra</div>
+                                        <div className={"dropdown-option " + (this.state.polarity === 'penjaga' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('penjaga') }}>{this.state.polarity === 'penjaga' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/penjagarare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/penjagaprime.png')} alt="" />}Penjaga</div>
+                                        <div className={"dropdown-option " + (this.state.polarity === 'unairu' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('unairu') }}>{this.state.polarity === 'unairu' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/unairurare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/unairuprime.png')} alt="" />}Unairu</div>
+                                        <div className={"dropdown-option " + (this.state.conclave ? 'active-option' : 'inactive-option')} onClick={this.toggleConclave}>Conclave</div>
+                                    </div>
+                                </CSSTransition>
+                            </div>
+                        </div>
+                        <div className="mod-dropdown-trigger" onMouseLeave={this.hideSort} onClick={this.toggleSort}>
+                            <p className={"mod-dropdown-trigger-fill " + (this.state.sortToggle ? 'active-option' : 'inactive-option')} onMouseEnter={this.showSort}>Sort</p>
+                            <div className="dropdown-container sort-container sort-block">
+                                <CSSTransition
+                                    in={this.state.sortToggle}
+                                    classNames="slide"
+                                    timeout={300}
+                                >
+                                    <div className={"dropdown-block " + (this.state.sortToggle ? 'sort-active' : 'sort-inactive')}>
+                                        <div className={"dropdown-option " + (this.state.sort === 'name' ? 'active-option' : 'inactive-option')} onClick={this.sortName}>Name</div>
+                                        <div className={"dropdown-option " + (this.state.sort === 'drain' ? 'active-option' : 'inactive-option')} onClick={this.sortDrain}>Drain</div>
+                                        <div className={"dropdown-option " + (this.state.sort === 'rank' ? 'active-option' : 'inactive-option')} onClick={this.sortRank}>Rank</div>
+                                    </div>
+                                </CSSTransition>
+                            </div>
+                        </div>
                     </div>
                     <div className="search-wrapper mod-list-search-wrapper">
                         <input className="search" type="text" placeholder="Search..." value={this.state.search} onChange={this.handleChange} onKeyUp={this.blurInput} />
                     </div>
                 </div>
-                <div className={"dropdown-block filter-block " + (this.state.filterToggle ? this.props.type === 'warframes' && this.props.viewWidth > 1202 ? 'filter-active-warframes' : 'filter-active' : 'filter-inactive')}>
+                {/* <div className={"dropdown-block filter-block " + (this.state.filterToggle ? this.props.type === 'warframes' && this.props.viewWidth > 1202 ? 'filter-active-warframes' : 'filter-active' : 'filter-inactive')}>
                     <div className="dropdown-option" onClick={this.clearFilter}>Clear All</div>
                     {this.props.type === 'warframes' && this.props.viewWidth > 1202 &&
                         <React.Fragment>
@@ -322,7 +460,7 @@ export class ModPicker extends Component {
                     <div className={"dropdown-option " + (this.state.sort === 'name' ? 'active-option' : 'inactive-option')} onClick={this.sortName}>Name</div>
                     <div className={"dropdown-option " + (this.state.sort === 'drain' ? 'active-option' : 'inactive-option')} onClick={this.sortDrain}>Drain</div>
                     <div className={"dropdown-option " + (this.state.sort === 'rank' ? 'active-option' : 'inactive-option')} onClick={this.sortRank}>Rank</div>
-                </div>
+                </div> */}
                 <div className="popup-content mod-list">{this.generateModList()}</div>
             </div>
         )

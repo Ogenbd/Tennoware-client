@@ -5,10 +5,7 @@ import './BuildList.css';
 import apiUrl from '../../apiUrl';
 import ContainedLoading from '../loading/ContainedLoading';
 
-const updateTimesImport = () => {
-    let data = import('../../data/updatetimes');
-    return data;
-}
+const updateTimesImport = () => import('../../data/updatetimes');
 
 export class BuildList extends Component {
     constructor(props) {

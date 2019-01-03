@@ -12,6 +12,12 @@
     z-index: 2;
 }
 
+.ranged-stats-inner-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .top-bar-margin {
     display: flex;
     flex-direction: column;
@@ -21,6 +27,8 @@
 
 .modes {
     display: flex;
+    justify-content: center;
+    max-width: 206px;
     flex-wrap: wrap;
     flex-shrink: 0;
     justify-content: center;
@@ -172,7 +180,7 @@
 }
 
 .str-input {
-    width: 25px;
+    width: 35px;
     padding-bottom: 2px;
     text-align: center;
 }
@@ -246,6 +254,13 @@
     display: flex;
     align-items: center;
     transition: all 200ms;
+}
+
+.stats-note {
+    color: white;
+    width: 200px;
+    padding: 0 5px;
+    box-sizing: border-box;
 }
 
 @media screen and (min-width: 537px) {

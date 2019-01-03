@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import './Login.css';
-import '../../general.css';
 
 import apiUrl from '../../apiUrl';
 
@@ -43,11 +42,9 @@ export class Login extends Component {
     }
 
     failGoogle = (response) => {
-        // console.log(response);
     }
 
     failFacebook = (response) => {
-        // console.log(response);
     }
 
     localLogin = () => {

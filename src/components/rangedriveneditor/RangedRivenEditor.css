@@ -1,18 +1,10 @@
-.soft-input-wrapper {
-    display: none;
-}
-
 .riven-editor {
-    /* min-height: 489px; */
-    /* height: 489px; */
     flex-direction: column;
     flex-shrink: 0;
     justify-content: center;
     align-items: center;
     padding: 10px 0;
     box-sizing: border-box;
-    /* overflow-y: scroll; */
-    /* overflow-x: hidden; */
 }
 
 .riven-polarity {
@@ -24,8 +16,6 @@
 }
 
 .riven-window {
-    /* min-height: 446px; */
-    /* height: 446px; */
     padding: 7px;
     background-color: rgba(0, 0, 0, 0.8);
     border: 1px solid rgba(255, 249, 160, 0.73);
@@ -42,7 +32,6 @@
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
-    /* flex-grow: 1; */
     flex-shrink: 0;
     height: 250px;
 }
@@ -53,10 +42,6 @@
 
 .hexa-second {
     margin-left: 30px;
-}
-
-.riven-hexagon {
-    /* -webkit-tap-highlight-color: transparent; */
 }
 
 .polarity-large {
@@ -195,23 +180,11 @@
 @media screen and (max-width: 1202px) {
     .riven-editor {
         position: fixed;
-        /* display: flex; */
-        /* align-items: center; */
-        /* flex-direction: column; */
-        /* justify-content: center; */
         flex-shrink: 0;
-    }
-    .riven-polarity {
-        /* justify-content: flex-end; */
-        /* flex-grow: 1; */
-        /* flex-shrink: 0; */
-        /* max-height: 300px; */
     }
     .bottom-wrapper {
         display: flex;
         justify-content: center;
-        /* flex-direction: column; */
-        /* flex-grow: 1; */
     }
     .riven-effect-wrapper {
         display: flex;
@@ -293,38 +266,6 @@
         background-color: #373737;
         color: white;
         box-shadow: none;
-    }
-    .soft-input-wrapper {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100vw;
-        height: 48px;
-        min-height: 48px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #373737;
-        opacity: 0;
-        pointer-events: none;
-        z-index: 9099;
-    }
-    .soft-input-wrapper:focus-within {
-        opacity: 1;
-        pointer-events: auto;
-    }
-    .soft-input {
-        width: 35px;
-        min-height: 38px;
-        height: 38px;
-        padding: 5px 0;
-        background-color: #373737;
-        text-align: center;
-        color: white;
-        line-height: 38px;
-    }
-    .soft-percent {
-        color: white;
     }
     .stat-choices-wrapper {
         justify-content: center;

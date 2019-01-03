@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, lazy } from 'react';
 import { CSSTransition } from "react-transition-group";
 import { Helmet } from "react-helmet";
 import './ModularPicker.css';
 import '../stats/Stats.css';
 
-import ModularBuildList from '../modularbuildlist/ModularBuildList';
+const ModularBuildList = lazy(() => import('../modularbuildlist/ModularBuildList'));
 
 export class MoaPicker extends Component {
     constructor(props) {
@@ -20,7 +20,7 @@ export class MoaPicker extends Component {
 
     async componentDidMount() {
         let items = await this.props.items()
-        this.setState({ items: items });
+        this.setState({ items: items.default });
     }
 
     toggleStats = () => {

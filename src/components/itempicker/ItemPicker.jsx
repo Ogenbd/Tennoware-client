@@ -19,8 +19,8 @@ export class ItemPicker extends Component {
     async componentDidMount() {
         let items = await this.props.items();
         this.setState({
-            items: items,
-            displayItems: items,
+            items: items.default,
+            displayItems: items.default,
         });
     }
 
@@ -28,7 +28,6 @@ export class ItemPicker extends Component {
         if (target.value.length < 1) {
             this.setState({ displayItems: this.state.items })
         } else {
-            // let regExp = new RegExp(target.value, 'i')
             let searchResaults = this.state.items.filter(item => {
                 return (item.name.toLowerCase().includes(target.value.toLowerCase()) || (item.noise && item.noise.toLowerCase().includes(target.value.toLowerCase())) || (item.type && item.type.some(type => {
                     return type.toLowerCase().includes(target.value.toLowerCase())

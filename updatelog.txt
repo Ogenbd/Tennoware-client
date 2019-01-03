@@ -1,6 +1,19 @@
 UPDATE LOG
 
-upcoming - v1.1.6.
+upcoming - v1.1.7.
+
+New:
+Added Armor/Health/Shields Link calculations and functionality on relevant Companion types.
+Added search functionality to My Builds page. works with build name or item name.
+
+Changes:
+Some UI changes. Added hover functionality to Filter and Sort in the mod picker and made some buttons adjust to their location better.
+
+Fixes:
+Adjusted Grattler-Land's damage numbers to reflect actual in game numbers (both the patch notes and the wiki are wrong as far as i can tell).
+Archguns show the correct potato type in the "My Builds" page.
+
+27/12/2018 - v1.1.6.
 
 New:
 Added Energy Conversion calculation and toggle that appears when energy conversion is slotted.
@@ -12,7 +25,7 @@ Sniper zoom was changed from a button to a slider. No more clicking/tapping thro
 Fixes:
 Fixed Ammo Chain mod, it is now uncommon with a naramon polarity.
 Fixed multishot calculation for archguns.
-Seperated Fire rate and Charge rate in archgun calculations, it now uses the same calculations as archguns ingame.
+Seperated Fire rate and Charge rate in archgun calculations, it now uses the same calculations as arc hguns ingame.
 Fixed land mode Cyngas missing its max ammo stat.
 
 26/12/2018 - v1.1.5.

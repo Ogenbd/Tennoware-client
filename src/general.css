@@ -22,7 +22,8 @@
 
 .interactable {
     margin: 3px;
-    min-width: 70px;
+    min-width: 75px;
+    max-width: 198px;
     text-align: center;
     font-weight: bold;
     background-color: rgba(0, 0, 0, 0.7);
@@ -30,22 +31,28 @@
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     user-select: none;
+    flex-grow: 1;
+    max-height: 38px;
 }
 
 .uninteractable {
     margin: 3px;
-    min-width: 70px;
+    min-width: 75px;
+    max-width: 198px;
     text-align: center;
     font-weight: bold;
     background-color: rgba(0, 0, 0, 0.7);
     border: solid 1px;
     transition: all 0.2s ease-in-out;
     user-select: none;
+    flex-grow: 1;
+    max-height: 38px;
 }
 
 .activatable {
     margin: 3px;
-    min-width: 70px;
+    min-width: 75px;
+    max-width: 198px;
     text-align: center;
     font-weight: bold;
     background-color: rgba(0, 0, 0, 0.7);
@@ -53,6 +60,8 @@
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     user-select: none;
+    flex-grow: 1;
+    max-height: 38px;
 }
 
 .interactable-inactive {
@@ -202,6 +211,10 @@
     border: 1px solid rgba(255, 249, 160, 0.73);
     color: white;
     text-align: justify;
+}
+
+.soft-input-wrapper {
+    display: none;
 }
 
 .general-button {
@@ -525,6 +538,38 @@
         height: calc(100vh - 56px);
         max-height: calc(100vh - 56px);
         overflow: auto;
+    }
+    .soft-input-wrapper {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 48px;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #373737;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 9099;
+    }
+    .soft-input-wrapper:focus-within {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .soft-input {
+        width: 35px;
+        min-height: 38px;
+        height: 38px;
+        padding: 5px 0;
+        background-color: #373737;
+        text-align: center;
+        color: white;
+        line-height: 38px;
+    }
+    .soft-percent {
+        color: white;
     }
 }
 

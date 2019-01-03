@@ -85,6 +85,10 @@
     transition: all 0.3s ease-in-out;
 }
 
+.interactable-aug {
+    max-height: 68px;
+}
+
 .sticky-aug {
     position: sticky;
     top: 56px;

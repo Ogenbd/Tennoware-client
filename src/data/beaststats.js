@@ -148,7 +148,7 @@ const beastStats = [
         ],
         polarities: ['penjaga', 'penjaga'],
         armor: 50,
-        health: 300,
+        health: 150,
         baseHealth: 50,
         shields: 180,
         baseShields: 60,

@@ -18,6 +18,7 @@ export default class MyBuilds extends Component {
         super(props);
         this.state = {
             arsenal: [],
+            search: '',
             getting: true,
             unlike: false,
             delete: false,
@@ -98,10 +99,8 @@ export default class MyBuilds extends Component {
     getItemImage = async (build) => {
         let itemImage;
         let itemIdx;
-        let list = await this.getImageList(build.Type);
-        if (build.Type === 'moas') {
-            itemImage = list.first[0].img;
-        } else if (build.Type === 'kitguns') {
+        let list = await this.getImageList(build.Type).then(data => data.default);
+        if (build.Type === 'moas' || build.Type === 'kitguns') {
             itemIdx = list.first.findIndex(item => {
                 return item.name.toLowerCase() === build.ItemName.toLowerCase().split(' ')[0];
             });
@@ -148,67 +147,69 @@ export default class MyBuilds extends Component {
         let saved = [];
         let liked = [];
         this.state.arsenal.forEach((item, index) => {
-            let date = new Date(item.date).toLocaleDateString();
-            let potato;
-            if (item.type === 'primaryweapons' || item.type === 'secondaryweapons' || item.type === 'sentinelweapons' || item.type === 'meleeweapons' || item.type === 'archguns' || item.type === 'archmelees' || item.type === 'zaws' || item.type === 'kitguns') {
-                potato = require('../../assets/general/catalyst.png')
-            } else {
-                potato = require('../../assets/general/reactor.png')
+            if (item.name.toLowerCase().includes(this.state.search.toLowerCase()) || item.buildName.toLowerCase().includes(this.state.search.toLowerCase())) {
+                let date = new Date(item.date).toLocaleDateString();
+                let potato;
+                if (item.type === 'primaryweapons' || item.type === 'secondaryweapons' || item.type === 'sentinelweapons' || item.type === 'meleeweapons' || item.type.includes('archguns') || item.type === 'archmelees' || item.type === 'zaws' || item.type === 'kitguns') {
+                    potato = require('../../assets/general/catalyst.png')
+                } else {
+                    potato = require('../../assets/general/reactor.png')
+                }
+                let orokinStr;
+                let riven;
+                item.orokin === 1 ? orokinStr = potato : orokinStr = require('../../assets/general/nocatalyst.png');
+                item.riven === 1 ? riven = require('../../assets/general/rivenon.png') : riven = require('../../assets/general/rivenoff.png');
+                let itemBlock = <div key={index} className="my-build-container">
+                    <div className="my-item-wrapper">
+                        <img className="my-item-image" src={item.img} alt="" />
+                        <div className="my-item-name"><p>{item.name.toUpperCase()}</p></div>
+                    </div>
+                    <div className="my-build-list-item">
+                        <div className="my-build-item-row name-row">
+                            <div className="my-build-list-name">{item.buildName}</div>
+                            {item.outdated
+                                ? <div className="my-build-outdated">Possibly Outdated</div>
+                                : <div className="my-build-list-date">{date}</div>
+                            }
+                        </div>
+                        <div className="my-build-item-row info-row">
+                            <div className="my-build-list-likes">Likes: {item.likes}</div>
+                            <img className="my-build-list-img" src={orokinStr} alt={"orokin"} />
+                            <div className="my-build-list-forma-block"><img className="my-build-list-img" src={require('../../assets/general/forma.png')} alt={""} /><p>: {item.forma}</p></div>
+                            {item.hasRivens
+                                ? <img className="my-build-list-img" src={riven} alt={"riven"} />
+                                : <div className="my-riven-placeholder"></div>
+                            }
+                        </div>
+                    </div>
+                    <div className="my-build-buttons">
+                        <div className="interactable interactable-semi-inactive" onClick={() => { this.navigateToBuild(index) }}><p className="interactable-p">Open</p></div>
+                        {item.source === 'builds'
+                            ? <div className="interactable interactable-semi-inactive delete-button" onClick={() => { this.handleDelete(index) }}>
+                                {item.loading
+                                    ? <div className="spinner">
+                                        <div className="bounce1"></div>
+                                        <div className="bounce2"></div>
+                                        <div className="bounce3"></div>
+                                    </div>
+                                    : <p className="interactable-p">Delete</p>
+                                }
+                            </div>
+                            : <div className="interactable interactable-semi-inactive delete-button" onClick={() => { this.handleUnlike(index) }}>
+                                {item.loading
+                                    ? <div className="spinner red-spinner">
+                                        <div className="bounce1"></div>
+                                        <div className="bounce2"></div>
+                                        <div className="bounce3"></div>
+                                    </div>
+                                    : <p className="interactable-p">Unlike</p>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+                item.source === 'builds' ? saved.push(itemBlock) : liked.push(itemBlock)
             }
-            let orokinStr;
-            let riven;
-            item.orokin === 1 ? orokinStr = potato : orokinStr = require('../../assets/general/nocatalyst.png');
-            item.riven === 1 ? riven = require('../../assets/general/rivenon.png') : riven = require('../../assets/general/rivenoff.png');
-            let itemBlock = <div key={index} className="my-build-container">
-                <div className="my-item-wrapper">
-                    <img className="my-item-image" src={item.img} alt="" />
-                    <div className="my-item-name"><p>{item.name.toUpperCase()}</p></div>
-                </div>
-                <div className="my-build-list-item">
-                    <div className="my-build-item-row name-row">
-                        <div className="my-build-list-name">{item.buildName}</div>
-                        {item.outdated
-                            ? <div className="my-build-outdated">Possibly Outdated</div>
-                            : <div className="my-build-list-date">{date}</div>
-                        }
-                    </div>
-                    <div className="my-build-item-row info-row">
-                        <div className="my-build-list-likes">Likes: {item.likes}</div>
-                        <img className="my-build-list-img" src={orokinStr} alt={"orokin"} />
-                        <div className="my-build-list-forma-block"><img className="my-build-list-img" src={require('../../assets/general/forma.png')} alt={""} /><p>: {item.forma}</p></div>
-                        {item.hasRivens
-                            ? <img className="my-build-list-img" src={riven} alt={"riven"} />
-                            : <div className="my-riven-placeholder"></div>
-                        }
-                    </div>
-                </div>
-                <div className="my-build-buttons">
-                    <div className="interactable interactable-semi-inactive" onClick={() => { this.navigateToBuild(index) }}><p className="interactable-p">Open</p></div>
-                    {item.source === 'builds'
-                        ? <div className="interactable interactable-semi-inactive delete-button" onClick={() => { this.handleDelete(index) }}>
-                            {item.loading
-                                ? <div className="spinner">
-                                    <div className="bounce1"></div>
-                                    <div className="bounce2"></div>
-                                    <div className="bounce3"></div>
-                                </div>
-                                : <p className="interactable-p">Delete</p>
-                            }
-                        </div>
-                        : <div className="interactable interactable-semi-inactive delete-button" onClick={() => { this.handleUnlike(index) }}>
-                            {item.loading
-                                ? <div className="spinner red-spinner">
-                                    <div className="bounce1"></div>
-                                    <div className="bounce2"></div>
-                                    <div className="bounce3"></div>
-                                </div>
-                                : <p className="interactable-p">Unlike</p>
-                            }
-                        </div>
-                    }
-                </div>
-            </div>
-            item.source === 'builds' ? saved.push(itemBlock) : liked.push(itemBlock)
         });
         return { saved: saved, liked: liked };
     }
@@ -311,6 +312,18 @@ export default class MyBuilds extends Component {
             });
     }
 
+    blurInput = ({ key, target }) => {
+        if (key === 'Enter') {
+            target.blur();
+        }
+    }
+
+    filterItems = ({ target }) => {
+        this.setState({
+            search: target.value
+        })
+    }
+
     render() {
         let list = this.generateList();
         return (
@@ -321,6 +334,11 @@ export default class MyBuilds extends Component {
                     </Helmet>
                     <div className="top-title"><p>My Builds</p></div>
                     <div className="my-builds">
+                        <div className="my-builds-topbar">
+                            <div className="search-wrapper my-builds-search">
+                                <input className="search" type="text" placeholder="Search..." value={this.state.search} onChange={this.filterItems} onKeyUp={this.blurInput} />
+                            </div>
+                        </div>
                         {this.state.getting
                             ? <Loading />
                             : <React.Fragment>

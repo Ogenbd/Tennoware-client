@@ -6,6 +6,7 @@
     flex: 1 0 auto;
     width: 100%;
     max-width: 900px;
+    padding-top: 36px;
     background-color: rgba(0, 0, 0, 0.7)
 }
 
@@ -15,6 +16,23 @@
     align-items: center;
     padding: 0 3px;
     margin-bottom: 10px;
+}
+
+.my-builds-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 56px;
+    width: 100%;
+    max-width: 995px;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 56px;
+    z-index: 1;
+}
+
+.my-builds-search {
+    margin-right: 24px;
 }
 
 .my-builds-subtitle {

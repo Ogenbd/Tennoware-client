@@ -1,14 +1,9 @@
-import React, { Component } from 'react';
-import Loadable from 'react-loadable';
+import React, { Component, lazy } from 'react';
 import { Helmet } from "react-helmet";
 
 import apiUrl from '../apiUrl';
-import Loading from '../components/loading/Loading';
 
-const EightSlotModding = Loadable({
-    loader: () => import('../components/modding/EightSlotModding'),
-    loading: Loading,
-});
+const EightSlotModding = lazy(() => import('../components/modding/EightSlotModding'));
 
 class RangedBuilder extends Component {
     constructor(props) {
@@ -25,24 +20,6 @@ class RangedBuilder extends Component {
     }
 
     componentDidMount() {
-        // let weaponList = [] 
-        // this.props.weapons.forEach(weapon => {
-        //     weaponList.push(weapon.name)
-        // })
-        // console.log(weaponList);
-        // let sortedMods = this.props.mods.sort((a, b) => {
-        //     if (a.abrev[0] > b.abrev[0]) return 1
-        //     if (a.abrev[0] < b.abrev[0]) return -1
-        //     if (a.abrev[1] > b.abrev[1]) return 1
-        //     if (a.abrev[1] < b.abrev[1]) return -1
-        // })
-        // let check = sortedMods.filter((mod, index) => {
-        //     if (index > 0) {
-        //     return mod.abrev === sortedMods[index - 1].abrev
-        //     }
-        // })
-        // console.log(sortedMods);
-        // console.log(check);
         if (this.props.match.params.build) {
             this.confirmBuild()
         } else {
@@ -86,8 +63,8 @@ class RangedBuilder extends Component {
     }
 
     setupBuilder = async (metaInfo) => {
-        let items = await this.props.items();
-        let mods = await this.props.mods();
+        let items = await this.props.items().then(data => data.default);
+        let mods = await this.props.mods().then(data => data.default);
         let item = items.find(weapon => {
             return weapon.name.toLowerCase() === this.props.match.params.id.toLowerCase();
         });
@@ -120,7 +97,6 @@ class RangedBuilder extends Component {
     }
 
     confirmBuild = () => {
-        // fix url
         let token = localStorage.getItem('jwt');
         fetch(`${apiUrl}/getbuild`, {
             method: 'post',
@@ -176,9 +152,8 @@ class RangedBuilder extends Component {
                         </div>
                     </div>
                     : <React.Fragment>
-                        {this.state.item.name
-                            ? <EightSlotModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={require('../assets/general/catalyst.png')} riven={'ranged'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} />
-                            : <Loading />
+                        {this.state.item.name &&
+                            <EightSlotModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={require('../assets/general/catalyst.png')} riven={'ranged'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} />
                         }
                     </React.Fragment>
                 }

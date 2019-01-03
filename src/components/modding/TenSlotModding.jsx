@@ -1,33 +1,20 @@
-import React, { Component } from 'react';
-import Loadable from 'react-loadable';
+import React, { Component, lazy } from 'react';
 import { CSSTransition } from "react-transition-group";
 import cloneDeep from 'lodash/cloneDeep';
 import './Modding.css'
 
-import ModStateHandler from '../modstatehandler/ModStateHandler';
-import PolarityPicker from '../polaritypicker/PolarityPicker';
-import LinkGenerator from '../linkgenerator/LinkGenerator';
-import BuildSaver from '../buildsaver/BuildSaver';
-import BuildList from '../buildlist/BuildList';
-import Like from '../like/Like';
-import Report from '../report/Report';
-import BuildDescription from '../builddescription/BuildDescription';
-import ModPicker from '../modpicker/ModPicker';
-
-const StatsPlaceholder = () => <React.Fragment><div className={"pull-tab closed-pull-tab"}>
-    <img src={require('../../assets/general/arrowicong.png')} alt=">>" className={"pull-tab-arrow point-right"} />
-    <p>STATS</p>
-</div><div className="stats-placeholder"></div></React.Fragment>
-
-const SentinelStats = Loadable({
-    loader: () => import('../stats/SentinelStats'),
-    loading: StatsPlaceholder,
-});
-
-const BeastStats = Loadable({
-    loader: () => import('../stats/BeastStats'),
-    loading: StatsPlaceholder,
-});
+const BuildDescription = lazy(() => import('../builddescription/BuildDescription'));
+const Report = lazy(() => import('../report/Report'));
+const Like = lazy(() => import('../like/Like'));
+const BuildList = lazy(() => import('../buildlist/BuildList'));
+const BuildSaver = lazy(() => import('../buildsaver/BuildSaver'));
+const LinkGenerator = lazy(() => import('../linkgenerator/LinkGenerator'));
+const ModStateHandler = lazy(() => import('../modstatehandler/ModStateHandler'));
+const PolarityPicker = lazy(() => import('../polaritypicker/PolarityPicker'));
+const ModPicker = lazy(() => import('../modpicker/ModPicker'));
+const SentinelStats = lazy(() => import('../stats/SentinelStats'));
+const BeastStats = lazy(() => import('../stats/BeastStats'));
+const MoaStats = lazy(() => import('../stats/MoaStats'));
 
 class TenSlotModding extends Component {
     constructor(props) {
@@ -495,18 +482,18 @@ class TenSlotModding extends Component {
                             {this.props.online &&
                                 <BuildList match={this.props.match} type={this.props.type} riven={this.props.riven} orokin={this.props.orokin} />
                             }
-                            {this.props.metaInfo.BuildDesc && this.props.metaInfo.BuildDesc.length > 0 &&
-                                <BuildDescription metaInfo={this.props.metaInfo} />
-                            }
-                            {this.props.online && this.props.user && chosenIndexs.length > 0 &&
-                                <BuildSaver orokin={orokin} formaCount={formaCount} user={this.props.user} type={this.props.type} getBuildStr={this.convertBuildToString} metaInfo={this.props.metaInfo} />
-                            }
                             <LinkGenerator type={this.props.type} getBuildStr={this.convertBuildToString} match={this.props.match} />
-                            {this.props.online && this.props.user && this.props.match.params.build && !this.props.metaInfo.Owner &&
-                                <Like user={this.props.user} match={this.props.match} metaInfo={this.props.metaInfo} />
+                            {this.props.online && this.props.user &&
+                                <BuildSaver orokin={orokin} formaCount={formaCount} user={this.props.user} type={this.props.type} getBuildStr={this.convertBuildToString} metaInfo={this.props.metaInfo} slottedAmount={chosenIndexs.length} />
                             }
                             {this.props.online && this.props.match.params.build && !this.props.metaInfo.Owner &&
                                 <Report user={this.props.user} match={this.props.match} />
+                            }
+                            {this.props.online && this.props.user && this.props.match.params.build && !this.props.metaInfo.Owner &&
+                                <Like user={this.props.user} match={this.props.match} metaInfo={this.props.metaInfo} />
+                            }
+                            {this.props.metaInfo.BuildDesc && this.props.metaInfo.BuildDesc.length > 0 &&
+                                <BuildDescription metaInfo={this.props.metaInfo} />
                             }
                         </div>
                         <div className="aug-container">
@@ -524,12 +511,12 @@ class TenSlotModding extends Component {
                                 </div>
                             </div>
                             <div className="aug-wrapper">
-                                <div className={"interactable " + (orokin ? "interactable-active" : "interactable-inactive")} onClick={this.toggleOrokin}>
+                                <div className={"interactable interactable-aug " + (orokin ? "interactable-active" : "interactable-inactive")} onClick={this.toggleOrokin}>
                                     {orokin
                                         ? <img className="aug-image orokin" src={this.props.orokin} alt={'Remove Catalyst'} />
                                         : <img className="aug-image orokin" src={require('../../assets/general/nocatalyst.png')} alt={'Apply Catalyst'} />}
                                 </div>
-                                <div className={"interactable " + (forma ? "interactable-active" : "interactable-inactive")} onClick={this.toggleForma}>
+                                <div className={"interactable interactable-aug " + (forma ? "interactable-active" : "interactable-inactive")} onClick={this.toggleForma}>
                                     {forma
                                         ? <img className="aug-image forma" src={require('../../assets/general/forma.png')} alt={'Cancel Forma Application'} />
                                         : <img className="aug-image forma" src={require('../../assets/general/noforma.png')} alt={'Apply Forma'} />}
@@ -582,11 +569,14 @@ class TenSlotModding extends Component {
                         </div>
                         {this.displayMessage()}
                     </div>
-                    {(this.props.type === 'sentinels' || this.props.type === 'moas') &&
+                    {this.props.type === 'sentinels' &&
                         <SentinelStats frame={this.props.item} mods={this.state.chosenMods} viewWidth={this.props.viewWidth} />
                     }
-                    {(this.props.type === 'beasts') &&
+                    {this.props.type === 'beasts' &&
                         <BeastStats frame={this.props.item} mods={this.state.chosenMods} viewWidth={this.props.viewWidth} />
+                    }
+                    {this.props.type === 'moas' &&
+                        <MoaStats frame={this.props.item} mods={this.state.chosenMods} viewWidth={this.props.viewWidth} />
                     }
                     <PolarityPicker polarityPicker={polarityPicker} polarizeSlot={this.polarizeSlot} hidePolarityPicker={this.hidePolarityPicker} />
                 </div>

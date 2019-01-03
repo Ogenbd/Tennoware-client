@@ -105,15 +105,16 @@ export class News extends Component {
                   <p>Tennoware is a Warframe builds calculator, it is both mobile and desktop friendly, can be installed on your mobile device and has offline functionality.</p>
                   <p>Creating and account is optional and free and it lets you save your builds and like other peoples public community builds.</p>
                   <p>Tennoware is still in early stages of development. Please understand that some server issues and/or bugs are lurking around.</p>
-                  <p>If you encounter a bug or wish to provide feedback or a feature suggestion, I would appreciate if you would let me know over at the <a className="reddit-link" href="https://www.reddit.com/r/tennoware">Tennoware subreddit.</a></p>
+                  <p>If you encounter a bug or wish to provide feedback or a feature suggestion, I would appreciate if you would let me know over at the <a className="reddit-link" href="https://www.reddit.com/r/tennoware">Tennoware subreddit</a>.</p>
                 </div>
               </div>
               <div className="article tennoware-news">
-                <h1>Update 1.1.6!</h1>
+                <h1>Update 1.1.7!</h1>
                 <div className="update-content">
-                  <p>Added Energy Conversion toggle and calculations.</p>
-                  <p>Snipers got some love this update. Added a shot combo slider and calculations along with a change to the zoom functionality.</p>
-                  <p>For the complete update notes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log.</a></p>
+                  <p>Health/Shields/Armor Link mods got some added functionality.</p>
+                  <p>Added a search bar to "My Builds" page. People with a lot of saved/liked builds rejoice!</p>
+                  <p>Some code refactoring was done in order to increase modularity and decrease update impact on server bandwdith usage. Why am I telling you this? Because it touched pretty much every aspect of this App and while I'm fairly sure no new bugs were introduced, I'm not 100% sure.</p>
+                  <p>For the complete update notes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log</a>.</p>
                 </div>
               </div>
             </div>

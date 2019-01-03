@@ -211,19 +211,23 @@ const archgunLandStats = [
                 critChance: 0.25,
                 critMult: 2,
                 status: 0.25,
-                damage: 310,
+                damage: 305,
                 split: [
                     {
                         type: 'Impact',
-                        percent: 0.1
+                        percent: 10 / 305
                     },
                     {
                         type: 'Slash',
-                        percent: 0.1
+                        percent: 10 / 305
                     },
                     {
                         type: 'Puncture',
-                        percent: 0.8
+                        percent: 80 / 305
+                    },
+                    {
+                        type: 'Blast',
+                        percent: 205 / 305
                     }
                 ]
             }

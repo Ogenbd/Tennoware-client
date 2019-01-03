@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import './Stats.css';
 
-export class BeastStats extends PureComponent {
+export class MoaStats extends PureComponent {
     constructor(props) {
         super(props);
         this.softInputArmor = React.createRef();
@@ -17,7 +17,6 @@ export class BeastStats extends PureComponent {
             healthAmount: '',
             linkShields: false,
             shieldsAmount: '',
-            // collar: false
         }
     }
 
@@ -38,7 +37,7 @@ export class BeastStats extends PureComponent {
                         linkShields = true;
                     }
                 }
-                BeastStats.groupEffects(mod, effects, elemental);
+                MoaStats.groupEffects(mod, effects, elemental);
             }
         });
         return {
@@ -73,142 +72,6 @@ export class BeastStats extends PureComponent {
                 }
             }
         }
-    }
-
-
-    combineElements(first, second) {
-        if ((first.type === 'Toxin' && second.type === 'Electricity') || (second.type === 'Toxin' && first.type === 'Electricity')) {
-            return { type: 'Corrosive', damage: first.damage + second.damage }
-        } else if ((first.type === 'Toxin' && second.type === 'Cold') || (second.type === 'Toxin' && first.type === 'Cold')) {
-            return { type: 'Viral', damage: first.damage + second.damage }
-        } else if ((first.type === 'Toxin' && second.type === 'Heat') || (second.type === 'Toxin' && first.type === 'Heat')) {
-            return { type: 'Gas', damage: first.damage + second.damage }
-        } else if ((first.type === 'Electricity' && second.type === 'Heat') || (second.type === 'Electricity' && first.type === 'Heat')) {
-            return { type: 'Radiation', damage: first.damage + second.damage }
-        } else if ((first.type === 'Electricity' && second.type === 'Cold') || (second.type === 'Electricity' && first.type === 'Cold')) {
-            return { type: 'Magnetic', damage: first.damage + second.damage }
-        } else if ((first.type === 'Heat' && second.type === 'Cold') || (second.type === 'Heat' && first.type === 'Cold')) {
-            return { type: 'Blast', damage: first.damage + second.damage }
-        }
-    }
-
-    calcDamage = () => {
-        let finalDamageArray = [];
-        let calcedElementalEffects = [];
-        let totalElementalDamageArr = [];
-        let damageSplit = [];
-        let baseDamageMult = 1;
-        let multishotMult = 1;
-        let weaponDamage;
-        let combinedElement;
-        let secondCombinedElement;
-        let typeIndex;
-        let nativeElementPosition;
-        let nativeElementType;
-        if (this.state.effects.baseDamage) {
-            baseDamageMult += this.state.effects.baseDamage
-        }
-        weaponDamage = Math.floor(this.props.frame.damage * baseDamageMult) * multishotMult
-        this.state.elemental.forEach(element => {
-            calcedElementalEffects.push({
-                type: element.type,
-                damage: weaponDamage * element.damage
-            })
-        })
-        this.props.frame.split.forEach(type => {
-            damageSplit.push({
-                type: type.type,
-                damage: weaponDamage * type.percent
-            })
-        });
-        nativeElementPosition = damageSplit.findIndex(type => {
-            return type.type !== 'Impact' && type.type !== 'Slash' && type.type !== 'Puncture'
-        });
-        if (nativeElementPosition !== -1) {
-            nativeElementType = damageSplit[nativeElementPosition].type;
-            calcedElementalEffects.forEach(element => {
-                if (element.type === nativeElementType) {
-                    element.damage += damageSplit[nativeElementPosition].damage;
-                    damageSplit.splice(nativeElementPosition, 1);
-                    nativeElementPosition = -1;
-                }
-            });
-        }
-        if (nativeElementPosition !== -1 && (nativeElementType === 'Toxin' || nativeElementType === 'Electricity' || nativeElementType === 'Heat' || nativeElementType === 'Cold')) {
-            calcedElementalEffects.push(damageSplit[nativeElementPosition]);
-            damageSplit.splice(nativeElementPosition, 1);
-            nativeElementPosition = -1;
-        }
-        switch (calcedElementalEffects.length) {
-            case 1:
-                totalElementalDamageArr.push(calcedElementalEffects[0])
-                break;
-            case 2:
-                combinedElement = this.combineElements(calcedElementalEffects[0], calcedElementalEffects[1]);
-                totalElementalDamageArr.push(combinedElement)
-                break;
-            case 3:
-                combinedElement = this.combineElements(calcedElementalEffects[0], calcedElementalEffects[1]);
-                totalElementalDamageArr.push(combinedElement, calcedElementalEffects[2])
-                break;
-            case 4:
-                combinedElement = this.combineElements(calcedElementalEffects[0], calcedElementalEffects[1]);
-                secondCombinedElement = this.combineElements(calcedElementalEffects[2], calcedElementalEffects[3]);
-                totalElementalDamageArr.push(combinedElement, secondCombinedElement);
-                break;
-            default:
-                break;
-        }
-        if (this.state.effects.impact) {
-            typeIndex = damageSplit.findIndex(type => {
-                return type.type === 'Impact'
-            });
-            if (typeIndex !== -1) {
-                damageSplit[typeIndex].damage += damageSplit[typeIndex].damage * this.state.effects.impact
-            }
-        }
-        if (this.state.effects.slash) {
-            typeIndex = damageSplit.findIndex(type => {
-                return type.type === 'Slash'
-            });
-            if (typeIndex !== -1) {
-                damageSplit[typeIndex].damage += damageSplit[typeIndex].damage * this.state.effects.slash
-            }
-        }
-        if (this.state.effects.puncture) {
-            typeIndex = damageSplit.findIndex(type => {
-                return type.type === 'Puncture'
-            });
-            if (typeIndex !== -1) {
-                damageSplit[typeIndex].damage += damageSplit[typeIndex].damage * this.state.effects.puncture
-            }
-        }
-        if (nativeElementPosition !== -1) {
-            if (nativeElementType === 'Corrosive' || nativeElementType === 'Viral' || nativeElementType === 'Radiation' || nativeElementType === 'Blast' || nativeElementType === 'Gas' || nativeElementType === 'Magnetic') {
-                let nativeInCalcCheck = totalElementalDamageArr.findIndex(calcedElement => {
-                    return calcedElement.type === nativeElementType;
-                });
-                if (nativeInCalcCheck !== -1) {
-                    totalElementalDamageArr[nativeInCalcCheck].damage += damageSplit[nativeElementPosition].damage;
-                    damageSplit.splice(nativeElementPosition, 1);
-                }
-            }
-        }
-        damageSplit.forEach(instance => {
-            finalDamageArray.push(instance)
-        });
-        totalElementalDamageArr.forEach(element => {
-            finalDamageArray.push(element)
-        });
-        if (this.state.effects.totalDamage) {
-            finalDamageArray.forEach(damageType => {
-                damageType.damage = damageType.damage * (1 + this.state.effects.totalDamage);
-            })
-        }
-        finalDamageArray.forEach(damageType => {
-            damageType.icon = require(`../../assets/dynamic/damage/${damageType.type}.png`)
-        })
-        return finalDamageArray;
     }
 
     toggleStats = () => {
@@ -281,7 +144,7 @@ export class BeastStats extends PureComponent {
     calcHealth = () => {
         let health = this.props.frame.health;
         if (this.state.effects.health) {
-            health = health + this.props.frame.baseHealth * this.state.effects.health;
+            health = health + this.props.frame.health * this.state.effects.health;
         }
         if (this.state.linkHealth && parseInt(this.state.healthAmount, 10) > 0) {
             health = health + this.state.effects.healthLink * parseInt(this.state.healthAmount, 10);
@@ -292,7 +155,7 @@ export class BeastStats extends PureComponent {
     calcShields = () => {
         let shields = this.props.frame.shields;
         if (this.state.effects.shields) {
-            shields = shields + this.props.frame.baseShields * this.state.effects.shields;
+            shields = shields + this.props.frame.shields * this.state.effects.shields;
         }
         if (this.state.linkShields && parseInt(this.state.shieldsAmount, 10) > 0) {
             shields = shields + this.state.effects.shieldsLink * parseInt(this.state.shieldsAmount, 10);
@@ -302,8 +165,7 @@ export class BeastStats extends PureComponent {
 
     render() {
         let { frame } = this.props;
-        let { effects, open } = this.state;
-        let damage = this.calcDamage();
+        let { open } = this.state;
         let armor = this.calcArmor();
         let health = this.calcHealth();
         let shields = this.calcShields();
@@ -317,35 +179,6 @@ export class BeastStats extends PureComponent {
                     <div className="ranged-stats-inner-wrapper">
                         <div className="top-bar-margin"></div>
                         <div className="stats-wrapper">
-                            <div className="stats-item damage">
-                                <p className="stat-name">Damage: </p>
-                                <div className="damage">
-                                    {damage.map(instance => (
-                                        <div key={instance.type} className="stat"><p>{instance.type}: </p><p className="stat-frag">{(Math.round(instance.damage * 10) / 10).toFixed(1)}</p><img className="damage-icon" src={instance.icon} alt="" /></div>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className="stats-item">
-                                <p className="stat-name">Critical Chance: </p>
-                                {effects.critChance
-                                    ? <div className={"warframe-stat " + (effects.critChance > 0 ? "increased-stat" : "decreased-stat")}><p>{Math.round(frame.critChance * (effects.critChance + 1) * 100)}%</p></div>
-                                    : <div className="warframe-stat"><p>{frame.critChance * 100}%</p></div>
-                                }
-                            </div>
-                            <div className="stats-item">
-                                <p className="stat-name">Critical Multiplier: </p>
-                                {effects.critMult
-                                    ? <div className={"warframe-stat " + (effects.critMult > 0 ? "increased-stat" : "decreased-stat")}><p>{Math.round(frame.critMult * (effects.critMult + 1) * 100) / 100}x</p></div>
-                                    : <div className="warframe-stat"><p>{frame.critMult}x</p></div>
-                                }
-                            </div>
-                            <div className="stats-item">
-                                <p className="stat-name">Status: </p>
-                                {effects.status
-                                    ? <div className={"warframe-stat " + (effects.status > 0 ? "increased-stat" : "decreased-stat")}><p>{Math.round(frame.status * (effects.status + 1) * 100)}%</p></div>
-                                    : <div className="warframe-stat"><p>{frame.status * 100}%</p></div>
-                                }
-                            </div>
                             <div className="stats-item">
                                 <p className="stat-name">Armor: </p>
                                 <div className={"warframe-stat " + (frame.armor < armor ? "increased-stat" : frame.armor === armor ? "" : "decreased-stat")}><p>{Math.floor(armor)}</p></div>
@@ -380,7 +213,6 @@ export class BeastStats extends PureComponent {
                                     <div className="str-stat"><input className="str-input" type="number" value={this.state.shieldsAmount} onFocus={this.focusSoftInputShields} onChange={this.handleShieldsChange} /></div>
                                 </div>
                             }
-                            <div className="stats-note">Stats do not take DNA Integrity, Loyalty or Collar type into account.</div>
                         </div>
                     </div>
                 </div>
@@ -398,4 +230,4 @@ export class BeastStats extends PureComponent {
     }
 }
 
-export default BeastStats
+export default MoaStats
