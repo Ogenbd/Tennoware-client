@@ -109,11 +109,11 @@ export class News extends Component {
                 </div>
               </div>
               <div className="article tennoware-news">
-                <h1>Update 1.1.7!</h1>
+                <h1>Update 1.2.0!</h1>
                 <div className="update-content">
-                  <p>Health/Shields/Armor Link mods got some added functionality.</p>
-                  <p>Added a search bar to "My Builds" page. People with a lot of saved/liked builds rejoice!</p>
-                  <p>Some code refactoring was done in order to increase modularity and decrease update impact on server bandwdith usage. Why am I telling you this? Because it touched pretty much every aspect of this App and while I'm fairly sure no new bugs were introduced, I'm not 100% sure.</p>
+                  <p>The Melee weapon calculator is here! It brought with it the Zaw Builder and calculator and Archmelee calculator.</p>
+                  <p>Additions/changes added to Warframe with update 24.2.7 that are relevant to Tennoware have been implemented.</p>
+                  <p>More miscellaneous bug fixes happened, however, this Tennoware update brought with it a lot of new features so there may be bugs.</p>
                   <p>For the complete update notes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log</a>.</p>
                 </div>
               </div>
