@@ -191,6 +191,12 @@
     cursor: pointer;
 }
 
+.update-loading-container {
+    width: 87px;
+    min-width: 87px;
+    height: 87px;
+}
+
 @media screen and (min-width: 1203px) {
     .topbar {
         z-index: 9100;

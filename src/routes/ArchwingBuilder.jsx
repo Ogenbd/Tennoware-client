@@ -91,7 +91,11 @@ class RangedBuilder extends Component {
                 metaInfo: metaInfo
             });
         } else {
-            this.redirectToVoid();
+            setTimeout(() => {
+                if (this.props.updateRequired) {
+                    this.redirectToVoid();
+                }
+            }, 2000);
         }
     }
 

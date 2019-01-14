@@ -67,7 +67,8 @@ export class Routing extends Component {
         let nonRouterPropPass = {
             viewWidth: this.props.viewWidth,
             user: this.props.user,
-            online: this.props.online
+            online: this.props.online,
+            updateRequired: this.props.updateRequired
         }
         return (
             <div className="main">

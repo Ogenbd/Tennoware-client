@@ -6,7 +6,8 @@ import './general.css';
 import Routing from './Routing';
 import Sidebar from './components/sidebar/Sidebar';
 import Login from './components/login/Login';
-
+import apiUrl from './apiUrl';
+import ContainedLoading from './components/loading/ContainedLoading';
 
 class App extends Component {
   constructor(props) {
@@ -16,19 +17,47 @@ class App extends Component {
       viewWidth: window.innerWidth,
       user: false,
       online: navigator.onLine,
-      update: false
+      update: false,
+      updateRequired: false
     }
     this.debouncedSetWidth = debounce(this.setViewWidth, 100)
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.debouncedSetWidth)
-    window.addEventListener('updateavail', this.promptUpdate)
+    if (navigator.onLine) this.checkVer('1.2.0');
+    window.addEventListener('resize', this.debouncedSetWidth);
+    window.addEventListener('updateavail', this.promptUpdate);
     if (localStorage.jwt) {
-      this.setState({ user: true })
+      this.setState({ user: true });
     }
-    window.addEventListener('online', this.setOnline)
-    window.addEventListener('offline', this.setOffline)
+    window.addEventListener('online', this.setOnline);
+    window.addEventListener('offline', this.setOffline);
+  }
+
+  checkVer = (ver) => {
+    fetch(`${apiUrl}/checkver`, {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then(res => {
+        if (res.status === 200) {
+          res.json().then(res => {
+            this.checkForUpdate(ver, res)
+          });
+        }
+      });
+  }
+
+  checkForUpdate = (local, server) => {
+    let localVer = local.split('.');
+    let serverVer = server.split('.');
+    if (parseInt(serverVer[0], 10) > parseInt(localVer[0], 10)) {
+      this.setState({ updateRequired: true });
+    } else if (parseInt(serverVer[1], 10) > parseInt(localVer[1], 10)) {
+      this.setState({ updateRequired: true });
+    } else if (parseInt(serverVer[2], 10) > parseInt(localVer[2], 10)) {
+      this.setState({ updateRequired: true });
+    }
   }
 
   checkMessage = (e) => {
@@ -36,7 +65,7 @@ class App extends Component {
   }
 
   promptUpdate = () => {
-    this.setState({ update: true })
+    this.setState({ update: true });
   }
 
   setOffline = () => {
@@ -59,7 +88,7 @@ class App extends Component {
     document.body.classList.add('noscroll');
     this.setState({
       showLogin: true
-    })
+    });
   }
 
   hideLogin = () => {
@@ -112,16 +141,23 @@ class App extends Component {
           </div>
         </div>
         <div className="main-view">
-          <Routing viewWidth={this.state.viewWidth} user={this.state.user} online={this.state.online} logUser={this.logUser} />
+          <Routing viewWidth={this.state.viewWidth} user={this.state.user} online={this.state.online} logUser={this.logUser} updateRequired={this.state.updateRequired} />
         </div>
         <Sidebar user={this.state.user} online={this.state.online} />
         <Login showLogin={this.state.showLogin} hideLogin={this.hideLogin} logUser={this.logUser} user={this.state.user} />
-        <div className={"update-popup " + (this.state.update ? 'show-update' : 'hide-update')}>
+        <div className={"update-popup " + (this.state.updateRequired ? 'show-update' : 'hide-update')}>
           <div className="update-popup-content">
-            <p className="update-touch">An update is available!</p>
-            <div className="interactable interactable-semi-inactive" onClick={this.updateInit}>
-              <p className="interactable-p">Get Update</p>
-            </div>
+            {this.state.updateRequired &&
+              <React.Fragment>
+                <p className="update-touch">An update is available! Please wait for Tennoware to fetch the new data.</p>
+                {this.state.update
+                ? <div className="interactable interactable-semi-inactive" style={{ minWidth: '87px' }} onClick={this.updateInit}>
+                  <p className="interactable-p">Update</p>
+                </div>
+                : <div className="update-loading-container"><ContainedLoading /></div>
+                }
+              </React.Fragment>
+            }
           </div>
         </div>
       </div>

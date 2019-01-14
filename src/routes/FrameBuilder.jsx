@@ -90,7 +90,11 @@ class FrameBuilder extends Component {
                 metaInfo: metaInfo
             });
         } else {
-            this.redirectToVoid();
+            setTimeout(() => {
+                if (this.props.updateRequired) {
+                    this.redirectToVoid();
+                }
+            }, 2000);
         }
     }
 
@@ -136,6 +140,7 @@ class FrameBuilder extends Component {
     }
 
     render() {
+        console.log(this.props);
         return (
             <div className="screen">
                 <Helmet>

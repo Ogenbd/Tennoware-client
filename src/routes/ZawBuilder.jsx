@@ -132,7 +132,11 @@ class MeleeBuilder extends Component {
             });
         }
         catch {
-            this.redirectToVoid();
+            setTimeout(() => {
+                if (this.props.updateRequired) {
+                    this.redirectToVoid();
+                }
+            }, 2000);
         }
     }
 
