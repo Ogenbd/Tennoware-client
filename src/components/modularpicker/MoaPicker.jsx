@@ -76,10 +76,12 @@ export class MoaPicker extends Component {
                                 {this.state.items.first.map((bracket, index) => (
                                     <div key={index} className={"modular-part " + (this.state.first === index ? 'modular-part-picked' : '')} onClick={() => { this.setFirst(index) }}>
                                         <div className="part-info">
-                                            <p className="part-name">{bracket.name}</p>
+                                            <div className="part-item">
+                                                <p className="part-name">{bracket.name}</p>
+                                                <img className="part-image" src={bracket.img} alt="" />
+                                            </div>
                                             <p className="part-desc">{bracket.desc}</p>
                                         </div>
-                                        <img className="part-image" src={bracket.img} alt="" />
                                     </div>
                                 ))}
                             </div>
@@ -88,10 +90,12 @@ export class MoaPicker extends Component {
                                 {this.state.items.second.map((core, index) => (
                                     <div key={index} className={"modular-part " + (this.state.second === index ? 'modular-part-picked' : '')} onClick={() => { this.setSecond(index) }}>
                                         <div className="part-info">
-                                            <p className="part-name">{core.name}</p>
+                                            <div className="part-item">
+                                                <p className="part-name">{core.name}</p>
+                                                <img className="part-image" src={core.img} alt="" />
+                                            </div>
                                             <p className="part-desc">{core.desc}</p>
                                         </div>
-                                        <img className="part-image" src={core.img} alt="" />
                                     </div>
                                 ))}
                             </div>
@@ -100,10 +104,12 @@ export class MoaPicker extends Component {
                                 {this.state.items.third.map((gyro, index) => (
                                     <div key={index} className={"modular-part " + (this.state.third === index ? 'modular-part-picked' : '')} onClick={() => { this.setThird(index) }}>
                                         <div className="part-info">
-                                            <p className="part-name">{gyro.name}</p>
+                                            <div className="part-item">
+                                                <p className="part-name">{gyro.name}</p>
+                                                <img className="part-image" src={gyro.img} alt="" />
+                                            </div>
                                             <p className="part-desc">{gyro.desc}</p>
                                         </div>
-                                        <img className="part-image" src={gyro.img} alt="" />
                                     </div>
                                 ))}
                             </div>

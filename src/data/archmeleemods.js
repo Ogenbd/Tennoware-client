@@ -100,11 +100,11 @@ const archmeleeMods = [
         type: 'ARCH-MELEE',
         rarity: 'uncommon',
         polarity: 'madurai',
-        effects: { attackSpeed: 0.025 },
+        effects: { speed: 0.025 },
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.range * (this.currRank + 1) * 1000) / 10}% Attack Speed` }
+        description() { return `+${Math.round(this.effects.speed * (this.currRank + 1) * 1000) / 10}% Attack Speed` }
     },
     {
         abrev: 'a7',

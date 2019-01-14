@@ -72,9 +72,11 @@ class RangedBuilder extends Component {
             let slotPolarities = [];
             let originalPolarityCount = { madurai: 0, naramon: 0, vazarin: 0, zenurik: 0, unairu: 0, penjaga: 0, umbra: 0 };
             let filteredMods = mods.filter(mod => {
-                return mod.type === 'PRIMARY' || mod.type === 'PISTOL' || item.type.some(keyword => {
-                    return keyword === mod.type
-                });
+                return ((item.exalted && mod.acolyte) || (item.exalted && mod.abrev === 'ri'))
+                    ? false
+                    : mod.type === 'PRIMARY' || mod.type === 'PISTOL' || item.type.some(keyword => {
+                        return keyword === mod.type
+                    });
             });
             filteredMods.forEach((mod, index) => mod.index = index);
             if (item.polarities.length > 0) {

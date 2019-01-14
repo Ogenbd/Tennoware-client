@@ -1,4 +1,4 @@
-// currently at abrev 0s
+// currently at abrev 0w
 const warframeMods = [
     {
         abrev: 'a0',
@@ -1475,6 +1475,19 @@ const warframeMods = [
         currRank: 3,
         baseCost: 6,
         description() { return `Reckoning Augment: Health Orbs become unusable by enemies for ${this.effects.none * (this.currRank + 1)}s.` }
+    },
+    {
+        abrev: '0t',
+        name: 'Desiccation\'s Curse',
+        img: require('../assets/modimages/desiccations-curse.jpg'),
+        type: 'INAROS',
+        rarity: 'rare',
+        polarity: 'zenurik',
+        effects: {none: [35,50,60,75]},
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 6,
+        description() { return `Desiccation Augment: Killing a blinded enemy with a finisher has a ${this.effects.none[this.currRank]}% chance og summoning a Sand Shadow.` }
     },
     {
         abrev: 'e1',
@@ -4218,6 +4231,19 @@ const warframeMods = [
         description() { return `+${this.effects.none * (this.currRank + 1)}% to Bullet Jump\n+${this.effects.none * (this.currRank + 1)}% Aim Glide and Wall Latch` }
     },
     {
+        abrev: '0u',
+        name: 'Molecular Fission',
+        img: require('../assets/modimages/molecular-fission.jpg'),
+        type: 'NOVA',
+        rarity: 'rare',
+        polarity: 'zenurik',
+        effects: {},
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 6,
+        description() { return `Molecular Prime Augment: When killed, primed enemies will restore a Null Star charge and have a ${25 * (this.currRank + 1)}% chance of restoring and additional one.` }
+    },
+    {
         abrev: 'm5',
         name: 'Muzzle Flash',
         img: require('../assets/modimages/muzzle-flash.jpg'),
@@ -6855,6 +6881,19 @@ const warframeMods = [
         description() { return `Soul Punch Augment: Use on a downed ally to revive him with ${this.effects.none[this.currRank]}% Health. Nekros's Energy will be consumed.` }
     },
     {
+        abrev: '0v',
+        name: 'Spectrosiphon',
+        img: require('../assets/modimages/spectrosiphon.jpg'),
+        type: 'GARA',
+        rarity: 'rare',
+        polarity: 'zenurik',
+        effects: {},
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 6,
+        description() { return `Spectrorage Augment: Enemies that die within Spectrorage have a ${20 + this.currRank * 10}% chance to drop an energy orb.` }
+    },
+    {
         abrev: 'v8',
         name: 'Speed Drift',
         img: require('../assets/modimages/speed-drift.jpg'),
@@ -7702,6 +7741,19 @@ const warframeMods = [
         currRank: 3,
         baseCost: 6,
         description() { return `Energy Vampire Augment: Excess Energy replenishes Shields by ${this.effects.none[this.currRank]}%.` }
+    },
+    {
+        abrev: '0w',
+        name: 'Venari Bodyguard',
+        img: require('../assets/modimages/venari-bodyguard.jpg'),
+        type: 'KHORA',
+        rarity: 'rare',
+        polarity: 'zenurik',
+        effects: {},
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 6,
+        description() { return `Venari Augment: Venari dies in Khora's place. Respawn timer increased to 150s. Killing enemies decreases the timer by ${this.currRank + 1}s.` }
     },
     {
         abrev: 'z2',

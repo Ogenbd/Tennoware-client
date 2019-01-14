@@ -4383,7 +4383,7 @@ const secondaryWeaponStats = [
                 split: [
                     {
                         type: 'Impact',
-                        percent: 0.32 + 120
+                        percent: 0.32
                     },
                     {
                         type: 'Slash',

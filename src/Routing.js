@@ -13,6 +13,7 @@ const Terms = lazy(() => import('./components/terms/Terms'));
 const ItemPicker = lazy(() => import('./components/itempicker/ItemPicker'));
 const KitgunPicker = lazy(() => import('./components/modularpicker/KitgunPicker'));
 const MoaPicker = lazy(() => import('./components/modularpicker/MoaPicker'));
+const ZawPicker = lazy(() => import('./components/modularpicker/ZawPicker'));
 const MyBuilds = lazy(() => import('./components/mybuilds/MyBuilds'));
 const RangedBuilder = lazy(() => import('./routes/RangedBuilder'));
 const FrameBuilder = lazy(() => import('./routes/FrameBuilder'));
@@ -23,33 +24,43 @@ const SentinelWeaponBuilder = lazy(() => import('./routes/SentinelWeaponBuilder'
 const BeastBuilder = lazy(() => import('./routes/BeastBuilder'));
 const KitgunBuilder = lazy(() => import('./routes/KitgunBuilder'));
 const MoaBuilder = lazy(() => import('./routes/MoaBuilder'));
+const MeleeBuilder = lazy(() => import('./routes/MeleeBuilder'));
+const ArchmeleeBuilder = lazy(() => import('./routes/ArchmeleeBuilder'));
+const ZawBuilder = lazy(() => import('./routes/ZawBuilder'));
 
 // data imports
-const archgunStats = () => import('./data/archgunstats');
-const archgunLandStats = () => import('./data/archgunlandstats');
-const archgunList = () => import('./data/archgunlist');
-const primaryWeaponStats = () => import('./data/primaryweaponstats');
-const primaryWeaponList = () => import('./data/primaryweaponlist');
-const secondaryWeaponStats = () => import('./data/secondaryweaponstats');
-const secondaryWeaponList = () => import('./data/secondaryweaponlist');
-const warframeStats = () => import('./data/warframestats');
-const warframeList = () => import('./data/warframelist');
-const archwingStats = () => import('./data/archwingstats');
-const archwingList = () => import('./data/archwinglist');
-const sentinelStats = () => import('./data/sentinelstats');
-const sentinelList = () => import('./data/sentinellist');
-const sentinelWeaponStats = () => import('./data/sentinelweaponstats');
-const sentinelWeaponList = () => import('./data/sentinelweaponlist');
-const beastStats = () => import('./data/beaststats');
-const beastList = () => import('./data/beastlist');
-const primaryMods = () => import('./data/primarymods');
-const secondaryMods = () => import('./data/secondarymods');
-const warframeMods = () => import('./data/warframemods');
-const archwingMods = () => import('./data/archwingmods');
-const archgunMods = () => import('./data/archgunmods');
-const companionMods = () => import('./data/companionmods');
-const kitguns = () => import('./data/kitguns');
-const moas = () => import('./data/moas');
+const archgunStats = () => import('./data/archgunstats' /* webpackChunkName: "argss" */ );
+const archgunLandStats = () => import('./data/archgunlandstats' /* webpackChunkName: "argls" */ );
+const archgunList = () => import('./data/archgunlist' /* webpackChunkName: "argl" */ );
+const primaryWeaponStats = () => import('./data/primaryweaponstats' /* webpackChunkName: "pris" */ );
+const primaryWeaponList = () => import('./data/primaryweaponlist' /* webpackChunkName: "pril" */ );
+const secondaryWeaponStats = () => import('./data/secondaryweaponstats' /* webpackChunkName: "secs" */ );
+const secondaryWeaponList = () => import('./data/secondaryweaponlist' /* webpackChunkName: "secl" */ );
+const warframeStats = () => import('./data/warframestats' /* webpackChunkName: "wars" */ );
+const warframeList = () => import('./data/warframelist' /* webpackChunkName: "warl" */ );
+const archwingStats = () => import('./data/archwingstats' /* webpackChunkName: "arws" */ );
+const archwingList = () => import('./data/archwinglist' /* webpackChunkName: "arwl" */ );
+const sentinelStats = () => import('./data/sentinelstats' /* webpackChunkName: "sens" */ );
+const sentinelList = () => import('./data/sentinellist' /* webpackChunkName: "senl" */ );
+const sentinelWeaponStats = () => import('./data/sentinelweaponstats' /* webpackChunkName: "sews" */ );
+const sentinelWeaponList = () => import('./data/sentinelweaponlist' /* webpackChunkName: "sewl" */ );
+const beastStats = () => import('./data/beaststats' /* webpackChunkName: "beas" */ );
+const beastList = () => import('./data/beastlist' /* webpackChunkName: "beal" */ );
+const primaryMods = () => import('./data/primarymods' /* webpackChunkName: "prim" */ );
+const secondaryMods = () => import('./data/secondarymods' /* webpackChunkName: "secm" */ );
+const warframeMods = () => import('./data/warframemods' /* webpackChunkName: "warm" */ );
+const archwingMods = () => import('./data/archwingmods' /* webpackChunkName: "arwm" */ );
+const archgunMods = () => import('./data/archgunmods' /* webpackChunkName: "argm" */ );
+const companionMods = () => import('./data/companionmods' /* webpackChunkName: "comm" */ );
+const kitguns = () => import('./data/kitguns' /* webpackChunkName: "kitg" */ );
+const moas = () => import('./data/moas' /* webpackChunkName: "moas" */ );
+const meleeWeaponList = () => import('./data/meleeweaponlist' /* webpackChunkName: "mell" */ );
+const meleeWeaponStats = () => import('./data/meleeweaponstats' /* webpackChunkName: "mels" */ );
+const meleeMods = () => import('./data/meleemods' /* webpackChunkName: "melm" */ );
+const archmeleeMods = () => import('./data/archmeleemods' /* webpackChunkName: "armm" */ );
+const archmeleeList = () => import('./data/archmeleelist' /* webpackChunkName: "arml" */ );
+const archmeleeStats = () => import('./data/archmeleestats' /* webpackChunkName: "arms" */ );
+const zaws = () => import('./data/zaws' /* webpackChunkName: "zaws" */ );
 
 export class Routing extends Component {
     render() {
@@ -63,7 +74,7 @@ export class Routing extends Component {
                 <Suspense fallback={<Loading />}>
                     <Switch key={this.props.location.key}>
                         <Route exact path='/' render={props => <News {...props} {...nonRouterPropPass} />} />
-                        <Route exact path='/mybuilds' render={props => <MyBuilds {...props} {...nonRouterPropPass} primaryweapons={primaryWeaponList} secondaryweapons={secondaryWeaponList} warframes={warframeList} archwings={archwingList} archguns={archgunList} sentinels={sentinelList} sentinelweapons={sentinelWeaponList} beasts={beastList} kitguns={kitguns} moas={moas} />} />
+                        <Route exact path='/mybuilds' render={props => <MyBuilds {...props} {...nonRouterPropPass} primaryweapons={primaryWeaponList} secondaryweapons={secondaryWeaponList} warframes={warframeList} archwings={archwingList} archguns={archgunList} sentinels={sentinelList} sentinelweapons={sentinelWeaponList} beasts={beastList} kitguns={kitguns} moas={moas} meleeweapons={meleeWeaponList} archmelee={archmeleeList} zaws={zaws} />} />
                         <Route exact path='/primaryweapons/:id/:pre/:build' render={props => <RangedBuilder {...props} {...nonRouterPropPass} type={'primaryweapons'} items={primaryWeaponStats} mods={primaryMods} />} />
                         <Route exact path='/primaryweapons/:id/:pre' render={props => <RangedBuilder {...props} {...nonRouterPropPass} type={'primaryweapons'} items={primaryWeaponStats} mods={primaryMods} />} />
                         <Route exact path='/primaryweapons/:id' render={props => <RangedBuilder {...props} {...nonRouterPropPass} type={'primaryweapons'} items={primaryWeaponStats} mods={primaryMods} />} />
@@ -108,6 +119,18 @@ export class Routing extends Component {
                         <Route exact path='/moas/:id/:pre' render={props => <MoaBuilder {...props} {...nonRouterPropPass} type={'moas'} items={moas} mods={companionMods} />} />
                         <Route exact path='/moas/:id' render={props => <MoaBuilder {...props} {...nonRouterPropPass} type={'moas'} items={moas} mods={companionMods} />} />
                         <Route exact path='/moas' render={props => <MoaPicker {...props} {...nonRouterPropPass} items={moas} />} />
+                        <Route exact path='/zaws/:id/:pre/:build' render={props => <ZawBuilder {...props} {...nonRouterPropPass} type={'zaws'} items={zaws} mods={meleeMods} />} />
+                        <Route exact path='/zaws/:id/:pre' render={props => <ZawBuilder {...props} {...nonRouterPropPass} type={'zaws'} items={zaws} mods={meleeMods} />} />
+                        <Route exact path='/zaws/:id' render={props => <ZawBuilder {...props} {...nonRouterPropPass} type={'zaws'} items={zaws} mods={meleeMods} />} />
+                        <Route exact path='/zaws' render={props => <ZawPicker {...props} {...nonRouterPropPass} items={zaws} />} />
+                        <Route exact path='/meleeweapons/:id/:pre/:build' render={props => <MeleeBuilder {...props} {...nonRouterPropPass} type={'meleeweapons'} items={meleeWeaponStats} mods={meleeMods} />} />
+                        <Route exact path='/meleeweapons/:id/:pre' render={props => <MeleeBuilder {...props} {...nonRouterPropPass} type={'meleeweapons'} items={meleeWeaponStats} mods={meleeMods} />} />
+                        <Route exact path='/meleeweapons/:id' render={props => <MeleeBuilder {...props} {...nonRouterPropPass} type={'meleeweapons'} items={meleeWeaponStats} mods={meleeMods} />} />
+                        <Route exact path='/meleeweapons' render={props => <ItemPicker {...props} {...nonRouterPropPass} title={'MELEE WEAPONS'} items={meleeWeaponList} />} />
+                        <Route exact path='/archmelee/:id/:pre/:build' render={props => <ArchmeleeBuilder {...props} {...nonRouterPropPass} type={'archmelee'} items={archmeleeStats} mods={archmeleeMods} />} />
+                        <Route exact path='/archmelee/:id/:pre' render={props => <ArchmeleeBuilder {...props} {...nonRouterPropPass} type={'archmelee'} items={archmeleeStats} mods={archmeleeMods} />} />
+                        <Route exact path='/archmelee/:id' render={props => <ArchmeleeBuilder {...props} {...nonRouterPropPass} type={'archmelee'} items={archmeleeStats} mods={archmeleeMods} />} />
+                        <Route exact path='/archmelee' render={props => <ItemPicker {...props} {...nonRouterPropPass} title={'ARCHMELEE'} items={archmeleeList} />} />
                         <Route exact path='/register' render={() => <Register logUser={this.props.logUser} user={this.props.user} />} />
                         <Route exact path='/terms' render={() => <Terms />} />
                         <Route exact path='/privacy' render={() => <Privacy />} />

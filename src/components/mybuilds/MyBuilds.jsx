@@ -8,10 +8,7 @@ import './MyBuilds.css';
 import apiUrl from '../../apiUrl';
 import Loading from '../loading/Loading';
 
-const updateTimesImport = () => {
-    let data = import('../../data/updatetimes');
-    return data;
-}
+const updateTimesImport = () => import('../../data/updatetimes' /* webpackChunkName: "upst" */ );
 
 export default class MyBuilds extends Component {
     constructor(props) {
@@ -95,7 +92,7 @@ export default class MyBuilds extends Component {
             });
         }
     }
-
+    
     getItemImage = async (build) => {
         let itemImage;
         let itemIdx;
@@ -103,6 +100,14 @@ export default class MyBuilds extends Component {
         if (build.Type === 'moas' || build.Type === 'kitguns') {
             itemIdx = list.first.findIndex(item => {
                 return item.name.toLowerCase() === build.ItemName.toLowerCase().split(' ')[0];
+            });
+            itemImage = list.first[itemIdx].img;
+        } else if (build.Type === 'zaws') {
+            let first = build.ItemName.toLowerCase().split(' ');
+            first[0] === 'plague' ? first = first[1] : first = first[0];
+            console.log(first);
+            itemIdx = list.first.findIndex(item => {
+                return item.name.toLowerCase() === first;
             });
             itemImage = list.first[itemIdx].img;
         } else {
@@ -122,12 +127,16 @@ export default class MyBuilds extends Component {
                 return this.props.primaryweapons();
             case 'secondaryweapons':
                 return this.props.secondaryweapons();
+            case 'meleeweapons':
+                return this.props.meleeweapons();
             case 'archwings':
                 return this.props.archwings();
             case 'archguns-land':
                 return this.props.archguns();
             case 'archguns-space':
                 return this.props.archguns();
+            case 'archmelee':
+                return this.props.archmelee();
             case 'sentinels':
                 return this.props.sentinels();
             case 'sentinelweapons':
@@ -138,6 +147,8 @@ export default class MyBuilds extends Component {
                 return this.props.kitguns();
             case 'moas':
                 return this.props.moas();
+            case 'zaws':
+                return this.props.zaws();
             default:
                 return undefined;
         }

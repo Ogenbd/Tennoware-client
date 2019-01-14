@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './RangedRivenEditor.css';
+import './RivenEditor.css';
 
-export class RangedRivenEditor extends Component {
+export class MeleeRivenEditor extends Component {
   constructor(props) {
     super(props);
     this.softInputOne = React.createRef();
@@ -9,7 +9,7 @@ export class RangedRivenEditor extends Component {
     this.softInputThree = React.createRef();
     this.softInputFour = React.createRef();
     this.state = {
-      effects: ['None', 'Ammo Maximum', 'Cold Damage', 'Critical Chance', 'Critical Damage', 'Damage', 'Damage vs. Corpus', 'Damage vs. Grineer', 'Damage vs. Infested', 'Electricity Damage', 'Heat Damage', 'Fire Rate', 'Flight Speed', 'Impact Damage', 'Mag Capacity', 'Multishot', 'Toxin Damage', 'Punch Through', 'Puncture Damage', 'Reload Speed', 'Slash Damage', 'Status Chance', 'Status Duration', 'Recoil', 'Zoom'],
+      effects: ['None', 'Attack Speed', 'Cold Damage', 'Channeling Damage', 'Channeling Efficiency', 'Combo Duration', 'Critical Chance', 'Critical Chance on Slide Attack', 'Critical Damage', 'Damage', 'Damage vs. Corpus', 'Damage vs. Grineer', 'Damage vs. Infested', 'Electricity Damage', 'Finisher Damage', 'Heat Damage', 'Impact Damage', 'Range', 'Toxin Damage', 'Puncture Damage', 'Slash Damage', 'Status Chance', 'Status Duration'],
       openEffect: null,
       polarity: 'madurai',
       effectOne: 'None',
@@ -24,9 +24,8 @@ export class RangedRivenEditor extends Component {
   }
 
   componentDidMount() {
-    // this.updateRiven();
-    if (this.props.buildStr && this.props.buildStr[41] === 'x') {
-      let preRiven = this.createPreRiven(this.props.buildStr.slice(41, 75));
+    if (this.props.buildStr && this.props.buildStr[46] === 'x') {
+      let preRiven = this.createPreRiven(this.props.buildStr.slice(46, 80));
       this.setState({
         polarity: preRiven.polarity,
         effectOne: preRiven.effectOne,
@@ -40,7 +39,7 @@ export class RangedRivenEditor extends Component {
       }, this.updateRiven)
     }
   }
-
+  
   createPreRiven = (rivenStr) => {
     let rivenMod = {
       polarity: 'madurai',
@@ -148,14 +147,23 @@ export class RangedRivenEditor extends Component {
   constructEffect = (effect, amount) => {
     let rivenEffect = {};
     switch (effect) {
-      case 'Ammo Maximum':
-        rivenEffect.maxAmmo = amount;
-        return rivenEffect;
       case 'Cold Damage':
         rivenEffect = { elemental: { damage: amount, type: 'Cold' } }
         return rivenEffect;
+      case 'Channeling Damage':
+        rivenEffect.channelDamage = amount;
+        return rivenEffect;
+      case 'Channeling Efficiency':
+        rivenEffect.channelEfficiency = amount;
+        return rivenEffect;
+      case 'Combo Duration':
+        rivenEffect.comboDuration = amount;
+        return rivenEffect;
       case 'Critical Chance':
         rivenEffect.critChance = amount;
+        return rivenEffect;
+      case 'Critical Chance on Slide Attack':
+        rivenEffect.critChanceSlide = amount;
         return rivenEffect;
       case 'Critical Damage':
         rivenEffect.critMult = amount;
@@ -166,11 +174,14 @@ export class RangedRivenEditor extends Component {
       case 'Electricity Damage':
         rivenEffect = { elemental: { damage: amount, type: 'Electricity' } }
         return rivenEffect;
+      case 'Finisher Damage':
+        rivenEffect.finisherDamage = amount;
+        return rivenEffect;
       case 'Heat Damage':
         rivenEffect = { elemental: { damage: amount, type: 'Heat' } }
         return rivenEffect;
-      case 'Fire Rate':
-        rivenEffect.fireRate = amount;
+      case 'Attack Speed':
+        rivenEffect.speed = amount;
         return rivenEffect;
       case 'Flight Speed':
         rivenEffect.flightSpeed = amount;
@@ -201,6 +212,9 @@ export class RangedRivenEditor extends Component {
         return rivenEffect;
       case 'Status Chance':
         rivenEffect.status = amount;
+        return rivenEffect;
+      case 'Range':
+        rivenEffect.range = amount;
         return rivenEffect;
       default:
         return null;
@@ -511,4 +525,4 @@ export class RangedRivenEditor extends Component {
   }
 }
 
-export default RangedRivenEditor;
+export default MeleeRivenEditor;

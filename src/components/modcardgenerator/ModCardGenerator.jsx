@@ -69,6 +69,9 @@ export class ModCardGenerator extends PureComponent {
         {mod.aura &&
           <img className="aura-topper" src={require('../../assets/general/auratopper.png')} alt="" />
         }
+        {mod.stance &&
+          <img className="aura-topper" src={require('../../assets/general/stancetopper.png')} alt="" />
+        }
         {mod.exilus &&
           <img className="exilus-mod-icon" src={require(`../../assets/dynamic/modcards/exilus${mod.rarity}.png`)} alt="" />
         }

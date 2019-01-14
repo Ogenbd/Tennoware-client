@@ -1,5 +1,23 @@
 UPDATE LOG
 
+14/01/2019 - v1.2.0.
+
+New:
+Added Melee and Archmelee Modding.
+Added Zaw Building and Modding.
+Added Augment Mods from the Warframe 24.2.7 update.
+
+Changes:
+Implemented Changes to Harrow's abilities from the Warframe 24.2.7 update.
+
+Fixes:
+Exalted Weapons should now have the same mod availability as they do ingame.
+Fixed an error in Zylok's damage stats.
+Fixed an error in capacity calculation when the aura slot had no polarity.
+Primed Quickdraw was missing, it is no longer missing.
+Exalted weapons no longer have the option to slot in Riven Mods.
+Fixed a UI issue in the general Kitgun Community Builds tab.
+
 03/01/2019 - v1.1.7.
 
 New:

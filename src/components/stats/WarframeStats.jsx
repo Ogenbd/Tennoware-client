@@ -443,15 +443,27 @@ export class WarframeStats extends PureComponent {
                             )
                         }
                         if (this.props.frame.name === 'BARUUK') {
-                            stats.push(
-                                <div key={`${coefficient}${index}`} className="ability-stat">
-                                    <div className="ability-stat-name">{stat.name}</div>
-                                    {this.state.effects.range
-                                        ? <div className={"ability-stat-amount " + ((this.state.effects.range > 0 ? "increased-stat" : "decreased-stat"))}>{stat.base + stat.base * this.state.effects.range < 360 ? Math.round((stat.base + stat.base * this.state.effects.range) * 10) / 10 : 360}°</div>
-                                        : <div className="ability-stat-amount">{stat.base}°</div>
-                                    }
-                                </div>
-                            )
+                            if (abilityNum === 0) {
+                                stats.push(
+                                    <div key={`${coefficient}${index}`} className="ability-stat">
+                                        <div className="ability-stat-name">{stat.name}</div>
+                                        {this.state.effects.range
+                                            ? <div className={"ability-stat-amount " + ((this.state.effects.range > 0 ? "increased-stat" : "decreased-stat"))}>{stat.base + stat.base * this.state.effects.range < 360 ? Math.round((stat.base + stat.base * this.state.effects.range) * 10) / 10 : 360}°</div>
+                                            : <div className="ability-stat-amount">{stat.base}°</div>
+                                        }
+                                    </div>
+                                )
+                            } else if (abilityNum === 3) {
+                                stats.push(
+                                    <div key={`${coefficient}${index}`} className="ability-stat">
+                                        <div className="ability-stat-name">{stat.name}</div>
+                                        {this.state.effects.strength
+                                            ? <div className={"ability-stat-amount " + ((this.state.effects.strength > 0 ? "increased-stat" : "decreased-stat"))}>{stat.base + stat.base * this.state.effects.strength < 40 ? Math.round((stat.base + stat.base * this.state.effects.strength) * 10) / 10 : 40}%</div>
+                                            : <div className="ability-stat-amount">{stat.base}%</div>
+                                        }
+                                    </div>
+                                )
+                            }
                         }
                         // end of exceptions
                     } else {

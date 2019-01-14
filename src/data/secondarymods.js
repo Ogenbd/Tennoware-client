@@ -1,4 +1,4 @@
-// abrev at j0
+// abrev at j1
 const secondaryMods = [
     {
         abrev: 'a0',
@@ -443,6 +443,7 @@ const secondaryMods = [
         name: 'Hydraulic Crosshairs',
         img: require('../assets/modimages/hydraulic-crosshairs.jpg'),
         type: 'PISTOL',
+        acolyte: true,
         rarity: 'common',
         polarity: 'madurai',
         effects: { critChance: 0.225 },
@@ -783,6 +784,20 @@ const secondaryMods = [
         description() { return `+${Math.round(this.effects.critChance * (this.currRank + 1) * 100)}% Critical Chance` }
     },
     {
+        abrev: 'j1',
+        name: 'Primed Quickdraw',
+        family: 'Quickdraw',
+        img: require('../assets/modimages/primed-quickdraw.jpg'),
+        type: 'PISTOL',
+        rarity: 'prime',
+        polarity: 'naramon',
+        effects: { reload: 0.08 },
+        maxRank: 10,
+        currRank: 10,
+        baseCost: 2,
+        description() { return `+${Math.round(this.effects.reload * (this.currRank + 1) * 100)}% Reload Speed` }
+    },
+    {
         abrev: 'f7',
         name: 'Primed Slip Magazine',
         family: 'Slip Magazine',
@@ -826,6 +841,7 @@ const secondaryMods = [
     {
         abrev: 'g0',
         name: 'Quickdraw',
+        family: 'Quickdraw',
         img: require('../assets/modimages/quickdraw.jpg'),
         type: 'PISTOL',
         rarity: 'common',
@@ -986,6 +1002,7 @@ const secondaryMods = [
         name: 'Sharpened Bullets',
         img: require('../assets/modimages/sharpened-bullets.jpg'),
         type: 'PISTOL',
+        acolyte: true,
         rarity: 'uncommon',
         polarity: 'madurai',
         effects: { critMult: 0.125 },

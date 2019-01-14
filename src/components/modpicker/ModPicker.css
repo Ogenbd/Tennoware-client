@@ -37,10 +37,6 @@
     pointer-events: all;
 }
 
-.sort-block {
-    left: 75px;
-}
-
 .filter-inactive {
     height: 0;
     pointer-events: none;
@@ -64,7 +60,6 @@
     pointer-events: all;
     border-bottom: 1px solid rgba(255, 249, 160, 0.3);
 }
-
 
 .dropdown-option {
     display: flex;
@@ -131,12 +126,20 @@
     height: 463px;
 }
 
-.sort-container {
-    height: 130px;
+.filter-active-melee {
+    height: 441px;
 }
 
 .mod-wrapper {
     z-index: 1;
+    perspective: 800px;
+    perspective-origin: 50% 50%;
+}
+
+.sort-block {
+    left: 75px;
+    height: 130px;
+    z-index: -1;
 }
 
 @media screen and (min-width: 1203px) {
@@ -168,20 +171,29 @@
         flex-shrink: 1;
         margin-right: 5px;
     }
-    .mod-list {
+    .mod-list-wrapper {
         position: fixed;
         display: flex;
         width: 315px;
-        flex-wrap: wrap;
         height: calc(100vh - 113px);
         top: 113px;
         margin-top: 0;
         align-items: flex-start;
         justify-content: center;
-        padding: 10px 0 15px 0;
         box-sizing: border-box;
         overflow-y: scroll;
         overflow-x: hidden;
+        z-index: 1;
+    }
+    .mod-list {
+        display: flex;
+        width: 315px;
+        flex-wrap: wrap;
+        margin-top: 0;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 10px 0 15px 0;
+        box-sizing: border-box;
         z-index: 1;
     }
     .mod-wrapper {
@@ -193,15 +205,21 @@
 }
 
 @media screen and (max-width: 1202px) {
-    .mod-list {
-        flex-wrap: wrap;
+    .mod-list-wrapper {
         justify-content: center;
         align-items: flex-start;
         height: initial;
-        padding: 10px 0;
         box-sizing: border-box;
         overflow-y: scroll;
         overflow-x: hidden;
+    }
+    .mod-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 10px 0;
+        box-sizing: border-box;
     }
     .mod-list-topbar {
         position: relative;
@@ -231,6 +249,8 @@
     }
     .sort-block {
         left: 121px;
+        height: 130px;
+        z-index: -1;
     }
     .mod-list {
         z-index: 1;

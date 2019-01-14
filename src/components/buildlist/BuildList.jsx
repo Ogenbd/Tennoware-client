@@ -5,7 +5,7 @@ import './BuildList.css';
 import apiUrl from '../../apiUrl';
 import ContainedLoading from '../loading/ContainedLoading';
 
-const updateTimesImport = () => import('../../data/updatetimes');
+const updateTimesImport = () => import('../../data/updatetimes' /* webpackChunkName: "upst" */ );
 
 export class BuildList extends Component {
     constructor(props) {

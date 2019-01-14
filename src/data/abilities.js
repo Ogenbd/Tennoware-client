@@ -623,13 +623,15 @@ const abilities = {
                         {
                             name: 'Damage',
                             base: 250,
-                        },
+                        }
+                    ],
+                    exception: [
                         {
                             name: 'Damage reduction while active',
                             suffix: '%',
                             base: 25,
-                        },
-                    ],
+                        }
+                    ]
                 }
             ]
         },
@@ -2233,7 +2235,7 @@ const abilities = {
                         {
                             name: 'Extra duration / 100 shields',
                             suffix: 's',
-                            base: 1.25
+                            base: 1.54
                         },
                     ],
                     none: [
@@ -2261,7 +2263,7 @@ const abilities = {
                         {
                             name: 'Energy conversion',
                             suffix: '%',
-                            base: 5
+                            base: 10
                         },
                     ],
                     duration: [

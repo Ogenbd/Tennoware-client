@@ -4,7 +4,7 @@ const archgunMods = [
     {
         abrev: 'c6',
         name: 'Ammo Chain',
-        img: require('../assets/modimages/unavail.jpg'),
+        img: require('../assets/modimages/ammo-chain.jpg'),
         type: 'ARCH-GUN',
         rarity: 'uncommon',
         polarity: 'naramon',
@@ -268,7 +268,7 @@ const archgunMods = [
     {
         abrev: 'c2',
         name: 'Quick Reload',
-        img: require('../assets/modimages/unavail.jpg'),
+        img: require('../assets/modimages/quick-reload.jpg'),
         type: 'ARCH-GUN',
         rarity: 'uncommon',
         polarity: 'naramon',

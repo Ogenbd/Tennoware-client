@@ -146,9 +146,13 @@ export class ModStateHandler extends Component {
       <div className="slot-wrapper no-highlight" onClick={this.handleClick} onContextMenu={this.rightClickRemove}>
         <div className={"handler-background " + (this.state.handlerActive ? "handler-active" : "handler-inactive")} onClick={this.closeHandler}></div>
         <div className={"handler-top-buttons " + (this.state.handlerActive ? "handler-active" : "handler-inactive")} style={this.state.topButtons}>
-          <div className="interactable interactable-semi-inactive handler-remove" onClick={this.removeMod}><p className="interactable-p">Remove</p></div>
-          {!this.props.mod.aura &&
-            <div className="interactable interactable-semi-inactive handler-swap" onClick={this.startSwap}><p className="interactable-p">Swap</p></div>
+          {(!this.props.item || !this.props.item.exalted) &&
+            <React.Fragment>
+              <div className="interactable interactable-semi-inactive handler-remove" onClick={this.removeMod}><p className="interactable-p">Remove</p></div>
+              {!this.props.mod.aura &&
+                <div className="interactable interactable-semi-inactive handler-swap" onClick={this.startSwap}><p className="interactable-p">Swap</p></div>
+              }
+            </React.Fragment>
           }
         </div>
         <div className={"handler-bottom-buttons " + (this.state.handlerActive ? "handler-active" : "handler-inactive")} style={this.state.bottomButtons}>
@@ -173,6 +177,9 @@ export class ModStateHandler extends Component {
         <div className="empty-slot" draggable="false" style={this.props.forma ? { cursor: 'pointer' } : {}}>
           {this.props.slot === 'aura' && !this.props.mod.name &&
             <img className="top-type" src={require('../../assets/general/aura.png')} alt='' />
+          }
+          {this.props.slot === 'stance' && !this.props.mod.name &&
+            <img className="top-type" src={require('../../assets/general/stance.png')} alt='' />
           }
           {this.props.slot === 'exilus' && !this.props.mod.name &&
             <img className="top-type top-type-exilus" src={require('../../assets/dynamic/modcards/exilusblack.png')} alt='' />

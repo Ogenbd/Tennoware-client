@@ -584,9 +584,10 @@ export class RangedWeaponStats extends Component {
     }
 
     handleChange = ({ target }) => {
-        let value = target.value;
+        let value = parseInt(target.value, 10);
         if (value > 999) value = 999;
-        if (value < -60) value = -60;
+        if (value < 0 ) value = '';
+        if (isNaN(value)) value = '';
         this.setState({ powerStr: value })
     }
 

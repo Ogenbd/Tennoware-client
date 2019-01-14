@@ -124,11 +124,29 @@ export class ModularBuildList extends PureComponent {
             if (this.state.first !== '') {
                 generatedList = this.state.builds.filter(item => {
                     let first = item.ItemName.split(' ')[0];
+                    if (first === 'plague') first = `${item.ItemName.split(' ')[0]} ${item.ItemName.split(' ')[1]}`
                     return first.toLowerCase() === this.state.first.toLowerCase();
                 });
             }
             generatedList.forEach((item, index) => {
                 let parts = item.ItemName.split(' ');
+                if (this.props.type === 'zaws') {
+                    if (parts[0] === 'plague') {
+                        parts.shift();
+                        parts[0] = `plague ${parts[0]}`;
+                    }
+                    if (parts[1] === 'plague') {
+                        parts.splice(1, 1);
+                        parts[1] = `plague ${parts[1]}`
+                    }
+                    if (parts.length === 4) {
+                        parts[2] = `${parts[2]} ${parts[3]}`
+                        parts.splice(3, 1);
+                    } else if (parts.length === 5) {
+                        parts[2] = `${parts[2]} ${parts[3]} ${parts[4]}`
+                        parts.splice(3, 2);
+                    }
+                }
                 let firstImg = this.props.items.first.findIndex(part => {
                     return part.name.toLowerCase() === parts[0].toLowerCase();
                 });
@@ -210,10 +228,10 @@ export class ModularBuildList extends PureComponent {
                             <ContainedLoading />
                         </div>
                         : <div className="popup-content modular-build-list">
-                            {this.props.type !== 'moas' &&
+                            {this.props.type === 'kitguns' &&
                                 <div className="filter-icon-wrapper">
                                     {this.props.items.first.map((item, index) => (
-                                        <div key={index} className={"filter-icon interactable " + (this.state.first === item.name ? "interactable-active" : "interactable-inactive")} onClick={() => { this.setFirst(item.name) }}>
+                                        <div key={index} className={"interactable filter-icon " + (this.state.first === item.name ? "interactable-active" : "interactable-inactive")} onClick={() => { this.setFirst(item.name) }}>
                                             <img className="filter-icon-img" src={item.img} alt={item.name} />
                                             <div className="filter-icon-name">{item.name}</div>
                                         </div>

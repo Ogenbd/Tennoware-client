@@ -90,10 +90,12 @@ export class KitgunPicker extends Component {
                 {this.state.items.first.map((chamber, index) => (
                   <div key={index} className={"modular-part " + (this.state.first === index ? 'modular-part-picked' : '')} onClick={() => { this.setFirst(index) }}>
                     <div className="part-info">
-                      <p className="part-name">{chamber.name}</p>
+                      <div className="part-item">
+                        <p className="part-name">{chamber.name}</p>
+                        <img className="part-image" src={chamber.img} alt="" />
+                      </div>
                       <p className="part-desc">{chamber.desc}</p>
                     </div>
-                    <img className="part-image" src={chamber.img} alt="" />
                   </div>
                 ))}
               </div>
@@ -102,10 +104,12 @@ export class KitgunPicker extends Component {
                 {this.state.items.second.map((grip, index) => (
                   <div key={index} className={"modular-part " + (this.state.second === index ? 'modular-part-picked' : '')} onClick={() => { this.setSecond(index) }}>
                     <div className="part-info">
-                      <p className="part-name">{grip.name}</p>
+                      <div className="part-item">
+                        <p className="part-name">{grip.name}</p>
+                        <img className="part-image" src={grip.img} alt="" />
+                      </div>
                       <p className="part-desc">{grip.desc}</p>
                     </div>
-                    <img className="part-image" src={grip.img} alt="" />
                   </div>
                 ))}
               </div>
@@ -122,10 +126,12 @@ export class KitgunPicker extends Component {
                 {this.state.items.third.map((loader, index) => (
                   <div key={index} className={"modular-part " + (this.state.third === index ? 'modular-part-picked' : '')} onClick={() => { this.setThird(index) }}>
                     <div className="part-info">
-                      <p className="part-name">{loader.name}</p>
+                      <div className="part-item">
+                        <p className="part-name">{loader.name}</p>
+                        <img className="part-image" src={loader.img} alt="" />
+                      </div>
                       <p className="part-desc">{loader.desc}</p>
                     </div>
-                    <img className="part-image" src={loader.img} alt="" />
                   </div>
                 ))}
               </div>

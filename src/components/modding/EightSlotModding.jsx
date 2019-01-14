@@ -9,12 +9,13 @@ const Like = lazy(() => import('../like/Like'));
 const BuildList = lazy(() => import('../buildlist/BuildList'));
 const BuildSaver = lazy(() => import('../buildsaver/BuildSaver'));
 const LinkGenerator = lazy(() => import('../linkgenerator/LinkGenerator'));
-const RangedRivenEditor = lazy(() => import('../rangedriveneditor/RangedRivenEditor'));
+const RangedRivenEditor = lazy(() => import('../riveneditor/RangedRivenEditor'));
 const ModStateHandler = lazy(() => import('../modstatehandler/ModStateHandler'));
 const PolarityPicker = lazy(() => import('../polaritypicker/PolarityPicker'));
 const ModPicker = lazy(() => import('../modpicker/ModPicker'));
-const RangedWeaponStats = lazy(() => import('../stats/RangedWeaponStats'))
-const WarframeStats = lazy(() => import('../stats/WarframeStats'))
+const RangedWeaponStats = lazy(() => import('../stats/RangedWeaponStats'));
+const WarframeStats = lazy(() => import('../stats/WarframeStats'));
+const MeleeStats = lazy(() => import('../stats/MeleeStats'));
 
 class EightSlotModding extends Component {
     constructor(props) {
@@ -71,12 +72,12 @@ class EightSlotModding extends Component {
 
     convertBuildToString = () => {
         let buildStr = '';
+        let riven = false;
         this.state.orokin ? buildStr += '1' : buildStr += '0';
         for (let i = 0; i < 8; i++) {
             let polNum = this.convertPolarityToNum(this.state.slotPolarities[i]);
             buildStr += polNum;
         }
-        let riven = false;
         this.state.chosenMods.forEach(mod => {
             if (mod.name) {
                 if (mod.abrev === 'ri') riven = true;
@@ -629,8 +630,11 @@ class EightSlotModding extends Component {
                     {(this.props.type === 'archguns-space' || this.props.type === 'archguns-land' || this.props.riven === 'ranged') &&
                         <RangedWeaponStats weapon={this.props.item} mods={this.state.chosenMods} viewWidth={this.props.viewWidth} type={this.props.type} />
                     }
-                    {(this.props.type === 'archwings') &&
+                    {this.props.type === 'archwings' &&
                         <WarframeStats frame={this.props.item} mods={this.state.chosenMods} viewWidth={this.props.viewWidth} />
+                    }
+                    {this.props.type === 'archmelee' &&
+                        <MeleeStats weapon={this.props.item} mods={this.state.chosenMods} viewWidth={this.props.viewWidth} />
                     }
                     <PolarityPicker polarityPicker={polarityPicker} polarizeSlot={this.polarizeSlot} hidePolarityPicker={this.hidePolarityPicker} />
                 </div>

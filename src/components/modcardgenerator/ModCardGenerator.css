@@ -159,6 +159,7 @@
 @media screen and (min-width: 1203px) and (hover: hover) {
     .mod-info-wrapper {
         max-height: 250px;
+        transform: translateZ(0);
         transition: all 200ms ease-in-out;
         overflow: hidden;
     }
@@ -174,14 +175,18 @@
     }
     .simple-set-bar-wrapper {
         overflow: hidden;
+        transform: translateZ(0);
         transition: all 200ms ease-in-out;
         max-height: 0;
     }
     .simple-mod:hover .aura-topper {
-        transform: translateX(-1px)
+        transform: translateZ(0);
     }
     .simple-mod:hover .exilus-mod-icon {
-        transform: translateX(-1px)
+        transform: translateZ(0);
+    }
+    .simple-mod:hover .polarity-icon {
+        transform: translateZ(0);
     }
     .simple-mod:hover .mod-info-wrapper .mod-desc p {
         max-height: 172px;

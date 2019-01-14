@@ -479,10 +479,10 @@ class WarframeModding extends Component {
     calcCost = (newMods, slotPolarities, auraMod, auraPolarity, exilusMod, exilusPolarity) => {
         let modsCostSum = 0;
         if (auraMod.name) {
-            if (!auraPolarity) {
-                modsCostSum += auraMod.baseCost - auraMod.currRank;
-            } else if (auraMod.polarity === auraPolarity) {
+            if (auraMod.polarity === auraPolarity) {
                 modsCostSum -= (auraMod.baseCost + auraMod.currRank) * 2;
+            } else if (!auraPolarity) {
+                modsCostSum -= (auraMod.baseCost + auraMod.currRank);
             } else {
                 modsCostSum -= Math.round((auraMod.baseCost + auraMod.currRank) * 0.725);
             }
