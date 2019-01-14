@@ -40,11 +40,9 @@ class App extends Component {
       headers: { 'Content-Type': 'application/json' },
     })
       .then(res => {
-        if (res.status === 200) {
-          res.json().then(res => {
-            this.checkForUpdate(ver, res)
-          });
-        }
+        res.json().then(res => {
+          this.checkForUpdate(ver, res)
+        });
       });
   }
 
@@ -151,10 +149,10 @@ class App extends Component {
               <React.Fragment>
                 <p className="update-touch">An update is available! Please wait for Tennoware to fetch the new data.</p>
                 {this.state.update
-                ? <div className="interactable interactable-semi-inactive" style={{ minWidth: '87px' }} onClick={this.updateInit}>
-                  <p className="interactable-p">Update</p>
-                </div>
-                : <div className="update-loading-container"><ContainedLoading /></div>
+                  ? <div className="interactable interactable-semi-inactive" style={{ minWidth: '87px' }} onClick={this.updateInit}>
+                    <p className="interactable-p">Update</p>
+                  </div>
+                  : <div className="update-loading-container"><ContainedLoading /></div>
                 }
               </React.Fragment>
             }
