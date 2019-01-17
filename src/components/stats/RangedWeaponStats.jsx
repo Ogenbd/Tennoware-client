@@ -15,6 +15,7 @@ export class RangedWeaponStats extends Component {
             zoom: 0,
             combo: 1,
             powerStr: 100,
+            razorwingBlitz: 0,
             open: false,
             aiming: false,
             kill: false,
@@ -176,6 +177,12 @@ export class RangedWeaponStats extends Component {
     setCombo = (value) => {
         this.setState({
             combo: value
+        });
+    }
+
+    setRazorwingBlitz = (value) => {
+        this.setState({
+            razorwingBlitz: value
         });
     }
 
@@ -473,6 +480,7 @@ export class RangedWeaponStats extends Component {
                 fireRateMult += this.state.effects.fireRate;
             }
         }
+        if (this.props.weapon.name === 'DEX PIXIA') fireRateMult += 0.25 * (this.state.powerStr / 100) * this.state.razorwingBlitz
         return {
             display: this.props.weapon.modes[this.state.mode].fireRate * fireRateMult,
             mult: fireRateMult
@@ -586,7 +594,7 @@ export class RangedWeaponStats extends Component {
     handleChange = ({ target }) => {
         let value = parseInt(target.value, 10);
         if (value > 999) value = 999;
-        if (value < 0 ) value = '';
+        if (value < 0) value = '';
         if (isNaN(value)) value = '';
         this.setState({ powerStr: value })
     }
@@ -618,14 +626,24 @@ export class RangedWeaponStats extends Component {
         for (let i = 1; i < 4.5; i = i + 0.5) {
             marks[i] = {}
             marks[i].label = `${i}x`;
-            i === this.state.combo ? marks[i].style = { color: '#fff9a0', textShadow: '0px 0px 8px rgba(255, 249, 160, 1)' } : marks[i].style = { color: 'white'}
+            i === this.state.combo ? marks[i].style = { color: '#fff9a0', textShadow: '0px 0px 8px rgba(255, 249, 160, 1)' } : marks[i].style = { color: 'white' }
+        }
+        return marks;
+    }
+
+    razorwingBlitzMarks = () => {
+        let marks = {};
+        for (let i = 0; i < 5; i++) {
+            marks[i] = {}
+            marks[i].label = `${i}`;
+            i === this.state.razorwingBlitz ? marks[i].style = { color: '#fff9a0', textShadow: '0px 0px 8px rgba(255, 249, 160, 1)' } : marks[i].style = { color: 'white' }
         }
         return marks;
     }
 
     render() {
         const { weapon } = this.props;
-        const { mode, effects, zoom, combo } = this.state;
+        const { mode, effects, zoom, combo, razorwingBlitz } = this.state;
         const critChance = this.calcCritChance();
         const critMult = this.calcCritMult();
         const fireRate = this.calcFireRate();
@@ -828,12 +846,20 @@ export class RangedWeaponStats extends Component {
                             }
                         </div>
                         <div className="modes">
+                            {weapon.name === 'DEX PIXIA' &&
+                                <div className="slider-box">
+                                    <p className="slider-title">Razorwing Blitz Stacks</p>
+                                    <div className="slider-wrapper">
+                                        <Slider min={0} max={4} value={razorwingBlitz} onChange={this.setRazorwingBlitz} dots={true} handleStyle={{ backgroundColor: '#96dbfa' }} marks={this.razorwingBlitzMarks()} />
+                                    </div>
+                                </div>
+                            }
                             {weapon.zoom &&
                                 <React.Fragment>
                                     <div className="slider-box">
                                         <p className="slider-title">Zoom</p>
                                         <div className="slider-wrapper">
-                                            <Slider min={0} max={weapon.zoom.length - 1} value={zoom} onChange={this.setZoom} dots={true} included={false} handleStyle={{ backgroundColor: '#96dbfa' }} marks={this.zoomMarks()} />
+                                            <Slider min={0} max={weapon.zoom.length - 1} value={zoom} onChange={this.setZoom} dots={true} handleStyle={{ backgroundColor: '#96dbfa' }} marks={this.zoomMarks()} />
                                         </div>
                                     </div>
                                     <div className="slider-box">

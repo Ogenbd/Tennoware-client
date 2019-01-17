@@ -15,6 +15,7 @@ export class MeleeStats extends Component {
             statusOnTarget: 0,
             comboDamageStep: 0.5,
             powerStr: 100,
+            razorwingBlitz: 0,
             open: false,
             berserker: false,
             berserkerStacks: 0,
@@ -137,6 +138,11 @@ export class MeleeStats extends Component {
     setCombo = (value) => {
         this.setState({
             combo: value
+        });
+    }
+    setRazorwingBlitz = (value) => {
+        this.setState({
+            razorwingBlitz: value
         });
     }
 
@@ -398,6 +404,7 @@ export class MeleeStats extends Component {
             let berserkerMult = this.state.effects.berserker * this.state.berserkerStacks;
             berserkerMult > 0.75 ? speedMult += 0.75 : speedMult += berserkerMult;
         }
+        if (this.props.weapon.name === 'DIWATA') speedMult += 0.25 * (this.state.powerStr / 100) * this.state.razorwingBlitz
         return {
             display: this.props.weapon.modes[this.state.mode].speed * speedMult,
             mult: speedMult
@@ -491,9 +498,19 @@ export class MeleeStats extends Component {
         return marks;
     }
 
+    razorwingBlitzMarks = () => {
+        let marks = {};
+        for (let i = 0; i < 5; i++) {
+            marks[i] = {}
+            marks[i].label = `${i}`;
+            i === this.state.razorwingBlitz ? marks[i].style = { color: '#fff9a0', textShadow: '0px 0px 8px rgba(255, 249, 160, 1)' } : marks[i].style = { color: 'white' }
+        }
+        return marks;
+    }
+
     render() {
         const { weapon } = this.props;
-        const { mode, berserker, berserkerStacks, combo, comboDamageStep, gladSet, statusOnTarget } = this.state;
+        const { mode, berserker, berserkerStacks, combo, comboDamageStep, gladSet, statusOnTarget, razorwingBlitz } = this.state;
         const speed = this.calcSpeed();
         const damage = this.calcDamage();
         const critChance = this.calcCritChance();
@@ -532,7 +549,7 @@ export class MeleeStats extends Component {
                                 <div className="damage">
                                     {damage.map(instance => (
                                         <div key={instance.type} className="stat"><p>{instance.type}: </p><p className="stat-frag">{(Math.round(instance.damage * 10) / 10).toFixed(1)}</p><img className="damage-icon" src={instance.icon} alt="" /></div>
-                                        ))}
+                                    ))}
                                 </div>
                             </div>
                             <div className="stats-item">
@@ -540,22 +557,22 @@ export class MeleeStats extends Component {
                                 <div className="stat"><p>{weapon.mastery}</p></div>
                             </div>
                             {weapon.modes[mode].slide &&
-                            <div className="stats-item">
-                                <p className="stat-name">Spin Attack: </p>
-                                <div className="stat"><p>{specials.slide}</p></div>
-                            </div>
+                                <div className="stats-item">
+                                    <p className="stat-name">Spin Attack: </p>
+                                    <div className="stat"><p>{specials.slide}</p></div>
+                                </div>
                             }
                             {weapon.modes[mode].slam &&
-                            <div className="stats-item">
-                                <p className="stat-name">Leap Attack: </p>
-                                <div className="stat"><p>{specials.slam}</p></div>
-                            </div>
+                                <div className="stats-item">
+                                    <p className="stat-name">Leap Attack: </p>
+                                    <div className="stat"><p>{specials.slam}</p></div>
+                                </div>
                             }
                             {weapon.modes[mode].wall &&
-                            <div className="stats-item">
-                                <p className="stat-name">Wall Attack: </p>
-                                <div className="stat"><p>{specials.wall}</p></div>
-                            </div>
+                                <div className="stats-item">
+                                    <p className="stat-name">Wall Attack: </p>
+                                    <div className="stat"><p>{specials.wall}</p></div>
+                                </div>
                             }
                             {weapon.modes[mode].speed &&
                                 <div className="stats-item">
@@ -606,6 +623,14 @@ export class MeleeStats extends Component {
                             }
                         </div>
                         <div className="modes">
+                            {weapon.name === 'DIWATA' &&
+                                <div className="slider-box">
+                                    <p className="slider-title">Razorwing Blitz Stacks</p>
+                                    <div className="slider-wrapper">
+                                        <Slider min={0} max={4} value={razorwingBlitz} onChange={this.setRazorwingBlitz} dots={true} handleStyle={{ backgroundColor: '#96dbfa' }} marks={this.razorwingBlitzMarks()} />
+                                    </div>
+                                </div>
+                            }
                             {this.state.effects.conditionOverload &&
                                 <div className="slider-box">
                                     <p className="slider-title">Status Effects on Target:</p>

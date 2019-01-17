@@ -15,7 +15,7 @@ export class LinkGenerator extends Component {
     let buildState = this.props.getBuildStr();
     // fix url
     // let linkUrl = `localhost:3000/${this.props.type}/${encodeURIComponent(this.props.match.params.id)}/${buildState.buildStr}`;
-    let linkUrl = `tennoware.com/${this.props.type}/${encodeURIComponent(this.props.match.params.id)}/${buildState.buildStr}`;
+    let linkUrl = `https://tennoware.com/${this.props.type}/${encodeURIComponent(this.props.match.params.id)}/${buildState.buildStr}`;
     if (this.props.match.params.build && buildState.buildStr === this.props.match.params.pre) {
       linkUrl += `/${this.props.match.params.build}`;
     }

@@ -4634,6 +4634,7 @@ const meleeStats = [
     mastery: 3,
     type: [
       'DUAL SWORDS',
+      'DUAL CLEAVERS',
       'PRISMA DUAL CLEAVERS'
     ],
     polarities: [
@@ -4712,6 +4713,7 @@ const meleeStats = [
     mastery: 0,
     type: [
       'SPARRING',
+      'OBEX',
       'PRISMA OBEX'
     ],
     polarities: [],
@@ -4750,6 +4752,7 @@ const meleeStats = [
     mastery: 0,
     type: [
       'SWORDS',
+      'SKANA',
       'PRISMA SKANA'
     ],
     polarities: [],
@@ -4818,6 +4821,7 @@ const meleeStats = [
     mastery: 3,
     type: [
       'MACHETES',
+      'PROVA',
       'PROVA VANDAL'
     ],
     polarities: [],
@@ -4884,6 +4888,7 @@ const meleeStats = [
     mastery: 8,
     type: [
       'DAGGERS',
+      'DARK DAGGER',
       'RAKTA DARK DAGGER'
     ],
     polarities: [
@@ -5559,6 +5564,7 @@ const meleeStats = [
     mastery: 12,
     type: [
       'SWORD & SHIELD',
+      'SILVA & AEGIS',
       'SILVA & AEGIS PRIME'
     ],
     polarities: [
@@ -5631,6 +5637,7 @@ const meleeStats = [
     mastery: 0,
     type: [
       'SWORDS',
+      'SKANA',
       'SKANA PRIME'
     ],
     polarities: [

@@ -192,9 +192,34 @@
 }
 
 .update-loading-container {
-    width: 87px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
     min-width: 87px;
     height: 87px;
+}
+
+.update-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    flex: 1 0 auto;
+    width: 100%;
+    max-width: 1000px;
+    background-color: rgba(0, 0, 0, 0.7)
+}
+
+.update-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    width: 95%;
+    max-width: 450px;
 }
 
 @media screen and (min-width: 1203px) {

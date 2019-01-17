@@ -1,5 +1,16 @@
 UPDATE LOG
 
+17/01/2019 - v1.2.1.
+
+New:
+Added Razowing Blitz augment support to the Dex Pixia and Diwata.
+
+Changes:
+Improvments to update and caching strategy.
+
+Fixes:
+Fixed an issue that caused some Zaw builds to cause errors resolting in a blank page.
+
 14/01/2019 - v1.2.0.
 
 New:

@@ -17,6 +17,10 @@ export class News extends Component {
   }
 
   componentDidMount() {
+    (window.adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-9367218977396146",
+      enable_page_level_ads: true
+    });
     if (localStorage.news) {
       this.getNews(localStorage.news);
     } else {
@@ -109,11 +113,11 @@ export class News extends Component {
                 </div>
               </div>
               <div className="article tennoware-news">
-                <h1>Update 1.2.0!</h1>
+                <h1>Update 1.2.1!</h1>
                 <div className="update-content">
-                  <p>The Melee weapon calculator is here! It brought with it the Zaw Builder and calculator and Archmelee calculator.</p>
-                  <p>Additions/changes added to Warframe with update 24.2.7 that are relevant to Tennoware have been implemented.</p>
-                  <p>More miscellaneous bug fixes happened, however, this Tennoware update brought with it a lot of new features so there may be bugs.</p>
+                  <p>Added Razorwing Blitz sliders and calculations to Titania's exalted weapons.</p>
+                  <p>Fixed an issue where picking plague zaw parts and trying to mod the zaw would sometimes lead a to blank page.</p>
+                  <p>More Improvments to Tennoware's update and caching strategy that will (hopfully) prevent users with previous versions of Tennoware from being sent to a 404 page when they are linked to an updated feature/item.</p>
                   <p>For the complete update notes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log</a>.</p>
                 </div>
               </div>

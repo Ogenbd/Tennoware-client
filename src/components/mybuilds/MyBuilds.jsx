@@ -25,6 +25,10 @@ export default class MyBuilds extends Component {
     }
 
     componentDidMount() {
+        (window.adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-9367218977396146",
+            enable_page_level_ads: true
+        });
         let token = localStorage.getItem('jwt');
         fetch(`${apiUrl}/mybuilds`, {
             method: 'get',
@@ -105,7 +109,6 @@ export default class MyBuilds extends Component {
         } else if (build.Type === 'zaws') {
             let first = build.ItemName.toLowerCase().split(' ');
             first[0] === 'plague' ? first = first[1] : first = first[0];
-            console.log(first);
             itemIdx = list.first.findIndex(item => {
                 return item.name.toLowerCase() === first;
             });

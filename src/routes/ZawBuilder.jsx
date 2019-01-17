@@ -20,6 +20,10 @@ class MeleeBuilder extends Component {
     }
 
     componentDidMount() {
+        (window.adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-9367218977396146",
+            enable_page_level_ads: true
+        });
         if (this.props.match.params.build) {
             this.confirmBuild()
         } else {
@@ -74,6 +78,7 @@ class MeleeBuilder extends Component {
         if (parts[0] === 'plague') {
             parts.shift();
             specialStrike = parts[0];
+            specialGrip = parts[1];
             parts[0] = `plague ${parts[0]}`;
         }
         if (parts[1] === 'plague') {
@@ -132,11 +137,7 @@ class MeleeBuilder extends Component {
             });
         }
         catch {
-            setTimeout(() => {
-                if (this.props.updateRequired) {
-                    this.redirectToVoid();
-                }
-            }, 2000);
+            this.redirectToVoid();
         }
     }
 

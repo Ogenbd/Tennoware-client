@@ -20,6 +20,10 @@ class RangedBuilder extends Component {
     }
 
     componentDidMount() {
+        (window.adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-9367218977396146",
+            enable_page_level_ads: true
+        });
         if (this.props.match.params.build) {
             this.confirmBuild()
         } else {
@@ -105,11 +109,7 @@ class RangedBuilder extends Component {
             });
         }
         catch {
-            setTimeout(() => {
-                if (this.props.updateRequired) {
-                    this.redirectToVoid();
-                }
-            }, 2000);
+            this.redirectToVoid();
         }
     }
 

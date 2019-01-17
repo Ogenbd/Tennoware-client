@@ -8,6 +8,7 @@ import Sidebar from './components/sidebar/Sidebar';
 import Login from './components/login/Login';
 import apiUrl from './apiUrl';
 import ContainedLoading from './components/loading/ContainedLoading';
+import Loading from './components/loading/Loading';
 
 class App extends Component {
   constructor(props) {
@@ -18,53 +19,57 @@ class App extends Component {
       user: false,
       online: navigator.onLine,
       update: false,
-      updateRequired: false
+      updateRequired: undefined
     }
     this.debouncedSetWidth = debounce(this.setViewWidth, 100)
   }
 
   componentDidMount() {
-    if (navigator.onLine) this.checkVer('1.2.0');
+    let jwt;
+    localStorage.jwt ? jwt = true : jwt = false;
+    navigator.onLine ? this.checkVer('1.2.1', jwt) : this.setState({ updateRequired: false, user: jwt });
     window.addEventListener('resize', this.debouncedSetWidth);
-    window.addEventListener('updateavail', this.promptUpdate);
-    if (localStorage.jwt) {
-      this.setState({ user: true });
-    }
+    window.addEventListener('updateavail', this.updateInit);
     window.addEventListener('online', this.setOnline);
     window.addEventListener('offline', this.setOffline);
   }
 
-  checkVer = (ver) => {
+  checkVer = (ver, jwt) => {
     fetch(`${apiUrl}/checkver`, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' },
     })
       .then(res => {
         res.json().then(res => {
-          this.checkForUpdate(ver, res)
+          this.checkForUpdate(ver, res, jwt)
         });
-      });
+      })
+      .catch(() => {
+        this.setState({ updateRequired: false, user: jwt })
+      })
   }
 
-  checkForUpdate = (local, server) => {
+  checkForUpdate = (local, server, jwt) => {
     let localVer = local.split('.');
     let serverVer = server.split('.');
     if (parseInt(serverVer[0], 10) > parseInt(localVer[0], 10)) {
-      this.setState({ updateRequired: true });
+      this.setState({ updateRequired: true, user: jwt });
     } else if (parseInt(serverVer[1], 10) > parseInt(localVer[1], 10)) {
-      this.setState({ updateRequired: true });
+      this.setState({ updateRequired: true, user: jwt });
     } else if (parseInt(serverVer[2], 10) > parseInt(localVer[2], 10)) {
-      this.setState({ updateRequired: true });
+      this.setState({ updateRequired: true, user: jwt });
+    } else {
+      this.setState({ updateRequired: false, user: jwt });
     }
   }
 
-  checkMessage = (e) => {
-    if (e.data === 'donewaiting') window.location.reload();
-  }
+  // checkMessage = (e) => {
+  //   if (e.data === 'donewaiting') window.location.reload();
+  // }
 
-  promptUpdate = () => {
-    this.setState({ update: true });
-  }
+  // promptUpdate = () => {
+  //   this.setState({ update: true });
+  // }
 
   setOffline = () => {
     this.setState({
@@ -139,11 +144,30 @@ class App extends Component {
           </div>
         </div>
         <div className="main-view">
-          <Routing viewWidth={this.state.viewWidth} user={this.state.user} online={this.state.online} logUser={this.logUser} updateRequired={this.state.updateRequired} />
+          {this.state.updateRequired === undefined
+            ? <Loading />
+            : <React.Fragment>
+              {this.state.updateRequired
+                ? <div className="main">
+                  <div className="screen">
+                    <div className="update-screen">
+                      <div className="top-title"><p>UPDATE</p></div>
+                      <div className="update-block">
+                        <p>Tennoware has been updated!</p>
+                        <p>Fetching updated data...</p>
+                        <div className="update-loading-container"><ContainedLoading /></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                : <Routing viewWidth={this.state.viewWidth} user={this.state.user} online={this.state.online} logUser={this.logUser} updateRequired={this.state.updateRequired} />
+              }
+            </React.Fragment>
+          }
         </div>
         <Sidebar user={this.state.user} online={this.state.online} />
         <Login showLogin={this.state.showLogin} hideLogin={this.hideLogin} logUser={this.logUser} user={this.state.user} />
-        <div className={"update-popup " + (this.state.updateRequired ? 'show-update' : 'hide-update')}>
+        {/* <div className={"update-popup " + (this.state.updateRequired ? 'show-update' : 'hide-update')}>
           <div className="update-popup-content">
             {this.state.updateRequired &&
               <React.Fragment>
@@ -157,23 +181,10 @@ class App extends Component {
               </React.Fragment>
             }
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }
 }
 
 export default App;
-
-// const debounce = (fn, delay) => {
-//   var timer = null;
-//   return function () {
-//     var context = this, args = arguments;
-//     clearTimeout(timer);
-//     timer = setTimeout(function () {
-//       fn.apply(context, args);
-//     }, delay);
-//   };
-// }
-
-
