@@ -112,7 +112,7 @@ export class News extends Component {
                 </div>
               </div>
               <div className="article tennoware-news">
-                <h1>Update 1.2.1!</h1>
+                <h1>Update 1.2.1 + 1.2.2!</h1>
                 <div className="update-content">
                   <p>Added Razorwing Blitz sliders and calculations to Titania's exalted weapons.</p>
                   <p>Fixed an issue where picking plague zaw parts and trying to mod the zaw would sometimes lead a to blank page.</p>
