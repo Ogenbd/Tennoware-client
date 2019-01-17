@@ -1,5 +1,10 @@
 UPDATE LOG
 
+17/01/2019 - v1.2.2.
+
+Fixes:
+Removed some code that was left in unintentionally and broke everything. 
+
 17/01/2019 - v1.2.1.
 
 New:

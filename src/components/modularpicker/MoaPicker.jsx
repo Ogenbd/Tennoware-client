@@ -20,8 +20,7 @@ export class MoaPicker extends Component {
 
     async componentDidMount() {
         (window.adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-9367218977396146",
-            enable_page_level_ads: true
+            google_ad_client: "ca-pub-9367218977396146"
         });
         let items = await this.props.items()
         this.setState({ items: items.default });

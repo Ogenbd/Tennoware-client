@@ -25,9 +25,13 @@ class App extends Component {
   }
 
   componentDidMount() {
+    (window.adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-9367218977396146",
+      enable_page_level_ads: true
+    });
     let jwt;
     localStorage.jwt ? jwt = true : jwt = false;
-    navigator.onLine ? this.checkVer('1.2.1', jwt) : this.setState({ updateRequired: false, user: jwt });
+    navigator.onLine ? this.checkVer('1.2.2', jwt) : this.setState({ updateRequired: false, user: jwt });
     window.addEventListener('resize', this.debouncedSetWidth);
     window.addEventListener('updateavail', this.updateInit);
     window.addEventListener('online', this.setOnline);
