@@ -17,9 +17,9 @@ export class News extends Component {
   }
 
   componentDidMount() {
-    (window.adsbygoogle = window.adsbygoogle || []).push({
-      google_ad_client: "ca-pub-9367218977396146"
-    });
+    // (window.adsbygoogle = window.adsbygoogle || []).push({
+    //   google_ad_client: "ca-pub-9367218977396146"
+    // });
     if (localStorage.news) {
       this.getNews(localStorage.news);
     } else {

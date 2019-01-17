@@ -20,9 +20,9 @@ class FrameBuilder extends Component {
     }
 
     componentDidMount() {
-        (window.adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-9367218977396146"
-        });
+        // (window.adsbygoogle = window.adsbygoogle || []).push({
+        //     google_ad_client: "ca-pub-9367218977396146"
+        // });
         if (this.props.match.params.build) {
             this.confirmBuild()
         } else {

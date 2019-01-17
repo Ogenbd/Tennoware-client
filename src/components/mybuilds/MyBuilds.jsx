@@ -25,9 +25,9 @@ export default class MyBuilds extends Component {
     }
 
     componentDidMount() {
-        (window.adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-9367218977396146"
-        });
+        // (window.adsbygoogle = window.adsbygoogle || []).push({
+        //     google_ad_client: "ca-pub-9367218977396146"
+        // });
         let token = localStorage.getItem('jwt');
         fetch(`${apiUrl}/mybuilds`, {
             method: 'get',
