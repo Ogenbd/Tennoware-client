@@ -643,7 +643,7 @@ export class MeleeStats extends Component {
                                 <div className="slider-box">
                                     <p className="slider-title">Berserker Stacks</p>
                                     <div className="slider-wrapper">
-                                        <Slider min={0} max={7} value={berserkerStacks} step={1} onChange={this.setBerserkerStacks} dots={true} handleStyle={{ backgroundColor: '#96dbfa' }} marks={this.berserkerMarks()} />
+                                        <Slider min={0} max={3} value={berserkerStacks} step={1} onChange={this.setBerserkerStacks} dots={true} handleStyle={{ backgroundColor: '#96dbfa' }} marks={this.berserkerMarks()} />
                                     </div>
                                 </div>
                             }

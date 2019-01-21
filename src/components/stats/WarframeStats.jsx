@@ -313,7 +313,7 @@ export class WarframeStats extends PureComponent {
                                 </div>
                             )
                         }
-                        if (this.props.frame.name === 'IVARA' || this.props.frame.name === 'NYX' || this.props.frame.name === 'NYX PRIME' || (this.props.frame.name === 'GARUDA' && abilityNum === 3)) {
+                        if ((this.props.frame.name === 'IVARA' && abilityNum === 2) || this.props.frame.name === 'NYX' || this.props.frame.name === 'NYX PRIME' || (this.props.frame.name === 'GARUDA' && abilityNum === 3)) {
                             stats.push(
                                 <div key={`${coefficient}${index}`} className="ability-stat">
                                     <div className="ability-stat-name">{stat.name}</div>
@@ -464,6 +464,15 @@ export class WarframeStats extends PureComponent {
                                     </div>
                                 )
                             }
+                        }
+                        if (this.props.frame.name === 'IVARA' && abilityNum === 1) {
+                            let durationMult = this.state.effects.duration ? this.state.effects.duration + 1 : 1;
+                            stats.push(
+                                <div key={`${coefficient}${index}`} className="ability-stat">
+                                    <div className="ability-stat-name">{stat.name}</div>
+                                    <div className={"ability-stat-amount " + (durationMult < 1 ? "increased-stat" : durationMult > 1 ? "decreased-stat" : "")}>{Math.round(stat.base / durationMult * 100) / 100}x</div>
+                                </div>
+                            )
                         }
                         // end of exceptions
                     } else {

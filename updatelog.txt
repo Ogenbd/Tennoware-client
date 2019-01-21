@@ -1,5 +1,14 @@
 UPDATE LOG
 
+upcoming - v1.2.3.
+
+Changes:
+Added damage buff duration to nyx's Absorb.
+
+Fixes:
+Fixed the calculation for Ivara's Navigator.
+Fixed a small UI issue with the Berserker Stacks slider.
+
 17/01/2019 - v1.2.2.
 
 Fixes:

@@ -2830,10 +2830,9 @@ const abilities = {
                             base: 5,
                         },
                     ],
-                    duration: [
+                    exception: [
                         {
                             name: 'Multiplier growth/s',
-                            suffix: 'x',
                             base: 1
                         }
                     ],
@@ -2841,6 +2840,12 @@ const abilities = {
                         {
                             name: 'Energy',
                             base: 25
+                        }
+                    ],
+                    channel: [
+                        {
+                            name: 'Base energy/s',
+                            base: 3
                         }
                     ],
                 }
@@ -2976,7 +2981,7 @@ const abilities = {
                     ],
                     inverse: [
                         {
-                            name: 'Propagationdelay',
+                            name: 'Propagation delay',
                             suffix: 's',
                             base: 0.5
                         }
@@ -4616,6 +4621,13 @@ const abilities = {
                             name: 'Minimum damage',
                             base: 1500,
                         },
+                    ],
+                    duration: [
+                        {
+                            name: 'Buff duration',
+                            suffix: 's',
+                            base: 8
+                        }
                     ],
                     range: [
                         {
