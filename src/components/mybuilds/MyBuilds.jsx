@@ -108,7 +108,6 @@ export default class MyBuilds extends Component {
             itemIdx = list.first.findIndex(item => {
                 return item.name.toLowerCase() === first;
             });
-            console.log(first);
             itemImage = list.first[itemIdx].img;
         } else {
             itemIdx = list.findIndex(item => {

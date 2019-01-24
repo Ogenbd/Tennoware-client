@@ -89,7 +89,6 @@ class WarframeModding extends Component {
                 }
             }
         });
-        console.log(arcanes);
         return arcanes;
     }
 
