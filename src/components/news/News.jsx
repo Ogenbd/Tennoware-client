@@ -112,11 +112,12 @@ export class News extends Component {
                 </div>
               </div>
               <div className="article tennoware-news">
-                <h1>Update 1.2.1 + 1.2.2!</h1>
+                <h1>Update 1.2.3!</h1>
                 <div className="update-content">
-                  <p>Added Razorwing Blitz sliders and calculations to Titania's exalted weapons.</p>
-                  <p>Fixed an issue where picking plague zaw parts and trying to mod the zaw would sometimes lead a to blank page.</p>
-                  <p>More Improvments to Tennoware's update and caching strategy that will (hopfully) prevent users with previous versions of Tennoware from being sent to a 404 page when they are linked to an updated feature/item.</p>
+                  <p>Added Arcanes to the Warframe Builder.</p>
+                  <p>Implemented recent Warframe, Weapon and Mod changes.</p>
+                  <p>Fixed several bugs and inaccuracies.</p>
+                  <p>Arch-guns - Land builds now get the free Gravimag polarization they deserve.</p>
                   <p>For the complete update notes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log</a>.</p>
                 </div>
               </div>

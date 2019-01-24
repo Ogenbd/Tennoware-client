@@ -193,10 +193,10 @@ export class ModStateHandler extends Component {
             <ModCardGenerator mod={this.state.mod} slotPolarity={this.props.slotPolarity} handlerActive={this.state.showHandler} />
             {this.props.mod.name && this.props.viewWidth >= 1203 &&
               <div draggable="false" className="hover-buttons">
-                <div className="hover-button max-rank-button" onClick={this.maxRank}>➤</div>
-                <div className="hover-button up-rank-button" onClick={this.incRank}>+</div>
-                <div className="hover-button down-rank-button" onClick={this.decRank}>–</div>
-                <div className="hover-button min-rank-button" onClick={this.minRank}>➤</div>
+                <div className={`hover-button max-rank-button hover-${this.props.mod.rarity}`} onClick={this.maxRank}>➤</div>
+                <div className={`hover-button up-rank-button hover-${this.props.mod.rarity}`} onClick={this.incRank}>+</div>
+                <div className={`hover-button down-rank-button hover-${this.props.mod.rarity}`} onClick={this.decRank}>–</div>
+                <div className={`hover-button min-rank-button hover-${this.props.mod.rarity}`} onClick={this.minRank}>➤</div>
               </div>
             }
           </div>

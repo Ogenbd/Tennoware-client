@@ -61,6 +61,8 @@ const archmeleeMods = () => import('./data/archmeleemods' /* webpackChunkName: "
 const archmeleeList = () => import('./data/archmeleelist' /* webpackChunkName: "arml" */ );
 const archmeleeStats = () => import('./data/archmeleestats' /* webpackChunkName: "arms" */ );
 const zaws = () => import('./data/zaws' /* webpackChunkName: "zaws" */ );
+const warframeArcanes = () => import('./data/warframearcanes' /* webpackChunkName: "warc" */ );
+
 
 export class Routing extends Component {
     render() {
@@ -84,9 +86,9 @@ export class Routing extends Component {
                         <Route exact path='/secondaryweapons/:id/:pre' render={props => <RangedBuilder {...props} {...nonRouterPropPass} type={'secondaryweapons'} items={secondaryWeaponStats} mods={secondaryMods} />} />
                         <Route exact path='/secondaryweapons/:id' render={props => <RangedBuilder {...props} {...nonRouterPropPass} type={'secondaryweapons'} items={secondaryWeaponStats} mods={secondaryMods} />} />
                         <Route exact path='/secondaryweapons' render={props => <ItemPicker {...props} {...nonRouterPropPass} title={'SECONDARY WEAPONS'} items={secondaryWeaponList} />} />
-                        <Route exact path='/warframes/:id/:pre/:build' render={props => <FrameBuilder {...props} {...nonRouterPropPass} type={'warframes'} items={warframeStats} mods={warframeMods} />} />
-                        <Route exact path='/warframes/:id/:pre' render={props => <FrameBuilder {...props} {...nonRouterPropPass} type={'warframes'} items={warframeStats} mods={warframeMods} />} />
-                        <Route exact path='/warframes/:id' render={props => <FrameBuilder {...props} {...nonRouterPropPass} type={'warframes'} items={warframeStats} mods={warframeMods} />} />
+                        <Route exact path='/warframes/:id/:pre/:build' render={props => <FrameBuilder {...props} {...nonRouterPropPass} type={'warframes'} items={warframeStats} mods={warframeMods} arcanes={warframeArcanes} />} />
+                        <Route exact path='/warframes/:id/:pre' render={props => <FrameBuilder {...props} {...nonRouterPropPass} type={'warframes'} items={warframeStats} mods={warframeMods} arcanes={warframeArcanes} />} />
+                        <Route exact path='/warframes/:id' render={props => <FrameBuilder {...props} {...nonRouterPropPass} type={'warframes'} items={warframeStats} mods={warframeMods} arcanes={warframeArcanes} />} />
                         <Route exact path='/warframes' render={props => <ItemPicker {...props} {...nonRouterPropPass} title={'WARFRAMES'} items={warframeList} />} />
                         <Route exact path='/archwings/:id/:pre/:build' render={props => <ArchwingBuilder {...props} {...nonRouterPropPass} type={'archwings'} items={archwingStats} mods={archwingMods} />} />
                         <Route exact path='/archwings/:id/:pre' render={props => <ArchwingBuilder {...props} {...nonRouterPropPass} type={'archwings'} items={archwingStats} mods={archwingMods} />} />

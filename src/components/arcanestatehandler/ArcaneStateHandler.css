@@ -1,0 +1,210 @@
+.arcane-handler {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+    justify-content: flex-start;
+    cursor: pointer;
+    height: 99px;
+    width: 130px;
+    transition: transform 250ms cubic-bezier(.45, .7, .28, .96);
+}
+
+.handler-background {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.8);
+    cursor: default;
+    transition: opacity 200ms;
+}
+
+.handler-remove {
+    color: #ff0000;
+}
+
+.handler-swap {
+    color: white;
+    width: 78.25px;
+}
+
+.handler-done {
+    width: 78.25px;
+    min-height: 38px;
+    color: #15E610;
+    margin-bottom: 7px;
+}
+
+.handler-active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 9089;
+}
+
+.handler-inactive {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.arcane-handler-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    width: 200px;
+    border: 1px solid rgba(255, 249, 160, 0.3);
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 9090;
+    transition: opacity 100ms ease-in-out;
+}
+
+.arcane-handler-top-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 0;
+}
+
+.arcane-placeholder {
+    height: 140px;
+}
+
+.arcane-handler-desc {
+    width: 169px;
+    color: white;
+    white-space: pre-wrap;
+    min-height: 85px;
+}
+
+.arcane-handler-bottom-buttons {
+    display: flex;
+}
+
+.arcane-handler-rank {
+    width: 40px;
+    min-width: 40px;
+}
+
+.arcane-slot-wrapper {
+    position: relative;
+    top: -3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 64.05px;
+    width: 80px
+}
+
+.arcane-empty-wrapper {
+    /* position: absolute; */
+    height: 99px;
+    width: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+    z-index: 0;
+}
+
+.arcane-empty-slot {
+    width: 75px;
+    height: 37.5px;
+    margin-bottom: 20px;
+    margin-top: 15px;
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+    box-shadow: inset 0px 0px 8px 3px rgba(0, 0, 0, 0.7);
+    background-color: rgba(255, 255, 255, 0.85);
+    transition: box-shadow 200ms;
+}
+
+.slotted-arcane {
+    position: absolute;
+    width: 80px;
+    max-height: 100%;
+}
+
+.arcane-ranks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arcane-rank {
+    width: 18px;
+}
+
+.slotted-arcane-name {
+    /* color: white; */
+    height: 19px;
+    color: rgb(255, 249, 160);
+    font-weight: 600;
+    margin-bottom: 2px;
+    text-align: center;
+}
+
+.arcane-hover-wrapper {
+    position: absolute;
+    color: white;
+    width: 130px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 3000;
+    transition: opacity 200ms ease-in-out;
+}
+
+.arcane-hover-buttons {
+    position: relative;
+    top: 22px;
+    width: 25px;
+}
+
+.arcane-hover-button {
+    height: 23px;
+    top: 0;
+    left: 0;
+    width: 23px;
+    background-color: rgba(0, 0, 0, 0.9);
+    border: solid 1px;
+    border-color: rgba(255, 249, 160, 0.3);
+    color: rgba(255, 249, 160, 0.7);
+    border-radius: 5px;
+    text-align: center;
+    line-height: 22px;
+    font-weight: 900;
+    transition: all 200ms;
+    user-select: none;
+    font-size: 18px;
+    margin-bottom: 2px;
+}
+
+.arcane-hover-desc {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 10px 7px;
+    border: 1px solid rgba(255, 249, 160, 0.3);
+    top: 50px;
+    white-space: pre-wrap;
+    text-align: center;
+}
+
+@media screen and (min-width: 1203px) and (hover: hover) {
+    .arcane-handler-wrapper:hover .arcane-empty-slot {
+        box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.7);
+    }
+    .arcane-handler:hover .arcane-hover-wrapper {
+        opacity: 1;
+    }
+    .arcane-handler:hover .arcane-hover-buttons {
+        pointer-events: all;
+    }
+    .arcane-hover-button:hover {
+        border-color: rgba(255, 249, 160, 1);
+        color: rgba(255, 249, 160, 1);
+        box-shadow: inset 0px 0px 10px 0px rgba(255, 249, 160, 0.9);
+    }
+}

@@ -214,7 +214,7 @@ export class ModularBuildList extends PureComponent {
             <React.Fragment>
                 <div className="interactable interactable-semi-inactive build-list-button" onClick={this.showBuildList}><p className="interactable-p">Community Builds</p></div>
                 <div className={"popup " + (this.state.showBuildList ? "popup-active" : "popup-inactive")}>
-                    <div className={"popup-topbar " + (this.state.showBuildList ? "popup-active" : "popup-inactive")}>
+                    <div className={"modular-popup-topbar " + (this.state.showBuildList ? "popup-active" : "popup-inactive")}>
                         <div className="popup-x" onClick={this.hideBuildList}>
                             <div className="popup-x-bar one-bar"></div>
                             <div className="popup-x-bar two-bar"></div>

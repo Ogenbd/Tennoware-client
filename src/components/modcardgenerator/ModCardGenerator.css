@@ -7,11 +7,11 @@
     width: 150px;
     height: 219.55px;
     font-family: 'Roboto Condensed', sans-serif;
-    backface-visibility: hidden;
+    transition: all 150ms ease-in-out;
 }
 
 .simple-mod {
-    transition: all 200ms ease-in-out;
+    /* transition: all 100ms ease-in-out; */
     cursor: pointer;
     margin: 1px;
     z-index: 1;
@@ -66,7 +66,7 @@
     position: absolute;
     top: 6px;
     width: 39px;
-    transition: all 200ms
+    transition: all 150ms;
 }
 
 .exilus-mod-icon {
@@ -83,8 +83,7 @@
     border-bottom-right-radius: 10%;
     box-shadow: 0px -7px 15px -6px rgba(112, 112, 112, 0.99), inset 0px 10px 9px -8px rgba(112, 112, 112, 1);
     width: 140px;
-    /* transform: none; */
-    transition: all 200ms ease-in-out;
+    transition: all 150ms ease-in-out;
 }
 
 .mod-name {
@@ -92,8 +91,6 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    /* padding-top: 4px; */
-    /* padding-bottom: 2px; */
     padding: 4px 2px 2px 2px;
     font-size: 17px;
     max-width: 100%;
@@ -112,7 +109,6 @@
     border-bottom-right-radius: 15%;
     box-sizing: border-box;
     pointer-events: none;
-    -webkit-font-smoothing: antialiased;
     overflow: hidden;
     padding: 5px;
 }
@@ -159,34 +155,26 @@
 @media screen and (min-width: 1203px) and (hover: hover) {
     .mod-info-wrapper {
         max-height: 250px;
-        transform: translateZ(0);
-        transition: all 200ms ease-in-out;
+        transition: all 150ms ease-in-out;
         overflow: hidden;
     }
+    .mod:hover {
+        /* transform: scale(1.06); */
+    }
     .mod-desc p {
-        transition: all 200ms ease-in-out;
+        transition: all 150ms ease-in-out;
         overflow: hidden;
         max-height: 0;
     }
     .set-desc {
-        transition: all 200ms ease-in-out;
+        transition: all 150ms ease-in-out;
         overflow: hidden;
         max-height: 0;
     }
     .simple-set-bar-wrapper {
         overflow: hidden;
-        transform: translateZ(0);
-        transition: all 200ms ease-in-out;
+        transition: all 150ms ease-in-out;
         max-height: 0;
-    }
-    .simple-mod:hover .aura-topper {
-        transform: translateZ(0);
-    }
-    .simple-mod:hover .exilus-mod-icon {
-        transform: translateZ(0);
-    }
-    .simple-mod:hover .polarity-icon {
-        transform: translateZ(0);
     }
     .simple-mod:hover .mod-info-wrapper .mod-desc p {
         max-height: 172px;

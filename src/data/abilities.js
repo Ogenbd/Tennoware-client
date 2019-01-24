@@ -3371,7 +3371,7 @@ const abilities = {
                     strength: [
                         {
                             name: 'Damage',
-                            base: 20,
+                            base: 500,
                             icon: require('../assets/dynamic/damage/Impact.png')
                         }
                     ],
@@ -4971,12 +4971,12 @@ const abilities = {
                     ],
                     duration: [
                         {
-                            name: 'Metronome duraion',
+                            name: 'Metronome duration',
                             suffix: 's',
                             base: 20
                         },
                         {
-                            name: 'Individual buff duraion',
+                            name: 'Individual buff duration',
                             suffix: 's',
                             base: 15
                         },

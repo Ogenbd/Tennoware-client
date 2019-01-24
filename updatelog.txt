@@ -1,15 +1,22 @@
 UPDATE LOG
 
-upcoming - v1.2.3.
+24/01/2019 - v1.2.3.
+
+New:
+Added Arcanes to the Warframe Modding page.
 
 Changes:
 Added damage buff duration to nyx's Absorb.
+Implemented changes to Weapons and Mods in Warframe update 24.2.10.
 
 Fixes:
 Fixed the calculation for Ivara's Navigator.
 Fixed a small UI issue with the Berserker Stacks slider.
 Corrected Garuda's energy amount.
 Fixed an issue that caused Shatter Shield's damage reduction stat to not appear for Mesa Prime.
+Fixed an issue that caused My Builds page to have a critical error after saving certain Zaw configurations.
+Fixed an issue that prevented Vulpine Mask from showing up on the mod picker.
+Archgun - Land builds will now get 1 free forma like they do ingame.
 
 17/01/2019 - v1.2.2.
 

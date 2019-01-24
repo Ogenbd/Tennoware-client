@@ -6,7 +6,7 @@
     width: 150px;
     height: 219.55px;
     margin: 3px;
-    transition: transform 0.2s;
+    transition: transform 150ms;
     perspective: 800px;
     perspective-origin: 50% 50%;
 }
@@ -31,7 +31,7 @@
     margin-left: -97.5px;
     width: 195px;
     height: 48px;
-    transition: opacity 0.1s
+    transition: opacity 0.1s;
 }
 
 .handler-bottom-buttons {
@@ -43,7 +43,7 @@
     margin-left: -97.5px;
     width: 195px;
     height: 90px;
-    transition: opacity 0.1s
+    transition: opacity 0.1s;
 }
 
 .handler-rank {
@@ -106,14 +106,14 @@
 }
 
 .handler-riven {
-    color: #aa50ce
+    color: #aa50ce;
 }
 
 .rank-buttons {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px
+    margin-bottom: 10px;
 }
 
 .handler-button-bottom {
@@ -140,8 +140,7 @@
 .mod-card-wrapper {
     position: absolute;
     cursor: pointer;
-    transition: transform 250ms cubic-bezier(.45,.7,.28,.96);
-    backface-visibility: hidden;
+    transition: transform 250ms cubic-bezier(.45, .7, .28, .96);
     /* -webkit-tap-highlight-color: transparent; */
 }
 
@@ -166,7 +165,7 @@
     text-align: center;
     font-weight: 900;
     font-size: 22px;
-    color: rgb(190,190,190)
+    color: rgb(190, 190, 190);
 }
 
 .slot-polarity {
@@ -206,9 +205,7 @@
     left: 0;
     width: 23px;
     background-color: rgba(0, 0, 0, 0.9);
-    color: rgba(255, 249, 160, 0.7);
     border: solid 1px;
-    border-color: rgba(255, 249, 160, 0.6);
     border-radius: 5px;
     text-align: center;
     line-height: 22px;
@@ -216,6 +213,31 @@
     transition: all 200ms;
     user-select: none;
     font-size: 18px;
+}
+
+.hover-common {
+    color: rgba(199, 153, 137, 0.7);
+    border-color: rgba(199, 153, 137, 0.6);
+}
+
+.hover-uncommon {
+    color: rgba(204, 204, 204, 0.7);
+    border-color: rgba(204, 204, 204, 0.6);
+}
+
+.hover-rare {
+    color: rgba(255, 249, 160, 0.7);
+    border-color: rgba(255, 249, 160, 0.6);
+}
+
+.hover-prime {
+    color: rgba(230, 230, 230, 0.85);
+    border-color: rgba(230, 230, 230, 0.7);
+}
+
+.hover-riven {
+    color: rgba(190, 135, 212, 0.7);
+    border-color: rgba(190, 135, 212, 0.6);
 }
 
 .max-rank-button {
@@ -242,23 +264,34 @@
 }
 
 @media screen and (min-width: 1203px) and (hover: hover) {
-    .mod-card-wrapper:hover {
-        transform: translateZ(0) scale(1.06);
-    }
     .mod-card-wrapper:hover .hover-buttons {
         opacity: 1;
         pointer-events: auto;
     }
-    .mod-card-wrapper:hover .mod .aura-topper {
-        transform: translateX(-1px);
+    .hover-common:hover {
+        color: rgba(199, 153, 137, 1);
+        border-color: rgba(199, 153, 137, 1);
+        box-shadow: inset 0px 0px 10px 0px rgba(199, 153, 137, 0.9);
     }
-    .mod-card-wrapper:hover .mod .exilus-mod-icon {
-        transform: translateX(-1px);
+    .hover-uncommon:hover {
+        color: rgba(204, 204, 204, 1);
+        border-color: rgba(204, 204, 204, 1);
+        box-shadow: inset 0px 0px 10px 0px rgba(204, 204, 204, 0.9);
     }
-    .hover-button:hover {
+    .hover-rare:hover {
         color: rgba(255, 249, 160, 1);
-        box-shadow: inset 0px 0px 12px 0px rgba(255, 249, 160, 0.9);
         border-color: rgba(255, 249, 160, 1);
+        box-shadow: inset 0px 0px 10px 0px rgba(255, 249, 160, 0.9);
+    }
+    .hover-prime:hover {
+        color: rgba(230, 230, 230, 1);
+        border-color: rgba(230, 230, 230, 1);
+        box-shadow: inset 0px 0px 10px 0px rgba(230, 230, 230, 0.9);
+    }
+    .hover-riven:hover {
+        color: rgba(190, 135, 212, 1);
+        border-color: rgba(190, 135, 212, 1);
+        box-shadow: inset 0px 0px 10px 0px rgba(190, 135, 212, 0.9);
     }
     .empty-slot:hover {
         box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.7);

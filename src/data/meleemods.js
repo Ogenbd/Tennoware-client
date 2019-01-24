@@ -2369,7 +2369,7 @@ const meleeMods = [
         abrev: 'q4',
         name: 'Vulpine Mask',
         img: require('../assets/modimages/vulpine-mask.jpg'),
-        type: 'RAPIER',
+        type: 'RAPIERS',
         rarity: 'rare',
         polarity: 'naramon',
         effects: {},

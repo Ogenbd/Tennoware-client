@@ -836,7 +836,7 @@ const warframeMods = [
                 }
             ]
         },
-        description() { return `Chaos Augment: Enemies entering the Effect Range will be inflicted with Chaos. Effect Range lasts for ${this.effects.none[this.currRank]}% of the ability duration and shrinks over time.` }
+        description() { return `Chaos Augment: Enemies entering the Effect Range will be inflicted with Chaos. Effect Range lasts for ${Math.round(this.effects.none[this.currRank] * 100)}% of the ability duration and shrinks over time.` }
     },
     {
         abrev: '0l',
@@ -3720,7 +3720,7 @@ const warframeMods = [
                         {
                             name: 'Confusion duration',
                             suffix: 's',
-                            base(augEffects, augRank) { return augEffects[augRank] }
+                            base(augEffects, augRank) { return augEffects.none[augRank] }
                         }
                     ],
                     range: [
@@ -4966,7 +4966,7 @@ const warframeMods = [
         aura: true,
         rarity: 'uncommon',
         polarity: 'vazarin',
-        effects: { health: 0.03 },
+        effects: { health: 0.15 },
         maxRank: 5,
         currRank: 5,
         baseCost: 2,

@@ -25,9 +25,6 @@ export default class MyBuilds extends Component {
     }
 
     componentDidMount() {
-        // (window.adsbygoogle = window.adsbygoogle || []).push({
-        //     google_ad_client: "ca-pub-9367218977396146"
-        // });
         let token = localStorage.getItem('jwt');
         fetch(`${apiUrl}/mybuilds`, {
             method: 'get',
@@ -107,10 +104,11 @@ export default class MyBuilds extends Component {
             itemImage = list.first[itemIdx].img;
         } else if (build.Type === 'zaws') {
             let first = build.ItemName.toLowerCase().split(' ');
-            first[0] === 'plague' ? first = first[1] : first = first[0];
+            first[0] === 'plague' ? first = `plague ${first[1]}` : first = first[0];
             itemIdx = list.first.findIndex(item => {
                 return item.name.toLowerCase() === first;
             });
+            console.log(first);
             itemImage = list.first[itemIdx].img;
         } else {
             itemIdx = list.findIndex(item => {

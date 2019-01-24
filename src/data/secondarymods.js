@@ -542,11 +542,11 @@ const secondaryMods = [
         type: 'PISTOL',
         rarity: 'rare',
         polarity: 'madurai',
-        effects: { baseDamage: 0.06 },
+        effects: { baseDamage: 0.15 },
         maxRank: 10,
         currRank: 10,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Damage\n-${3 * (this.currRank + 1)}% Accuracy` }
+        description() { return `+${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Damage\n-${5 * (this.currRank + 1)}% Accuracy` }
     },
     {
         abrev: 'e0',

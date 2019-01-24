@@ -13,6 +13,8 @@ const ModStateHandler = lazy(() => import('../modstatehandler/ModStateHandler'))
 const PolarityPicker = lazy(() => import('../polaritypicker/PolarityPicker'));
 const ModPicker = lazy(() => import('../modpicker/ModPicker'));
 const WarframeStats = lazy(() => import('../stats/WarframeStats'));
+const ArcaneStateHandler = lazy(() => import('../arcanestatehandler/ArcaneStateHandler'));
+const ArcanePicker = lazy(() => import('../arcanepicker/ArcanePicker'));
 
 class WarframeModding extends Component {
     constructor(props) {
@@ -34,6 +36,9 @@ class WarframeModding extends Component {
             modPicker: false,
             errorBlinker: null,
             forSwap: null,
+            arcanePicker: false,
+            arcaneSlot: null,
+            arcanes: [{}, {}]
         }
     }
 
@@ -44,6 +49,7 @@ class WarframeModding extends Component {
             let orokin = build[0] === '0' ? false : true;
             let prePolarities = this.createPrePolarities(build.slice(1, 11).split(''));
             let preMods = this.createPreMods(build.slice(11, 51));
+            let preArcanes = this.createPreArcanes(build.slice(51, 59));
             let totalModsCost = this.calcCost(preMods.chosenMods, prePolarities.stack, preMods.auraMod, prePolarities.aura, preMods.exilusMod, prePolarities.exilus);
             let formaCount = this.countForma(prePolarities.stack, prePolarities.aura, prePolarities.exilus);
             let modSets = this.checkModSets(preMods.auraMod, preMods.exilusMod, preMods.chosenMods);
@@ -58,8 +64,33 @@ class WarframeModding extends Component {
                 chosenMods: modSets.chosenMods,
                 totalModsCost: totalModsCost,
                 formaCount: formaCount,
+                arcanes: preArcanes
             });
         }
+    }
+
+    createPreArcanes = (arcanesStr) => {
+        let arcanes = [];
+        let arcanesArr = arcanesStr.match(/.{1,4}/g);
+        if (!arcanesArr) return [{}, {}];
+        arcanesArr.forEach(arcaneStr => {
+            if (arcaneStr === '0000') {
+                arcanes.push({})
+            } else {
+                let foundArcane = this.props.arcanes.find(arcane => {
+                    return arcane.abrev === `${arcaneStr[0]}${arcaneStr[1]}`;
+                });
+                let rank = parseInt(`${arcaneStr[2]}${arcaneStr[3]}`, 10);
+                if (foundArcane === undefined || typeof rank !== 'number' || rank < 0 || rank > 3) {
+                    arcanes.push({})
+                } else {
+                    foundArcane.currRank = rank;
+                    arcanes.push(foundArcane);
+                }
+            }
+        });
+        console.log(arcanes);
+        return arcanes;
     }
 
     createPreMods = (modsStr) => {
@@ -160,6 +191,8 @@ class WarframeModding extends Component {
         this.state.chosenMods.forEach(mod => {
             buildStr += this.convertModSlotToString(mod);
         });
+        buildStr += this.convertModSlotToString(this.state.arcanes[0]);
+        buildStr += this.convertModSlotToString(this.state.arcanes[1]);
         return { buildStr: buildStr, riven: false };
     }
 
@@ -680,6 +713,60 @@ class WarframeModding extends Component {
         this.swapMods(this.state.forSwap, slot);
     }
 
+    showArcanePicker = (slot) => {
+        if (this.props.viewWidth < 1203) document.body.classList.add('noscroll');
+        this.setState({
+            arcanePicker: true,
+            arcaneSlot: slot
+        });
+    }
+
+    removeArcane = (slot) => {
+        let arcanes = cloneDeep(this.state.arcanes);
+        arcanes[slot] = {};
+        this.setState({
+            arcanes: arcanes
+        });
+    }
+
+    hideArcanePicker = () => {
+        document.body.classList.remove('noscroll');
+        this.setState({
+            arcanePicker: false,
+            arcaneSlot: null
+        })
+    }
+
+    pickArcane = (index) => {
+        let arcanes = cloneDeep(this.state.arcanes);
+        arcanes[this.state.arcaneSlot] = this.props.arcanes[index];
+        this.setState({
+            arcanes: arcanes,
+            arcaneSlot: null,
+            arcanePicker: false
+        });
+    }
+
+    increaseArcaneRank = (slot) => {
+        if (this.state.arcanes[slot].currRank < 3) {
+            let arcanes = cloneDeep(this.state.arcanes);
+            arcanes[slot].currRank++
+            this.setState({
+                arcanes: arcanes
+            });
+        }
+    }
+
+    decreaseArcaneRank = (slot) => {
+        if (this.state.arcanes[slot].currRank > 0) {
+            let arcanes = cloneDeep(this.state.arcanes);
+            arcanes[slot].currRank--;
+            this.setState({
+                arcanes: arcanes
+            });
+        }
+    }
+
     displayMessage = () => {
         if (this.state.errorBlinker !== null) {
             return (
@@ -700,7 +787,7 @@ class WarframeModding extends Component {
     }
 
     render() {
-        const { chosenAuraMod, chosenIndexs, auraPolarity, chosenExilusMod, exilusPolarity, chosenMods, modPicker, orokin, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSlot, forSwap, polarityPicker } = this.state;
+        const { chosenAuraMod, chosenIndexs, auraPolarity, chosenExilusMod, exilusPolarity, chosenMods, modPicker, orokin, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSlot, forSwap, polarityPicker, arcanes, arcanePicker } = this.state;
         return (
             <CSSTransition classNames="fade" in={true} appear={true} timeout={200} >
                 <div className="ranged-modding">
@@ -764,8 +851,8 @@ class WarframeModding extends Component {
                             </div>
                             <div className="arcane-slots-wrapper">
                                 <div className="arcane-slots">
-                                    <div className="arcane-slot"></div>
-                                    <div className="arcane-slot"></div>
+                                    <ArcaneStateHandler arcane={arcanes[0]} arcaneSlot={0} showArcanePicker={this.showArcanePicker} removeArcane={this.removeArcane} increaseRank={this.increaseArcaneRank} decreaseRank={this.decreaseArcaneRank} viewWidth={this.props.viewWidth} />
+                                    <ArcaneStateHandler arcane={arcanes[1]} arcaneSlot={1} showArcanePicker={this.showArcanePicker} removeArcane={this.removeArcane} increaseRank={this.increaseArcaneRank} decreaseRank={this.decreaseArcaneRank} viewWidth={this.props.viewWidth} />
                                 </div>
                             </div>
                         </div>
@@ -809,6 +896,7 @@ class WarframeModding extends Component {
                     </div>
                     <WarframeStats frame={this.props.frame} full={true} mods={chosenMods} chosenExilusMod={chosenExilusMod} chosenAuraMod={chosenAuraMod} viewWidth={this.props.viewWidth} />
                     <PolarityPicker polarityPicker={polarityPicker} polarizeSlot={this.polarizeSlot} hidePolarityPicker={this.hidePolarityPicker} />
+                    <ArcanePicker arcanes={this.props.arcanes} active={arcanePicker} hideArcanePicker={this.hideArcanePicker} pickArcane={this.pickArcane} />
                 </div>
             </CSSTransition>
         )

@@ -153,7 +153,7 @@ export class WarframeStats extends PureComponent {
             return stats;
         }
     }
-
+    
     generateAbilityStats = (abilityNum, abilityDetails, augEffects, augRank) => {
         let stats = []
         for (let coefficient in abilityDetails) {
@@ -480,7 +480,7 @@ export class WarframeStats extends PureComponent {
                             <div key={`${coefficient}${index}`} className="ability-stat">
                                 <div className="ability-stat-name">{stat.name}</div>
                                 {this.state.effects[coefficient]
-                                    ? <div className={"ability-stat-amount " + ((stat.base + stat.base * this.state.effects[coefficient] > stat.base ? "increased-stat" : "decreased-stat"))}>{Math.round((stat.base + stat.base * this.state.effects[coefficient]) * 10) / 10}{stat.suffix ? stat.suffix : ''}{stat.icon ? <img className="damage-icon" src={stat.icon} alt="" /> : ''}</div>
+                                    ? <div className={"ability-stat-amount " + ((stat.base + stat.base * this.state.effects[coefficient] > stat.base ? "increased-stat" : "decreased-stat"))}>{Math.round((stat.base + stat.base * this.state.effects[coefficient]) * 100) / 100}{stat.suffix ? stat.suffix : ''}{stat.icon ? <img className="damage-icon" src={stat.icon} alt="" /> : ''}</div>
                                     : <div className="ability-stat-amount">{stat.base}{stat.suffix || ''}{stat.icon ? <img className="damage-icon" src={stat.icon} alt="" /> : ''}</div>
                                 }
                             </div>
@@ -491,11 +491,11 @@ export class WarframeStats extends PureComponent {
         }
         return stats;
     }
-
+    
     toggleStats = () => {
         this.setState(prevState => ({ open: !prevState.open }));
     }
-
+    
     toggleEnergyConversion = () => {
         this.setState(prevState => ({ energyConversionActive: !prevState.energyConversionActive }));
     }

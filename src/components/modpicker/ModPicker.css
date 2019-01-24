@@ -134,7 +134,6 @@
     z-index: 1;
     perspective: 800px;
     perspective-origin: 50% 50%;
-    backface-visibility: hidden;
 }
 
 .sort-block {
@@ -260,7 +259,7 @@
 
 @media screen and (min-width: 1203px) and (hover: hover) {
     .mod-wrapper:hover {
-        transform: translateZ(0) scale(1.06);
+        /* transform: scale(1.06); */
     }
     .dropdown-option:hover {
         background-color: rgba(50, 50, 50, 0.8);

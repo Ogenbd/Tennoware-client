@@ -496,30 +496,32 @@ class TenSlotModding extends Component {
                                 <BuildDescription metaInfo={this.props.metaInfo} />
                             }
                         </div>
-                        <div className="aug-container">
-                            <div className="aug-wrapper">
-                                <div className="aug-info">
-                                    <p className="aug-info-title">Capacity</p>
-                                    {orokin
-                                        ? <p className="aug-info-content" style={60 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{60 - totalModsCost}</p>
-                                        : <p className="aug-info-content" style={30 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{30 - totalModsCost}</p>
-                                    }
+                        <div className="special-modding">
+                            <div className="aug-container">
+                                <div className="aug-wrapper">
+                                    <div className="aug-info">
+                                        <p className="aug-info-title">Capacity</p>
+                                        {orokin
+                                            ? <p className="aug-info-content" style={60 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{60 - totalModsCost}</p>
+                                            : <p className="aug-info-content" style={30 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{30 - totalModsCost}</p>
+                                        }
+                                    </div>
+                                    <div className="aug-info">
+                                        <p className="aug-info-title">Forma</p>
+                                        <p className="aug-info-content">{formaCount}</p>
+                                    </div>
                                 </div>
-                                <div className="aug-info">
-                                    <p className="aug-info-title">Forma</p>
-                                    <p className="aug-info-content">{formaCount}</p>
-                                </div>
-                            </div>
-                            <div className="aug-wrapper">
-                                <div className={"interactable interactable-aug " + (orokin ? "interactable-active" : "interactable-inactive")} onClick={this.toggleOrokin}>
-                                    {orokin
-                                        ? <img className="aug-image orokin" src={this.props.orokin} alt={'Remove Catalyst'} />
-                                        : <img className="aug-image orokin" src={require('../../assets/general/nocatalyst.png')} alt={'Apply Catalyst'} />}
-                                </div>
-                                <div className={"interactable interactable-aug " + (forma ? "interactable-active" : "interactable-inactive")} onClick={this.toggleForma}>
-                                    {forma
-                                        ? <img className="aug-image forma" src={require('../../assets/general/forma.png')} alt={'Cancel Forma Application'} />
-                                        : <img className="aug-image forma" src={require('../../assets/general/noforma.png')} alt={'Apply Forma'} />}
+                                <div className="aug-wrapper">
+                                    <div className={"interactable interactable-aug " + (orokin ? "interactable-active" : "interactable-inactive")} onClick={this.toggleOrokin}>
+                                        {orokin
+                                            ? <img className="aug-image orokin" src={this.props.orokin} alt={'Remove Catalyst'} />
+                                            : <img className="aug-image orokin" src={require('../../assets/general/nocatalyst.png')} alt={'Apply Catalyst'} />}
+                                    </div>
+                                    <div className={"interactable interactable-aug " + (forma ? "interactable-active" : "interactable-inactive")} onClick={this.toggleForma}>
+                                        {forma
+                                            ? <img className="aug-image forma" src={require('../../assets/general/forma.png')} alt={'Cancel Forma Application'} />
+                                            : <img className="aug-image forma" src={require('../../assets/general/noforma.png')} alt={'Apply Forma'} />}
+                                    </div>
                                 </div>
                             </div>
                         </div>

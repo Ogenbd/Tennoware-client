@@ -701,59 +701,62 @@ class MeleeModding extends Component {
                                 <BuildDescription metaInfo={this.props.metaInfo} />
                             }
                         </div>
-                        <div className="aug-container">
-                            <div className="aug-wrapper">
-                                {!this.props.item.exalted && this.props.riven &&
-                                    <div className="aug-info">
-                                        <p className="aug-info-title riven-title">Disposition</p>
-                                        <p className="aug-info-content">{this.props.item.disposition}/5</p>
-                                    </div>
-                                }
-                                <div className="aug-info">
-                                    <p className="aug-info-title">Capacity</p>
-                                    {this.props.item.name === 'PARACESIS'
-                                        ? <React.Fragment>
-                                            {orokin
-                                                ? <p className="aug-info-content" style={formaCount < 6 ? 60 + 4 * formaCount - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' } : 80 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{formaCount < 6 ? 60 + 4 * formaCount - totalModsCost : 80 - totalModsCost}</p>
-                                                : <p className="aug-info-content" style={formaCount < 6 ? 30 + 2 * formaCount - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' } : 40 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{formaCount < 6 ? 30 + 2 * formaCount - totalModsCost : 40 - totalModsCost}</p>
-                                            }
-                                        </React.Fragment>
-                                        : <React.Fragment>
-                                            {orokin
-                                                ? <p className="aug-info-content" style={60 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{60 - totalModsCost}</p>
-                                                : <p className="aug-info-content" style={30 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{30 - totalModsCost}</p>
-                                            }
-                                        </React.Fragment>
+                        <div className="special-modding special-melee">
+                            <div className="aug-container">
+                                <div className="aug-wrapper">
+                                    {!this.props.item.exalted && this.props.riven &&
+                                        <div className="aug-info">
+                                            <p className="aug-info-title riven-title">Disposition</p>
+                                            <p className="aug-info-content">{this.props.item.disposition}/5</p>
+                                        </div>
                                     }
+                                    <div className="aug-info">
+                                        <p className="aug-info-title">Capacity</p>
+                                        {this.props.item.name === 'PARACESIS'
+                                            ? <React.Fragment>
+                                                {orokin
+                                                    ? <p className="aug-info-content" style={formaCount < 6 ? 60 + 4 * formaCount - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' } : 80 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{formaCount < 6 ? 60 + 4 * formaCount - totalModsCost : 80 - totalModsCost}</p>
+                                                    : <p className="aug-info-content" style={formaCount < 6 ? 30 + 2 * formaCount - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' } : 40 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{formaCount < 6 ? 30 + 2 * formaCount - totalModsCost : 40 - totalModsCost}</p>
+                                                }
+                                            </React.Fragment>
+                                            : <React.Fragment>
+                                                {orokin
+                                                    ? <p className="aug-info-content" style={60 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{60 - totalModsCost}</p>
+                                                    : <p className="aug-info-content" style={30 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{30 - totalModsCost}</p>
+                                                }
+                                            </React.Fragment>
+                                        }
+                                    </div>
+                                    <div className="aug-info">
+                                        <p className="aug-info-title">Forma</p>
+                                        <p className="aug-info-content">{formaCount}</p>
+                                    </div>
                                 </div>
-                                <div className="aug-info">
-                                    <p className="aug-info-title">Forma</p>
-                                    <p className="aug-info-content">{formaCount}</p>
+                                <div className="aug-wrapper">
+                                    {!this.props.item.exalted && this.props.riven === 'melee' &&
+                                        <MeleeRivenEditor viewWidth={this.props.viewWidth} chosenMods={chosenMods} handleRiven={this.handleRiven} buildStr={this.props.match.params.pre} transPolarity={this.transPolarity} redirectToVoid={this.props.redirectToVoid} />
+                                    }
+                                    <div className={"interactable interactable-aug " + (orokin ? "interactable-active" : "interactable-inactive")} onClick={this.toggleOrokin}>
+                                        {orokin
+                                            ? <img className="aug-image orokin" src={this.props.orokin} alt={'Remove Reactor'} />
+                                            : <img className="aug-image orokin" src={require('../../assets/general/nocatalyst.png')} alt={'Apply Reactor'} />}
+                                    </div>
+                                    <div className={"interactable interactable-aug " + (forma ? "interactable-active" : "interactable-inactive")} onClick={this.toggleForma}>
+                                        {forma
+                                            ? <img className="aug-image forma" src={require('../../assets/general/forma.png')} alt={'Cancel Forma Application'} />
+                                            : <img className="aug-image forma" src={require('../../assets/general/noforma.png')} alt={'Apply Forma'} />}
+                                    </div>
                                 </div>
                             </div>
-                            <div className="aug-wrapper">
-                                {!this.props.item.exalted && this.props.riven === 'melee' &&
-                                    <MeleeRivenEditor viewWidth={this.props.viewWidth} chosenMods={chosenMods} handleRiven={this.handleRiven} buildStr={this.props.match.params.pre} transPolarity={this.transPolarity} redirectToVoid={this.props.redirectToVoid} />
-                                }
-                                <div className={"interactable interactable-aug " + (orokin ? "interactable-active" : "interactable-inactive")} onClick={this.toggleOrokin}>
-                                    {orokin
-                                        ? <img className="aug-image orokin" src={this.props.orokin} alt={'Remove Reactor'} />
-                                        : <img className="aug-image orokin" src={require('../../assets/general/nocatalyst.png')} alt={'Apply Reactor'} />}
-                                </div>
-                                <div className={"interactable interactable-aug " + (forma ? "interactable-active" : "interactable-inactive")} onClick={this.toggleForma}>
-                                    {forma
-                                        ? <img className="aug-image forma" src={require('../../assets/general/forma.png')} alt={'Cancel Forma Application'} />
-                                        : <img className="aug-image forma" src={require('../../assets/general/noforma.png')} alt={'Apply Forma'} />}
-                                </div>
-                            </div>
-                        </div>
-                        <div className="slots-wrapper slots-wrapper-space">
                             <div className="special-slots">
                                 <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 'stance') }} onDragOver={this.dragOver} onDrop={(e) => { this.drop(e, 'stance') }} >
                                     <ModStateHandler mod={chosenStanceMod} slot={'stance'} slotPolarity={stancePolarity} item={this.props.item} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeStance} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
                                     <div className={"error-blinker " + ((errorBlinker === 0) ? 'error-flash' : '')}></div>
                                 </div>
                             </div>
+                            <div className="special-melee-placeholder"></div>
+                        </div>
+                        <div className="slots-wrapper slots-wrapper-space">
                             <div className="slots">
                                 <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 0) }} onDragOver={this.dragOver} onDrop={(e) => { this.drop(e, 0) }} >
                                     <ModStateHandler mod={chosenMods[0]} slot={0} slotPolarity={slotPolarities[0]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />

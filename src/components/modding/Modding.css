@@ -67,7 +67,16 @@
     padding: 5px 5px 0 5px;
     justify-content: space-between;
     flex-wrap: wrap;
+    width: 100%;
     max-width: 640px;
+    box-sizing: border-box;
+}
+
+.special-melee-placeholder {
+    width: 237px;
+    max-width: 237px;
+    min-width: 237px;
+    order: 4;
 }
 
 .arcane-slots-wrapper {
@@ -88,16 +97,6 @@
     min-width: 158px;
 }
 
-.arcane-slot {
-    width: 100px;
-    height: 50px;
-    margin: 5px;
-    border-top-left-radius: 100px;
-    border-top-right-radius: 100px;
-    box-shadow: inset 0px 0px 8px 3px rgba(0, 0, 0, 0.7);
-    background-color: rgba(255, 255, 255, 0.85);
-}
-
 .special-slots {
     display: flex;
     flex-wrap: wrap;
@@ -111,14 +110,13 @@
     display: flex;
     flex-direction: column;
     flex: 1 0 0;
-    /* align-self: flex-end; */
+    align-self: flex-start;
     margin-top: 5px;
-    /* flex-grow: 1; */
 }
 
 .aug-wrapper {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
 }
 
 .aug {
@@ -127,7 +125,6 @@
     align-items: center;
     width: 75px;
     height: 68px;
-    /* margin: 3px; */
     cursor: pointer;
     background-color: white;
     border-radius: 5px;
@@ -149,9 +146,6 @@
 .aug-image {
     position: relative;
     width: 75px;
-    /* backface-visibility: hidden; */
-    /* transition: all 0.3s; */
-    /* overflow: hidden; */
 }
 
 .orokin {
@@ -159,12 +153,7 @@
 }
 
 .riven {
-    /* position: absolute; */
-    /* width: */
-    /* overflow: hidden; */
-    /* border-radius: 5px; */
     background-image: url('../../assets/general/rivenicon.jpg');
-    /* margin: 0; */
 }
 
 .riven-placeholder {
@@ -204,7 +193,6 @@
     align-self: center;
 }
 
-
 .slots {
     display: flex;
     flex-wrap: wrap;
@@ -224,7 +212,6 @@
 
 .error-blinker {
     position: absolute;
-    /* top: 1px; */
     width: 140px;
     height: 205px;
     padding-bottom: 3px;
@@ -256,19 +243,6 @@
     margin: 3px;
 }
 
-
-/* @media screen and (min-width: 888px) {
-    .frame-aug-container {
-        position: absolute;
-        top: 65px;
-    }
-    .slots-wrapper-space {
-        position: absolute;
-        top: 57px;
-        pointer-events: none;
-    }
-} */
-
 @media screen and (min-width: 537px) {
     .stats-placeholder {
         min-height: calc(100% - 56px);
@@ -278,11 +252,16 @@
     }
 }
 
+@media screen and (max-width: 864px) {
+    .special-melee {
+        flex-direction: column;
+    }
+}
+
 @media screen and (max-width: 878px) {
     .special-modding {
         justify-content: center;
         align-items: center;
-
     }
     .special-slots {
         order: 3;
@@ -306,9 +285,6 @@
         top: unset;
         z-index: 9098;
     }
-    .aug-image {
-        backface-visibility: visible;
-    }
 }
 
 @media screen and (max-width: 828px) {
@@ -317,11 +293,9 @@
     }
 }
 
-
 @media screen and (max-width: 536px) {
     .interactable-wrapper {
         margin-right: 70px;
-        /* justify-content: flex-start; */
         justify-content: center;
     }
     .aug-container {

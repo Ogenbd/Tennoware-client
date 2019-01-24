@@ -68,6 +68,7 @@ class FrameBuilder extends Component {
     setupBuilder = async (metaInfo) => {
         let items = await this.props.items().then(data => data.default);
         let mods = await this.props.mods().then(data => data.default);
+        let arcanes = await this.props.arcanes().then(data => data.default);
         let selected = items.find(item => {
             return item.name.toLowerCase() === this.props.match.params.id.toLowerCase();
         });
@@ -88,6 +89,7 @@ class FrameBuilder extends Component {
                 title: selected.name,
                 item: selected,
                 relevantMods: filteredMods,
+                arcanes: arcanes,
                 slotPolarities: slotPolarities,
                 originalPolarityCount: originalPolarityCount,
                 metaInfo: metaInfo
@@ -154,7 +156,7 @@ class FrameBuilder extends Component {
                     </div>
                     : <React.Fragment>
                         {this.state.item.name &&
-                            <WarframeModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={require('../assets/general/reactor.png')} frame={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} />
+                            <WarframeModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={require('../assets/general/reactor.png')} frame={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} arcanes={this.state.arcanes} />
                         }
                     </React.Fragment>
                 }
