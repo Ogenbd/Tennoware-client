@@ -336,7 +336,7 @@ export class WarframeStats extends PureComponent {
                                 </div>
                             )
                         }
-                        if (this.props.frame.name === 'MESA' || this.props.frame.name === 'MIRAGE' || this.props.frame.name === 'MIRAGE PRIME') {
+                        if (this.props.frame.name === 'MESA' || this.props.frame.name === 'MESA PRIME' ||this.props.frame.name === 'MIRAGE' || this.props.frame.name === 'MIRAGE PRIME') {
                             stats.push(
                                 <div key={`${coefficient}${index}`} className="ability-stat">
                                     <div className="ability-stat-name">{stat.name}</div>

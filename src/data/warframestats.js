@@ -262,7 +262,7 @@ const warframeStats = [
         aura: 'madurai',
         exilus: undefined,
         armor: 300,
-        energy: 180,
+        energy: 270,
         baseEnergy: 120,
         health: 300,
         baseHealth: 100,

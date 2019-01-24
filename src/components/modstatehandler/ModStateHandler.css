@@ -141,6 +141,7 @@
     position: absolute;
     cursor: pointer;
     transition: transform 250ms cubic-bezier(.45,.7,.28,.96);
+    backface-visibility: hidden;
     /* -webkit-tap-highlight-color: transparent; */
 }
 
@@ -242,7 +243,7 @@
 
 @media screen and (min-width: 1203px) and (hover: hover) {
     .mod-card-wrapper:hover {
-        transform: translateZ(0) scale(1.06, 1.06);
+        transform: translateZ(0) scale(1.06);
     }
     .mod-card-wrapper:hover .hover-buttons {
         opacity: 1;

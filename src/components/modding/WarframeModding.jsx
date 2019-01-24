@@ -724,34 +724,34 @@ class WarframeModding extends Component {
                                 <BuildDescription metaInfo={this.props.metaInfo} />
                             }
                         </div>
-                        <div className="aug-container frame-aug-container">
-                            <div className="aug-wrapper">
-                                <div className="aug-info">
-                                    <p className="aug-info-title">Capacity</p>
-                                    {orokin
-                                        ? <p className="aug-info-content" style={60 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{60 - totalModsCost}</p>
-                                        : <p className="aug-info-content" style={30 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{30 - totalModsCost}</p>
-                                    }
+                        <div className="special-modding">
+                            <div className="aug-container frame-aug-container">
+                                <div className="aug-wrapper">
+                                    <div className="aug-info">
+                                        <p className="aug-info-title">Capacity</p>
+                                        {orokin
+                                            ? <p className="aug-info-content" style={60 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{60 - totalModsCost}</p>
+                                            : <p className="aug-info-content" style={30 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{30 - totalModsCost}</p>
+                                        }
+                                    </div>
+                                    <div className="aug-info">
+                                        <p className="aug-info-title">Forma</p>
+                                        <p className="aug-info-content">{formaCount}</p>
+                                    </div>
                                 </div>
-                                <div className="aug-info">
-                                    <p className="aug-info-title">Forma</p>
-                                    <p className="aug-info-content">{formaCount}</p>
+                                <div className="aug-wrapper">
+                                    <div className={"interactable interactable-aug " + (orokin ? "interactable-active" : "interactable-inactive")} onClick={this.toggleOrokin}>
+                                        {orokin
+                                            ? <img className="aug-image orokin" src={this.props.orokin} alt={'Remove Reactor'} />
+                                            : <img className="aug-image orokin" src={require('../../assets/general/nocatalyst.png')} alt={'Apply Reactor'} />}
+                                    </div>
+                                    <div className={"interactable interactable-aug " + (forma ? "interactable-active" : "interactable-inactive")} onClick={this.toggleForma}>
+                                        {forma
+                                            ? <img className="aug-image forma" src={require('../../assets/general/forma.png')} alt={'Cancel Forma Application'} />
+                                            : <img className="aug-image forma" src={require('../../assets/general/noforma.png')} alt={'Apply Forma'} />}
+                                    </div>
                                 </div>
                             </div>
-                            <div className="aug-wrapper">
-                                <div className={"interactable interactable-aug " + (orokin ? "interactable-active" : "interactable-inactive")} onClick={this.toggleOrokin}>
-                                    {orokin
-                                        ? <img className="aug-image orokin" src={this.props.orokin} alt={'Remove Reactor'} />
-                                        : <img className="aug-image orokin" src={require('../../assets/general/nocatalyst.png')} alt={'Apply Reactor'} />}
-                                </div>
-                                <div className={"interactable interactable-aug " + (forma ? "interactable-active" : "interactable-inactive")} onClick={this.toggleForma}>
-                                    {forma
-                                        ? <img className="aug-image forma" src={require('../../assets/general/forma.png')} alt={'Cancel Forma Application'} />
-                                        : <img className="aug-image forma" src={require('../../assets/general/noforma.png')} alt={'Apply Forma'} />}
-                                </div>
-                            </div>
-                        </div>
-                        <div className="slots-wrapper">
                             <div className="special-slots">
                                 <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 'aura') }} onDragOver={this.dragOver} onDrop={(e) => { this.drop(e, 'aura') }} >
                                     <ModStateHandler mod={chosenAuraMod} slot={'aura'} slotPolarity={auraPolarity} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeAura} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
@@ -762,6 +762,14 @@ class WarframeModding extends Component {
                                     <div className={"error-blinker " + ((errorBlinker === 0) ? 'error-flash' : '')}></div>
                                 </div>
                             </div>
+                            <div className="arcane-slots-wrapper">
+                                <div className="arcane-slots">
+                                    <div className="arcane-slot"></div>
+                                    <div className="arcane-slot"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="slots-wrapper">
                             <div className="slots">
                                 <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 0) }} onDragOver={this.dragOver} onDrop={(e) => { this.drop(e, 0) }} >
                                     <ModStateHandler mod={chosenMods[0]} slot={0} slotPolarity={slotPolarities[0]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />

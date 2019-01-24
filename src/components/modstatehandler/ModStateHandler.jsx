@@ -52,7 +52,7 @@ export class ModStateHandler extends Component {
       let style = {};
       let topButtons = {};
       let bottomButtons = {};
-      style.transform = `translate(${this.props.viewWidth / 2 - coords.left - 75}px,${window.innerHeight / 2 - coords.top - 109}px) scale(1.3,1.3)`;
+      style.transform = `translate(${this.props.viewWidth / 2 - coords.left - 75}px,${window.innerHeight / 2 - coords.top - 109}px) scale(1.3)`;
       style.zIndex = '9091';
       topButtons.top = `${window.innerHeight / 2 - coords.top - 189}px`
       topButtons.left = `${this.props.viewWidth / 2 - coords.left}px`

@@ -8,6 +8,8 @@ Added damage buff duration to nyx's Absorb.
 Fixes:
 Fixed the calculation for Ivara's Navigator.
 Fixed a small UI issue with the Berserker Stacks slider.
+Corrected Garuda's energy amount.
+Fixed an issue that caused Shatter Shield's damage reduction stat to not appear for Mesa Prime.
 
 17/01/2019 - v1.2.2.
 
