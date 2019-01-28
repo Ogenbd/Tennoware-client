@@ -22,7 +22,8 @@ class App extends Component {
       online: navigator.onLine,
       update: false,
       updateRequired: undefined,
-      navToggle: false
+      navToggle: false,
+      mountTime: Date.now()
     }
     this.debouncedSetWidth = debounce(this.setViewWidth, 100)
   }
@@ -39,6 +40,7 @@ class App extends Component {
     window.addEventListener('updateavail', this.updateInit);
     window.addEventListener('online', this.setOnline);
     window.addEventListener('offline', this.setOffline);
+    window.addEventListener('visibilitychange', this.checkMountTime);
   }
 
   checkVer = (ver, jwt) => {
@@ -54,6 +56,10 @@ class App extends Component {
       .catch(() => {
         this.setState({ updateRequired: false, user: jwt })
       })
+  }
+
+  checkMountTime = () => {
+    if (!document.hidden && Date.now() - this.state.mountTime > 21600000) window.location.reload();
   }
 
   checkForUpdate = (local, server, jwt) => {

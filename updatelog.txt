@@ -1,10 +1,11 @@
 UPDATE LOG
 
-upcoming - v1.2.3.
+28/01/2019 - v1.2.4.
 
 Changes:
 Main page Redesign.
 Desktop site navigation overhaul. Was done to make future features, UI changes and UI additions less time consuming to develop.
+More improvments to Tennoware update strategy.
 
 Fixes:
 Fixed an issue with Guardian Derision's description.
