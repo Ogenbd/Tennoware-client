@@ -35,7 +35,7 @@ class App extends Component {
     });
     let jwt;
     localStorage.jwt ? jwt = true : jwt = false;
-    navigator.onLine ? this.checkVer('1.2.4', jwt) : this.setState({ updateRequired: false, user: jwt });
+    navigator.onLine ? this.checkVer('1.2.5', jwt) : this.setState({ updateRequired: false, user: jwt });
     window.addEventListener('resize', this.debouncedSetWidth);
     window.addEventListener('updateavail', this.updateInit);
     window.addEventListener('online', this.setOnline);
