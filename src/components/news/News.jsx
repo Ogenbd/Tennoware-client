@@ -101,7 +101,7 @@ export class News extends Component {
           <div className="news-container">
             <div className="home-left">
               <div className="tennoware-update">
-                <div className="update-title">Update 1.2.4</div>
+                <div className="update-title">Update 1.2.5</div>
                 <div className="update-content">
                   <p>Main page has been redesigned.</p>
                   <p>Desktop Site navigation has been changed. Previous layout made adding and aligning UI elements difficult.</p>

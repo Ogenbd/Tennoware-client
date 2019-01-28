@@ -1,6 +1,6 @@
 UPDATE LOG
 
-28/01/2019 - v1.2.4.
+28/01/2019 - v1.2.4 + 1.2.5.
 
 Changes:
 Main page Redesign.
