@@ -930,7 +930,7 @@ const meleeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
-        description() { return `Blocking taunts enemies within ${this.effects[this.currRank]} meters to target you instead of allies.` }
+        description() { return `Blocking taunts enemies within ${this.effects.none[this.currRank]} meters to target you instead of allies.` }
     },
     {
         abrev: 'g6',
@@ -1153,7 +1153,7 @@ const meleeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        description() { return `+${5 * (this.currRank + 1)}% Life Steal\n${this.effects.channelEfficiency * (this.currRank + 1)}% Channeling Efficiency` }
+        description() { return `+${5 * (this.currRank + 1)}% Life Steal\n${Math.round(this.effects.channelEfficiency * (this.currRank + 1) * 100)}% Channeling Efficiency` }
     },
     {
         abrev: 'i1',

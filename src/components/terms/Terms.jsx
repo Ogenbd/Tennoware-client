@@ -5,7 +5,7 @@ export class Terms extends Component {
     render() {
         return (
             <div className="screen">
-                <div className="top-title"><p>Terms and Conditions</p></div>
+                <div className="top-title"><p>TERMS & CONDITIONS</p></div>
                 <div className="privacy">
                     <div className="privacy-wrapper">
                         <div className="privacy-box">

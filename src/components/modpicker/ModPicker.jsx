@@ -447,12 +447,12 @@ export class ModPicker extends Component {
                     }
                     <div className="mod-options-wrapper">
                         <div className="mod-dropdown-trigger" onMouseLeave={this.hideFilter}>
-                            <p className={"mod-dropdown-trigger-fill " + (this.state.conclave || this.state.aura || this.state.exilus || this.state.polarity || this.state.filterToggle ? 'active-option' : 'inactive-option')} onMouseEnter={this.showFilter} onClick={this.toggleFilter}>Filter</p>
+                            <p className={"mod-dropdown-trigger-fill " + (this.state.conclave || this.state.aura || this.state.exilus || this.state.polarity || this.state.filterToggle ? 'active-option' : 'inactive-option')} onMouseEnter={this.showFilter} onClick={this.toggleFilter}>Filter <span className="chev-down">›</span></p>
                             <div className={"dropdown-container filter-block " + (this.props.type === 'warframes' ? 'filter-active-warframes' : this.props.type === 'meleeweapons' || this.props.type === 'zaws' ? 'filter-active-melee' : '')}>
                                 <CSSTransition
                                     in={this.state.filterToggle}
                                     classNames="slide"
-                                    timeout={300}
+                                    timeout={180}
                                 >
                                     <div className="dropdown-block">
                                         <div className="dropdown-option" onClick={this.clearFilter}>Clear All</div>
@@ -478,7 +478,7 @@ export class ModPicker extends Component {
                             </div>
                         </div>
                         <div className="mod-dropdown-trigger" onMouseLeave={this.hideSort}>
-                            <p className={"mod-dropdown-trigger-fill " + (this.state.sortToggle ? 'active-option' : 'inactive-option')} onMouseEnter={this.showSort} onClick={this.toggleSort}>Sort</p>
+                            <p className={"mod-dropdown-trigger-fill " + (this.state.sortToggle ? 'active-option' : 'inactive-option')} onMouseEnter={this.showSort} onClick={this.toggleSort}>Sort <span className="chev-down">›</span></p>
                             <div className="dropdown-container sort-block">
                                 <CSSTransition
                                     in={this.state.sortToggle}

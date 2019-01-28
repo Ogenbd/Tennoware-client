@@ -342,7 +342,7 @@ export default class MyBuilds extends Component {
                     <Helmet>
                         <title>Tennoware - my builds</title>
                     </Helmet>
-                    <div className="top-title"><p>My Builds</p></div>
+                    <div className="top-title"><p>MY BUILDS</p></div>
                     <div className="my-builds">
                         <div className="my-builds-topbar">
                             <div className="search-wrapper my-builds-search">

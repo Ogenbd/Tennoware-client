@@ -411,14 +411,14 @@
 
 /* loading spinner end */
 
-@media screen and (min-width: 1392px) {
+/* @media screen and (min-width: 1392px) {
     .uncontained {
         left: 96px;
     }
     .general-error {
         left: 192px;
     }
-}
+} */
 
 @media screen and (min-width: 1203px) {
     .centerize {

@@ -77,7 +77,7 @@ export class BuildSaver extends Component {
         });
     }
 
-    saveBuild = () => {
+    saveBuild = (isPrivate) => {
         if (!this.state.loading) {
             if (this.state.buildName.length < 8) {
                 this.setState({
@@ -98,13 +98,12 @@ export class BuildSaver extends Component {
                     forma: this.props.formaCount,
                     buildStr: buildState.buildStr,
                     riven: buildState.riven,
-                    private: this.state.private,
+                    private: isPrivate,
                     buildName: this.state.buildName,
                     buildDesc: this.state.buildDesc,
                     item: this.props.match.params.id,
                     type: this.props.type
                 }
-                this.state.private ? buildData.private = 1 : buildData.private = 0;
                 this.props.orokin ? buildData.orokin = 1 : buildData.orokin = 0;
                 let token = localStorage.getItem('jwt');
                 if (this.props.match.params.build && this.props.metaInfo.Owner) {
@@ -226,14 +225,6 @@ export class BuildSaver extends Component {
                                         <li>Saved public builds might be privatized or deleted by a moderator if a user does not follow these very simple guidelines. Repeat offenders might lose the ability to save public builds or just get banned.</li>
                                     </ul>
                                 </div>
-                                <div className="check-private">
-                                    <div className={"activatable " + (this.state.private ? "interactable-active" : "interactable-inactive")} onClick={this.makePrivate}>
-                                        <p className="interactable-p">Private</p>
-                                    </div>
-                                    <div className={"activatable " + (this.state.private ? "interactable-inactive" : "interactable-active")} onClick={this.makePublic}>
-                                        <p className="interactable-p">Public</p>
-                                    </div>
-                                </div>
                                 <label className="build-label build-name" name="build-name">
                                     <p>Build Name</p>
                                     <input className={"build-input " + (this.state.inputError === 'name' ? 'error-border' : '')} name="build-name" type="text" spellCheck="false" placeholder="Minimum 8 characters" value={this.state.buildName} onChange={this.handleBuildName} />
@@ -242,7 +233,29 @@ export class BuildSaver extends Component {
                                     <p>Build Description</p>
                                     <textarea className="build-input build-desc-box" name="build-desc" type="text" spellCheck="false" placeholder="Optional" value={this.state.buildDesc} onChange={this.handleBuildDesc} />
                                 </label>
-                                <div className="interactable interactable-semi-inactive" onClick={this.saveBuild}>
+                                <div className="check-private">
+                                    <div className="interactable interactable-semi-inactive" onClick={() => { this.saveBuild(1) }}>
+                                        {this.state.loading
+                                            ? <div className="spinner gold-spinner">
+                                                <div className="bounce1"></div>
+                                                <div className="bounce2"></div>
+                                                <div className="bounce3"></div>
+                                            </div>
+                                            : <p className="interactable-p">Save as Private</p>
+                                        }
+                                    </div>
+                                    <div className="interactable interactable-semi-inactive" onClick={() => { this.saveBuild(0) }}>
+                                        {this.state.loading
+                                            ? <div className="spinner gold-spinner">
+                                                <div className="bounce1"></div>
+                                                <div className="bounce2"></div>
+                                                <div className="bounce3"></div>
+                                            </div>
+                                            : <p className="interactable-p">Save as Public</p>
+                                        }
+                                    </div>
+                                </div>
+                                {/* <div className="interactable interactable-semi-inactive" onClick={this.saveBuild}>
                                     {this.state.loading
                                         ? <div className="spinner gold-spinner">
                                             <div className="bounce1"></div>
@@ -251,7 +264,7 @@ export class BuildSaver extends Component {
                                         </div>
                                         : <p className="interactable-p">Save</p>
                                     }
-                                </div>
+                                </div> */}
                                 {/* </div> */}
                             </React.Fragment>
                         }

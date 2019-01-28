@@ -20,6 +20,7 @@
     justify-content: center;
     height: 100%;
     width: 100%;
+    transition: all 100ms ease-in-out;
 }
 
 .dropdown-block {
@@ -101,7 +102,7 @@
 
 .slide-exit {
     transform: translateY(0%);
-    transition: .3s ease-in-out;
+    transition: .18s ease-in-out;
 }
 
 .slide-exit-done {
@@ -139,7 +140,7 @@
 .sort-block {
     left: 75px;
     height: 130px;
-    z-index: -1;
+    /* z-index: -1; */
 }
 
 @media screen and (min-width: 1203px) {
@@ -250,7 +251,7 @@
     .sort-block {
         left: 121px;
         height: 130px;
-        z-index: -1;
+        /* z-index: -1; */
     }
     .mod-list {
         z-index: 1;
@@ -258,9 +259,6 @@
 }
 
 @media screen and (min-width: 1203px) and (hover: hover) {
-    .mod-wrapper:hover {
-        /* transform: scale(1.06); */
-    }
     .dropdown-option:hover {
         background-color: rgba(50, 50, 50, 0.8);
     }
@@ -269,5 +267,4 @@
 .active-option {
     color: rgba(255, 249, 160, 1);
     text-shadow: 0px 0px 8px rgba(255, 249, 160, 1);
-    font-weight: 600;
 }

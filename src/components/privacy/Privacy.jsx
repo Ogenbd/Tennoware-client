@@ -5,7 +5,7 @@ export class Privacy extends Component {
     render() {
         return (
             <div className="screen">
-                <div className="top-title"><p>Privacy Policy</p></div>
+                <div className="top-title"><p>PRIVACY POLICY</p></div>
                 <div className="privacy">
                     <div className="privacy-wrapper">
                         <div className="privacy-box">

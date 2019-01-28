@@ -117,7 +117,7 @@ export class Register extends Component {
           <Helmet>
             <title>Tennoware - register</title>
           </Helmet>
-          <div className="top-title"><p>Register</p></div>
+          <div className="top-title"><p>REGISTER</p></div>
           <div className="register">
             <div className="register-window">
               <div className="request-blurb">

@@ -1,5 +1,15 @@
 UPDATE LOG
 
+upcoming - v1.2.3.
+
+Changes:
+Main page Redesign.
+Desktop site navigation overhaul. Was done to make future features, UI changes and UI additions less time consuming to develop.
+
+Fixes:
+Fixed an issue with Guardian Derision's description.
+Fixed an issue with Life Strike's description.
+
 24/01/2019 - v1.2.3.
 
 New:

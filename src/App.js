@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { CSSTransition } from "react-transition-group";
 import debounce from 'lodash/debounce';
 import './App.css';
 import './general.css';
@@ -19,7 +21,8 @@ class App extends Component {
       user: false,
       online: navigator.onLine,
       update: false,
-      updateRequired: undefined
+      updateRequired: undefined,
+      navToggle: false
     }
     this.debouncedSetWidth = debounce(this.setViewWidth, 100)
   }
@@ -31,7 +34,7 @@ class App extends Component {
     });
     let jwt;
     localStorage.jwt ? jwt = true : jwt = false;
-    navigator.onLine ? this.checkVer('1.2.3', jwt) : this.setState({ updateRequired: false, user: jwt });
+    navigator.onLine ? this.checkVer('1.2.4', jwt) : this.setState({ updateRequired: false, user: jwt });
     window.addEventListener('resize', this.debouncedSetWidth);
     window.addEventListener('updateavail', this.updateInit);
     window.addEventListener('online', this.setOnline);
@@ -125,20 +128,92 @@ class App extends Component {
     window.location.reload();
   }
 
+  goHome = () => {
+    this.props.history.push('/');
+  }
+
+  showNav = () => {
+    this.setState({
+      navToggle: true
+    });
+  }
+
+  hideNav = () => {
+    setTimeout(() => {
+      this.setState({
+        navToggle: false
+      });
+    }, 20)
+  }
+
   render() {
     return (
       <div className="app">
         <div className="background-image"></div>
         <div className="topbar">
-          <div className="top-left">
+          <div className="top-left" onClick={this.goHome}>
             <div className="app-name">
               <p>TENNOWARE</p>
             </div>
           </div>
-          <div className="page-title"></div>
+          <div className="page-title">
+            {this.state.viewWidth > 1202 &&
+              <div className="nav-menu" onMouseLeave={this.hideNav}>
+                <p className={"nav-menu-trigger " + (this.state.navToggle ? 'active-nav' : '')} onMouseEnter={this.showNav}>Navigation <span className="chev-down">›</span></p>
+                <div className="nav-menu-container">
+                  <CSSTransition
+                    in={this.state.navToggle}
+                    classNames="slide"
+                    timeout={180}
+                  >
+                    <div className="nav-options">
+                      <div className="nav-subcat">
+                        <div className="subcat-title">Regular</div>
+                        <Link className="nav-option" to="/warframes" onClick={this.hideNav}>Warframes</Link>
+                        <Link className="nav-option" to="/primaryweapons" onClick={this.hideNav}>Primary Weapons</Link>
+                        <Link className="nav-option" to="/secondaryweapons" onClick={this.hideNav}>Secondary Weapons</Link>
+                        <Link className="nav-option" to="/meleeweapons" onClick={this.hideNav}>Melee Weapons</Link>
+                        <Link className="nav-option" to="/archguns-land" onClick={this.hideNav}>Archguns - Land</Link>
+                        <Link className="nav-option" to="/beasts" onClick={this.hideNav}>Beasts</Link>
+                        <Link className="nav-option" to="/sentinels" onClick={this.hideNav}>Sentinels</Link>
+                        <Link className="nav-option" to="/sentinelweapons" onClick={this.hideNav}>Robotic Weapons</Link>
+                      </div>
+                      <div className="nav-right">
+                        <div className="nav-shortsubs">
+                          <div className="nav-subcat">
+                            <div className="subcat-title">Archwing</div>
+                            <Link className="nav-option" to="/archwings" onClick={this.hideNav}>Archwings</Link>
+                            <Link className="nav-option" to="/archguns-space" onClick={this.hideNav}>Archguns - Space</Link>
+                            <Link className="nav-option" to="/archmelee" onClick={this.hideNav}>Archmelee</Link>
+                          </div>
+                          <div className="nav-subcat">
+                            <div className="subcat-title">Modular</div>
+                            <Link className="nav-option" to="/zaws" onClick={this.hideNav}>Zaws</Link>
+                            <Link className="nav-option" to="/kitguns" onClick={this.hideNav}>Kitguns</Link>
+                            <Link className="nav-option" to="/moas" onClick={this.hideNav}>MOAs</Link>
+                          </div>
+                        </div>
+                        <div className="nav-bs">
+                          <a href="https://www.patreon.com/user?u=16161114"><img className="patreon" src={require('./assets/general/patreon.jpg')} alt="Patreon" /></a>
+                          <p className="bs-container-nav"><Link className="bottom-info-link" to="/terms" onClick={this.closeSidebar}>terms of service</Link>  <Link className="bottom-info-link" to="/privacy" onClick={this.closeSidebar}>privacy policy</Link></p>
+                          <p className="bs-para-nav">Copyright © 2018 - Today. All rights reserved. For personal use only. Tennoware.com has no affiliation with Digital Extremes Ltd or Warframe. All artwork, screenshots, characters or other recognizable features of the intellectual property relating to Warframe are the intellectual property of Digital Extreme Ltd.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </CSSTransition>
+                </div>
+              </div>
+            }
+          </div>
           <div className="top-buttons">
             {this.state.online &&
               <React.Fragment>
+                {this.state.viewWidth > 1202 && this.state.user &&
+                  <React.Fragment>
+                    <Link to="/mybuilds" className="user-account-item">My Builds</Link>
+                    <p> | </p>
+                  </React.Fragment>
+                }
                 {this.state.user
                   ? <p className="user-account-item" onClick={this.logout}>Logout</p>
                   : <p className="user-account-item" onClick={this.showLogin}>Login</p>
@@ -171,21 +246,6 @@ class App extends Component {
         </div>
         <Sidebar user={this.state.user} online={this.state.online} />
         <Login showLogin={this.state.showLogin} hideLogin={this.hideLogin} logUser={this.logUser} user={this.state.user} />
-        {/* <div className={"update-popup " + (this.state.updateRequired ? 'show-update' : 'hide-update')}>
-          <div className="update-popup-content">
-            {this.state.updateRequired &&
-              <React.Fragment>
-                <p className="update-touch">An update is available! Please wait for Tennoware to fetch the new data.</p>
-                {this.state.update
-                  ? <div className="interactable interactable-semi-inactive" style={{ minWidth: '87px' }} onClick={this.updateInit}>
-                    <p className="interactable-p">Update</p>
-                  </div>
-                  : <div className="update-loading-container"><ContainedLoading /></div>
-                }
-              </React.Fragment>
-            }
-          </div>
-        </div> */}
       </div>
     );
   }
