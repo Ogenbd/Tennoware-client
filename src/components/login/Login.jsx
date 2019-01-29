@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
-import FacebookLogin from 'react-facebook-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import './Login.css';
 
 import apiUrl from '../../apiUrl';
@@ -151,26 +151,34 @@ export class Login extends Component {
                                 <GoogleLogin
                                     // clientId="739460553448-jgjkog0elfmiivoclc482h8bnl52p7gv.apps.googleusercontent.com" // dev
                                     clientId="447751559919-plpvda85naihs6is6chim2u9jnd3ult1.apps.googleusercontent.com" // prod
-                                    className="auth-button google"
                                     onSuccess={this.responseGoogle}
                                     onFailure={this.failGoogle}
-                                    fetchBasicProfile={false}
-                                    tag="div"
-                                    theme="dark"
-                                >
-                                    <img src={require('../../assets/general/googleicon.png')} alt='' />
-                                    <span> Login with Google</span>
-                                </GoogleLogin>
+                                    // fetchBasicProfile={false}
+                                    // icon={false}
+                                    // tag="div"
+                                    // theme="dark"
+                                    render={renderProps => (
+                                        <div className="auth-button google" onClick={renderProps.onClick}>
+                                            <img src={require('../../assets/general/googleicon.png')} alt='' />
+                                            <div className="create-button">Login with Google</div>
+                                        </div>
+                                    )}
+                                />
                                 <FacebookLogin
                                     // appId="707507742959348" //dev
                                     appId="713698015671816" // prod
                                     cssClass="auth-button facebook"
-                                    icon={<img src={require('../../assets/general/facebookicon.png')} alt='' />}
-                                    tag="div"
                                     fields=""
                                     cookie="false"
                                     onFailure={this.failFacebook}
-                                    callback={this.responseFacebook} />
+                                    callback={this.responseFacebook}
+                                    render={renderProps => (
+                                        <div className="auth-button facebook" onClick={renderProps.onClick}>
+                                            <img src={require('../../assets/general/facebookicon.png')} alt='' />
+                                            <div className="create-button">Login with Facebook</div>
+                                        </div>
+                                    )}
+                                />
                                 <div to='/tennowarelogin' className="auth-button local-login" onClick={this.localLogin}>
                                     <div className="tennoware-t">T</div>
                                     <div className="create-button">Login/Create Account</div>

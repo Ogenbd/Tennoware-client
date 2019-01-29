@@ -49,7 +49,7 @@ export class News extends Component {
     let sortedNews = [];
     sortedNews = news.filter(item => item.translations.en);
     sortedNews.forEach(item => {
-      item.since = `${new Date(item.date).toLocaleDateString()}`;
+      item.since = `${new Date(item.date).toLocaleDateString(undefined, { year: '2-digit', month: '2-digit', day: '2-digit' })}`;
     });
     sortedNews.sort((a, b) => {
       let dateA = new Date(a.date);
@@ -134,7 +134,7 @@ export class News extends Component {
                       ? <React.Fragment>
                         {this.state.news.map((item, index) => {
                           return (
-                          <div className="news-item" key={index}><p className="news-date">[{item.since}]:</p><a href={item.link} className="reddit-link">{item.translations.en}</a></div>
+                            <div className="news-item" key={index}><p className="news-date">[{item.since}]:</p><a href={item.link} className="reddit-link">{item.translations.en}</a></div>
                           )
                         })}
                       </React.Fragment>
