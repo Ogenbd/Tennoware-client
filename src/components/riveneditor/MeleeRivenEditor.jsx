@@ -110,7 +110,7 @@ export class MeleeRivenEditor extends Component {
         rivenMod.effects.push(effectOneObj);
       }
       rivenMod.effectOne = this.state.effectOne;
-      rivenMod.numOne = typeof this.state.numOne === 'number' ? parseFloat(this.state.numOne) : 0;
+      rivenMod.numOne = this.state.numOne === '' ? 0 : parseFloat(this.state.numOne);
       rivenMod.desc += `${this.state.numOne >= 0 ? '+' : ''}${this.state.numOne}${this.state.effectOne === 'Punch Through' ? 'm ' : '% '}${this.state.effectOne}\n`;
       if (this.state.effectTwo !== 'None') {
         let effectTwoObj = this.constructEffect(this.state.effectTwo, this.state.numTwo / 100);
@@ -118,7 +118,7 @@ export class MeleeRivenEditor extends Component {
           rivenMod.effects.push(effectTwoObj);
         }
         rivenMod.effectTwo = this.state.effectTwo;
-        rivenMod.numTwo = typeof this.state.numTwo === 'number' ? parseFloat(this.state.numTwo) : 0;
+        rivenMod.numTwo = this.state.numTwo === '' ? 0 : parseFloat(this.state.numTwo);;
         rivenMod.desc += `${this.state.numTwo >= 0 ? '+' : ''}${this.state.numTwo}${this.state.effectTwo === 'Punch Through' ? 'm ' : '% '}${this.state.effectTwo}\n`;
         if (this.state.effectThree !== 'None') {
           let effectThreeObj = this.constructEffect(this.state.effectThree, this.state.numThree / 100);
@@ -126,7 +126,7 @@ export class MeleeRivenEditor extends Component {
             rivenMod.effects.push(effectThreeObj);
           }
           rivenMod.effectThree = this.state.effectThree;
-          rivenMod.numThree = typeof this.state.numThree === 'number' ? parseFloat(this.state.numThree) : 0;
+          rivenMod.numThree = this.state.numThree === '' ? 0 : parseFloat(this.state.numThree);;
           rivenMod.desc += `${this.state.numThree >= 0 ? '+' : ''}${this.state.numThree}${this.state.effectThree === 'Punch Through' ? 'm ' : '% '}${this.state.effectThree}\n`;
           if (this.state.effectFour !== 'None') {
             let effectFourObj = this.constructEffect(this.state.effectFour, this.state.numFour / 100);
@@ -134,7 +134,7 @@ export class MeleeRivenEditor extends Component {
               rivenMod.effects.push(effectFourObj);
             }
             rivenMod.effectFour = this.state.effectFour;
-            rivenMod.numFour = typeof this.state.numFour === 'number' ? parseFloat(this.state.numFour) : 0;
+            rivenMod.numFour = this.state.numFour === '' ? 0 : parseFloat(this.state.numFour);;
             rivenMod.desc += `${this.state.numFour >= 0 ? '+' : ''}${this.state.numFour}${this.state.effectFour === 'Punch Through' ? 'm ' : '% '}${this.state.effectFour}`;
           }
         }
