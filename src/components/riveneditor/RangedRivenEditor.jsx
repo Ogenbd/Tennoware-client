@@ -111,7 +111,7 @@ export class RangedRivenEditor extends Component {
         rivenMod.effects.push(effectOneObj);
       }
       rivenMod.effectOne = this.state.effectOne;
-      rivenMod.numOne = parseFloat(this.state.numOne);
+      rivenMod.numOne = typeof this.state.numOne === 'number' ? parseFloat(this.state.numOne) : 0;
       rivenMod.desc += `${this.state.numOne >= 0 ? '+' : ''}${this.state.numOne}${this.state.effectOne === 'Punch Through' ? 'm ' : '% '}${this.state.effectOne}\n`;
       if (this.state.effectTwo !== 'None') {
         let effectTwoObj = this.constructEffect(this.state.effectTwo, this.state.numTwo / 100);
@@ -119,7 +119,7 @@ export class RangedRivenEditor extends Component {
           rivenMod.effects.push(effectTwoObj);
         }
         rivenMod.effectTwo = this.state.effectTwo;
-        rivenMod.numTwo = parseFloat(this.state.numTwo);
+        rivenMod.numTwo = typeof this.state.numTwo === 'number' ? parseFloat(this.state.numTwo) : 0;
         rivenMod.desc += `${this.state.numTwo >= 0 ? '+' : ''}${this.state.numTwo}${this.state.effectTwo === 'Punch Through' ? 'm ' : '% '}${this.state.effectTwo}\n`;
         if (this.state.effectThree !== 'None') {
           let effectThreeObj = this.constructEffect(this.state.effectThree, this.state.numThree / 100);
@@ -127,7 +127,7 @@ export class RangedRivenEditor extends Component {
             rivenMod.effects.push(effectThreeObj);
           }
           rivenMod.effectThree = this.state.effectThree;
-          rivenMod.numThree = parseFloat(this.state.numThree);
+          rivenMod.numThree = typeof this.state.numThree === 'number' ? parseFloat(this.state.numThree) : 0;
           rivenMod.desc += `${this.state.numThree >= 0 ? '+' : ''}${this.state.numThree}${this.state.effectThree === 'Punch Through' ? 'm ' : '% '}${this.state.effectThree}\n`;
           if (this.state.effectFour !== 'None') {
             let effectFourObj = this.constructEffect(this.state.effectFour, this.state.numFour / 100);
@@ -135,7 +135,7 @@ export class RangedRivenEditor extends Component {
               rivenMod.effects.push(effectFourObj);
             }
             rivenMod.effectFour = this.state.effectFour;
-            rivenMod.numFour = parseFloat(this.state.numFour);
+            rivenMod.numFour = typeof this.state.numFour === 'number' ? parseFloat(this.state.numFour) : 0;
             rivenMod.desc += `${this.state.numFour >= 0 ? '+' : ''}${this.state.numFour}${this.state.effectFour === 'Punch Through' ? 'm ' : '% '}${this.state.effectFour}`;
           }
         }
@@ -214,6 +214,7 @@ export class RangedRivenEditor extends Component {
 
   handleChange = ({ target }) => {
     let value = target.value;
+    console.log(value);
     if (value > 999) value = 999;
     if (value < -999) value = -999;
     this.setState({ [target.name]: value })

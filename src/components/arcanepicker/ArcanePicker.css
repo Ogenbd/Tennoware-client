@@ -1,9 +1,9 @@
 .arcane-picker {
+    height: initial;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    height: calc(100% - 56px);
-    max-height: calc(100% - 56px);
+    align-items: flex-start;
+    flex-wrap: wrap;
     padding: 15px 0;
     box-sizing: border-box;
 }

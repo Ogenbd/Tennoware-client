@@ -16,6 +16,8 @@ const ModPicker = lazy(() => import('../modpicker/ModPicker'));
 const RangedWeaponStats = lazy(() => import('../stats/RangedWeaponStats'));
 const WarframeStats = lazy(() => import('../stats/WarframeStats'));
 const MeleeStats = lazy(() => import('../stats/MeleeStats'));
+const ArcaneStateHandler = lazy(() => import('../arcanestatehandler/ArcaneStateHandler'));
+const ArcanePicker = lazy(() => import('../arcanepicker/ArcanePicker'));
 
 class EightSlotModding extends Component {
     constructor(props) {
@@ -45,7 +47,10 @@ class EightSlotModding extends Component {
                 effectFour: 'None',
                 numFour: '',
                 desc: ''
-            }
+            },
+            arcanePicker: false,
+            arcaneSlot: null,
+            arcanes: [{}]
         }
     }
 
@@ -56,6 +61,7 @@ class EightSlotModding extends Component {
             let orokin = build[0] === '0' ? false : true;
             let prePolarities = this.createPrePolarities(build.slice(1, 9).split(''));
             let preMods = this.createPreMods(build.slice(9, 41));
+            let preArcanes = this.props.type === 'kitguns' ? build[41] === 'x' ? this.createPreArcanes(build.slice(75, 79)) : this.createPreArcanes(build.slice(42, 46)) : [{}];
             let totalModsCost = this.calcCost(preMods.chosenMods, prePolarities);
             let formaCount = this.countForma(prePolarities);
             this.checkModSets(preMods.chosenMods);
@@ -66,8 +72,32 @@ class EightSlotModding extends Component {
                 chosenMods: preMods.chosenMods,
                 totalModsCost: totalModsCost,
                 formaCount: formaCount,
+                arcanes: preArcanes
             });
         }
+    }
+
+    createPreArcanes = (arcanesStr) => {
+        let arcanes = [];
+        let arcanesArr = arcanesStr.match(/.{1,4}/g);
+        if (!arcanesArr) return [{}];
+        arcanesArr.forEach(arcaneStr => {
+            if (arcaneStr === '0000') {
+                arcanes.push({})
+            } else {
+                let foundArcane = this.props.arcanes.find(arcane => {
+                    return arcane.abrev === `${arcaneStr[0]}${arcaneStr[1]}`;
+                });
+                let rank = parseInt(`${arcaneStr[2]}${arcaneStr[3]}`, 10);
+                if (foundArcane === undefined || typeof rank !== 'number' || rank < 0 || rank > 3) {
+                    arcanes.push({})
+                } else {
+                    foundArcane.currRank = rank;
+                    arcanes.push(foundArcane);
+                }
+            }
+        });
+        return arcanes;
     }
 
     convertBuildToString = () => {
@@ -81,13 +111,7 @@ class EightSlotModding extends Component {
         this.state.chosenMods.forEach(mod => {
             if (mod.name) {
                 if (mod.abrev === 'ri') riven = true;
-                buildStr += mod.abrev
-                if (mod.currRank < 10) {
-                    buildStr += '0';
-                    buildStr += mod.currRank;
-                } else {
-                    buildStr += mod.currRank;
-                }
+                buildStr += this.convertModSlotToString(mod);
             } else {
                 buildStr += '0000'
             }
@@ -102,7 +126,20 @@ class EightSlotModding extends Component {
         } else {
             buildStr += 'v';
         }
+        if (this.props.type === 'kitguns' && this.state.arcanes[0].name) buildStr += this.convertModSlotToString(this.state.arcanes[0]);
         return { buildStr: buildStr, riven: riven };
+    }
+
+    convertModSlotToString = (mod) => {
+        let modStr = '';
+        modStr += mod.abrev
+        if (mod.currRank < 10) {
+            modStr += '0';
+            modStr += mod.currRank;
+        } else {
+            modStr += mod.currRank;
+        }
+        return modStr;
     }
 
     convertEffectToNum = (effect, num) => {
@@ -509,6 +546,60 @@ class EightSlotModding extends Component {
         this.swapMods(this.state.forSwap, slot);
     }
 
+    showArcanePicker = (slot) => {
+        if (this.props.viewWidth < 1203) document.body.classList.add('noscroll');
+        this.setState({
+            arcanePicker: true,
+            arcaneSlot: slot
+        });
+    }
+
+    removeArcane = (slot) => {
+        let arcanes = cloneDeep(this.state.arcanes);
+        arcanes[slot] = {};
+        this.setState({
+            arcanes: arcanes
+        });
+    }
+
+    hideArcanePicker = () => {
+        document.body.classList.remove('noscroll');
+        this.setState({
+            arcanePicker: false,
+            arcaneSlot: null
+        })
+    }
+
+    pickArcane = (index) => {
+        let arcanes = cloneDeep(this.state.arcanes);
+        arcanes[this.state.arcaneSlot] = this.props.arcanes[index];
+        this.setState({
+            arcanes: arcanes,
+            arcaneSlot: null,
+            arcanePicker: false
+        });
+    }
+
+    increaseArcaneRank = (slot) => {
+        if (this.state.arcanes[slot].currRank < 3) {
+            let arcanes = cloneDeep(this.state.arcanes);
+            arcanes[slot].currRank++
+            this.setState({
+                arcanes: arcanes
+            });
+        }
+    }
+
+    decreaseArcaneRank = (slot) => {
+        if (this.state.arcanes[slot].currRank > 0) {
+            let arcanes = cloneDeep(this.state.arcanes);
+            arcanes[slot].currRank--;
+            this.setState({
+                arcanes: arcanes
+            });
+        }
+    }
+
     displayMessage = () => {
         if (this.state.errorBlinker !== null) {
             return (
@@ -526,7 +617,7 @@ class EightSlotModding extends Component {
     }
 
     render() {
-        const { chosenMods, chosenIndexs, modPicker, orokin, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSwap, polarityPicker } = this.state;
+        const { chosenMods, chosenIndexs, modPicker, orokin, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSwap, polarityPicker, arcanes, arcanePicker } = this.state;
         return (
             <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
                 <div className="ranged-modding">
@@ -590,6 +681,14 @@ class EightSlotModding extends Component {
                                     </div>
                                 </div>
                             </div>
+                            {this.props.type === 'kitguns'
+                                ? <div className="arcane-slots-wrapper kitgun-arcane">
+                                    <div className="arcane-slots">
+                                        <ArcaneStateHandler arcane={arcanes[0]} arcaneSlot={0} showArcanePicker={this.showArcanePicker} removeArcane={this.removeArcane} increaseRank={this.increaseArcaneRank} decreaseRank={this.decreaseArcaneRank} viewWidth={this.props.viewWidth} />
+                                    </div>
+                                </div>
+                                : <div className="special-melee-placeholder"></div>
+                            }
                         </div>
                         <div className="slots-wrapper">
                             <div className="slots">
@@ -639,6 +738,9 @@ class EightSlotModding extends Component {
                         <MeleeStats weapon={this.props.item} mods={this.state.chosenMods} viewWidth={this.props.viewWidth} />
                     }
                     <PolarityPicker polarityPicker={polarityPicker} polarizeSlot={this.polarizeSlot} hidePolarityPicker={this.hidePolarityPicker} />
+                    {this.props.type === 'kitguns' &&
+                        <ArcanePicker arcanes={this.props.arcanes} active={arcanePicker} hideArcanePicker={this.hideArcanePicker} pickArcane={this.pickArcane} />
+                    }
                 </div>
             </CSSTransition>
         )

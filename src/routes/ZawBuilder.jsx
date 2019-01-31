@@ -15,7 +15,8 @@ class MeleeBuilder extends Component {
             slotPolarities: [],
             originalPolarityCount: {},
             metaInfo: {},
-            error: null
+            error: null,
+            arcanes: []
         }
     }
 
@@ -68,6 +69,7 @@ class MeleeBuilder extends Component {
     setupBuilder = async (metaInfo) => {
         let items = await this.props.items().then(data => data.default);
         let mods = await this.props.mods().then(data => data.default);
+        let arcanes = await this.props.arcanes().then(data => data.default);
         let strike;
         let grip;
         let link;
@@ -132,7 +134,8 @@ class MeleeBuilder extends Component {
                 relevantMods: filteredMods,
                 slotPolarities: [],
                 originalPolarityCount: originalPolarityCount,
-                metaInfo: metaInfo
+                metaInfo: metaInfo,
+                arcanes: arcanes
             });
         }
         catch {
@@ -200,7 +203,7 @@ class MeleeBuilder extends Component {
                     </div>
                     : <React.Fragment>
                         {this.state.item.name &&
-                            <MeleeModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={require('../assets/general/catalyst.png')} riven={'melee'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} />
+                            <MeleeModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={require('../assets/general/catalyst.png')} riven={'melee'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} arcanes={this.state.arcanes} />
                         }
                     </React.Fragment>
                 }

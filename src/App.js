@@ -35,7 +35,7 @@ class App extends Component {
     });
     let jwt;
     localStorage.jwt ? jwt = true : jwt = false;
-    navigator.onLine ? this.checkVer('1.2.5', jwt) : this.setState({ updateRequired: false, user: jwt });
+    navigator.onLine ? this.checkVer('1.2.6', jwt) : this.setState({ updateRequired: false, user: jwt });
     window.addEventListener('resize', this.debouncedSetWidth);
     window.addEventListener('updateavail', this.updateInit);
     window.addEventListener('online', this.setOnline);
@@ -75,14 +75,6 @@ class App extends Component {
       this.setState({ updateRequired: false, user: jwt });
     }
   }
-
-  // checkMessage = (e) => {
-  //   if (e.data === 'donewaiting') window.location.reload();
-  // }
-
-  // promptUpdate = () => {
-  //   this.setState({ update: true });
-  // }
 
   setOffline = () => {
     this.setState({
@@ -200,7 +192,7 @@ class App extends Component {
                           </div>
                         </div>
                         <div className="nav-bs">
-                          <a href="https://www.patreon.com/user?u=16161114"><img className="patreon" src={require('./assets/general/patreon.jpg')} alt="Patreon" /></a>
+                          <a href="https://www.patreon.com/tennoware"><img className="patreon" src={require('./assets/general/patreon.jpg')} alt="Patreon" /></a>
                           <p className="bs-container-nav"><Link className="bottom-info-link" to="/terms" onClick={this.closeSidebar}>terms of service</Link>  <Link className="bottom-info-link" to="/privacy" onClick={this.closeSidebar}>privacy policy</Link></p>
                           <p className="bs-para-nav">Copyright © 2018 - Today. All rights reserved. For personal use only. Tennoware.com has no affiliation with Digital Extremes Ltd or Warframe. All artwork, screenshots, characters or other recognizable features of the intellectual property relating to Warframe are the intellectual property of Digital Extreme Ltd.</p>
                         </div>

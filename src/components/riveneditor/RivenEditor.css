@@ -49,6 +49,11 @@
     transition: transform 0.2s ease-in-out;
 }
 
+.bottom-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
 .riven-button {
     width: 100px;
     height: 48px;
@@ -181,10 +186,6 @@
     .riven-editor {
         position: fixed;
         flex-shrink: 0;
-    }
-    .bottom-wrapper {
-        display: flex;
-        justify-content: center;
     }
     .riven-effect-wrapper {
         display: flex;

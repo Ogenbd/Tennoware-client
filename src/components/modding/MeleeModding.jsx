@@ -14,6 +14,8 @@ const ModStateHandler = lazy(() => import('../modstatehandler/ModStateHandler'))
 const PolarityPicker = lazy(() => import('../polaritypicker/PolarityPicker'));
 const ModPicker = lazy(() => import('../modpicker/ModPicker'));
 const MeleeStats = lazy(() => import('../stats/MeleeStats'));
+const ArcaneStateHandler = lazy(() => import('../arcanestatehandler/ArcaneStateHandler'));
+const ArcanePicker = lazy(() => import('../arcanepicker/ArcanePicker'));
 
 class MeleeModding extends Component {
     constructor(props) {
@@ -45,7 +47,10 @@ class MeleeModding extends Component {
                 effectFour: 'None',
                 numFour: '',
                 desc: ''
-            }
+            },
+            arcanePicker: false,
+            arcaneSlot: null,
+            arcanes: [{}]
         }
     }
 
@@ -56,6 +61,7 @@ class MeleeModding extends Component {
             let orokin = build[0] === '0' ? false : true;
             let prePolarities = this.createPrePolarities(build.slice(1, 10).split(''));
             let preMods = this.createPreMods(build.slice(10, 46));
+            let preArcanes = this.props.type === 'zaws' ? build[46] === 'x' ? this.createPreArcanes(build.slice(80, 84)) : this.createPreArcanes(build.slice(47, 51)) : [{}];
             let totalModsCost = this.calcCost(preMods.chosenMods, prePolarities.stack, preMods.stanceMod, prePolarities.stance);
             let formaCount = this.countForma(prePolarities.stack, prePolarities.stance);
             let modSets = this.checkModSets(preMods.stanceMod, preMods.chosenMods);
@@ -68,6 +74,7 @@ class MeleeModding extends Component {
                 chosenMods: modSets.chosenMods,
                 totalModsCost: totalModsCost,
                 formaCount: formaCount,
+                arcanes: preArcanes
             });
         } else if (this.props.item.exalted && this.props.item.name !== 'DIWATA') {
             let exaltedStance = this.props.mods[this.props.mods.findIndex(mod => {
@@ -79,6 +86,29 @@ class MeleeModding extends Component {
                 chosenIndexs: chosenIndexs
             });
         }
+    }
+
+    createPreArcanes = (arcanesStr) => {
+        let arcanes = [];
+        let arcanesArr = arcanesStr.match(/.{1,4}/g);
+        if (!arcanesArr) return [{}];
+        arcanesArr.forEach(arcaneStr => {
+            if (arcaneStr === '0000') {
+                arcanes.push({})
+            } else {
+                let foundArcane = this.props.arcanes.find(arcane => {
+                    return arcane.abrev === `${arcaneStr[0]}${arcaneStr[1]}`;
+                });
+                let rank = parseInt(`${arcaneStr[2]}${arcaneStr[3]}`, 10);
+                if (foundArcane === undefined || typeof rank !== 'number' || rank < 0 || rank > 3) {
+                    arcanes.push({})
+                } else {
+                    foundArcane.currRank = rank;
+                    arcanes.push(foundArcane);
+                }
+            }
+        });
+        return arcanes;
     }
 
     createPreMods = (modsStr) => {
@@ -186,6 +216,7 @@ class MeleeModding extends Component {
         } else {
             buildStr += 'v';
         }
+        if (this.props.type === 'zaws' && this.state.arcanes[0].name) buildStr += this.convertModSlotToString(this.state.arcanes[0]);
         return { buildStr: buildStr, riven: riven };
     }
 
@@ -660,6 +691,60 @@ class MeleeModding extends Component {
         this.swapMods(this.state.forSwap, slot);
     }
 
+    showArcanePicker = (slot) => {
+        if (this.props.viewWidth < 1203) document.body.classList.add('noscroll');
+        this.setState({
+            arcanePicker: true,
+            arcaneSlot: slot
+        });
+    }
+
+    removeArcane = (slot) => {
+        let arcanes = cloneDeep(this.state.arcanes);
+        arcanes[slot] = {};
+        this.setState({
+            arcanes: arcanes
+        });
+    }
+
+    hideArcanePicker = () => {
+        document.body.classList.remove('noscroll');
+        this.setState({
+            arcanePicker: false,
+            arcaneSlot: null
+        })
+    }
+
+    pickArcane = (index) => {
+        let arcanes = cloneDeep(this.state.arcanes);
+        arcanes[this.state.arcaneSlot] = this.props.arcanes[index];
+        this.setState({
+            arcanes: arcanes,
+            arcaneSlot: null,
+            arcanePicker: false
+        });
+    }
+
+    increaseArcaneRank = (slot) => {
+        if (this.state.arcanes[slot].currRank < 3) {
+            let arcanes = cloneDeep(this.state.arcanes);
+            arcanes[slot].currRank++
+            this.setState({
+                arcanes: arcanes
+            });
+        }
+    }
+
+    decreaseArcaneRank = (slot) => {
+        if (this.state.arcanes[slot].currRank > 0) {
+            let arcanes = cloneDeep(this.state.arcanes);
+            arcanes[slot].currRank--;
+            this.setState({
+                arcanes: arcanes
+            });
+        }
+    }
+
     displayMessage = () => {
         if (this.state.errorBlinker !== null) {
             return (
@@ -677,7 +762,7 @@ class MeleeModding extends Component {
     }
 
     render() {
-        const { chosenStanceMod, chosenIndexs, stancePolarity, chosenMods, modPicker, orokin, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSlot, forSwap, polarityPicker } = this.state;
+        const { chosenStanceMod, chosenIndexs, stancePolarity, chosenMods, modPicker, orokin, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSlot, forSwap, polarityPicker, arcanes, arcanePicker } = this.state;
         return (
             <CSSTransition classNames="fade" in={true} appear={true} timeout={200} >
                 <div className="ranged-modding">
@@ -754,7 +839,14 @@ class MeleeModding extends Component {
                                     <div className={"error-blinker " + ((errorBlinker === 0) ? 'error-flash' : '')}></div>
                                 </div>
                             </div>
-                            <div className="special-melee-placeholder"></div>
+                            {this.props.type === 'zaws'
+                                ? <div className="arcane-slots-wrapper">
+                                    <div className="arcane-slots">
+                                        <ArcaneStateHandler arcane={arcanes[0]} arcaneSlot={0} showArcanePicker={this.showArcanePicker} removeArcane={this.removeArcane} increaseRank={this.increaseArcaneRank} decreaseRank={this.decreaseArcaneRank} viewWidth={this.props.viewWidth} />
+                                    </div>
+                                </div>
+                                : <div className="special-melee-placeholder"></div>
+                            }
                         </div>
                         <div className="slots-wrapper slots-wrapper-space">
                             <div className="slots">
@@ -796,6 +888,9 @@ class MeleeModding extends Component {
                     </div>
                     <MeleeStats weapon={this.props.item} mods={chosenMods} viewWidth={this.props.viewWidth} />
                     <PolarityPicker polarityPicker={polarityPicker} polarizeSlot={this.polarizeSlot} hidePolarityPicker={this.hidePolarityPicker} />
+                    {this.props.type === 'zaws' &&
+                        <ArcanePicker arcanes={this.props.arcanes} active={arcanePicker} hideArcanePicker={this.hideArcanePicker} pickArcane={this.pickArcane} />
+                    }
                 </div>
             </CSSTransition>
         )

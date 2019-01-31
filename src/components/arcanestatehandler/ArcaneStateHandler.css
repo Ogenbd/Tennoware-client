@@ -188,6 +188,8 @@
     padding: 10px 7px;
     border: 1px solid rgba(255, 249, 160, 0.3);
     top: 50px;
+    left: -42px;
+    width: 200px;
     white-space: pre-wrap;
     text-align: center;
 }

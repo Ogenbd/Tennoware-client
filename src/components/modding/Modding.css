@@ -88,6 +88,10 @@
     margin-top: 8px;
 }
 
+.kitgun-arcane {
+    height: 126px;
+}
+
 .arcane-slots {
     display: flex;
     flex-direction: column;
@@ -253,25 +257,20 @@
 }
 
 @media screen and (max-width: 864px) {
-    .special-melee {
-        flex-direction: column;
-    }
-}
-
-@media screen and (max-width: 878px) {
     .special-modding {
+        flex-direction: column;
         justify-content: center;
         align-items: center;
     }
     .special-slots {
         order: 3;
     }
+    .arcane-slots {
+        flex-direction: row;
+    }
     .arcane-slots-wrapper {
         height: unset;
         align-items: center;
-    }
-    .arcane-slots {
-        flex-direction: row;
     }
 }
 

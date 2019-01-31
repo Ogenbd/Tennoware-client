@@ -62,31 +62,6 @@ export class News extends Component {
     })
   }
 
-  imageLoaded = () => {
-    if (this.state.news.length === this.state.loaded + 1) {
-      this.setState(prevState => ({ loaded: prevState.loaded + 1, loading: false }));
-    } else {
-      this.setState(prevState => ({ loaded: prevState.loaded + 1 }));
-    }
-  }
-
-  handleError = (idx) => {
-    let news = this.state.news.map((item, index) => {
-      if (idx === index) {
-        let newItem = item;
-        item.imageLink = require('../../assets/general/unavail.jpg')
-        return newItem;
-      } else {
-        return item;
-      }
-    });
-    this.setState(prevState => ({
-      news: news,
-      loaded: prevState.loaded + 1,
-      loading: false
-    }));
-  }
-
   render() {
     return (
       <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
@@ -101,19 +76,17 @@ export class News extends Component {
           <div className="news-container">
             <div className="home-left">
               <div className="tennoware-update">
-                <div className="update-title">Update 1.2.5</div>
+                <div className="update-title">Update 1.2.6</div>
                 <div className="update-content">
-                  <p>Main page has been redesigned.</p>
-                  <p>Desktop Site navigation has been changed. Previous layout made adding and aligning UI elements difficult.</p>
-                  <p>Fixed some bugs and inaccuracies in mod descriptions.</p>
+                  <p>Added Arcanes to Zaw and Kitgun Builders.</p>
+                  <p>Fixed Facebook Login along with some UI issues in Login box.</p>
                   <p>For the complete update notes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log</a>.</p>
                 </div>
               </div>
               <div className="tennoware-update">
                 <div className="update-title">Support Tennoware</div>
                 <div className="update-content">
-                  <p>Tennoware is on Patreon!</p>
-                  <p>If you like Tennoware and want to support development, consider dropping some credits over at <a className="reddit-link" href="https://www.patreon.com/user?u=16161114">The Tennoware Patreon Page</a>.</p>
+                  <p>If you like Tennoware and want to support development, consider dropping some credits over at <a className="reddit-link" href="https://www.patreon.com/tennoware">The Tennoware Patreon Page</a>.</p>
                   <p>Becoming a patron doesn't only help with server and hosting costs, it also lets Patrons influence the upcoming features of Tennoware!</p>
                 </div>
               </div>
@@ -205,67 +178,6 @@ export class News extends Component {
                 </Link>
               </div>
             </div>
-            {/* <div className="page-subtitle">Tennoware Updates</div>
-            <div className="articles">
-              <div className="article tennoware-news">
-                <h1>Introduction</h1>
-                <div className="update-content">
-                  <p>Tennoware is a Warframe builds calculator, it is both mobile and desktop friendly, can be installed on your mobile device and has offline functionality.</p>
-                  <p>Creating and account is optional and free and it lets you save your builds and like other peoples public community builds.</p>
-                  <p>Tennoware is still in early stages of development. Please understand that some server issues and/or bugs are lurking around.</p>
-                  <p>If you encounter a bug or wish to provide feedback or a feature suggestion, I would appreciate if you would let me know over at the <a className="reddit-link" href="https://www.reddit.com/r/tennoware">Tennoware subreddit</a>.</p>
-                </div>
-              </div>
-              <div className="article tennoware-news">
-                <h1>Update 1.2.3!</h1>
-                <div className="update-content">
-                  <p>Added Arcanes to the Warframe Builder.</p>
-                  <p>Implemented recent Warframe, Weapon and Mod changes.</p>
-                  <p>Fixed several bugs and inaccuracies.</p>
-                  <p>Arch-guns - Land builds now get the free Gravimag polarization they deserve.</p>
-                  <p>For the complete update notes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log</a>.</p>
-                </div>
-              </div>
-            </div>
-            <div className="page-subtitle">Warframe News</div>
-            {this.props.online
-              ? <React.Fragment>
-                <div className="wf-news">
-                  <div className="news-toggle">
-                    <div className="platform-wrapper">
-                      <div className={"platform-button " + (this.state.platform === 'pc' ? 'platform-picked' : 'platform-unpicked')} onClick={() => { this.getNews('pc') }}><img className={"platform-icon " + (this.state.platform === 'pc' ? 'platform-picked-icon' : 'platform-unpicked-icon')} src={require('../../assets/general/pc.png')} alt="PC" /></div>
-                      <div className={"platform-button " + (this.state.platform === 'ps4' ? 'platform-picked' : 'platform-unpicked')} onClick={() => { this.getNews('ps4') }}><img className={"platform-icon " + (this.state.platform === 'ps4' ? 'platform-picked-icon' : 'platform-unpicked-icon')} src={require('../../assets/general/ps4.png')} alt="PS4" /></div>
-                      <div className={"platform-button " + (this.state.platform === 'xb1' ? 'platform-picked' : 'platform-unpicked')} onClick={() => { this.getNews('xb1') }}><img className={"platform-icon " + (this.state.platform === 'xb1' ? 'platform-picked-icon' : 'platform-unpicked-icon')} src={require('../../assets/general/xb1.png')} alt="XB1" /></div>
-                      <div className={"platform-button " + (this.state.platform === 'swi' ? 'platform-picked' : 'platform-unpicked')} onClick={() => { this.getNews('swi') }}><img className={"platform-icon " + (this.state.platform === 'swi' ? 'platform-picked-icon' : 'platform-unpicked-icon')} src={require('../../assets/general/swi.png')} alt="SWI" /></div>
-                    </div>
-                    <p>News data provided by the <a href="https://github.com/wfcd">Warframe Community Developers</a></p>
-                  </div>
-                </div>
-                <div className="loading-articles-coupler">
-                  <div className={"news-loading " + (!this.state.loading ? 'hide-it' : 'show-it')}>
-                    <ContainedLoading />
-                  </div>
-                  <div className={"articles-wrapper articles " + (this.state.loading ? 'hide-it' : 'show-it')}>
-                    {this.state.news.map((item, index) => {
-                      return (
-                        <a key={index} href={item.link} className="article">
-                          <img className="article-image" onError={() => { this.handleError(index) }} onLoad={this.imageLoaded} src={item.imageLink} alt="" />
-                          <p className="article-message">{item.translations.en}</p>
-                        </a>
-                      )
-                    })}
-                  </div>
-                </div>
-              </React.Fragment>
-              : <div className="articles">
-                <div className="article tennoware-news">
-                  <h1>Offline Mode</h1>
-                  <div className="update-content">
-                    <p>Must be online to to get current Warframe news.</p>
-                  </div>
-                </div>
-              </div>
-            } */}
           </div>
         </div>
       </CSSTransition>

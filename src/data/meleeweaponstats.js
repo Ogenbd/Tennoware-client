@@ -577,6 +577,7 @@ const meleeStats = [
     mastery: 3,
     type: [
       'GLAIVES',
+      'THROWN MELEE',
       'CERATA'
     ],
     polarities: [
@@ -1886,6 +1887,7 @@ const meleeStats = [
     mastery: 8,
     type: [
       'GLAIVES',
+      'THROWN MELEE',
       'FALCOR'
     ],
     polarities: [],
@@ -2412,6 +2414,7 @@ const meleeStats = [
     mastery: 1,
     type: [
       'GLAIVES',
+      'THROWN MELEE',
       'GLAIVE'
     ],
     polarities: [
@@ -2506,6 +2509,7 @@ const meleeStats = [
     mastery: 10,
     type: [
       'GLAIVES',
+      'THROWN MELEE',
       'GLAIVE PRIME'
     ],
     polarities: [
@@ -2760,6 +2764,7 @@ const meleeStats = [
     mastery: 7,
     type: [
       'GLAIVES',
+      'THROWN MELEE',
       'HALIKAR'
     ],
     polarities: [
@@ -3316,6 +3321,7 @@ const meleeStats = [
     mastery: 0,
     type: [
       'GLAIVES',
+      'THROWN MELEE',
       'KESTREL'
     ],
     polarities: [
@@ -4432,6 +4438,7 @@ const meleeStats = [
     mastery: 5,
     type: [
       'GLAIVES',
+      'THROWN MELEE',
       'ORVIUS'
     ],
     polarities: [

@@ -63,7 +63,7 @@ export class Sidebar extends Component {
               <Link to="/archmelee" className="nav-item" onClick={this.closeSidebar}><p>Archmelee</p></Link>
             </div>
             <div className="botton-info">
-              <a href="https://www.patreon.com/user?u=16161114"><img className="patreon-side" src={require('../../assets/general/patreon2.jpg')} alt="Patreon" /></a>
+              <a href="https://www.patreon.com/tennoware"><img className="patreon-side" src={require('../../assets/general/patreon2.jpg')} alt="Patreon" /></a>
               <p className="bs-container"><Link className="bottom-info-link" to="/terms" onClick={this.closeSidebar}>terms of service</Link>  <Link className="bottom-info-link" to="/privacy" onClick={this.closeSidebar}>privacy policy</Link></p>
               <p className="bs-para">Copyright © 2018 - Today. All rights reserved. For personal use only. Tennoware.com has no affiliation with Digital Extremes Ltd or Warframe. All artwork, screenshots, characters or other recognizable features of the intellectual property relating to Warframe are the intellectual property of Digital Extreme Ltd.</p>
             </div>

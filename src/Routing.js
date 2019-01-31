@@ -62,6 +62,8 @@ const archmeleeList = () => import('./data/archmeleelist' /* webpackChunkName: "
 const archmeleeStats = () => import('./data/archmeleestats' /* webpackChunkName: "arms" */ );
 const zaws = () => import('./data/zaws' /* webpackChunkName: "zaws" */ );
 const warframeArcanes = () => import('./data/warframearcanes' /* webpackChunkName: "warc" */ );
+const zawArcanes = () => import('./data/zawarcanes' /* webpackChunkName: "zarc" */ );
+const kitgunArcanes = () => import('./data/kitgunarcanes' /* webpackChunkName: "karc" */ );
 
 
 export class Routing extends Component {
@@ -114,17 +116,17 @@ export class Routing extends Component {
                         <Route exact path='/beasts/:id/:pre' render={props => <BeastBuilder {...props} {...nonRouterPropPass} type={'beasts'} items={beastStats} mods={companionMods} />} />
                         <Route exact path='/beasts/:id' render={props => <BeastBuilder {...props} {...nonRouterPropPass} type={'beasts'} items={beastStats} mods={companionMods} />} />
                         <Route exact path='/beasts' render={props => <ItemPicker {...props} {...nonRouterPropPass} title={'BEASTS'} items={beastList} />} />
-                        <Route exact path='/kitguns/:id/:pre/:build' render={props => <KitgunBuilder {...props} {...nonRouterPropPass} type={'kitguns'} items={kitguns} mods={secondaryMods} />} />
-                        <Route exact path='/kitguns/:id/:pre' render={props => <KitgunBuilder {...props} {...nonRouterPropPass} type={'kitguns'} items={kitguns} mods={secondaryMods} />} />
-                        <Route exact path='/kitguns/:id' render={props => <KitgunBuilder {...props} {...nonRouterPropPass} type={'kitguns'} items={kitguns} mods={secondaryMods} />} />
+                        <Route exact path='/kitguns/:id/:pre/:build' render={props => <KitgunBuilder {...props} {...nonRouterPropPass} type={'kitguns'} items={kitguns} mods={secondaryMods} arcanes={kitgunArcanes} />} />
+                        <Route exact path='/kitguns/:id/:pre' render={props => <KitgunBuilder {...props} {...nonRouterPropPass} type={'kitguns'} items={kitguns} mods={secondaryMods} arcanes={kitgunArcanes} />} />
+                        <Route exact path='/kitguns/:id' render={props => <KitgunBuilder {...props} {...nonRouterPropPass} type={'kitguns'} items={kitguns} mods={secondaryMods} arcanes={kitgunArcanes} />} />
                         <Route exact path='/kitguns' render={props => <KitgunPicker {...props} {...nonRouterPropPass} items={kitguns} />} />
                         <Route exact path='/moas/:id/:pre/:build' render={props => <MoaBuilder {...props} {...nonRouterPropPass} type={'moas'} items={moas} mods={companionMods} />} />
                         <Route exact path='/moas/:id/:pre' render={props => <MoaBuilder {...props} {...nonRouterPropPass} type={'moas'} items={moas} mods={companionMods} />} />
                         <Route exact path='/moas/:id' render={props => <MoaBuilder {...props} {...nonRouterPropPass} type={'moas'} items={moas} mods={companionMods} />} />
                         <Route exact path='/moas' render={props => <MoaPicker {...props} {...nonRouterPropPass} items={moas} />} />
-                        <Route exact path='/zaws/:id/:pre/:build' render={props => <ZawBuilder {...props} {...nonRouterPropPass} type={'zaws'} items={zaws} mods={meleeMods} />} />
-                        <Route exact path='/zaws/:id/:pre' render={props => <ZawBuilder {...props} {...nonRouterPropPass} type={'zaws'} items={zaws} mods={meleeMods} />} />
-                        <Route exact path='/zaws/:id' render={props => <ZawBuilder {...props} {...nonRouterPropPass} type={'zaws'} items={zaws} mods={meleeMods} />} />
+                        <Route exact path='/zaws/:id/:pre/:build' render={props => <ZawBuilder {...props} {...nonRouterPropPass} type={'zaws'} items={zaws} mods={meleeMods} arcanes={zawArcanes} />} />
+                        <Route exact path='/zaws/:id/:pre' render={props => <ZawBuilder {...props} {...nonRouterPropPass} type={'zaws'} items={zaws} mods={meleeMods} arcanes={zawArcanes} />} />
+                        <Route exact path='/zaws/:id' render={props => <ZawBuilder {...props} {...nonRouterPropPass} type={'zaws'} items={zaws} mods={meleeMods} arcanes={zawArcanes} />} />
                         <Route exact path='/zaws' render={props => <ZawPicker {...props} {...nonRouterPropPass} items={zaws} />} />
                         <Route exact path='/meleeweapons/:id/:pre/:build' render={props => <MeleeBuilder {...props} {...nonRouterPropPass} type={'meleeweapons'} items={meleeWeaponStats} mods={meleeMods} />} />
                         <Route exact path='/meleeweapons/:id/:pre' render={props => <MeleeBuilder {...props} {...nonRouterPropPass} type={'meleeweapons'} items={meleeWeaponStats} mods={meleeMods} />} />
