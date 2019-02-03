@@ -1,5 +1,11 @@
 UPDATE LOG
 
+upcoming - v1.2.7.
+
+Fixes:
+Fixed an issue with Furious Javeling.
+Corrected Battacor stats.
+
 31/01/2019 - v1.2.6.
 
 New:

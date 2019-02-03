@@ -2673,7 +2673,7 @@ const warframeMods = [
                         {
                             name: 'Bonus melee damage / Enemy hit',
                             suffix: '%',
-                            base(augEffects, augRank) { return augEffects[augRank] }
+                            base(augEffects, augRank) { return augEffects.none[augRank] }
                         },
                     ],
                     none: [

@@ -319,13 +319,13 @@ const primaryWeaponStats = [
     },
     {
         name: 'BATTACOR',
-        mastery: 0,
+        mastery: 10,
         type: ['RIFLE', 'ASSAULT RIFLE', 'PROJECTILE'],
         polarities: [],
         noise: 'Alarming',
         reload: 2,
         magSize: 60,
-        maxAmmo: 540,
+        maxAmmo: 720,
         disposition: 3,
         modes: [
             {
@@ -333,7 +333,7 @@ const primaryWeaponStats = [
                 trigger: 'Auto-Burst',
                 burst: 2,
                 fireRate: 3.57,
-                accuracy: 100,
+                accuracy: 25,
                 punchThrough: 0,
                 critChance: 0.32,
                 critMult: 2.4,
@@ -342,11 +342,11 @@ const primaryWeaponStats = [
                 split: [
                     {
                         type: 'Puncture',
-                        percent: 0.36
+                        percent: 24 / 66
                     },
                     {
                         type: 'Magnetic',
-                        percent: 0.64
+                        percent: 42 / 66
                     },
                 ]
             },
