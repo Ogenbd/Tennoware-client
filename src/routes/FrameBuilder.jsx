@@ -15,7 +15,8 @@ class FrameBuilder extends Component {
             slotPolarities: [],
             originalPolarityCount: {},
             metaInfo: {},
-            error: null
+            error: null,
+            arcanes: []
         }
     }
 

@@ -265,7 +265,9 @@ const archgunStats = [
         type: [
             'ARCH-GUN'
         ],
-        polarities: [],
+        polarities: [
+            'madurai'
+        ],
         noise: 'Alarming',
         reload: 4,
         magSize: 300,
