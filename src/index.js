@@ -11,7 +11,7 @@ import withGA from './withGA';
 ReactDOM.render((
     <BrowserRouter>
         <ScrollToTop>
-        <Route component={withGA(App)} />
+            <Route component={withGA(App)} />
         </ScrollToTop>
     </BrowserRouter>
 ), document.getElementById('root'));

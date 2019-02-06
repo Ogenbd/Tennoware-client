@@ -25,22 +25,22 @@ const kitguns = {
         {
             name: 'HAYMAKER',
             img: require('../assets/itemimages/haymaker.png'),
-            desc: 'The ultimate grip for when one shot is all you need. Devastating. Minimum rate-of-fire; minimum range for beam weapons. Maximum damage.'
+            desc: 'Minimum rate-of-fire; minimum range for beam weapons. Maximum damage.'
         },
         {
             name: 'LOVETAP',
             img: require('../assets/itemimages/lovetap.png'),
-            desc: 'The weapon grip of the measured killer. Slower rate-of-fire; lower range for beam weapons. Greater damage.'
+            desc: 'Slower rate-of-fire; lower range for beam weapons. Greater damage.'
         },
         {
             name: 'RAMBLE',
             img: require('../assets/itemimages/ramble.png'),
-            desc: 'Hold tight and unleash hell. Increased range for beam weapons; increased rate-of-fire for non-beam weapons. Reduced damage.'
+            desc: 'Increased rate-of-fire; increased range for beam weapons. Reduced damage.'
         },
         {
             name: 'GIBBER',
             img: require('../assets/itemimages/gibber.png'),
-            desc: 'What it lacks in impact it makes up for with intensity. Maximum rate-of-fire; maximum range for beam weapons. Minimum damage.'
+            desc: 'Maximum rate-of-fire; maximum range for beam weapons. Minimum damage.'
         },
     ],
     third: [

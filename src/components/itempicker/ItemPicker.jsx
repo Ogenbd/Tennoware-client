@@ -4,6 +4,8 @@ import { Helmet } from "react-helmet";
 import './ItemPicker.css';
 
 import Loading from '../loading/Loading';
+import RightAd from '../adunits/RightAd';
+import BottomAd from '../adunits/BottomAd';
 
 export class ItemPicker extends Component {
     constructor(props) {
@@ -72,12 +74,12 @@ export class ItemPicker extends Component {
                         <Loading />
                     }
                     <div className={"item-picker " + (this.state.picked ? 'picker-fadeout' : 'picker-in')}>
-                        <div className="item-picker-content">
-                            <div className="item-picker-topbar">
-                                <div className="search-wrapper item-picker-search">
-                                    <input className="search" type="text" placeholder="Search..." onChange={this.filterItems} onKeyUp={this.blurInput} />
-                                </div>
+                        <div className="item-picker-topbar">
+                            <div className="search-wrapper item-picker-search">
+                                <input className="search" type="text" placeholder="Search..." onChange={this.filterItems} onKeyUp={this.blurInput} />
                             </div>
+                        </div>
+                        <div className="item-picker-content">
                             <div className="items-display">
                                 {this.state.displayItems.map(item => (
                                     <CSSTransition key={item.name} classNames="fade" in={true} appear={true} timeout={200}>
@@ -88,8 +90,16 @@ export class ItemPicker extends Component {
                                     </CSSTransition>
                                 ))}
                             </div>
+                            <div className="bottom-g">
+                                <BottomAd />
+                            </div>
                         </div>
                     </div>
+                    {this.props.viewWidth > 1555 &&
+                        <div className="right-g">
+                            <RightAd />
+                        </div>
+                    }
                 </div>
             </CSSTransition>
         )

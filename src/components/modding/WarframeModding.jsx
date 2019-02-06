@@ -789,7 +789,7 @@ class WarframeModding extends Component {
         const { chosenAuraMod, chosenIndexs, auraPolarity, chosenExilusMod, exilusPolarity, chosenMods, modPicker, orokin, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSlot, forSwap, polarityPicker, arcanes, arcanePicker } = this.state;
         return (
             <CSSTransition classNames="fade" in={true} appear={true} timeout={200} >
-                <div className="ranged-modding">
+                <div className="modding-wrapper">
                     <ModPicker mods={this.props.mods} chosenIndexs={chosenIndexs} type={this.props.type} active={modPicker} closeModPicker={this.closeModPicker} pickMod={this.pickMod} viewWidth={this.props.viewWidth} drop={this.drop} forSlot={forSlot} />
                     <div className="mod-stack">
                         <div className="interactable-wrapper">

@@ -2,6 +2,8 @@ import React, { Component, lazy } from 'react';
 import { Helmet } from "react-helmet";
 
 import apiUrl from '../apiUrl';
+import RightAd from '../components/adunits/RightAd';
+import BottomAd from '../components/adunits/BottomAd';
 
 const MeleeModding = lazy(() => import('../components/modding/MeleeModding'));
 
@@ -149,18 +151,28 @@ class MeleeBuilder extends Component {
                     <title>Tennoware - {this.props.match.params.id}</title>
                 </Helmet>
                 <div className="top-title"><p>{this.state.title}</p></div>
-                {this.state.error !== null
-                    ? <div className={"general-error " + (this.state.error !== null ? 'show-general-error' : 'hide-general-error')}>
-                        <div className="general-error-box">
-                            <p>{this.state.error}</p>
-                            <div className="interactable interactable-semi-inactive general-button" onClick={this.confirmError}><p className="interactable-p">Confirm</p></div>
+                <div className="ranged-modding">
+                    {this.state.error !== null
+                        ? <div className={"general-error " + (this.state.error !== null ? 'show-general-error' : 'hide-general-error')}>
+                            <div className="general-error-box">
+                                <p>{this.state.error}</p>
+                                <div className="interactable interactable-semi-inactive general-button" onClick={this.confirmError}><p className="interactable-p">Confirm</p></div>
+                            </div>
                         </div>
+                        : <React.Fragment>
+                            {this.state.item.name &&
+                                <MeleeModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={require('../assets/general/catalyst.png')} riven={'melee'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} />
+                            }
+                        </React.Fragment>
+                    }
+                    <div className="modding-bottom-g">
+                        <BottomAd />
                     </div>
-                    : <React.Fragment>
-                        {this.state.item.name &&
-                            <MeleeModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={require('../assets/general/catalyst.png')} riven={'melee'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} />
-                        }
-                    </React.Fragment>
+                </div>
+                {this.props.viewWidth > 1555 &&
+                    <div className="right-g">
+                        <RightAd />
+                    </div>
                 }
             </div>
         )

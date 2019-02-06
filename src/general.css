@@ -6,6 +6,17 @@
     display: none;
 }
 
+.ranged-modding {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    flex: 1 0 auto;
+    width: 100vw;
+    max-width: 1200px;
+}
+
 .topbar-title {
     display: flex;
     align-items: center;
