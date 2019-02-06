@@ -29,13 +29,13 @@ class App extends Component {
   }
 
   componentDidMount() {
-    (window.adsbygoogle = window.adsbygoogle || []).push({
-      google_ad_client: "ca-pub-9367218977396146",
-      enable_page_level_ads: true
-    });
+    // (window.adsbygoogle = window.adsbygoogle || []).push({
+    //   google_ad_client: "ca-pub-9367218977396146",
+    //   enable_page_level_ads: true
+    // });
     let jwt;
     localStorage.jwt ? jwt = true : jwt = false;
-    navigator.onLine ? this.checkVer('1.2.7', jwt) : this.setState({ updateRequired: false, user: jwt });
+    navigator.onLine ? this.checkVer('1.2.8', jwt) : this.setState({ updateRequired: false, user: jwt });
     window.addEventListener('resize', this.debouncedSetWidth);
     window.addEventListener('updateavail', this.updateInit);
     window.addEventListener('online', this.setOnline);
@@ -149,11 +149,11 @@ class App extends Component {
       <div className="app">
         <div className="background-image"></div>
         <div className="topbar">
-          <div className="top-left" onClick={this.goHome}>
+          <Link to="/" className="top-left">
             <div className="app-name">
               <p>TENNOWARE</p>
             </div>
-          </div>
+          </Link>
           <div className="page-title">
             {this.state.viewWidth > 1202 &&
               <div className="nav-menu" onMouseLeave={this.hideNav}>

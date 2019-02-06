@@ -2,6 +2,8 @@ import React, { Component, lazy } from 'react';
 import { Helmet } from "react-helmet";
 
 import apiUrl from '../apiUrl';
+import RightAd from '../components/adunits/RightAd';
+import BottomAd from '../components/adunits/BottomAd';
 
 const EightSlotModding = lazy(() => import('../components/modding/EightSlotModding'));
 
@@ -149,6 +151,7 @@ class RangedBuilder extends Component {
                     <title>Tennoware - {this.props.match.params.id}</title>
                 </Helmet>
                 <div className="top-title"><p>{this.state.title}</p></div>
+                <div className="ranged-modding">
                     {this.state.error !== null
                         ? <div className={"general-error " + (this.state.error !== null ? 'show-general-error' : 'hide-general-error')}>
                             <div className="general-error-box">
@@ -162,6 +165,15 @@ class RangedBuilder extends Component {
                             }
                         </React.Fragment>
                     }
+                    <div className="modding-bottom-g">
+                        <BottomAd />
+                    </div>
+                </div>
+                {this.props.viewWidth > 1555 &&
+                    <div className="right-g">
+                        <RightAd />
+                    </div>
+                }
             </div>
         )
     }

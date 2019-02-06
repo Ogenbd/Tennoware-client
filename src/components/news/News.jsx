@@ -5,6 +5,8 @@ import { Helmet } from "react-helmet";
 import './News.css';
 
 import ContainedLoading from '../loading/ContainedLoading';
+import RightAd from '../adunits/RightAd';
+import BottomAd from '../adunits/BottomAd';
 
 export class News extends Component {
   constructor(props) {
@@ -178,8 +180,16 @@ export class News extends Component {
                   <div className="tile-name"><p>ARCHMELEE</p></div>
                 </Link>
               </div>
+              <div className="bottom-g">
+                <BottomAd />
+              </div>
             </div>
           </div>
+          {this.props.viewWidth > 1555 &&
+            <div className="right-g">
+              <RightAd />
+            </div>
+          }
         </div>
       </CSSTransition>
     )
