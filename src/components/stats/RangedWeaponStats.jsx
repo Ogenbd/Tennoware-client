@@ -708,7 +708,7 @@ export class RangedWeaponStats extends Component {
                                 <div className="stats-item">
                                     <p className="stat-name">Fire Rate: </p>
                                     <div className={"stat " + (fireRate.mult > 1 ? "increased-stat" : fireRate.mult === 1 ? "" : "decreased-stat")}>
-                                        <p>{Math.round(fireRate.display * 10) / 10}</p>
+                                        <p>{Math.round(fireRate.display * 100) / 100}</p>
                                     </div>
                                 </div>
                             }

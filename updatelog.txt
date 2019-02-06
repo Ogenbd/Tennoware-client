@@ -1,12 +1,14 @@
 UPDATE LOG
 
-upcoming - v1.2.7.
+upcoming - v1.2.8.
 
 Fixes:
 Fixed an issue with Furious Javeling.
 Corrected Battacor stats.
+Added innate madurai polarity to Imperator Vandal.
+Fire Rate stat now displays two digits after the decimal when appropriate.
 
-31/01/2019 - v1.2.6.
+31/01/2019 - v1.2.6-7.
 
 New:
 Added Zaw and Kitgun Arcanes.

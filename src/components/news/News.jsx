@@ -78,12 +78,13 @@ export class News extends Component {
           <div className="news-container">
             <div className="home-left">
               <div className="tennoware-update">
-                <div className="update-title">Update 1.2.6 + 1.2.7</div>
+                <div className="update-title">Update 1.2.8</div>
                 <div className="update-content">
-                  <p>Added Arcanes to Zaw and Kitgun Builders.</p>
-                  <p>Fixed Facebook Login along with some UI issues in Login box.</p>
-                  <p>Update 1.2.7 fixed an issue that was introduced by update 1.2.6 that caused Riven Stats to revert to 0 once a build was saved or linked. The bug was only live for a few hours and is now gone. If you saved or linked a build with a Riven in it after 1.2.6 went live you need to manually update it.</p>
-                  <p>For the complete update notes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log</a>.</p>
+                  <p>Fixed an issue with the Furious Javeling augment.</p>
+                  <p>Imperator Vandal now has an innate Madurai polarity as it does ingame.</p>
+                  <p>Battacor now has the correct stats.</p>
+                  <p>As per user request, Fire Rate stat now displays two digits after the decimal when appropriate.</p>
+                  <p>For a complete update log head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log</a>.</p>
                 </div>
               </div>
               <div className="tennoware-update">
