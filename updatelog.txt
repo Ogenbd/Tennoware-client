@@ -3,7 +3,7 @@ UPDATE LOG
 upcoming - v1.2.9.
 
 Fixes:
-Fixed an issue with Counter Pulse.
+Fixed an issue with a few Warframe augments: Counter Pulse, Icy Avalanche and Iron Vault.
 
 06/02/2019 - v1.2.8.
 

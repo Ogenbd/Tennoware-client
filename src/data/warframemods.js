@@ -3336,7 +3336,7 @@ const warframeMods = [
                         },
                         {
                             name: 'Ice coat health / Enemy',
-                            base(augEffects, augRank) { return augEffects[augRank] }
+                            base(augEffects, augRank) { return augEffects.none[augRank] }
                         },
                     ],
                     duration: [
@@ -3571,7 +3571,7 @@ const warframeMods = [
                         {
                             name: 'Iron vault bonus damage',
                             suffix: '%',
-                            base(augEffects, augRank) { return augEffects[augRank] }
+                            base(augEffects, augRank) { return augEffects.none[1][augRank] }
                         },
                     ],
                     none: [
@@ -3590,7 +3590,7 @@ const warframeMods = [
                         {
                             name: 'Bonus iron vault slam radius',
                             suffix: 'm',
-                            base(augEffects, augRank) { return augEffects[augRank] }
+                            base(augEffects, augRank) { return augEffects.none[0][augRank] }
                         },
                     ],
                     efficiency: [
