@@ -1,6 +1,11 @@
 UPDATE LOG
 
-upcoming - v1.2.8.
+upcoming - v1.2.9.
+
+Fixes:
+Fixed an issue with Counter Pulse.
+
+06/02/2019 - v1.2.8.
 
 Fixes:
 Fixed an issue with Furious Javeling.

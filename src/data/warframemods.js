@@ -1257,7 +1257,7 @@ const warframeMods = [
                         {
                             name: 'Weapon & robotics disable duration',
                             suffix: 's',
-                            base(augEffects, augRank) { return augEffects[augRank] }
+                            base(augEffects, augRank) { return augEffects.none[augRank] }
                         },
                     ],
                     range: [
