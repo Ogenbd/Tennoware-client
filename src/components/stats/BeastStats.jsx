@@ -17,7 +17,6 @@ export class BeastStats extends PureComponent {
             healthAmount: '',
             linkShields: false,
             shieldsAmount: '',
-            // collar: false
         }
     }
 

@@ -1,11 +1,10 @@
-import React, { Component, lazy } from 'react';
+import React, { Component } from 'react';
 import { Helmet } from "react-helmet";
 
 import apiUrl from '../apiUrl';
 import RightAd from '../components/adunits/RightAd';
-import BottomAd from '../components/adunits/BottomAd';
-
-const MeleeModding = lazy(() => import('../components/modding/MeleeModding'));
+import ContainedLoading from '../components/loading/ContainedLoading';
+import MeleeModding from '../components/modding/MeleeModding';
 
 class MeleeBuilder extends Component {
     constructor(props) {
@@ -22,9 +21,6 @@ class MeleeBuilder extends Component {
     }
 
     componentDidMount() {
-        // (window.adsbygoogle = window.adsbygoogle || []).push({
-        //     google_ad_client: "ca-pub-9367218977396146"
-        // });
         if (this.props.match.params.build) {
             this.confirmBuild()
         } else {
@@ -68,39 +64,41 @@ class MeleeBuilder extends Component {
     }
 
     setupBuilder = async (metaInfo) => {
-        let items = await this.props.items().then(data => data.default);
-        let mods = await this.props.mods().then(data => data.default);
-        let item = items.find(weapon => {
-            return weapon.name.toLowerCase() === this.props.match.params.id.toLowerCase();
-        });
-        if (item !== undefined) {
-            let slotPolarities = [];
-            let originalPolarityCount = { madurai: 0, naramon: 0, vazarin: 0, zenurik: 0, unairu: 0, penjaga: 0, umbra: 0 };
-            let filteredMods = mods.filter(mod => {
-                return ((item.exalted && mod.acolyte) || (item.exalted && mod.abrev === 'ri'))
-                    ? false
-                    : mod.type === 'MELEE' || mod.type === 'CHANNELING' || item.type.some(keyword => {
-                        return keyword === mod.type
-                    });
-            });
-            filteredMods.forEach((mod, index) => mod.index = index);
-            if (item.polarities.length > 0) {
-                item.polarities.forEach(polarity => {
-                    slotPolarities.push(polarity);
-                    originalPolarityCount[polarity]++
+        setTimeout(() => {
+            Promise.all([this.props.items(), this.props.mods()]).then(data => {
+                let item = data[0].default.find(weapon => {
+                    return weapon.name.toLowerCase() === this.props.match.params.id.toLowerCase();
                 });
-            }
-            this.setState({
-                title: item.name,
-                item: item,
-                relevantMods: filteredMods,
-                slotPolarities: slotPolarities,
-                originalPolarityCount: originalPolarityCount,
-                metaInfo: metaInfo
+                if (item !== undefined) {
+                    let slotPolarities = [];
+                    let originalPolarityCount = { madurai: 0, naramon: 0, vazarin: 0, zenurik: 0, unairu: 0, penjaga: 0, umbra: 0 };
+                    let filteredMods = data[1].default.filter(mod => {
+                        return ((item.exalted && mod.acolyte) || (item.exalted && mod.abrev === 'ri'))
+                            ? false
+                            : mod.type === 'MELEE' || mod.type === 'CHANNELING' || item.type.some(keyword => {
+                                return keyword === mod.type
+                            });
+                    });
+                    filteredMods.forEach((mod, index) => mod.index = index);
+                    if (item.polarities.length > 0) {
+                        item.polarities.forEach(polarity => {
+                            slotPolarities.push(polarity);
+                            originalPolarityCount[polarity]++
+                        });
+                    }
+                    this.setState({
+                        title: item.name,
+                        item: item,
+                        relevantMods: filteredMods,
+                        slotPolarities: slotPolarities,
+                        originalPolarityCount: originalPolarityCount,
+                        metaInfo: metaInfo
+                    });
+                } else {
+                    this.redirectToVoid();
+                }
             });
-        } else {
-            this.redirectToVoid();
-        }
+        }, 350);
     }
 
     confirmBuild = () => {
@@ -146,35 +144,42 @@ class MeleeBuilder extends Component {
 
     render() {
         return (
-            <div className="screen">
+            <React.Fragment>
                 <Helmet>
                     <title>Tennoware - {this.props.match.params.id}</title>
                 </Helmet>
                 <div className="top-title"><p>{this.state.title}</p></div>
-                <div className="ranged-modding">
+                <div className="screen">
+                    <div></div>
                     {this.state.error !== null
-                        ? <div className={"general-error " + (this.state.error !== null ? 'show-general-error' : 'hide-general-error')}>
-                            <div className="general-error-box">
-                                <p>{this.state.error}</p>
-                                <div className="interactable interactable-semi-inactive general-button" onClick={this.confirmError}><p className="interactable-p">Confirm</p></div>
+                        ? <div className="modding-wrapper">
+                            <div className={"general-error " + (this.state.error !== null ? 'show-general-error' : 'hide-general-error')}>
+                                <div className="general-error-box">
+                                    <p>{this.state.error}</p>
+                                    <div className="interactable interactable-semi-inactive general-button" onClick={this.confirmError}><p className="interactable-p">Confirm</p></div>
+                                </div>
                             </div>
                         </div>
                         : <React.Fragment>
-                            {this.state.item.name &&
-                                <MeleeModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={require('../assets/general/catalyst.png')} riven={'melee'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} />
+                            {this.state.item.name
+                                ? <div className="modding-wrapper">
+                                    <MeleeModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={require('../assets/general/catalyst.png')} riven={'melee'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} />
+                                </div>
+                                : <div className="modding-wrapper">
+                                    <ContainedLoading />
+                                </div>
                             }
                         </React.Fragment>
                     }
-                    <div className="modding-bottom-g">
-                        <BottomAd />
+                    <div className="side-panel">
+                        {this.props.viewWidth > 1465 &&
+                            <div className="right-g">
+                                <RightAd />
+                            </div>
+                        }
                     </div>
                 </div>
-                {this.props.viewWidth > 1555 &&
-                    <div className="right-g">
-                        <RightAd />
-                    </div>
-                }
-            </div>
+            </React.Fragment>
         )
     }
 }

@@ -5,7 +5,7 @@
     height: 100%;
     flex: 1 0 auto;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1100px;
 }
 
 .kitgun-pull-tab {
@@ -243,6 +243,18 @@
     display: none;
 }
 
+@media screen and (min-width: 1100px) {
+    .kitgun-picker {
+        min-width: 1100px;
+    }
+}
+                
+@media screen and (max-width: 1099px) {
+    .kitgun-picker {
+        min-width: 100vw;
+    }
+}
+
 @media screen and (min-width: 901px) {
     .kitgun-ranged-stats-inner-wrapper {
         position: fixed;
@@ -277,11 +289,11 @@
         position: fixed;
         background-color: black;
         border-top: 1px solid rgb(255, 249, 160);
-        border-left: 1px solid rgb(255, 249, 160);
-        border-right: 1px solid rgb(255, 249, 160);
+        /* border-left: 1px solid rgb(255, 249, 160); */
+        /* border-right: 1px solid rgb(255, 249, 160); */
         font-weight: bold;
         bottom: -1px;
-        width: 94vw;
+        width: 100vw;
         height: 55px;
         transition: transform 200ms cubic-bezier(.45, .7, .28, .96);
         z-index: 3;

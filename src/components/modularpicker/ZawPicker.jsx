@@ -1,13 +1,13 @@
-import React, { Component, lazy } from 'react';
-import { CSSTransition } from "react-transition-group";
+import React, { Component } from 'react';
+import { Spring, animated } from "react-spring/renderprops";
 import { Helmet } from "react-helmet";
 import './ModularPicker.css';
 import '../stats/Stats.css';
 
 import RightAd from '../adunits/RightAd';
 import BottomAd from '../adunits/BottomAd';
-
-const ModularBuildList = lazy(() => import('../modularbuildlist/ModularBuildList'));
+import ModdingAd from '../adunits/ModdingAd';
+import ModularBuildList from '../modularbuildlist/ModularBuildList';
 
 export class ZawPicker extends Component {
     constructor(props) {
@@ -21,12 +21,10 @@ export class ZawPicker extends Component {
         }
     }
 
-    async componentDidMount() {
-        // (window.adsbygoogle = window.adsbygoogle || []).push({
-        //     google_ad_client: "ca-pub-9367218977396146"
-        // });
-        let items = await this.props.items()
-        this.setState({ items: items.default });
+    componentDidMount() {
+        this.props.items().then(items => {
+            this.setState({ items: items.default });
+        });
     }
 
     toggleStats = () => {
@@ -75,15 +73,20 @@ export class ZawPicker extends Component {
     render() {
         let zaw = this.constructZaw();
         return (
-            <div className="screen">
+            <React.Fragment>
                 <Helmet>
-                    <title>Tennoware - zaws</title>
+                    <title>Tennoware - kitguns</title>
                 </Helmet>
-                <div className="top-title"><p>ZAWS</p></div>
-                <div className="kitgun-picker">
-                    {this.state.items.first.length > 0 &&
-                        <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
-                            <React.Fragment>
+                <div className="top-title"><p>KITGUNS</p></div>
+                <div className="screen">
+                    <div></div>
+                    <Spring
+                        native
+                        config={{ tension: 120, friction: 14 }}
+                        from={{ opacity: this.state.items.first.length > 0 ? 1 : 0 }}
+                        to={{ opacity: this.state.items.first.length > 0 ? 1 : 0 }}>
+                        {props => (
+                            <animated.div style={props} className="kitgun-picker">
                                 <div className="part-select">
                                     <ModularBuildList type={'zaws'} orokin={require('../../assets/general/catalyst.png')} items={this.state.items} />
                                     <div className="picker-section">
@@ -118,6 +121,8 @@ export class ZawPicker extends Component {
                                                 </div>
                                             </div>
                                         ))}
+                                        <div style={{ marginTop: '5px' }}></div>
+                                        <BottomAd />
                                     </div>
                                     <div className="picker-section">
                                         <div className="section-title">Grip</div>
@@ -145,6 +150,8 @@ export class ZawPicker extends Component {
                                                 </div>
                                             </div>
                                         ))}
+                                        <div style={{ marginTop: '5px' }}></div>
+                                        <ModdingAd />
                                     </div>
                                     <div className="picker-section">
                                         <div className="section-title">Link</div>
@@ -236,19 +243,18 @@ export class ZawPicker extends Component {
                                         </div>
                                     </div>
                                 </div>
-                            </React.Fragment>
-                        </CSSTransition>
-                    }
-                    <div className="modular-bottom-g">
-                        <BottomAd />
+                            </animated.div>
+                        )}
+                    </Spring>
+                    <div className="side-panel">
+                        {this.props.viewWidth > 1363 &&
+                            <div className="right-g">
+                                <RightAd />
+                            </div>
+                        }
                     </div>
                 </div>
-                {this.props.viewWidth > 1555 &&
-                    <div className="right-g">
-                        <RightAd />
-                    </div>
-                }
-            </div>
+            </React.Fragment>
         )
     }
 }

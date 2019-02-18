@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { CSSTransition } from "react-transition-group";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Helmet } from "react-helmet";
 import './Register.css';
@@ -112,12 +111,13 @@ export class Register extends Component {
 
   render() {
     return (
-      <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
+      <React.Fragment>
+        <Helmet>
+          <title>Tennoware - register</title>
+        </Helmet>
+        <div className="top-title"><p>REGISTER</p></div>
         <div className="screen">
-          <Helmet>
-            <title>Tennoware - register</title>
-          </Helmet>
-          <div className="top-title"><p>REGISTER</p></div>
+          <div></div>
           <div className="register">
             <div className="register-window">
               <div className="request-blurb">
@@ -195,8 +195,9 @@ export class Register extends Component {
               }
             </div>
           </div>
+          <div></div>
         </div>
-      </CSSTransition >
+      </React.Fragment>
     )
   }
 }

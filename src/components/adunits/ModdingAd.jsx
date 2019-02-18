@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 
 import withErrorBoundary from '../errorboundaries/AdErrorBoundary';
 
-export class BottomAd extends PureComponent {
+export class ModdingAd extends PureComponent {
 
     componentDidMount() {
         (window.adsbygoogle = window.adsbygoogle || []).push({});
@@ -14,11 +14,11 @@ export class BottomAd extends PureComponent {
                 className="adsbygoogle"
                 style={{ display: "inline-block", width: '100%', height: '90px' }}
                 data-ad-client="ca-pub-9367218977396146"
-                data-ad-slot="9456142257"
+                data-ad-slot="3188144583"
             >
             </ins>
         )
     }
 }
 
-export default withErrorBoundary(BottomAd);
+export default withErrorBoundary(ModdingAd);

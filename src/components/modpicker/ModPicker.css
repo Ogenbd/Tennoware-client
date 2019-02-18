@@ -1,7 +1,7 @@
 .mod-options-wrapper {
     display: flex;
     height: 100%;
-    z-index: 20;
+    /* z-index: 20; */
 }
 
 .mod-dropdown-trigger {
@@ -11,7 +11,7 @@
     box-sizing: border-box;
     /* transition: all 100ms ease-in-out; */
     cursor: pointer;
-    z-index: 20;
+    /* z-index: 20; */
 }
 
 .mod-dropdown-trigger-fill {
@@ -26,7 +26,8 @@
 .dropdown-block {
     position: absolute;
     color: white;
-    z-index: 20;
+    top: 56px;
+    /* z-index: 20; */
     width: 105px;
     background-color: rgba(0, 0, 0, 0.8);
     border-right: 1px solid rgba(255, 249, 160, 0.3);
@@ -34,8 +35,16 @@
     border-bottom: 1px solid rgba(255, 249, 160, 0.3);
     overflow: hidden;
     box-sizing: border-box;
-    transform: translateY(-100%);
+    /* transform: translateY(-100%); */
     pointer-events: all;
+}
+
+.active-block {
+    z-index: 2;
+}
+
+.inactive-block {
+    z-index: 0;
 }
 
 .filter-inactive {
@@ -87,32 +96,6 @@
     z-index: 0;
 }
 
-.slide-enter {
-    transform: translateY(-100%);
-    transition: 0.3s cubic-bezier(0, 1, 0.5, 1);
-}
-
-.slide-enter-done {
-    transform: translateY(0%);
-}
-
-.slide-enter.slide-enter-active {
-    transform: translateY(0%);
-}
-
-.slide-exit {
-    transform: translateY(0%);
-    transition: .18s ease-in-out;
-}
-
-.slide-exit-done {
-    transform: translateY(-100%);
-}
-
-.slide-exit.slide-exit-active {
-    transform: translateY(-100%);
-}
-
 .dropdown-container {
     height: 380px;
     top: 56px;
@@ -139,8 +122,6 @@
 
 .sort-block {
     left: 75px;
-    height: 130px;
-    /* z-index: -1; */
 }
 
 @media screen and (min-width: 1203px) {
@@ -232,7 +213,7 @@
     .mod-options-wrapper {
         margin-left: 47px;
         margin-right: auto;
-        z-index: 20;
+        /* z-index: 20; */
     }
     .mod-list-search-wrapper {
         margin-right: 5px;
@@ -243,15 +224,13 @@
     }
     .dropdown-block {
         background-color: black;
-        z-index: 20;
+        /* z-index: 20; */
     }
     .filter-block {
         left: 47px;
     }
     .sort-block {
         left: 121px;
-        height: 130px;
-        /* z-index: -1; */
     }
     .mod-list {
         z-index: 1;

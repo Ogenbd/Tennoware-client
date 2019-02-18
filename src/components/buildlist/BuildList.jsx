@@ -5,7 +5,7 @@ import './BuildList.css';
 import apiUrl from '../../apiUrl';
 import ContainedLoading from '../loading/ContainedLoading';
 
-const updateTimesImport = () => import('../../data/updatetimes' /* webpackChunkName: "upst" */ );
+const updateTimesImport = () => import('../../data/updatetimes' /* webpackChunkName: "upst" */);
 
 export class BuildList extends Component {
     constructor(props) {
@@ -70,34 +70,41 @@ export class BuildList extends Component {
             });
     }
 
-    sortBuilds = async (builds) => {
+    sortBuilds = (builds) => {
         if (builds.length > 0) {
-            let updateTimes = await updateTimesImport().then(data => data.default);
-            builds.forEach(buildsItem => {
-                let updateTimeIndex = updateTimes.findIndex(item => {
-                    return item.name === this.props.match.params.id
+            updateTimesImport().then(data => {
+                builds.forEach(buildsItem => {
+                    let updateTimeIndex = data.default.findIndex(item => {
+                        return item.name === this.props.match.params.id
+                    });
+                    if (updateTimeIndex === -1 || data.default[updateTimeIndex].updated < Date.parse(buildsItem.CreateDT)) {
+                        buildsItem.outdated = false;
+                    } else {
+                        buildsItem.outdated = true;
+                    }
+                })
+                builds.sort((a, b) => {
+                    let dateA = Date.parse(a.CreateDT)
+                    let dateB = Date.parse(b.CreateDT)
+                    if (a.Likes < b.Likes) return 1
+                    if (a.Likes > b.Likes) return -1
+                    if (dateA < dateB) return 1
+                    if (dateA > dateB) return -1
+                    return 0;
                 });
-                if (updateTimeIndex === -1 || updateTimes[updateTimeIndex].updated < Date.parse(buildsItem.CreateDT)) {
-                    buildsItem.outdated = false;
-                } else {
-                    buildsItem.outdated = true;
-                }
-            })
-            builds.sort((a, b) => {
-                let dateA = Date.parse(a.CreateDT)
-                let dateB = Date.parse(b.CreateDT)
-                if (a.Likes < b.Likes) return 1
-                if (a.Likes > b.Likes) return -1
-                if (dateA < dateB) return 1
-                if (dateA > dateB) return -1
-                return 0;
+            });
+            this.setState({
+                builds: builds,
+                requested: true,
+                loader: false
+            });
+        } else {
+            this.setState({
+                builds: builds,
+                requested: true,
+                loader: false
             });
         }
-        this.setState({
-            builds: builds,
-            requested: true,
-            loader: false
-        });
     }
 
     generateBuildList = () => {
@@ -113,8 +120,8 @@ export class BuildList extends Component {
                     <div className="build-item-row name-row">
                         <div className="build-list-name">{build.BuildName}</div>
                         {build.outdated
-                        ? <div className="my-build-outdated">Possibly Outdated</div>
-                        : <div className="build-list-date">{date}</div>
+                            ? <div className="my-build-outdated">Possibly Outdated</div>
+                            : <div className="build-list-date">{date}</div>
                         }
                     </div>
                     <div className="build-item-row info-row">

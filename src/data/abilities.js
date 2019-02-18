@@ -1311,16 +1311,14 @@ const abilities = {
                     ],
                     efficiency: [
                         {
-                            name: 'Energy',
+                            name: 'Activation energy cost',
                             base: 10
-                        }
-                    ],
-                    channel: [
+                        },
                         {
                             name: 'Energy drain / enemy /s',
                             base: 0.5
                         }
-                    ]
+                    ],
                 },
                 {
                     mode: 'Provoke',
@@ -1340,16 +1338,14 @@ const abilities = {
                     ],
                     efficiency: [
                         {
-                            name: 'Energy',
+                            name: 'Activation energy cost',
                             base: 10
-                        }
-                    ],
-                    channel: [
+                        },
                         {
-                            name: 'Energy drain / ability cast',
+                            name: 'Energy / ability cast',
                             base: 0.5
                         }
-                    ]
+                    ],
                 },
             ]
         },

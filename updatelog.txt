@@ -2,8 +2,17 @@ UPDATE LOG
 
 upcoming - v1.2.9.
 
+New:
+Added Deconstructor and Deconstructor Prime.
+
+Changes:
+Lots of improvments to animations and transitions. UI responsiveness improvments.
+
 Fixes:
+Corrected Equinox's Pacify & Provoke energy costs.
 Fixed an issue with a few Warframe augments: Counter Pulse, Icy Avalanche and Iron Vault.
+Fixed an issue that caused parts of the UI to fail to adapt to viewport size correctly under some conditions.
+Fixed an issue that caused users with specific ad blocking software to crash the entire app under certain conditions.
 
 06/02/2019 - v1.2.8.
 

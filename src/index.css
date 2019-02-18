@@ -89,7 +89,7 @@ video {
     font: inherit;
     vertical-align: baseline;
     scrollbar-width: thin;
-    scrollbar-color: rgba(255, 249, 160, 0.73) rgba(0, 0, 0, 0.7);
+    scrollbar-color: rgba(255, 249, 160, 0.73) rgba(0, 0, 0, 0.2);
 }
 
 html {
@@ -130,7 +130,7 @@ a {
 }
 
 ::-webkit-scrollbar-track {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 ::-webkit-scrollbar {

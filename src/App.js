@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { CSSTransition } from "react-transition-group";
+import { Spring, animated } from 'react-spring/renderprops';
 import debounce from 'lodash/debounce';
 import './App.css';
 import './general.css';
@@ -29,13 +29,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // (window.adsbygoogle = window.adsbygoogle || []).push({
-    //   google_ad_client: "ca-pub-9367218977396146",
-    //   enable_page_level_ads: true
-    // });
     let jwt;
     localStorage.jwt ? jwt = true : jwt = false;
-    navigator.onLine ? this.checkVer('1.2.8', jwt) : this.setState({ updateRequired: false, user: jwt });
+    this.setState({ updateRequired: false, user: jwt });
+    // navigator.onLine ? this.checkVer('1.2.8', jwt) : this.setState({ updateRequired: false, user: jwt });
     window.addEventListener('resize', this.debouncedSetWidth);
     window.addEventListener('updateavail', this.updateInit);
     window.addEventListener('online', this.setOnline);
@@ -158,13 +155,13 @@ class App extends Component {
             {this.state.viewWidth > 1202 &&
               <div className="nav-menu" onMouseLeave={this.hideNav}>
                 <p className={"nav-menu-trigger " + (this.state.navToggle ? 'active-nav' : '')} onMouseEnter={this.showNav}>Navigation <span className="chev-down">›</span></p>
-                <div className="nav-menu-container">
-                  <CSSTransition
-                    in={this.state.navToggle}
-                    classNames="slide"
-                    timeout={180}
-                  >
-                    <div className="nav-options">
+                <Spring
+                  native
+                  config={{ tension: 500, friction: 46 }}
+                  from={{ height: this.state.navToggle ? 0 : 'auto' }}
+                  to={{ height: this.state.navToggle ? 'auto' : 0 }}>
+                  {props => (
+                    <animated.div className="nav-options" style={props}>
                       <div className="nav-subcat">
                         <div className="subcat-title">Regular</div>
                         <Link className="nav-option" to="/warframes" onClick={this.hideNav}>Warframes</Link>
@@ -197,9 +194,9 @@ class App extends Component {
                           <p className="bs-para-nav">Copyright © 2018 - Today. All rights reserved. For personal use only. Tennoware.com has no affiliation with Digital Extremes Ltd or Warframe. All artwork, screenshots, characters or other recognizable features of the intellectual property relating to Warframe are the intellectual property of Digital Extreme Ltd.</p>
                         </div>
                       </div>
-                    </div>
-                  </CSSTransition>
-                </div>
+                    </animated.div>
+                  )}
+                </Spring>
               </div>
             }
           </div>
@@ -225,17 +222,17 @@ class App extends Component {
             ? <Loading />
             : <React.Fragment>
               {this.state.updateRequired
-                ? <div className="main">
-                  <div className="screen">
-                    <div className="update-screen">
-                      <div className="top-title"><p>UPDATE</p></div>
-                      <div className="update-block">
-                        <p>Tennoware has been updated!</p>
-                        <p>Fetching updated data...</p>
-                        <div className="update-loading-container"><ContainedLoading /></div>
-                      </div>
+                ? <div className="screen">
+                  <div></div>
+                  <div className="update-screen">
+                    <div className="top-title"><p>UPDATE</p></div>
+                    <div className="update-block">
+                      <p>Tennoware has been updated!</p>
+                      <p>Fetching updated data...</p>
+                      <div className="update-loading-container"><ContainedLoading /></div>
                     </div>
                   </div>
+                  <div></div>
                 </div>
                 : <Routing viewWidth={this.state.viewWidth} user={this.state.user} online={this.state.online} logUser={this.logUser} updateRequired={this.state.updateRequired} />
               }

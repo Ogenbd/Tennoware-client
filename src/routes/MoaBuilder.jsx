@@ -1,11 +1,11 @@
-import React, { Component, lazy } from 'react';
+import React, { Component } from 'react';
 import { Helmet } from "react-helmet";
 
 import apiUrl from '../apiUrl';
 import RightAd from '../components/adunits/RightAd';
-import BottomAd from '../components/adunits/BottomAd';
+import ContainedLoading from '../components/loading/ContainedLoading';
 
-const TenSlotModding = lazy(() => import('../components/modding/TenSlotModding'));
+import TenSlotModding from '../components/modding/TenSlotModding';
 
 class RangedBuilder extends Component {
     constructor(props) {
@@ -22,9 +22,6 @@ class RangedBuilder extends Component {
     }
 
     componentDidMount() {
-        // (window.adsbygoogle = window.adsbygoogle || []).push({
-        //     google_ad_client: "ca-pub-9367218977396146"
-        // });
         if (this.props.match.params.build) {
             this.confirmBuild()
         } else {
@@ -67,51 +64,53 @@ class RangedBuilder extends Component {
         }
     }
 
-    setupBuilder = async (metaInfo) => {
-        let items = await this.props.items().then(data => data.default);
-        let mods = await this.props.mods().then(data => data.default);
-        let parts = this.props.match.params.id.split(' ');
-        let bracket = items.first.find(part => {
-            return part.name.toLowerCase() === parts[0].toLowerCase();
-        });
-        let core = items.second.find(part => {
-            return part.name.toLowerCase() === parts[1].toLowerCase();
-        });
-        let gyro = items.third.find(part => {
-            return part.name.toLowerCase() === parts[2].toLowerCase();
-        });
-        try {
-            let item = {
-                name: `${parts[0].toUpperCase()}-${parts[1].toUpperCase()}-${parts[2].toUpperCase()}`,
-                health: items.base.health + items.base.health * core.health + items.base.health * gyro.health,
-                shields: items.base.shields + items.base.shields * core.shields + items.base.shields * gyro.shields,
-                armor: items.base.armor + items.base.armor * core.armor + items.base.armor * gyro.armor,
-                polarities: bracket.polarities
-            }
-            let slotPolarities = [];
-            let originalPolarityCount = { madurai: 0, naramon: 0, vazarin: 0, zenurik: 0, unairu: 0, penjaga: 0, umbra: 0 };
-            let filteredMods = mods.filter(mod => {
-                return mod.type === 'COMPANION' || mod.type === 'ROBOTIC' || mod.type === 'MOA' || mod.type === 'ALL';
-            });
-            filteredMods.forEach((mod, index) => mod.index = index);
-            if (item.polarities.length > 0) {
-                item.polarities.forEach(polarity => {
-                    slotPolarities.push(polarity);
-                    originalPolarityCount[polarity]++
+    setupBuilder = (metaInfo) => {
+        setTimeout(() => {
+            Promise.all([this.props.items(), this.props.mods()]).then(data => {
+                let parts = this.props.match.params.id.split(' ');
+                let bracket = data[0].default.first.find(part => {
+                    return part.name.toLowerCase() === parts[0].toLowerCase();
                 });
-            }
-            this.setState({
-                title: item.name,
-                item: item,
-                relevantMods: filteredMods,
-                slotPolarities: slotPolarities,
-                originalPolarityCount: originalPolarityCount,
-                metaInfo: metaInfo
+                let core = data[0].default.second.find(part => {
+                    return part.name.toLowerCase() === parts[1].toLowerCase();
+                });
+                let gyro = data[0].default.third.find(part => {
+                    return part.name.toLowerCase() === parts[2].toLowerCase();
+                });
+                try {
+                    let item = {
+                        name: `${parts[0].toUpperCase()}-${parts[1].toUpperCase()}-${parts[2].toUpperCase()}`,
+                        health: data[0].default.base.health + data[0].default.base.health * core.health + data[0].default.base.health * gyro.health,
+                        shields: data[0].default.base.shields + data[0].default.base.shields * core.shields + data[0].default.base.shields * gyro.shields,
+                        armor: data[0].default.base.armor + data[0].default.base.armor * core.armor + data[0].default.base.armor * gyro.armor,
+                        polarities: bracket.polarities
+                    }
+                    let slotPolarities = [];
+                    let originalPolarityCount = { madurai: 0, naramon: 0, vazarin: 0, zenurik: 0, unairu: 0, penjaga: 0, umbra: 0 };
+                    let filteredMods = data[1].default.filter(mod => {
+                        return mod.type === 'COMPANION' || mod.type === 'ROBOTIC' || mod.type === 'MOA' || mod.type === 'ALL';
+                    });
+                    filteredMods.forEach((mod, index) => mod.index = index);
+                    if (item.polarities.length > 0) {
+                        item.polarities.forEach(polarity => {
+                            slotPolarities.push(polarity);
+                            originalPolarityCount[polarity]++
+                        });
+                    }
+                    this.setState({
+                        title: item.name,
+                        item: item,
+                        relevantMods: filteredMods,
+                        slotPolarities: slotPolarities,
+                        originalPolarityCount: originalPolarityCount,
+                        metaInfo: metaInfo
+                    });
+                }
+                catch {
+                    this.redirectToVoid();
+                }
             });
-        }
-        catch {
-            this.redirectToVoid();
-        }
+        }, 350);
     }
 
     confirmBuild = () => {
@@ -157,7 +156,7 @@ class RangedBuilder extends Component {
 
     render() {
         return (
-            <div className="screen">
+            <React.Fragment>
                 <Helmet>
                     <title>Tennoware - {this.props.match.params.id}</title>
                 </Helmet>
@@ -165,30 +164,37 @@ class RangedBuilder extends Component {
                     <p>MOAS</p>
                     <p className="modular-subtitle">{this.state.title}</p>
                 </div>
-                <div className="ranged-modding">
+                <div className="screen">
+                    <div></div>
                     {this.state.error !== null
-                        ? <div className={"general-error " + (this.state.error !== null ? 'show-general-error' : 'hide-general-error')}>
-                            <div className="general-error-box">
-                                <p>{this.state.error}</p>
-                                <div className="interactable interactable-semi-inactive general-button" onClick={this.confirmError}><p className="interactable-p">Confirm</p></div>
+                        ? <div className="modding-wrapper">
+                            <div className={"general-error " + (this.state.error !== null ? 'show-general-error' : 'hide-general-error')}>
+                                <div className="general-error-box">
+                                    <p>{this.state.error}</p>
+                                    <div className="interactable interactable-semi-inactive general-button" onClick={this.confirmError}><p className="interactable-p">Confirm</p></div>
+                                </div>
                             </div>
                         </div>
                         : <React.Fragment>
-                            {this.state.item.name &&
-                                <TenSlotModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={require('../assets/general/reactor.png')} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} />
+                            {this.state.item.name
+                                ? <div className="modding-wrapper">
+                                    <TenSlotModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={require('../assets/general/reactor.png')} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} />
+                                </div>
+                                : <div className="modding-wrapper">
+                                    <ContainedLoading />
+                                </div>
                             }
                         </React.Fragment>
                     }
-                    <div className="modding-bottom-g">
-                        <BottomAd />
+                    <div className="side-panel">
+                        {this.props.viewWidth > 1465 &&
+                            <div className="right-g">
+                                <RightAd />
+                            </div>
+                        }
                     </div>
                 </div>
-                {this.props.viewWidth > 1555 &&
-                    <div className="right-g">
-                        <RightAd />
-                    </div>
-                }
-            </div>
+            </React.Fragment>
         )
     }
 }

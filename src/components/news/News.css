@@ -1,15 +1,13 @@
 .news-container {
     display: flex;
     justify-content: center;
-    flex: 1 1 0;
-    width: 100%;
     max-width: 1200px;
-    background-color: rgba(0, 0, 0, 0.7)
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .tennoware-update {
     border-radius: 5px;
-    background-color: rgba(30, 30, 30, 0.8);
+    background-color: rgba(48, 48, 48, 0.8);
     overflow: hidden;
     width: 310px;
     max-width: 400px;
@@ -21,7 +19,7 @@
     font-weight: 600;
     text-align: center;
     padding: 6px 0;
-    background-color: rgba(48, 48, 48, 0.8);
+    background-color: rgba(30, 30, 30, 0.8);
 }
 
 .update-content {
@@ -31,6 +29,11 @@
     padding: 10px;
 }
 
+.right-wrapper {
+    padding-top: 15px;
+    padding-right: 15px; 
+}
+
 .home-right {
     display: flex;
     flex: 0 2 auto;
@@ -38,7 +41,7 @@
     align-items: flex-start;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 15px 15px 15px 0;
+    margin: 15px 0;
 }
 
 .tile-wrapper {
@@ -146,12 +149,6 @@
     transform: scale(0.95);
 }
 
-.reddit-link {
-    color: rgb(255, 249, 160);
-    text-decoration: underline;
-    font-size: 16px;
-}
-
 .news-item {
     display: flex;
     padding: 4px 0;
@@ -186,7 +183,10 @@
     .tennoware-update {
         width: 90vw;
     }
+    .right-wrapper {
+        padding: 0 0;
+    }
     .home-right {
-        margin: 0 0 15px 0;
+        margin: 15px 0 15px 0;
     }
 }

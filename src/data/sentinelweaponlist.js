@@ -11,14 +11,14 @@ const sentinelWeaponList = [
         name: 'CRYOTRA',
         img: require('../assets/itemimages/cryotra.png')
     },
-    // {
-    //   name: 'DECONSTRUCTOR',
-    //   img: require('../assets/itemimages/deconstructor.png')
-    // },
-    // {
-    //   name: 'DECONSTRUCTOR PRIME',
-    //   img: require('../assets/itemimages/deconstructor-prime.png')
-    // },
+    {
+        name: 'DECONSTRUCTOR',
+        img: require('../assets/itemimages/deconstructor.png')
+    },
+    {
+        name: 'DECONSTRUCTOR PRIME',
+        img: require('../assets/itemimages/deconstructor-prime.png')
+    },
     {
         name: 'DETH MACHINE RIFLE',
         img: require('../assets/itemimages/deth-machine-rifle.png')

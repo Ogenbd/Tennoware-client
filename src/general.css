@@ -6,15 +6,14 @@
     display: none;
 }
 
-.ranged-modding {
-    position: relative;
+.modding-wrapper {
+    /* position: relative; */
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    height: 100%;
-    flex: 1 0 auto;
-    width: 100vw;
+    flex: 1;
+    width: 100%;
     max-width: 1200px;
+    min-height: calc(100vh - 56px);
 }
 
 .topbar-title {
@@ -237,12 +236,13 @@
 
 .loading-screen {
     position: fixed;
-    top: 0;
+    top: 56px;
     left: 0;
+    /* padding-top: 56px; */
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: calc(100vh - 56px);
     width: 100vw;
     flex-grow: 1;
 }
@@ -253,9 +253,11 @@
     /* left: 0; */
     display: flex;
     align-items: center;
+    flex: 1;
+    flex-direction: column;
     justify-content: center;
-    height: 100%;
-    width: 100%;
+    /* height: 100%; */
+    /* width: 100%; */
 }
 
 .lds-default {
@@ -432,6 +434,9 @@
 } */
 
 @media screen and (min-width: 1203px) {
+    .modding-wrapper {
+        width: 1200px;
+    }
     .centerize {
         display: flex;
         flex-grow: 1;
@@ -494,9 +499,15 @@
         margin-top: 56px;
         overflow: auto;
     }
+    .loading-screen {
+        overflow-y: scroll;
+    }
 }
 
 @media screen and (max-width: 1202px) {
+    .modding-wrapper {
+        width: 100vw;
+    }
     .popup {
         position: fixed;
         height: 100vh;
@@ -504,7 +515,7 @@
         background-color: rgba(0, 0, 0, 0.9);
         left: 0;
         top: 0;
-        transition: opacity 200ms, transform 300ms cubic-bezier(.45,.7,.28,.96);
+        transition: opacity 200ms, transform 300ms cubic-bezier(.45, .7, .28, .96);
     }
     .popup-active {
         transform: translateY(0);
@@ -590,7 +601,7 @@
         position: fixed;
         justify-content: center;
         align-items: center;
-        top: 94px;
+        top: 157px;
         right: 0;
         width: 60px;
         height: 50px;
@@ -603,7 +614,7 @@
         border-top-left-radius: 30px;
         border-bottom-left-radius: 30px;
         cursor: pointer;
-        transition: all 0.35s cubic-bezier(.45,.7,.28,.96);
+        transition: all 0.35s cubic-bezier(.45, .7, .28, .96);
         z-index: 3;
     }
     .pull-tab-arrow {
@@ -611,7 +622,7 @@
         left: 12px;
         height: 22px;
         line-height: 22px;
-        transition: transform 0.35s cubic-bezier(.45,.7,.28,.96);
+        transition: transform 0.35s cubic-bezier(.45, .7, .28, .96);
     }
     .pull-tab p {
         position: relative;

@@ -104,66 +104,56 @@ const sentinelWeaponStats = [
             }
         ]
     },
-    // {
-    //   name: 'DECONSTRUCTOR',
-    //   mastery: 0,
-    //   type: [
-    //     'GLAIVE'
-    //   ],
-    //   polarities: [],
-    //   noise: 'Alarming',
-    //   reload: 0,
-    //   magSize: 0,
-    //   disposition: 4,
-    //   modes: [
-    //     {
-    //       trigger: '',
-    //       fireRate: 1.33,
-    //       accuracy: 100,
-    //       punchThrough: 0,
-    //       critChance: 0,
-    //       critMult: 1,
-    //       status: 0.25,
-    //       damage: 50,
-    //       split: [
-    //         {
-    //           type: 'Impact',
-    //           percent: 0
-    //         }
-    //       ]
-    //     }
-    //   ]
-    // },
-    // {
-    //   name: 'DECONSTRUCTOR PRIME',
-    //   mastery: 8,
-    //   type: [
-    //     'GLAIVE'
-    //   ],
-    //   polarities: [],
-    //   noise: 'Alarming',
-    //   reload: 0,
-    //   magSize: 0,
-    //   disposition: 4,
-    //   modes: [
-    //     {
-    //       trigger: '',
-    //       fireRate: 1.33,
-    //       accuracy: 100,
-    //       punchThrough: 0,
-    //       critChance: 0,
-    //       critMult: 1,
-    //       status: 0.25,
-    //       damage: 75,
-    //       split: [
-    //         {
-    //           type: 'Impact',
-    //           percent: 0
-    //         }
-    //       ]
-    //     }
-    //   ]
-    // },
+    {
+        name: 'DECONSTRUCTOR',
+        mastery: 0,
+        mods: 'melee',
+        type: [
+            'THROWN MELEE'
+        ],
+        polarities: [],
+        disposition: 4,
+        modes: [
+            {
+                speed: 1.3,
+                critChance: 0,
+                critMult: 0,
+                status: 0.25,
+                damage: 50,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        name: 'DECONSTRUCTOR PRIME',
+        mastery: 8,
+        mods: 'melee',
+        type: [
+            'THROWN MELEE'
+        ],
+        polarities: [],
+        disposition: 4,
+        modes: [
+            {
+                speed: 1.33,
+                critChance: 0,
+                critMult: 0,
+                status: 0.25,
+                damage: 75,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 1
+                    }
+                ]
+            }
+        ]
+    },
     {
         name: 'DETH MACHINE RIFLE',
         mastery: 0,

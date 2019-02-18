@@ -214,7 +214,6 @@ export class RangedRivenEditor extends Component {
 
   handleChange = ({ target }) => {
     let value = target.value;
-    console.log(value);
     if (value > 999) value = 999;
     if (value < -999) value = -999;
     this.setState({ [target.name]: value })

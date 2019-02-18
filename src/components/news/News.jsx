@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { CSSTransition } from "react-transition-group";
+// import { Spring, animated } from 'react-spring/renderprops';
 import { Helmet } from "react-helmet";
 import './News.css';
 
@@ -66,15 +66,16 @@ export class News extends Component {
 
   render() {
     return (
-      <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
+      <React.Fragment>
+        <Helmet>
+          <title>Tennoware, A Warframe Builds Calculator.</title>
+        </Helmet>
+        {this.props.viewWidth < 1203
+          ? <div className="top-title"><p>TENNOWARE</p></div>
+          : <div className="top-title"><p>HOME</p></div>
+        }
         <div className="screen">
-          <Helmet>
-            <title>Tennoware, A Warframe Builds Calculator.</title>
-          </Helmet>
-          {this.props.viewWidth < 1203
-            ? <div className="top-title"><p>TENNOWARE</p></div>
-            : <div className="top-title"><p>HOME</p></div>
-          }
+          <div></div>
           <div className="news-container">
             <div className="home-left">
               <div className="tennoware-update">
@@ -123,6 +124,7 @@ export class News extends Component {
               </div>
             </div>
             <div className="right-wrapper">
+              <BottomAd />
               <div className="home-right">
                 <Link to="/warframes" className="tile-wrapper">
                   <img className="tile-image" src={require('../../assets/general/titania.png')} alt="" />
@@ -181,18 +183,17 @@ export class News extends Component {
                   <div className="tile-name"><p>ARCHMELEE</p></div>
                 </Link>
               </div>
-              <div className="bottom-g">
-                <BottomAd />
-              </div>
             </div>
           </div>
-          {this.props.viewWidth > 1555 &&
-            <div className="right-g">
-              <RightAd />
-            </div>
-          }
+          <div className="side-panel">
+            {this.props.viewWidth > 1375 &&
+              <div className="right-g">
+                <RightAd />
+              </div>
+            }
+          </div>
         </div>
-      </CSSTransition>
+      </React.Fragment>
     )
   }
 }

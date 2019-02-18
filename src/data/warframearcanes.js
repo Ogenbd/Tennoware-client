@@ -67,17 +67,17 @@ const warframeArcanes = [
         effects: {},
         currRank: 3,
         description() {
-            return `On Damaged:\n${this.currRank + 1} chance to instantly restore all Shields.`
+            return `On Damaged:\n${this.currRank + 1}% chance to instantly restore all Shields.`
         }
     },
     {
         abrev: 'a7',
-        name: 'CONSECQUENCE',
+        name: 'CONSEQUENCE',
         img: require('../assets/itemimages/consequence.png'),
         effects: {},
         currRank: 3,
         description() {
-            return `On Headshot:\n${25 * (this.currRank + 1)}% for +${10 * (this.currRank + 1)} Parkour Velocity for ${3 * (this.currRank + 1)}s.`
+            return `On Headshot:\n${25 * (this.currRank + 1)}% chance for +${10 * (this.currRank + 1)} Parkour Velocity for ${3 * (this.currRank + 1)}s.`
         }
     },
     {
@@ -167,7 +167,7 @@ const warframeArcanes = [
         effects: {},
         currRank: 3,
         description() {
-            return `On Critical Hit:\n${10 * (this.currRank + 1)}% chance for +${25 * (this.currRank + 1)}% Reload Speed to Sniper Rifles for${2 * (this.currRank + 1)}s.`
+            return `On Critical Hit:\n${10 * (this.currRank + 1)}% chance for +${25 * (this.currRank + 1)}% Reload Speed to Sniper Rifles for ${2 * (this.currRank + 1)}s.`
         }
     },
     {
@@ -187,7 +187,7 @@ const warframeArcanes = [
         effects: {},
         currRank: 3,
         description() {
-            return `On Parry:\n${7.5 * (this.currRank + 1)}% chance for +${10 * (this.currRank + 1)}% Speed for ${3 * (this.currRank + 1)}s.`
+            return `On Parry:\n${8 * (this.currRank + 1)}% chance for +${10 * (this.currRank + 1)}% Speed for ${3 * (this.currRank + 1)}s.`
         }
     },
     {
@@ -217,7 +217,7 @@ const warframeArcanes = [
         effects: {},
         currRank: 3,
         description() {
-            return `On Headshot:\n${2.5 * (this.currRank + 1)}% chance for +${30 * (this.currRank + 1)}% Damage to Promary Weapons for ${4 * (this.currRank + 1)}s.`
+            return `On Headshot:\n${2.5 * (this.currRank + 1)}% chance for +${30 * (this.currRank + 1)}% Damage to Primary Weapons for ${4 * (this.currRank + 1)}s.`
         }
     },
     {

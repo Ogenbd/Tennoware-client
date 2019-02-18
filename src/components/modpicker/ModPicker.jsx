@@ -1,8 +1,8 @@
-import React, { Component, lazy } from 'react';
-import { CSSTransition } from "react-transition-group";
+import React, { Component } from 'react';
+import { Spring, animated } from 'react-spring/renderprops';
 import './ModPicker.css';
 
-const SimpleModCardGenerator = lazy(() => import('../modcardgenerator/SimpleModCardGenerator.jsx'));
+import SimpleModCardGenerator from '../modcardgenerator/SimpleModCardGenerator.jsx';
 
 export class ModPicker extends Component {
     constructor(props) {
@@ -100,7 +100,7 @@ export class ModPicker extends Component {
                 return false;
             }
         }
-        if ((this.props.type === 'meleeweapons' || this.props.type === 'zaws' ) && (this.state.stance || this.props.forSlot === 'stance') && !mod.stance) {
+        if ((this.props.type === 'meleeweapons' || this.props.type === 'zaws') && (this.state.stance || this.props.forSlot === 'stance') && !mod.stance) {
             return false;
         }
         if (this.state.polarity !== null) {
@@ -448,13 +448,13 @@ export class ModPicker extends Component {
                     <div className="mod-options-wrapper">
                         <div className="mod-dropdown-trigger" onMouseLeave={this.hideFilter}>
                             <p className={"mod-dropdown-trigger-fill " + (this.state.conclave || this.state.aura || this.state.exilus || this.state.polarity || this.state.filterToggle ? 'active-option' : 'inactive-option')} onMouseEnter={this.showFilter} onClick={this.toggleFilter}>Filter <span className="chev-down">›</span></p>
-                            <div className={"dropdown-container filter-block " + (this.props.type === 'warframes' ? 'filter-active-warframes' : this.props.type === 'meleeweapons' || this.props.type === 'zaws' ? 'filter-active-melee' : '')}>
-                                <CSSTransition
-                                    in={this.state.filterToggle}
-                                    classNames="slide"
-                                    timeout={180}
-                                >
-                                    <div className="dropdown-block">
+                            <Spring
+                                native
+                                config={{ tension: 500, friction: 46 }}
+                                from={{ height: this.state.filterToggle ? 0 : 'auto' }}
+                                to={{ height: this.state.filterToggle ? 'auto' : 0 }}>
+                                {props => (
+                                    <animated.div className={"dropdown-block filter-block " + (this.state.filterToggle ? 'active-block' : 'inactive-block')} style={props}>
                                         <div className="dropdown-option" onClick={this.clearFilter}>Clear All</div>
                                         {this.props.type === 'warframes' && this.props.viewWidth > 1202 &&
                                             <React.Fragment>
@@ -473,25 +473,25 @@ export class ModPicker extends Component {
                                         <div className={"dropdown-option " + (this.state.polarity === 'penjaga' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('penjaga') }}>{this.state.polarity === 'penjaga' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/penjagarare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/penjagaprime.png')} alt="" />}Penjaga</div>
                                         <div className={"dropdown-option " + (this.state.polarity === 'unairu' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('unairu') }}>{this.state.polarity === 'unairu' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/unairurare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/unairuprime.png')} alt="" />}Unairu</div>
                                         <div className={"dropdown-option " + (this.state.conclave ? 'active-option' : 'inactive-option')} onClick={this.toggleConclave}>Conclave</div>
-                                    </div>
-                                </CSSTransition>
-                            </div>
+                                    </animated.div>
+                                )}
+                            </Spring>
                         </div>
                         <div className="mod-dropdown-trigger" onMouseLeave={this.hideSort}>
                             <p className={"mod-dropdown-trigger-fill " + (this.state.sortToggle ? 'active-option' : 'inactive-option')} onMouseEnter={this.showSort} onClick={this.toggleSort}>Sort <span className="chev-down">›</span></p>
-                            <div className="dropdown-container sort-block">
-                                <CSSTransition
-                                    in={this.state.sortToggle}
-                                    classNames="slide"
-                                    timeout={300}
-                                >
-                                    <div className="dropdown-block">
+                            <Spring
+                                native
+                                config={{ tension: 500, friction: 46 }}
+                                from={{ height: this.state.sortToggle ? 0 : 'auto' }}
+                                to={{ height: this.state.sortToggle ? 'auto' : 0 }}>
+                                {props => (
+                                    <animated.div className={"dropdown-block sort-block " + (this.state.sortToggle ? 'active-block' : 'inactive-block')} style={props}>
                                         <div className={"dropdown-option " + (this.state.sort === 'name' ? 'active-option' : 'inactive-option')} onClick={this.sortName}>Name</div>
                                         <div className={"dropdown-option " + (this.state.sort === 'drain' ? 'active-option' : 'inactive-option')} onClick={this.sortDrain}>Drain</div>
                                         <div className={"dropdown-option " + (this.state.sort === 'rank' ? 'active-option' : 'inactive-option')} onClick={this.sortRank}>Rank</div>
-                                    </div>
-                                </CSSTransition>
-                            </div>
+                                    </animated.div>
+                                )}
+                            </Spring>
                         </div>
                     </div>
                     <div className="search-wrapper mod-list-search-wrapper">

@@ -12,6 +12,7 @@ export class LinkGenerator extends Component {
   }
 
   showLinkGenerator = () => {
+    document.body.classList.add('noscroll');
     let buildState = this.props.getBuildStr();
     // fix url
     // let linkUrl = `localhost:3000/${this.props.type}/${encodeURIComponent(this.props.match.params.id)}/${buildState.buildStr}`;
@@ -26,6 +27,7 @@ export class LinkGenerator extends Component {
   }
 
   hideLinkGenerator = () => {
+    document.body.classList.remove('noscroll');
     this.setState({
       showLinkGenerator: false
     });

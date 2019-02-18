@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { CSSTransition } from "react-transition-group";
+import { Link } from 'react-router-dom';
+import { Spring, animated } from 'react-spring/renderprops';
 import { Helmet } from "react-helmet";
 import './ItemPicker.css';
 
-import Loading from '../loading/Loading';
+// import Loading from '../loading/Loading';
 import RightAd from '../adunits/RightAd';
 import BottomAd from '../adunits/BottomAd';
 
@@ -11,21 +12,21 @@ export class ItemPicker extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: props.title,
             items: [],
             displayItems: [],
             picked: false
         }
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         // (window.adsbygoogle = window.adsbygoogle || []).push({
         //     google_ad_client: "ca-pub-9367218977396146"
         // });
-        let items = await this.props.items();
-        this.setState({
-            items: items.default,
-            displayItems: items.default,
+        this.props.items().then(items => {
+            this.setState({
+                items: items.default,
+                displayItems: items.default,
+            });
         });
     }
 
@@ -64,46 +65,57 @@ export class ItemPicker extends Component {
 
     render() {
         return (
-            <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
+            <React.Fragment>
+                <Helmet>
+                    <title>Tennoware - {this.props.title.toLowerCase()}</title>
+                </Helmet>
+                <div className="top-title"><p>{this.props.title}</p></div>
                 <div className="screen">
-                    <Helmet>
-                        <title>Tennoware - {this.props.title.toLowerCase()}</title>
-                    </Helmet>
-                    <div className="top-title"><p>{this.props.title}</p></div>
-                    {this.state.picked &&
-                        <Loading />
-                    }
-                    <div className={"item-picker " + (this.state.picked ? 'picker-fadeout' : 'picker-in')}>
+                    <div></div>
+                    <div className="item-picker">
                         <div className="item-picker-topbar">
                             <div className="search-wrapper item-picker-search">
                                 <input className="search" type="text" placeholder="Search..." onChange={this.filterItems} onKeyUp={this.blurInput} />
                             </div>
                         </div>
                         <div className="item-picker-content">
-                            <div className="items-display">
-                                {this.state.displayItems.map(item => (
-                                    <CSSTransition key={item.name} classNames="fade" in={true} appear={true} timeout={200}>
-                                        <div className="item-wrapper" onClick={() => this.handlePick(item.name)}>
-                                            <img className="item-image" src={item.img} alt="" />
-                                            <div className="item-name"><p>{item.name}</p></div>
-                                        </div>
-                                    </CSSTransition>
-                                ))}
-                            </div>
-                            <div className="bottom-g">
+                            <div className="items-display-wrapper">
                                 <BottomAd />
+                                <div className="items-display">
+                                    {this.state.displayItems.map((item, index) => (
+                                        <Spring
+                                            key={index}
+                                            native
+                                            config={{ duration: 200 }}
+                                            from={{ opacity: 0 }}
+                                            to={{ opacity: 1 }}>
+                                            {props => (
+                                                <animated.div style={props}>
+                                                    <Link to={`${this.props.match.path}/${item.name.toLowerCase()}`} className="item-wrapper">
+                                                        <img className="item-image" src={item.img} alt="" />
+                                                        <div className="item-name"><p>{item.name}</p></div>
+                                                    </Link>
+                                                </animated.div>
+                                            )}
+                                        </Spring>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </div>
-                    {this.props.viewWidth > 1555 &&
-                        <div className="right-g">
-                            <RightAd />
-                        </div>
-                    }
+                    <div className="side-panel">
+                        {this.props.viewWidth > 1363 &&
+                            <div className="right-g">
+                                <RightAd />
+                            </div>
+                        }
+                    </div>
                 </div>
-            </CSSTransition>
+            </React.Fragment>
         )
     }
 }
 
-export default ItemPicker
+
+
+export default ItemPicker;

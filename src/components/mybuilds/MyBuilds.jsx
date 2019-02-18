@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CSSTransition } from 'react-transition-group';
+import { Spring, animated } from 'react-spring/renderprops';
 import { Helmet } from "react-helmet";
 import cloneDeep from 'lodash/cloneDeep';
 import '../../general.css';
@@ -7,8 +7,10 @@ import './MyBuilds.css';
 
 import apiUrl from '../../apiUrl';
 import Loading from '../loading/Loading';
+import RightAd from '../adunits/RightAd';
+import BottomAd from '../adunits/BottomAd';
 
-const updateTimesImport = () => import('../../data/updatetimes' /* webpackChunkName: "upst" */ );
+const updateTimesImport = () => import('../../data/updatetimes' /* webpackChunkName: "upst" */);
 
 export default class MyBuilds extends Component {
     constructor(props) {
@@ -92,7 +94,7 @@ export default class MyBuilds extends Component {
             });
         }
     }
-    
+
     getItemImage = async (build) => {
         let itemImage;
         let itemIdx;
@@ -115,7 +117,7 @@ export default class MyBuilds extends Component {
             });
             itemImage = list[itemIdx].img;
         }
-        return itemImage
+        return itemImage;
     }
 
     getImageList = (type) => {
@@ -337,47 +339,57 @@ export default class MyBuilds extends Component {
     render() {
         let list = this.generateList();
         return (
-            <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
+            <React.Fragment>
+                <Helmet>
+                    <title>Tennoware - my builds</title>
+                </Helmet>
+                <div className="top-title"><p>MY BUILDS</p></div>
                 <div className="screen">
-                    <Helmet>
-                        <title>Tennoware - my builds</title>
-                    </Helmet>
-                    <div className="top-title"><p>MY BUILDS</p></div>
+                    <div></div>
                     <div className="my-builds">
                         <div className="my-builds-topbar">
                             <div className="search-wrapper my-builds-search">
                                 <input className="search" type="text" placeholder="Search..." value={this.state.search} onChange={this.filterItems} onKeyUp={this.blurInput} />
                             </div>
                         </div>
-                        {this.state.getting
-                            ? <Loading />
-                            : <React.Fragment>
-                                <CSSTransition classNames="fade" in={true} appear={true} timeout={200}>
-                                    {this.state.error !== null
-                                        ? <div className="builds-wrapper"><div className="no-builds">{this.state.error}</div></div>
-                                        : <div className="builds-wrapper">
-                                            {this.state.arsenal.length < 1
-                                                ? <div className="no-builds">You have not saved or liked any builds yet.</div>
+                        <div className="builds-wrapper">
+                            <BottomAd />
+                            {this.state.getting
+                                ? <Loading />
+                                : <Spring
+                                    native
+                                    config={{ tension: 120, friction: 14 }}
+                                    from={{ opacity: 0 }}
+                                    to={{ opacity: 1 }}>
+                                    {props => (
+                                        <animated.div style={props}>
+                                            {this.state.error !== null
+                                                ? <div className="no-builds">{this.state.error}</div>
                                                 : <React.Fragment>
-                                                    {list.saved.length > 0 &&
-                                                        <React.Fragment>
-                                                            <div className="my-builds-subtitle">Saved Builds</div>
-                                                            {list.saved}
-                                                        </React.Fragment>
-                                                    }
-                                                    {list.liked.length > 0 &&
-                                                        <React.Fragment>
-                                                            <div className="my-builds-subtitle">Liked Builds</div>
-                                                            {list.liked}
+                                                    {this.state.arsenal.length < 1
+                                                        ? <div className="no-builds">You have not saved or liked any builds yet.</div>
+                                                        : <React.Fragment>
+                                                            {list.saved.length > 0 &&
+                                                                <React.Fragment>
+                                                                    <div className="my-builds-subtitle">Saved Builds</div>
+                                                                    {list.saved}
+                                                                </React.Fragment>
+                                                            }
+                                                            {list.liked.length > 0 &&
+                                                                <React.Fragment>
+                                                                    <div className="my-builds-subtitle">Liked Builds</div>
+                                                                    {list.liked}
+                                                                </React.Fragment>
+                                                            }
                                                         </React.Fragment>
                                                     }
                                                 </React.Fragment>
                                             }
-                                        </div>
-                                    }
-                                </CSSTransition>
-                            </React.Fragment>
-                        }
+                                        </animated.div>
+                                    )}
+                                </Spring>
+                            }
+                        </div>
                         <div className={"popup " + (this.state.unlike ? "popup-active" : "popup-inactive")}>
                             <div className={"popup-topbar " + (this.state.unlike ? "popup-active" : "popup-inactive")}></div>
                             <div className="popup-content conformation-wrapper">
@@ -403,8 +415,15 @@ export default class MyBuilds extends Component {
                             </div>
                         </div>
                     </div>
+                    <div className="side-panel">
+                        {this.props.viewWidth > 1260 &&
+                            <div className="right-g">
+                                <RightAd />
+                            </div>
+                        }
+                    </div>
                 </div>
-            </CSSTransition>
+            </React.Fragment>
         )
     }
 }
