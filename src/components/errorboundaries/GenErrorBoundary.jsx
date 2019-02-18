@@ -12,9 +12,13 @@ export default class ErrorBoundary extends Component {
         return { hasError: true };
     }
 
+    componentDidCatch(error, info) {
+        console.log(error, info);
+      }
+
     render() {
         if (this.state.hasError) {
-            return <TheVoid />;
+            return <div style={{width: '100vw', minHeight: '100vh', backgroundColor: 'rgb(40, 44, 52)'}}><TheVoid /></div>;
         }
 
         return this.props.children;

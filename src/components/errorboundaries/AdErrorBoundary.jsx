@@ -10,6 +10,10 @@ const withErrorBoundary = WrappedComponent => {
         static getDerivedStateFromError(error) {
           return { hasError: true };
         }
+
+        componentDidCatch(error, info) {
+          console.log(error, info);
+        }
       
         render() {
           if (this.state.hasError) {

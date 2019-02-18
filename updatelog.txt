@@ -1,18 +1,21 @@
 UPDATE LOG
 
-upcoming - v1.2.9.
+18/06/2019 - v1.2.9.
 
 New:
 Added Deconstructor and Deconstructor Prime.
 
 Changes:
-Lots of improvments to animations and transitions. UI responsiveness improvments.
+Lots of improvements to animations and transitions.
+UI responsiveness improvements.
+Error Handling improvements.
 
 Fixes:
 Corrected Equinox's Pacify & Provoke energy costs.
+Corrected some Warframe Arcanes description typos.
 Fixed an issue with a few Warframe augments: Counter Pulse, Icy Avalanche and Iron Vault.
 Fixed an issue that caused parts of the UI to fail to adapt to viewport size correctly under some conditions.
-Fixed an issue that caused users with specific ad blocking software to crash the entire app under certain conditions.
+Fixed an issue that caused Tennoware to crash for users with some ad blocking software under some conditions.
 
 06/02/2019 - v1.2.8.
 
@@ -38,7 +41,7 @@ Fixed and issue when a user saves/links a build with a riven while not inputing 
 Changes:
 Main page Redesign.
 Desktop site navigation overhaul. Was done to make future features, UI changes and UI additions less time consuming to develop.
-More improvments to Tennoware update strategy.
+More improvements to Tennoware update strategy.
 
 Fixes:
 Fixed an issue with Guardian Derision's description.
@@ -73,7 +76,7 @@ New:
 Added Razowing Blitz augment support to the Dex Pixia and Diwata.
 
 Changes:
-Improvments to update and caching strategy.
+improvements to update and caching strategy.
 
 Fixes:
 Fixed an issue that caused some Zaw builds to cause errors resolting in a blank page.

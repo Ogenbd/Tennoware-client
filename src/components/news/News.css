@@ -29,6 +29,10 @@
     padding: 10px;
 }
 
+.update-content p {
+    padding: 5px 0;
+}
+
 .right-wrapper {
     padding-top: 15px;
     padding-right: 15px; 
@@ -188,5 +192,16 @@
     }
     .home-right {
         margin: 15px 0 15px 0;
+    }
+}
+        
+@media screen and (max-width: 333px) {
+    .tile-wrapper {
+        width: 154px;
+        height: 103px;
+    }
+    .tile-image {
+        width: 154px;
+        height: 103px;
     }
 }

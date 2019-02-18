@@ -319,7 +319,7 @@
     flex: 1 0 auto;
     width: 100%;
     max-width: 1000px;
-    background-color: rgba(0, 0, 0, 0.7)
+    /* background-color: rgba(0, 0, 0, 0.7) */
 }
 
 .update-block {
@@ -330,6 +330,9 @@
     color: white;
     width: 95%;
     max-width: 450px;
+    background-color: black;
+    border: 1px solid rgba(255, 249, 160, 0.3);
+    padding: 10px;
 }
 
 .active-nav {

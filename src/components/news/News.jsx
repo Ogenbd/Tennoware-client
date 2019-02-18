@@ -15,7 +15,6 @@ export class News extends Component {
       news: [],
       platform: undefined,
       loading: false,
-      // loaded: 0
     }
   }
 
@@ -79,13 +78,15 @@ export class News extends Component {
           <div className="news-container">
             <div className="home-left">
               <div className="tennoware-update">
-                <div className="update-title">Update 1.2.8</div>
+                <div className="update-title">Update 1.2.9</div>
                 <div className="update-content">
-                  <p>Fixed an issue with the Furious Javeling augment.</p>
-                  <p>Imperator Vandal now has an innate Madurai polarity as it does ingame.</p>
-                  <p>Battacor now has the correct stats.</p>
-                  <p>As per user request, Fire Rate stat now displays two digits after the decimal when appropriate.</p>
-                  <p>For a complete update log head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log</a>.</p>
+                  <p>A previous update introduced some app-wide crashes when using third party ad blocking software in certain situations. Please understand that it was not my intention to prevent ad blocking software users from accessing and using Tennoware and that the issue was only brought to my attention a few hours prior to the release of 1.2.9. The issue has been (hopfully) fixed and I hope you would consider whitelisting Tennoware in your ad blocker.</p>
+                  <p>Most of this update is dedicated to improving Tennoware UI responsiveness and animations, especially on weaker, old/budget phones.</p>
+                  <p>Improvements to error handling.</p>
+                  <p>Added Deconstructor and Deconstructor Prime to the Robotic Weapons list.</p>
+                  <p>Fixed some Warframe augment issues, Equinox corrections, Arcane typos.</p>
+                  <p>For a complete and detailed update log head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log</a>.</p>
+                  <p>For bug reports or feature suggestions head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/">Tennoware subreddit</a>.</p>
                 </div>
               </div>
               <div className="tennoware-update">
