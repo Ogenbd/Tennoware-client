@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Spring, animated } from "react-spring/renderprops";
+import Switch from 'react-switch';
 import cloneDeep from 'lodash/cloneDeep';
 import './Modding.css';
 
@@ -24,6 +25,10 @@ class MeleeModding extends Component {
         this.state = {
             orokin: true,
             forma: false,
+            autoForma: false,
+            forceNeutStance: false,
+            forceOriginalStance: false,
+            forceCurrStance: false,
             formaCount: 0,
             stancePolarity: this.props.item.stance,
             slotPolarities: this.props.slotPolarities,
@@ -295,11 +300,214 @@ class MeleeModding extends Component {
     }
 
     toggleForma = () => {
-        this.setState(prevState => ({
-            forma: !prevState.forma,
-            forSwap: null,
-            errorBlinker: null
-        }));
+        if (this.state.forma) {
+            this.setState({
+                forma: false,
+                forSwap: null,
+                errorBlinker: null
+            });
+        } else {
+            let cap;
+            if (this.props.item.name === 'PARACESIS') {
+                cap = this.state.orokin ? this.state.formaCount < 6 ? 60 + 4 * this.state.formaCount : 80 : this.state.formaCount < 6 ? 30 + 2 * this.state.formaCount : 40;
+                cap -= this.state.totalModsCost;
+            } else {
+                cap = this.state.orokin ? 60 - this.state.totalModsCost : 30 - this.state.totalModsCost;
+            }
+            if (cap >= 0) {
+                this.setState({
+                    forma: true,
+                    forSwap: null,
+                    errorBlinker: null
+                });
+            } else {
+                document.body.classList.add('noscroll');
+                this.setState({
+                    autoForma: true,
+                    forSwap: null,
+                    errorBlinker: null
+                });
+            }
+        }
+    }
+
+    manualForma = () => {
+        document.body.classList.remove('noscroll');
+        this.setState({
+            forma: true,
+            autoForma: false,
+        });
+    }
+
+    autoForma = () => {
+        try {
+            let cap = this.state.orokin ? 60 : 30;
+            let arrangedOriginals = this.arrangeOriginals();
+            let stancePolarity = this.state.forceNeutStance ? undefined : this.state.forceCurrStance ? this.state.stancePolarity : this.props.item.stance;
+            let totalModsCost = this.calcCost(this.state.chosenMods, arrangedOriginals, this.state.chosenStanceMod, stancePolarity);
+            if (cap - totalModsCost >= 0) {
+                this.setAutoForma(stancePolarity, arrangedOriginals, totalModsCost);
+            } else {
+                let mismatch = this.formaMismatch(stancePolarity, arrangedOriginals, cap);
+                totalModsCost = this.calcCost(this.state.chosenMods, mismatch.slots, this.state.chosenStanceMod, mismatch.stance);
+                if (cap - totalModsCost >= 0) {
+                    this.setAutoForma(mismatch.stance, mismatch.slots, totalModsCost);
+                } else {
+                    let finalPolarities = this.calcAutoForma(mismatch.stance, mismatch.slots, cap);
+                    totalModsCost = this.calcCost(this.state.chosenMods, finalPolarities.slots, this.state.chosenStanceMod, finalPolarities.stance);
+                    this.setAutoForma(finalPolarities.stance, finalPolarities.slots, totalModsCost);
+                }
+            }
+        } catch {
+            this.props.redirectToVoid();
+        }
+    }
+
+    arrangeOriginals = () => {
+        let arrangedOriginals = [];
+        this.props.slotPolarities.forEach(polarity => {
+            let highest = {
+                slot: undefined,
+                drain: 0
+            }
+            this.state.chosenMods.forEach((mod, index) => {
+                if (mod.name && mod.polarity === polarity && mod.baseCost + mod.currRank > highest.drain && !arrangedOriginals[index]) highest = { slot: index, drain: mod.baseCost + mod.currRank }
+            });
+            if (highest.slot === undefined) {
+                let empty = this.state.chosenMods.findIndex((mod, index) => !mod.name && !arrangedOriginals[index]);
+                if (empty !== -1) {
+                    arrangedOriginals[empty] = polarity;
+                } else {
+                    let lowest = {
+                        slot: undefined,
+                        drain: 100
+                    }
+                    this.state.chosenMods.forEach((mod, index) => {
+                        if (mod.name && mod.baseCost + mod.currRank < lowest.drain && !arrangedOriginals[index]) lowest = { slot: index, drain: mod.baseCost + mod.currRank }
+                    });
+                    arrangedOriginals[lowest.slot] = polarity;
+                }
+            } else {
+                arrangedOriginals[highest.slot] = polarity;
+            }
+        });
+        return arrangedOriginals;
+    }
+
+    formaMismatch = (stancePolarity, slotPolarities, cap) => {
+        if (this.props.item.name === 'PARACESIS') {
+            let formaCount = this.countForma(slotPolarities, stancePolarity);
+            cap = this.state.orokin ? formaCount < 6 ? 60 + 4 * formaCount : 80 : formaCount < 6 ? 30 + 2 * formaCount : 40;
+        }
+        let postMismatch = {
+            stance: stancePolarity,
+            slots: slotPolarities
+        }
+        let leftoverCap;
+        let withPolStance = 1000;
+        let withNewSlot = 1000;
+        let highest = {
+            slot: undefined,
+            drain: 0
+        }
+        let mismatches = [];
+        let tempSlotPolarities = slotPolarities.slice(0);
+        this.state.chosenMods.forEach((mod, index) => {
+            if (mod.name && mod.polarity !== slotPolarities[index] && slotPolarities[index] !== undefined && slotPolarities[index] !== null) {
+                mismatches.push({
+                    slot: index,
+                    drain: mod.baseCost + mod.currRank
+                });
+            }
+        });
+        if (mismatches.length > 0) {
+            mismatches.sort((a, b) => {
+                return b.drain - a.drain;
+            });
+            if (this.state.chosenStanceMod.name && this.state.chosenStanceMod.polarity !== stancePolarity && !this.state.forceNeutStance && !this.state.forceOriginalStance && !this.state.forceCurrStance) {
+                withPolStance = this.calcCost(this.state.chosenMods, slotPolarities, this.state.chosenStanceMod, this.state.chosenStanceMod.polarity);
+            }
+            this.state.chosenMods.forEach((mod, index) => {
+                if (mod.name && mod.polarity !== 'umbra' && mod.baseCost + mod.currRank > highest.drain && !tempSlotPolarities[index]) highest = { slot: index, drain: mod.baseCost + mod.currRank }
+            });
+            tempSlotPolarities[mismatches[0].slot] = undefined;
+            tempSlotPolarities[highest.slot] = this.state.chosenMods[highest.slot].polarity;
+            withNewSlot = this.calcCost(this.state.chosenMods, tempSlotPolarities, this.state.chosenStanceMod, stancePolarity);
+            if (withNewSlot <= withPolStance) {
+                postMismatch.slots = tempSlotPolarities.slice(0);
+                leftoverCap = cap - withNewSlot;
+                mismatches.shift()
+            } else {
+                postMismatch.stance = this.state.chosenStanceMod.polarity;
+                leftoverCap = cap - withPolStance;
+            }
+            if (mismatches.length > 0 && leftoverCap < 0) {
+                postMismatch = this.formaMismatch(postMismatch.stance, postMismatch.slots, cap);
+            }
+        }
+        return postMismatch;
+    }
+
+    calcAutoForma = (stancePolarity, slotPolarities, cap) => {
+        if (this.props.item.name === 'PARACESIS') {
+            let formaCount = this.countForma(slotPolarities, stancePolarity);
+            cap = this.state.orokin ? formaCount < 6 ? 60 + 4 * formaCount : 80 : formaCount < 6 ? 30 + 2 * formaCount : 40;
+        }
+        let finalPolarities = {
+            stance: stancePolarity,
+            slots: slotPolarities
+        }
+        let leftoverCap;
+        let withPolStance = 1000;
+        let withNewSlot = 1000;
+        let available = false;
+        let highest = {
+            slot: undefined,
+            drain: 0
+        }
+        let tempSlotPolarities = slotPolarities.slice(0);
+        if (this.state.chosenStanceMod.name && this.state.chosenStanceMod.polarity !== stancePolarity && !this.state.forceNeutStance && !this.state.forceOriginalStance && !this.state.forceCurrStance) {
+            withPolStance = this.calcCost(this.state.chosenMods, slotPolarities, this.state.chosenStanceMod, this.state.chosenStanceMod.polarity);
+        }
+        this.state.chosenMods.forEach((mod, index) => {
+            if (mod.name && mod.polarity !== 'umbra' && mod.baseCost + mod.currRank > highest.drain && !tempSlotPolarities[index]) highest = { slot: index, drain: mod.baseCost + mod.currRank }
+        });
+        tempSlotPolarities[highest.slot] = this.state.chosenMods[highest.slot].polarity;
+        withNewSlot = this.calcCost(this.state.chosenMods, tempSlotPolarities, this.state.chosenStanceMod, stancePolarity);
+        if (withNewSlot <= withPolStance) {
+            finalPolarities.slots = tempSlotPolarities.slice(0);
+            leftoverCap = cap - withNewSlot;
+        } else {
+            finalPolarities.stance = this.state.chosenStanceMod.polarity;
+            leftoverCap = cap - withPolStance;
+        }
+        if (leftoverCap < 0) {
+            if (this.state.chosenStanceMod.name && this.state.chosenStanceMod.polarity !== finalPolarities.stance && !this.state.forceNeutStance && !this.state.forceOriginalStance && !this.state.forceCurrStance) {
+                available = true;
+            } else {
+                this.state.chosenMods.forEach((mod, index) => {
+                    if (mod.name && mod.polarity !== finalPolarities.slots[index] && mod.polarity !== 'umbra') {
+                        available = true;
+                    }
+                });
+            }
+            if (available) {
+                finalPolarities = this.calcAutoForma(finalPolarities.stance, finalPolarities.slots, cap);
+            }
+        }
+        return finalPolarities;
+    }
+
+    setAutoForma = (stancePolarity, slotPolarities, totalModsCost) => {
+        let formaCount = this.countForma(slotPolarities, stancePolarity);
+        document.body.classList.remove('noscroll');
+        this.setState({
+            autoForma: false,
+            stancePolarity: stancePolarity,
+            slotPolarities: slotPolarities,
+            totalModsCost: totalModsCost,
+            formaCount: formaCount
+        });
     }
 
     openModPicker = (slot) => {
@@ -314,7 +522,6 @@ class MeleeModding extends Component {
     closeModPicker = () => {
         this.setState({
             modPicker: false,
-            // errorBlinker: null
         })
         document.body.classList.remove('noscroll');
     }
@@ -762,8 +969,50 @@ class MeleeModding extends Component {
         }
     }
 
+    forceNeutStance = () => {
+        if (this.state.forceNeutStance) {
+            this.setState({
+                forceNeutStance: false
+            });
+        } else {
+            this.setState({
+                forceNeutStance: true,
+                forceCurrStance: false,
+                forceOriginalStance: false
+            });
+        }
+    }
+
+    forceCurrStance = () => {
+        if (this.state.forceCurrStance) {
+            this.setState({
+                forceCurrStance: false
+            });
+        } else {
+            this.setState({
+                forceCurrStance: true,
+                forceNeutStance: false,
+                forceOriginalStance: false
+            });
+        }
+    }
+
+    forceOriginalStance = () => {
+        if (this.state.forceOriginalStance) {
+            this.setState({
+                forceOriginalStance: false
+            });
+        } else {
+            this.setState({
+                forceOriginalStance: true,
+                forceNeutStance: false,
+                forceCurrStance: false
+            });
+        }
+    }
+
     render() {
-        const { chosenStanceMod, chosenIndexs, stancePolarity, chosenMods, modPicker, orokin, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSlot, forSwap, polarityPicker, arcanes, arcanePicker } = this.state;
+        const { chosenStanceMod, chosenIndexs, stancePolarity, chosenMods, modPicker, orokin, forma, autoForma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSlot, forSwap, polarityPicker, arcanes, arcanePicker } = this.state;
         return (
             <Spring
                 native
@@ -894,6 +1143,30 @@ class MeleeModding extends Component {
                             {this.displayMessage()}
                         </div>
                         <MeleeStats weapon={this.props.item} mods={chosenMods} viewWidth={this.props.viewWidth} />
+                        <div className={"autoforma-wrapper " + (autoForma ? 'autoforma-active' : 'autoforma-inactive')}>
+                            <div className="autoforma-box">
+                                <p className="autoforma-p">Manually apply Forma or let Tennoware handle it automatically?</p>
+                                <div className="autoforma-options">
+                                    <p className="autoforma-options-p">Auto-Forma Options</p>
+                                    <div className="autoforma-option">
+                                        <p>Force neutral Stance slot</p>
+                                        <Switch onChange={this.forceNeutStance} checked={this.state.forceNeutStance} />
+                                    </div>
+                                    <div className="autoforma-option">
+                                        <p>Force current Stance slot</p>
+                                        <Switch onChange={this.forceCurrStance} checked={this.state.forceCurrStance} />
+                                    </div>
+                                    <div className="autoforma-option">
+                                        <p>Force original Stance slot</p>
+                                        <Switch onChange={this.forceOriginalStance} checked={this.state.forceOriginalStance} />
+                                    </div>
+                                </div>
+                                <div className="autoforma-buttons">
+                                    <div className="interactable interactable-semi-inactive" onClick={this.manualForma}><p className="interactable-p">Manual</p></div>
+                                    <div className="interactable interactable-semi-inactive" onClick={this.autoForma}><p className="interactable-p">Auto</p></div>
+                                </div>
+                            </div>
+                        </div>
                         <PolarityPicker polarityPicker={polarityPicker} polarizeSlot={this.polarizeSlot} hidePolarityPicker={this.hidePolarityPicker} />
                         {this.props.type === 'zaws' &&
                             <ArcanePicker arcanes={this.props.arcanes} active={arcanePicker} hideArcanePicker={this.hideArcanePicker} pickArcane={this.pickArcane} />
