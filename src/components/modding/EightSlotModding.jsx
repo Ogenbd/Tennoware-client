@@ -27,6 +27,7 @@ class EightSlotModding extends Component {
         this.state = {
             orokin: true,
             forma: false,
+            autoForma: false,
             formaCount: 0,
             slotPolarities: this.props.slotPolarities,
             forSlot: null,
@@ -264,11 +265,170 @@ class EightSlotModding extends Component {
     }
 
     toggleForma = () => {
-        this.setState(prevState => ({
-            forma: !prevState.forma,
-            forSwap: null,
-            errorBlinker: null
-        }));
+        if (this.state.forma) {
+            this.setState({
+                forma: false,
+                forSwap: null,
+                errorBlinker: null
+            });
+        } else {
+            let cap = this.state.orokin ? 60 - this.state.totalModsCost : 30 - this.state.totalModsCost;
+            if (cap >= 0) {
+                this.setState({
+                    forma: true,
+                    forSwap: null,
+                    errorBlinker: null
+                });
+            } else {
+                document.body.classList.add('noscroll');
+                this.setState({
+                    autoForma: true,
+                    forSwap: null,
+                    errorBlinker: null
+                });
+            }
+        }
+    }
+
+    manualForma = () => {
+        document.body.classList.remove('noscroll');
+        this.setState({
+            forma: true,
+            autoForma: false,
+        });
+    }
+
+    autoForma = () => {
+        try {
+            let cap = this.state.orokin ? 60 : 30;
+            let arrangedOriginals = this.arrangeOriginals();
+            let totalModsCost = this.calcCost(this.state.chosenMods, arrangedOriginals);
+            if (cap - totalModsCost >= 0) {
+                this.setAutoForma(arrangedOriginals, totalModsCost);
+            } else {
+                let mismatch = this.formaMismatch(arrangedOriginals, cap);
+                totalModsCost = this.calcCost(this.state.chosenMods, mismatch);
+                if (cap - totalModsCost >= 0) {
+                    this.setAutoForma(mismatch, totalModsCost);
+                } else {
+                    let finalPolarities = this.calcAutoForma(mismatch, cap);
+                    totalModsCost = this.calcCost(this.state.chosenMods, finalPolarities);
+                    this.setAutoForma(finalPolarities, totalModsCost);
+                }
+            }
+        } catch {
+            this.props.redirectToVoid();
+        }
+    }
+
+    arrangeOriginals = () => {
+        let arrangedOriginals = [];
+        this.props.slotPolarities.forEach(polarity => {
+            let highest = {
+                slot: undefined,
+                drain: 0
+            }
+            this.state.chosenMods.forEach((mod, index) => {
+                if (mod.name && mod.polarity === polarity && mod.baseCost + mod.currRank > highest.drain && !arrangedOriginals[index]) highest = { slot: index, drain: mod.baseCost + mod.currRank }
+            });
+            if (highest.slot === undefined) {
+                let empty = this.state.chosenMods.findIndex((mod, index) => !mod.name && !arrangedOriginals[index]);
+                if (empty !== -1) {
+                    arrangedOriginals[empty] = polarity;
+                } else {
+                    let lowest = {
+                        slot: undefined,
+                        drain: 100
+                    }
+                    this.state.chosenMods.forEach((mod, index) => {
+                        if (mod.name && mod.baseCost + mod.currRank < lowest.drain && !arrangedOriginals[index]) lowest = { slot: index, drain: mod.baseCost + mod.currRank }
+                    });
+                    arrangedOriginals[lowest.slot] = polarity;
+                }
+            } else {
+                arrangedOriginals[highest.slot] = polarity;
+            }
+        });
+        return arrangedOriginals;
+    }
+
+    formaMismatch = (slotPolarities, cap) => {
+        let postMismatch = slotPolarities.slice(0);
+        let leftoverCap;
+        let withNewSlot;
+        let highest = {
+            slot: undefined,
+            drain: 0
+        }
+        let mismatches = [];
+        let tempSlotPolarities = slotPolarities.slice(0);
+        this.state.chosenMods.forEach((mod, index) => {
+            if (mod.name && mod.polarity !== slotPolarities[index] && slotPolarities[index] !== undefined && slotPolarities[index] !== null) {
+                mismatches.push({
+                    slot: index,
+                    drain: mod.baseCost + mod.currRank
+                });
+            }
+        });
+        if (mismatches.length > 0) {
+            mismatches.sort((a, b) => {
+                return b.drain - a.drain;
+            });
+            this.state.chosenMods.forEach((mod, index) => {
+                if (mod.name && mod.polarity !== 'umbra' && mod.baseCost + mod.currRank > highest.drain && !tempSlotPolarities[index]) highest = { slot: index, drain: mod.baseCost + mod.currRank }
+            });
+            tempSlotPolarities[mismatches[0].slot] = undefined;
+            tempSlotPolarities[highest.slot] = this.state.chosenMods[highest.slot].polarity;
+            withNewSlot = this.calcCost(this.state.chosenMods, tempSlotPolarities);
+            postMismatch = tempSlotPolarities.slice(0);
+            leftoverCap = cap - withNewSlot;
+            mismatches.shift()
+            if (mismatches.length > 0 && leftoverCap < 0) {
+                postMismatch = this.formaMismatch(postMismatch, cap);
+            }
+        }
+        return postMismatch;
+    }
+
+    calcAutoForma = (slotPolarities, cap) => {
+        let finalPolarities = slotPolarities.slice(0);
+        let leftoverCap;
+        let withNewSlot;
+        let available = false;
+        let highest = {
+            slot: undefined,
+            drain: 0
+        }
+        let tempSlotPolarities = slotPolarities.slice(0);
+        this.state.chosenMods.forEach((mod, index) => {
+            if (mod.name && mod.polarity !== 'umbra' && mod.baseCost + mod.currRank > highest.drain && !tempSlotPolarities[index]) highest = { slot: index, drain: mod.baseCost + mod.currRank }
+        });
+        tempSlotPolarities[highest.slot] = this.state.chosenMods[highest.slot].polarity;
+        withNewSlot = this.calcCost(this.state.chosenMods, tempSlotPolarities);
+        finalPolarities = tempSlotPolarities.slice(0);
+        leftoverCap = cap - withNewSlot;
+        if (leftoverCap < 0) {
+            this.state.chosenMods.forEach((mod, index) => {
+                if (mod.name && mod.polarity !== finalPolarities[index] && mod.polarity !== 'umbra') {
+                    available = true;
+                }
+            });
+            if (available) {
+                finalPolarities = this.calcAutoForma(finalPolarities, cap);
+            }
+        }
+        return finalPolarities;
+    }
+
+    setAutoForma = (slotPolarities, totalModsCost) => {
+        let formaCount = this.countForma(slotPolarities);
+        document.body.classList.remove('noscroll');
+        this.setState({
+            autoForma: false,
+            slotPolarities: slotPolarities,
+            totalModsCost: totalModsCost,
+            formaCount: formaCount
+        });
     }
 
     openModPicker = (slot) => {
@@ -619,7 +779,7 @@ class EightSlotModding extends Component {
     }
 
     render() {
-        const { chosenMods, chosenIndexs, modPicker, orokin, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSwap, polarityPicker, arcanes, arcanePicker } = this.state;
+        const { chosenMods, chosenIndexs, modPicker, orokin, forma, autoForma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSwap, polarityPicker, arcanes, arcanePicker } = this.state;
         return (
             <Spring
                 native
@@ -745,6 +905,15 @@ class EightSlotModding extends Component {
                         {(this.props.type === 'archmelee' || this.props.riven === 'melee') &&
                             <MeleeStats weapon={this.props.item} mods={this.state.chosenMods} viewWidth={this.props.viewWidth} />
                         }
+                        <div className={"autoforma-wrapper " + (autoForma ? 'autoforma-active' : 'autoforma-inactive')}>
+                            <div className="autoforma-box">
+                                <p className="autoforma-p">Manually apply Forma or let Tennoware handle it automatically?</p>
+                                <div className="autoforma-buttons">
+                                    <div className="interactable interactable-semi-inactive" onClick={this.manualForma}><p className="interactable-p">Manual</p></div>
+                                    <div className="interactable interactable-semi-inactive" onClick={this.autoForma}><p className="interactable-p">Auto</p></div>
+                                </div>
+                            </div>
+                        </div>
                         <PolarityPicker polarityPicker={polarityPicker} polarizeSlot={this.polarizeSlot} hidePolarityPicker={this.hidePolarityPicker} />
                         {this.props.type === 'kitguns' &&
                             <ArcanePicker arcanes={this.props.arcanes} active={arcanePicker} hideArcanePicker={this.hideArcanePicker} pickArcane={this.pickArcane} />
