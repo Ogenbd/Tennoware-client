@@ -390,27 +390,21 @@ export default class MyBuilds extends Component {
                                 </Spring>
                             }
                         </div>
-                        <div className={"popup " + (this.state.unlike ? "popup-active" : "popup-inactive")}>
-                            <div className={"popup-topbar " + (this.state.unlike ? "popup-active" : "popup-inactive")}></div>
-                            <div className="popup-content conformation-wrapper">
-                                <div className="conformation-box">
-                                    <div className="conformation-dialog">Are you sure?</div>
-                                    <div className="conformation-buttons">
-                                        <div className="interactable interactable-semi-inactive" onClick={this.unsetRemoval}><p className="interactable-p">Cancel</p></div>
-                                        <div className="interactable interactable-semi-inactive delete-button" onClick={this.unlikeBuild}><p className="interactable-p">Unlike</p></div>
-                                    </div>
+                        <div className={"conformation-wrapper " + (this.state.unlike ? "conformation-active" : "conformation-inactive")} >
+                            <div className="conformation-box">
+                                <div className="conformation-dialog">Are you sure?</div>
+                                <div className="conformation-buttons">
+                                    <div className="interactable interactable-semi-inactive" onClick={this.unsetRemoval}><p className="interactable-p">Cancel</p></div>
+                                    <div className="interactable interactable-semi-inactive delete-button" onClick={this.unlikeBuild}><p className="interactable-p">Unlike</p></div>
                                 </div>
                             </div>
                         </div>
-                        <div className={"popup " + (this.state.delete ? "popup-active" : "popup-inactive")}>
-                            <div className={"popup-topbar " + (this.state.delete ? "popup-active" : "popup-inactive")}></div>
-                            <div className="popup-content conformation-wrapper">
-                                <div className="conformation-box">
-                                    <div className="conformation-dialog">Are you sure?</div>
-                                    <div className="conformation-buttons">
-                                        <div className="interactable interactable-semi-inactive" onClick={this.unsetRemoval}><p className="interactable-p">Cancel</p></div>
-                                        <div className="interactable interactable-semi-inactive delete-button" onClick={this.deleteBuild}><p className="interactable-p">Delete</p></div>
-                                    </div>
+                        <div className={"conformation-wrapper " + (this.state.delete ? "conformation-active" : "conformation-inactive")} >
+                            <div className="conformation-box">
+                                <div className="conformation-dialog">Are you sure?</div>
+                                <div className="conformation-buttons">
+                                    <div className="interactable interactable-semi-inactive" onClick={this.unsetRemoval}><p className="interactable-p">Cancel</p></div>
+                                    <div className="interactable interactable-semi-inactive delete-button" onClick={this.deleteBuild}><p className="interactable-p">Delete</p></div>
                                 </div>
                             </div>
                         </div>

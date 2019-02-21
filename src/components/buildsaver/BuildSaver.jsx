@@ -10,7 +10,6 @@ export class BuildSaver extends Component {
         this.state = {
             showBuildSaver: false,
             exact: false,
-            private: true,
             error: null,
             loading: false,
             inputError: null,
@@ -23,7 +22,6 @@ export class BuildSaver extends Component {
         if (this.props.metaInfo.Owner) {
             let isPrivate = this.props.metaInfo.Private ? true : false
             this.setState({
-                private: isPrivate,
                 buildName: this.props.metaInfo.BuildName,
                 buildDesc: this.props.metaInfo.BuildDesc
             });
@@ -175,16 +173,15 @@ export class BuildSaver extends Component {
     }
 
     okClick = () => {
+        this.hideBuildSaver();
         if (this.state.error === 'Build saved.') {
             document.body.classList.remove('noscroll');
             this.redirectToSaved(this.state.buildData, this.state.buildId);
-        } else {
-            this.hideBuildSaver();
         }
     }
 
     redirectToSaved = (buildData, buildId) => {
-        let newUrl = `/${this.props.type}/${this.props.match.params.id}/${buildData.buildStr}/${buildId}`;
+        let newUrl = `/${this.props.type}/${decodeURIComponent(this.props.match.params.id)}/${buildData.buildStr}/${buildId}`;
         document.body.classList.remove('noscroll');
         this.props.history.push(newUrl);
     }
