@@ -40,7 +40,7 @@ class FrameBuilder extends Component {
                 .then(res => {
                     if (res.status === 200) {
                         res.json().then(({ res }) => {
-                            if (res && res.ItemName === this.props.match.params.id.toLowerCase() && res.BuildStr === this.props.match.params.pre) {
+                            if (res && res.ItemName === decodeURIComponent(this.props.match.params.id.toLowerCase()) && res.BuildStr === this.props.match.params.pre) {
                                 this.setState({ metaInfo: res });
                             } else if (res.status === 401) {
                                 this.props.history.replace('/unauthorized');
@@ -68,7 +68,7 @@ class FrameBuilder extends Component {
         setTimeout(() => {
             Promise.all([this.props.items(), this.props.mods(), this.props.arcanes()]).then(data => {
                 let selected = data[0].default.find(item => {
-                    return item.name.toLowerCase() === this.props.match.params.id.toLowerCase();
+                    return item.name.toLowerCase() === decodeURIComponent(this.props.match.params.id.toLowerCase());
                 });
                 if (selected !== undefined) {
                     let slotPolarities = [];
@@ -109,7 +109,7 @@ class FrameBuilder extends Component {
             .then(res => {
                 if (res.status === 200) {
                     res.json().then(({ res }) => {
-                        if (res && res.ItemName === this.props.match.params.id.toLowerCase() && res.BuildStr === this.props.match.params.pre) {
+                        if (res && res.ItemName === decodeURIComponent(this.props.match.params.id.toLowerCase()) && res.BuildStr === this.props.match.params.pre) {
                             this.setupBuilder(res);
                         } else if (res.status === 401) {
                             this.props.history.replace('/unauthorized');
@@ -137,14 +137,14 @@ class FrameBuilder extends Component {
     }
 
     confirmError = () => {
-        this.props.history.replace(`/${this.props.type}/${this.props.match.params.id}`);
+        this.props.history.replace(`/${this.props.type}/${decodeURIComponent(this.props.match.params.id)}`);
     }
 
     render() {
         return (
             <React.Fragment>
                 <Helmet>
-                    <title>Tennoware - {this.props.match.params.id}</title>
+                    <title>Tennoware - {decodeURIComponent(this.props.match.params.id)}</title>
                 </Helmet>
                 <div className="top-title"><p>{this.state.title}</p></div>
                 <div className="screen">
