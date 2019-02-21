@@ -99,7 +99,7 @@ export class BuildSaver extends Component {
                     private: isPrivate,
                     buildName: this.state.buildName,
                     buildDesc: this.state.buildDesc,
-                    item: this.props.match.params.id,
+                    item: decodeURIComponent(this.props.match.params.id),
                     type: this.props.type
                 }
                 this.props.orokin ? buildData.orokin = 1 : buildData.orokin = 0;

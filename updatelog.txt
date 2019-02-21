@@ -4,6 +4,9 @@ upcoming - v1.2.10.
 
 Fixes:
 Corrected Equinox's Peaceful Provocation augment's energy costs.
+Build deletion conformation box is now bound to the viewport instead of the page.
+Fixed several issues with items that have an ampersand (&) in their name.
+Fixed an issue that occured when updating a build's name/description without changing anything in the build.
 
 18/06/2019 - v1.2.9.
 
