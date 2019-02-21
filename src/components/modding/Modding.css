@@ -248,6 +248,72 @@
     margin: 3px;
 }
 
+.autoforma-wrapper {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 56px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 200ms;
+    z-index: 21;
+}
+
+.autoforma-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.autoforma-inactive {
+    opacity: 0;
+    pointer-events: none
+}
+
+.autoforma-box {
+    max-width: 250px;
+    width: 85vw;
+    background-color: black;
+    border: 1px solid rgba(255, 249, 160, 0.3);
+    padding: 15px;
+}
+
+.autoforma-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    color: white;
+    line-height: 28px;
+}
+
+.autoforma-options-p {
+    color: rgb(255, 249, 160);
+    text-decoration: underline;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.autoforma-option {
+    display: flex;
+    width: 90%;
+    max-width: 240px;
+    justify-content: space-between;
+    padding: 2px 0;
+    margin: 3px 0;
+}
+
+.autoforma-buttons {
+    display: flex;
+    margin-top: 10px;
+}
+
+.autoforma-p {
+color: white;
+padding: 8px;
+}
+
 @media screen and (min-width: 537px) {
     .stats-placeholder {
         min-height: calc(100% - 56px);

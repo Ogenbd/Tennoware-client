@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Spring, animated } from "react-spring/renderprops";
+import Switch from 'react-switch';
 import cloneDeep from 'lodash/cloneDeep';
 import './Modding.css';
 
@@ -23,6 +24,13 @@ class WarframeModding extends Component {
         this.state = {
             orokin: true,
             forma: false,
+            autoForma: false,
+            forceNeutAura: false,
+            forceNeutExilus: false,
+            forceOriginalAura: false,
+            forceOriginalExilus: false,
+            forceCurrAura: false,
+            forceCurrExilus: false,
             formaCount: 0,
             auraPolarity: this.props.frame.aura,
             exilusPolarity: this.props.frame.exilus,
@@ -243,11 +251,232 @@ class WarframeModding extends Component {
     }
 
     toggleForma = () => {
-        this.setState(prevState => ({
-            forma: !prevState.forma,
-            forSwap: null,
-            errorBlinker: null
-        }));
+        if (this.state.forma) {
+            this.setState({
+                forma: false,
+                forSwap: null,
+                errorBlinker: null
+            });
+        } else {
+            let cap = this.state.orokin ? 60 - this.state.totalModsCost : 30 - this.state.totalModsCost;
+            if (cap >= 0) {
+                this.setState({
+                    forma: true,
+                    forSwap: null,
+                    errorBlinker: null
+                });
+            } else {
+                document.body.classList.add('noscroll');
+                this.setState({
+                    autoForma: true,
+                    forSwap: null,
+                    errorBlinker: null
+                });
+            }
+        }
+    }
+
+    manualForma = () => {
+        document.body.classList.remove('noscroll');
+        this.setState({
+            forma: true,
+            autoForma: false,
+        });
+    }
+
+    autoForma = () => {
+        try {
+            let cap = this.state.orokin ? 60 : 30;
+            let arrangedOriginals = this.arrangeOriginals();
+            let auraPolarity = this.state.forceNeutAura ? undefined : this.state.forceCurrAura ? this.state.auraPolarity : this.props.frame.aura;
+            let exilusPolarity = this.state.forceNeutExilus ? undefined : this.state.forceCurrExilus ? this.state.exilusPolarity : this.props.frame.exilus;
+            let totalModsCost = this.calcCost(this.state.chosenMods, arrangedOriginals, this.state.chosenAuraMod, auraPolarity, this.state.chosenExilusMod, exilusPolarity);
+            if (cap - totalModsCost >= 0) {
+                this.setAutoForma(auraPolarity, exilusPolarity, arrangedOriginals, totalModsCost);
+            } else {
+                let mismatch = this.formaMismatch(auraPolarity, exilusPolarity, arrangedOriginals, cap);
+                totalModsCost = this.calcCost(this.state.chosenMods, mismatch.slots, this.state.chosenAuraMod, mismatch.aura, this.state.chosenExilusMod, mismatch.exilus);
+                if (cap - totalModsCost >= 0) {
+                    this.setAutoForma(mismatch.aura, mismatch.exilus, mismatch.slots, totalModsCost);
+                } else {
+                    let finalPolarities = this.calcAutoForma(mismatch.aura, mismatch.exilus, mismatch.slots, cap);
+                    totalModsCost = this.calcCost(this.state.chosenMods, finalPolarities.slots, this.state.chosenAuraMod, finalPolarities.aura, this.state.chosenExilusMod, finalPolarities.exilus);
+                    this.setAutoForma(finalPolarities.aura, finalPolarities.exilus, finalPolarities.slots, totalModsCost);
+                }
+            }
+        } catch {
+            this.props.redirectToVoid();
+        }
+    }
+
+    arrangeOriginals = () => {
+        let arrangedOriginals = [];
+        this.props.slotPolarities.forEach(polarity => {
+            let highest = {
+                slot: undefined,
+                drain: 0
+            }
+            this.state.chosenMods.forEach((mod, index) => {
+                if (mod.name && mod.polarity === polarity && mod.baseCost + mod.currRank > highest.drain && !arrangedOriginals[index]) highest = { slot: index, drain: mod.baseCost + mod.currRank }
+            });
+            if (highest.slot === undefined) {
+                let empty = this.state.chosenMods.findIndex((mod, index) => !mod.name && !arrangedOriginals[index]);
+                if (empty !== -1) {
+                    arrangedOriginals[empty] = polarity;
+                } else {
+                    let lowest = {
+                        slot: undefined,
+                        drain: 100
+                    }
+                    this.state.chosenMods.forEach((mod, index) => {
+                        if (mod.name && mod.baseCost + mod.currRank < lowest.drain && !arrangedOriginals[index]) lowest = { slot: index, drain: mod.baseCost + mod.currRank }
+                    });
+                    arrangedOriginals[lowest.slot] = polarity;
+                }
+            } else {
+                arrangedOriginals[highest.slot] = polarity;
+            }
+        });
+        return arrangedOriginals;
+    }
+
+    formaMismatch = (auraPolarity, exilusPolarity, slotPolarities, cap) => {
+        let postMismatch = {
+            aura: auraPolarity,
+            exilus: exilusPolarity,
+            slots: slotPolarities
+        }
+        let leftoverCap;
+        let withPolAura = 1000;
+        let withPolExilus = 1000;
+        let withNewSlot = 1000;
+        let bestOption;
+        let highest = {
+            slot: undefined,
+            drain: 0
+        }
+        let mismatches = [];
+        let tempSlotPolarities = slotPolarities.slice(0);
+        this.state.chosenMods.forEach((mod, index) => {
+            if (mod.name && mod.polarity !== slotPolarities[index] && slotPolarities[index] !== undefined && slotPolarities[index] !== null) {
+                mismatches.push({
+                    slot: index,
+                    drain: mod.baseCost + mod.currRank
+                });
+            }
+        });
+        if (mismatches.length > 0) {
+            mismatches.sort((a, b) => {
+                return b.drain - a.drain;
+            });
+            if (this.state.chosenAuraMod.name && this.state.chosenAuraMod.polarity !== auraPolarity && !this.state.forceNeutAura && !this.state.forceOriginalAura && !this.state.forceCurrAura) {
+                withPolAura = this.calcCost(this.state.chosenMods, slotPolarities, this.state.chosenAuraMod, this.state.chosenAuraMod.polarity, this.state.chosenExilusMod, exilusPolarity);
+            }
+            if (this.state.chosenExilusMod.name && this.state.chosenExilusMod.polarity !== exilusPolarity && !this.state.forceNeutExilus && !this.state.forceOriginalExilus && !this.state.forceCurrExilus) {
+                withPolExilus = this.calcCost(this.state.chosenMods, slotPolarities, this.state.chosenAuraMod, auraPolarity, this.state.chosenExilusMod, this.state.chosenExilusMod.polarity);
+            }
+            this.state.chosenMods.forEach((mod, index) => {
+                if (mod.name && mod.polarity !== 'umbra' && mod.baseCost + mod.currRank > highest.drain && !tempSlotPolarities[index]) highest = { slot: index, drain: mod.baseCost + mod.currRank }
+            });
+            tempSlotPolarities[mismatches[0].slot] = undefined;
+            tempSlotPolarities[highest.slot] = this.state.chosenMods[highest.slot].polarity;
+            withNewSlot = this.calcCost(this.state.chosenMods, tempSlotPolarities, this.state.chosenAuraMod, auraPolarity, this.state.chosenExilusMod, exilusPolarity);
+            bestOption = this.getBestOption([withNewSlot, withPolAura, withPolExilus]);
+            if (bestOption === 0) {
+                postMismatch.slots = tempSlotPolarities.slice(0);
+                leftoverCap = cap - withNewSlot;
+                mismatches.shift()
+            } else if (bestOption === 1) {
+                postMismatch.aura = this.state.chosenAuraMod.polarity;
+                leftoverCap = cap - withPolAura;
+            } else if (bestOption === 2) {
+                postMismatch.exilus = this.state.chosenExilusMod.polarity;
+                leftoverCap = cap - withPolExilus;
+            }
+            if (mismatches.length > 0 && leftoverCap < 0) {
+                postMismatch = this.formaMismatch(postMismatch.aura, postMismatch.exilus, postMismatch.slots, cap);
+            }
+        }
+        return postMismatch;
+    }
+
+    calcAutoForma = (auraPolarity, exilusPolarity, slotPolarities, cap) => {
+        let finalPolarities = {
+            aura: auraPolarity,
+            exilus: exilusPolarity,
+            slots: slotPolarities
+        }
+        let leftoverCap;
+        let withPolAura = 1000;
+        let withPolExilus = 1000;
+        let withNewSlot = 1000;
+        let available = false;
+        let bestOption;
+        let highest = {
+            slot: undefined,
+            drain: 0
+        }
+        let tempSlotPolarities = slotPolarities.slice(0);
+        if (this.state.chosenAuraMod.name && this.state.chosenAuraMod.polarity !== auraPolarity && !this.state.forceNeutAura && !this.state.forceOriginalAura && !this.state.forceCurrAura) {
+            withPolAura = this.calcCost(this.state.chosenMods, slotPolarities, this.state.chosenAuraMod, this.state.chosenAuraMod.polarity, this.state.chosenExilusMod, exilusPolarity);
+        }
+        if (this.state.chosenExilusMod.name && this.state.chosenExilusMod.polarity !== exilusPolarity && !this.state.forceNeutExilus && !this.state.forceOriginalExilus && !this.state.forceCurrExilus) {
+            withPolExilus = this.calcCost(this.state.chosenMods, slotPolarities, this.state.chosenAuraMod, auraPolarity, this.state.chosenExilusMod, this.state.chosenExilusMod.polarity);
+        }
+        this.state.chosenMods.forEach((mod, index) => {
+            if (mod.name && mod.polarity !== 'umbra' && mod.baseCost + mod.currRank > highest.drain && !tempSlotPolarities[index]) highest = { slot: index, drain: mod.baseCost + mod.currRank }
+        });
+        tempSlotPolarities[highest.slot] = this.state.chosenMods[highest.slot].polarity;
+        withNewSlot = this.calcCost(this.state.chosenMods, tempSlotPolarities, this.state.chosenAuraMod, auraPolarity, this.state.chosenExilusMod, exilusPolarity);
+        bestOption = this.getBestOption([withNewSlot, withPolAura, withPolExilus]);
+        if (bestOption === 0) {
+            finalPolarities.slots = tempSlotPolarities.slice(0);
+            leftoverCap = cap - withNewSlot;
+        } else if (bestOption === 1) {
+            finalPolarities.aura = this.state.chosenAuraMod.polarity;
+            leftoverCap = cap - withPolAura;
+        } else if (bestOption === 2) {
+            finalPolarities.exilus = this.state.chosenExilusMod.polarity;
+            leftoverCap = cap - withPolExilus;
+        }
+        if (leftoverCap < 0) {
+            if (this.state.chosenAuraMod.name && this.state.chosenAuraMod.polarity !== finalPolarities.aura && !this.state.forceNeutAura && !this.state.forceOriginalAura && !this.state.forceCurrAura) {
+                available = true;
+            } else if (this.state.chosenExilusMod.name && this.state.chosenExilusMod.polarity !== finalPolarities.exilus && !this.state.forceNeutExilus && !this.state.forceOriginalExilus && !this.state.forceCurrExilus) {
+                available = true;
+            } else {
+                this.state.chosenMods.forEach((mod, index) => {
+                    if (mod.name && mod.polarity !== finalPolarities.slots[index] && mod.polarity !== 'umbra') {
+                        available = true;
+                    }
+                });
+            }
+            if (available) {
+                finalPolarities = this.calcAutoForma(finalPolarities.aura, finalPolarities.exilus, finalPolarities.slots, cap);
+            }
+        }
+        return finalPolarities;
+    }
+
+    getBestOption = (arr) => {
+        let lowest = 0;
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] < arr[lowest]) lowest = i;
+        }
+        return lowest;
+    }
+
+    setAutoForma = (auraPolarity, exilusPolarity, slotPolarities, totalModsCost) => {
+        let formaCount = this.countForma(slotPolarities, auraPolarity, exilusPolarity);
+        document.body.classList.remove('noscroll');
+        this.setState({
+            autoForma: false,
+            auraPolarity: auraPolarity,
+            exilusPolarity: exilusPolarity,
+            slotPolarities: slotPolarities,
+            totalModsCost: totalModsCost,
+            formaCount: formaCount
+        });
     }
 
     openModPicker = (slot) => {
@@ -784,8 +1013,92 @@ class WarframeModding extends Component {
         }
     }
 
+    forceNeutAura = () => {
+        if (this.state.forceNeutAura) {
+            this.setState({
+                forceNeutAura: false
+            });
+        } else {
+            this.setState({
+                forceNeutAura: true,
+                forceCurrAura: false,
+                forceOriginalAura: false
+            });
+        }
+    }
+
+    forceCurrAura = () => {
+        if (this.state.forceCurrAura) {
+            this.setState({
+                forceCurrAura: false
+            });
+        } else {
+            this.setState({
+                forceCurrAura: true,
+                forceNeutAura: false,
+                forceOriginalAura: false
+            });
+        }
+    }
+
+    forceOriginalAura = () => {
+        if (this.state.forceOriginalAura) {
+            this.setState({
+                forceOriginalAura: false
+            });
+        } else {
+            this.setState({
+                forceOriginalAura: true,
+                forceNeutAura: false,
+                forceCurrAura: false
+            });
+        }
+    }
+
+    forceNeutExilus = () => {
+        if (this.state.forceNeutExilus) {
+            this.setState({
+                forceNeutExilus: false
+            });
+        } else {
+            this.setState({
+                forceNeutExilus: true,
+                forceCurrExilus: false,
+                forceOriginalExilus: false
+            });
+        }
+    }
+
+    forceCurrExilus = () => {
+        if (this.state.forceCurrExilus) {
+            this.setState({
+                forceCurrExilus: false
+            });
+        } else {
+            this.setState({
+                forceCurrExilus: true,
+                forceNeutExilus: false,
+                forceOriginalExilus: false
+            });
+        }
+    }
+
+    forceOriginalExilus = () => {
+        if (this.state.forceOriginalExilus) {
+            this.setState({
+                forceOriginalExilus: false
+            });
+        } else {
+            this.setState({
+                forceOriginalExilus: true,
+                forceNeutExilus: false,
+                forceCurrExilus: false
+            });
+        }
+    }
+
     render() {
-        const { chosenAuraMod, chosenIndexs, auraPolarity, chosenExilusMod, exilusPolarity, chosenMods, modPicker, orokin, forma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSlot, forSwap, polarityPicker, arcanes, arcanePicker } = this.state;
+        const { chosenAuraMod, chosenIndexs, auraPolarity, chosenExilusMod, exilusPolarity, chosenMods, modPicker, orokin, forma, autoForma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSlot, forSwap, polarityPicker, arcanes, arcanePicker } = this.state;
         return (
             <Spring
                 native
@@ -899,6 +1212,42 @@ class WarframeModding extends Component {
                             {this.displayMessage()}
                         </div>
                         <WarframeStats frame={this.props.frame} full={true} mods={chosenMods} chosenExilusMod={chosenExilusMod} chosenAuraMod={chosenAuraMod} viewWidth={this.props.viewWidth} />
+                        <div className={"autoforma-wrapper " + (autoForma ? 'autoforma-active' : 'autoforma-inactive')}>
+                            <div className="autoforma-box">
+                                <p className="autoforma-p">Manually apply Forma or let Tennoware handle it automatically?</p>
+                                <div className="autoforma-options">
+                                    <p className="autoforma-options-p">Auto-Forma Options</p>
+                                    <div className="autoforma-option">
+                                        <p>Force neutral Aura slot</p>
+                                        <Switch onChange={this.forceNeutAura} checked={this.state.forceNeutAura} />
+                                    </div>
+                                    <div className="autoforma-option">
+                                        <p>Force current Aura slot</p>
+                                        <Switch onChange={this.forceCurrAura} checked={this.state.forceCurrAura} />
+                                    </div>
+                                    <div className="autoforma-option">
+                                        <p>Force original Aura slot</p>
+                                        <Switch onChange={this.forceOriginalAura} checked={this.state.forceOriginalAura} />
+                                    </div>
+                                    <div className="autoforma-option">
+                                        <p>Force neutral Exilus slot</p>
+                                        <Switch onChange={this.forceNeutExilus} checked={this.state.forceNeutExilus} />
+                                    </div>
+                                    <div className="autoforma-option">
+                                        <p>Force current Exilus slot</p>
+                                        <Switch onChange={this.forceCurrExilus} checked={this.state.forceCurrExilus} />
+                                    </div>
+                                    <div className="autoforma-option">
+                                        <p>Force original Exilus slot</p>
+                                        <Switch onChange={this.forceOriginalExilus} checked={this.state.forceOriginalExilus} />
+                                    </div>
+                                </div>
+                                <div className="autoforma-buttons">
+                                    <div className="interactable interactable-semi-inactive" onClick={this.manualForma}><p className="interactable-p">Manual</p></div>
+                                    <div className="interactable interactable-semi-inactive" onClick={this.autoForma}><p className="interactable-p">Auto</p></div>
+                                </div>
+                            </div>
+                        </div>
                         <PolarityPicker polarityPicker={polarityPicker} polarizeSlot={this.polarizeSlot} hidePolarityPicker={this.hidePolarityPicker} />
                         <ArcanePicker arcanes={this.props.arcanes} active={arcanePicker} hideArcanePicker={this.hideArcanePicker} pickArcane={this.pickArcane} />
                     </animated.div>
