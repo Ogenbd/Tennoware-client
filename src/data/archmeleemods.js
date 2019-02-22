@@ -56,7 +56,7 @@ const archmeleeMods = [
     {
         abrev: 'b5',
         name: 'Cryo Coating',
-        img: require('../assets/modimages/unavail.jpg'),
+        img: require('../assets/modimages/cryo-coating.jpg'),
         type: 'ARCH-MELEE',
         rarity: 'rare',
         polarity: 'madurai',
@@ -135,7 +135,7 @@ const archmeleeMods = [
     {
         abrev: 'b7',
         name: 'Infectious Injection',
-        img: require('../assets/modimages/unavail.jpg'),
+        img: require('../assets/modimages/infectious-injection.jpg'),
         type: 'ARCH-MELEE',
         rarity: 'rare',
         polarity: 'madurai',
@@ -148,7 +148,7 @@ const archmeleeMods = [
     {
         abrev: 'b6',
         name: 'Ion Infusion',
-        img: require('../assets/modimages/unavail.jpg'),
+        img: require('../assets/modimages/ion-infusion.jpg'),
         type: 'ARCH-MELEE',
         rarity: 'rare',
         polarity: 'madurai',

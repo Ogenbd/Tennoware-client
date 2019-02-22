@@ -1,12 +1,18 @@
 UPDATE LOG
 
-upcoming - v1.2.10.
+upcoming - v1.3.0.
+
+New:
+an auto-forma feature has been added. When the forma toggle is activated while capacity is below 0 the user will be asked if they want to manually apply forma or let Tennoware apply it automatically. For more info on the ins and outs of this feature go here.
+
+Changes:
+Build deletion conformation box in the My Builds page is now bound to the viewport instead of the page.
+Added images to the mods: Cryo Coating, Infectious Injection and Ion Infusion.
 
 Fixes:
 Corrected Equinox's Peaceful Provocation augment's energy costs.
-Build deletion conformation box is now bound to the viewport instead of the page.
 Fixed several issues with items that have an ampersand (&) in their name.
-Fixed an issue that occured when updating a build's name/description without changing anything in the build.
+Fixed a error that occured when updating a build's name/description without changing anything in the build.
 
 18/06/2019 - v1.2.9.
 
