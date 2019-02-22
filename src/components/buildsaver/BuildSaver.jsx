@@ -20,7 +20,6 @@ export class BuildSaver extends Component {
 
     componentDidMount() {
         if (this.props.metaInfo.Owner) {
-            let isPrivate = this.props.metaInfo.Private ? true : false
             this.setState({
                 buildName: this.props.metaInfo.BuildName,
                 buildDesc: this.props.metaInfo.BuildDesc
