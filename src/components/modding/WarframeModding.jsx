@@ -285,28 +285,28 @@ class WarframeModding extends Component {
     }
 
     autoForma = () => {
-        try {
-            let cap = this.state.orokin ? 60 : 30;
-            let arrangedOriginals = this.arrangeOriginals();
-            let auraPolarity = this.state.forceNeutAura ? undefined : this.state.forceCurrAura ? this.state.auraPolarity : this.props.frame.aura;
-            let exilusPolarity = this.state.forceNeutExilus ? undefined : this.state.forceCurrExilus ? this.state.exilusPolarity : this.props.frame.exilus;
-            let totalModsCost = this.calcCost(this.state.chosenMods, arrangedOriginals, this.state.chosenAuraMod, auraPolarity, this.state.chosenExilusMod, exilusPolarity);
+        // try {
+        let cap = this.state.orokin ? 60 : 30;
+        let arrangedOriginals = this.arrangeOriginals();
+        let auraPolarity = this.state.forceNeutAura ? undefined : this.state.forceCurrAura ? this.state.auraPolarity : this.props.frame.aura;
+        let exilusPolarity = this.state.forceNeutExilus ? undefined : this.state.forceCurrExilus ? this.state.exilusPolarity : this.props.frame.exilus;
+        let totalModsCost = this.calcCost(this.state.chosenMods, arrangedOriginals, this.state.chosenAuraMod, auraPolarity, this.state.chosenExilusMod, exilusPolarity);
+        if (cap - totalModsCost >= 0) {
+            this.setAutoForma(auraPolarity, exilusPolarity, arrangedOriginals, totalModsCost);
+        } else {
+            let mismatch = this.formaMismatch(auraPolarity, exilusPolarity, arrangedOriginals, cap);
+            totalModsCost = this.calcCost(this.state.chosenMods, mismatch.slots, this.state.chosenAuraMod, mismatch.aura, this.state.chosenExilusMod, mismatch.exilus);
             if (cap - totalModsCost >= 0) {
-                this.setAutoForma(auraPolarity, exilusPolarity, arrangedOriginals, totalModsCost);
+                this.setAutoForma(mismatch.aura, mismatch.exilus, mismatch.slots, totalModsCost);
             } else {
-                let mismatch = this.formaMismatch(auraPolarity, exilusPolarity, arrangedOriginals, cap);
-                totalModsCost = this.calcCost(this.state.chosenMods, mismatch.slots, this.state.chosenAuraMod, mismatch.aura, this.state.chosenExilusMod, mismatch.exilus);
-                if (cap - totalModsCost >= 0) {
-                    this.setAutoForma(mismatch.aura, mismatch.exilus, mismatch.slots, totalModsCost);
-                } else {
-                    let finalPolarities = this.calcAutoForma(mismatch.aura, mismatch.exilus, mismatch.slots, cap);
-                    totalModsCost = this.calcCost(this.state.chosenMods, finalPolarities.slots, this.state.chosenAuraMod, finalPolarities.aura, this.state.chosenExilusMod, finalPolarities.exilus);
-                    this.setAutoForma(finalPolarities.aura, finalPolarities.exilus, finalPolarities.slots, totalModsCost);
-                }
+                let finalPolarities = this.calcAutoForma(mismatch.aura, mismatch.exilus, mismatch.slots, cap);
+                totalModsCost = this.calcCost(this.state.chosenMods, finalPolarities.slots, this.state.chosenAuraMod, finalPolarities.aura, this.state.chosenExilusMod, finalPolarities.exilus);
+                this.setAutoForma(finalPolarities.aura, finalPolarities.exilus, finalPolarities.slots, totalModsCost);
             }
-        } catch {
-            this.props.redirectToVoid();
         }
+        // } catch {
+        //     this.props.redirectToVoid();
+        // }
     }
 
     arrangeOriginals = () => {
@@ -424,10 +424,14 @@ class WarframeModding extends Component {
             withPolExilus = this.calcCost(this.state.chosenMods, slotPolarities, this.state.chosenAuraMod, auraPolarity, this.state.chosenExilusMod, this.state.chosenExilusMod.polarity);
         }
         this.state.chosenMods.forEach((mod, index) => {
-            if (mod.name && mod.polarity !== 'umbra' && mod.baseCost + mod.currRank > highest.drain && !tempSlotPolarities[index]) highest = { slot: index, drain: mod.baseCost + mod.currRank }
+            if (mod.name && mod.polarity !== 'umbra' && mod.baseCost + mod.currRank > highest.drain && !tempSlotPolarities[index]) {
+                highest = { slot: index, drain: mod.baseCost + mod.currRank }
+            }
         });
-        tempSlotPolarities[highest.slot] = this.state.chosenMods[highest.slot].polarity;
-        withNewSlot = this.calcCost(this.state.chosenMods, tempSlotPolarities, this.state.chosenAuraMod, auraPolarity, this.state.chosenExilusMod, exilusPolarity);
+        if (highest.slot !== undefined) {
+            tempSlotPolarities[highest.slot] = this.state.chosenMods[highest.slot].polarity;
+            withNewSlot = this.calcCost(this.state.chosenMods, tempSlotPolarities, this.state.chosenAuraMod, auraPolarity, this.state.chosenExilusMod, exilusPolarity);
+        }
         bestOption = this.getBestOption([withNewSlot, withPolAura, withPolExilus]);
         if (bestOption === 0) {
             finalPolarities.slots = tempSlotPolarities.slice(0);

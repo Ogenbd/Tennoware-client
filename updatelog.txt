@@ -1,6 +1,11 @@
 UPDATE LOG
 
-upcoming - v1.3.0.
+22/02/2019 = v1.3.1.
+
+Fixes:
+Fixed an issue with the auto forma feature where if a mod in the Exilus slot was the lowest cost mod in a build it would either be ignored or result in an error.
+
+21/02/2019 - v1.3.0.
 
 New:
 an auto-forma feature has been added. When the forma toggle is activated while capacity is below 0 the user will be asked if they want to manually apply forma or let Tennoware apply it automatically. For more info on the ins and outs of this feature go here.

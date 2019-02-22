@@ -472,8 +472,10 @@ class MeleeModding extends Component {
         this.state.chosenMods.forEach((mod, index) => {
             if (mod.name && mod.polarity !== 'umbra' && mod.baseCost + mod.currRank > highest.drain && !tempSlotPolarities[index]) highest = { slot: index, drain: mod.baseCost + mod.currRank }
         });
-        tempSlotPolarities[highest.slot] = this.state.chosenMods[highest.slot].polarity;
-        withNewSlot = this.calcCost(this.state.chosenMods, tempSlotPolarities, this.state.chosenStanceMod, stancePolarity);
+        if (highest.slot !== undefined) {
+            tempSlotPolarities[highest.slot] = this.state.chosenMods[highest.slot].polarity;
+            withNewSlot = this.calcCost(this.state.chosenMods, tempSlotPolarities, this.state.chosenStanceMod, stancePolarity);
+        }
         if (withNewSlot <= withPolStance) {
             finalPolarities.slots = tempSlotPolarities.slice(0);
             leftoverCap = cap - withNewSlot;
