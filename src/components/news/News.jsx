@@ -78,14 +78,11 @@ export class News extends Component {
           <div className="news-container">
             <div className="home-left">
               <div className="tennoware-update">
-                <div className="update-title">Update 1.3.0 + 1.3.1</div>
+                <div className="update-title">Update 1.3.2</div>
                 <div className="update-content">
-                  <p>Auto-Forma feature added. If there is negative capacity when the forma button is clicked/tapped, a box pops up giving the option to either manually polarize slots or let Tennoware automatically polarize optimally. If you want to know how this process prioritizes Forma placement Read <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/atapv4/autoforma_and_you/">This</a>.</p>
-                  <p>Corrected Peaceful Provocation augment mod.</p>
-                  <p>Fixed several issues for items with an ampersand (&) in their name.</p>
-                  <p>Added images to Cryo Coating, Infectious Injection and Ion Infusion.</p>
-                  <p>Some UI fixes.</p>
-                  <p>1.3.1 Fixed an issue with the newly added auto forma feature where if a mod in the Exilus slot was the lowest cost mod in a build it would either be ignored or result in an error.</p>
+                  <p>Improved performance on some transitions and animations.</p>
+                  <p>General UI touch-ups and fixes.</p>
+                  <p>For information on the Auto-Forma feature that was added to Tennoware in update 1.3.0 <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/atapv4/autoforma_and_you/">read this</a>.</p>
                   <p>For a complete and detailed update log head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log</a>.</p>
                   <p>For bug reports or feature suggestions head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/">Tennoware subreddit</a>.</p>
                 </div>

@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
-import { Spring, animated } from 'react-spring/renderprops';
 import './ModPicker.css';
 
 import SimpleModCardGenerator from '../modcardgenerator/SimpleModCardGenerator.jsx';
+
+function imagesLoaded(parentNode) {
+    const imgElements = [...parentNode.querySelectorAll(".mod-image")];
+    for (let i = 0; i < imgElements.length; i += 1) {
+        const img = imgElements[i];
+        if (!img.complete) {
+            return false;
+        }
+    }
+    return true;
+}
 
 export class ModPicker extends Component {
     constructor(props) {
@@ -17,7 +27,8 @@ export class ModPicker extends Component {
             polarity: null,
             filterToggle: false,
             sortToggle: false,
-            sort: 'name'
+            sort: 'name',
+            ready: false
         }
     }
 
@@ -75,19 +86,29 @@ export class ModPicker extends Component {
                 if (visible) {
                     modList.push(
                         <div draggable="false" className="mod-wrapper no-highlight" key={mod.index} onClick={() => { this.handlePick(mod) }} onDragStart={(e) => { this.handleDrag(e, mod.index) }}>
-                            <SimpleModCardGenerator mod={mod} viewWidth={this.props.viewWidth} />
+                            <SimpleModCardGenerator mod={mod} onImageLoad={this.onImageLoad} viewWidth={this.props.viewWidth} />
                         </div>
                     );
                 } else {
                     modList.push(
                         <div draggable="false" className="mod-wrapper no-highlight hidden-mod" key={mod.index} onClick={() => { this.handlePick(mod) }} onDragStart={(e) => { this.handleDrag(e, mod.index) }}>
-                            <SimpleModCardGenerator mod={mod} viewWidth={this.props.viewWidth} />
+                            <SimpleModCardGenerator mod={mod} onImageLoad={this.onImageLoad} viewWidth={this.props.viewWidth} />
                         </div>
                     );
                 }
             }
         });
         return modList;
+    }
+
+    onImageLoad = () => {
+        if (!this.state.ready) {
+            let loaded = imagesLoaded(this.modList);
+            if (loaded) {
+                this.setState({ ready: loaded });
+                this.props.readyToShow();
+            }
+        }
     }
 
     determineVisibility = (mod) => {
@@ -448,57 +469,50 @@ export class ModPicker extends Component {
                     <div className="mod-options-wrapper">
                         <div className="mod-dropdown-trigger" onMouseLeave={this.hideFilter}>
                             <p className={"mod-dropdown-trigger-fill " + (this.state.conclave || this.state.aura || this.state.exilus || this.state.polarity || this.state.filterToggle ? 'active-option' : 'inactive-option')} onMouseEnter={this.showFilter} onClick={this.toggleFilter}>Filter <span className="chev-down">›</span></p>
-                            <Spring
-                                native
-                                config={{ tension: 500, friction: 46 }}
-                                from={{ height: this.state.filterToggle ? 0 : 'auto' }}
-                                to={{ height: this.state.filterToggle ? 'auto' : 0 }}>
-                                {props => (
-                                    <animated.div className={"dropdown-block filter-block " + (this.state.filterToggle ? 'active-block' : 'inactive-block')} style={props}>
-                                        <div className="dropdown-option" onClick={this.clearFilter}>Clear All</div>
-                                        {this.props.type === 'warframes' && this.props.viewWidth > 1202 &&
-                                            <React.Fragment>
-                                                <div className={"dropdown-option " + (this.state.aura ? 'active-option' : 'inactive-option')} onClick={this.toggleAura}>Aura</div>
-                                                <div className={"dropdown-option " + (this.state.exilus ? 'active-option' : 'inactive-option')} onClick={this.toggleExilus}>Exilus</div>
-                                            </React.Fragment>
-                                        }
-                                        {(this.props.type === 'meleeweapons' || this.props.type === 'zaws') && this.props.viewWidth > 1202 &&
-                                            <div className={"dropdown-option " + (this.state.stance ? 'active-option' : 'inactive-option')} onClick={this.toggleStance}>Stance</div>
-                                        }
-                                        <div className={"dropdown-option " + (this.state.polarity === 'madurai' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('madurai') }}>{this.state.polarity === 'madurai' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/madurairare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/maduraiprime.png')} alt="" />}Madurai</div>
-                                        <div className={"dropdown-option " + (this.state.polarity === 'naramon' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('naramon') }}>{this.state.polarity === 'naramon' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/naramonrare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/naramonprime.png')} alt="" />}Naramon</div>
-                                        <div className={"dropdown-option " + (this.state.polarity === 'vazarin' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('vazarin') }}>{this.state.polarity === 'vazarin' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/vazarinrare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/vazarinprime.png')} alt="" />}Vazarin</div>
-                                        <div className={"dropdown-option " + (this.state.polarity === 'zenurik' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('zenurik') }}>{this.state.polarity === 'zenurik' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/zenurikrare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/zenurikprime.png')} alt="" />}Zenurik</div>
-                                        <div className={"dropdown-option " + (this.state.polarity === 'umbra' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('umbra') }}>{this.state.polarity === 'umbra' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/umbrarare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/umbraprime.png')} alt="" />}Umbra</div>
-                                        <div className={"dropdown-option " + (this.state.polarity === 'penjaga' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('penjaga') }}>{this.state.polarity === 'penjaga' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/penjagarare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/penjagaprime.png')} alt="" />}Penjaga</div>
-                                        <div className={"dropdown-option " + (this.state.polarity === 'unairu' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('unairu') }}>{this.state.polarity === 'unairu' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/unairurare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/unairuprime.png')} alt="" />}Unairu</div>
-                                        <div className={"dropdown-option " + (this.state.conclave ? 'active-option' : 'inactive-option')} onClick={this.toggleConclave}>Conclave</div>
-                                    </animated.div>
-                                )}
-                            </Spring>
+                            <div className={"dropdown-block filter-block " + (this.state.filterToggle ? 'active-block' : 'inactive-block')}>
+                                <div className="dropdown-option" onClick={this.clearFilter}>Clear All</div>
+                                {this.props.type === 'warframes' && this.props.viewWidth > 1202 &&
+                                    <React.Fragment>
+                                        <div className={"dropdown-option " + (this.state.aura ? 'active-option' : 'inactive-option')} onClick={this.toggleAura}>Aura</div>
+                                        <div className={"dropdown-option " + (this.state.exilus ? 'active-option' : 'inactive-option')} onClick={this.toggleExilus}>Exilus</div>
+                                    </React.Fragment>
+                                }
+                                {(this.props.type === 'meleeweapons' || this.props.type === 'zaws') && this.props.viewWidth > 1202 &&
+                                    <div className={"dropdown-option " + (this.state.stance ? 'active-option' : 'inactive-option')} onClick={this.toggleStance}>Stance</div>
+                                }
+                                <div className={"dropdown-option " + (this.state.polarity === 'madurai' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('madurai') }}>{this.state.polarity === 'madurai' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/madurairare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/maduraiprime.png')} alt="" />}Madurai</div>
+                                <div className={"dropdown-option " + (this.state.polarity === 'naramon' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('naramon') }}>{this.state.polarity === 'naramon' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/naramonrare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/naramonprime.png')} alt="" />}Naramon</div>
+                                <div className={"dropdown-option " + (this.state.polarity === 'vazarin' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('vazarin') }}>{this.state.polarity === 'vazarin' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/vazarinrare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/vazarinprime.png')} alt="" />}Vazarin</div>
+                                <div className={"dropdown-option " + (this.state.polarity === 'zenurik' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('zenurik') }}>{this.state.polarity === 'zenurik' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/zenurikrare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/zenurikprime.png')} alt="" />}Zenurik</div>
+                                <div className={"dropdown-option " + (this.state.polarity === 'umbra' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('umbra') }}>{this.state.polarity === 'umbra' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/umbrarare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/umbraprime.png')} alt="" />}Umbra</div>
+                                <div className={"dropdown-option " + (this.state.polarity === 'penjaga' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('penjaga') }}>{this.state.polarity === 'penjaga' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/penjagarare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/penjagaprime.png')} alt="" />}Penjaga</div>
+                                <div className={"dropdown-option " + (this.state.polarity === 'unairu' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('unairu') }}>{this.state.polarity === 'unairu' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/unairurare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/unairuprime.png')} alt="" />}Unairu</div>
+                                <div className={"dropdown-option " + (this.state.conclave ? 'active-option' : 'inactive-option')} onClick={this.toggleConclave}>Conclave</div>
+                            </div>
                         </div>
                         <div className="mod-dropdown-trigger" onMouseLeave={this.hideSort}>
                             <p className={"mod-dropdown-trigger-fill " + (this.state.sortToggle ? 'active-option' : 'inactive-option')} onMouseEnter={this.showSort} onClick={this.toggleSort}>Sort <span className="chev-down">›</span></p>
-                            <Spring
-                                native
-                                config={{ tension: 500, friction: 46 }}
-                                from={{ height: this.state.sortToggle ? 0 : 'auto' }}
-                                to={{ height: this.state.sortToggle ? 'auto' : 0 }}>
-                                {props => (
-                                    <animated.div className={"dropdown-block sort-block " + (this.state.sortToggle ? 'active-block' : 'inactive-block')} style={props}>
-                                        <div className={"dropdown-option " + (this.state.sort === 'name' ? 'active-option' : 'inactive-option')} onClick={this.sortName}>Name</div>
-                                        <div className={"dropdown-option " + (this.state.sort === 'drain' ? 'active-option' : 'inactive-option')} onClick={this.sortDrain}>Drain</div>
-                                        <div className={"dropdown-option " + (this.state.sort === 'rank' ? 'active-option' : 'inactive-option')} onClick={this.sortRank}>Rank</div>
-                                    </animated.div>
-                                )}
-                            </Spring>
+                            <div className={"dropdown-block sort-block " + (this.state.sortToggle ? 'active-block' : 'inactive-block')}>
+                                <div className={"dropdown-option " + (this.state.sort === 'name' ? 'active-option' : 'inactive-option')} onClick={this.sortName}>Name</div>
+                                <div className={"dropdown-option " + (this.state.sort === 'drain' ? 'active-option' : 'inactive-option')} onClick={this.sortDrain}>Drain</div>
+                                <div className={"dropdown-option " + (this.state.sort === 'rank' ? 'active-option' : 'inactive-option')} onClick={this.sortRank}>Rank</div>
+                            </div>
                         </div>
                     </div>
                     <div className="search-wrapper mod-list-search-wrapper">
                         <input className="search" type="text" placeholder="Search..." value={this.state.search} onChange={this.handleChange} onKeyUp={this.blurInput} />
                     </div>
                 </div>
-                <div className="popup-content mod-list-wrapper"><div className="mod-list">{this.generateModList()}</div></div>
+                <div className="popup-content mod-list-wrapper">
+                    <div
+                        className="mod-list"
+                        ref={element => {
+                            this.modList = element;
+                        }}
+                    >
+                        {this.generateModList()}
+                    </div>
+                </div>
             </div>
         )
     }

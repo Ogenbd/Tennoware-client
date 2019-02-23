@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 
 import apiUrl from '../apiUrl';
 import RightAd from '../components/adunits/RightAd';
-import ContainedLoading from '../components/loading/ContainedLoading';
+import Loading from '../components/loading/Loading';
 
 import EightSlotModding from '../components/modding/EightSlotModding';
 
@@ -11,13 +11,14 @@ class RangedBuilder extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: '',
+            title: decodeURIComponent(this.props.match.params.id).toLocaleUpperCase(),
             item: {},
             relevantMods: [],
             slotPolarities: [],
             originalPolarityCount: {},
             metaInfo: {},
-            error: null
+            error: null,
+            loading: true
         }
     }
 
@@ -101,7 +102,6 @@ class RangedBuilder extends Component {
             });
         }
         this.setState({
-            title: item.name,
             item: item,
             relevantMods: filteredMods,
             slotPolarities: slotPolarities,
@@ -151,6 +151,12 @@ class RangedBuilder extends Component {
         this.props.history.replace(`/${this.props.type}/${decodeURIComponent(this.props.match.params.id)}`);
     }
 
+    readyToShow = () => {
+        this.setState({
+            loading: false
+        })
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -170,12 +176,14 @@ class RangedBuilder extends Component {
                             </div>
                         </div>
                         : <React.Fragment>
-                            {this.state.item.name
-                                ? <div className="modding-wrapper">
-                                    <EightSlotModding redirectToVoid={this.redirectToVoid} type={this.props.type} orokin={require('../assets/general/catalyst.png')} riven={this.state.item.mods === 'melee' ? 'melee' : 'ranged'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} />
+                            {this.state.item.name &&
+                                <div className="modding-wrapper">
+                                    <EightSlotModding redirectToVoid={this.redirectToVoid} readyToShow={this.readyToShow} type={this.props.type} orokin={require('../assets/general/catalyst.png')} riven={this.state.item.mods === 'melee' ? 'melee' : 'ranged'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} />
                                 </div>
-                                : <div className="modding-wrapper">
-                                    <ContainedLoading />
+                            }
+                            {this.state.loading &&
+                                <div className="modding-wrapper">
+                                    <Loading />
                                 </div>
                             }
                         </React.Fragment>

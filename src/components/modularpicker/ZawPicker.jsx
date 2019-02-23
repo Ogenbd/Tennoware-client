@@ -75,9 +75,9 @@ export class ZawPicker extends Component {
         return (
             <React.Fragment>
                 <Helmet>
-                    <title>Tennoware - kitguns</title>
+                    <title>Tennoware - zaws</title>
                 </Helmet>
-                <div className="top-title"><p>KITGUNS</p></div>
+                <div className="top-title"><p>ZAWS</p></div>
                 <div className="screen">
                     <div></div>
                     <Spring

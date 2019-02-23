@@ -1,4 +1,4 @@
-import React, { Component, Suspense, lazy } from 'react';
+import React, { PureComponent, Suspense, lazy } from 'react';
 import { Transition, animated } from 'react-spring/renderprops';
 import { Switch, Route, withRouter } from 'react-router-dom';
 
@@ -68,7 +68,7 @@ const zawArcanes = () => import('./data/zawarcanes' /* webpackChunkName: "zarc" 
 const kitgunArcanes = () => import('./data/kitgunarcanes' /* webpackChunkName: "karc" */);
 
 
-export class Routing extends Component {
+export class Routing extends PureComponent {
     render() {
         let appProps = {
             viewWidth: this.props.viewWidth,

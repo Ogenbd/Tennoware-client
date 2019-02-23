@@ -14,6 +14,7 @@
     padding: 66px 3px 10px 3px;
     min-width: 1000px;
     margin-bottom: 10px;
+    transition: opacity 300ms linear;
 }
 
 .my-builds-topbar {
@@ -119,6 +120,7 @@
 .info-row {
     justify-content: space-around;
 }
+
 
 .my-build-list-name {
     /* width: 190px; */

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Spring, animated } from 'react-spring/renderprops';
 import debounce from 'lodash/debounce';
 import './App.css';
 import './general.css';
@@ -31,7 +30,7 @@ class App extends Component {
   componentDidMount() {
     let jwt;
     localStorage.jwt ? jwt = true : jwt = false;
-    navigator.onLine ? this.checkVer('1.3.1', jwt) : this.setState({ updateRequired: false, user: jwt });
+    navigator.onLine ? this.checkVer('1.3.2', jwt) : this.setState({ updateRequired: false, user: jwt });
     window.addEventListener('resize', this.debouncedSetWidth);
     window.addEventListener('updateavail', this.updateInit);
     window.addEventListener('online', this.setOnline);
@@ -154,48 +153,41 @@ class App extends Component {
             {this.state.viewWidth > 1202 &&
               <div className="nav-menu" onMouseLeave={this.hideNav}>
                 <p className={"nav-menu-trigger " + (this.state.navToggle ? 'active-nav' : '')} onMouseEnter={this.showNav}>Navigation <span className="chev-down">›</span></p>
-                <Spring
-                  native
-                  config={{ tension: 500, friction: 46 }}
-                  from={{ height: this.state.navToggle ? 0 : 'auto' }}
-                  to={{ height: this.state.navToggle ? 'auto' : 0 }}>
-                  {props => (
-                    <animated.div className="nav-options" style={props}>
+                <div className="nav-hider"></div>
+                <div className={"nav-options " + (this.state.navToggle ? 'active-nav-option' : '')}>
+                  <div className="nav-subcat">
+                    <div className="subcat-title">Regular</div>
+                    <Link className="nav-option" to="/warframes" onClick={this.hideNav}>Warframes</Link>
+                    <Link className="nav-option" to="/primaryweapons" onClick={this.hideNav}>Primary Weapons</Link>
+                    <Link className="nav-option" to="/secondaryweapons" onClick={this.hideNav}>Secondary Weapons</Link>
+                    <Link className="nav-option" to="/meleeweapons" onClick={this.hideNav}>Melee Weapons</Link>
+                    <Link className="nav-option" to="/archguns-land" onClick={this.hideNav}>Archguns - Land</Link>
+                    <Link className="nav-option" to="/beasts" onClick={this.hideNav}>Beasts</Link>
+                    <Link className="nav-option" to="/sentinels" onClick={this.hideNav}>Sentinels</Link>
+                    <Link className="nav-option" to="/sentinelweapons" onClick={this.hideNav}>Robotic Weapons</Link>
+                  </div>
+                  <div className="nav-right">
+                    <div className="nav-shortsubs">
                       <div className="nav-subcat">
-                        <div className="subcat-title">Regular</div>
-                        <Link className="nav-option" to="/warframes" onClick={this.hideNav}>Warframes</Link>
-                        <Link className="nav-option" to="/primaryweapons" onClick={this.hideNav}>Primary Weapons</Link>
-                        <Link className="nav-option" to="/secondaryweapons" onClick={this.hideNav}>Secondary Weapons</Link>
-                        <Link className="nav-option" to="/meleeweapons" onClick={this.hideNav}>Melee Weapons</Link>
-                        <Link className="nav-option" to="/archguns-land" onClick={this.hideNav}>Archguns - Land</Link>
-                        <Link className="nav-option" to="/beasts" onClick={this.hideNav}>Beasts</Link>
-                        <Link className="nav-option" to="/sentinels" onClick={this.hideNav}>Sentinels</Link>
-                        <Link className="nav-option" to="/sentinelweapons" onClick={this.hideNav}>Robotic Weapons</Link>
+                        <div className="subcat-title">Archwing</div>
+                        <Link className="nav-option" to="/archwings" onClick={this.hideNav}>Archwings</Link>
+                        <Link className="nav-option" to="/archguns-space" onClick={this.hideNav}>Archguns - Space</Link>
+                        <Link className="nav-option" to="/archmelee" onClick={this.hideNav}>Archmelee</Link>
                       </div>
-                      <div className="nav-right">
-                        <div className="nav-shortsubs">
-                          <div className="nav-subcat">
-                            <div className="subcat-title">Archwing</div>
-                            <Link className="nav-option" to="/archwings" onClick={this.hideNav}>Archwings</Link>
-                            <Link className="nav-option" to="/archguns-space" onClick={this.hideNav}>Archguns - Space</Link>
-                            <Link className="nav-option" to="/archmelee" onClick={this.hideNav}>Archmelee</Link>
-                          </div>
-                          <div className="nav-subcat">
-                            <div className="subcat-title">Modular</div>
-                            <Link className="nav-option" to="/zaws" onClick={this.hideNav}>Zaws</Link>
-                            <Link className="nav-option" to="/kitguns" onClick={this.hideNav}>Kitguns</Link>
-                            <Link className="nav-option" to="/moas" onClick={this.hideNav}>MOAs</Link>
-                          </div>
-                        </div>
-                        <div className="nav-bs">
-                          <a href="https://www.patreon.com/tennoware"><img className="patreon" src={require('./assets/general/patreon.jpg')} alt="Patreon" /></a>
-                          <p className="bs-container-nav"><Link className="bottom-info-link" to="/terms" onClick={this.closeSidebar}>terms of service</Link>  <Link className="bottom-info-link" to="/privacy" onClick={this.closeSidebar}>privacy policy</Link></p>
-                          <p className="bs-para-nav">Copyright © 2018 - Today. All rights reserved. For personal use only. Tennoware.com has no affiliation with Digital Extremes Ltd or Warframe. All artwork, screenshots, characters or other recognizable features of the intellectual property relating to Warframe are the intellectual property of Digital Extreme Ltd.</p>
-                        </div>
+                      <div className="nav-subcat">
+                        <div className="subcat-title">Modular</div>
+                        <Link className="nav-option" to="/zaws" onClick={this.hideNav}>Zaws</Link>
+                        <Link className="nav-option" to="/kitguns" onClick={this.hideNav}>Kitguns</Link>
+                        <Link className="nav-option" to="/moas" onClick={this.hideNav}>MOAs</Link>
                       </div>
-                    </animated.div>
-                  )}
-                </Spring>
+                    </div>
+                    <div className="nav-bs">
+                      <a href="https://www.patreon.com/tennoware"><img className="patreon" src={require('./assets/general/patreon.jpg')} alt="Patreon" /></a>
+                      <p className="bs-container-nav"><Link className="bottom-info-link" to="/terms" onClick={this.closeSidebar}>terms of service</Link>  <Link className="bottom-info-link" to="/privacy" onClick={this.closeSidebar}>privacy policy</Link></p>
+                      <p className="bs-para-nav">Copyright © 2018 - Today. All rights reserved. For personal use only. Tennoware.com has no affiliation with Digital Extremes Ltd or Warframe. All artwork, screenshots, characters or other recognizable features of the intellectual property relating to Warframe are the intellectual property of Digital Extreme Ltd.</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             }
           </div>

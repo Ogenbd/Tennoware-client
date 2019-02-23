@@ -68,9 +68,9 @@ export class MoaPicker extends Component {
         return (
             <React.Fragment>
                 <Helmet>
-                    <title>Tennoware - kitguns</title>
+                    <title>Tennoware - MOAs</title>
                 </Helmet>
-                <div className="top-title"><p>KITGUNS</p></div>
+                <div className="top-title"><p>MOAS</p></div>
                 <div className="screen">
                     <div></div>
                     <Spring

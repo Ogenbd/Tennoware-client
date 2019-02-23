@@ -1,6 +1,15 @@
 UPDATE LOG
 
-22/02/2019 = v1.3.1.
+23/02/2019 - v1.3.2.
+
+Changes:
+Optimized a bunch of code. mainly focused on page transitions and animations.
+
+Fixes:
+Exalted Melee weapons' Stance mod is now centered in desktop mode.
+The MOA and ZAW pages have the correct titles again.
+
+22/02/2019 - v1.3.1.
 
 Fixes:
 Fixed an issue with the auto forma feature where if a mod in the Exilus slot was the lowest cost mod in a build it would either be ignored or result in an error.

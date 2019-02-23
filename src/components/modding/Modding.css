@@ -7,6 +7,7 @@
     max-width: 1200px;
     min-height: calc(100vh - 56px);
     background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity 300ms linear;
 }
 
 .mod-stack {
@@ -114,9 +115,12 @@
 .aug-container {
     display: flex;
     flex-direction: column;
-    /* flex: 1 0 0; */
     align-self: flex-start;
     margin-top: 5px;
+}
+
+.melee-aug-container {
+    min-width: 237px;
 }
 
 .aug-wrapper {

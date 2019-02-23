@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Spring, animated } from 'react-spring/renderprops';
 import { Helmet } from "react-helmet";
 import cloneDeep from 'lodash/cloneDeep';
 import '../../general.css';
@@ -12,6 +11,17 @@ import BottomAd from '../adunits/BottomAd';
 
 const updateTimesImport = () => import('../../data/updatetimes' /* webpackChunkName: "upst" */);
 
+function imagesLoaded(parentNode) {
+    const imgElements = [...parentNode.querySelectorAll(".my-item-image")];
+    for (let i = 0; i < imgElements.length; i += 1) {
+        const img = imgElements[i];
+        if (!img.complete) {
+            return false;
+        }
+    }
+    return true;
+}
+
 export default class MyBuilds extends Component {
     constructor(props) {
         super(props);
@@ -22,7 +32,8 @@ export default class MyBuilds extends Component {
             unlike: false,
             delete: false,
             target: null,
-            error: null
+            error: null,
+            ready: false
         }
     }
 
@@ -38,11 +49,11 @@ export default class MyBuilds extends Component {
                 } else if (res.status === 401) {
                     this.props.history.replace('/unauthorized');
                 } else {
-                    this.setState({ getting: false, error: 'Server error! Please try again later.' })
+                    this.setState({ getting: false, ready: true, error: 'Server error! Please try again later.' })
                 }
             })
             .catch(res => {
-                this.setState({ getting: false, error: 'Unable to connect to Tennoware server! Please try again later.' })
+                this.setState({ getting: false, ready: true, error: 'Unable to connect to Tennoware server! Please try again later.' })
             });
     }
 
@@ -173,7 +184,7 @@ export default class MyBuilds extends Component {
                 item.riven === 1 ? riven = require('../../assets/general/rivenon.png') : riven = require('../../assets/general/rivenoff.png');
                 let itemBlock = <div key={index} className="my-build-container">
                     <div className="my-item-wrapper">
-                        <img className="my-item-image" src={item.img} alt="" />
+                        <img className="my-item-image" onLoad={this.imgLoaded} src={item.img} alt="" />
                         <div className="my-item-name"><p>{item.name.toUpperCase()}</p></div>
                     </div>
                     <div className="my-build-list-item">
@@ -224,6 +235,15 @@ export default class MyBuilds extends Component {
             }
         });
         return { saved: saved, liked: liked };
+    }
+
+    imgLoaded = () => {
+        if (!this.state.ready) {
+            let loaded = imagesLoaded(this.itemList);
+            if (loaded) {
+                this.setState({ ready: loaded });
+            }
+        }
     }
 
     navigateToBuild = (buildNum) => {
@@ -282,11 +302,11 @@ export default class MyBuilds extends Component {
                 } else if (res.status === 401) {
                     this.props.history.replace('/unauthorized');
                 } else {
-                    this.setState({ error: 'Server error! Please try again later.' })
+                    this.setState({ ready: true, error: 'Server error! Please try again later.' })
                 }
             })
             .catch(res => {
-                this.setState({ error: 'Unable to connect to Tennoware server! Please try again later.' })
+                this.setState({ ready: true, error: 'Unable to connect to Tennoware server! Please try again later.' })
             });
     }
 
@@ -316,11 +336,11 @@ export default class MyBuilds extends Component {
                 } else if (res.status === 401) {
                     this.props.history.replace('/unauthorized');
                 } else {
-                    this.setState({ error: 'Server error! Please try again later.' })
+                    this.setState({ ready: true, error: 'Server error! Please try again later.' })
                 }
             })
             .catch(res => {
-                this.setState({ error: 'Unable to connect to Tennoware server! Please try again later.' })
+                this.setState({ ready: true, error: 'Unable to connect to Tennoware server! Please try again later.' })
             });
     }
 
@@ -352,42 +372,29 @@ export default class MyBuilds extends Component {
                                 <input className="search" type="text" placeholder="Search..." value={this.state.search} onChange={this.filterItems} onKeyUp={this.blurInput} />
                             </div>
                         </div>
-                        <div className="builds-wrapper">
+                        <div ref={element => { this.itemList = element; }} className="builds-wrapper" style={this.state.ready ? { opacity: 1 } : { opacity: 0 }}>
                             <BottomAd />
-                            {this.state.getting
-                                ? <Loading />
-                                : <Spring
-                                    native
-                                    config={{ tension: 120, friction: 14 }}
-                                    from={{ opacity: 0 }}
-                                    to={{ opacity: 1 }}>
-                                    {props => (
-                                        <animated.div style={props}>
-                                            {this.state.error !== null
-                                                ? <div className="no-builds">{this.state.error}</div>
-                                                : <React.Fragment>
-                                                    {this.state.arsenal.length < 1
-                                                        ? <div className="no-builds">You have not saved or liked any builds yet.</div>
-                                                        : <React.Fragment>
-                                                            {list.saved.length > 0 &&
-                                                                <React.Fragment>
-                                                                    <div className="my-builds-subtitle">Saved Builds</div>
-                                                                    {list.saved}
-                                                                </React.Fragment>
-                                                            }
-                                                            {list.liked.length > 0 &&
-                                                                <React.Fragment>
-                                                                    <div className="my-builds-subtitle">Liked Builds</div>
-                                                                    {list.liked}
-                                                                </React.Fragment>
-                                                            }
-                                                        </React.Fragment>
-                                                    }
+                            {this.state.error !== null
+                                ? <div className="no-builds">{this.state.error}</div>
+                                : <React.Fragment>
+                                    {this.state.arsenal.length < 1
+                                        ? <div className="no-builds">You have not saved or liked any builds yet.</div>
+                                        : <React.Fragment>
+                                            {list.saved.length > 0 &&
+                                                <React.Fragment>
+                                                    <div className="my-builds-subtitle">Saved Builds</div>
+                                                    {list.saved}
                                                 </React.Fragment>
                                             }
-                                        </animated.div>
-                                    )}
-                                </Spring>
+                                            {list.liked.length > 0 &&
+                                                <React.Fragment>
+                                                    <div className="my-builds-subtitle">Liked Builds</div>
+                                                    {list.liked}
+                                                </React.Fragment>
+                                            }
+                                        </React.Fragment>
+                                    }
+                                </React.Fragment>
                             }
                         </div>
                         <div className={"conformation-wrapper " + (this.state.unlike ? "conformation-active" : "conformation-inactive")} >
@@ -417,6 +424,9 @@ export default class MyBuilds extends Component {
                         }
                     </div>
                 </div>
+                {(!this.state.ready || this.state.getting) &&
+                    <Loading />
+                }
             </React.Fragment>
         )
     }

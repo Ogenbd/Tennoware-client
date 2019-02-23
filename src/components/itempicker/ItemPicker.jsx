@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Spring, animated } from 'react-spring/renderprops';
 import { Helmet } from "react-helmet";
 import './ItemPicker.css';
 
-// import Loading from '../loading/Loading';
 import RightAd from '../adunits/RightAd';
 import BottomAd from '../adunits/BottomAd';
+
+function imagesLoaded(parentNode) {
+    const imgElements = [...parentNode.querySelectorAll(".item-image")];
+    for (let i = 0; i < imgElements.length; i += 1) {
+        const img = imgElements[i];
+        if (!img.complete) {
+            return false;
+        }
+    }
+    return true;
+}
 
 export class ItemPicker extends Component {
     constructor(props) {
@@ -14,14 +23,12 @@ export class ItemPicker extends Component {
         this.state = {
             items: [],
             displayItems: [],
-            picked: false
+            picked: false,
+            ready: false
         }
     }
 
     componentDidMount() {
-        // (window.adsbygoogle = window.adsbygoogle || []).push({
-        //     google_ad_client: "ca-pub-9367218977396146"
-        // });
         this.props.items().then(items => {
             this.setState({
                 items: items.default,
@@ -49,18 +56,13 @@ export class ItemPicker extends Component {
         }
     }
 
-    handlePick = (pick) => {
-        this.setState({ picked: true }, () => this.animDelay(pick));
-    }
-
-    animDelay = (pick) => {
-        setTimeout(() => {
-            this.routeToBuilder(pick);
-        }, 100);
-    }
-
-    routeToBuilder = (pick) => {
-        this.props.history.push(`${this.props.match.path}/${pick.toLowerCase()}`);
+    imgLoaded = () => {
+        if (!this.state.ready) {
+            let loaded = imagesLoaded(this.itemList);
+            if (loaded) {
+                this.setState({ ready: loaded });
+            }
+        }
     }
 
     render() {
@@ -81,23 +83,12 @@ export class ItemPicker extends Component {
                         <div className="item-picker-content">
                             <div className="items-display-wrapper">
                                 <BottomAd />
-                                <div className="items-display">
+                                <div ref={element => { this.itemList = element; }} className="items-display" style={this.state.ready ? { opacity: 1 } : { opacity: 0 }}>
                                     {this.state.displayItems.map((item, index) => (
-                                        <Spring
-                                            key={index}
-                                            native
-                                            config={{ duration: 200 }}
-                                            from={{ opacity: 0 }}
-                                            to={{ opacity: 1 }}>
-                                            {props => (
-                                                <animated.div style={props}>
-                                                    <Link to={`${this.props.match.path}/${item.name.toLowerCase()}`} className="item-wrapper">
-                                                        <img className="item-image" src={item.img} alt="" />
-                                                        <div className="item-name"><p>{item.name}</p></div>
-                                                    </Link>
-                                                </animated.div>
-                                            )}
-                                        </Spring>
+                                        <Link key={index} to={`${this.props.match.path}/${item.name.toLowerCase()}`} className="item-wrapper">
+                                            <img className="item-image" onLoad={this.imgLoaded} src={item.img} alt="" />
+                                            <div className="item-name"><p>{item.name}</p></div>
+                                        </Link>
                                     ))}
                                 </div>
                             </div>
