@@ -4,6 +4,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import './Modding.css';
 
 import ModdingAd from '../adunits/ModdingAd';
+import RightAd from '../adunits/RightAd';
 import BuildDescription from '../builddescription/BuildDescription';
 import Report from '../report/Report';
 import Like from '../like/Like';
@@ -286,24 +287,24 @@ class WarframeModding extends Component {
 
     autoForma = () => {
         try {
-        let cap = this.state.orokin ? 60 : 30;
-        let arrangedOriginals = this.arrangeOriginals();
-        let auraPolarity = this.state.forceNeutAura ? undefined : this.state.forceCurrAura ? this.state.auraPolarity : this.props.frame.aura;
-        let exilusPolarity = this.state.forceNeutExilus ? undefined : this.state.forceCurrExilus ? this.state.exilusPolarity : this.props.frame.exilus;
-        let totalModsCost = this.calcCost(this.state.chosenMods, arrangedOriginals, this.state.chosenAuraMod, auraPolarity, this.state.chosenExilusMod, exilusPolarity);
-        if (cap - totalModsCost >= 0) {
-            this.setAutoForma(auraPolarity, exilusPolarity, arrangedOriginals, totalModsCost);
-        } else {
-            let mismatch = this.formaMismatch(auraPolarity, exilusPolarity, arrangedOriginals, cap);
-            totalModsCost = this.calcCost(this.state.chosenMods, mismatch.slots, this.state.chosenAuraMod, mismatch.aura, this.state.chosenExilusMod, mismatch.exilus);
+            let cap = this.state.orokin ? 60 : 30;
+            let arrangedOriginals = this.arrangeOriginals();
+            let auraPolarity = this.state.forceNeutAura ? undefined : this.state.forceCurrAura ? this.state.auraPolarity : this.props.frame.aura;
+            let exilusPolarity = this.state.forceNeutExilus ? undefined : this.state.forceCurrExilus ? this.state.exilusPolarity : this.props.frame.exilus;
+            let totalModsCost = this.calcCost(this.state.chosenMods, arrangedOriginals, this.state.chosenAuraMod, auraPolarity, this.state.chosenExilusMod, exilusPolarity);
             if (cap - totalModsCost >= 0) {
-                this.setAutoForma(mismatch.aura, mismatch.exilus, mismatch.slots, totalModsCost);
+                this.setAutoForma(auraPolarity, exilusPolarity, arrangedOriginals, totalModsCost);
             } else {
-                let finalPolarities = this.calcAutoForma(mismatch.aura, mismatch.exilus, mismatch.slots, cap);
-                totalModsCost = this.calcCost(this.state.chosenMods, finalPolarities.slots, this.state.chosenAuraMod, finalPolarities.aura, this.state.chosenExilusMod, finalPolarities.exilus);
-                this.setAutoForma(finalPolarities.aura, finalPolarities.exilus, finalPolarities.slots, totalModsCost);
+                let mismatch = this.formaMismatch(auraPolarity, exilusPolarity, arrangedOriginals, cap);
+                totalModsCost = this.calcCost(this.state.chosenMods, mismatch.slots, this.state.chosenAuraMod, mismatch.aura, this.state.chosenExilusMod, mismatch.exilus);
+                if (cap - totalModsCost >= 0) {
+                    this.setAutoForma(mismatch.aura, mismatch.exilus, mismatch.slots, totalModsCost);
+                } else {
+                    let finalPolarities = this.calcAutoForma(mismatch.aura, mismatch.exilus, mismatch.slots, cap);
+                    totalModsCost = this.calcCost(this.state.chosenMods, finalPolarities.slots, this.state.chosenAuraMod, finalPolarities.aura, this.state.chosenExilusMod, finalPolarities.exilus);
+                    this.setAutoForma(finalPolarities.aura, finalPolarities.exilus, finalPolarities.slots, totalModsCost);
+                }
             }
-        }
         } catch {
             this.props.redirectToVoid();
         }
@@ -1111,150 +1112,160 @@ class WarframeModding extends Component {
     render() {
         const { chosenAuraMod, chosenIndexs, auraPolarity, chosenExilusMod, exilusPolarity, chosenMods, modPicker, orokin, forma, autoForma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSlot, forSwap, polarityPicker, arcanes, arcanePicker } = this.state;
         return (
-            <div className="modding-screen" style={this.state.readyToShow ? { opacity: 1 } : { opacity: 0 }}>
-                <ModPicker mods={this.props.mods} chosenIndexs={chosenIndexs} type={this.props.type} active={modPicker} closeModPicker={this.closeModPicker} pickMod={this.pickMod} viewWidth={this.props.viewWidth} drop={this.drop} forSlot={forSlot} readyToShow={this.readyToShow} />
-                <div className="mod-stack">
-                    <div className="interactable-wrapper">
-                        {this.props.online &&
-                            <BuildList match={this.props.match} type={this.props.type} riven={this.props.riven} orokin={this.props.orokin} />
-                        }
-                        <LinkGenerator type={this.props.type} getBuildStr={this.convertBuildToString} match={this.props.match} />
-                        {this.props.online && this.props.user &&
-                            <BuildSaver orokin={orokin} formaCount={formaCount} user={this.props.user} type={this.props.type} getBuildStr={this.convertBuildToString} metaInfo={this.props.metaInfo} slottedAmount={chosenIndexs.length} />
-                        }
-                        {this.props.online && this.props.match.params.build && !this.props.metaInfo.Owner &&
-                            <Report user={this.props.user} match={this.props.match} />
-                        }
-                        {this.props.online && this.props.user && this.props.match.params.build && !this.props.metaInfo.Owner &&
-                            <Like user={this.props.user} match={this.props.match} metaInfo={this.props.metaInfo} />
-                        }
-                        {this.props.metaInfo.BuildDesc && this.props.metaInfo.BuildDesc.length > 0 &&
-                            <BuildDescription metaInfo={this.props.metaInfo} />
-                        }
+            <div className="screen">
+                <div></div>
+                <div className="modding-screen" style={this.state.readyToShow ? { opacity: 1 } : { opacity: 0 }}>
+                    <ModPicker mods={this.props.mods} chosenIndexs={chosenIndexs} type={this.props.type} active={modPicker} closeModPicker={this.closeModPicker} pickMod={this.pickMod} viewWidth={this.props.viewWidth} drop={this.drop} forSlot={forSlot} readyToShow={this.readyToShow} />
+                    <div className="mod-stack">
+                        <div className="interactable-wrapper">
+                            {this.props.online &&
+                                <BuildList match={this.props.match} type={this.props.type} riven={this.props.riven} orokin={this.props.orokin} />
+                            }
+                            <LinkGenerator type={this.props.type} getBuildStr={this.convertBuildToString} match={this.props.match} />
+                            {this.props.online && this.props.user &&
+                                <BuildSaver orokin={orokin} formaCount={formaCount} user={this.props.user} type={this.props.type} getBuildStr={this.convertBuildToString} metaInfo={this.props.metaInfo} slottedAmount={chosenIndexs.length} />
+                            }
+                            {this.props.online && this.props.user && this.props.match.params.build && !this.props.metaInfo.Owner &&
+                                <Report user={this.props.user} match={this.props.match} />
+                            }
+                            {this.props.online && this.props.user && this.props.match.params.build && !this.props.metaInfo.Owner &&
+                                <Like user={this.props.user} match={this.props.match} metaInfo={this.props.metaInfo} />
+                            }
+                            {this.props.metaInfo.BuildDesc && this.props.metaInfo.BuildDesc.length > 0 &&
+                                <BuildDescription metaInfo={this.props.metaInfo} />
+                            }
+                        </div>
+                        <div className="special-modding">
+                            <div className="aug-container frame-aug-container">
+                                <div className="aug-wrapper">
+                                    <div className="aug-info">
+                                        <p className="aug-info-title">Capacity</p>
+                                        {orokin
+                                            ? <p className="aug-info-content" style={60 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{60 - totalModsCost}</p>
+                                            : <p className="aug-info-content" style={30 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{30 - totalModsCost}</p>
+                                        }
+                                    </div>
+                                    <div className="aug-info">
+                                        <p className="aug-info-title">Forma</p>
+                                        <p className="aug-info-content">{formaCount}</p>
+                                    </div>
+                                </div>
+                                <div className="aug-wrapper">
+                                    <div className={"interactable interactable-aug " + (orokin ? "interactable-active" : "interactable-inactive")} onClick={this.toggleOrokin}>
+                                        {orokin
+                                            ? <img className="aug-image orokin" src={this.props.orokin} alt={'Remove Reactor'} />
+                                            : <img className="aug-image orokin" src={require('../../assets/general/nocatalyst.png')} alt={'Apply Reactor'} />}
+                                    </div>
+                                    <div className={"interactable interactable-aug " + (forma ? "interactable-active" : "interactable-inactive")} onClick={this.toggleForma}>
+                                        {forma
+                                            ? <img className="aug-image forma" src={require('../../assets/general/forma.png')} alt={'Cancel Forma Application'} />
+                                            : <img className="aug-image forma" src={require('../../assets/general/noforma.png')} alt={'Apply Forma'} />}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="special-slots">
+                                <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 'aura') }} onDragOver={this.dragOver} onDrop={(e) => { this.drop(e, 'aura') }} >
+                                    <ModStateHandler mod={chosenAuraMod} slot={'aura'} slotPolarity={auraPolarity} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeAura} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
+                                    <div className={"error-blinker " + ((errorBlinker === 0) ? 'error-flash' : '')}></div>
+                                </div>
+                                <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 'exilus') }} onDragOver={this.dragOver} onDrop={(e) => { this.drop(e, 'exilus') }} >
+                                    <ModStateHandler mod={chosenExilusMod} slot={'exilus'} slotPolarity={exilusPolarity} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeExilus} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
+                                    <div className={"error-blinker " + ((errorBlinker === 0) ? 'error-flash' : '')}></div>
+                                </div>
+                            </div>
+                            <div className="arcane-slots-wrapper">
+                                <div className="arcane-slots">
+                                    <ArcaneStateHandler arcane={arcanes[0]} arcaneSlot={0} showArcanePicker={this.showArcanePicker} removeArcane={this.removeArcane} increaseRank={this.increaseArcaneRank} decreaseRank={this.decreaseArcaneRank} viewWidth={this.props.viewWidth} />
+                                    <ArcaneStateHandler arcane={arcanes[1]} arcaneSlot={1} showArcanePicker={this.showArcanePicker} removeArcane={this.removeArcane} increaseRank={this.increaseArcaneRank} decreaseRank={this.decreaseArcaneRank} viewWidth={this.props.viewWidth} />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="slots-wrapper">
+                            <div className="slots">
+                                <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 0) }} onDragOver={this.dragOver} onDrop={(e) => { this.drop(e, 0) }} >
+                                    <ModStateHandler mod={chosenMods[0]} slot={0} slotPolarity={slotPolarities[0]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
+                                    <div className={"error-blinker " + ((errorBlinker === 0) ? 'error-flash' : '')}></div>
+                                </div>
+                                <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 1) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 1) }} >
+                                    <ModStateHandler mod={chosenMods[1]} slot={1} slotPolarity={slotPolarities[1]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
+                                    <div className={"error-blinker " + ((errorBlinker === 1) ? 'error-flash' : '')}></div>
+                                </div>
+                                <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 2) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 2) }} >
+                                    <ModStateHandler mod={chosenMods[2]} slot={2} slotPolarity={slotPolarities[2]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
+                                    <div className={"error-blinker " + ((errorBlinker === 2) ? 'error-flash' : '')}></div>
+                                </div>
+                                <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 3) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 3) }} >
+                                    <ModStateHandler mod={chosenMods[3]} slot={3} slotPolarity={slotPolarities[3]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
+                                    <div className={"error-blinker " + ((errorBlinker === 3) ? 'error-flash' : '')}></div>
+                                </div>
+                                <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 4) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 4) }} >
+                                    <ModStateHandler mod={chosenMods[4]} slot={4} slotPolarity={slotPolarities[4]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
+                                    <div className={"error-blinker " + ((errorBlinker === 4) ? 'error-flash' : '')}></div>
+                                </div>
+                                <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 5) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 5) }} >
+                                    <ModStateHandler mod={chosenMods[5]} slot={5} slotPolarity={slotPolarities[5]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
+                                    <div className={"error-blinker " + ((errorBlinker === 5) ? 'error-flash' : '')}></div>
+                                </div>
+                                <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 6) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 6) }} >
+                                    <ModStateHandler mod={chosenMods[6]} slot={6} slotPolarity={slotPolarities[6]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
+                                    <div className={"error-blinker " + ((errorBlinker === 6) ? 'error-flash' : '')}></div>
+                                </div>
+                                <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 7) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 7) }} >
+                                    <ModStateHandler mod={chosenMods[7]} slot={7} slotPolarity={slotPolarities[7]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
+                                    <div className={"error-blinker " + ((errorBlinker === 7) ? 'error-flash' : '')}></div>
+                                </div>
+                            </div>
+                        </div>
+                        <ModdingAd />
+                        {this.displayMessage()}
                     </div>
-                    <div className="special-modding">
-                        <div className="aug-container frame-aug-container">
-                            <div className="aug-wrapper">
-                                <div className="aug-info">
-                                    <p className="aug-info-title">Capacity</p>
-                                    {orokin
-                                        ? <p className="aug-info-content" style={60 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{60 - totalModsCost}</p>
-                                        : <p className="aug-info-content" style={30 - totalModsCost >= 0 ? { color: '#15E610' } : { color: 'red' }}>{30 - totalModsCost}</p>
-                                    }
+                    <WarframeStats frame={this.props.frame} full={true} mods={chosenMods} chosenExilusMod={chosenExilusMod} chosenAuraMod={chosenAuraMod} viewWidth={this.props.viewWidth} />
+                    <div className={"autoforma-wrapper " + (autoForma ? 'autoforma-active' : 'autoforma-inactive')}>
+                        <div className="autoforma-box">
+                            <p className="autoforma-p">Manually apply Forma or let Tennoware handle it automatically?</p>
+                            <div className="autoforma-options">
+                                <p className="autoforma-options-p">Auto-Forma Options</p>
+                                <div className="autoforma-option">
+                                    <p>Force neutral Aura slot</p>
+                                    <Switch onChange={this.forceNeutAura} checked={this.state.forceNeutAura} />
                                 </div>
-                                <div className="aug-info">
-                                    <p className="aug-info-title">Forma</p>
-                                    <p className="aug-info-content">{formaCount}</p>
+                                <div className="autoforma-option">
+                                    <p>Force current Aura slot</p>
+                                    <Switch onChange={this.forceCurrAura} checked={this.state.forceCurrAura} />
+                                </div>
+                                <div className="autoforma-option">
+                                    <p>Force original Aura slot</p>
+                                    <Switch onChange={this.forceOriginalAura} checked={this.state.forceOriginalAura} />
+                                </div>
+                                <div className="autoforma-option">
+                                    <p>Force neutral Exilus slot</p>
+                                    <Switch onChange={this.forceNeutExilus} checked={this.state.forceNeutExilus} />
+                                </div>
+                                <div className="autoforma-option">
+                                    <p>Force current Exilus slot</p>
+                                    <Switch onChange={this.forceCurrExilus} checked={this.state.forceCurrExilus} />
+                                </div>
+                                <div className="autoforma-option">
+                                    <p>Force original Exilus slot</p>
+                                    <Switch onChange={this.forceOriginalExilus} checked={this.state.forceOriginalExilus} />
                                 </div>
                             </div>
-                            <div className="aug-wrapper">
-                                <div className={"interactable interactable-aug " + (orokin ? "interactable-active" : "interactable-inactive")} onClick={this.toggleOrokin}>
-                                    {orokin
-                                        ? <img className="aug-image orokin" src={this.props.orokin} alt={'Remove Reactor'} />
-                                        : <img className="aug-image orokin" src={require('../../assets/general/nocatalyst.png')} alt={'Apply Reactor'} />}
-                                </div>
-                                <div className={"interactable interactable-aug " + (forma ? "interactable-active" : "interactable-inactive")} onClick={this.toggleForma}>
-                                    {forma
-                                        ? <img className="aug-image forma" src={require('../../assets/general/forma.png')} alt={'Cancel Forma Application'} />
-                                        : <img className="aug-image forma" src={require('../../assets/general/noforma.png')} alt={'Apply Forma'} />}
-                                </div>
-                            </div>
-                        </div>
-                        <div className="special-slots">
-                            <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 'aura') }} onDragOver={this.dragOver} onDrop={(e) => { this.drop(e, 'aura') }} >
-                                <ModStateHandler mod={chosenAuraMod} slot={'aura'} slotPolarity={auraPolarity} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeAura} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
-                                <div className={"error-blinker " + ((errorBlinker === 0) ? 'error-flash' : '')}></div>
-                            </div>
-                            <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 'exilus') }} onDragOver={this.dragOver} onDrop={(e) => { this.drop(e, 'exilus') }} >
-                                <ModStateHandler mod={chosenExilusMod} slot={'exilus'} slotPolarity={exilusPolarity} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeExilus} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
-                                <div className={"error-blinker " + ((errorBlinker === 0) ? 'error-flash' : '')}></div>
-                            </div>
-                        </div>
-                        <div className="arcane-slots-wrapper">
-                            <div className="arcane-slots">
-                                <ArcaneStateHandler arcane={arcanes[0]} arcaneSlot={0} showArcanePicker={this.showArcanePicker} removeArcane={this.removeArcane} increaseRank={this.increaseArcaneRank} decreaseRank={this.decreaseArcaneRank} viewWidth={this.props.viewWidth} />
-                                <ArcaneStateHandler arcane={arcanes[1]} arcaneSlot={1} showArcanePicker={this.showArcanePicker} removeArcane={this.removeArcane} increaseRank={this.increaseArcaneRank} decreaseRank={this.decreaseArcaneRank} viewWidth={this.props.viewWidth} />
+                            <div className="autoforma-buttons">
+                                <div className="interactable interactable-semi-inactive" onClick={this.manualForma}><p className="interactable-p">Manual</p></div>
+                                <div className="interactable interactable-semi-inactive" onClick={this.autoForma}><p className="interactable-p">Auto</p></div>
                             </div>
                         </div>
                     </div>
-                    <div className="slots-wrapper">
-                        <div className="slots">
-                            <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 0) }} onDragOver={this.dragOver} onDrop={(e) => { this.drop(e, 0) }} >
-                                <ModStateHandler mod={chosenMods[0]} slot={0} slotPolarity={slotPolarities[0]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
-                                <div className={"error-blinker " + ((errorBlinker === 0) ? 'error-flash' : '')}></div>
-                            </div>
-                            <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 1) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 1) }} >
-                                <ModStateHandler mod={chosenMods[1]} slot={1} slotPolarity={slotPolarities[1]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
-                                <div className={"error-blinker " + ((errorBlinker === 1) ? 'error-flash' : '')}></div>
-                            </div>
-                            <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 2) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 2) }} >
-                                <ModStateHandler mod={chosenMods[2]} slot={2} slotPolarity={slotPolarities[2]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
-                                <div className={"error-blinker " + ((errorBlinker === 2) ? 'error-flash' : '')}></div>
-                            </div>
-                            <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 3) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 3) }} >
-                                <ModStateHandler mod={chosenMods[3]} slot={3} slotPolarity={slotPolarities[3]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
-                                <div className={"error-blinker " + ((errorBlinker === 3) ? 'error-flash' : '')}></div>
-                            </div>
-                            <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 4) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 4) }} >
-                                <ModStateHandler mod={chosenMods[4]} slot={4} slotPolarity={slotPolarities[4]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
-                                <div className={"error-blinker " + ((errorBlinker === 4) ? 'error-flash' : '')}></div>
-                            </div>
-                            <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 5) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 5) }} >
-                                <ModStateHandler mod={chosenMods[5]} slot={5} slotPolarity={slotPolarities[5]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
-                                <div className={"error-blinker " + ((errorBlinker === 5) ? 'error-flash' : '')}></div>
-                            </div>
-                            <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 6) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 6) }} >
-                                <ModStateHandler mod={chosenMods[6]} slot={6} slotPolarity={slotPolarities[6]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
-                                <div className={"error-blinker " + ((errorBlinker === 6) ? 'error-flash' : '')}></div>
-                            </div>
-                            <div className="handler-wrapper" draggable="false" onDragStart={(e) => { this.dragStart(e, 7) }} onDragOver={(e) => { e.preventDefault() }} onDrop={(e) => { this.drop(e, 7) }} >
-                                <ModStateHandler mod={chosenMods[7]} slot={7} slotPolarity={slotPolarities[7]} forma={forma} openModPicker={this.openModPicker} removeMod={this.removeMod} handleRankUpdate={this.handleRankUpdate} showPolarityPicker={this.showPolarityPicker} forSwap={forSwap} startSwap={this.startSwap} doSwap={this.buttonSwap} viewWidth={this.props.viewWidth} />
-                                <div className={"error-blinker " + ((errorBlinker === 7) ? 'error-flash' : '')}></div>
-                            </div>
-                        </div>
-                    </div>
-                    <ModdingAd />
-                    {this.displayMessage()}
+                    <PolarityPicker polarityPicker={polarityPicker} polarizeSlot={this.polarizeSlot} hidePolarityPicker={this.hidePolarityPicker} />
+                    <ArcanePicker arcanes={this.props.arcanes} active={arcanePicker} hideArcanePicker={this.hideArcanePicker} pickArcane={this.pickArcane} />
                 </div>
-                <WarframeStats frame={this.props.frame} full={true} mods={chosenMods} chosenExilusMod={chosenExilusMod} chosenAuraMod={chosenAuraMod} viewWidth={this.props.viewWidth} />
-                <div className={"autoforma-wrapper " + (autoForma ? 'autoforma-active' : 'autoforma-inactive')}>
-                    <div className="autoforma-box">
-                        <p className="autoforma-p">Manually apply Forma or let Tennoware handle it automatically?</p>
-                        <div className="autoforma-options">
-                            <p className="autoforma-options-p">Auto-Forma Options</p>
-                            <div className="autoforma-option">
-                                <p>Force neutral Aura slot</p>
-                                <Switch onChange={this.forceNeutAura} checked={this.state.forceNeutAura} />
-                            </div>
-                            <div className="autoforma-option">
-                                <p>Force current Aura slot</p>
-                                <Switch onChange={this.forceCurrAura} checked={this.state.forceCurrAura} />
-                            </div>
-                            <div className="autoforma-option">
-                                <p>Force original Aura slot</p>
-                                <Switch onChange={this.forceOriginalAura} checked={this.state.forceOriginalAura} />
-                            </div>
-                            <div className="autoforma-option">
-                                <p>Force neutral Exilus slot</p>
-                                <Switch onChange={this.forceNeutExilus} checked={this.state.forceNeutExilus} />
-                            </div>
-                            <div className="autoforma-option">
-                                <p>Force current Exilus slot</p>
-                                <Switch onChange={this.forceCurrExilus} checked={this.state.forceCurrExilus} />
-                            </div>
-                            <div className="autoforma-option">
-                                <p>Force original Exilus slot</p>
-                                <Switch onChange={this.forceOriginalExilus} checked={this.state.forceOriginalExilus} />
-                            </div>
+                <div className="side-panel">
+                    {this.props.viewWidth > 1465 &&
+                        <div className="right-g">
+                            <RightAd />
                         </div>
-                        <div className="autoforma-buttons">
-                            <div className="interactable interactable-semi-inactive" onClick={this.manualForma}><p className="interactable-p">Manual</p></div>
-                            <div className="interactable interactable-semi-inactive" onClick={this.autoForma}><p className="interactable-p">Auto</p></div>
-                        </div>
-                    </div>
+                    }
                 </div>
-                <PolarityPicker polarityPicker={polarityPicker} polarizeSlot={this.polarizeSlot} hidePolarityPicker={this.hidePolarityPicker} />
-                <ArcanePicker arcanes={this.props.arcanes} active={arcanePicker} hideArcanePicker={this.hideArcanePicker} pickArcane={this.pickArcane} />
             </div>
         )
     }

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Helmet } from "react-helmet";
 
 import apiUrl from '../apiUrl';
-import RightAd from '../components/adunits/RightAd';
 import Loading from '../components/loading/Loading';
+import BuildError from '../components/builderror/BuildError';
 
 import EightSlotModding from '../components/modding/EightSlotModding';
 
@@ -25,44 +25,15 @@ class KitgunBuilder extends Component {
 
     componentDidMount() {
         if (this.props.match.params.build) {
-            this.confirmBuild()
+            this.confirmBuild(false)
         } else {
             this.setupBuilder({})
         }
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.match.params.build && !prevProps.user && this.props.user) {
-            let token = localStorage.getItem('jwt');
-            fetch(`${apiUrl}/getbuild`, {
-                method: 'post',
-                headers: { 'Content-Type': 'application/json', 'authorization': `Bearer ${token}` },
-                body: JSON.stringify({ buildId: this.props.match.params.build })
-            })
-                .then(res => {
-                    if (res.status === 200) {
-                        res.json().then(({ res }) => {
-                            if (res && res.ItemName === decodeURIComponent(this.props.match.params.id.toLowerCase()) && res.BuildStr === this.props.match.params.pre) {
-                                this.setState({ metaInfo: res });
-                            } else if (res.status === 401) {
-                                this.props.history.replace('/unauthorized');
-                            } else {
-                                this.setState({
-                                    error: 'Build does not exist in our database.'
-                                })
-                            }
-                        });
-                    } else {
-                        this.setState({
-                            error: 'Server error! Please try again later.'
-                        })
-                    }
-                })
-                .catch(() => {
-                    this.setState({
-                        error: 'Unable to connect to Tennoware server! Please try again later.'
-                    })
-                });
+        if (this.props.match.params.build && prevProps.user !== this.props.user) {
+            this.confirmBuild(true);
         }
     }
 
@@ -121,7 +92,7 @@ class KitgunBuilder extends Component {
         }, 350);
     }
 
-    confirmBuild = () => {
+    confirmBuild = (logChange) => {
         let token = localStorage.getItem('jwt');
         fetch(`${apiUrl}/getbuild`, {
             method: 'post',
@@ -132,7 +103,7 @@ class KitgunBuilder extends Component {
                 if (res.status === 200) {
                     res.json().then(({ res }) => {
                         if (res && res.ItemName === decodeURIComponent(this.props.match.params.id.toLowerCase()) && res.BuildStr === this.props.match.params.pre) {
-                            this.setupBuilder(res);
+                            logChange ? this.setState({ metaInfo: res }) : this.setupBuilder(res);
                         } else if (res.status === 401) {
                             this.props.history.replace('/unauthorized');
                         } else {
@@ -178,39 +149,18 @@ class KitgunBuilder extends Component {
                     <p>KITGUN</p>
                     <p className="modular-subtitle">{this.state.title}</p>
                 </div>
-                <div className="screen">
-                    <div></div>
-                    {this.state.error !== null
-                        ? <div className="modding-wrapper">
-                            <div className={"general-error " + (this.state.error !== null ? 'show-general-error' : 'hide-general-error')}>
-                                <div className="general-error-box">
-                                    <p>{this.state.error}</p>
-                                    <div className="interactable interactable-semi-inactive general-button" onClick={this.confirmError}><p className="interactable-p">Confirm</p></div>
-                                </div>
-                            </div>
-                        </div>
-                        : <React.Fragment>
-                            {this.state.item.name &&
-                                <div className="modding-wrapper">
-                                    <EightSlotModding redirectToVoid={this.redirectToVoid} readyToShow={this.readyToShow} type={this.props.type} orokin={require('../assets/general/catalyst.png')} riven={'ranged'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} arcanes={this.state.arcanes} />
-                                </div>
-                            }
-                            {this.state.loading &&
-                                <div className="modding-wrapper">
-                                    <Loading />
-                                </div>
-                            }
-                        </React.Fragment>
-                    }
-                    <div className="side-panel">
-                        {this.props.viewWidth > 1465 &&
-                            <div className="right-g">
-                                <RightAd />
-                            </div>
+                {this.state.error !== null
+                    ? <BuildError error={this.state.error} confirmError={this.confirmError} />
+                    : <React.Fragment>
+                        {this.state.item.name &&
+                            <EightSlotModding redirectToVoid={this.redirectToVoid} readyToShow={this.readyToShow} type={this.props.type} orokin={require('../assets/general/catalyst.png')} riven={'ranged'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} arcanes={this.state.arcanes} />
                         }
-                    </div>
-                </div>
-            </React.Fragment>
+                        {this.state.loading &&
+                            <Loading />
+                        }
+                    </React.Fragment>
+                }
+            </React.Fragment >
         )
     }
 }

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import { Spring, animated } from 'react-spring/renderprops';
 import { Helmet } from "react-helmet";
 import './News.css';
 
 import ContainedLoading from '../loading/ContainedLoading';
 import RightAd from '../adunits/RightAd';
 import BottomAd from '../adunits/BottomAd';
+import TopAd from '../adunits/TopAd';
 
 export class News extends Component {
   constructor(props) {
@@ -123,7 +123,7 @@ export class News extends Component {
               </div>
             </div>
             <div className="right-wrapper">
-              <BottomAd />
+              <TopAd />
               <div className="home-right">
                 <Link to="/warframes" className="tile-wrapper">
                   <img className="tile-image" src={require('../../assets/general/titania.png')} alt="" />
@@ -182,6 +182,7 @@ export class News extends Component {
                   <div className="tile-name"><p>ARCHMELEE</p></div>
                 </Link>
               </div>
+              <BottomAd />
             </div>
           </div>
           <div className="side-panel">

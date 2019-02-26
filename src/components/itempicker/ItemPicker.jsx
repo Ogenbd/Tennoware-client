@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import './ItemPicker.css';
 
 import RightAd from '../adunits/RightAd';
-import BottomAd from '../adunits/BottomAd';
+import TopAd from '../adunits/TopAd';
 
 function imagesLoaded(parentNode) {
     const imgElements = [...parentNode.querySelectorAll(".item-image")];
@@ -80,10 +80,10 @@ export class ItemPicker extends Component {
                                 <input className="search" type="text" placeholder="Search..." onChange={this.filterItems} onKeyUp={this.blurInput} />
                             </div>
                         </div>
-                        <div className="item-picker-content">
+                        <div ref={element => { this.itemList = element; }} className="item-picker-content" style={this.state.ready ? { opacity: 1 } : { opacity: 0 }}>
                             <div className="items-display-wrapper">
-                                <BottomAd />
-                                <div ref={element => { this.itemList = element; }} className="items-display" style={this.state.ready ? { opacity: 1 } : { opacity: 0 }}>
+                                <TopAd />
+                                <div className="items-display">
                                     {this.state.displayItems.map((item, index) => (
                                         <Link key={index} to={`${this.props.match.path}/${item.name.toLowerCase()}`} className="item-wrapper">
                                             <img className="item-image" onLoad={this.imgLoaded} src={item.img} alt="" />
