@@ -1,5 +1,18 @@
 UPDATE LOG
 
+upcoming - v1.3.3.
+
+New:
+Searching for elemental combos (corrosive, magnetic, ect.) now shows the relevant base elemental mods.
+A calculated Hunter Munitions proc chance is shown whenever Hunters Munitions is slotted.
+
+Changes:
+On/Off toggles in the builder stats area are now switches instead of buttons.
+
+Fixes:
+Fixed an issue that caused Hastened Deflection to never appear as a slottable mod.
+Some jarring page reflows were adjusted.
+
 23/02/2019 - v1.3.2.
 
 Changes:

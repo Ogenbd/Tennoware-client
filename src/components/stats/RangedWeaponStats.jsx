@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Slider from 'rc-slider/lib/Slider';
+import Switch from 'react-switch';
 import 'rc-slider/assets/index.css';
 import './Stats.css';
 
@@ -830,6 +831,12 @@ export class RangedWeaponStats extends Component {
                                     ))}
                                 </div>
                             </div>
+                            {effects.hunterMunitions &&
+                                <div className="stats-item">
+                                    <p className="stat-name">Hunter Munitions proc chance: </p>
+                                    <div className="stat"><p>{critChance.display < 1 ? (effects.hunterMunitions * critChance.display * 100).toFixed(1) : 30.0}%</p></div>
+                                </div>
+                            }
                             {/* headshot damage on sniper zoom */}
                             {weapon.headshotDamage &&
                                 <div className="stats-item">
@@ -870,43 +877,53 @@ export class RangedWeaponStats extends Component {
                                     </div>
                                 </React.Fragment>
                             }
-                            {this.state.aiming &&
-                                <div className={"activatable toggle-button-full " + (this.state.aimingToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleAiming}>
-                                    <p className="interactable-p">While Aiming</p>
+                            <div className="stats-item damage">
+                                {this.state.aiming &&
+                                    <div className="stats-switch">
+                                        <p className="stat-name">While Aiming</p>
+                                        <Switch className="stat" onChange={this.toggleAiming} checked={this.state.aimingToggle} />
+                                    </div>
+                                }
+                                {this.state.headshot &&
+                                    <div className="stats-switch">
+                                        <p className="stat-name">After Headshot</p>
+                                        <Switch className="stat" onChange={this.toggleHeadshot} checked={this.state.headshotToggle} />
+                                    </div>
+                                }
+                                {this.state.kill &&
+                                    <div className="stats-switch">
+                                        <p className="stat-name">After Kill</p>
+                                        <Switch className="stat" onChange={this.toggleKill} checked={this.state.killToggle} />
+                                    </div>
+                                }
+                                {this.state.reload &&
+                                    <div className="stats-switch">
+                                        <p className="stat-name">After Reload</p>
+                                        <Switch className="stat" onChange={this.toggleReload} checked={this.state.reloadToggle} />
+                                    </div>
+                                }
+                                {this.state.cast &&
+                                    <div className="stats-switch">
+                                        <p className="stat-name">After Cast</p>
+                                        <Switch className="stat" onChange={this.toggleCast} checked={this.state.castToggle} />
+                                    </div>
+                                }
+                                {this.state.first &&
+                                    <div className="stats-switch">
+                                        <p className="stat-name">First Shot</p>
+                                        <Switch className="stat" onChange={this.toggleFirst} checked={this.state.firstToggle} />
+                                    </div>
+                                }
+                                {this.state.headshotKill &&
+                                    <div className="stats-switch">
+                                        <p className="stat-name">After Headshot Kill</p>
+                                        <Switch className="stat" onChange={this.toggleHeadshotKill} checked={this.state.headshotKillToggle} />
+                                    </div>
+                                }
+                                <div className="stats-switch">
+                                    <p className="stat-name">Arbitrations Bonus</p>
+                                    <Switch className="stat" onChange={this.toggleArbitrations} checked={this.state.arbitrations} />
                                 </div>
-                            }
-                            {this.state.headshot &&
-                                <div className={"activatable toggle-button-full " + (this.state.headshotToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleHeadshot}>
-                                    <p className="interactable-p">After Headshot</p>
-                                </div>
-                            }
-                            {this.state.kill &&
-                                <div className={"activatable toggle-button-full " + (this.state.killToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleKill}>
-                                    <p className="interactable-p">After Kill</p>
-                                </div>
-                            }
-                            {this.state.reload &&
-                                <div className={"activatable toggle-button-full " + (this.state.reloadToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleReload}>
-                                    <p className="interactable-p">After Reload</p>
-                                </div>
-                            }
-                            {this.state.cast &&
-                                <div className={"activatable toggle-button-full " + (this.state.castToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleCast}>
-                                    <p className="interactable-p">After Cast</p>
-                                </div>
-                            }
-                            {this.state.first &&
-                                <div className={"activatable toggle-button-full " + (this.state.firstToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleFirst}>
-                                    <p className="interactable-p">First Shot</p>
-                                </div>
-                            }
-                            {this.state.headshotKill &&
-                                <div className={"activatable toggle-button-full " + (this.state.headshotKillToggle ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleHeadshotKill}>
-                                    <p className="interactable-p">Headshot Kill</p>
-                                </div>
-                            }
-                            <div className={"activatable toggle-button-full " + (this.state.arbitrations ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleArbitrations}>
-                                <p className="interactable-p">Arbitrations Bonus</p>
                             </div>
                         </div>
                     </div>

@@ -126,7 +126,7 @@
 }
 
 .stat-name {
-    align-self: flex-start;
+    /* align-self: flex-start; */
     margin-left: 4px;
     max-width: 140px;
 }
@@ -261,6 +261,18 @@
     width: 200px;
     padding: 0 5px;
     box-sizing: border-box;
+}
+
+.stats-switch {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.25);
+}
+
+.damage .stats-switch:last-child {
+    border-bottom: none;
 }
 
 @media screen and (min-width: 537px) {

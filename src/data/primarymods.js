@@ -231,6 +231,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
+        keywords: ['radiation', 'gas', 'blast'],
         description() { return `${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Damage\n+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Heat` }
     },
     {
@@ -370,6 +371,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
+        keywords: ['corrosive', 'radiation', 'magnetic'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Electricity` }
     },
     {
@@ -383,6 +385,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
+        keywords: ['viral', 'blast', 'magnetic'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Cold` }
     },
     {
@@ -396,6 +399,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 2,
+        keywords: ['viral', 'blast', 'magnetic'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Cold\n+${Math.round(this.effects.reload * (this.currRank + 1) * 100)}% Reload Speed` }
     },
     {
@@ -490,6 +494,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
+        keywords: ['corrosive', 'viral', 'gas'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Toxin` }
     },
     {
@@ -572,6 +577,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
+        keywords: ['viral', 'blast', 'magnetic'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Cold` }
     },
     {
@@ -905,6 +911,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
+        keywords: ['viral', 'blast', 'magnetic'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Cold\n+${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
@@ -1054,6 +1061,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
+        keywords: ['radiation', 'gas', 'blast'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Heat` }
     },
     {
@@ -1067,6 +1075,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
+        keywords: ['corrosive', 'radiation', 'magnetic'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Electricity\n+${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
@@ -1076,13 +1085,13 @@ const primaryMods = [
         type: 'PRIMARY',
         rarity: 'uncommon',
         polarity: 'madurai',
-        effects: { none: 0.05 },
+        effects: { hunterMunitions: 0.05 },
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
         set: { setName: 'hunter', setMax: 6, setCurr: 1 },
         description() {
-            return [`+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% chance to apply Slash proc on Critical`, `+${25 * this.set.setCurr}% Companion Damage on enemies effected by Slash proc.`]
+            return [`+${Math.round(this.effects.hunterMunitions * (this.currRank + 1) * 100)}% chance to apply Slash proc on Critical`, `+${25 * this.set.setCurr}% Companion Damage on enemies effected by Slash proc.`]
         }
     },
     {
@@ -1157,6 +1166,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
+        keywords: ['radiation', 'gas', 'blast'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Heat` }
     },
     {
@@ -1170,6 +1180,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
+        keywords: ['corrosive', 'viral', 'gas'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Toxin` }
     },
     {
@@ -1357,6 +1368,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
+        keywords: ['corrosive', 'viral', 'gas'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Toxin\n+${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
@@ -1666,6 +1678,7 @@ const primaryMods = [
         maxRank: 10,
         currRank: 10,
         baseCost: 6,
+        keywords: ['corrosive', 'radiation', 'magnetic'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Electricity` }
     },
     {
@@ -1680,6 +1693,7 @@ const primaryMods = [
         maxRank: 10,
         currRank: 10,
         baseCost: 6,
+        keywords: ['viral', 'blast', 'magnetic'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Cold` }
     },
     {
@@ -1834,6 +1848,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
+        keywords: ['viral', 'blast', 'magnetic'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Cold\n+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
@@ -1924,6 +1939,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
+        keywords: ['radiation', 'gas', 'blast'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Heat\n+${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
@@ -2031,6 +2047,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
+        keywords: ['corrosive', 'radiation', 'magnetic'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Electricity\n+${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
@@ -2265,6 +2282,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
+        keywords: ['corrosive', 'radiation', 'magnetic'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Electricity` }
     },
     {
@@ -2398,6 +2416,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
+        keywords: ['radiation', 'gas', 'blast'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Heat\n+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
@@ -2439,6 +2458,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
+        keywords: ['corrosive', 'viral', 'gas'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Toxin\n+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
@@ -2625,6 +2645,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
+        keywords: ['radiation', 'gas', 'blast'],
         description() { return `+${Math.round(this.effects.magSize * (this.currRank + 1) * 100)}% Magazine Capacity\n+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Heat` }
     },
 ]

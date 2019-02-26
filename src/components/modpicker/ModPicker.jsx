@@ -136,6 +136,11 @@ export class ModPicker extends Component {
             } else {
                 found = (mod.name && (mod.name.toLowerCase().includes(this.state.search.toLowerCase()) || desc[0].toLowerCase().includes(this.state.search.toLowerCase()) || desc[1].toLowerCase().includes(this.state.search.toLowerCase()) || mod.type.includes(this.state.search.toLowerCase())));
             }
+            if (mod.keywords) {
+                for (let i = 0; (i < mod.keywords.length && !found); i++) {
+                    if (mod.keywords[i].includes(this.state.search.toLowerCase())) found = true;
+                }
+            }
             if (!found) return false;
         }
         return true;

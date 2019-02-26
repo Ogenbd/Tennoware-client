@@ -104,7 +104,6 @@ class RangedBuilder extends Component {
     }
 
     confirmError = () => {
-        console.log('haps');
         this.props.history.replace(`/${decodeURIComponent(this.props.type)}/${decodeURIComponent(this.props.match.params.id)}`);
     }
 

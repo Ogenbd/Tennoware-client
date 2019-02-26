@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import Switch from 'react-switch';
 import cloneDeep from 'lodash/cloneDeep';
 import './Stats.css';
 
@@ -153,7 +154,7 @@ export class WarframeStats extends PureComponent {
             return stats;
         }
     }
-    
+
     generateAbilityStats = (abilityNum, abilityDetails, augEffects, augRank) => {
         let stats = []
         for (let coefficient in abilityDetails) {
@@ -336,7 +337,7 @@ export class WarframeStats extends PureComponent {
                                 </div>
                             )
                         }
-                        if (this.props.frame.name === 'MESA' || this.props.frame.name === 'MESA PRIME' ||this.props.frame.name === 'MIRAGE' || this.props.frame.name === 'MIRAGE PRIME') {
+                        if (this.props.frame.name === 'MESA' || this.props.frame.name === 'MESA PRIME' || this.props.frame.name === 'MIRAGE' || this.props.frame.name === 'MIRAGE PRIME') {
                             stats.push(
                                 <div key={`${coefficient}${index}`} className="ability-stat">
                                     <div className="ability-stat-name">{stat.name}</div>
@@ -491,11 +492,11 @@ export class WarframeStats extends PureComponent {
         }
         return stats;
     }
-    
+
     toggleStats = () => {
         this.setState(prevState => ({ open: !prevState.open }));
     }
-    
+
     toggleEnergyConversion = () => {
         this.setState(prevState => ({ energyConversionActive: !prevState.energyConversionActive }));
     }
@@ -586,20 +587,22 @@ export class WarframeStats extends PureComponent {
                                     : <div className="warframe-stat"><p>100%</p></div>
                                 }
                             </div>
-                            <div className="modes">
-                                {this.state.growingPowerSlotted &&
-                                    <div className={"activatable toggle-button-full " + (this.state.growingPowerActive ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleGrowingPower}>
-                                        <p className="interactable-p">Growing Power</p>
-                                    </div>
-                                    // </div>
-                                }
-                                {this.state.energyConversionSlotted &&
-                                    // <div className="modes">
-                                    <div className={"activatable toggle-button-full " + (this.state.energyConversionActive ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleEnergyConversion}>
-                                        <p className="interactable-p">Energy Conversion</p>
-                                    </div>
-                                }
-                            </div>
+                            {(this.state.growingPowerSlotted || this.state.energyConversionSlotted) &&
+                                <div className="stats-item damage">
+                                    {this.state.growingPowerSlotted &&
+                                        <div className="stats-switch">
+                                            <p className="stat-name">Growing Power</p>
+                                            <Switch className="stat" onChange={this.toggleGrowingPower} checked={this.state.growingPowerActive} />
+                                        </div>
+                                    }
+                                    {this.state.energyConversionSlotted &&
+                                        <div className="stats-switch">
+                                            <p className="stat-name">Energy Conversion</p>
+                                            <Switch className="stat" onChange={this.toggleEnergyConversion} checked={this.state.energyConversionActive} />
+                                        </div>
+                                    }
+                                </div>
+                            }
                             <div className="frame-ability">
                                 <div className="ability-title">
                                     <p>{frame.abilities[0].name}</p>
@@ -665,9 +668,10 @@ export class WarframeStats extends PureComponent {
                                 {this.generateAbilityFour()}
                             </div>
                             {this.props.full &&
-                                <div className="modes">
-                                    <div className={"activatable toggle-button-full " + (this.state.arbitrations ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleArbitrations}>
-                                        <p className="interactable-p">Arbitration Bonus</p>
+                                <div className="stats-item damage">
+                                    <div className="stats-switch">
+                                        <p className="stat-name">Arbitrations Bonus</p>
+                                        <Switch className="stat" onChange={this.toggleArbitrations} checked={this.state.arbitrations} />
                                     </div>
                                 </div>
                             }

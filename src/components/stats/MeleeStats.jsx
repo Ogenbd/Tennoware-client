@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Slider from 'rc-slider/lib/Slider';
+import Switch from 'react-switch';
 import 'rc-slider/assets/index.css';
 import './Stats.css';
 
@@ -661,8 +662,11 @@ export class MeleeStats extends Component {
                                     </div>
                                 </div>
                             }
-                            <div className={"activatable toggle-button-full " + (this.state.arbitrations ? 'interactable-active' : 'interactable-inactive')} onClick={this.toggleArbitrations}>
-                                <p className="interactable-p">Arbitrations Bonus</p>
+                            <div className="stats-item damage">
+                                <div className="stats-switch">
+                                    <p className="stat-name">Arbitrations Bonus</p>
+                                    <Switch className="stat" onChange={this.toggleArbitrations} checked={this.state.arbitrations} />
+                                </div>
                             </div>
                         </div>
                     </div>
