@@ -1,6 +1,6 @@
 UPDATE LOG
 
-upcoming - v1.3.3.
+23/02/2019 - v1.3.3.
 
 New:
 Searching for elemental combos (corrosive, magnetic, ect.) now shows the relevant base elemental mods.

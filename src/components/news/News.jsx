@@ -78,10 +78,11 @@ export class News extends Component {
           <div className="news-container">
             <div className="home-left">
               <div className="tennoware-update">
-                <div className="update-title">Update 1.3.2</div>
+                <div className="update-title">Update 1.3.3</div>
                 <div className="update-content">
-                  <p>Improved performance on some transitions and animations.</p>
-                  <p>General UI touch-ups and fixes.</p>
+                  <p>Searching for a combined element (corrosive, magnetic, ect.) in the mod picker search bar now shows mods that apply its base elements.</p>
+                  <p>Added a Hunter Munitions proc chance calculation when Hunter Munitions is present.</p>
+                  <p>On/Off toggles in the stats window are now switches instead of buttons.</p>
                   <p>For information on the Auto-Forma feature that was added to Tennoware in update 1.3.0 <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/atapv4/autoforma_and_you/">read this</a>.</p>
                   <p>For a complete and detailed update log head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log</a>.</p>
                   <p>For bug reports or feature suggestions head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/">Tennoware subreddit</a>.</p>
