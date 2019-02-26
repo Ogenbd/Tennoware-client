@@ -346,7 +346,7 @@ const companionMods = [
         abrev: 'i2',
         name: 'Hastened Deflection',
         img: require('../assets/modimages/hastened-deflection.jpg'),
-        type: 'Beast',
+        type: 'BEAST',
         rarity: 'uncommon',
         polarity: 'vazarin',
         effects: {},
