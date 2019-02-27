@@ -22,7 +22,8 @@ export class MeleeStats extends Component {
             berserkerStacks: 0,
             arbitrations: false,
             gladOverride: false,
-            gladSet: 0
+            gladSet: 0,
+            baseStatsToggle: false
         }
     }
 
@@ -39,6 +40,12 @@ export class MeleeStats extends Component {
         let elemental = [];
         let berserker = false;
         let gladSet = state.gladOverride ? state.gladSet : 0;
+        if (state.baseStatsToggle) {
+            return {
+                effects: effects,
+                elemental: elemental
+            }
+        }
         if (state.arbitrations) effects.baseDamage = 3;
         props.mods.forEach(mod => {
             if (mod.name) {
@@ -115,6 +122,10 @@ export class MeleeStats extends Component {
 
     toggleArbitrations = () => {
         this.setState(prevState => ({ arbitrations: !prevState.arbitrations }))
+    }
+
+    toggleBaseStats = () => {
+        this.setState(prevState => ({ baseStatsToggle: !prevState.baseStatsToggle }))
     }
 
     setGladSet = (value) => {
@@ -412,7 +423,7 @@ export class MeleeStats extends Component {
         }
     }
 
-    calcProcWeights = (damage) => {
+    calcProcWeights = (damage, status) => {
         let totalDamage = damage.reduce((acc, damage) => {
             if (damage.type === 'Impact' || damage.type === 'Puncture' || damage.type === 'Slash') {
                 return acc + damage.damage * 4
@@ -420,15 +431,18 @@ export class MeleeStats extends Component {
                 return acc + damage.damage
             }
         }, 0);
+        let statusChance = status.chancePerPellet ? status.chancePerPellet / 100 : status.chance / 100;
         let procBreakdown = damage.map(instance => {
             if (instance.type === 'Impact' || instance.type === 'Puncture' || instance.type === 'Slash') {
                 return {
                     type: instance.type,
-                    chance: Math.round(instance.damage * 4 / totalDamage * 1000) / 10,
-                    icon: require(`../../assets/dynamic/damage/${instance.type}.png`)
+                    chance: Math.round(instance.damage * 4 / totalDamage * statusChance * 1000) / 10,
                 }
             } else {
-                return { type: instance.type, chance: Math.round(instance.damage / totalDamage * 1000) / 10 }
+                return {
+                    type: instance.type,
+                    chance: Math.round(instance.damage / totalDamage * statusChance * 1000) / 10
+                }
             }
         });
         procBreakdown.forEach(instance => {
@@ -519,7 +533,7 @@ export class MeleeStats extends Component {
         const status = this.calcStatus();
         const specials = this.calcSpecials();
         const averageHitDamage = this.calcDPS(damage, critChance.display, critMult.display);
-        const procBreakdown = this.calcProcWeights(damage);
+        const procBreakdown = this.calcProcWeights(damage, status);
         return (
             <React.Fragment>
                 <div className={"pull-tab " + (this.state.open ? 'open-pull-tab' : 'closed-pull-tab')} onClick={this.toggleStats}>
@@ -528,7 +542,6 @@ export class MeleeStats extends Component {
                 </div>
                 <div className={"ranged-stats " + (this.state.open ? 'open-ranged-stats' : 'closed-ranged-stats')}>
                     <div className="ranged-stats-inner-wrapper">
-                        <div className="top-bar-margin"></div>
                         {weapon.modes.length > 1 &&
                             <div className="modes">
                                 {weapon.modes.map((instance, index) => (
@@ -539,6 +552,12 @@ export class MeleeStats extends Component {
                             </div>
                         }
                         <div className="stats-wrapper">
+                            <div className="stats-item damage first-stat">
+                                <div className="stats-switch">
+                                    <p className="stat-name">Show Base Stats</p>
+                                    <Switch className="stat" onChange={this.toggleBaseStats} checked={this.state.baseStatsToggle} />
+                                </div>
+                            </div>
                             <div className="stats-item">
                                 <p className="stat-name">Average x Speed: </p>
                                 <div className="stat"><p>{(Math.round(averageHitDamage * speed.display * 10) / 10).toFixed(1)}</p></div>
@@ -608,7 +627,7 @@ export class MeleeStats extends Component {
                                 </div>
                             }
                             <div className="stats-item damage">
-                                <p className="status-breakdown">Status Type Breakdown: </p>
+                                <p className="status-breakdown">Chance For Specific Status Effect{weapon.modes[mode].pellets ? ' Per Pellet' : ''}: </p>
                                 <div className="damage">
                                     {procBreakdown.map(instance => (
                                         <div key={instance.type} className="stat"><p>{instance.type}: </p><p className="stat-frag">{instance.chance.toFixed(1)}%</p></div>

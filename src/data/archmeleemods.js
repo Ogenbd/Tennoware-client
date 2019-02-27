@@ -38,7 +38,7 @@ const archmeleeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        keywords: ['radiation', 'gas', 'blast'],
+        keywords: ['elemental', 'radiation', 'gas', 'blast'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Heat` }
     },
     {
@@ -65,7 +65,7 @@ const archmeleeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        keywords: ['viral', 'blast', 'magnetic'],
+        keywords: ['elemental', 'viral', 'blast', 'magnetic'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Cold +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
@@ -119,7 +119,7 @@ const archmeleeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
-        keywords: ['corrosive', 'radiation', 'magnetic'],
+        keywords: ['elemental', 'corrosive', 'radiation', 'magnetic'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Electricity` }
     },
     {
@@ -133,7 +133,7 @@ const archmeleeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        keywords: ['viral', 'blast', 'magnetic'],
+        keywords: ['elemental', 'viral', 'blast', 'magnetic'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Cold` }
     },
     {
@@ -147,7 +147,7 @@ const archmeleeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        keywords: ['corrosive', 'viral', 'gas'],
+        keywords: ['elemental', 'corrosive', 'viral', 'gas'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Toxin +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
@@ -161,7 +161,7 @@ const archmeleeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        keywords: ['corrosive', 'radiation', 'magnetic'],
+        keywords: ['elemental', 'corrosive', 'radiation', 'magnetic'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Electricity +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {
@@ -201,7 +201,7 @@ const archmeleeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        keywords: ['corrosive', 'viral', 'gas'],
+        keywords: ['elemental', 'corrosive', 'viral', 'gas'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Toxin` }
     },
     {
@@ -215,7 +215,7 @@ const archmeleeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        keywords: ['radiation', 'gas', 'blast'],
+        keywords: ['elemental', 'radiation', 'gas', 'blast'],
         description() { return `+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Heat +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
     },
     {

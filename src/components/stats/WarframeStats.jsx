@@ -22,6 +22,7 @@ export class WarframeStats extends PureComponent {
             augmentTwo: undefined,
             augmentThree: undefined,
             augmentFour: undefined,
+            baseStatsToggle: false
         }
     }
 
@@ -66,6 +67,19 @@ export class WarframeStats extends PureComponent {
                 }
             }
         });
+        if (state.baseStatsToggle) {
+            effects = {};
+            if (props.frame.name === 'NIDUS') effects.strength = 0.15;
+            return {
+                effects: effects,
+                growingPowerSlotted: growingPowerSlotted,
+                energyConversionSlotted: energyConversionSlotted,
+                augmentOne: augments[0],
+                augmentTwo: augments[1],
+                augmentThree: augments[2],
+                augmentFour: augments[3],
+            }
+        }
         return {
             effects: effects,
             growingPowerSlotted: growingPowerSlotted,
@@ -497,6 +511,10 @@ export class WarframeStats extends PureComponent {
         this.setState(prevState => ({ open: !prevState.open }));
     }
 
+    toggleBaseStats = () => {
+        this.setState(prevState => ({ baseStatsToggle: !prevState.baseStatsToggle }))
+    }
+
     toggleEnergyConversion = () => {
         this.setState(prevState => ({ energyConversionActive: !prevState.energyConversionActive }));
     }
@@ -517,6 +535,12 @@ export class WarframeStats extends PureComponent {
                 <div className={"ranged-stats " + (open ? 'open-ranged-stats' : 'closed-ranged-stats')}>
                     <div className="ranged-stats-inner-wrapper">
                         <div className="stats-wrapper">
+                            <div className="stats-item damage">
+                                <div className="stats-switch">
+                                    <p className="stat-name">Show Base Stats</p>
+                                    <Switch className="stat" onChange={this.toggleBaseStats} checked={this.state.baseStatsToggle} />
+                                </div>
+                            </div>
                             <div className="stats-item">
                                 <p className="stat-name">Armor: </p>
                                 {effects.armor

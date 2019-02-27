@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import Switch from 'react-switch';
 import './Stats.css';
 
 export class SentinelStats extends PureComponent {
@@ -7,11 +8,17 @@ export class SentinelStats extends PureComponent {
         this.state = {
             open: false,
             effects: {},
+            baseStatsToggle: false
         }
     }
 
-    static getDerivedStateFromProps(props) {
+    static getDerivedStateFromProps(props, state) {
         let effects = {};
+        if (state.baseStatsToggle) {
+            return {
+                effects: effects
+            }
+        }
         props.mods.forEach(mod => {
             SentinelStats.groupEffects(mod, effects);
         });
@@ -38,6 +45,10 @@ export class SentinelStats extends PureComponent {
         this.setState(prevState => ({ open: !prevState.open }))
     }
 
+    toggleBaseStats = () => {
+        this.setState(prevState => ({ baseStatsToggle: !prevState.baseStatsToggle }))
+    }
+
     render() {
         let { frame } = this.props;
         let { effects, open } = this.state;
@@ -49,8 +60,13 @@ export class SentinelStats extends PureComponent {
                 </div>
                 <div className={"ranged-stats " + (open ? 'open-ranged-stats' : 'closed-ranged-stats')}>
                     <div className="ranged-stats-inner-wrapper">
-                        <div className="top-bar-margin"></div>
                         <div className="stats-wrapper">
+                            <div className="stats-item damage">
+                                <div className="stats-switch">
+                                    <p className="stat-name">Show Base Stats</p>
+                                    <Switch className="stat" onChange={this.toggleBaseStats} checked={this.state.baseStatsToggle} />
+                                </div>
+                            </div>
                             <div className="stats-item">
                                 <p className="stat-name">Armor: </p>
                                 {effects.armor

@@ -32,7 +32,7 @@
     flex-wrap: wrap;
     flex-shrink: 0;
     justify-content: center;
-    margin-bottom: 5px;
+    margin: 5px 0;
 }
 
 .mode-button {
@@ -68,11 +68,9 @@
 }
 
 .stats-wrapper {
-    /* position: absolute; */
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* flex: 0 0 auto; */
     flex-shrink: 0;
     width: 100%;
     min-width: 225px;
@@ -165,6 +163,8 @@
 .status-breakdown {
     margin-left: 4px;
     margin-bottom: 2px;
+    box-sizing: border-box;
+    max-width: 165px;
 }
 
 .zoom {

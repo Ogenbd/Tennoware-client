@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import Switch from 'react-switch';
 import './Stats.css';
 
 export class BeastStats extends PureComponent {
@@ -17,15 +18,25 @@ export class BeastStats extends PureComponent {
             healthAmount: '',
             linkShields: false,
             shieldsAmount: '',
+            baseStatsToggle: false
         }
     }
 
-    static getDerivedStateFromProps(props) {
+    static getDerivedStateFromProps(props, state) {
         let effects = {};
         let elemental = [];
         let linkArmor = false;
         let linkHealth = false;
         let linkShields = false;
+        if (state.baseStatsToggle) {
+            return {
+                effects: effects,
+                elemental: elemental,
+                linkArmor: linkArmor,
+                linkHealth: linkHealth,
+                linkShields: linkShields
+            }
+        }
         props.mods.forEach(mod => {
             if (mod.name) {
                 if (mod.link) {
@@ -214,6 +225,10 @@ export class BeastStats extends PureComponent {
         this.setState(prevState => ({ open: !prevState.open }))
     }
 
+    toggleBaseStats = () => {
+        this.setState(prevState => ({ baseStatsToggle: !prevState.baseStatsToggle }))
+    }
+
     handleArmorChange = ({ target }) => {
         let value = target.value;
         value = this.checkValue(value);
@@ -314,8 +329,13 @@ export class BeastStats extends PureComponent {
                 </div>
                 <div className={"ranged-stats " + (open ? 'open-ranged-stats' : 'closed-ranged-stats')}>
                     <div className="ranged-stats-inner-wrapper">
-                        <div className="top-bar-margin"></div>
                         <div className="stats-wrapper">
+                            <div className="stats-item damage">
+                                <div className="stats-switch">
+                                    <p className="stat-name">Show Base Stats</p>
+                                    <Switch className="stat" onChange={this.toggleBaseStats} checked={this.state.baseStatsToggle} />
+                                </div>
+                            </div>
                             <div className="stats-item damage">
                                 <p className="stat-name">Damage: </p>
                                 <div className="damage">

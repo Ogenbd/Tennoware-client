@@ -1,56 +1,52 @@
 UPDATE LOG
 
-23/02/2019 - v1.3.3.
+upcoming - v1.3.4.
+New:
+Searching for the word "elemental" (or parts of it) now shows all elemental damage mods.
+Added a show base stats toggle to the stats window.
+Changes:
+Changed Status Type Breakdown to Chance for a specific status.
+More improvments to Tennowares update and caching strategy.
 
+26/02/2019 - v1.3.3.
 New:
 Searching for elemental combos (corrosive, magnetic, ect.) now shows the relevant base elemental mods.
 A calculated Hunter Munitions proc chance is shown whenever Hunters Munitions is slotted.
-
 Changes:
 On/Off toggles in the builder stats area are now switches instead of buttons.
-
 Fixes:
 Fixed an issue that caused Hastened Deflection to never appear as a slottable mod.
 Some jarring page reflows were adjusted.
 
 23/02/2019 - v1.3.2.
-
 Changes:
 Optimized a bunch of code. mainly focused on page transitions and animations.
-
 Fixes:
 Exalted Melee weapons' Stance mod is now centered in desktop mode.
 The MOA and ZAW pages have the correct titles again.
 
 22/02/2019 - v1.3.1.
-
 Fixes:
 Fixed an issue with the auto forma feature where if a mod in the Exilus slot was the lowest cost mod in a build it would either be ignored or result in an error.
 
 21/02/2019 - v1.3.0.
-
 New:
 an auto-forma feature has been added. When the forma toggle is activated while capacity is below 0 the user will be asked if they want to manually apply forma or let Tennoware apply it automatically. For more info on the ins and outs of this feature go here.
-
 Changes:
 Build deletion conformation box in the My Builds page is now bound to the viewport instead of the page.
 Added images to the mods: Cryo Coating, Infectious Injection and Ion Infusion.
-
 Fixes:
 Corrected Equinox's Peaceful Provocation augment's energy costs.
 Fixed several issues with items that have an ampersand (&) in their name.
 Fixed a error that occured when updating a build's name/description without changing anything in the build.
 
 18/06/2019 - v1.2.9.
-
 New:
 Added Deconstructor and Deconstructor Prime.
-
 Changes:
 Lots of improvements to animations and transitions.
 UI responsiveness improvements.
 Error Handling improvements.
-
 Fixes:
 Corrected Equinox's Pacify & Provoke energy costs.
 Corrected some Warframe Arcanes description typos.
@@ -59,7 +55,6 @@ Fixed an issue that caused parts of the UI to fail to adapt to viewport size cor
 Fixed an issue that caused Tennoware to crash for users with some ad blocking software under some conditions.
 
 06/02/2019 - v1.2.8.
-
 Fixes:
 Fixed an issue with Furious Javeling.
 Corrected Battacor stats.
@@ -67,10 +62,8 @@ Added innate madurai polarity to Imperator Vandal.
 Fire Rate stat now displays two digits after the decimal when appropriate.
 
 31/01/2019 - v1.2.6-7.
-
 New:
 Added Zaw and Kitgun Arcanes.
-
 Fixes:
 Facebook login broke at some point. It is back in working order.
 Login box UI has been fixed.
@@ -78,25 +71,20 @@ Quick Return is now correctly only equipable on Thrown Melee weapons.
 Fixed and issue when a user saves/links a build with a riven while not inputing anything in the stat amount field.
 
 28/01/2019 - v1.2.4 + 1.2.5.
-
 Changes:
 Main page Redesign.
 Desktop site navigation overhaul. Was done to make future features, UI changes and UI additions less time consuming to develop.
 More improvements to Tennoware update strategy.
-
 Fixes:
 Fixed an issue with Guardian Derision's description.
 Fixed an issue with Life Strike's description.
 
 24/01/2019 - v1.2.3.
-
 New:
 Added Arcanes to the Warframe Modding page.
-
 Changes:
 Added damage buff duration to nyx's Absorb.
 Implemented changes to Weapons and Mods in Warframe update 24.2.10.
-
 Fixes:
 Fixed the calculation for Ivara's Navigator.
 Fixed a small UI issue with the Berserker Stacks slider.
@@ -107,31 +95,24 @@ Fixed an issue that prevented Vulpine Mask from showing up on the mod picker.
 Archgun - Land builds will now get 1 free forma like they do ingame.
 
 17/01/2019 - v1.2.2.
-
 Fixes:
 Removed some code that was left in unintentionally and broke everything. 
 
 17/01/2019 - v1.2.1.
-
 New:
 Added Razowing Blitz augment support to the Dex Pixia and Diwata.
-
 Changes:
 improvements to update and caching strategy.
-
 Fixes:
 Fixed an issue that caused some Zaw builds to cause errors resolting in a blank page.
 
 14/01/2019 - v1.2.0.
-
 New:
 Added Melee and Archmelee Modding.
 Added Zaw Building and Modding.
 Added Augment Mods from the Warframe 24.2.7 update.
-
 Changes:
 Implemented Changes to Harrow's abilities from the Warframe 24.2.7 update.
-
 Fixes:
 Exalted Weapons should now have the same mod availability as they do ingame.
 Fixed an error in Zylok's damage stats.
@@ -141,27 +122,21 @@ Exalted weapons no longer have the option to slot in Riven Mods.
 Fixed a UI issue in the general Kitgun Community Builds tab.
 
 03/01/2019 - v1.1.7.
-
 New:
 Added Armor/Health/Shields Link calculations and functionality on relevant Companion types.
 Added search functionality to My Builds page. works with build name or item name.
-
 Changes:
 Some UI changes. Added hover functionality to Filter and Sort in the mod picker and made some buttons adjust to their location better.
-
 Fixes:
 Adjusted Grattler-Land's damage numbers to reflect actual in game numbers (both the patch notes and the wiki are wrong as far as i can tell).
 Archguns show the correct potato type in the "My Builds" page.
 
 27/12/2018 - v1.1.6.
-
 New:
 Added Energy Conversion calculation and toggle that appears when energy conversion is slotted.
 Added a slider and damage calculations for sniper shot combo.
-
 Changes:
 Sniper zoom was changed from a button to a slider. No more clicking/tapping through to the wanted zoom.
-
 Fixes:
 Fixed Ammo Chain mod, it is now uncommon with a naramon polarity.
 Fixed multishot calculation for archguns.
@@ -169,11 +144,9 @@ Seperated Fire rate and Charge rate in archgun calculations, it now uses the sam
 Fixed land mode Cyngas missing its max ammo stat.
 
 26/12/2018 - v1.1.5.
-
 New:
 Added a system that checks if a specific item had any major updates (either in Warframe or as a result of an error in Tennoware) since a build was saved/updated last. If there was such an update the build will have a "possibly outdated" tag instead of a date. The "possibly outdated" tag can be removed by the owner of the build if he updates it.
 Users who saved a Baruuk before this update will see this tag on their build.
-
 Fixes:
 Fixed Baruuk's polarities, the naramon polarity is now on his exilus slot.
 Fixed an issue that caused the "My Builds" page to display incorrectly in specific circumstances.
@@ -182,15 +155,12 @@ Fixed an issue that caused the "My Builds" page to display incorrectly in specif
 
 New:
 Added a Nintendo Switch to the news page.
-
 Changes:
 Changed the loction and behavior of the "Mod it" button in the modular part picking pages (kitguns and moas) on devices with smaller screens. You do not have to go open the Stats section to go to the modding page.
-
 Fixes:
 Fixed an issue that caused mods that provide base status chance to give way more status than intended.
 
 22/12/2018 - v1.1.3.
-
 Fixes:
 Ammo Stock now correctly adds 10% Mag size per rank.
 Fixed a crash in the "My Builds" page that happened under very specific circumstances.
@@ -198,35 +168,29 @@ Build descriptions now respect the 'enter' key, build descriptions now are now f
 Did a formatting pass on all Mod descriptions, they now have line cuts and are more legible.
 
 20/12/2018 - v1.1.2.
-
 New:
 Added Baruuk.
 Added the Strain mod set: Strain Fever (Helminth), Strain Eruption (Helminth), Strain Consume (Warframe).
 Added the new Archgun mods: Ammo Chain, Arch-Gun Ace, Deadly Efficiency, Resolute Focus, Marked Target, Sabot Rounds, Critical Focus, Quick Reload.
 Added MOA bracket options.
-
 Changes:
 Increased Archguns-Land Max Ammo as per Warframe update 24.2.4 and 24.2.5.
 Added mod images for some of the mods that were missing theirs.
-
 Fixes:
 Exergis now has 3 pellets.
 
 19/12/2018 - v1.1.1.
-
 About Tennoware Updates:
 Up to and including Tennoware v1.1.0 the caching strategy used for offline use (and more responsive and less bandwith heavy online use) was not letting updates go through in a conveniant manner. in v1.1.0 I added a nice little banner that pops up at the bottom of the page and lets you know theres an update ready with a button that was supposed to update it seamlessly, that didn't go quite as planned and that button didn't really do its job.
 Tennoware v1.1.1 changes the caching strategy and that also fixes the update button.
 In order to make sure you will have the most up to date version of Tennoware all you have to do is:
 Browser: If you have Tennoware tabs open close them, go to tennoware.com and wait a bit, 30 seconds should be enough, then close all browser windows and thats it. Next time you go to tennoware.com it should be the updated version and every time theres another update it should let you know with a banner and a button to just update.
 Installed App: make sure the App isn't running (on screen or in the background) and launch it. Wait a bit, 30 seconds should be enough, and close it completely (cant even be in the background). Next time you launch the app it should be the updated version and every time theres another update it should let you know with a banner and a button to just update.
-
 New:
 Added Mesa Prime to warframes.
 Added Akjagara Prime and Plinx to secondary weapons.
 Added Exergis to primary weapons.
 Added an Archgun - Land catagory.
-
 Changes:
 Updated Nyx, Nyx Prime, Titania, Tonkor, Simulor, Synoid Simulor, Staticor, Ocucor and various Kitgun Combos as per warframe update 24.2.
 Update Archgun Mods Automatic Trigger, Dual Rounds, Rubedo Lined Barrel, Parallax Scope and Hollowed Bullets as per warframe update 24.2.
@@ -234,32 +198,26 @@ Calculated Redirection, Enhanced Vitality and Metal Fiber are now equipable by a
 
 
 17/12/2018 - v1.1.0.
-
 New:
 Added standalone Tennoware accounts.
 Added filtering by polarity and different sorting options for the mod picker.
-
 Changes:
 Reviewing the code for the mod picker while implementing filtering and sorting led to fairly chunky optimization in and around the mod picker. Said optimization should make the mod picker more responsive.
 Added some some custom timing curves to some animations.
-
 Fixes:
 Added Image loading error handling to the warframe news section. Now if theres an error loading one (or more) image it should still load up the rest.
 
 12/12/2018 - v1.0.6.
-
 New:
 Added the option to apply Arbitrations bonus to calculations.
 Added the option to look at all public Kitgun/MOA build. Felt like hiding those community builds behind specific setup was to restrictive.
 Added a status type breakdown where applicable. The breakdown means if there is a proc what are the chances for each type.
-
 Fixes:
 Fixed yet another crash caused by rivens. Please let me know if you come across any more issues with riven builds.
 Sniper Scavanger now adds the correct capacity amount.
 Gave the News & Updates page a facelift, loading news should now be much smoother.
 
 10/12/2018 - v1.0.5.
-
 Fixes:
 Fixed an issue that caused Community Builds lists that were larger than the space available to them to scroll horizontally instead of vertically. 
 Fixed an issue where the sustained DPS calculation was wrong when mods effecting reload speed were in play.
@@ -269,10 +227,8 @@ Fixed an issue where dragging a mod in Firefox would highlight a bunch of stuff.
 
 
 09/12/2018 - v1.0.4.
-
 Changes:
 Firefox users using Firefox Quantom version 64+ on non-mobile devices should now have sleeker themed scrollbars that take up much less space.
-
 Fixes:
 Firefox users using Firefox Quantom version 64+ on non-mobile devices should now have the ability to increase and decrease mod rank.
 Fixed an issue where builds with rivens that had fractional stats resulted in an invalid riven error.
@@ -281,7 +237,6 @@ Fixed Soul Survivor's Health restore, it now applies correctly to Soul Punch.
 Augur Reach's added range is now the same as it is in game.
 
 07/12/2018 - v1.0.3.
-
 Fixes:
 Morphic Transformer and Primed Morphic Transformer can no longer be used at the same time.
 Fixed an issue where the last 2 slots on a loaded companion build did not apply polarity correctly.
@@ -291,7 +246,6 @@ Fixed an issue where efficiency can visually go over 175% even though it didnt a
 Fixed Cunning Drift's description.
 
 06/12/2018 - v1.0.2.
-
 Fixes:
 Fixed an issue where updating a previously saved build's description sometimes didn't work.
 Fixed Speed Drift's description.
@@ -303,15 +257,13 @@ Fixed Rending Turn not being considered an Exilus mod.
 Fixed Toxic Flight not being considered an Exilus mod.
 
 06/12/2018 - v1.0.1.
-
 Fixes:
-Fixed some embarrassing typo's.
+Fixed some typo's.
 Saryn Prime now has the correct stats.
 Fixed Cunning Drift to add Range and not duration.
 Rubico Prime now has its propper Crit chance.
 Fixed an issue where warframe builds with Set mods would not display the correct Set count and stats.
 
 06/12/2018 - v1.0.0.
-
 Initial Release.
 

@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import Switch from 'react-switch';
 import './Stats.css';
 
 export class MoaStats extends PureComponent {
@@ -17,15 +18,25 @@ export class MoaStats extends PureComponent {
             healthAmount: '',
             linkShields: false,
             shieldsAmount: '',
+            baseStatsToggle: false
         }
     }
 
-    static getDerivedStateFromProps(props) {
+    static getDerivedStateFromProps(props, state) {
         let effects = {};
         let elemental = [];
         let linkArmor = false;
         let linkHealth = false;
         let linkShields = false;
+        if (state.baseStatsToggle) {
+            return {
+                effects: effects,
+                elemental: elemental,
+                linkArmor: linkArmor,
+                linkHealth: linkHealth,
+                linkShields: linkShields
+            }
+        }
         props.mods.forEach(mod => {
             if (mod.name) {
                 if (mod.link) {
@@ -76,6 +87,10 @@ export class MoaStats extends PureComponent {
 
     toggleStats = () => {
         this.setState(prevState => ({ open: !prevState.open }))
+    }
+
+    toggleBaseStats = () => {
+        this.setState(prevState => ({ baseStatsToggle: !prevState.baseStatsToggle }))
     }
 
     handleArmorChange = ({ target }) => {
@@ -177,8 +192,13 @@ export class MoaStats extends PureComponent {
                 </div>
                 <div className={"ranged-stats " + (open ? 'open-ranged-stats' : 'closed-ranged-stats')}>
                     <div className="ranged-stats-inner-wrapper">
-                        <div className="top-bar-margin"></div>
                         <div className="stats-wrapper">
+                            <div className="stats-item damage">
+                                <div className="stats-switch">
+                                    <p className="stat-name">Show Base Stats</p>
+                                    <Switch className="stat" onChange={this.toggleBaseStats} checked={this.state.baseStatsToggle} />
+                                </div>
+                            </div>
                             <div className="stats-item">
                                 <p className="stat-name">Armor: </p>
                                 <div className={"warframe-stat " + (frame.armor < armor ? "increased-stat" : frame.armor === armor ? "" : "decreased-stat")}><p>{Math.floor(armor)}</p></div>
