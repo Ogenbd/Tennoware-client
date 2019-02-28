@@ -123,6 +123,10 @@
     min-width: 237px;
 }
 
+.frame-aug-container {
+    min-width: 165px;
+}
+
 .aug-wrapper {
     display: flex;
     justify-content: flex-start;

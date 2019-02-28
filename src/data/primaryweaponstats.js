@@ -2749,7 +2749,7 @@ const primaryWeaponStats = [
                 damage: 100,
                 split: [
                     {
-                        type: 'Electricity',
+                        type: 'Toxin',
                         percent: 1
                     }
                 ]

@@ -5292,6 +5292,7 @@ const warframeMods = [
     {
         abrev: 'q0',
         name: 'Primed Vigor',
+        family: 'Vigor',
         img: require('../assets/modimages/primed-vigor.jpg'),
         type: 'WARFRAME',
         rarity: 'prime',
@@ -7937,6 +7938,7 @@ const warframeMods = [
     {
         abrev: 'z7',
         name: 'Vigor',
+        family: 'Vigor',
         img: require('../assets/modimages/vigor.jpg'),
         type: 'WARFRAME',
         rarity: 'rare',

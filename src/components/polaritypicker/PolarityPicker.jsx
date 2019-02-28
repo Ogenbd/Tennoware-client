@@ -27,7 +27,7 @@ export class PolarityPicker extends Component {
                 </div>
                 <div className="popup-content polarity-picker">
                     <div className="polarity-picker-window" onClick={this.cancelClick}>
-                        <div className="hexa-wrapper">
+                        <div className="hexa-wrapper first-row">
                             <div className="hexagon" onClick={(e) => { this.polarizeSlot(e, 'madurai') }}>
                                 <span>
                                     <img className="hex-polarity" src={require('../../assets/dynamic/polarities/maduraiblack.png')} alt="madurai" />
@@ -48,6 +48,8 @@ export class PolarityPicker extends Component {
                                     <img className="hex-polarity" src={require('../../assets/dynamic/polarities/zenurikblack.png')} alt="zenurik" />
                                 </span>
                             </div>
+                        </div>
+                        <div className="hexa-wrapper second-row">
                             <div className="hexagon" onClick={(e) => { this.polarizeSlot(e, 'unairu') }}>
                                 <span>
                                     <img className="hex-polarity" src={require('../../assets/dynamic/polarities/unairublack.png')} alt="unairu" />
@@ -58,14 +60,14 @@ export class PolarityPicker extends Component {
                                     <img className="hex-polarity" src={require('../../assets/dynamic/polarities/penjagablack.png')} alt="penjaga" />
                                 </span>
                             </div>
+                            <div className="hexagon" onClick={(e) => { this.polarizeSlot(e, 'umbra') }}>
+                                <span>
+                                    <img className="hex-polarity" src={require('../../assets/dynamic/polarities/umbrablack.png')} alt="umbra" />
+                                </span>
+                            </div>
                             <div className="hexagon" onClick={(e) => { this.polarizeSlot(e, undefined) }}>
                                 <span></span>
                             </div>
-                            {/* <div className="hexagon">
-                                <div className="hex-wrapper">
-                                    <div className="hex-border bg-image"></div>
-                                </div>
-                            </div> */}
                         </div>
                     </div>
                 </div>

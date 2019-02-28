@@ -80,6 +80,7 @@ export class News extends Component {
               <div className="tennoware-update">
                 <div className="update-title">Update 1.3.4</div>
                 <div className="update-content">
+                  <p>Added umbra polarity as an option to the polarity window. Note: The auto-forma feature will not apply umbra polarities.</p>
                   <p>Searching for the word "elemental" (or parts of it) in the mod picker search bar now shows all elemental damage mods.</p>
                   <p>Added a "Show base stats" toggle to the stats window.</p>
                   <p>For information on the Auto-Forma feature that was added to Tennoware in update 1.3.0 <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/atapv4/autoforma_and_you/">read this</a>.</p>
