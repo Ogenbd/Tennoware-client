@@ -411,6 +411,12 @@ export class MeleeStats extends Component {
 
     calcSpeed = () => {
         let speedMult = 1;
+        if (this.state.baseStatsToggle) {
+            return {
+                display: this.props.weapon.modes[this.state.mode].speed,
+                mult: speedMult
+            }
+        }
         if (this.state.effects.speed) speedMult += this.state.effects.speed;
         if (this.state.berserker && this.state.berserkerStacks > 0) {
             let berserkerMult = this.state.effects.berserker * this.state.berserkerStacks;

@@ -78,7 +78,7 @@ export class News extends Component {
           <div className="news-container">
             <div className="home-left">
               <div className="tennoware-update">
-                <div className="update-title">Update 1.3.4</div>
+                <div className="update-title">Update 1.3.4-5</div>
                 <div className="update-content">
                   <p>Added the Wolf Sledge.</p>
                   <p>Added umbra polarity as an option to the polarity window. Note: The auto-forma feature will not apply umbra polarities.</p>
