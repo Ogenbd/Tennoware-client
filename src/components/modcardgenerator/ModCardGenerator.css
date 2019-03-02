@@ -11,7 +11,6 @@
 }
 
 .simple-mod {
-    /* transition: all 100ms ease-in-out; */
     cursor: pointer;
     margin: 1px;
     z-index: 1;
@@ -152,14 +151,11 @@
     height: 2px;
 }
 
-@media screen and (min-width: 1203px) and (hover: hover) {
+@media screen and (min-width: 1280px) and (hover: hover) {
     .mod-info-wrapper {
         max-height: 250px;
         transition: all 150ms ease-in-out;
         overflow: hidden;
-    }
-    .mod:hover {
-        /* transform: scale(1.06); */
     }
     .mod-desc p {
         transition: all 150ms ease-in-out;

@@ -52,14 +52,14 @@ export class ModPicker extends Component {
     }
 
     handlePick = (mod) => {
-        if (this.props.viewWidth < 1203) {
+        if (this.props.viewWidth < 1280) {
             this.props.pickMod(mod);
             this.closeModPicker();
         }
     }
 
     handleDrag = (e, index) => {
-        if (this.props.viewWidth >= 1203) {
+        if (this.props.viewWidth >= 1280) {
             e.dataTransfer.setData('payload', JSON.stringify({ from: 'picker', index: index }));
         }
     }
@@ -164,7 +164,7 @@ export class ModPicker extends Component {
         } else if (this.state.sort === 'rank') {
             filtered = this.sortByRank(filtered);
         }
-        if (this.props.viewWidth < 1203) {
+        if (this.props.viewWidth < 1280) {
             this.setState(prevState => ({
                 conclave: !prevState.conclave,
                 mods: filtered,
@@ -179,7 +179,7 @@ export class ModPicker extends Component {
     }
 
     toggleStance = () => {
-        if (this.props.viewWidth < 1203) {
+        if (this.props.viewWidth < 1280) {
             this.setState(prevState => ({
                 stance: !prevState.stance,
                 filterToggle: false
@@ -192,7 +192,7 @@ export class ModPicker extends Component {
     }
 
     toggleAura = () => {
-        if (this.props.viewWidth < 1203) {
+        if (this.props.viewWidth < 1280) {
             this.setState(prevState => ({
                 aura: !prevState.aura,
                 exilus: false,
@@ -207,7 +207,7 @@ export class ModPicker extends Component {
     }
 
     toggleExilus = () => {
-        if (this.props.viewWidth < 1203) {
+        if (this.props.viewWidth < 1280) {
             this.setState(prevState => ({
                 exilus: !prevState.exilus,
                 aura: false,
@@ -222,7 +222,7 @@ export class ModPicker extends Component {
     }
 
     filterPolarity = (polarity) => {
-        if (this.props.viewWidth < 1203) {
+        if (this.props.viewWidth < 1280) {
             if (polarity === this.state.polarity) {
                 this.setState({
                     polarity: null,
@@ -248,7 +248,7 @@ export class ModPicker extends Component {
     }
 
     toggleFilter = () => {
-        if (this.props.viewWidth < 1203) {
+        if (this.props.viewWidth < 1280) {
             this.setState(prevState => ({
                 filterToggle: !prevState.filterToggle,
                 sortToggle: false
@@ -257,7 +257,7 @@ export class ModPicker extends Component {
     }
 
     showFilter = () => {
-        if (this.props.viewWidth > 1202) {
+        if (this.props.viewWidth > 1279) {
             this.setState({
                 filterToggle: true
             });
@@ -265,7 +265,7 @@ export class ModPicker extends Component {
     }
 
     hideFilter = () => {
-        if (this.props.viewWidth > 1202) {
+        if (this.props.viewWidth > 1279) {
             this.setState({
                 filterToggle: false
             });
@@ -273,7 +273,7 @@ export class ModPicker extends Component {
     }
 
     toggleSort = () => {
-        if (this.props.viewWidth < 1203) {
+        if (this.props.viewWidth < 1280) {
             this.setState(prevState => ({
                 sortToggle: !prevState.sortToggle,
                 filterToggle: false
@@ -282,7 +282,7 @@ export class ModPicker extends Component {
     }
 
     showSort = () => {
-        if (this.props.viewWidth > 1202) {
+        if (this.props.viewWidth > 1279) {
             this.setState({
                 sortToggle: true
             });
@@ -290,7 +290,7 @@ export class ModPicker extends Component {
     }
 
     hideSort = () => {
-        if (this.props.viewWidth > 1202) {
+        if (this.props.viewWidth > 1279) {
             this.setState({
                 sortToggle: false
             });
@@ -298,7 +298,7 @@ export class ModPicker extends Component {
     }
 
     clearFilter = () => {
-        if (this.props.viewWidth < 1203) {
+        if (this.props.viewWidth < 1280) {
             if (this.state.conclave) {
                 let mods = this.props.mods.filter(mod => {
                     return !mod.conclaveOnly;
@@ -360,7 +360,7 @@ export class ModPicker extends Component {
     }
 
     sortName = () => {
-        if (this.props.viewWidth < 1203) {
+        if (this.props.viewWidth < 1280) {
             if (this.state.sort === 'name') {
                 this.setState({
                     sortToggle: false
@@ -394,7 +394,7 @@ export class ModPicker extends Component {
     }
 
     sortDrain = () => {
-        if (this.props.viewWidth < 1203) {
+        if (this.props.viewWidth < 1280) {
             if (this.state.sort === 'drain') {
                 this.setState({
                     sortToggle: false
@@ -428,7 +428,7 @@ export class ModPicker extends Component {
     }
 
     sortRank = () => {
-        if (this.props.viewWidth < 1203) {
+        if (this.props.viewWidth < 1280) {
             if (this.state.sort === 'rank') {
                 this.setState({
                     sortToggle: false
@@ -463,9 +463,9 @@ export class ModPicker extends Component {
 
     render() {
         return (
-            <div className={this.props.viewWidth < 1203 ? "popup " + (this.props.active ? "popup-active" : "popup-inactive") : 'mod-picker'}>
-                <div className={this.props.viewWidth < 1203 ? "popup-topbar " + (this.props.active ? "popup-active mod-list-topbar" : "popup-inactive mod-list-topbar") : "mod-list-topbar"}>
-                    {this.props.viewWidth < 1203 &&
+            <div className={this.props.viewWidth < 1280 ? "popup " + (this.props.active ? "popup-active" : "popup-inactive") : 'mod-picker'}>
+                <div className={this.props.viewWidth < 1280 ? "popup-topbar " + (this.props.active ? "popup-active mod-list-topbar" : "popup-inactive mod-list-topbar") : "mod-list-topbar"}>
+                    {this.props.viewWidth < 1280 &&
                         <div className="popup-x mod-list-x" onClick={this.closeModPicker}>
                             <div className="popup-x-bar one-bar"></div>
                             <div className="popup-x-bar two-bar"></div>
@@ -476,13 +476,13 @@ export class ModPicker extends Component {
                             <p className={"mod-dropdown-trigger-fill " + (this.state.conclave || this.state.aura || this.state.exilus || this.state.polarity || this.state.filterToggle ? 'active-option' : 'inactive-option')} onMouseEnter={this.showFilter} onClick={this.toggleFilter}>Filter <span className="chev-down">›</span></p>
                             <div className={"dropdown-block filter-block " + (this.state.filterToggle ? 'active-block' : 'inactive-block')}>
                                 <div className="dropdown-option" onClick={this.clearFilter}>Clear All</div>
-                                {this.props.type === 'warframes' && this.props.viewWidth > 1202 &&
+                                {this.props.type === 'warframes' && this.props.viewWidth > 1279 &&
                                     <React.Fragment>
                                         <div className={"dropdown-option " + (this.state.aura ? 'active-option' : 'inactive-option')} onClick={this.toggleAura}>Aura</div>
                                         <div className={"dropdown-option " + (this.state.exilus ? 'active-option' : 'inactive-option')} onClick={this.toggleExilus}>Exilus</div>
                                     </React.Fragment>
                                 }
-                                {(this.props.type === 'meleeweapons' || this.props.type === 'zaws') && this.props.viewWidth > 1202 &&
+                                {(this.props.type === 'meleeweapons' || this.props.type === 'zaws') && this.props.viewWidth > 1279 &&
                                     <div className={"dropdown-option " + (this.state.stance ? 'active-option' : 'inactive-option')} onClick={this.toggleStance}>Stance</div>
                                 }
                                 <div className={"dropdown-option " + (this.state.polarity === 'madurai' ? 'active-option' : 'inactive-option')} onClick={() => { this.filterPolarity('madurai') }}>{this.state.polarity === 'madurai' ? <img className="filter-pol" src={require('../../assets/dynamic/polarities/madurairare.png')} alt="" /> : <img className="filter-pol" src={require('../../assets/dynamic/polarities/maduraiprime.png')} alt="" />}Madurai</div>
@@ -508,7 +508,7 @@ export class ModPicker extends Component {
                         <input className="search" type="text" placeholder="Search..." value={this.state.search} onChange={this.handleChange} onKeyUp={this.blurInput} />
                     </div>
                 </div>
-                <div className="popup-content mod-list-wrapper">
+                <div className={this.props.viewWidth < 1280 ? "popup-content mod-list-wrapper" : "mod-list-wrapper"}>
                     <div
                         className="mod-list"
                         ref={element => {

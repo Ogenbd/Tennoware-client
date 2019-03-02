@@ -54,7 +54,7 @@
     opacity: 0.8;
 }
 
-@media screen and (min-width: 1203px) and (hover: hover) {
+@media screen and (min-width: 1280px) and (hover: hover) {
     .like-button:hover {
         color: rgba(21, 230, 16, 0.73);
         box-shadow: inset 0px -17px 15px -11px rgba(21, 230, 16, 0.73);

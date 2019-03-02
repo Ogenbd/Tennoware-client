@@ -258,19 +258,19 @@ export class BeastStats extends PureComponent {
     }
 
     focusSoftInputArmor = () => {
-        if (this.props.viewWidth < 1203) {
+        if (this.props.viewWidth < 1280) {
             this.softInputArmor.current.focus();
         }
     }
 
     focusSoftInputHealth = () => {
-        if (this.props.viewWidth < 1203) {
+        if (this.props.viewWidth < 1280) {
             this.softInputHealth.current.focus();
         }
     }
 
     focusSoftInputShields = () => {
-        if (this.props.viewWidth < 1203) {
+        if (this.props.viewWidth < 1280) {
             this.softInputShields.current.focus();
         }
     }

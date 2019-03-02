@@ -422,18 +422,7 @@
     }
 }
 
-/* loading spinner end */
-
-/* @media screen and (min-width: 1392px) {
-    .uncontained {
-        left: 96px;
-    }
-    .general-error {
-        left: 192px;
-    }
-} */
-
-@media screen and (min-width: 1203px) {
+@media screen and (min-width: 1280px) {
     .modding-wrapper {
         width: 1200px;
     }
@@ -467,7 +456,6 @@
         align-items: center;
         justify-content: center;
         width: 100%;
-        max-width: 1200px;
         height: 56px;
         background-color: rgba(0, 0, 0, 0.8);
         z-index: 9111;
@@ -504,7 +492,14 @@
     }
 }
 
-@media screen and (max-width: 1202px) {
+@media screen and (min-width: 1280px) {
+    .popup-content {
+        height: calc(100% - 56px);
+        max-height: calc(100% - 56px);
+    }
+}
+
+@media screen and (max-width: 1279px) {
     .modding-wrapper {
         width: 100vw;
     }
@@ -595,13 +590,13 @@
     }
 }
 
-@media screen and (max-width: 536px) {
+@media screen and (max-width: 542px) {
     .pull-tab {
         display: flex;
         position: fixed;
         justify-content: center;
         align-items: center;
-        top: 157px;
+        top: 170px;
         right: 0;
         width: 60px;
         height: 50px;
@@ -647,7 +642,7 @@
     }
 }
 
-@media screen and (min-width: 1203px) and (hover: hover) {
+@media screen and (min-width: 1280px) and (hover: hover) {
     .interactable:hover {
         color: rgba(255, 249, 160, 1);
         box-shadow: inset 0px -17px 15px -11px rgba(255, 249, 160, 0.73);

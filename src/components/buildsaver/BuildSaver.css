@@ -105,7 +105,7 @@
     width: 90%;
     color: white;
     box-sizing: border-box;
-    max-width: 540px;
+    max-width: 542px;
     border: solid 1px rgba(255, 249, 160, 0.3);
     margin-bottom: 10px;
 }
@@ -155,7 +155,7 @@
     }
 }
 
-@media screen and (max-width: 1202px) {
+@media screen and (max-width: 1279px) {
     .build-saver {
         justify-content: flex-start;
     }

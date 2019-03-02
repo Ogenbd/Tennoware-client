@@ -69,7 +69,7 @@ export class News extends Component {
         <Helmet>
           <title>Tennoware, A Warframe Builds Calculator.</title>
         </Helmet>
-        {this.props.viewWidth < 1203
+        {this.props.viewWidth < 1280
           ? <div className="top-title"><p>TENNOWARE</p></div>
           : <div className="top-title"><p>HOME</p></div>
         }

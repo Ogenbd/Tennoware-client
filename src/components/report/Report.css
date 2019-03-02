@@ -31,7 +31,7 @@
     /* width: 90%; */
     color: white;
     box-sizing: border-box;
-    /* max-width: 540px; */
+    /* max-width: 542px; */
     background-color: rgba(0, 0, 0, 1);
     border: 1px solid rgba(255, 249, 160, 0.73);
     margin-bottom: 10px;
@@ -66,7 +66,7 @@
     color: red;
 }
 
-@media screen and (min-width: 1203px) and (hover: hover) {
+@media screen and (min-width: 1280px) and (hover: hover) {
     .report-button:hover {
         color: red;
         box-shadow: inset 0px -17px 15px -11px rgba(255, 0, 0, 0.73);

@@ -370,6 +370,8 @@
     width: calc((100vw - 1200px) / 2 - 30px);
     max-width: 300px;
     min-width: 120px;
+    height: 600px;
+    background-color: aqua;
 }
 
 .reddit-link {
@@ -378,16 +380,19 @@
     font-size: 16px;
 }
 
-@media screen and (min-width: 1203px) {
+@media screen and (min-width: 1280px) {
     .topbar {
         z-index: 9100;
     }
     .top-title {
         z-index: 9101;
     }
+    .top-buttons {
+        margin-right: 15px;
+    }
 }
 
-@media screen and (max-width: 1202px) {
+@media screen and (max-width: 1279px) {
     .background-image {
         background-image: url('./assets/Warframe0001small.jpg');
     }
@@ -408,7 +413,7 @@
     }
 }
 
-@media screen and (max-width: 536px) {
+@media screen and (max-width: 542px) {
     .modding-bottom-g {
         width: 100%;
     }

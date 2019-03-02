@@ -106,7 +106,7 @@
 }
 
 
-@media screen and (min-width: 1203px) and (hover: hover) {
+@media screen and (min-width: 1280px) and (hover: hover) {
     .item-wrapper:hover {
         border: solid 1px rgba(255, 249, 160, 0.73);
     }

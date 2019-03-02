@@ -1683,7 +1683,7 @@ const meleeStats = [
       {
         name: 'Regular',
         speed: 0.833,
-        slide: 536,
+        slide: 540,
         wall: 1000,
         slam: 250,
         critChance: 0.15,
@@ -1708,7 +1708,7 @@ const meleeStats = [
       {
         name: 'Chromatic Cold',
         speed: 0.833,
-        slide: 536,
+        slide: 540,
         wall: 1000,
         slam: 250,
         critChance: 0.15,
@@ -1725,7 +1725,7 @@ const meleeStats = [
       {
         name: 'Chromatic Electricity',
         speed: 0.833,
-        slide: 536,
+        slide: 540,
         wall: 1000,
         slam: 250,
         critChance: 0.15,
@@ -1742,7 +1742,7 @@ const meleeStats = [
       {
         name: 'Chromatic Heat',
         speed: 0.833,
-        slide: 536,
+        slide: 540,
         wall: 1000,
         slam: 250,
         critChance: 0.15,
@@ -1759,7 +1759,7 @@ const meleeStats = [
       {
         name: 'Chromatic Toxin',
         speed: 0.833,
-        slide: 536,
+        slide: 540,
         wall: 1000,
         slam: 250,
         critChance: 0.15,
@@ -1790,7 +1790,7 @@ const meleeStats = [
       {
         name: 'Regular',
         speed: 0.833,
-        slide: 536,
+        slide: 540,
         wall: 1000,
         slam: 250,
         critChance: 0.15,
@@ -1815,7 +1815,7 @@ const meleeStats = [
       {
         name: 'Chromatic Cold',
         speed: 0.833,
-        slide: 536,
+        slide: 540,
         wall: 1000,
         slam: 250,
         critChance: 0.15,
@@ -1832,7 +1832,7 @@ const meleeStats = [
       {
         name: 'Chromatic Electricity',
         speed: 0.833,
-        slide: 536,
+        slide: 540,
         wall: 1000,
         slam: 250,
         critChance: 0.15,
@@ -1849,7 +1849,7 @@ const meleeStats = [
       {
         name: 'Chromatic Heat',
         speed: 0.833,
-        slide: 536,
+        slide: 540,
         wall: 1000,
         slam: 250,
         critChance: 0.15,
@@ -1866,7 +1866,7 @@ const meleeStats = [
       {
         name: 'Chromatic Toxin',
         speed: 0.833,
-        slide: 536,
+        slide: 540,
         wall: 1000,
         slam: 250,
         critChance: 0.15,
@@ -3069,7 +3069,7 @@ const meleeStats = [
     modes: [
       {
         speed: 1,
-        slide: 536,
+        slide: 540,
         wall: 417,
         slam: 250,
         critChance: 0.25,

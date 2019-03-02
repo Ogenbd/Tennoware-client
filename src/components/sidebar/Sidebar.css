@@ -92,7 +92,7 @@
     text-shadow: 0 0 15px rgba(255, 249, 160, 1);
 }
 
-@media screen and (max-width: 1202px) {
+@media screen and (max-width: 1279px) {
     .sidebar {
         display: block;
         position: fixed;
@@ -193,7 +193,7 @@
     } */
 }
 
-@media screen and (max-width: 1202px) {
+@media screen and (max-width: 1279px) {
     .noscroll {
         position: initial;
         overflow-y: initial;

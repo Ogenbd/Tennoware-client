@@ -8,7 +8,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     box-sizing: border-box;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     z-index: 2;
 }
 
@@ -275,9 +275,9 @@
     border-bottom: none;
 }
 
-@media screen and (min-width: 537px) {
+@media screen and (min-width: 543px) {
     .ranged-stats-inner-wrapper {
-        position: fixed;
+        /* position: fixed; */
         overflow-y: auto;
         max-height: calc(100vh - 56px);
         width: 225px;
@@ -288,7 +288,7 @@
     }
 }
 
-@media screen and (max-width: 536px) {
+@media screen and (max-width: 542px) {
     .ranged-stats {
         position: fixed;
         top: 56px;

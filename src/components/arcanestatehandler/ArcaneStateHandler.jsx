@@ -14,9 +14,9 @@ export class ArcaneStateHandler extends Component {
     handleClick = (e) => {
         if (!this.props.arcane.name) {
             this.props.showArcanePicker(this.props.arcaneSlot);
-        } else if (this.props.viewWidth > 1202 && this.props.arcane.name) {
+        } else if (this.props.viewWidth > 1279 && this.props.arcane.name) {
             this.props.showArcanePicker(this.props.arcaneSlot);
-        } else if (this.props.viewWidth < 1203 && this.props.arcane.name) {
+        } else if (this.props.viewWidth < 1280 && this.props.arcane.name) {
             document.body.classList.add('noscroll');
             this.activateHandler(e.target);
         }
@@ -83,7 +83,7 @@ export class ArcaneStateHandler extends Component {
     render() {
         return (
             <div className="arcane-handler-wrapper" onClick={this.handleClick} onContextMenu={this.removeArcane}>
-                {this.props.viewWidth < 1203 &&
+                {this.props.viewWidth < 1280 &&
                     <React.Fragment>
                         <div className={"handler-background " + (this.state.handlerActive ? "handler-active" : "handler-inactive")} onClick={this.closeHandler}></div>
                         <div className={"arcane-handler-box " + (this.state.handlerActive ? "handler-active" : "handler-inactive")} style={this.state.boxStyle}>
@@ -105,7 +105,7 @@ export class ArcaneStateHandler extends Component {
                         </div>
                     </React.Fragment>
                 }
-                <div className="arcane-handler" style={this.state.handlerActive || this.props.viewWidth < 1203 ? this.state.arcaneStyle : {}}>
+                <div className="arcane-handler" style={this.state.handlerActive || this.props.viewWidth < 1280 ? this.state.arcaneStyle : {}}>
                     <p className="slotted-arcane-name">{this.props.arcane.name ? this.props.arcane.name : ''}</p>
                     <div className="arcane-slot-wrapper">
                         {this.props.arcane.name &&
@@ -114,7 +114,7 @@ export class ArcaneStateHandler extends Component {
                     </div>
                     {this.props.arcane.name &&
                         <React.Fragment>
-                            {this.props.viewWidth > 1202 &&
+                            {this.props.viewWidth > 1279 &&
                                 <div className="arcane-hover-wrapper">
                                     <div className="arcane-hover-buttons">
                                         <div className="arcane-hover-button" onClick={this.increaseRank}>+</div>

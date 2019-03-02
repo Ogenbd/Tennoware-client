@@ -19,8 +19,6 @@
 
 .link-area:focus {
     outline: none;
-    /* border-bottom: solid 2px rgb(255, 249, 160); */
-    /* box-shadow: inset 0px -17px 15px -11px rgba(255, 249, 160, 0.73); */
     border-color: rgba(255, 249, 160, 0.73);
 }
 
@@ -29,16 +27,11 @@
     width: 7px;
 }
 
-@media screen and (max-width: 1202px) {
+@media screen and (max-width: 1279px) {
 
 }
 
-@media screen and (max-width: 536px) {
-    .link-generator-window {
-        /* left: unset; */
-        /* margin-left: unset; */
-        /* height: 140px; */
-    }
+@media screen and (max-width: 542px) {
     .link-area {
         height: 70px;
     }

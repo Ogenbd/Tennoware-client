@@ -150,7 +150,7 @@ class App extends Component {
             </div>
           </Link>
           <div className="page-title">
-            {this.state.viewWidth > 1202 &&
+            {this.state.viewWidth > 1279 &&
               <div className="nav-menu" onMouseLeave={this.hideNav}>
                 <p className={"nav-menu-trigger " + (this.state.navToggle ? 'active-nav' : '')} onMouseEnter={this.showNav}>Navigation <span className="chev-down">›</span></p>
                 <div className="nav-hider"></div>
@@ -194,7 +194,7 @@ class App extends Component {
           <div className="top-buttons">
             {this.state.online &&
               <React.Fragment>
-                {this.state.viewWidth > 1202 && this.state.user &&
+                {this.state.viewWidth > 1279 && this.state.user &&
                   <React.Fragment>
                     <Link to="/mybuilds" className="user-account-item">My Builds</Link>
                     <p> | </p>

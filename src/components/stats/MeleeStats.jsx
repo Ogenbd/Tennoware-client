@@ -460,7 +460,7 @@ export class MeleeStats extends Component {
     }
 
     focusSoftInput = () => {
-        if (this.props.viewWidth < 1203) {
+        if (this.props.viewWidth < 1280) {
             this.softInput.current.focus();
         }
     }

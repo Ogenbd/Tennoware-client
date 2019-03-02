@@ -122,18 +122,20 @@
     width: 73px;
 }
 
-@media screen and (min-width: 1203px) {
+@media screen and (min-width: 1280px) {
     .mod-picker {
+        position: relative;
+        left: 1px;
         display: flex;
-        width: 315px;
+        flex-direction: column;
         min-height: 100%;
+        min-width: 320px;
         overflow-y: hidden;
-        background-color: rgba(0, 0, 0, 0.5);
+        box-sizing: border-box;
+        background-color: rgba(0, 0, 0, 0.7);
     }
     .mod-list-topbar {
-        position: fixed;
         flex-direction: row;
-        width: 313px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -152,22 +154,17 @@
         margin-right: 5px;
     }
     .mod-list-wrapper {
-        position: fixed;
         display: flex;
-        width: 315px;
         height: calc(100vh - 113px);
         top: 113px;
         margin-top: 0;
         align-items: flex-start;
-        justify-content: center;
         box-sizing: border-box;
-        overflow-y: scroll;
         overflow-x: hidden;
         z-index: 1;
     }
     .mod-list {
         display: flex;
-        width: 315px;
         flex-wrap: wrap;
         margin-top: 0;
         align-items: flex-start;
@@ -184,7 +181,7 @@
     }
 }
 
-@media screen and (max-width: 1202px) {
+@media screen and (max-width: 1279px) {
     .mod-list-wrapper {
         justify-content: center;
         align-items: flex-start;
@@ -211,7 +208,6 @@
     .mod-options-wrapper {
         margin-left: 47px;
         margin-right: auto;
-        /* z-index: 20; */
     }
     .mod-list-search-wrapper {
         margin-right: 5px;
@@ -229,7 +225,7 @@
     }
 }
 
-@media screen and (min-width: 1203px) and (hover: hover) {
+@media screen and (min-width: 1280px) and (hover: hover) {
     .dropdown-option:hover {
         background-color: rgba(50, 50, 50, 0.8);
     }

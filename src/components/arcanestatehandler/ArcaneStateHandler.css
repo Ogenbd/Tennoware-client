@@ -194,7 +194,7 @@
     text-align: center;
 }
 
-@media screen and (min-width: 1203px) and (hover: hover) {
+@media screen and (min-width: 1280px) and (hover: hover) {
     .arcane-handler-wrapper:hover .arcane-empty-slot {
         box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.7);
     }
@@ -211,7 +211,7 @@
     }
 }
 
-@media screen and (max-width: 1202px) {
+@media screen and (max-width: 1279px) {
     .handler-background {
         display: block;
     }
