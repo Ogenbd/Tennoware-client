@@ -1,7 +1,6 @@
 .modular-build-list {
     position: fixed;
     height: calc(100vh - 56px);
-    max-width: 1100px;
     flex-direction: column;
 }
 
@@ -13,7 +12,7 @@
 }
 
 .modular-popup-topbar {
-    max-width: 1200px;
+    /* max-width: 1200px; */
 }
 
 .modular-build-list-wrapper {
@@ -132,4 +131,15 @@
     border: 1px solid rgba(255, 249, 160, 0.73);
     color: white;
     text-align: justify;
+}
+
+@media screen and (min-width: 1280px) {
+    .modular-build-list {
+        max-width: 1100px;
+        margin-top: 56px;
+    }
+    .modular-popup-topbar {
+        position: fixed;
+        width: 1100px;
+    }
 }

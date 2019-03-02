@@ -1,11 +1,12 @@
 UPDATE LOG
 
-upcoming - v1.3.4.
+02/03/2019 - v1.3.4.
 New:
 Added the Wolf Sledge.
 Added umbra polarity as an option to the polarity window. Note: The auto-forma feature will not apply umbra polarities.
 Searching for the word "elemental" (or parts of it) now shows all elemental damage mods.
 Added a show base stats toggle to the stats window.
+Added some sniper headshot damage calcualtions whenever headshot multiplier is altered by Target Acquired or the weapons zoom bonuses.
 Changes:
 Mod picker can expand to show more than 2 column of mods depending on the window size.
 Mutalist Quanta Orb Explosion damage type changed from Elecricity to Toxin.

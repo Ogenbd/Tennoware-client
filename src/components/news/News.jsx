@@ -80,11 +80,11 @@ export class News extends Component {
               <div className="tennoware-update">
                 <div className="update-title">Update 1.3.4</div>
                 <div className="update-content">
+                  <p>Added the Wolf Sledge.</p>
                   <p>Added umbra polarity as an option to the polarity window. Note: The auto-forma feature will not apply umbra polarities.</p>
                   <p>Searching for the word "elemental" (or parts of it) in the mod picker search bar now shows all elemental damage mods.</p>
                   <p>Added a "Show base stats" toggle to the stats window.</p>
-                  <p>For information on the Auto-Forma feature that was added to Tennoware in update 1.3.0 <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/atapv4/autoforma_and_you/">read this</a>.</p>
-                  <p>For a complete and detailed update log head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log</a>.</p>
+                  <p>More additions, changes and fixes in the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log</a>.</p>
                   <p>For bug reports or feature suggestions head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/">Tennoware subreddit</a>.</p>
                 </div>
               </div>
