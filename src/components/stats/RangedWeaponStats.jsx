@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Slider from 'rc-slider/lib/Slider';
 import Switch from 'react-switch';
-import cloneDeep from 'lodash/cloneDeep';
 import 'rc-slider/assets/index.css';
 import './Stats.css';
 
@@ -610,15 +609,21 @@ export class RangedWeaponStats extends Component {
     }
 
     calcHeadshotDamage = (damage, critChance, critMult) => {
-        let headshotDamage;
-        let totalDamage = damage.reduce((acc, damage) => {
-            return acc + damage.damage
-        }, 0);
-        let headshotMult = 1;
-        if (this.state.effects.headshotMult) headshotMult += this.state.effects.headshotMult;
-        if (this.props.weapon.headshotDamage && this.state.zoom > 0) headshotMult += this.props.weapon.zoom[this.state.zoom].effect;
-        headshotDamage = totalDamage * 2 * headshotMult;
-        return headshotDamage;
+        if ((this.props.weapon.headshotDamage && this.state.zoom > 0) || this.state.effects.headshotMult) {
+            let headshotDamage;
+            let totalDamage = damage.reduce((acc, damage) => {
+                return acc + damage.damage
+            }, 0);
+            let headshotMult = 1;
+            if (this.state.effects.headshotMult) headshotMult += this.state.effects.headshotMult;
+            if (this.props.weapon.headshotDamage && this.state.zoom > 0) headshotMult += this.props.weapon.zoom[this.state.zoom].effect;
+            headshotDamage = totalDamage * 2 * headshotMult;
+            return {
+                damage: headshotDamage,
+                crit: headshotDamage * critMult,
+                average: headshotDamage * (1 + critChance * (critMult - 1))
+            }
+        }
     }
 
     handleChange = ({ target }) => {
@@ -683,6 +688,7 @@ export class RangedWeaponStats extends Component {
         const reload = this.calcReload();
         const DPS = this.calcDPS(damage, fireRate, critChance.display, critMult.display);
         const procBreakdown = this.calcProcWeights(damage, status);
+        const headshot = this.calcHeadshotDamage(damage, critChance.display, critMult.display);
         return (
             <React.Fragment>
                 <div className={"pull-tab " + (this.state.open ? 'open-pull-tab' : 'closed-pull-tab')} onClick={this.toggleStats}>
@@ -726,7 +732,11 @@ export class RangedWeaponStats extends Component {
                             {((weapon.headshotDamage && zoom > 0) || effects.headshotMult) &&
                                 <div className="stats-item">
                                     <p className="stat-name">Headshot Damage: </p>
-                                    <div className="stat"><p>{this.calcHeadshotDamage(damage, critChance.display, critMult.display)}</p></div>
+                                    <div className="stat"><p>{headshot.damage.toFixed(1)}</p></div>
+                                    <p className="stat-name">Headshot Crit: </p>
+                                    <div className="stat"><p>{headshot.crit.toFixed(1)}</p></div>
+                                    <p className="stat-name">Headshot Average: </p>
+                                    <div className="stat"><p>{headshot.average.toFixed(1)}</p></div>
                                 </div>
                             }
                             <div className="stats-item">

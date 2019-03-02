@@ -7,7 +7,7 @@
     width: 225px;
     overflow-y: auto;
     overflow-x: hidden;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 2;
 }
@@ -73,7 +73,7 @@
     align-items: center;
     flex-shrink: 0;
     width: 100%;
-    min-width: 225px;
+    min-width: 220px;
     margin-top: 4px;
     overflow-y: auto;
     overflow-x: hidden;
@@ -277,10 +277,10 @@
 
 @media screen and (min-width: 543px) {
     .ranged-stats-inner-wrapper {
-        /* position: fixed; */
         overflow-y: auto;
         max-height: calc(100vh - 56px);
         width: 225px;
+        overflow-y: scroll;
         overflow-x: hidden;
     }
     .stat-wrapper {
