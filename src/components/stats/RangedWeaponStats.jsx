@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Slider from 'rc-slider/lib/Slider';
 import Switch from 'react-switch';
+import cloneDeep from 'lodash/cloneDeep';
 import 'rc-slider/assets/index.css';
 import './Stats.css';
 
@@ -182,9 +183,18 @@ export class RangedWeaponStats extends Component {
     }
 
     setZoom = (value) => {
+        // if (this.props.weapon.headshotDamage && value > 0) {
+        //     let effects = cloneDeep(this.state.effects);
+        //     effects.headshotMult ? effects.headshotMult += this.props.weapon.zoom[value].effect / 100 : effects.headshotMult = this.props.weapon.zoom[value].effect / 100;
+        //     this.setState({
+        //         zoom: value,
+        //         effects: effects
+        //     })
+        // } else {
         this.setState({
             zoom: value
         });
+        // }
     }
 
     setCombo = (value) => {
@@ -599,6 +609,18 @@ export class RangedWeaponStats extends Component {
         return procBreakdown;
     }
 
+    calcHeadshotDamage = (damage, critChance, critMult) => {
+        let headshotDamage;
+        let totalDamage = damage.reduce((acc, damage) => {
+            return acc + damage.damage
+        }, 0);
+        let headshotMult = 1;
+        if (this.state.effects.headshotMult) headshotMult += this.state.effects.headshotMult;
+        if (this.props.weapon.headshotDamage && this.state.zoom > 0) headshotMult += this.props.weapon.zoom[this.state.zoom].effect;
+        headshotDamage = totalDamage * 2 * headshotMult;
+        return headshotDamage;
+    }
+
     handleChange = ({ target }) => {
         let value = parseInt(target.value, 10);
         if (value > 999) value = 999;
@@ -701,6 +723,12 @@ export class RangedWeaponStats extends Component {
                                     ))}
                                 </div>
                             </div>
+                            {((weapon.headshotDamage && zoom > 0) || effects.headshotMult) &&
+                                <div className="stats-item">
+                                    <p className="stat-name">Headshot Damage: </p>
+                                    <div className="stat"><p>{this.calcHeadshotDamage(damage, critChance.display, critMult.display)}</p></div>
+                                </div>
+                            }
                             <div className="stats-item">
                                 <p className="stat-name">Mastery: </p>
                                 <div className="stat"><p>{weapon.mastery}</p></div>
@@ -850,12 +878,6 @@ export class RangedWeaponStats extends Component {
                                 </div>
                             }
                             {/* headshot damage on sniper zoom */}
-                            {weapon.headshotDamage &&
-                                <div className="stats-item">
-                                    <p className="stat-name">Headshot Damage Bonus: </p>
-                                    <div className="stat"><p>{weapon.zoom[zoom].effect}%</p></div>
-                                </div>
-                            }
                             {/* str mod for exalted weapons */}
                             {weapon.exalted &&
                                 <div className="stats-item">

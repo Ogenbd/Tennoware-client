@@ -2373,11 +2373,11 @@ const primaryMods = [
         type: 'SNIPER',
         rarity: 'rare',
         polarity: 'madurai',
-        effects: { none: 0.1 },
+        effects: { headshotMult: 0.1 },
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% to Headshot Multiplier` }
+        description() { return `+${Math.round(this.effects.headshotMult * (this.currRank + 1) * 100)}% to Headshot Multiplier` }
     },
     {
         abrev: 'n0',

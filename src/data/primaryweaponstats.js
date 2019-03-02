@@ -3941,11 +3941,11 @@ const primaryWeaponStats = [
             },
             {
                 name: '2.5x',
-                effect: 30
+                effect: 0.3
             },
             {
                 name: '6x',
-                effect: 50
+                effect: 0.5
             }
         ],
         polarities: ['madurai'],
@@ -3993,11 +3993,11 @@ const primaryWeaponStats = [
             },
             {
                 name: '2.5x',
-                effect: 30
+                effect: 0.3
             },
             {
                 name: '6x',
-                effect: 50
+                effect: 0.5
             }
         ],
         polarities: ['madurai'],
@@ -5016,11 +5016,11 @@ const primaryWeaponStats = [
             },
             {
                 name: '3x',
-                effect: 30
+                effect: 0.3
             },
             {
                 name: '4.5x',
-                effect: 50
+                effect: 0.5
             }
         ],
         polarities: ['madurai'],
@@ -5068,11 +5068,11 @@ const primaryWeaponStats = [
             },
             {
                 name: '3.5x',
-                effect: 40
+                effect: 0.4
             },
             {
                 name: '6x',
-                effect: 60
+                effect: 0.6
             }
         ],
         polarities: ['madurai', 'naramon'],
@@ -5157,15 +5157,15 @@ const primaryWeaponStats = [
             },
             {
                 name: '2.5x',
-                effect: 35
+                effect: 0.35
             },
             {
                 name: '4x',
-                effect: 55
+                effect: 0.55
             },
             {
                 name: '8x',
-                effect: 70
+                effect: 0.7
             }
         ],
         polarities: [],
@@ -5213,15 +5213,15 @@ const primaryWeaponStats = [
             },
             {
                 name: '2.5x',
-                effect: 35
+                effect: 0.35
             },
             {
                 name: '4x',
-                effect: 55
+                effect: 0.55
             },
             {
                 name: '8x',
-                effect: 70
+                effect: 0.7
             }
         ],
         polarities: ['madurai'],
