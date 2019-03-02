@@ -118,6 +118,12 @@ class FrameBuilder extends Component {
         })
     }
 
+    updateInfo = (newMetaInfo) => {
+        this.setState({
+            metaInfo: newMetaInfo
+        });
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -129,7 +135,7 @@ class FrameBuilder extends Component {
                     ? <BuildError error={this.state.error} confirmError={this.confirmError} />
                     : <React.Fragment>
                         {this.state.item.name &&
-                            <WarframeModding redirectToVoid={this.redirectToVoid} readyToShow={this.readyToShow} type={this.props.type} orokin={require('../assets/general/reactor.png')} frame={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} arcanes={this.state.arcanes} />
+                            <WarframeModding redirectToVoid={this.redirectToVoid} updateInfo={this.updateInfo} readyToShow={this.readyToShow} type={this.props.type} orokin={require('../assets/general/reactor.png')} frame={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} arcanes={this.state.arcanes} />
                         }
                         {this.state.loading &&
                             <Loading />

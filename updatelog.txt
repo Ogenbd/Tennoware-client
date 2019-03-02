@@ -2,15 +2,18 @@ UPDATE LOG
 
 upcoming - v1.3.4.
 New:
+Added the Wolf Sledge.
 Added umbra polarity as an option to the polarity window. Note: The auto-forma feature will not apply umbra polarities.
 Searching for the word "elemental" (or parts of it) now shows all elemental damage mods.
 Added a show base stats toggle to the stats window.
 Changes:
-Mutalist Quanta Orb Explosion damage type changed from Elecricity to Toxin
+Mod picker can expand to show more than 2 column of mods depending on the window size.
+Mutalist Quanta Orb Explosion damage type changed from Elecricity to Toxin.
 Changed Status Type Breakdown to Chance for a specific status.
 More improvments to Tennowares update and caching strategy.
 Fixes:
 Set Vigor and Primed Vigor as mutually exclusive.
+Description window correctly updates when updating a builds name/description without changing anything else without refreshing or re-entering the page.
 
 26/02/2019 - v1.3.3.
 New:

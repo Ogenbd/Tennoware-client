@@ -172,16 +172,17 @@ export class BuildSaver extends Component {
     }
 
     okClick = () => {
-        this.hideBuildSaver();
-        if (this.state.error === 'Build saved.') {
-            document.body.classList.remove('noscroll');
-            this.redirectToSaved(this.state.buildData, this.state.buildId);
+        document.body.classList.remove('noscroll');
+        let newUrl = `/${this.props.type}/${decodeURIComponent(this.props.match.params.id)}/${this.state.buildData.buildStr}/${this.state.buildId}`;
+        if (newUrl !== `/${this.props.type}/${decodeURIComponent(this.props.match.params.id)}/${this.props.match.params.pre}/${this.props.match.params.build}`) {
+            this.redirectToSaved(newUrl);
+        } else {
+            this.props.updateInfo(this.state.buildName, this.state.buildDesc);
+            this.hideBuildSaver();
         }
     }
 
-    redirectToSaved = (buildData, buildId) => {
-        let newUrl = `/${this.props.type}/${decodeURIComponent(this.props.match.params.id)}/${buildData.buildStr}/${buildId}`;
-        document.body.classList.remove('noscroll');
+    redirectToSaved = (newUrl) => {
         this.props.history.push(newUrl);
     }
 

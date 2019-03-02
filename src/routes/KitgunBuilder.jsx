@@ -139,6 +139,12 @@ class KitgunBuilder extends Component {
         })
     }
 
+    updateInfo = (newMetaInfo) => {
+        this.setState({
+            metaInfo: newMetaInfo
+        });
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -153,7 +159,7 @@ class KitgunBuilder extends Component {
                     ? <BuildError error={this.state.error} confirmError={this.confirmError} />
                     : <React.Fragment>
                         {this.state.item.name &&
-                            <EightSlotModding redirectToVoid={this.redirectToVoid} readyToShow={this.readyToShow} type={this.props.type} orokin={require('../assets/general/catalyst.png')} riven={'ranged'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} arcanes={this.state.arcanes} />
+                            <EightSlotModding redirectToVoid={this.redirectToVoid} updateInfo={this.updateInfo} readyToShow={this.readyToShow} type={this.props.type} orokin={require('../assets/general/catalyst.png')} riven={'ranged'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} arcanes={this.state.arcanes} />
                         }
                         {this.state.loading &&
                             <Loading />

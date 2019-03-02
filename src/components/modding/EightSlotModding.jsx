@@ -784,6 +784,13 @@ class EightSlotModding extends Component {
         });
     }
 
+    updateInfo = (buildName, buildDesc) => {
+        let metaInfo = this.props.metaInfo;
+        metaInfo.BuildName = buildName;
+        metaInfo.BuildDesc = buildDesc;
+        this.props.updateInfo(metaInfo);
+    }
+
     render() {
         const { chosenMods, chosenIndexs, modPicker, orokin, forma, autoForma, totalModsCost, slotPolarities, errorBlinker, formaCount, forSwap, polarityPicker, arcanes, arcanePicker } = this.state;
         return (
@@ -799,7 +806,7 @@ class EightSlotModding extends Component {
                         }
                         <LinkGenerator type={this.props.type} getBuildStr={this.convertBuildToString} match={this.props.match} />
                         {this.props.online && this.props.user &&
-                            <BuildSaver orokin={orokin} formaCount={formaCount} user={this.props.user} type={this.props.type} getBuildStr={this.convertBuildToString} metaInfo={this.props.metaInfo} slottedAmount={chosenIndexs.length} />
+                            <BuildSaver updateInfo={this.updateInfo} orokin={orokin} formaCount={formaCount} user={this.props.user} type={this.props.type} getBuildStr={this.convertBuildToString} metaInfo={this.props.metaInfo} slottedAmount={chosenIndexs.length} />
                         }
                         {this.props.online && this.props.user && this.props.match.params.build && !this.props.metaInfo.Owner &&
                             <Report user={this.props.user} match={this.props.match} />

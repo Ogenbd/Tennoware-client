@@ -120,6 +120,12 @@ class MeleeBuilder extends Component {
         })
     }
 
+    updateInfo = (newMetaInfo) => {
+        this.setState({
+            metaInfo: newMetaInfo
+        });
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -131,7 +137,7 @@ class MeleeBuilder extends Component {
                     ? <BuildError error={this.state.error} confirmError={this.confirmError} />
                     : <React.Fragment>
                         {this.state.item.name &&
-                            <MeleeModding redirectToVoid={this.redirectToVoid} readyToShow={this.readyToShow} type={this.props.type} orokin={require('../assets/general/catalyst.png')} riven={'melee'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} />
+                            <MeleeModding redirectToVoid={this.redirectToVoid} updateInfo={this.updateInfo} readyToShow={this.readyToShow} type={this.props.type} orokin={require('../assets/general/catalyst.png')} riven={'melee'} item={this.state.item} mods={this.state.relevantMods} slotPolarities={this.state.slotPolarities} originalPolarityCount={this.state.originalPolarityCount} viewWidth={this.props.viewWidth} match={this.props.match} user={this.props.user} metaInfo={this.state.metaInfo} online={this.props.online} />
                         }
                         {this.state.loading &&
                             <Loading />
