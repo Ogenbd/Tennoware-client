@@ -600,6 +600,10 @@ const meleeList = [
         img: require('../assets/itemimages/war.png')
     },
     {
+        name: 'WOLF SLEDGE',
+        img: require('../assets/itemimages/wolf-sledge.png')
+    },
+    {
         name: 'ZENISTAR',
         img: require('../assets/itemimages/zenistar.png')
     }

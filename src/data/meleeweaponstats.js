@@ -6264,6 +6264,43 @@ const meleeStats = [
     ]
   },
   {
+    name: 'WOLF SLEDGE',
+    mastery: 7,
+    type: [
+      'HAMMERS'
+    ],
+    polarities: [],
+    stance: 'madurai',
+    disposition: 3,
+    channelMult: 1.5,
+    modes: [
+      {
+        speed: 1,
+        slide: 230,
+        wall: 230,
+        slam: 115,
+        critChance: 0.17,
+        critMult: 1.9,
+        status: 0.33,
+        damage: 115,
+        split: [
+          {
+            type: 'Impact',
+            percent: 58.634 / 115
+          },
+          {
+            type: 'Slash',
+            percent: 52.933 / 115
+          },
+          {
+            type: 'Puncture',
+            percent: 3.433 / 115
+          }
+        ]
+      }
+    ]
+  },
+  {
     name: 'ZENISTAR',
     mastery: 6,
     type: [

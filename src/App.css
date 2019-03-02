@@ -370,8 +370,6 @@
     width: calc((100vw - 1200px) / 2 - 30px);
     max-width: 300px;
     min-width: 120px;
-    height: 600px;
-    background-color: aqua;
 }
 
 .reddit-link {
