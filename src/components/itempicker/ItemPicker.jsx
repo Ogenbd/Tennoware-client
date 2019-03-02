@@ -5,6 +5,7 @@ import './ItemPicker.css';
 
 import RightAd from '../adunits/RightAd';
 import TopAd from '../adunits/TopAd';
+import Loading from '../loading/Loading';
 
 function imagesLoaded(parentNode) {
     const imgElements = [...parentNode.querySelectorAll(".item-image")];
@@ -102,6 +103,9 @@ export class ItemPicker extends Component {
                         }
                     </div>
                 </div>
+                {!this.state.ready &&
+                    <Loading />
+                }
             </React.Fragment>
         )
     }
