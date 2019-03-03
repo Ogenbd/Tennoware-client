@@ -3638,7 +3638,7 @@ const warframeMods = [
                         {
                             name: 'Armor bonus / Hit',
                             suffix: '%',
-                            base(augEffects, augRank) { return augEffects * (augRank + 1) }
+                            base(augEffects, augRank) { return augEffects.none[0] * (augRank + 1) }
                         },
                     ],
                     duration: [
@@ -3650,7 +3650,7 @@ const warframeMods = [
                         {
                             name: 'Armor bonus duration',
                             suffix: 's',
-                            base(augEffects, augRank) { return 2 + augEffects * (augRank + 1) }
+                            base(augEffects, augRank) { return 2 + augEffects.none[1] * (augRank + 1) }
                         },
                     ],
                     range: [

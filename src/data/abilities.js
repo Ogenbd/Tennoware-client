@@ -5706,7 +5706,7 @@ const abilities = {
                     ],
                     none: [
                         {
-                            name: 'RazorFlies',
+                            name: 'Razorflies',
                             base: 6
                         },
                         {
@@ -5721,6 +5721,12 @@ const abilities = {
                             base: 25
                         },
                     ],
+                    channel: [
+                        {
+                            name: 'Energy drain/s',
+                            base: 5
+                        },
+                    ]
                 }
             ]
         },
