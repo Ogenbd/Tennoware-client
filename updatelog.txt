@@ -1,5 +1,14 @@
 UPDATE LOG
 
+upcoming - v1.3.6.
+Fixes:
+Fixed an error with Ironclad Charge.
+Razorwing ability now shows Energy drain value.
+
+02/03/2019 - v1.3.5.
+Fixes:
+Fixed an error caused by using berserker slider at the same time as the base stats toggle.
+
 02/03/2019 - v1.3.4.
 New:
 Added the Wolf Sledge.
