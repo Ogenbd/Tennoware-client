@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import './ModularBuildList.css';
+import '../builddescription/BuildDescription.css';
 
 import apiUrl from '../../apiUrl';
 import ContainedLoading from '../loading/ContainedLoading';
+import Rating from '../rating/Rating';
 
 export class ModularBuildList extends PureComponent {
     constructor(props) {
@@ -14,7 +16,10 @@ export class ModularBuildList extends PureComponent {
             requested: false,
             loader: false,
             error: null,
-            first: ''
+            first: '',
+            focusedIdx: null,
+            buildDesc: '',
+            buildName: ''
         }
     }
 
@@ -72,12 +77,12 @@ export class ModularBuildList extends PureComponent {
         if (builds.length > 0) {
             builds.sort((a, b) => {
                 let dateA = Date.parse(a.CreateDT)
-                let dateB = Date.parse(b.CreateDT)
-                if (a.Likes < b.Likes) return 1
-                if (a.Likes > b.Likes) return -1
-                if (dateA < dateB) return 1
-                if (dateA > dateB) return -1
-                return 0;
+                    let dateB = Date.parse(b.CreateDT)
+                    if (a.Rating < b.Rating) return 1
+                    if (a.Rating > b.Rating) return -1
+                    if (dateA < dateB) return 1
+                    if (dateA > dateB) return -1
+                    return 0;
             });
         }
         this.setState({
@@ -97,37 +102,10 @@ export class ModularBuildList extends PureComponent {
             });
     }
 
-    // setSecond = (name) => {
-    //     this.state.second === name
-    //         ? this.setState({
-    //             second: ''
-    //         })
-    //         : this.setState({
-    //             second: name
-    //         });
-    // }
-
-    // setFirst = (name) => {
-    //     this.state.third === name
-    //         ? this.setState({
-    //             third: ''
-    //         })
-    //         : this.setState({
-    //             third: name
-    //         });
-    // }
-
     generateList = () => {
         let display = [];
         if (this.state.builds.length > 0) {
             let generatedList = this.state.builds.slice(0);
-            if (this.state.first !== '') {
-                generatedList = this.state.builds.filter(item => {
-                    let first = item.ItemName.split(' ')[0];
-                    if (first === 'plague') first = `${item.ItemName.split(' ')[0]} ${item.ItemName.split(' ')[1]}`
-                    return first.toLowerCase() === this.state.first.toLowerCase();
-                });
-            }
             generatedList.forEach((item, index) => {
                 let parts = item.ItemName.split(' ');
                 if (this.props.type === 'zaws') {
@@ -164,21 +142,20 @@ export class ModularBuildList extends PureComponent {
                 item.Riven === 1 ? riven = require('../../assets/general/rivenon.png') : riven = require('../../assets/general/rivenoff.png');
                 this.props.type !== 'moas' ? hasRivens = true : hasRivens = false;
                 display.push(
-                    <Link to={`/${this.props.type}/${item.ItemName}/${item.BuildStr}/${item.BuildID}`} key={index} className="build-container">
+                    <div key={index} className="build-container" style={this.state.first === '' ? {} : parts[0] === this.state.first.toLowerCase() ? {} : { display: 'none' }}>
                         <div className="modular-build-list-item">
                             <div className="build-item-row name-row">
                                 <div className="build-list-name">{item.BuildName}</div>
                                 <div className="build-list-date">{date}</div>
                             </div>
                             <div className="build-item-row info-row">
-                                <div className="build-list-likes">Likes: {item.Likes}</div>
                                 <img className="build-list-img" src={orokinImg} alt={"orokin"} />
                                 <div className="build-list-forma-block"><img className="build-list-img" src={require('../../assets/general/forma.png')} alt={""} /><p>: {item.Forma}</p></div>
                                 {hasRivens &&
                                     <img className="build-list-img" src={riven} alt={"riven"} />
                                 }
                             </div>
-                            <div className="part-row">
+                            <div className="build-item-row info-row">
                                 <div className="filter-icon">
                                     <img className="filter-icon-img" src={this.props.items.first[firstImg].img} alt="" />
                                     <div className="filter-icon-name"><p>{this.props.items.first[firstImg].name.toUpperCase()}</p></div>
@@ -192,8 +169,23 @@ export class ModularBuildList extends PureComponent {
                                     <div className="filter-icon-name"><p>{this.props.items.third[thirdImg].name.toUpperCase()}</p></div>
                                 </div>
                             </div>
+                            <div className="build-item-row info-row">
+                                <div style={{ width: '50%' }}>
+                                    {item.Rating
+                                        ? <div><Rating readOnly rating={item.Rating} /><p className="vote-num">{`(Based on ${item.Rated} votes)`}</p></div>
+                                        : <div className="vote-num"><p>No user ratings.</p></div>
+                                    }
+                                </div>
+                                <div style={{ width: '50%' }}>
+                                    {item.BuildDesc.length > 0
+                                        ? <div className="interactable interactable-semi-inactive" onClick={() => this.showDescription(index)}><p className="interactable-p">Description</p></div>
+                                        : <div className="uninteractable interactable-inactive"><p className="interactable-p">Description</p></div>
+                                    }
+                                    <Link to={`/${this.props.type}/${item.ItemName}/${item.BuildStr}/${item.BuildID}`}><div className="interactable interactable-semi-inactive" ><p className="interactable-p">Open</p></div></Link>
+                                </div>
+                            </div>
                         </div>
-                    </Link>
+                    </div>
                 );
             });
         } else {
@@ -206,6 +198,20 @@ export class ModularBuildList extends PureComponent {
             )
         }
         return display;
+    }
+
+    showDescription = (buildIdx) => {
+        this.setState({
+            focusedIdx: buildIdx,
+            buildName: this.state.builds[buildIdx].BuildName,
+            buildDesc: this.state.builds[buildIdx].BuildDesc
+        });
+    }
+
+    hideDescription = () => {
+        this.setState({
+            focusedIdx: null
+        });
     }
 
     render() {
@@ -252,6 +258,17 @@ export class ModularBuildList extends PureComponent {
                             }
                         </div>
                     }
+                    <div className="list-desc" style={this.state.focusedIdx !== null ? { opacity: 1, zIndex: 9112 } : { opacity: 0, zIndex: -1, transitionDelay: '0s, 0.2s' }}>
+                        <div className="list-desc-box">
+                            {this.state.buildDesc.length > 0 &&
+                                <React.Fragment>
+                                    <div className="build-title">{this.state.buildName}</div>
+                                    <div className="build-description-box">{this.state.buildDesc}</div>
+                                    <div className="interactable interactable-semi-inactive" onClick={this.hideDescription}><p className="interactable-p">Done</p></div>
+                                </React.Fragment>
+                            }
+                        </div>
+                    </div>
                 </div>
             </React.Fragment>
         )

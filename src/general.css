@@ -57,6 +57,7 @@
     user-select: none;
     flex-grow: 1;
     max-height: 38px;
+    opacity: 0.8;
 }
 
 .activatable {
@@ -485,7 +486,8 @@
         height: calc(100% - 112px);
         max-height: calc(100% - 112px);
         margin-top: 56px;
-        overflow: auto;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
     .loading-screen {
         overflow-y: scroll;
@@ -510,7 +512,7 @@
         background-color: rgba(0, 0, 0, 0.9);
         left: 0;
         top: 0;
-        transition: opacity 200ms, transform 300ms cubic-bezier(.45, .7, .28, .96);
+        transition: opacity 300ms, transform 300ms cubic-bezier(.45, .7, .28, .96);
     }
     .popup-active {
         transform: translateY(0);
@@ -554,7 +556,8 @@
         width: 100%;
         height: calc(100vh - 56px);
         max-height: calc(100vh - 56px);
-        overflow: auto;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
     .soft-input-wrapper {
         position: fixed;
@@ -596,7 +599,7 @@
         position: fixed;
         justify-content: center;
         align-items: center;
-        top: 170px;
+        top: 68px;
         right: 0;
         width: 60px;
         height: 50px;

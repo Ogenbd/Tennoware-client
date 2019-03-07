@@ -189,10 +189,15 @@ export class BuildSaver extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className={this.props.slottedAmount > 0 ? 'interactable interactable-semi-inactive' : 'uninteractable interactable-inactive'} onClick={this.showBuildSaver}>
+                <div className={(this.props.slottedAmount === 0 || !this.props.user) ? 'uninteractable interactable-inactive' : 'interactable interactable-semi-inactive'} onClick={this.showBuildSaver}>
                     {this.props.metaInfo.Owner
                         ? <p className="interactable-p">Update</p>
-                        : <p className="interactable-p">Save</p>
+                        : <React.Fragment>
+                            {this.props.user
+                                ? <p className="interactable-p">Save</p>
+                                : <p className="interactable-p">Login to Save</p>
+                            }
+                        </React.Fragment>
                     }
                 </div>
                 <div className={"popup " + (this.state.showBuildSaver ? "popup-active" : "popup-inactive")}>
@@ -252,17 +257,6 @@ export class BuildSaver extends Component {
                                         }
                                     </div>
                                 </div>
-                                {/* <div className="interactable interactable-semi-inactive" onClick={this.saveBuild}>
-                                    {this.state.loading
-                                        ? <div className="spinner gold-spinner">
-                                            <div className="bounce1"></div>
-                                            <div className="bounce2"></div>
-                                            <div className="bounce3"></div>
-                                        </div>
-                                        : <p className="interactable-p">Save</p>
-                                    }
-                                </div> */}
-                                {/* </div> */}
                             </React.Fragment>
                         }
                     </div>

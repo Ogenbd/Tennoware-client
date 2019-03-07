@@ -1,6 +1,11 @@
 UPDATE LOG
 
-upcoming - v1.3.6.
+upcoming - v1.4.0.
+New:
+Introduced a star rating system. Looking at a build and think its good, great or even meta? Help others find said build by rating it.
+Added a description button to the community builds screen. Users can now see a build's description (and if it even had one) before loading it up.
+Changes:
+Likes have been replaced with bookmarks and no longer have a part in the order of builds on the community builds screen. Don't worry, if you liked a a build before its has been converted into a bookmark.
 Fixes:
 Fixed an error with Ironclad Charge.
 Razorwing ability now shows Energy drain value.

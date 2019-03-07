@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './BuildList.css';
+import '../builddescription/BuildDescription.css';
 
 import apiUrl from '../../apiUrl';
 import ContainedLoading from '../loading/ContainedLoading';
+import Rating from '../rating/Rating';
 
 const updateTimesImport = () => import('../../data/updatetimes' /* webpackChunkName: "upst" */);
 
@@ -16,6 +18,9 @@ export class BuildList extends Component {
             requested: false,
             loader: false,
             error: null,
+            focusedIdx: null,
+            buildDesc: '',
+            buildName: ''
         }
     }
 
@@ -37,7 +42,8 @@ export class BuildList extends Component {
     hideBuildList = () => {
         document.body.classList.remove('noscroll');
         this.setState({
-            showBuildList: false
+            showBuildList: false,
+            focusedIdx: null
         });
     }
 
@@ -86,17 +92,17 @@ export class BuildList extends Component {
                 builds.sort((a, b) => {
                     let dateA = Date.parse(a.CreateDT)
                     let dateB = Date.parse(b.CreateDT)
-                    if (a.Likes < b.Likes) return 1
-                    if (a.Likes > b.Likes) return -1
+                    if (a.Rating < b.Rating) return 1
+                    if (a.Rating > b.Rating) return -1
                     if (dateA < dateB) return 1
                     if (dateA > dateB) return -1
                     return 0;
                 });
-            });
-            this.setState({
-                builds: builds,
-                requested: true,
-                loader: false
+                this.setState({
+                    builds: builds,
+                    requested: true,
+                    loader: false
+                });
             });
         } else {
             this.setState({
@@ -116,7 +122,7 @@ export class BuildList extends Component {
             build.Orokin === 1 ? orokinStr = this.props.orokin : orokinStr = require('../../assets/general/nocatalyst.png');
             build.Riven === 1 ? riven = require('../../assets/general/rivenon.png') : riven = require('../../assets/general/rivenoff.png');
             builds.push(
-                <Link to={`/${this.props.type}/${this.props.match.params.id}/${build.BuildStr}/${build.BuildID}`} key={index} className="build-list-item">
+                <div key={index} className="build-list-item">
                     <div className="build-item-row name-row">
                         <div className="build-list-name">{build.BuildName}</div>
                         {build.outdated
@@ -125,14 +131,31 @@ export class BuildList extends Component {
                         }
                     </div>
                     <div className="build-item-row info-row">
-                        <div className="build-list-likes">Likes: {build.Likes}</div>
                         <img className="build-list-img" src={orokinStr} alt={"orokin"} />
                         <div className="build-list-forma-block"><img className="build-list-img" src={require('../../assets/general/forma.png')} alt={""} /><p>: {build.Forma}</p></div>
                         {this.props.riven &&
                             <img className="build-list-img" src={riven} alt={"riven"} />
                         }
                     </div>
-                </Link>
+                    <div className="build-item-row info-row">
+                        <div style={{ width: '50%' }}>
+                            {build.Rating
+                                ? <div><Rating readOnly rating={build.Rating} /><p className="vote-num">{`(Based on ${build.Rated} votes)`}</p></div>
+                                : <div className="vote-num"><p>No user ratings.</p></div>
+                            }
+                        </div>
+                        <div style={{ width: '50%' }}>
+                            {build.BuildDesc.length > 0
+                                ? <div className="interactable interactable-semi-inactive" onClick={() => this.showDescription(index)}><p className="interactable-p">Description</p></div>
+                                : <div className="uninteractable interactable-inactive"><p className="interactable-p">Description</p></div>
+                            }
+                            {build.BuildID === parseInt(this.props.match.params.build, 10)
+                                ? <div className="uninteractable interactable-inactive"><p className="interactable-p">Open</p></div>
+                                : <Link to={`/${this.props.type}/${this.props.match.params.id}/${build.BuildStr}/${build.BuildID}`}><div className="interactable interactable-semi-inactive" ><p className="interactable-p">Open</p></div></Link>
+                            }
+                        </div>
+                    </div>
+                </div>
             )
         })
         if (builds.length === 0) {
@@ -145,6 +168,20 @@ export class BuildList extends Component {
             )
         }
         return builds;
+    }
+
+    showDescription = (buildIdx) => {
+        this.setState({
+            focusedIdx: buildIdx,
+            buildName: this.state.builds[buildIdx].BuildName,
+            buildDesc: this.state.builds[buildIdx].BuildDesc
+        });
+    }
+
+    hideDescription = () => {
+        this.setState({
+            focusedIdx: null
+        });
     }
 
     render() {
@@ -181,6 +218,17 @@ export class BuildList extends Component {
                             }
                         </React.Fragment>
                     }
+                    <div className="list-desc" style={this.state.focusedIdx !== null ? { opacity: 1, zIndex: 9112 } : { opacity: 0, zIndex: -1, transitionDelay: '0s, 0.2s' }}>
+                        <div className="list-desc-box">
+                            {this.state.buildDesc.length > 0 &&
+                                <React.Fragment>
+                                    <div className="build-title">{this.state.buildName}</div>
+                                    <div className="build-description-box">{this.state.buildDesc}</div>
+                                    <div className="interactable interactable-semi-inactive" onClick={this.hideDescription}><p className="interactable-p">Done</p></div>
+                                </React.Fragment>
+                            }
+                        </div>
+                    </div>
                 </div>
             </React.Fragment>
         )

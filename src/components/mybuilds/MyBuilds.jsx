@@ -101,7 +101,8 @@ export default class MyBuilds extends Component {
             });
         } else {
             this.setState({
-                getting: false
+                getting: false,
+                ready: true
             });
         }
     }
@@ -196,7 +197,6 @@ export default class MyBuilds extends Component {
                             }
                         </div>
                         <div className="my-build-item-row info-row">
-                            <div className="my-build-list-likes">Likes: {item.likes}</div>
                             <img className="my-build-list-img" src={orokinStr} alt={"orokin"} />
                             <div className="my-build-list-forma-block"><img className="my-build-list-img" src={require('../../assets/general/forma.png')} alt={""} /><p>: {item.forma}</p></div>
                             {item.hasRivens
@@ -388,7 +388,7 @@ export default class MyBuilds extends Component {
                                             }
                                             {list.liked.length > 0 &&
                                                 <React.Fragment>
-                                                    <div className="my-builds-subtitle">Liked Builds</div>
+                                                    <div className="my-builds-subtitle">Bookmarked Builds</div>
                                                     {list.liked}
                                                 </React.Fragment>
                                             }
@@ -402,7 +402,7 @@ export default class MyBuilds extends Component {
                                 <div className="conformation-dialog">Are you sure?</div>
                                 <div className="conformation-buttons">
                                     <div className="interactable interactable-semi-inactive" onClick={this.unsetRemoval}><p className="interactable-p">Cancel</p></div>
-                                    <div className="interactable interactable-semi-inactive delete-button" onClick={this.unlikeBuild}><p className="interactable-p">Unlike</p></div>
+                                    <div className="interactable interactable-semi-inactive delete-button" onClick={this.unlikeBuild}><p className="interactable-p">Unbookmark</p></div>
                                 </div>
                             </div>
                         </div>

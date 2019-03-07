@@ -1,0 +1,15 @@
+.stars-container {
+    display: flex;
+    justify-content: center;
+}
+
+.star-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3px;
+}
+
+.star-wrapper p {
+    font-size: 14px;
+}

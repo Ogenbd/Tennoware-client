@@ -1,6 +1,7 @@
 .build-list {
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     flex-direction: row;
     height: unset;
     flex-grow: 0;
@@ -14,30 +15,32 @@
     align-items: center;
     justify-content: center;
     width: 95%;
-    max-width: 525px;
-    min-width: 267px;
+    max-width: 300px;
+    min-width: 200px;
     padding: 0 5px;
-    height: 75px;
+    /* height: 75px; */
     min-height: 56px;
     background-color: black;
     margin: 3px;
-    border: 1px solid rgba(255, 249, 160, 0.73);
-    color: rgba(255, 249, 160, 1);
+    border: 1px solid rgba(255, 249, 160, 0.3);
+    /* color: rgba(255, 249, 160, 1); */
 }
 
 .build-item-row {
     width: 100%;
-    padding: 5px;
+    padding: 2px;
     display: flex;
     align-items: center;
 }
 
 .name-row {
     justify-content: space-between;
+    color: white;
 }
 
 .info-row {
     justify-content: space-around;
+    color: white;
 }
 
 .build-list-name {
@@ -66,6 +69,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.vote-num {
+    text-align: center;
+    font-size: 14px;
 }
 
 .no-builds {

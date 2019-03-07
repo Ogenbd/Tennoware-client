@@ -18,6 +18,7 @@ import ModPicker from '../modpicker/ModPicker';
 import MeleeStats from '../stats/MeleeStats';
 import ArcaneStateHandler from '../arcanestatehandler/ArcaneStateHandler';
 import ArcanePicker from '../arcanepicker/ArcanePicker';
+import Rating from '../rating/Rating';
 
 class MeleeModding extends Component {
     constructor(props) {
@@ -1042,7 +1043,7 @@ class MeleeModding extends Component {
                             <BuildList match={this.props.match} type={this.props.type} riven={this.props.riven} orokin={this.props.orokin} />
                         }
                         <LinkGenerator type={this.props.type} getBuildStr={this.convertBuildToString} match={this.props.match} />
-                        {this.props.online && this.props.user &&
+                        {this.props.online &&
                             <BuildSaver updateInfo={this.updateInfo} orokin={orokin} formaCount={formaCount} user={this.props.user} type={this.props.type} getBuildStr={this.convertBuildToString} metaInfo={this.props.metaInfo} slottedAmount={chosenIndexs.length} />
                         }
                         {this.props.online && this.props.user && this.props.match.params.build && !this.props.metaInfo.Owner &&
@@ -1052,7 +1053,7 @@ class MeleeModding extends Component {
                             <Like user={this.props.user} match={this.props.match} metaInfo={this.props.metaInfo} />
                         }
                         {this.props.metaInfo.BuildDesc && this.props.metaInfo.BuildDesc.length > 0 &&
-                            <BuildDescription metaInfo={this.props.metaInfo} />
+                            <BuildDescription buildName={this.props.metaInfo.BuildName} buildDesc={this.props.metaInfo.BuildDesc} />
                         }
                     </div>
                     <div className="special-modding special-melee">
@@ -1155,6 +1156,12 @@ class MeleeModding extends Component {
                             </div>
                         </div>
                     </div>
+                    {(this.props.match.params.build && this.props.online && !this.props.metaInfo.Owner) &&
+                        <div className="user-rating-set" style={{ opacity: this.props.user ? 1 : 0.3 }}>
+                            <p>{this.props.user ? 'Rate this build' : 'Login to rate builds'}</p>
+                            <Rating rating={this.props.metaInfo.Rating} starWidth='30px' readOnly={!this.props.user} match={this.props.match} />
+                        </div>
+                    }
                     <ModdingAd />
                     {this.displayMessage()}
                 </div>
