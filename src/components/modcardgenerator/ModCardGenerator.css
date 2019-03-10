@@ -26,6 +26,10 @@
     width: 165px;
 }
 
+.amalgam-border {
+    width: 160px;
+}
+
 .polarity-wrapper {
     display: flex;
     position: absolute;

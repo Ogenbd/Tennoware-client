@@ -2338,6 +2338,174 @@ const abilities = {
             ]
         },
     ],
+    hildryn: [
+        {
+            name: 'Balefire',
+            img: require('../assets/itemimages/balefire.png'),
+            details: [
+                {
+                    strength: [
+                        {
+                            name: 'Damage',
+                            base: 500,
+                            icon: require('../assets/dynamic/damage/Electricity.png')
+                        }
+                    ],
+                    range: [
+                        {
+                            name: 'Explosion Radius',
+                            suffix: 'm',
+                            base: 2
+                        }
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Activation shield cost',
+                            base: 50
+                        },
+                        {
+                            name: 'Shields/Shot',
+                            base: 100
+                        },
+                    ],
+                }
+            ]
+        },
+        {
+            name: 'Shield Pillage',
+            img: require('../assets/itemimages/shieldpillage.png'),
+            details: [
+                {
+                    strength: [
+                        {
+                            name: 'Shield/Armor drain/Enemy',
+                            suffix: '%',
+                            base: 25,
+                        }
+                    ],
+                    duration: [
+                        {
+                            name: 'Pulse duration',
+                            suffix: 's',
+                            base: 2
+                        }
+                    ],
+                    range: [
+                        {
+                            name: 'Pulse max radius',
+                            suffix: 'm',
+                            base: 8
+                        }
+                    ],
+                    none: [
+                        {
+                            name: 'Chance to cleanse status',
+                            suffix: '%',
+                            base: 100
+                        }
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Shield cost',
+                            base: 150
+                        }
+                    ],
+                }
+            ]
+        },
+        {
+            name: 'Haven',
+            img: require('../assets/itemimages/haven.png'),
+            details: [
+                {
+                    strength: [
+                        {
+                            name: 'Ally shield capacity bonus',
+                            base: 500,
+                        },
+                        {
+                            name: 'Damage/s',
+                            base: 200,
+                            icon: require('../assets/dynamic/damage/Radiation.png')
+                        },
+                    ],
+                    duration: [
+                        {
+                            name: 'Shield recharge rate',
+                            suffix: '%',
+                            base: 80
+                        }
+                    ],
+                    range: [
+                        {
+                            name: 'Radius',
+                            suffix: 'm',
+                            base: 15
+                        }
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Activation shield cost',
+                            base: 250
+                        }
+                    ],
+                    channel: [
+                        {
+                            name: 'Shield cost/Ally/s',
+                            base: 5
+                        },
+                        {
+                            name: 'Shield cost/Enemy/s',
+                            base: 25
+                        },
+                    ],
+                }
+            ]
+        },
+        {
+            name: 'Aegis Storm',
+            img: require('../assets/itemimages/aegisstorm.png'),
+            details: [
+                {
+                    strength: [
+                        {
+                            name: 'Damage /s',
+                            base: 200,
+                            icon: require('../assets/dynamic/damage/Radiation.png')
+                        },
+                        {
+                            name: 'Slam damage',
+                            base: 500,
+                            icon: require('../assets/dynamic/damage/Impact.png')
+                        },
+                    ],
+                    range: [
+                        {
+                            name: 'Radius',
+                            suffix: 'm',
+                            base: 15
+                        }
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Activation shield cost',
+                            base: 100
+                        }
+                    ],
+                    channel: [
+                        {
+                            name: 'Shield cost/s',
+                            base: 25
+                        },
+                        {
+                            name: 'Shield cost/Enemy/s',
+                            base: 25
+                        },
+                    ],
+                }
+            ]
+        },
+    ],
     hydroid: [
         {
             name: 'Tempest Barrage',

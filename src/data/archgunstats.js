@@ -299,6 +299,68 @@ const archgunStats = [
         ]
     },
     {
+        name: 'LARKSPUR',
+        mastery: 8,
+        type: [
+            'ARCH-GUN'
+        ],
+        polarities: [
+            'madurai'
+        ],
+        noise: 'Alarming',
+        reload: 2.5,
+        magSize: 600,
+        modes: [
+            {
+                name: 'Primary',
+                trigger: 'Held',
+                fireRate: 12,
+                accuracy: 8.3,
+                punchThrough: 0,
+                critChance: 0.1,
+                critMult: 1.4,
+                status: 0.5,
+                damage: 90,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 10 / 90
+                    },
+                    {
+                        type: 'Radiation',
+                        percent: 80 / 90
+                    }
+                ]
+            },
+            {
+                name: 'Secondary',
+                trigger: 'Charge',
+                fireRate: 1,
+                chargeRate: 0.5,
+                accuracy: 100,
+                punchThrough: 0,
+                critChance: 0.26,
+                critMult: 2.2,
+                status: 0.34,
+                damage: 1750,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 200 / 1750
+                    },
+                    {
+                        type: 'Blast',
+                        percent: 250 / 1750
+                    },
+                    {
+                        type: 'Radiation',
+                        percent: 1300 / 1750
+                    }
+                ]
+            }
+        ]
+    },
+    {
         name: 'PHAEDRA',
         mastery: 3,
         type: [

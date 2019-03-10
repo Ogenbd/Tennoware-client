@@ -4928,7 +4928,7 @@ const meleeStats = [
     mastery: 2,
     type: [
       'SCYTHES',
-      'REAPER PRIME'
+      'REAPER'
     ],
     polarities: [],
     stance: 'naramon',
@@ -5000,7 +5000,7 @@ const meleeStats = [
       {
         name: 'Charge Shotgun',
         speed: 0.8333,
-        critChance: 0,
+        critChance: 0.05,
         critMult: 1.5,
         status: 0.1,
         pellets: 10,
@@ -5019,7 +5019,7 @@ const meleeStats = [
     mastery: 10,
     type: [
       'GUNBLADE',
-      'REDEEMER PRIME'
+      'REDEEMER'
     ],
     polarities: [
       'madurai',
@@ -5057,7 +5057,7 @@ const meleeStats = [
       {
         name: 'Charge Shotgun',
         speed: 0.9167,
-        critChance: 0,
+        critChance: 0.16,
         critMult: 2.2,
         status: 0.28,
         pellets: 10,
@@ -5789,6 +5789,47 @@ const meleeStats = [
           {
             type: 'Puncture',
             percent: 0.1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    name: 'TATSU',
+    mastery: 7,
+    type: [
+      'TWO-HANDED NIKANAS',
+    ],
+    polarities: [],
+    stance: 'madurai',
+    disposition: 3,
+    channelMult: 1.5,
+    modes: [
+      {
+        speed: 1,
+        slide: 192,
+        wall: 192,
+        slam: 96,
+        critChance: 0.11,
+        critMult: 1.9,
+        status: 0.23,
+        damage: 96,
+        split: [
+          {
+            type: 'Impact',
+            percent: 0.15625
+          },
+          {
+            type: 'Slash',
+            percent: 0.28125
+          },
+          {
+            type: 'Puncture',
+            percent: 23 / 96
+          },
+          {
+            type: 'Radiation',
+            percent: 31 / 96
           }
         ]
       }

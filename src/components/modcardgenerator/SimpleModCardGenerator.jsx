@@ -12,6 +12,8 @@ export class SimpleModCardGenerator extends PureComponent {
                 return { color: '#c79989' }
             case 'prime':
                 return { color: '#e6e6e6' }
+            case 'amalgam':
+                return { color: '#e6e6e6' }
             case 'riven':
                 return { color: '#be87d4' }
             default:
@@ -71,7 +73,7 @@ export class SimpleModCardGenerator extends PureComponent {
                     }
                     <div className="info-bottom"></div>
                 </div>
-                <img src={require(`../../assets/dynamic/modcards/${mod.rarity}.png`)} alt={''} className={"rarity " + (mod.rarity === 'riven' ? "riven-border" : "")} />
+                <img src={require(`../../assets/dynamic/modcards/${mod.rarity}.png`)} alt={''} className={"rarity " + (mod.rarity === 'riven' ? "riven-border" : mod.rarity === 'amalgam' ? "amalgam-border" : "")} />
                 <div className="polarity-wrapper">
                     <p className="cost" style={fontColor}>{mod.baseCost + mod.currRank}</p>
                     {mod.polarity !== '' &&

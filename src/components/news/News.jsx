@@ -78,14 +78,13 @@ export class News extends Component {
           <div className="news-container">
             <div className="home-left">
               <div className="tennoware-update">
-                <div className="update-title">Update 1.3.4-5</div>
+                <div className="update-title">Update 1.4.0</div>
                 <div className="update-content">
-                  <p>Added the Wolf Sledge.</p>
-                  <p>Added umbra polarity as an option to the polarity window. Note: The auto-forma feature will not apply umbra polarities.</p>
-                  <p>Searching for the word "elemental" (or parts of it) in the mod picker search bar now shows all elemental damage mods.</p>
-                  <p>Added a "Show base stats" toggle to the stats window.</p>
-                  <p>More additions, changes and fixes in the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log</a>.</p>
-                  <p>For bug reports or feature suggestions head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/">Tennoware subreddit</a>.</p>
+                  <p>Hildryn is now available along with the other additions from Warframe update 24.4.</p>
+                  <p>The "Like" system has been replaced with simple bookmarks, if you liked a build before this update it will be bookmarked and appear in your "My Builds" page as before.</p>
+                  <p>Added a new rating system. Found a public build you think is good, great or even meta? Mark it as such and help others find it as well!</p>
+                  <p>For a complete list of additions, changes and fixes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log</a>.</p>
+                  <p>To report bugs, missing things, incorrect stats and feature suggestions head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/">Tennoware subreddit</a>.</p>
                 </div>
               </div>
               <div className="tennoware-update">

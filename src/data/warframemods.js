@@ -1483,7 +1483,7 @@ const warframeMods = [
         type: 'INAROS',
         rarity: 'rare',
         polarity: 'zenurik',
-        effects: {none: [35,50,60,75]},
+        effects: { none: [35, 50, 60, 75] },
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
@@ -3040,8 +3040,8 @@ const warframeMods = [
     },
     {
         abrev: 'i9',
-        name: 'Haven',
-        img: require('../assets/modimages/haven.jpg'),
+        name: 'Rift Haven',
+        img: require('../assets/modimages/rift-haven.jpg'),
         type: 'LIMBO',
         rarity: 'rare',
         polarity: 'zenurik',
@@ -5729,7 +5729,7 @@ const warframeMods = [
         maxRank: 10,
         currRank: 10,
         baseCost: 4,
-        description() { return `+${5 * (this.currRank + 1)}% Auto Parry Chance` }
+        description() { return `+${Math.round(100 / 11 * (this.currRank + 1) * 10) / 10}% Parry Angle` }
     },
     {
         abrev: 'r9',

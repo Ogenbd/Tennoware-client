@@ -76,6 +76,10 @@ const warframeList = [
         img: require('../assets/itemimages/harrow.png')
     },
     {
+        name: 'HILDRYN',
+        img: require('../assets/itemimages/hildryn.png')
+    },
+    {
         name: 'HYDROID',
         img: require('../assets/itemimages/hydroid.png')
     },

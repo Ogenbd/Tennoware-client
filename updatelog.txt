@@ -1,14 +1,29 @@
 UPDATE LOG
 
-upcoming - v1.4.0.
+10/03/2019 - v1.4.0.
 New:
 Introduced a star rating system. Looking at a build and think its good, great or even meta? Help others find said build by rating it.
 Added a description button to the community builds screen. Users can now see a build's description (and if it even had one) before loading it up.
+Added Hildryn.
+Added Balefire Charger exalted secondary.
+Added the Tatsu.
+Added Opticor Vandal.
+Added Prisma Grinlok.
+Added Larkspur.
+Added Wise Razor stance mod.
+Added Amalgam mods.
 Changes:
 Likes have been replaced with bookmarks and no longer have a part in the order of builds on the community builds screen. Don't worry, if you liked a a build before its has been converted into a bookmark.
+Redeemer and Redeemer Prime Charge attacks now have a crit chance.
+MOA precept mods got their images.
+Corith MR requirement has been reduced from 10 to 8.
+Retrive's description has changed to match its new ingame description. Lower ranks may show incorrect values. If you know the correct values please let me know.
+Reflex Guard's description has changed to match its new ingame description.
+Haven augment mod has been renamed Rift Haven.
 Fixes:
 Fixed an error with Ironclad Charge.
 Razorwing ability now shows Energy drain value.
+Riven stats application order is now bottom to top as it is in game. Rivens with multiple elemental damage stats will now combine as they do in game.
 
 02/03/2019 - v1.3.5.
 Fixes:

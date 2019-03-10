@@ -969,7 +969,7 @@ const primaryWeaponStats = [
     },
     {
         name: 'CORINTH',
-        mastery: 10,
+        mastery: 8,
         type: ['SHOTGUN'],
         polarities: ['madurai', 'madurai'],
         noise: 'Alarming',
@@ -2899,6 +2899,62 @@ const primaryWeaponStats = [
         ]
     },
     {
+        name: 'OPTICOR VANDAL',
+        mastery: 14,
+        type: ['RIFLE', 'ASSAULT RIFLE', 'EXPLOSIVE'],
+        polarities: ['madurai'],
+        noise: 'Alarming',
+        reload: 1.4,
+        magSize: 8,
+        maxAmmo: 200,
+        disposition: 4,
+        modes: [
+            {
+                name: 'Charged Shot',
+                trigger: 'Charge',
+                fireRate: 2,
+                chargeRate: 0.6,
+                accuracy: 100,
+                punchThrough: 1,
+                critChance: 0.24,
+                critMult: 2.6,
+                status: 0.3,
+                damage: 400,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.1
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.7
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.2
+                    },
+                ]
+            },
+            {
+                name: 'Impact Area Damage',
+                trigger: 'Charge',
+                fireRate: 2,
+                chargeRate: 0.6,
+                accuracy: 100,
+                critChance: 0.24,
+                critMult: 2.6,
+                status: 0.3,
+                damage: 400,
+                split: [
+                    {
+                        type: 'Magnetic',
+                        percent: 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
         name: 'PANTHERA',
         mastery: 7,
         type: ['RIFLE', 'ASSAULT RIFLE', 'BEAM', 'PROJECTILE', 'PANTHERA'],
@@ -3345,6 +3401,43 @@ const primaryWeaponStats = [
                     {
                         type: 'Slash',
                         percent: 4 / 15
+                    },
+                ]
+            }
+        ]
+    },
+    {
+        name: 'PRISMA GRINLOK',
+        mastery: 11,
+        type: ['RIFLE', 'ASSAULT RIFLE', 'GRINLOK'],
+        polarities: ['madurai'],
+        noise: 'Alarming',
+        reload: 1.7,
+        magSize: 21,
+        maxAmmo: 540,
+        disposition: 4,
+        modes: [
+            {
+                trigger: 'Semi-Auto',
+                fireRate: 1.67,
+                accuracy: 32,
+                punchThrough: 0,
+                critChance: 0.21,
+                critMult: 2.9,
+                status: 0.37,
+                damage: 187,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.4
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.1
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.5
                     },
                 ]
             }

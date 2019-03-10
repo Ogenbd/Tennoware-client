@@ -88,6 +88,10 @@ const secondaryWeaponList = [
       img: require('../assets/itemimages/azima.png')
     },
     {
+      name: 'BALEFIRE CHARGER',
+      img: require('../assets/itemimages/balefire.png')
+    },
+    {
       name: 'BALLISTICA',
       img: require('../assets/itemimages/ballistica.png')
     },

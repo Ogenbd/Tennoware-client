@@ -552,6 +552,10 @@ const meleeList = [
         img: require('../assets/itemimages/synoid-heliocor.png')
     },
     {
+        name: 'TATSU',
+        img: require('../assets/itemimages/tatsu.png')
+    },
+    {
         name: 'TEKKO',
         img: require('../assets/itemimages/tekko.png')
     },

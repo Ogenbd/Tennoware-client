@@ -28,6 +28,10 @@ const archgunList = [
         img: require('../assets/itemimages/imperator-vandal.png')
     },
     {
+        name: 'LARKSPUR',
+        img: require('../assets/itemimages/larkspur.png')
+    },
+    {
         name: 'PHAEDRA',
         img: require('../assets/itemimages/phaedra.png')
     },

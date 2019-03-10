@@ -235,6 +235,11 @@
     border-color: rgba(230, 230, 230, 0.7);
 }
 
+.hover-amalgam {
+    color: rgba(230, 230, 230, 0.85);
+    border-color: rgba(230, 230, 230, 0.7);
+}
+
 .hover-riven {
     color: rgba(190, 135, 212, 0.7);
     border-color: rgba(190, 135, 212, 0.6);
@@ -284,6 +289,11 @@
         box-shadow: inset 0px 0px 10px 0px rgba(255, 249, 160, 0.9);
     }
     .hover-prime:hover {
+        color: rgba(230, 230, 230, 1);
+        border-color: rgba(230, 230, 230, 1);
+        box-shadow: inset 0px 0px 10px 0px rgba(230, 230, 230, 0.9);
+    }
+    .hover-amalgam:hover {
         color: rgba(230, 230, 230, 1);
         border-color: rgba(230, 230, 230, 1);
         box-shadow: inset 0px 0px 10px 0px rgba(230, 230, 230, 0.9);

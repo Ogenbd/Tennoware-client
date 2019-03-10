@@ -1,4 +1,4 @@
-// abrev at j1
+// abrev at j2
 const secondaryMods = [
     {
         abrev: 'a0',
@@ -13,6 +13,20 @@ const secondaryMods = [
         currRank: 5,
         baseCost: 2,
         description() { return `Decrease zoom by -${10 * (this.currRank + 1)}% during Aim Glide` }
+    },
+    {
+        abrev: 'j2',
+        name: 'Amalgam Barrel Diffusion',
+        family: 'Barrel Diffusion',
+        img: require('../assets/modimages/unavail.jpg'),
+        type: 'PISTOL',
+        rarity: 'amalgam',
+        polarity: 'madurai',
+        effects: { multishot: 1.1/6 },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 10,
+        description() { return `+${Math.round(this.effects.multishot * (this.currRank + 1) * 100)}% Multishot\n+${Math.round(10 * (this.currRank + 1))}% Dodge Speed` }
     },
     {
         abrev: 'a1',
@@ -58,6 +72,7 @@ const secondaryMods = [
     {
         abrev: 'a4',
         name: 'Barrel Diffusion',
+        family: 'Barrel Diffusion',
         img: require('../assets/modimages/barrel-diffusion.jpg'),
         type: 'PISTOL',
         rarity: 'rare',

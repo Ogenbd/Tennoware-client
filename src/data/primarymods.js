@@ -1,4 +1,4 @@
-// currently at abrev s8
+// currently at abrev t0
 const primaryMods = [
     {
         abrev: 'a0',
@@ -52,6 +52,34 @@ const primaryMods = [
         currRank: 3,
         baseCost: 2,
         description() { return `Increase movement speed by +${Math.round(this.effects.none * (this.currRank + 1) * 100)}% while aiming` }
+    },
+    {
+        abrev: 's9',
+        name: 'Amalgam Serration',
+        family: 'Serration',
+        img: require('../assets/modimages/unavail.jpg'),
+        type: 'RIFLE',
+        rarity: 'amalgam',
+        polarity: 'madurai',
+        effects: { baseDamage: 1.55/11 },
+        maxRank: 10,
+        currRank: 10,
+        baseCost: 6,
+        description() { return `+${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Damage\n+${Math.round((25/11) * (this.currRank + 1))}% Sprint Speed` }
+    },
+    {
+        abrev: 't0',
+        name: 'Amalgam Shotgun Spazz',
+        family: 'Shotgun Spazz',
+        img: require('../assets/modimages/unavail.jpg'),
+        type: 'SHOTGUN',
+        rarity: 'amalgam',
+        polarity: 'madurai',
+        effects: { fireRate: 0.85/6 },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 6,
+        description() { return `+${Math.round(this.effects.fireRate * (this.currRank + 1) * 100)}% Fire Rate\n+${Math.round(7.5 * (this.currRank + 1))}% Revive Speed` }
     },
     {
         abrev: 'o7',
@@ -1987,6 +2015,7 @@ const primaryMods = [
     {
         abrev: 'k4',
         name: 'Serration',
+        family: 'Serration',
         img: require('../assets/modimages/serration.jpg'),
         type: 'RIFLE',
         rarity: 'uncommon',
@@ -2066,6 +2095,7 @@ const primaryMods = [
     {
         abrev: 'l0',
         name: 'Shotgun Spazz',
+        family: 'Shotgun Spazz',
         img: require('../assets/modimages/shotgun-spazz.jpg'),
         type: 'SHOTGUN',
         rarity: 'uncommon',

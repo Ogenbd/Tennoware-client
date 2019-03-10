@@ -911,6 +911,40 @@ const secondaryWeaponStats = [
         ]
     },
     {
+        name: 'BALEFIRE CHARGER',
+        mastery: 0,
+        type: [
+            'PISTOL',
+        ],
+        polarities: [
+            'madurai',
+            'madurai'
+        ],
+        exalted: true,
+        noise: 'Alarming',
+        reload: 0.00000000000000000001,
+        magSize: 1,
+        modes: [
+            {
+                trigger: 'Charge',
+                fireRate: 0.833,
+                chargeRate: 2,
+                accuracy: 100,
+                punchThrough: 0,
+                critChance: 0.05,
+                critMult: 1.5,
+                status: 0.1,
+                damage: 500,
+                split: [
+                    {
+                        type: 'Electricity',
+                        percent: 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
         name: 'BALLISTICA',
         mastery: 2,
         type: [

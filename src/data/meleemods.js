@@ -1,5 +1,19 @@
-// abrev at r0
+// abrev at r2
 const meleeMods = [
+    {
+        abrev: 'r2',
+        name: 'Amalgam Organ Shatter',
+        family: 'Organ Shatter',
+        img: require('../assets/modimages/unavail.jpg'),
+        type: 'MELEE',
+        rarity: 'amalgam',
+        polarity: 'madurai',
+        effects: { critMult: 0.85/6 },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 6,
+        description() { return `+${Math.round(this.effects.critMult * (this.currRank + 1) * 100)}% Critical Damage\n+${Math.round(10 * (this.currRank + 1))}% Charge Attack Speed` }
+    },
     {
         abrev: 'a0',
         name: 'Argent Scourge',
@@ -1290,6 +1304,7 @@ const meleeMods = [
     {
         abrev: 'j0',
         name: 'Organ Shatter',
+        family: 'Organ Shatter',
         img: require('../assets/modimages/organ-shatter.jpg'),
         type: 'MELEE',
         rarity: 'common',
@@ -2415,6 +2430,20 @@ const meleeMods = [
         currRank: 5,
         baseCost: 4,
         description() { return `+${30 * (this.currRank + 1)}% Projectile Flight Speed` }
+    },
+    {
+        abrev: 'r1',
+        name: 'Wise Razor',
+        img: require('../assets/modimages/wise-razor.jpg'),
+        type: 'TWO-HANDED NIKANAS',
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: {},
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 2,
+        description() { return `Deftly excuted sweeps and slashes.` },
+        stance: true
     }
 ]
 

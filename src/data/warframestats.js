@@ -287,6 +287,20 @@ const warframeStats = [
         abilities: abilities.harrow
     },
     {
+        name: 'HILDRYN',
+        polarities: ['vazarin', 'vazarin'],
+        aura: 'naramon',
+        exilus: 'vazarin',
+        armor: 300,
+        baseEnergy: 0,
+        health: 225,
+        baseHealth: 75,
+        shields: 1350,
+        baseShields: 450,
+        speed: 1,
+        abilities: abilities.hildryn
+    },
+    {
         name: 'HYDROID',
         polarities: ['madurai', 'naramon'],
         aura: 'naramon',

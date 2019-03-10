@@ -81,7 +81,7 @@ export class MeleeStats extends Component {
                         }
                     }
                 } else {
-                    mod.effects.forEach(rivenEffect => {
+                    mod.effects.slice().reverse().forEach(rivenEffect => {
                         if (rivenEffect.elemental) {
                             let exists = elemental.findIndex(element => {
                                 return element.type === rivenEffect.elemental.type;

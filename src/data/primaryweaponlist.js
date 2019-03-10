@@ -240,6 +240,10 @@ const primaryWeaponList = [
     img: require('../assets/itemimages/opticor.png')
   },
   {
+    name: 'OPTICOR VANDAL',
+    img: require('../assets/itemimages/opticor-vandal.png')
+  },
+  {
     name: 'PANTHERA',
     img: require('../assets/itemimages/panthera.png')
   },
@@ -274,6 +278,10 @@ const primaryWeaponList = [
   {
     name: 'PRISMA GRAKATA',
     img: require('../assets/itemimages/prisma-grakata.png')
+  },
+  {
+    name: 'PRISMA GRINLOK',
+    img: require('../assets/itemimages/prisma-grinlok.png')
   },
   {
     name: 'PRISMA TETRA',

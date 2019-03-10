@@ -12,6 +12,8 @@ export class ModCardGenerator extends PureComponent {
         return { color: '#c79989' }
       case 'prime':
         return { color: '#e6e6e6' }
+      case 'amalgam':
+        return { color: '#e6e6e6' }
       case 'riven':
         return { color: '#be87d4' }
       default:
@@ -89,7 +91,7 @@ export class ModCardGenerator extends PureComponent {
           }
           <div className="info-bottom"></div>
         </div>
-        <img src={require(`../../assets/dynamic/modcards/${mod.rarity}.png`)} alt={''} className={"rarity " + (mod.rarity === 'riven' ? "riven-border" : "")} />
+        <img src={require(`../../assets/dynamic/modcards/${mod.rarity}.png`)} alt={''} className={"rarity " + (mod.rarity === 'riven' ? "riven-border" : mod.rarity === 'amalgam' ? "amalgam-border" : "")} />
         <div className="polarity-wrapper">
           {match === 'green'
             ? (mod.aura || mod.stance)

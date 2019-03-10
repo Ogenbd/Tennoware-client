@@ -555,13 +555,15 @@ export class WarframeStats extends PureComponent {
                                     : <div className="warframe-stat"><p>{Math.round(frame.armor / (300 + frame.armor) * 1000) / 10}%</p></div>
                                 }
                             </div>
-                            <div className="stats-item">
-                                <p className="stat-name">Energy: </p>
-                                {effects.energy
-                                    ? <div className={"warframe-stat " + (frame.energy < frame.energy + (frame.energy * effects.energy) ? "increased-stat" : "decreased-stat")}><p>{Math.round(frame.energy + (frame.baseEnergy * effects.energy))}</p></div>
-                                    : <div className="warframe-stat"><p>{frame.energy}</p></div>
-                                }
-                            </div>
+                            {frame.energy &&
+                                <div className="stats-item">
+                                    <p className="stat-name">Energy: </p>
+                                    {effects.energy
+                                        ? <div className={"warframe-stat " + (frame.energy < frame.energy + (frame.energy * effects.energy) ? "increased-stat" : "decreased-stat")}><p>{Math.round(frame.energy + (frame.baseEnergy * effects.energy))}</p></div>
+                                        : <div className="warframe-stat"><p>{frame.energy}</p></div>
+                                    }
+                                </div>
+                            }
                             <div className="stats-item">
                                 <p className="stat-name">Health: </p>
                                 {effects.health

@@ -56,7 +56,7 @@ const companionMods = [
     {
         abrev: 'j1',
         name: 'Anti-Grav Grenade',
-        img: require('../assets/modimages/unavail.jpg'),
+        img: require('../assets/modimages/anti-grav-grenade.jpg'),
         type: 'MOA',
         rarity: 'common',
         polarity: 'penjaga',
@@ -773,11 +773,11 @@ const companionMods = [
         type: 'CHESA KUBROW',
         rarity: 'common',
         polarity: 'penjaga',
-        effects: { none: [10, 12, 14, 16, 18, 18] },
+        effects: {},
         maxRank: 5,
         currRank: 5,
         baseCost: 0,
-        description() { return `The kubrow sniffs out loot hidden in crates and dropped by enemies within ${this.effects.none[this.currRank]}m, retrieving these items for its master.` }
+        description() { return `Kubrow has ${7.5 * (this.currRank + 1)}% to scavange additional loot from a fallen enemy or containers within ${5 * (this.currRank + 1)}m, every 10s.` }
     },
     {
         abrev: 'f4',
@@ -826,7 +826,7 @@ const companionMods = [
         type: 'OXYLUS',
         rarity: 'common',
         polarity: 'penjaga',
-        effects: {none: [20, 10]},
+        effects: { none: [20, 10] },
         maxRank: 3,
         currRank: 3,
         baseCost: 0,
@@ -861,7 +861,7 @@ const companionMods = [
     {
         abrev: 'i7',
         name: 'Security Override',
-        img: require('../assets/modimages/unavail.jpg'),
+        img: require('../assets/modimages/security-override.jpg'),
         type: 'MOA',
         rarity: 'common',
         polarity: 'penjaga',
@@ -953,7 +953,7 @@ const companionMods = [
     {
         abrev: 'i9',
         name: 'Shockwave Actuators',
-        img: require('../assets/modimages/unavail.jpg'),
+        img: require('../assets/modimages/shockwave-actuators.jpg'),
         type: 'MOA',
         rarity: 'common',
         polarity: 'penjaga',
@@ -992,7 +992,7 @@ const companionMods = [
     {
         abrev: 'j0',
         name: 'Stasis Field',
-        img: require('../assets/modimages/unavail.jpg'),
+        img: require('../assets/modimages/stasis-field.jpg'),
         type: 'MOA',
         rarity: 'common',
         polarity: 'penjaga',
@@ -1170,7 +1170,7 @@ const companionMods = [
     {
         abrev: 'i8',
         name: 'Tractor Beam',
-        img: require('../assets/modimages/unavail.jpg'),
+        img: require('../assets/modimages/tractor-beam.jpg'),
         type: 'MOA',
         rarity: 'common',
         polarity: 'penjaga',
@@ -1263,7 +1263,7 @@ const companionMods = [
     {
         abrev: 'j2',
         name: 'Whiplash Mine',
-        img: require('../assets/modimages/unavail.jpg'),
+        img: require('../assets/modimages/whiplash-mine.jpg'),
         type: 'MOA',
         rarity: 'common',
         polarity: 'penjaga',
@@ -1271,7 +1271,7 @@ const companionMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 2,
-        description() { return `Deplys a mine that tethers all enemies in ${5 * (this.currRank +1)}m. After 3s, all enemies still in range get pulled to the mine.` }
+        description() { return `Deplys a mine that tethers all enemies in ${5 * (this.currRank + 1)}m. After 3s, all enemies still in range get pulled to the mine.` }
     },
 ]
 
