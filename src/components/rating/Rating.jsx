@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import './Rating.css';
 
 import apiUrl from '../../apiUrl';
 

@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import './ModularBuildList.css';
-import '../builddescription/BuildDescription.css';
 
 import apiUrl from '../../apiUrl';
 import ContainedLoading from '../loading/ContainedLoading';

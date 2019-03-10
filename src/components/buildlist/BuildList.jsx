@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './BuildList.css';
-import '../builddescription/BuildDescription.css';
 
 import apiUrl from '../../apiUrl';
 import ContainedLoading from '../loading/ContainedLoading';

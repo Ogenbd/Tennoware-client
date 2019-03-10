@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './BuildDescription.css';
 
 export class BuildDescription extends Component {
     constructor(props) {
