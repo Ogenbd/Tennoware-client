@@ -3134,7 +3134,7 @@ const meleeStats = [
     name: 'JAT KUSAR',
     mastery: 10,
     type: [
-      'BLADE AND WHIPS',
+      'BLADE & WHIP',
       'JAT KUSAR'
     ],
     polarities: [
@@ -3656,7 +3656,7 @@ const meleeStats = [
     name: 'LACERA',
     mastery: 7,
     type: [
-      'BLADE AND WHIPS',
+      'BLADE & WHIP',
       'LACERA'
     ],
     polarities: [
@@ -3875,7 +3875,7 @@ const meleeStats = [
     name: 'MIOS',
     mastery: 8,
     type: [
-      'BLADE AND WHIPS',
+      'BLADE & WHIP',
       'MIOS'
     ],
     polarities: [
