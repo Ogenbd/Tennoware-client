@@ -2490,7 +2490,11 @@ const abilities = {
                         {
                             name: 'Activation shield cost',
                             base: 100
-                        }
+                        },
+                        {
+                            name: 'Shield cost/Dodge',
+                            base: 50
+                        },
                     ],
                     channel: [
                         {
@@ -2500,8 +2504,8 @@ const abilities = {
                         {
                             name: 'Shield cost/Enemy/s',
                             base: 25
-                        },
-                    ],
+                        }
+                    ]
                 }
             ]
         },
