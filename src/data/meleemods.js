@@ -1,14 +1,14 @@
-// abrev at r2
+// abrev at r3
 const meleeMods = [
     {
         abrev: 'r2',
         name: 'Amalgam Organ Shatter',
         family: 'Organ Shatter',
-        img: require('../assets/modimages/unavail.jpg'),
+        img: require('../assets/modimages/amalgam-organ-shatter.jpg'),
         type: 'MELEE',
         rarity: 'amalgam',
         polarity: 'madurai',
-        effects: { critMult: 0.85/6 },
+        effects: { critMult: 0.85 / 6 },
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
@@ -755,6 +755,20 @@ const meleeMods = [
         stance: true
     },
     {
+        abrev: 'r3',
+        name: 'Focus Energy',
+        img: require('../assets/modimages/focus-energy.jpg'),
+        type: 'MELEE',
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { channelEfficiency: 0.1, elemental: { damage: 0.15, type: 'Electricity' } },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 6,
+        keywords: ['elemental', 'corrosive', 'radiation', 'magnetic'],
+        description() { return `+${Math.round(this.effects.channelEfficiency * (this.currRank + 1) * 100)}% Channeling Efficiency\n+${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Electricity` }
+    },
+    {
         abrev: 'f2',
         name: 'Focused Defense',
         img: require('../assets/modimages/focused-defense.jpg'),
@@ -1450,7 +1464,7 @@ const meleeMods = [
         type: 'MELEE',
         rarity: 'prime',
         polarity: 'madurai',
-        effects: { baseDamage: 0.15},
+        effects: { baseDamage: 0.15 },
         maxRank: 10,
         currRank: 10,
         baseCost: 4,
@@ -2436,7 +2450,7 @@ const meleeMods = [
         name: 'Wise Razor',
         img: require('../assets/modimages/wise-razor.jpg'),
         type: 'TWO-HANDED NIKANAS',
-        rarity: 'rare',
+        rarity: 'uncommon',
         polarity: 'madurai',
         effects: {},
         maxRank: 3,

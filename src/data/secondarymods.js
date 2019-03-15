@@ -18,7 +18,7 @@ const secondaryMods = [
         abrev: 'j2',
         name: 'Amalgam Barrel Diffusion',
         family: 'Barrel Diffusion',
-        img: require('../assets/modimages/unavail.jpg'),
+        img: require('../assets/modimages/amalgam-barrel-diffusion.jpg'),
         type: 'PISTOL',
         rarity: 'amalgam',
         polarity: 'madurai',

@@ -528,9 +528,9 @@ const kitguns = {
             thunderdrum: {
                 magSize: 13,
                 reload: 2.1,
-                critChance: 0.13,
+                critChance: 0.17,
                 critMult: 1.9,
-                status: 0.35
+                status: 0.28
             },
             zip: {
                 magSize: 5,

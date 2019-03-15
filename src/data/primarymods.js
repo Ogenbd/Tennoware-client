@@ -1,4 +1,4 @@
-// currently at abrev t0
+// currently at abrev t1
 const primaryMods = [
     {
         abrev: 'a0',
@@ -57,25 +57,25 @@ const primaryMods = [
         abrev: 's9',
         name: 'Amalgam Serration',
         family: 'Serration',
-        img: require('../assets/modimages/unavail.jpg'),
+        img: require('../assets/modimages/amalgam-serration.jpg'),
         type: 'RIFLE',
         rarity: 'amalgam',
         polarity: 'madurai',
-        effects: { baseDamage: 1.55/11 },
+        effects: { baseDamage: 1.55 / 11 },
         maxRank: 10,
         currRank: 10,
         baseCost: 6,
-        description() { return `+${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Damage\n+${Math.round((25/11) * (this.currRank + 1))}% Sprint Speed` }
+        description() { return `+${Math.round(this.effects.baseDamage * (this.currRank + 1) * 100)}% Damage\n+${Math.round((25 / 11) * (this.currRank + 1))}% Sprint Speed` }
     },
     {
         abrev: 't0',
         name: 'Amalgam Shotgun Spazz',
         family: 'Shotgun Spazz',
-        img: require('../assets/modimages/unavail.jpg'),
+        img: require('../assets/modimages/amalgam-shotgun-spazz.jpg'),
         type: 'SHOTGUN',
         rarity: 'amalgam',
         polarity: 'madurai',
-        effects: { fireRate: 0.85/6 },
+        effects: { fireRate: 0.85 / 6 },
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
@@ -2663,6 +2663,19 @@ const primaryMods = [
         currRank: 3,
         baseCost: 4,
         description() { return `Killing a flying enemy creates a lightning trap from their remains, lasting +${this.effects.none[0] * this.currRank + 2}s\n+${this.effects.none[1] * (this.currRank + 1)} 'Sequence'` }
+    },
+    {
+        abrev: 't1',
+        name: 'Wild Frenzy',
+        img: require('../assets/modimages/unavail.jpg'),
+        type: 'GRAKATA',
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { augmentFireRate: [2, 2.2, 2.5, 2.9, 3.3, 4] },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 4,
+        description() { return `Adds a Secondary Fire mode that will continuously shoot until the magazine is empty with +${Math.round(this.effects.augmentFireRate[this.currRank] * 100)}% Fire Rate. If 2 enemies are killed, the ammo used will be refunded.` }
     },
     {
         abrev: 'o5',

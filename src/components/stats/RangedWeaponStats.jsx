@@ -33,7 +33,8 @@ export class RangedWeaponStats extends Component {
             firstToggle: false,
             headshotKillToggle: false,
             baseStatsToggle: false,
-            arbitrations: false
+            arbitrations: false,
+            augment: false
         }
     }
 
@@ -89,6 +90,8 @@ export class RangedWeaponStats extends Component {
                                     } else {
                                         elemental[exists].damage = Math.round((elemental[exists].damage + mod.effects.elemental.damage * (mod.currRank + 1)) * 100) / 100;
                                     }
+                                } else if (effect === 'augmentFireRate') {
+                                    effects.augmentFireRate = mod.effects.augmentFireRate[mod.currRank];
                                 } else if (effect === 'totalDamage') {
                                     effects.totalDamage = mod.effects.totalDamage[mod.currRank];
                                 } else if (effects[effect]) {
@@ -494,7 +497,9 @@ export class RangedWeaponStats extends Component {
                 fireRateMult += this.state.effects.fireRate;
             }
         }
-        if (this.props.weapon.name === 'DEX PIXIA') fireRateMult += 0.25 * (this.state.powerStr / 100) * this.state.razorwingBlitz
+        // Wild Frenzy augment addition
+        if (this.state.augment && this.state.effects.augmentFireRate) fireRateMult += this.state.effects.augmentFireRate;
+        if (this.props.weapon.name === 'DEX PIXIA') fireRateMult += 0.25 * (this.state.powerStr / 100) * this.state.razorwingBlitz;
         return {
             display: this.props.weapon.modes[this.state.mode].fireRate * fireRateMult,
             mult: fireRateMult
@@ -678,7 +683,7 @@ export class RangedWeaponStats extends Component {
 
     render() {
         const { weapon } = this.props;
-        const { mode, effects, zoom, combo, razorwingBlitz } = this.state;
+        const { mode, effects, zoom, combo, razorwingBlitz, augment } = this.state;
         const critChance = this.calcCritChance();
         const critMult = this.calcCritMult();
         const fireRate = this.calcFireRate();
@@ -697,15 +702,27 @@ export class RangedWeaponStats extends Component {
                 </div>
                 <div className={"ranged-stats " + (this.state.open ? 'open-ranged-stats' : 'closed-ranged-stats')}>
                     <div className="ranged-stats-inner-wrapper">
-                        {weapon.modes.length > 1 &&
-                            <div className="modes">
-                                {weapon.modes.map((instance, index) => (
-                                    <div key={index} className={"activatable " + (mode === index ? 'interactable-active' : 'interactable-inactive')} onClick={() => this.setState({ mode: index })}>
-                                        <p className="interactable-p">{instance.name}</p>
+                        <div className="modes">
+                            {weapon.modes.length > 1 &&
+                                <React.Fragment>
+                                    {weapon.modes.map((instance, index) => (
+                                        <div key={index} className={"activatable " + (mode === index ? 'interactable-active' : 'interactable-inactive')} onClick={() => this.setState({ mode: index })}>
+                                            <p className="interactable-p">{instance.name}</p>
+                                        </div>
+                                    ))}
+                                </React.Fragment>
+                            }
+                            {((weapon.name === 'GRAKATA' || weapon.name === 'PRISMA GRAKATA') && effects.augmentFireRate) &&
+                                <React.Fragment>
+                                    <div className={"activatable " + (augment ? 'interactable-inactive' : 'interactable-active')} onClick={() => this.setState({ augment: false })}>
+                                        <p className="interactable-p">Primary</p>
                                     </div>
-                                ))}
-                            </div>
-                        }
+                                    <div className={"activatable " + (augment ? 'interactable-active' : 'interactable-inactive')} onClick={() => this.setState({ augment: true })}>
+                                        <p className="interactable-p">Wild Frenzy</p>
+                                    </div>
+                                </React.Fragment>
+                            }
+                        </div>
                         <div className="stats-wrapper">
                             <div className="stats-item damage">
                                 <div className="stats-switch">

@@ -752,7 +752,9 @@ class TenSlotModding extends Component {
                             <Rating rating={this.props.metaInfo.Rating} starWidth='30px' readOnly={!this.props.user} match={this.props.match} />
                         </div>
                     }
-                    <ModdingAd />
+                    {this.props.online &&
+                      <ModdingAd />
+                    }
                     {this.displayMessage()}
                 </div>
                 <div className="modding-right">
@@ -766,7 +768,7 @@ class TenSlotModding extends Component {
                         <MoaStats frame={this.props.item} mods={this.state.chosenMods} viewWidth={this.props.viewWidth} />
                     }
                     <div className="side-panel">
-                        {this.props.viewWidth > 1369 &&
+                        {(this.props.viewWidth > 1369 && this.props.online) &&
                             <div className="right-g">
                                 <RightAd />
                             </div>

@@ -1,5 +1,16 @@
 UPDATE LOG
 
+upcoming - v1.4.1.
+Changes:
+Added Wild Frenzy mod along with its secondary fire mode calculations for the Grakata and Prisma Grakata.
+Catchmoon/Thunderdrum kitgun combo crit chance changed to 17% and status changed to 28%.
+Neutron Star mod description has changed.
+Amalgam mods got their images.
+Fixes:
+Fixed an error that caused Defiled Snapdragon to never show up as a slottable stance mod.
+Wise Razor is now an uncommon mod as it is in game.
+Focus Energy mod exists.
+
 10/03/2019 - v1.4.0.
 New:
 Introduced a star rating system. Looking at a build and think its good, great or even meta? Help others find said build by rating it.

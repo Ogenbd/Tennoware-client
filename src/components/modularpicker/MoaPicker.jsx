@@ -96,7 +96,9 @@ export class MoaPicker extends Component {
                                             </div>
                                         ))}
                                         <div style={{ marginTop: '5px' }}></div>
-                                        <BottomAd />
+                                        {this.props.online &&
+                                            <BottomAd />
+                                        }
                                     </div>
                                     <div className="picker-section">
                                         <div className="section-title">Cores</div>
@@ -112,7 +114,9 @@ export class MoaPicker extends Component {
                                             </div>
                                         ))}
                                         <div style={{ marginTop: '5px' }}></div>
-                                        <ModdingAd />
+                                        {this.props.online &&
+                                            <ModdingAd />
+                                        }
                                     </div>
                                     <div className="picker-section">
                                         <div className="section-title">Gyros</div>
@@ -169,7 +173,7 @@ export class MoaPicker extends Component {
                         )}
                     </Spring>
                     <div className="side-panel">
-                        {this.props.viewWidth > 1363 &&
+                        {(this.props.viewWidth > 1363 && this.props.online) &&
                             <div className="right-g">
                                 <RightAd />
                             </div>

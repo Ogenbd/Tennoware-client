@@ -4353,7 +4353,7 @@ const warframeMods = [
         type: 'NOVA',
         rarity: 'rare',
         polarity: 'zenurik',
-        effects: {},
+        effects: { none: [4, 5, 6, 8] },
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
@@ -4388,7 +4388,7 @@ const warframeMods = [
                         {
                             name: 'Detonation radius',
                             suffix: 'm',
-                            base(augEffects, augRank) { return 4 + 1 * augRank }
+                            base(augEffects, augRank) { return augEffects.none[augRank] }
                         },
                     ],
                     none: [
@@ -4407,7 +4407,7 @@ const warframeMods = [
                 }
             ]
         },
-        description() { return `Null Star Augment: Recasting Null Star will make all remaining particles explode, causing ${60 + 20 * this.currRank} Blast Damage with guaranteed Proc in ${4 + 1 * this.currRank}m.` }
+        description() { return `Null Star Augment: On recast, all remaining particles will seek out enemies and deal ${60 + 20 * this.currRank} Blast Damage with guaranteed Proc in ${this.effects.none[this.currRank]}m.` }
     },
     {
         abrev: 'n0',

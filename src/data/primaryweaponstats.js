@@ -1573,7 +1573,7 @@ const primaryWeaponStats = [
     {
         name: 'GRAKATA',
         mastery: 5,
-        type: ['RIFLE', 'ASSAULT RIFLE'],
+        type: ['RIFLE', 'ASSAULT RIFLE', 'GRAKATA'],
         polarities: [],
         noise: 'Alarming',
         reload: 2.4,
@@ -3372,7 +3372,7 @@ const primaryWeaponStats = [
     {
         name: 'PRISMA GRAKATA',
         mastery: 11,
-        type: ['RIFLE', 'ASSAULT RIFLE'],
+        type: ['RIFLE', 'ASSAULT RIFLE', 'GRAKATA'],
         polarities: [],
         noise: 'Alarming',
         reload: 2,

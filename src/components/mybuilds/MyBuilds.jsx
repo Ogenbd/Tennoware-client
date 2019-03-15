@@ -373,7 +373,9 @@ export default class MyBuilds extends Component {
                             </div>
                         </div>
                         <div ref={element => { this.itemList = element; }} className="builds-wrapper" style={this.state.ready ? { opacity: 1 } : { opacity: 0 }}>
-                            <BottomAd />
+                            {this.props.online &&
+                                <BottomAd />
+                            }
                             {this.state.error !== null
                                 ? <div className="no-builds">{this.state.error}</div>
                                 : <React.Fragment>
@@ -417,7 +419,7 @@ export default class MyBuilds extends Component {
                         </div>
                     </div>
                     <div className="side-panel">
-                        {this.props.viewWidth > 1260 &&
+                        {(this.props.viewWidth > 1260 && this.props.online) &&
                             <div className="right-g">
                                 <RightAd />
                             </div>

@@ -78,11 +78,11 @@ export class News extends Component {
           <div className="news-container">
             <div className="home-left">
               <div className="tennoware-update">
-                <div className="update-title">Update 1.4.0</div>
+                <div className="update-title">Update 1.4.1</div>
                 <div className="update-content">
-                  <p>Hildryn is now available along with the other additions from Warframe update 24.4.</p>
-                  <p>The "Like" system has been replaced with simple bookmarks, if you liked a build before this update it will be bookmarked and appear in your "My Builds" page as before.</p>
-                  <p>Added a new rating system. Found a public build you think is good, great or even meta? Mark it as such and help others find it as well!</p>
+                  <p>Added Wild Frenzy mod along with its secondary firing mode.</p>
+                  <p>Catchmoon/Thunderdrum changes from Warframe update 24.4.4 have been implemented.</p>
+                  <p>Several mod changes and fixes.</p>
                   <p>For a complete list of additions, changes and fixes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log</a>.</p>
                   <p>To report bugs, missing things, incorrect stats and feature suggestions head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/">Tennoware subreddit</a>.</p>
                 </div>
@@ -123,7 +123,9 @@ export class News extends Component {
               </div>
             </div>
             <div className="right-wrapper">
-              <TopAd />
+              {this.props.online &&
+                <TopAd />
+              }
               <div className="home-right">
                 <Link to="/warframes" className="tile-wrapper">
                   <img className="tile-image" src={require('../../assets/general/titania.png')} alt="" />
@@ -182,11 +184,13 @@ export class News extends Component {
                   <div className="tile-name"><p>ARCHMELEE</p></div>
                 </Link>
               </div>
-              <BottomAd />
+              {this.props.online &&
+                <BottomAd />
+              }
             </div>
           </div>
           <div className="side-panel">
-            {this.props.viewWidth > 1375 &&
+            {(this.props.viewWidth > 1375 && this.props.online) &&
               <div className="right-g">
                 <RightAd />
               </div>

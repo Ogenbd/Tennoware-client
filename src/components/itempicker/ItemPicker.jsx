@@ -83,7 +83,9 @@ export class ItemPicker extends Component {
                         </div>
                         <div ref={element => { this.itemList = element; }} className="item-picker-content" style={this.state.ready ? { opacity: 1 } : { opacity: 0 }}>
                             <div className="items-display-wrapper">
-                                <TopAd />
+                                {this.props.online &&
+                                    <TopAd />
+                                }
                                 <div className="items-display">
                                     {this.state.displayItems.map((item, index) => (
                                         <Link key={index} to={`${this.props.match.path}/${item.name.toLowerCase()}`} className="item-wrapper">
@@ -96,7 +98,7 @@ export class ItemPicker extends Component {
                         </div>
                     </div>
                     <div className="side-panel">
-                        {this.props.viewWidth > 1363 &&
+                        {(this.props.viewWidth > 1363 && this.props.online) &&
                             <div className="right-g">
                                 <RightAd />
                             </div>

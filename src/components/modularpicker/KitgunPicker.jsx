@@ -110,7 +110,9 @@ export class KitgunPicker extends Component {
                       </div>
                     ))}
                     <div style={{ marginTop: '5px' }}></div>
-                    <BottomAd />
+                    {this.props.online &&
+                      <BottomAd />
+                    }
                   </div>
                   <div className="picker-section">
                     <div className="section-title">Grip</div>
@@ -126,7 +128,9 @@ export class KitgunPicker extends Component {
                       </div>
                     ))}
                     <div style={{ marginTop: '5px' }}></div>
-                    <ModdingAd />
+                    {this.props.online &&
+                      <ModdingAd />
+                    }
                   </div>
                   <div className="picker-section">
                     <div className="section-title">Loader</div>
@@ -254,7 +258,7 @@ export class KitgunPicker extends Component {
             )}
           </Spring>
           <div className="side-panel">
-            {this.props.viewWidth > 1363 &&
+            {(this.props.viewWidth > 1363 && this.props.online) &&
               <div className="right-g">
                 <RightAd />
               </div>

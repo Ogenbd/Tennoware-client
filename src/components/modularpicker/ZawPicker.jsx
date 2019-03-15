@@ -122,7 +122,9 @@ export class ZawPicker extends Component {
                                             </div>
                                         ))}
                                         <div style={{ marginTop: '5px' }}></div>
-                                        <BottomAd />
+                                        {this.props.online &&
+                                            <BottomAd />
+                                        }
                                     </div>
                                     <div className="picker-section">
                                         <div className="section-title">Grip</div>
@@ -151,7 +153,9 @@ export class ZawPicker extends Component {
                                             </div>
                                         ))}
                                         <div style={{ marginTop: '5px' }}></div>
-                                        <ModdingAd />
+                                        {this.props.online &&
+                                            <ModdingAd />
+                                        }
                                     </div>
                                     <div className="picker-section">
                                         <div className="section-title">Link</div>
@@ -247,7 +251,7 @@ export class ZawPicker extends Component {
                         )}
                     </Spring>
                     <div className="side-panel">
-                        {this.props.viewWidth > 1363 &&
+                        {(this.props.viewWidth > 1363 && this.props.online) &&
                             <div className="right-g">
                                 <RightAd />
                             </div>
