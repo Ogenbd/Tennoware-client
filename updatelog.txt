@@ -1,8 +1,17 @@
 UPDATE LOG
 
-upcoming - v1.4.1.
+upcoming - v1.4.2.
 Changes:
+"My Builds" open buttons are middle mouse clickable in order to open a build in a new tab.
+Saved builds now have their name displayed on the modding page.
+Added a reset button to all modding pages.
+General changes to saving and updating owned builds.
+
+15/03/2019 - v1.4.1.
+New:
 Added Wild Frenzy mod along with its secondary fire mode calculations for the Grakata and Prisma Grakata.
+Added Aegis Storm Dodge cost to Hildryn's stats.
+Changes:
 Catchmoon/Thunderdrum kitgun combo crit chance changed to 17% and status changed to 28%.
 Neutron Star mod description has changed.
 Amalgam mods got their images.
