@@ -1,11 +1,15 @@
 UPDATE LOG
 
 upcoming - v1.4.2.
+New:
+Added Charged/Uncharged firing modes for Hildryn's exalted weapon, the Balefire Charger. 
 Changes:
 "My Builds" open buttons are middle mouse clickable in order to open a build in a new tab.
 Saved builds now have their name displayed on the modding page.
 Added a reset button to all modding pages.
 General changes to saving and updating owned builds.
+Fixes:
+Fire Rate mods no longer affect Wild Frenzy fire mode for the Grakata/Prisma Grakata.
 
 15/03/2019 - v1.4.1.
 New:

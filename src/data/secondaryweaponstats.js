@@ -926,9 +926,26 @@ const secondaryWeaponStats = [
         magSize: 1,
         modes: [
             {
+                name: 'Charged',
+                trigger: 'Charge',
+                chargeRate: 2,
+                accuracy: 100,
+                punchThrough: 0,
+                critChance: 0.05,
+                critMult: 1.5,
+                status: 0.1,
+                damage: 1000,
+                split: [
+                    {
+                        type: 'Electricity',
+                        percent: 1
+                    }
+                ]
+            },
+            {
+                name: 'Uncharged',
                 trigger: 'Charge',
                 fireRate: 0.833,
-                chargeRate: 2,
                 accuracy: 100,
                 punchThrough: 0,
                 critChance: 0.05,
