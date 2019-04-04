@@ -3165,7 +3165,7 @@ const warframeMods = [
         exilus: true,
         rarity: 'rare',
         polarity: 'zenurik',
-        effects: { none: 7.5 },
+        effects: { none: 10 },
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
@@ -3212,7 +3212,7 @@ const warframeMods = [
                 }
             ]
         },
-        description() { return `Hysteria Augment: Use Secondary Fire to leap onto enemies up to ${this.effects.none * (this.currRank + 1)}m away.` }
+        description() { return `Hysteria Augment: Aim and then attack to leap onto enemies up to ${this.effects.none * (this.currRank + 1)}m away.` }
     },
     {
         abrev: 'j7',
@@ -5659,6 +5659,12 @@ const warframeMods = [
                             base: 25
                         },
                     ],
+                    channel: [
+                        {
+                            name: 'Energy drain/s',
+                            base: 5
+                        },
+                    ]
                 }
             ]
         },

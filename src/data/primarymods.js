@@ -1,4 +1,4 @@
-// currently at abrev t1
+// currently at abrev t3
 const primaryMods = [
     {
         abrev: 'a0',
@@ -344,6 +344,19 @@ const primaryMods = [
         currRank: 5,
         baseCost: 6,
         description() { return `+${Math.round(this.effects.magSize * (this.currRank + 1) * 100)}% Magazine Capacity\n${Math.round(this.effects.reload * (this.currRank + 1) * 100)}% Reload Speed` }
+    },
+    {
+        abrev: 't2',
+        name: 'Bursting Mass',
+        img: require('../assets/modimages/bursting-mass.jpg'),
+        type: 'MUTALIST QUANTA',
+        rarity: 'rare',
+        polarity: 'naramon',
+        effects: { none: [50, 80, 110, 140, 170, 200] },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 4,
+        description() { return `The infested mass accumulates ${this.effects.none[this.currRank]}% of the damage that goes through it and deals it in a 15m radius when it expires. Secondary fire will manually detonate an existing mass.` }
     },
     {
         abrev: 'b8',
@@ -1474,6 +1487,20 @@ const primaryMods = [
         description() { return `On Ability Cast: +${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance while aiming for ${this.effects.none * (this.currRank + 1)}s` }
     },
     {
+        abrev: 't3',
+        name: 'Napalm Grenades',
+        family: 'penta',
+        img: require('../assets/modimages/napalm-grenades.jpg'),
+        type: 'PENTA',
+        rarity: 'rare',
+        polarity: 'naramon',
+        effects: { baseStatus: 5, alterMode: 2 },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 4,
+        description() { return `Grenades leave a burning patch on impact.\n+${this.effects.baseStatus * (this.currRank + 1)} Base Status Chance` }
+    },
+    {
         abrev: 'h4',
         name: 'Narrow Barrel',
         img: require('../assets/modimages/narrow-barrel.jpg'),
@@ -2425,6 +2452,7 @@ const primaryMods = [
     {
         abrev: 'n1',
         name: 'Tether Grenades',
+        family: 'penta',
         img: require('../assets/modimages/tether-grenades.jpg'),
         type: 'PENTA',
         rarity: 'rare',
@@ -2667,7 +2695,7 @@ const primaryMods = [
     {
         abrev: 't1',
         name: 'Wild Frenzy',
-        img: require('../assets/modimages/unavail.jpg'),
+        img: require('../assets/modimages/wild-frenzy.jpg'),
         type: 'GRAKATA',
         rarity: 'rare',
         polarity: 'madurai',
@@ -2675,7 +2703,7 @@ const primaryMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `Adds a Secondary Fire mode that will continuously shoot until the magazine is empty with +${Math.round(this.effects.augmentFireRate[this.currRank] * 100)}% Fire Rate. If 2 enemies are killed, the ammo used will be refunded.` }
+        description() { return `Secondary Fire will shoot with +${Math.round(this.effects.augmentFireRate[this.currRank] * 100)}% Fire Rate until the magazine is empty. Killing 2 or more enemies, will refund ${25 + (15 * this.currRank)}% of the ammo.` }
     },
     {
         abrev: 'o5',

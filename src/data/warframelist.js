@@ -44,6 +44,10 @@ const warframeList = [
         img: require('../assets/itemimages/equinox.png')
     },
     {
+        name: 'EQUINOX PRIME',
+        img: require('../assets/itemimages/equinox-prime.png')
+    },
+    {
         name: 'EXCALIBUR',
         img: require('../assets/itemimages/excalibur.png')
     },

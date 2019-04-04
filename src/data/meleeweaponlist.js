@@ -568,6 +568,10 @@ const meleeList = [
         img: require('../assets/itemimages/tipedo.png')
     },
     {
+        name: 'TIPEDO PRIME',
+        img: require('../assets/itemimages/tipedo-prime.png')
+    },
+    {
         name: 'TONBO',
         img: require('../assets/itemimages/tonbo.png')
     },

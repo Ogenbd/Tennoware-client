@@ -2686,7 +2686,7 @@ const primaryWeaponStats = [
     {
         name: 'MUTALIST QUANTA',
         mastery: 2,
-        type: ['RIFLE', 'ASSAULT RIFLE'],
+        type: ['RIFLE', 'ASSAULT RIFLE', 'MUTALIST QUANTA'],
         polarities: ['vazarin'],
         noise: 'Alarming',
         reload: 3,
@@ -3239,7 +3239,25 @@ const primaryWeaponStats = [
                         percent: 1
                     }
                 ]
-            }
+            },
+            {
+                name: 'Napalm Grenades',
+                augment: true,
+                trigger: 'Semi-Auto',
+                fireRate: 1,
+                accuracy: 100,
+                punchThrough: 0,
+                critChance: 0.1,
+                critMult: 2,
+                status: 0.1,
+                damage: 650,
+                split: [
+                    {
+                        type: 'Heat',
+                        percent: 1
+                    }
+                ]
+            },
         ]
     },
     {
@@ -3955,7 +3973,25 @@ const primaryWeaponStats = [
                         percent: 1
                     }
                 ]
-            }
+            },
+            {
+                name: 'Napalm Grenades',
+                augment: true,
+                trigger: 'Semi-Auto',
+                fireRate: 2,
+                accuracy: 100,
+                punchThrough: 0,
+                critChance: 0.26,
+                critMult: 2,
+                status: 0.26,
+                damage: 650,
+                split: [
+                    {
+                        type: 'Heat',
+                        percent: 1
+                    }
+                ]
+            },
         ]
     },
     {
@@ -4252,6 +4288,7 @@ const primaryWeaponStats = [
         disposition: 4,
         modes: [
             {
+                name: 'Auto',
                 trigger: 'Auto',
                 fireRate: 10,
                 accuracy: 14.3,
@@ -4276,6 +4313,7 @@ const primaryWeaponStats = [
                 ]
             },
             {
+                name: 'Semi-Auto',
                 trigger: 'Semi-Auto',
                 fireRate: 5,
                 accuracy: 28.6,
@@ -4296,6 +4334,69 @@ const primaryWeaponStats = [
                     {
                         type: 'Slash',
                         percent: 0.25
+                    },
+                ]
+            }
+        ]
+    },
+    {
+        name: 'STRADAVAR PRIME',
+        mastery: 12,
+        type: ['RIFLE', 'ASSAULT RIFLE'],
+        polarities: ['madurai', 'madurai', 'madurai'],
+        noise: 'Alarming',
+        reload: 2,
+        magSize: 90,
+        maxAmmo: 540,
+        disposition: 4,
+        modes: [
+            {
+                name: 'Auto',
+                trigger: 'Auto',
+                fireRate: 10,
+                accuracy: 25,
+                punchThrough: 0,
+                critChance: 0.24,
+                critMult: 2.6,
+                status: 0.12,
+                damage: 30,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.35
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.35
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.3
+                    },
+                ]
+            },
+            {
+                name: 'Semi-Auto',
+                trigger: 'Semi-Auto',
+                fireRate: 3.33,
+                accuracy: 66.7,
+                punchThrough: 1,
+                critChance: 0.3,
+                critMult: 2.8,
+                status: 0.22,
+                damage: 80,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.1
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.3
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.6
                     },
                 ]
             }
@@ -5187,7 +5288,7 @@ const primaryWeaponStats = [
                 split: [
                     {
                         type: 'Impact',
-                        percent: 0.15
+                        percent: 0.4
                     },
                     {
                         type: 'Puncture',
@@ -5195,7 +5296,7 @@ const primaryWeaponStats = [
                     },
                     {
                         type: 'Slash',
-                        percent: 0.4
+                        percent: 0.15
                     },
                 ]
             }

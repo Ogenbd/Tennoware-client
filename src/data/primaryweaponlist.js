@@ -352,6 +352,10 @@ const primaryWeaponList = [
     img: require('../assets/itemimages/stradavar.png')
   },
   {
+    name: 'STRADAVAR PRIME',
+    img: require('../assets/itemimages/stradavar-prime.png')
+  },
+  {
     name: 'STRUN',
     img: require('../assets/itemimages/strun.png')
   },

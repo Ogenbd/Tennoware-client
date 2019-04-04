@@ -411,6 +411,7 @@ export class MeleeStats extends Component {
 
     calcSpeed = () => {
         let speedMult = 1;
+        let berserkerMult = 1;
         if (this.state.baseStatsToggle) {
             return {
                 display: this.props.weapon.modes[this.state.mode].speed,
@@ -419,13 +420,15 @@ export class MeleeStats extends Component {
         }
         if (this.state.effects.speed) speedMult += this.state.effects.speed;
         if (this.state.berserker && this.state.berserkerStacks > 0) {
-            let berserkerMult = this.state.effects.berserker * this.state.berserkerStacks;
-            berserkerMult > 0.75 ? speedMult += 0.75 : speedMult += berserkerMult;
+            berserkerMult += this.state.effects.berserker * this.state.berserkerStacks;
+            if (berserkerMult > 1.75) berserkerMult = 1.75;
         }
         if (this.props.weapon.name === 'DIWATA') speedMult += 0.25 * (this.state.powerStr / 100) * this.state.razorwingBlitz
+        console.log(speedMult);
+        console.log(berserkerMult);
         return {
-            display: this.props.weapon.modes[this.state.mode].speed * speedMult,
-            mult: speedMult
+            display: this.props.weapon.modes[this.state.mode].speed * speedMult * berserkerMult,
+            mult: speedMult * berserkerMult
         }
     }
 

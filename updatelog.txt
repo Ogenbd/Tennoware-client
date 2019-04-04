@@ -1,6 +1,23 @@
 UPDATE LOG
 
-upcoming - v1.4.2.
+upcoming - v1.4.3.
+New:
+Added Equinox Prime.
+Added Stradavar Prime.
+Added Tipedo Prime.
+Added Bursting Mass (Mutalist Quanta mod).
+Added Napalm Grenades (Penta/Secura Penta mod).
+Changes:
+Hysterical Assualt updated in update 24.5.5.
+Wild Frenzy (Grakate mod) updated in update 24.5.7 and also got it's image.
+Balefire Charger got a proper image.
+Fixes:
+Corrected Falcor's damage values.
+Corrected Vectis Prime's damage values.
+Berserker calculations are now inline with the Warframe Wiki.
+Fixed regulators damage calculations.
+
+23/03/2019 - v1.4.2.
 New:
 Added Charged/Uncharged firing modes for Hildryn's exalted weapon, the Balefire Charger. 
 Changes:

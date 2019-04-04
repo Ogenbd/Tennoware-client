@@ -89,7 +89,7 @@ const secondaryWeaponList = [
     },
     {
       name: 'BALEFIRE CHARGER',
-      img: require('../assets/itemimages/balefire.png')
+      img: require('../assets/itemimages/balefire-charger.png')
     },
     {
       name: 'BALLISTICA',

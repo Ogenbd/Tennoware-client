@@ -51,6 +51,7 @@ export class RangedWeaponStats extends Component {
       first: false,
       headshotKill: false
     };
+    let fireMode = state.mode;
     if (state.baseStatsToggle) {
       return {
         effects: effects,
@@ -61,6 +62,7 @@ export class RangedWeaponStats extends Component {
     if (state.arbitrations) effects.baseDamage = 3;
     props.mods.forEach(mod => {
       if (mod.name) {
+        if (mod.effects.alterMode) fireMode = mod.effects.alterMode;
         if (mod.name !== "Riven Mod") {
           if (mod.conditional) {
             for (let condition in mod.conditional) {
@@ -87,8 +89,8 @@ export class RangedWeaponStats extends Component {
                       damage:
                         Math.round(
                           mod.effects.elemental.damage *
-                            (mod.currRank + 1) *
-                            100
+                          (mod.currRank + 1) *
+                          100
                         ) / 100
                     };
                     elemental.push(damageObj);
@@ -97,7 +99,7 @@ export class RangedWeaponStats extends Component {
                       Math.round(
                         (elemental[exists].damage +
                           mod.effects.elemental.damage * (mod.currRank + 1)) *
-                          100
+                        100
                       ) / 100;
                   }
                 } else if (effect === "augmentFireRate") {
@@ -134,7 +136,7 @@ export class RangedWeaponStats extends Component {
                     Math.round(
                       (elemental[exists].damage +
                         rivenEffect.elemental.damage) *
-                        100
+                      100
                     ) / 100;
                 }
               } else {
@@ -153,6 +155,7 @@ export class RangedWeaponStats extends Component {
         }
       }
     });
+    if (props.weapon.modes[fireMode].augment && !effects.alterMode) fireMode = 0;
     return {
       effects: effects,
       elemental: elemental,
@@ -163,7 +166,8 @@ export class RangedWeaponStats extends Component {
       reload: conditional.reload,
       cast: conditional.cast,
       first: conditional.first,
-      headshotKill: conditional.headshotKill
+      headshotKill: conditional.headshotKill,
+      mode: fireMode
     };
   }
 
@@ -281,7 +285,7 @@ export class RangedWeaponStats extends Component {
     }
     if (
       this.props.weapon.modes[this.state.mode].status * statusMult +
-        baseStatus / 100 >=
+      baseStatus / 100 >=
       1
     ) {
       status.chance = 100;
@@ -294,10 +298,10 @@ export class RangedWeaponStats extends Component {
               1 - this.props.weapon.modes[this.state.mode].status * statusMult,
               multishotMult
             )) *
-            100 *
-            10
+          100 *
+          10
         ) /
-          10 +
+        10 +
         baseStatus;
       if (status.chance > 100) status.chance = 100;
       if (this.props.weapon.modes[this.state.mode].pellets) {
@@ -305,8 +309,8 @@ export class RangedWeaponStats extends Component {
           (1 -
             (1 -
               this.props.weapon.modes[this.state.mode].status * statusMult)) *
-            100 +
-            baseStatus >=
+          100 +
+          baseStatus >=
           100
         ) {
           status.chancePerPellet = 100;
@@ -316,13 +320,13 @@ export class RangedWeaponStats extends Component {
               (1 -
                 Math.pow(
                   1 -
-                    this.props.weapon.modes[this.state.mode].status *
-                      statusMult +
-                    baseStatus,
+                  this.props.weapon.modes[this.state.mode].status *
+                  statusMult +
+                  baseStatus,
                   1 / this.props.weapon.modes[this.state.mode].pellets
                 )) *
-                100 *
-                10
+              100 *
+              10
             ) / 10;
         }
       }
@@ -381,6 +385,9 @@ export class RangedWeaponStats extends Component {
     let conditionalBaseDamageEffects = this.state.conditionalEffects.filter(
       conditional => conditional.effects.baseDamage
     );
+    if (this.props.weapon.name === 'REGULATORS') {
+      baseDamageMult += 1.5 * this.state.powerStr / 100
+    }
     if (conditionalBaseDamageEffects.length > 0) {
       conditionalBaseDamageEffects.forEach(conditional => {
         let conditionsToMeet = Object.keys(conditional.conditions).length;
@@ -539,7 +546,7 @@ export class RangedWeaponStats extends Component {
         damageType.damage = damageType.damage * this.state.combo;
       });
     }
-    if (this.props.weapon.exalted) {
+    if (this.props.weapon.exalted && this.props.weapon.name !== 'REGULATORS') {
       finalDamageArray.forEach(damageType => {
         damageType.damage = damageType.damage * (this.state.powerStr / 100);
       });
@@ -553,7 +560,7 @@ export class RangedWeaponStats extends Component {
     finalDamageArray.forEach(damageType => {
       damageType.icon = require(`../../assets/dynamic/damage/${
         damageType.type
-      }.png`);
+        }.png`);
     });
     return finalDamageArray;
   };
@@ -866,9 +873,9 @@ export class RangedWeaponStats extends Component {
       marks[index].label = level.name;
       index === this.state.zoom
         ? (marks[index].style = {
-            color: "#fff9a0",
-            textShadow: "0px 0px 8px rgba(255, 249, 160, 1)"
-          })
+          color: "#fff9a0",
+          textShadow: "0px 0px 8px rgba(255, 249, 160, 1)"
+        })
         : (marks[index].style = { color: "white" });
     });
     return marks;
@@ -881,9 +888,9 @@ export class RangedWeaponStats extends Component {
       marks[i].label = `${i}x`;
       i === this.state.combo
         ? (marks[i].style = {
-            color: "#fff9a0",
-            textShadow: "0px 0px 8px rgba(255, 249, 160, 1)"
-          })
+          color: "#fff9a0",
+          textShadow: "0px 0px 8px rgba(255, 249, 160, 1)"
+        })
         : (marks[i].style = { color: "white" });
     }
     return marks;
@@ -896,17 +903,23 @@ export class RangedWeaponStats extends Component {
       marks[i].label = `${i}`;
       i === this.state.razorwingBlitz
         ? (marks[i].style = {
-            color: "#fff9a0",
-            textShadow: "0px 0px 8px rgba(255, 249, 160, 1)"
-          })
+          color: "#fff9a0",
+          textShadow: "0px 0px 8px rgba(255, 249, 160, 1)"
+        })
         : (marks[i].style = { color: "white" });
     }
     return marks;
   };
 
+  buildModeList = () => {
+    const modes = this.props.weapon.modes.filter(mode => this.state.effects.alterMode ? mode.augment : !mode.augment);
+    return modes;
+  }
+
   render() {
     const { weapon } = this.props;
     const { mode, effects, zoom, combo, razorwingBlitz, augment } = this.state;
+    const modeList = this.buildModeList()
     const critChance = this.calcCritChance();
     const critMult = this.calcCritMult();
     const fireRate = this.calcFireRate();
@@ -953,9 +966,9 @@ export class RangedWeaponStats extends Component {
         >
           <div className="ranged-stats-inner-wrapper">
             <div className="modes">
-              {weapon.modes.length > 1 && (
+              {modeList.length > 1 && (
                 <React.Fragment>
-                  {weapon.modes.map((instance, index) => (
+                  {modeList.map((instance, index) => (
                     <div
                       key={index}
                       className={
@@ -1043,21 +1056,21 @@ export class RangedWeaponStats extends Component {
               </div>
               {((weapon.headshotDamage && zoom > 0) ||
                 effects.headshotMult) && (
-                <div className="stats-item">
-                  <p className="stat-name">Headshot Damage: </p>
-                  <div className="stat">
-                    <p>{headshot.damage.toFixed(1)}</p>
+                  <div className="stats-item">
+                    <p className="stat-name">Headshot Damage: </p>
+                    <div className="stat">
+                      <p>{headshot.damage.toFixed(1)}</p>
+                    </div>
+                    <p className="stat-name">Headshot Crit: </p>
+                    <div className="stat">
+                      <p>{headshot.crit.toFixed(1)}</p>
+                    </div>
+                    <p className="stat-name">Headshot Average: </p>
+                    <div className="stat">
+                      <p>{headshot.average.toFixed(1)}</p>
+                    </div>
                   </div>
-                  <p className="stat-name">Headshot Crit: </p>
-                  <div className="stat">
-                    <p>{headshot.crit.toFixed(1)}</p>
-                  </div>
-                  <p className="stat-name">Headshot Average: </p>
-                  <div className="stat">
-                    <p>{headshot.average.toFixed(1)}</p>
-                  </div>
-                </div>
-              )}
+                )}
               <div className="stats-item">
                 <p className="stat-name">Mastery: </p>
                 <div className="stat">
@@ -1091,8 +1104,8 @@ export class RangedWeaponStats extends Component {
                       (fireRate.mult > 1
                         ? "increased-stat"
                         : fireRate.mult === 1
-                        ? ""
-                        : "decreased-stat")
+                          ? ""
+                          : "decreased-stat")
                     }
                   >
                     <p>{Math.round(fireRate.display * 100) / 100}</p>
@@ -1110,35 +1123,35 @@ export class RangedWeaponStats extends Component {
                           (fireRate.mult > 1
                             ? "increased-stat"
                             : fireRate.mult === 1
-                            ? ""
-                            : "decreased-stat")
+                              ? ""
+                              : "decreased-stat")
                         }
                       >
                         <p>
                           {Math.round(
                             (weapon.modes[mode].chargeRate / fireRate.mult) *
-                              100
+                            100
                           ) / 100}
                         </p>
                       </div>
                     </div>
                   ) : (
-                    <div className="stats-item">
-                      <p className="stat-name">Charge Rate: </p>
-                      <div
-                        className={
-                          "stat " +
-                          (chargeRate.mult > 1
-                            ? "increased-stat"
-                            : chargeRate.mult === 1
-                            ? ""
-                            : "decreased-stat")
-                        }
-                      >
-                        <p>{Math.round(chargeRate.display * 100) / 100}</p>
+                      <div className="stats-item">
+                        <p className="stat-name">Charge Rate: </p>
+                        <div
+                          className={
+                            "stat " +
+                            (chargeRate.mult > 1
+                              ? "increased-stat"
+                              : chargeRate.mult === 1
+                                ? ""
+                                : "decreased-stat")
+                          }
+                        >
+                          <p>{Math.round(chargeRate.display * 100) / 100}</p>
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
                 </React.Fragment>
               )}
               {weapon.modes[mode].burst && (
@@ -1166,10 +1179,10 @@ export class RangedWeaponStats extends Component {
                       </p>
                     </div>
                   ) : (
-                    <div className="stat">
-                      <p>{weapon.modes[mode].rangeLimit}m</p>
-                    </div>
-                  )}
+                      <div className="stat">
+                        <p>{weapon.modes[mode].rangeLimit}m</p>
+                      </div>
+                    )}
                 </div>
               )}
               {weapon.modes[mode].pellets && (
@@ -1187,16 +1200,16 @@ export class RangedWeaponStats extends Component {
                       <p>
                         {Math.round(
                           weapon.modes[mode].pellets *
-                            (1 + effects.multishot) *
-                            10
+                          (1 + effects.multishot) *
+                          10
                         ) / 10}
                       </p>
                     </div>
                   ) : (
-                    <div className="stat">
-                      <p>{weapon.modes[mode].pellets}</p>
-                    </div>
-                  )}
+                      <div className="stat">
+                        <p>{weapon.modes[mode].pellets}</p>
+                      </div>
+                    )}
                 </div>
               )}
               {weapon.modes[mode].falloffMin && (
@@ -1221,13 +1234,13 @@ export class RangedWeaponStats extends Component {
                       </p>
                     </div>
                   ) : (
-                    <div className="stat">
-                      <p>
-                        {weapon.modes[mode].falloffMin}-
+                      <div className="stat">
+                        <p>
+                          {weapon.modes[mode].falloffMin}-
                         {weapon.modes[mode].falloffMax}m
                       </p>
-                    </div>
-                  )}
+                      </div>
+                    )}
                 </div>
               )}
               {weapon.modes[mode].ammoCost && (
@@ -1252,10 +1265,10 @@ export class RangedWeaponStats extends Component {
                     <p>{Math.round(weapon.magSize * (1 + effects.magSize))}</p>
                   </div>
                 ) : (
-                  <div className="stat">
-                    <p>{weapon.magSize}</p>
-                  </div>
-                )}
+                    <div className="stat">
+                      <p>{weapon.magSize}</p>
+                    </div>
+                  )}
               </div>
               {weapon.maxAmmo && (
                 <div className="stats-item">
@@ -1274,10 +1287,10 @@ export class RangedWeaponStats extends Component {
                       </p>
                     </div>
                   ) : (
-                    <div className="stat">
-                      <p>{weapon.maxAmmo}</p>
-                    </div>
-                  )}
+                      <div className="stat">
+                        <p>{weapon.maxAmmo}</p>
+                      </div>
+                    )}
                 </div>
               )}
               <div className="stats-item">
@@ -1288,8 +1301,8 @@ export class RangedWeaponStats extends Component {
                     (reload.mult > 1
                       ? "increased-stat"
                       : reload.mult === 1
-                      ? ""
-                      : "decreased-stat")
+                        ? ""
+                        : "decreased-stat")
                   }
                 >
                   <p>{Math.round(reload.display * 10) / 10}</p>
@@ -1297,35 +1310,35 @@ export class RangedWeaponStats extends Component {
               </div>
               {(weapon.modes[mode].punchThrough > 0 ||
                 effects.punchThrough) && (
-                <div className="stats-item">
-                  <p className="stat-name">Punch Through: </p>
-                  {effects.punchThrough ? (
-                    <div
-                      className={
-                        "stat " +
-                        (effects.punchThrough > 0
-                          ? "increased-stat"
-                          : "decreased-stat")
-                      }
-                    >
-                      <p>
-                        {Math.round(
-                          (weapon.modes[mode].punchThrough +
-                            effects.punchThrough) *
+                  <div className="stats-item">
+                    <p className="stat-name">Punch Through: </p>
+                    {effects.punchThrough ? (
+                      <div
+                        className={
+                          "stat " +
+                          (effects.punchThrough > 0
+                            ? "increased-stat"
+                            : "decreased-stat")
+                        }
+                      >
+                        <p>
+                          {Math.round(
+                            (weapon.modes[mode].punchThrough +
+                              effects.punchThrough) *
                             10
-                        ) / 10}
-                        m
+                          ) / 10}
+                          m
                       </p>
-                    </div>
-                  ) : (
-                    <div className="stat">
-                      <p>
-                        {Math.round(weapon.modes[mode].punchThrough * 10) / 10}m
+                      </div>
+                    ) : (
+                        <div className="stat">
+                          <p>
+                            {Math.round(weapon.modes[mode].punchThrough * 10) / 10}m
                       </p>
-                    </div>
-                  )}
-                </div>
-              )}
+                        </div>
+                      )}
+                  </div>
+                )}
               <div className="stats-item">
                 <p className="stat-name">Critical Chance: </p>
                 <div
@@ -1334,8 +1347,8 @@ export class RangedWeaponStats extends Component {
                     (critChance.mult > 1
                       ? "increased-stat"
                       : critChance.mult === 1
-                      ? ""
-                      : "decreased-stat")
+                        ? ""
+                        : "decreased-stat")
                   }
                 >
                   <p>{Math.round(critChance.display * 1000) / 10}%</p>
@@ -1349,8 +1362,8 @@ export class RangedWeaponStats extends Component {
                     (critMult.mult > 1
                       ? "increased-stat"
                       : critMult.mult === 1
-                      ? ""
-                      : "decreased-stat")
+                        ? ""
+                        : "decreased-stat")
                   }
                 >
                   <p>{Math.round(critMult.display * 10) / 10}x</p>
@@ -1362,12 +1375,12 @@ export class RangedWeaponStats extends Component {
                   className={
                     "stat " +
                     (status.chance >
-                    Math.round(weapon.modes[mode].status * 1000) / 10
+                      Math.round(weapon.modes[mode].status * 1000) / 10
                       ? "increased-stat"
                       : status.chance ===
                         Math.round(weapon.modes[mode].status * 1000) / 10
-                      ? ""
-                      : "decreased-stat")
+                        ? ""
+                        : "decreased-stat")
                   }
                 >
                   <p>{status.chance}%</p>
@@ -1380,12 +1393,12 @@ export class RangedWeaponStats extends Component {
                     className={
                       "stat " +
                       (status.chance >
-                      Math.round(weapon.modes[mode].status * 1000) / 10
+                        Math.round(weapon.modes[mode].status * 1000) / 10
                         ? "increased-stat"
                         : status.chance ===
                           Math.round(weapon.modes[mode].status * 1000) / 10
-                        ? ""
-                        : "decreased-stat")
+                          ? ""
+                          : "decreased-stat")
                     }
                   >
                     <p>{status.chancePerPellet}%</p>
@@ -1413,10 +1426,10 @@ export class RangedWeaponStats extends Component {
                     <p>
                       {critChance.display < 1
                         ? (
-                            effects.hunterMunitions *
-                            critChance.display *
-                            100
-                          ).toFixed(1)
+                          effects.hunterMunitions *
+                          critChance.display *
+                          100
+                        ).toFixed(1)
                         : 30.0}
                       %
                     </p>

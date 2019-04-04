@@ -1912,11 +1912,11 @@ const meleeStats = [
           },
           {
             type: 'Slash',
-            percent: 4 / 78
+            percent: 34 / 78
           },
           {
             type: 'Puncture',
-            percent: 34 / 78
+            percent: 4 / 78
           },
           {
             type: 'Electricity',
@@ -5938,6 +5938,47 @@ const meleeStats = [
         critMult: 2,
         status: 0.2,
         damage: 50,
+        split: [
+          {
+            type: 'Impact',
+            percent: 0.1
+          },
+          {
+            type: 'Slash',
+            percent: 0.8
+          },
+          {
+            type: 'Puncture',
+            percent: 0.1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    name: 'TIPEDO PRIME',
+    mastery: 10,
+    type: [
+      'STAVES',
+      'TIPEDO'
+    ],
+    polarities: [
+      'vazarin',
+      'madurai'
+    ],
+    stance: 'unairu',
+    disposition: 5,
+    channelMult: 1.5,
+    modes: [
+      {
+        speed: 1.17,
+        slide: 163,
+        wall: 127,
+        slam: 76,
+        critChance: 0.24,
+        critMult: 2.4,
+        status: 0.24,
+        damage: 76,
         split: [
           {
             type: 'Impact',

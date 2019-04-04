@@ -167,6 +167,21 @@ const warframeStats = [
         abilities: abilities.equinox
     },
     {
+        name: 'EQUINOX PRIME',
+        polarities: ['vazarin', 'vazarin', 'madurai', 'madurai'],
+        aura: 'naramon',
+        exilus: undefined,
+        armor: 120,
+        energy: 248,
+        baseEnergy: 165,
+        health: 375,
+        baseHealth: 125,
+        shields: 300,
+        baseShields: 100,
+        speed: 1.15,
+        abilities: abilities.equinox
+    },
+    {
         name: 'EXCALIBUR',
         polarities: ['vazarin', 'madurai'],
         aura: undefined,
