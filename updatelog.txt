@@ -1,6 +1,6 @@
 UPDATE LOG
 
-upcoming - v1.4.3.
+04/04/2019 - v1.4.3.
 New:
 Added Equinox Prime.
 Added Stradavar Prime.
