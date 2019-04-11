@@ -1,4 +1,4 @@
-// currently at abrev 0w
+// currently at abrev 1a
 const warframeMods = [
     {
         abrev: 'a0',
@@ -589,6 +589,67 @@ const warframeMods = [
         currRank: 10,
         baseCost: 6,
         description() { return `+${Math.round(this.effects.strength * (this.currRank + 1) * 100)}% Ability Strength\n${Math.round(this.effects.efficiency * (this.currRank + 1) * 100)}% Ability Efficiency` }
+    },
+    {
+        abrev: '0y',
+        name: 'Blinding Reave',
+        img: require('../assets/modimages/blinding-reave.jpg'),
+        type: 'REVENANT',
+        rarity: 'rare',
+        polarity: 'zenurik',
+        effects: { none: [6, 7, 8, 10] },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 6,
+        augment: {
+            ability: 2,
+            details: [
+                {
+                    strength: [
+                        {
+                            name: 'Health & shields drain',
+                            suffix: '%',
+                            base: 8,
+                        },
+                        {
+                            name: 'Health & shields drain from thralls',
+                            suffix: '%',
+                            base: 40,
+                        },
+                    ],
+                    duration: [
+                        {
+                            name: 'Duration',
+                            suffix: 's',
+                            base: 1
+                        },
+                        {
+                            name: 'Blind duration',
+                            suffix: 's',
+                            base(augEffects, augRank) { return augEffects.none[augRank] }
+                        }
+                    ],
+                    range: [
+                        {
+                            name: 'Wave width',
+                            suffix: 'm',
+                            base: 6
+                        }
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Energy',
+                            base: 50
+                        },
+                        {
+                            name: 'Energy (during Danse Macabre)',
+                            base: 25
+                        },
+                    ],
+                }
+            ]
+        },
+        description() { return `Reave Augment:\nEnemies hit are blinded by for ${this.effects.none[this.currRank]}s.` }
     },
     {
         abrev: '0f',
@@ -1560,6 +1621,84 @@ const warframeMods = [
         currRank: 3,
         baseCost: 6,
         description() { return `Soul Punch Augment: Depletes up to ${this.effects.none * (this.currRank + 1)} Energy from the target.` }
+    },
+    {
+        abrev: '1a',
+        name: 'Dread Ward',
+        img: require('../assets/modimages/dread-ward.jpg'),
+        type: 'GARUDA',
+        rarity: 'rare',
+        polarity: 'zenurik',
+        effects: { none: [3, 3.5, 4, 5] },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 6,
+        augment: {
+            ability: 0,
+            details: [
+                {
+                    strength: [
+                        {
+                            name: 'Damage conversion multiplier',
+                            suffix: 'x',
+                            base: 2,
+                        },
+                    ],
+                    duration: [
+                        {
+                            name: 'Mirror duration',
+                            suffix: 's',
+                            base: 20
+                        },
+                        {
+                            name: 'Invulnerability duration',
+                            suffix: 's',
+                            base(augEffects, augRank) { return augEffects.none[augRank] }
+                        }
+                    ],
+                    range: [
+                        {
+                            name: 'Pounce range',
+                            suffix: 'm',
+                            base: 30
+                        },
+                        {
+                            name: 'Dread heart explosion radius',
+                            suffix: 'm',
+                            base: 10
+                        },
+                    ],
+                    none: [
+                        {
+                            name: 'Victim health to shield conversion',
+                            suffix: '%',
+                            base: 10,
+                        },
+                        {
+                            name: 'Instant kill threshold',
+                            suffix: '%',
+                            base: 40,
+                        },
+                        {
+                            name: 'Dread heart charge damage/s',
+                            suffix: '%',
+                            base: 50,
+                        },
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Energy',
+                            base: 25
+                        },
+                        {
+                            name: 'Dread heart charge energy/s',
+                            base: 50
+                        },
+                    ],
+                }
+            ]
+        },
+        description() { return `Dread Mirror Augment:\nBecome unkillable for ${this.effects.none[this.currRank]}s when Dread Mirror kills a target by ripping its life force.` }
     },
     {
         abrev: 'e4',
@@ -5053,6 +5192,19 @@ const warframeMods = [
         description() { return `+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% to Bullet Jump\n+${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Aim Glide and Wall Latch\n+${Math.round(this.effects.none[1] * (this.currRank + 1) * 100)}% Puncture on Bullet Jump` }
     },
     {
+        abrev: '0x',
+        name: 'Pilfering Strangledome',
+        img: require('../assets/modimages/pilfering-strangledome.jpg'),
+        type: 'KHORA',
+        rarity: 'rare',
+        polarity: 'zenurik',
+        effects: { none: [30, 35, 50, 65] },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 6,
+        description() { return `Strangledome Augment: Enemies held in Strangledome have a ${this.effects.none[this.currRank]}% chance of dropping additional loot.` }
+    },
+    {
         abrev: 'o9',
         name: 'Pilfering Swarm',
         img: require('../assets/modimages/pilfering-swarm.jpg'),
@@ -7216,6 +7368,57 @@ const warframeMods = [
         currRank: 3,
         baseCost: 6,
         description() { return `Tectonics Augment: Create up to ${this.effects.none[0][this.currRank]} walls with ${this.effects.none[1][this.currRank]}% Health. Walls can no longer be turned into boulders.` }
+    },
+    {
+        abrev: '0z',
+        name: 'Teeming Virulence',
+        img: require('../assets/modimages/teeming-virulence.jpg'),
+        type: 'NIDUS',
+        rarity: 'rare',
+        polarity: 'zenurik',
+        effects: { none: [[70, 85, 100, 120], [9, 11, 13, 15]] },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 6,
+        augment: {
+            ability: 0,
+            details: [
+                {
+                    strength: [
+                        {
+                            name: 'Base damage',
+                            base: 200,
+                        },
+                        {
+                            name: 'Primary Weapon critical chance bonus',
+                            suffix: '%',
+                            base(augEffects, augRank) { return augEffects.none[0][augRank] }
+                        }
+                    ],
+                    duration: [
+                        {
+                            name: 'Primary Weapon critical chance bonus duration',
+                            suffix: 's',
+                            base(augEffects, augRank) { return augEffects.none[1][augRank] }
+                        }
+                    ],
+                    range: [
+                        {
+                            name: 'Range',
+                            suffix: 'm',
+                            base: 16
+                        }
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Energy',
+                            base: 40
+                        }
+                    ],
+                }
+            ]
+        },
+        description() { return `Virulence Augment: Hitting 4 enemies with Virulence grants ${this.effects.none[0][this.currRank]}% Primary Weapon Critical Chance for ${this.effects.none[1][this.currRank]}s.` }
     },
     {
         abrev: '0o',

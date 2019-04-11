@@ -2033,7 +2033,7 @@ const secondaryWeaponStats = [
         disposition: 3,
         modes: [
             {
-                trigger: 'Semi-Auto',
+                trigger: 'Auto',
                 fireRate: 4,
                 accuracy: 32,
                 punchThrough: 0,
@@ -4110,11 +4110,23 @@ const secondaryWeaponStats = [
                 critChance: 0.03,
                 critMult: 1.5,
                 status: 0.5,
-                damage: 79,
+                damage: 130,
                 split: [
                     {
+                        type: 'Impact',
+                        percent: 0.069
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.13
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.176
+                    },
+                    {
                         type: 'Corrosive',
-                        percent: 1
+                        percent: 0.623
                     }
                 ]
             }

@@ -3492,6 +3492,45 @@ const meleeStats = [
     ]
   },
   {
+    name: 'KORRUDO',
+    mastery: 9,
+    type: [
+      'SPARRING',
+    ],
+    polarities: [
+      'madurai',
+    ],
+    stance: 'naramon',
+    disposition: 3,
+    channelMult: 1.5,
+    modes: [
+      {
+        speed: 0.833,
+        slide: 244,
+        wall: 183,
+        slam: 61,
+        critChance: 0.31,
+        critMult: 2.5,
+        status: 0.09,
+        damage: 61,
+        split: [
+          {
+            type: 'Impact',
+            percent: 34.8 / 61
+          },
+          {
+            type: 'Slash',
+            percent: 24.4 / 61
+          },
+          {
+            type: 'Puncture',
+            percent: 1.8 / 61
+          }
+        ]
+      }
+    ]
+  },
+  {
     name: 'KRESKA',
     mastery: 6,
     type: [
@@ -4484,19 +4523,19 @@ const meleeStats = [
         split: [
           {
             type: 'Impact',
-            percent: 40/350
+            percent: 40 / 350
           },
           {
             type: 'Slash',
-            percent: 150/350
+            percent: 150 / 350
           },
           {
             type: 'Puncture',
-            percent: 10/350
+            percent: 10 / 350
           },
           {
             type: 'Cold',
-            percent: 150/350
+            percent: 150 / 350
           }
         ]
       },
@@ -6364,19 +6403,19 @@ const meleeStats = [
         critChance: 0.17,
         critMult: 1.9,
         status: 0.33,
-        damage: 115,
+        damage: 130,
         split: [
           {
             type: 'Impact',
-            percent: 58.634 / 115
+            percent: 66.3 / 130
           },
           {
             type: 'Slash',
-            percent: 52.933 / 115
+            percent: 59.9 / 130
           },
           {
             type: 'Puncture',
-            percent: 3.433 / 115
+            percent: 3.8 / 130
           }
         ]
       }

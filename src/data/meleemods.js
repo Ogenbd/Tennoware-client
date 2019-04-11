@@ -1383,7 +1383,7 @@ const meleeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `+${this.effects.punchThrough * (this.currRank + 1)} Punch Through` }
+        description() { return `+${Math.round(this.effects.punchThrough * (this.currRank + 1) * 100 ) / 100} Punch Through` }
     },
     {
         abrev: 'j5',
@@ -1504,7 +1504,7 @@ const meleeMods = [
         abrev: 'k2',
         name: 'Quick Return',
         img: require('../assets/modimages/quick-return.jpg'),
-        type: 'THROWN',
+        type: 'THROWN MELEE',
         rarity: 'common',
         polarity: 'naramon',
         effects: {},

@@ -78,12 +78,11 @@ export class News extends Component {
           <div className="news-container">
             <div className="home-left">
               <div className="tennoware-update">
-                <div className="update-title">Update 1.4.3</div>
+                <div className="update-title">Update 1.4.4</div>
                 <div className="update-content">
-                  <p>Added Equinox Prime Access items.</p>
-                  <p>Added Bursting Mass and Napalm Grenades mods.</p>
-                  <p>Fixed Regulators damage calculations.</p>
-                  <p>Fixed Berserker attack speed calculations and more.</p>
+                  <p>Added the Korrudo.</p>
+                  <p>Added the augment mods introduced in update 24.7.</p>
+                  <p>Implemented recent weapon changes.</p>
                   <p>For a complete list of additions, changes and fixes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log</a>.</p>
                   <p>To report bugs, missing things, incorrect stats and feature suggestions head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/">Tennoware subreddit</a>.</p>
                 </div>

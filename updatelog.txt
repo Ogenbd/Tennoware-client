@@ -1,5 +1,16 @@
 UPDATE LOG
 
+upcoming - v1.4.4.
+New:
+Added Korrudo.
+Added the new augments introduced in update 24.7.
+Changes:
+Knell is labeled Auto.
+Tysis damage values have changed.
+Wolf Sledge damage vlues have changed.
+Fixes:
+Fixed an issue that caused the mod Quick Return to not appear where appropriate.
+
 04/04/2019 - v1.4.3.
 New:
 Added Equinox Prime.
@@ -16,6 +27,7 @@ Corrected Falcor's damage values.
 Corrected Vectis Prime's damage values.
 Berserker calculations are now inline with the Warframe Wiki.
 Fixed regulators damage calculations.
+Razorwing now displays all relevant stats when Razorwing Blitz is applied.
 
 23/03/2019 - v1.4.2.
 New:

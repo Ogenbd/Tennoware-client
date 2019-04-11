@@ -316,6 +316,10 @@ const meleeList = [
         img: require('../assets/itemimages/kogake-prime.png')
     },
     {
+        name: 'KORRUDO',
+        img: require('../assets/itemimages/korrudo.png')
+    },
+    {
         name: 'KRESKA',
         img: require('../assets/itemimages/kreska.png')
     },
