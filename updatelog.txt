@@ -1,6 +1,6 @@
 UPDATE LOG
 
-upcoming - v1.4.4.
+11/04/2019 - v1.4.4.
 New:
 Added Korrudo.
 Added the new augments introduced in update 24.7.
