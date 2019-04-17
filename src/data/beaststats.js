@@ -169,7 +169,7 @@ const beastStats = [
             'KUBROW',
             'SUNIKA KUBROW',
         ],
-        polarities: ['penjaga', 'penjaga', 'vazarin'],
+        polarities: ['penjaga', 'penjaga', 'madurai'],
         armor: 50,
         health: 330,
         baseHealth: 110,

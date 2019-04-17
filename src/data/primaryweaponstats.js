@@ -1434,7 +1434,7 @@ const primaryWeaponStats = [
     {
         name: 'FLUX RIFLE',
         mastery: 6,
-        type: ['RIFLE', 'BEAM', 'ASSAULT RIFLE'],
+        type: ['RIFLE', 'BEAM', 'ASSAULT RIFLE', 'FLUX RIFLE'],
         polarities: [],
         noise: 'Alarming',
         reload: 2.25,

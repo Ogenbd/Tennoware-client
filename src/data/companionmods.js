@@ -1,4 +1,4 @@
-// at abrev j4
+// at abrev j5
 
 const companionMods = [
     {
@@ -43,6 +43,7 @@ const companionMods = [
     {
         abrev: 'a3',
         name: 'Animal Instinct',
+        familiy: 'Animal Instinct',
         img: require('../assets/modimages/animal-instinct.jpg'),
         type: 'ALL',
         rarity: 'rare',
@@ -675,6 +676,20 @@ const companionMods = [
         description() { return `The Kavat pounces at an enemy, stunning them for a short duration.` }
     },
     {
+        abrev: 'j6',
+        name: 'Primed Animal Instinct',
+        familiy: 'Animal Instinct',
+        img: require('../assets/modimages/animal-instinct.jpg'),
+        type: 'ALL',
+        rarity: 'prime',
+        polarity: 'naramon',
+        effects: {},
+        maxRank: 10,
+        currRank: 10,
+        baseCost: 6,
+        description() { return `+${5 * (this.currRank + 1)} Loot Radar\n+${3 * (this.currRank + 1)} Enemy Radar` }
+    },
+    {
         abrev: 'e6',
         name: 'Primed Regen',
         img: require('../assets/modimages/primed-regen.jpg'),
@@ -818,6 +833,19 @@ const companionMods = [
         currRank: 10,
         baseCost: 6,
         description() { return `Creates a shield with ${100 + 50 * this.currRank} Health around the player when they are reviving fallen allies.` }
+    },
+    {
+        abrev: 'j5',
+        name: 'Savagery',
+        img: require('../assets/modimages/savagery.jpg'),
+        type: 'SUNIKA KUBROW',
+        rarity: 'rare',
+        polarity: 'penjaga',
+        effects: {},
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 0,
+        description() { return `Allows the Kubrow to use Finisher attacks on an enemy.\n+${20 * (this.currRank + 1)}% Finisher Damage.` }
     },
     {
         abrev: 'f7',

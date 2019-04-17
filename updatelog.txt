@@ -1,5 +1,11 @@
 UPDATE LOG
 
+upcoming - v1.4.5.
+Fixes:
+Added the missing Sunika Kubrow mod, Savagery.
+Corrected Sunika Kubrow's initial polarities.
+Fixed an issue that caused Flux Overdrive to not show up when modding the Flux Rifle.
+
 11/04/2019 - v1.4.4.
 New:
 Added Korrudo.
