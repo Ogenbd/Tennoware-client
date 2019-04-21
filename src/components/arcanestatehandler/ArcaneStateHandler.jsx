@@ -105,6 +105,9 @@ export class ArcaneStateHandler extends Component {
                         </div>
                     </React.Fragment>
                 }
+                <div className="arcane-empty-wrapper">
+                    <div className="arcane-empty-slot"></div>
+                </div>
                 <div className="arcane-handler" style={this.state.handlerActive || this.props.viewWidth < 1280 ? this.state.arcaneStyle : {}}>
                     <p className="slotted-arcane-name">{this.props.arcane.name ? this.props.arcane.name : ''}</p>
                     <div className="arcane-slot-wrapper">
@@ -139,9 +142,6 @@ export class ArcaneStateHandler extends Component {
                             </div>
                         </React.Fragment>
                     }
-                </div>
-                <div className="arcane-empty-wrapper">
-                    <div className="arcane-empty-slot"></div>
                 </div>
             </div>
         )
