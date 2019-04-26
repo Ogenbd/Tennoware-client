@@ -8,6 +8,7 @@ Fixed an issue that caused Flux Overdrive to not show up when modding the Flux R
 Fixed an issue causing Arcanes to stick to the screen position instead of their slot in certain situations.
 Corrected Tiberon Prime Burst Fire crit chance.
 Fixed Nidus armor calculations.
+Fixed Rabvee Zaw Strike attack speed modifier.
 
 11/04/2019 - v1.4.4.
 New:

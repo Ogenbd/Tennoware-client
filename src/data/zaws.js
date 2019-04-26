@@ -234,7 +234,7 @@ const zaws = {
             img: require('../assets/itemimages/rabvee.png'),
             oneHanded: { type: 'MACHETES', polarity: 'zenurik' },
             twoHanded: { type: 'HAMMERS', polarity: 'madurai' },
-            speed: -0.6666,
+            speed: -0.06666,
             critChance: 0.18,
             critMult: 2,
             status: 0.18,
