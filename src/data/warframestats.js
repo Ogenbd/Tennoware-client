@@ -590,7 +590,7 @@ const warframeStats = [
         polarities: ['madurai', 'vazarin'],
         aura: 'madurai',
         exilus: undefined,
-        armor: 450,
+        armor: 300,
         energy: 150,
         baseEnergy: 100,
         health: 450,

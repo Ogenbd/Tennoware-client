@@ -32,7 +32,10 @@ export class WarframeStats extends PureComponent {
         let growingPowerSlotted = false;
         let energyConversionSlotted = false;
         if (props.full) {
-            if (props.frame.name === 'NIDUS') effects.strength = 0.15;
+            if (props.frame.name === 'NIDUS') {
+                effects.strength = 0.15;
+                effects.armor = 0.5
+            }
             if (state.arbitrations) {
                 if (effects.strength) {
                     effects.strength += 3;
