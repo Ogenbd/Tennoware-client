@@ -1,6 +1,8 @@
 UPDATE LOG
 
 upcoming - v1.4.5.
+Changes:
+Implemented Cautious Shot changes from update 24.8.3.
 Fixes:
 Added the missing Sunika Kubrow mod, Savagery.
 Corrected Sunika Kubrow's initial polarities.

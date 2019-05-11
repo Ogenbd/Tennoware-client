@@ -380,11 +380,11 @@ const primaryMods = [
         type: 'EXPLOSIVE',
         rarity: 'rare',
         polarity: 'naramon',
-        effects: { none: [-0.1, -0.2, -0.3, -0.4, -0.5, -0.5, -0.6, -0.6, -0.7, -0.8, -0.9], totalDamage: [-0.05, -0.06, -0.07, -0.08, -0.09, -0.1, -0.11, -0.12, -0.13, -0.14, -0.15] },
+        effects: { none: -0.09, totalDamage: [-0.05, -0.06, -0.07, -0.08, -0.09, -0.1, -0.11, -0.12, -0.13, -0.14, -0.15] },
         maxRank: 10,
         currRank: 10,
         baseCost: 2,
-        description() { return `${Math.round(this.effects.none[this.currRank] * 100)}% Self-damage\n${Math.round(this.effects.totalDamage[this.currRank] * 100)}% Total Damage` }
+        description() { return `${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Self-damage\n${Math.round(this.effects.totalDamage[this.currRank] * 100)}% Total Damage` }
     },
     {
         abrev: 'b9',
