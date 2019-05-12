@@ -1,6 +1,10 @@
 UPDATE LOG
 
-upcoming - v1.4.5.
+upcoming - v1.4.6.
+New:
+Added Archgun riven mods.
+
+11/05/2019 - v1.4.5.
 Changes:
 Implemented Cautious Shot changes from update 24.8.3.
 Fixes:

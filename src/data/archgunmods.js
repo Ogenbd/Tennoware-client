@@ -299,6 +299,28 @@ const archgunMods = [
         description() { return `+${Math.round(100 / 6 * (this.currRank + 1))}% Chance to resist Staggers/Knockdowns and -${Math.round(50 / 6 * (this.currRank + 1))}% Spread when Aiming.` }
     },
     {
+        abrev: 'ri',
+        name: 'Riven Mod',
+        img: require('../assets/general/squareriven.jpg'),
+        type: 'PRIMARY',
+        rarity: 'riven',
+        polarity: '',
+        effects: [],
+        maxRank: 8,
+        currRank: 8,
+        baseCost: 10,
+        effectOne: 'None',
+        numOne: '',
+        effectTwo: 'None',
+        numTwo: '',
+        effectThree: 'None',
+        numThree: '',
+        effectFour: 'None',
+        numFour: '',
+        desc: 'Only shows custom stats when slotted.',
+        description() { return this.desc }
+    },
+    {
         abrev: 'b2',
         name: 'Rubedo-Lined Barrel',
         img: require('../assets/modimages/rubedo-lined-barrel.jpg'),
