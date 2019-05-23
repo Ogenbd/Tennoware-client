@@ -3,8 +3,9 @@ UPDATE LOG
 upcoming - v1.4.6.
 New:
 Added Archgun riven mods.
+Added Primed Pack Leader.
 Fixes:
-Fixed server connection issues when accessing www.tennoware.com instead of tennoware.com.
+Fixed server access issues when accessing www.tennoware.com instead of tennoware.com.
 
 11/05/2019 - v1.4.5.
 Changes:

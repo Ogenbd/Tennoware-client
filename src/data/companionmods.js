@@ -1,4 +1,4 @@
-// at abrev j5
+// at abrev j7
 
 const companionMods = [
     {
@@ -652,6 +652,7 @@ const companionMods = [
     {
         abrev: 'e4',
         name: 'Pack Leader',
+        family: 'Pack Leader',
         img: require('../assets/modimages/pack-leader.jpg'),
         type: 'COMPANION',
         rarity: 'common',
@@ -688,6 +689,20 @@ const companionMods = [
         currRank: 10,
         baseCost: 6,
         description() { return `+${5 * (this.currRank + 1)} Loot Radar\n+${3 * (this.currRank + 1)} Enemy Radar` }
+    },
+    {
+        abrev: 'j7',
+        name: 'Primed Pack Leader',
+        family: 'Pack Leader',
+        img: require('../assets/modimages/pack-leader.jpg'),
+        type: 'COMPANION',
+        rarity: 'prime',
+        polarity: 'madurai',
+        effects: {},
+        maxRank: 10,
+        currRank: 10,
+        baseCost: 4,
+        description() { return `Heals your pet by a percentage of the damage you deal with Melee Attacks. +${6 * (this.currRank + 1)}% Lifesteal-Link` }
     },
     {
         abrev: 'e6',
