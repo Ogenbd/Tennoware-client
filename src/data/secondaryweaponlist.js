@@ -124,6 +124,10 @@ const secondaryWeaponList = [
       img: require('../assets/itemimages/cestra.png')
     },
     {
+      name: 'CYANEX',
+      img: require('../assets/itemimages/cyanex.png')
+    },
+    {
       name: 'CYCRON',
       img: require('../assets/itemimages/cycron.png')
     },
@@ -314,6 +318,10 @@ const secondaryWeaponList = [
     {
       name: 'SPECTRA',
       img: require('../assets/itemimages/spectra.png')
+    },
+    {
+      name: 'SPECTRA VANDAL',
+      img: require('../assets/itemimages/spectra-vandal.png')
     },
     {
       name: 'SPIRA',

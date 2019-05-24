@@ -11,6 +11,7 @@ export class MeleeStats extends Component {
         this.state = {
             effects: {},
             elemental: [],
+            conditionalEffects: [],
             mode: 0,
             combo: 0,
             statusOnTarget: 0,
@@ -20,6 +21,8 @@ export class MeleeStats extends Component {
             open: false,
             berserker: false,
             berserkerStacks: 0,
+            afterWallLatch: false,
+            afterWallLatchToggle: false,
             arbitrations: false,
             gladOverride: false,
             gladSet: 0,
@@ -38,6 +41,10 @@ export class MeleeStats extends Component {
     static getDerivedStateFromProps(props, state) {
         let effects = {};
         let elemental = [];
+        let conditionalEffects = [];
+        let conditional = {
+            afterWallLatch: false
+        };
         let berserker = false;
         let gladSet = state.gladOverride ? state.gladSet : 0;
         if (state.baseStatsToggle) {
@@ -52,31 +59,49 @@ export class MeleeStats extends Component {
                 if (mod.name !== 'Riven Mod') {
                     if (mod.effects.berserker) berserker = true;
                     if (mod.effects.gladCritChance && !state.gladOverride) gladSet++
-                    for (let effect in mod.effects) {
-                        if (effect !== 'none') {
+                    if (mod.conditional) {
+                        for (let condition in mod.conditional) {
+                            conditional[condition] = mod.conditional[condition];
+                        }
+                        let modEffects = JSON.parse(JSON.stringify(mod.effects));
+                        for (let effect in modEffects) {
                             if (effect === 'elemental') {
-                                let exists = elemental.findIndex(element => {
-                                    return element.type === mod.effects.elemental.type;
-                                });
-                                if (exists === -1) {
-                                    let damageObj = {
-                                        type: mod.effects.elemental.type,
-                                        damage: Math.round((mod.effects.elemental.damage * (mod.currRank + 1)) * 100) / 100
-                                    }
-                                    elemental.push(damageObj)
-                                } else {
-                                    elemental[exists].damage = Math.round((elemental[exists].damage + mod.effects.elemental.damage * (mod.currRank + 1)) * 100) / 100;
-                                }
-                            } else if (typeof mod.effects[effect] === 'object') {
-                                if (effects[effect]) {
-                                    effects[effect] = effects[effect] + mod.effects[effect][mod.set.setCurr - 1] * (mod.currRank + 1);
-                                } else {
-                                    effects[effect] = mod.effects[effect][mod.set.setCurr - 1] * (mod.currRank + 1);
-                                }
-                            } else if (effects[effect]) {
-                                effects[effect] = effects[effect] + mod.effects[effect] * (mod.currRank + 1);
+                                modEffects[effect] = { damage: modEffects[effect].damage * (mod.currRank + 1), type: modEffects[effect].type }
                             } else {
-                                effects[effect] = mod.effects[effect] * (mod.currRank + 1);
+                                modEffects[effect] = modEffects[effect] * (mod.currRank + 1);
+                            }
+                        }
+                        conditionalEffects.push({
+                            effects: modEffects,
+                            conditions: mod.conditional
+                        });
+                    } else {
+                        for (let effect in mod.effects) {
+                            if (effect !== 'none') {
+                                if (effect === 'elemental') {
+                                    let exists = elemental.findIndex(element => {
+                                        return element.type === mod.effects.elemental.type;
+                                    });
+                                    if (exists === -1) {
+                                        let damageObj = {
+                                            type: mod.effects.elemental.type,
+                                            damage: Math.round((mod.effects.elemental.damage * (mod.currRank + 1)) * 100) / 100
+                                        }
+                                        elemental.push(damageObj)
+                                    } else {
+                                        elemental[exists].damage = Math.round((elemental[exists].damage + mod.effects.elemental.damage * (mod.currRank + 1)) * 100) / 100;
+                                    }
+                                } else if (typeof mod.effects[effect] === 'object') {
+                                    if (effects[effect]) {
+                                        effects[effect] = effects[effect] + mod.effects[effect][mod.set.setCurr - 1] * (mod.currRank + 1);
+                                    } else {
+                                        effects[effect] = mod.effects[effect][mod.set.setCurr - 1] * (mod.currRank + 1);
+                                    }
+                                } else if (effects[effect]) {
+                                    effects[effect] = effects[effect] + mod.effects[effect] * (mod.currRank + 1);
+                                } else {
+                                    effects[effect] = mod.effects[effect] * (mod.currRank + 1);
+                                }
                             }
                         }
                     }
@@ -110,14 +135,20 @@ export class MeleeStats extends Component {
         });
         return {
             effects: effects,
+            conditionalEffects: conditionalEffects,
             elemental: elemental,
             berserker: berserker,
-            gladSet: gladSet
+            gladSet: gladSet,
+            ...conditional
         };
     }
 
     toggleStats = () => {
         this.setState(prevState => ({ open: !prevState.open }))
+    }
+
+    toggleAfterWallLatch = () => {
+        this.setState(prevState => ({ afterWallLatchToggle: !prevState.afterWallLatchToggle }))
     }
 
     toggleArbitrations = () => {
@@ -162,6 +193,20 @@ export class MeleeStats extends Component {
         let statusMult = 1;
         let comboMult = 0;
         let status = {};
+        let conditionalStatusEffects = this.state.conditionalEffects.filter(
+            conditional => conditional.effects.status
+        );
+        if (conditionalStatusEffects.length > 0) {
+            conditionalStatusEffects.forEach(conditional => {
+                let conditionsToMeet = Object.keys(conditional.conditions).length;
+                let conditionsMet = 0;
+                for (let condition in conditional.conditions) {
+                    if (this.state[`${condition}Toggle`]) conditionsMet++;
+                }
+                if (conditionsToMeet === conditionsMet)
+                    statusMult += conditional.effects.status;
+            });
+        }
         if (this.state.effects.comboStatus) comboMult += this.state.effects.comboStatus;
         if (this.state.effects.status) statusMult += this.state.effects.status;
         if (comboMult !== 0 && this.state.combo > 0) {
@@ -254,12 +299,39 @@ export class MeleeStats extends Component {
         let typeIndex;
         let nativeElementPosition;
         let nativeElementType;
+        let elemental = this.state.elemental.slice(0);
         if (this.state.effects.baseDamage) {
             baseDamageMult += this.state.effects.baseDamage
         }
+        let conditionalDamageEffects = this.state.conditionalEffects.filter(conditional => {
+            return conditional.effects.elemental
+        });
+        if (conditionalDamageEffects.length > 0) {
+            conditionalDamageEffects.forEach(effect => {
+                let conditionsToMeet = Object.keys(effect.conditions).length;
+                let conditionsMet = 0;
+                for (let condition in effect.conditions) {
+                    if (this.state[`${condition}Toggle`]) conditionsMet++;
+                }
+                if (conditionsToMeet === conditionsMet) {
+                    let exists = elemental.findIndex(element => {
+                        return element.type === effect.effects.elemental.type;
+                    });
+                    if (exists === -1) {
+                        let damageObj = {
+                            type: effect.effects.elemental.type,
+                            damage: effect.effects.elemental.damage
+                        }
+                        elemental.push(damageObj)
+                    } else {
+                        elemental[exists].damage = elemental[exists].damage + effect.effects.elemental.damage;
+                    }
+                }
+            });
+        }
         weaponDamage = Math.floor(this.props.weapon.modes[this.state.mode].damage * baseDamageMult);
         if (this.state.effects.damage) weaponDamage += this.state.effects.damage;
-        this.state.elemental.forEach(element => {
+        elemental.forEach(element => {
             calcedElementalEffects.push({
                 type: element.type,
                 damage: weaponDamage * element.damage
@@ -424,8 +496,6 @@ export class MeleeStats extends Component {
             if (berserkerMult > 1.75) berserkerMult = 1.75;
         }
         if (this.props.weapon.name === 'DIWATA') speedMult += 0.25 * (this.state.powerStr / 100) * this.state.razorwingBlitz
-        console.log(speedMult);
-        console.log(berserkerMult);
         return {
             display: this.props.weapon.modes[this.state.mode].speed * speedMult * berserkerMult,
             mult: speedMult * berserkerMult
@@ -691,6 +761,16 @@ export class MeleeStats extends Component {
                                 </div>
                             }
                             <div className="stats-item damage">
+                                {this.state.afterWallLatch && (
+                                    <div className="stats-switch">
+                                        <p className="stat-name">After 2 second wall latch</p>
+                                        <Switch
+                                            className="stat"
+                                            onChange={this.toggleAfterWallLatch}
+                                            checked={this.state.afterWallLatchToggle}
+                                        />
+                                    </div>
+                                )}
                                 <div className="stats-switch">
                                     <p className="stat-name">Arbitrations Bonus</p>
                                     <Switch className="stat" onChange={this.toggleArbitrations} checked={this.state.arbitrations} />

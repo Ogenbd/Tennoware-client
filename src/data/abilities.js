@@ -6647,6 +6647,222 @@ const abilities = {
             ]
         },
     ],
+    wisp: [
+        {
+            name: 'Resevoirs',
+            img: require('../assets/itemimages/resevoirs.png'),
+            details: [
+                {
+                    mode: 'Vitality',
+                    strength: [
+                        {
+                            name: 'Max health',
+                            base: 300
+                        },
+                        {
+                            name: 'Health/s',
+                            base: 30
+                        }
+                    ],
+                    range: [
+                        {
+                            name: 'Resevoir range',
+                            suffix: 'm',
+                            base: 5
+                        }
+                    ],
+                    duration: [
+                        {
+                            name: 'Mote lifespan',
+                            suffix: 's',
+                            base: 30
+                        }
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Energy',
+                            base: 25
+                        }
+                    ],
+                },
+                {
+                    mode: 'Haste',
+                    strength: [
+                        {
+                            name: 'Movement speed',
+                            suffix: '%',
+                            base: 20
+                        },
+                        {
+                            name: 'Attack speed',
+                            suffix: '%',
+                            base: 30
+                        }
+                    ],
+                    range: [
+                        {
+                            name: 'Resevoir range',
+                            suffix: 'm',
+                            base: 5
+                        }
+                    ],
+                    duration: [
+                        {
+                            name: 'Mote lifespan',
+                            suffix: 's',
+                            base: 30
+                        }
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Energy',
+                            base: 25
+                        }
+                    ],
+                },
+                {
+                    mode: 'Shock',
+                    strength: [
+                        {
+                            name: 'Damage',
+                            base: 5,
+                            icon: require('../assets/dynamic/damage/Electricity.png')
+                        }
+                    ],
+                    none: [
+                        {
+                            name: 'Shock status chance',
+                            suffix: '%',
+                            base: 100
+                        },
+                        {
+                            name: 'Targets',
+                            base: 5
+                        }
+                    ],
+                    range: [
+                        {
+                            name: 'Resevoir range',
+                            suffix: 'm',
+                            base: 5
+                        },
+                        {
+                            name: 'Shock range',
+                            suffix: 'm',
+                            base: 15
+                        }
+                    ],
+                    duration: [
+                        {
+                            name: 'Mote lifespan',
+                            suffix: 's',
+                            base: 30
+                        }
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Energy',
+                            base: 25
+                        }
+                    ],
+                },
+            ]
+        },
+        {
+            name: 'Wil-O-Wisp',
+            img: require('../assets/itemimages/wil-o-wisp.png'),
+            details: [
+                {
+                    duration: [
+                        {
+                            name: 'Duration',
+                            suffix: 's',
+                            base: 4
+                        }
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Energy',
+                            base: 35
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            name: 'Breach Surge',
+            img: require('../assets/itemimages/breachsurge.png'),
+            details: [
+                {
+                    strength: [
+                        {
+                            name: 'Damage Multiplier',
+                            suffix: 'x',
+                            base: 2
+                        },
+                        {
+                            name: 'Radiation status chance',
+                            suffix: '%',
+                            base: 20
+                        }
+                    ],
+                    duration: [
+                        {
+                            name: 'Blind duration',
+                            suffix: 's',
+                            base: 16
+                        }
+                    ],
+                    range: [
+                        {
+                            name: 'Range',
+                            suffix: 'm',
+                            base: 15
+                        }
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Energy',
+                            base: 50
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            name: 'Sol Gate',
+            img: require('../assets/itemimages/solgate.png'),
+            details: [
+                {
+                    strength: [
+                        {
+                            name: 'Damage',
+                            base: 1000
+                        }
+                    ],
+                    range: [
+                        {
+                            name: 'Range',
+                            suffix: 'm',
+                            base: 40
+                        }
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Energy',
+                            base: 25
+                        }
+                    ],
+                    channel: [
+                        {
+                            name: 'Energy drain/s',
+                            base: 12
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
     wukong: [
         {
             name: 'Iron Jab',

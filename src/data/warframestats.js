@@ -916,6 +916,21 @@ const warframeStats = [
         abilities: abilities.volt
     },
     {
+        name: 'WISP',
+        polarities: ['madurai', 'vazarin'],
+        aura: 'naramon',
+        exilus: undefined,
+        armor: 150,
+        energy: 300,
+        baseEnergy: 200,
+        health: 300,
+        baseHealth: 100,
+        shields: 225,
+        baseShields: 75,
+        speed: 1.2,
+        abilities: abilities.wisp
+    },
+    {
         name: 'WUKONG',
         polarities: ['naramon', 'vazarin'],
         aura: 'madurai',

@@ -272,6 +272,10 @@
   border-bottom: 1px dashed rgba(255, 255, 255, 0.25);
 }
 
+.stats-switch .stat {
+  align-self: center;
+}
+
 .damage .stats-switch:last-child {
   border-bottom: none;
 }

@@ -124,8 +124,16 @@ const primaryWeaponList = [
     img: require('../assets/itemimages/flux-rifle.png')
   },
   {
+    name: 'FULMIN',
+    img: require('../assets/itemimages/fulmin.png')
+  },
+  {
     name: 'GLAXION',
     img: require('../assets/itemimages/glaxion.png')
+  },
+  {
+    name: 'GLAXION VANDAL',
+    img: require('../assets/itemimages/glaxion-vandal.png')
   },
   {
     name: 'GORGON',
@@ -182,6 +190,10 @@ const primaryWeaponList = [
   {
     name: 'KOHM',
     img: require('../assets/itemimages/kohm.png')
+  },
+  {
+    name: 'KOMOREX',
+    img: require('../assets/itemimages/komorex.png')
   },
   {
     name: 'LANKA',

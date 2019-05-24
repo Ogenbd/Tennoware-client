@@ -244,6 +244,10 @@ const warframeList = [
         img: require('../assets/itemimages/volt-prime.png')
     },
     {
+        name: 'WISP',
+        img: require('../assets/itemimages/wisp.png')
+    },
+    {
         name: 'WUKONG',
         img: require('../assets/itemimages/wukong.png')
     },

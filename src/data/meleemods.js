@@ -1,4 +1,4 @@
-// abrev at r3
+// abrev at r7
 const meleeMods = [
     {
         abrev: 'r2',
@@ -13,6 +13,34 @@ const meleeMods = [
         currRank: 5,
         baseCost: 6,
         description() { return `+${Math.round(this.effects.critMult * (this.currRank + 1) * 100)}% Critical Damage\n+${Math.round(10 * (this.currRank + 1))}% Charge Attack Speed` }
+    },
+    {
+        abrev: 'r6',
+        name: 'Amalgam Furax Body Count',
+        family: 'Body Count',
+        img: require('../assets/modimages/amalgam-furax-body-count.jpg'),
+        type: 'FURAX',
+        rarity: 'amalgam',
+        polarity: 'naramon',
+        effects: { none: [3, 7, 10, 13, 17, 20] },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 6,
+        description() { return `+${2.5 * (this.currRank + 1)}s Combo Duration\n+${this.effects.none[this.currRank]}% Blast Radius on Specialized Launchers.\n----------------------------------\nMelee kills knockdown enemies within ${2.5 * (this.currRank + 1)}m` }
+    },
+    {
+        abrev: 'r7',
+        name: 'Amalgam Ripkas True Steel',
+        family: 'True Steel',
+        img: require('../assets/modimages/amalgam-ripkas-true-steel.jpg'),
+        type: 'RIPKAS',
+        rarity: 'amalgam',
+        polarity: 'madurai',
+        effects: { critChance: 0.125, none: [17,33,50,67,84,100] },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 6,
+        description() { return `+${Math.round(this.effects.critChance * (this.currRank + 1) * 100)}% Critical Chance\n+${Math.round(2.5 * (this.currRank + 1))}% Reload Speed on Shotguns\n----------------------------------\n+${this.effects.none[this.currRank]}% Gore Chance` }
     },
     {
         abrev: 'a0',
@@ -171,6 +199,7 @@ const meleeMods = [
     {
         abrev: 'b1',
         name: 'Body Count',
+        family: 'Body Count',
         img: require('../assets/modimages/body-count.jpg'),
         type: 'MELEE',
         acolyte: true,
@@ -1286,6 +1315,20 @@ const meleeMods = [
         description() { return `At Less than 50 Health: +${15 * (this.currRank + 1)}% Damage taken is reflected when Blocking attacks while Channeling for ${2 * (this.currRank + 1)}s` }
     },
     {
+        abrev: 'r4',
+        name: 'Motus Impact',
+        img: require('../assets/modimages/motus-impact.jpg'),
+        type: 'MELEE',
+        rarity: 'uncommon',
+        polarity: 'madurai',
+        effects: {},
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 4,
+        set: { setName: 'motus', setMax: 3, setCurr: 1 },
+        description() { return [`Increase range of arial melee attacks by +${0.5 * (this.currRank + 1)}m.`, `+33% chance to become immune to Knockdown effects while airborne`] }
+    },
+    {
         abrev: 'i8',
         name: 'Noble Cadence',
         img: require('../assets/modimages/noble-cadence.jpg'),
@@ -1383,7 +1426,7 @@ const meleeMods = [
         maxRank: 5,
         currRank: 5,
         baseCost: 4,
-        description() { return `+${Math.round(this.effects.punchThrough * (this.currRank + 1) * 100 ) / 100} Punch Through` }
+        description() { return `+${Math.round(this.effects.punchThrough * (this.currRank + 1) * 100) / 100} Punch Through` }
     },
     {
         abrev: 'j5',
@@ -1483,6 +1526,21 @@ const meleeMods = [
         currRank: 10,
         baseCost: 4,
         description() { return `+${15 * (this.currRank + 1)}% Range` }
+    },
+    {
+        abrev: 'r5',
+        name: 'Proton Snap',
+        img: require('../assets/modimages/proton-snap.jpg'),
+        type: 'MELEE',
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { elemental: { damage: 0.25, type: 'Toxin' }, status: 0.125 },
+        conditional: { afterWallLatch: true },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 6,
+        set: { setName: 'proton', setMax: 3, setCurr: 1 },
+        description() { return [`Hold Wall Latch for 2s to gain +${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Toxin Damage and ${Math.round(this.effects.status * (this.currRank + 1) * 1000) / 10} Status Chance for 20s.`, `During a Wall Latch gain +17% Damage Reduction`] }
     },
     {
         abrev: 'k1',

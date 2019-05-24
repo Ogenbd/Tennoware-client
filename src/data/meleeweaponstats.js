@@ -2175,7 +2175,7 @@ const meleeStats = [
     mastery: 3,
     type: [
       'FISTS',
-      'FURAX WRAITH'
+      'FURAX'
     ],
     polarities: [],
     stance: 'vazarin',
@@ -4025,7 +4025,7 @@ const meleeStats = [
     mastery: 0,
     type: [
       'FISTS',
-      'MK1-FURAX'
+      'FURAX'
     ],
     polarities: [],
     stance: 'vazarin',

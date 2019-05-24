@@ -64,7 +64,7 @@ const primaryWeaponStats = [
     {
         name: 'ARGONAK',
         mastery: 7,
-        type: ['RIFLE', 'ASSAULT RIFLE'],
+        type: ['RIFLE', 'ASSAULT RIFLE', 'ARGONAK'],
         polarities: ['madurai', 'naramon'],
         noise: 'Alarming',
         reload: 2.4,
@@ -1359,6 +1359,32 @@ const primaryWeaponStats = [
         disposition: 3,
         modes: [
             {
+                name: 'Total',
+                trigger: 'Charge',
+                fireRate: 1.33,
+                chargeRate: 0.5,
+                accuracy: 16.7,
+                punchThrough: 1.5,
+                critChance: 0.32,
+                critMult: 2.8,
+                status: 0.1,
+                damage: 450,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 135 / 450
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 245 / 450
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 70 / 450
+                    },
+                ]
+            },
+            {
                 name: 'Charged',
                 trigger: 'Charge',
                 fireRate: 1.33,
@@ -1381,6 +1407,24 @@ const primaryWeaponStats = [
                     {
                         type: 'Slash',
                         percent: 0.2
+                    },
+                ]
+            },
+            {
+                name: 'Explosion',
+                trigger: 'Charge',
+                fireRate: 1.33,
+                chargeRate: 0.5,
+                accuracy: 16.7,
+                punchThrough: 1.5,
+                critChance: 0.32,
+                critMult: 2.8,
+                status: 0.1,
+                damage: 100,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 1
                     },
                 ]
             },
@@ -1415,12 +1459,12 @@ const primaryWeaponStats = [
                 name: 'Tether',
                 trigger: 'Semi-Auto',
                 singleProjectile: true,
-                fireRate: 0.2,
+                fireRate: 0.5,
                 accuracy: 100,
                 punchThrough: 0,
                 critChance: 0,
                 critMult: 2,
-                status: 0.1,
+                status: 0.5,
                 damage: 150,
                 split: [
                     {
@@ -1466,6 +1510,60 @@ const primaryWeaponStats = [
         ]
     },
     {
+        name: 'FULMIN',
+        mastery: 8,
+        type: ['RIFLE', 'ASSAULT RIFLE', 'FULMIN'],
+        polarities: [],
+        noise: 'Alarming',
+        reload: 1,
+        magSize: 60,
+        disposition: 3,
+        modes: [
+            {
+                name: 'Semi-Auto',
+                trigger: 'Semi-Auto',
+                fireRate: 2.17,
+                accuracy: 9.1,
+                punchThrough: 0,
+                critChance: 0.3,
+                critMult: 2.2,
+                status: 0.16,
+                damage: 500,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.2
+                    },
+                    {
+                        type: 'Electricity',
+                        percent: 0.8
+                    },
+                ]
+            },
+            {
+                name: 'Auto',
+                trigger: 'Auto',
+                fireRate: 9.33,
+                accuracy: 111.1,
+                punchThrough: 0,
+                critChance: 0.28,
+                critMult: 2.4,
+                status: 0.1,
+                damage: 33,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 8 / 33
+                    },
+                    {
+                        type: 'Electricity',
+                        percent: 25 / 33
+                    },
+                ]
+            }
+        ]
+    },
+    {
         name: 'GLAXION',
         mastery: 8,
         type: ['RIFLE', 'BEAM', 'ASSAULT RIFLE'],
@@ -1487,6 +1585,37 @@ const primaryWeaponStats = [
                 status: 0.34,
                 ammoCost: 0.5,
                 damage: 26,
+                split: [
+                    {
+                        type: 'Cold',
+                        percent: 1
+                    },
+                ]
+            }
+        ]
+    },
+    {
+        name: 'GLAXION VANDAL',
+        mastery: 15,
+        type: ['RIFLE', 'BEAM', 'ASSAULT RIFLE'],
+        polarities: [],
+        noise: 'Alarming',
+        reload: 1.8,
+        magSize: 100,
+        maxAmmo: 1000,
+        disposition: 5,
+        modes: [
+            {
+                trigger: 'Held',
+                fireRate: 12,
+                rangeLimit: 24,
+                accuracy: 100,
+                punchThrough: 0,
+                critChance: 0.14,
+                critMult: 2,
+                status: 0.38,
+                ammoCost: 0.5,
+                damage: 29,
                 split: [
                     {
                         type: 'Cold',
@@ -1904,7 +2033,7 @@ const primaryWeaponStats = [
     {
         name: 'JAVLOK',
         mastery: 7,
-        type: ['RIFLE', 'ASSAULT RIFLE', 'PROJECTILE', 'EXPLOSIVE'],
+        type: ['RIFLE', 'ASSAULT RIFLE', 'PROJECTILE', 'EXPLOSIVE', 'JAVLOK'],
         polarities: ['madurai', 'madurai'],
         noise: 'Alarming',
         reload: 1.9,
@@ -1940,7 +2069,7 @@ const primaryWeaponStats = [
                 critChance: 0.2,
                 critMult: 2,
                 status: 0.25,
-                damage: 230,
+                damage: 160,
                 split: [
                     {
                         type: 'Heat',
@@ -1958,7 +2087,7 @@ const primaryWeaponStats = [
                 critChance: 0.2,
                 critMult: 2,
                 status: 0.25,
-                damage: 50,
+                damage: 120,
                 split: [
                     {
                         type: 'Heat',
@@ -2152,6 +2281,44 @@ const primaryWeaponStats = [
                     {
                         type: 'Slash',
                         percent: 0.6
+                    },
+                ]
+            }
+        ]
+    },
+    {
+        name: 'KOMOREX',
+        mastery: 8,
+        type: ['RIFLE', 'SNIPER', 'KOMOREX'],
+        polarities: [],
+        noise: 'Alarming',
+        reload: 3,
+        magSize: 20,
+        maxAmmo: 100,
+        disposition: 3,
+        modes: [
+            {
+                trigger: 'Semi-Auto',
+                fireRate: 6,
+                chargeRate: 1,
+                accuracy: 20,
+                punchThrough: 0,
+                critChance: 0.16,
+                critMult: 2.1,
+                status: 0.35,
+                damage: 87,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.1
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 36.5 / 87
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 41.8 / 87
                     },
                 ]
             }
@@ -3841,8 +4008,8 @@ const primaryWeaponStats = [
         polarities: ['naramon', 'madurai'],
         noise: 'Alarming',
         reload: 2.5,
-        magSize: 20,
-        maxAmmo: 100,
+        magSize: 40,
+        maxAmmo: 200,
         disposition: 3,
         modes: [
             {
@@ -3854,7 +4021,7 @@ const primaryWeaponStats = [
                 critChance: 0.2,
                 critMult: 1.5,
                 status: 0.3,
-                damage: 100,
+                damage: 125,
                 split: [
                     {
                         type: 'Corrosive',
@@ -3888,7 +4055,7 @@ const primaryWeaponStats = [
                 critChance: 0.2,
                 critMult: 1.5,
                 status: 0.3,
-                damage: 70,
+                damage: 55,
                 split: [
                     {
                         type: 'Corrosive',
@@ -5552,7 +5719,7 @@ const primaryWeaponStats = [
                 critChance: 0.35,
                 critMult: 2.5,
                 status: 0.08,
-                ammoCost: 5,
+                ammoCost: 3,
                 damage: 150,
                 split: [
                     {

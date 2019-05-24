@@ -20,6 +20,8 @@ import BeastStats from "../stats/BeastStats";
 import MoaStats from "../stats/MoaStats";
 import Rating from "../rating/Rating";
 
+import {modSets} from "../../utils";
+
 class TenSlotModding extends Component {
   constructor(props) {
     super(props);
@@ -552,18 +554,7 @@ class TenSlotModding extends Component {
   };
 
   checkModSets = newMods => {
-    let sets = {
-      hunter: 0,
-      vigilante: 0,
-      augur: 0,
-      gladiator: 0,
-      umbral: 0,
-      mecha: 0,
-      tek: 0,
-      synth: 0,
-      sacrificial: 0,
-      strain: 0
-    };
+    const sets = JSON.parse(JSON.stringify(modSets));
     newMods.forEach(mod => {
       if (mod.set) {
         sets[mod.set.setName]++;

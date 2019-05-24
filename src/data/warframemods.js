@@ -1,4 +1,4 @@
-// currently at abrev 1a
+// currently at abrev 1d
 const warframeMods = [
     {
         abrev: 'a0',
@@ -162,6 +162,21 @@ const warframeMods = [
         currRank: 3,
         baseCost: 10,
         description() { return `Increases Energy by +${Math.round(this.effects.energy * (this.currRank + 1) * 1000) / 10}% but reduces Health by ${Math.round(this.effects.health * (this.currRank + 1) * 100)}%` }
+    },
+    {
+        abrev: '1b',
+        name: 'Aero Vantage',
+        exilus: true,
+        img: require('../assets/modimages/aero-vantage.jpg'),
+        type: 'WARFRAME',
+        rarity: 'uncommon',
+        polarity: 'naramon',
+        effects: {},
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 4,
+        set: { setName: 'aero', setMax: 3, setCurr: 1 },
+        description() { return [`+${25 * (this.currRank + 1)}% Reduced Gravity during Aim Glide`, `Damage enemies while Aim Gliding and put up to 5 of them to sleep for 3s on landing.`] }
     },
     {
         abrev: 'a5',
@@ -4383,6 +4398,20 @@ const warframeMods = [
         description() { return `Molecular Prime Augment: When killed, primed enemies will restore a Null Star charge and have a ${25 * (this.currRank + 1)}% chance of restoring and additional one.` }
     },
     {
+        abrev: '1c',
+        name: 'Motus Signal',
+        img: require('../assets/modimages/motus-signal.jpg'),
+        type: 'WARFRAME',
+        rarity: 'uncommon',
+        polarity: 'naramon',
+        effects: {},
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 4,
+        set: { setName: 'motus', setMax: 3, setCurr: 1 },
+        description() { return [`Increase Double Jump strength by +${50 * (this.currRank + 1)}%.`, `+33% chance to become immune to Knockdown effects while airborne`] }
+    },
+    {
         abrev: 'm5',
         name: 'Muzzle Flash',
         img: require('../assets/modimages/muzzle-flash.jpg'),
@@ -5514,6 +5543,21 @@ const warframeMods = [
             ]
         },
         description() { return `Paralysis Augment: Affected enemies are pulled towards Valkyr and the stun duration is increased by ${50 * (this.currRank + 1)}%.` }
+    },
+    {
+        abrev: '1d',
+        name: 'Proton Pulse',
+        exilus: true,
+        img: require('../assets/modimages/proton-pulse.jpg'),
+        type: 'WARFRAME',
+        rarity: 'common',
+        polarity: 'naramon',
+        effects: {},
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 4,
+        set: { setName: 'proton', setMax: 3, setCurr: 1},
+        description() { return [`Wall Dashing grants +${25 * (this.currRank + 1)}% Bullet Jump speed.`, `During a Wall Latch gain +17% Damage Reduction`] }
     },
     {
         abrev: 'q3',

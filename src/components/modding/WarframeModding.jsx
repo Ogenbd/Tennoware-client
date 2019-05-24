@@ -21,6 +21,8 @@ import ArcaneStateHandler from "../arcanestatehandler/ArcaneStateHandler";
 import ArcanePicker from "../arcanepicker/ArcanePicker";
 import Rating from "../rating/Rating";
 
+import {modSets} from "../../utils";
+
 class WarframeModding extends Component {
   constructor(props) {
     super(props);
@@ -1071,18 +1073,7 @@ class WarframeModding extends Component {
   };
 
   checkModSets = (auraMod, exilusMod, chosenMods) => {
-    let sets = {
-      hunter: 0,
-      vigilante: 0,
-      augur: 0,
-      gladiator: 0,
-      umbral: 0,
-      mecha: 0,
-      tek: 0,
-      synth: 0,
-      sacrificial: 0,
-      strain: 0
-    };
+    const sets = JSON.parse(JSON.stringify(modSets));
     if (auraMod.set) sets[auraMod.set.setName]++;
     if (exilusMod.set) sets[exilusMod.set.setName]++;
     chosenMods.forEach(mod => {

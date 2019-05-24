@@ -1335,6 +1335,65 @@ const secondaryWeaponStats = [
         ]
     },
     {
+        name: 'CYANEX',
+        mastery: 8,
+        type: ['PISTOL'],
+        polarities: [],
+        noise: 'Alarming',
+        reload: 2.2,
+        magSize: 11,
+        maxAmmo: 210,
+        disposition: 3,
+        modes: [
+            {
+                name: 'Homing',
+                trigger: 'Auto',
+                fireRate: 4.67,
+                accuracy: 1.8,
+                punchThrough: 0,
+                critChance: 0.08,
+                critMult: 1.4,
+                status: 0.32,
+                damage: 91,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 50 / 91
+                    },
+                    {
+                        type: 'Gas',
+                        percent: 41 / 91
+                    },
+                ]
+            },
+            {
+                name: 'Magazine Burst',
+                trigger: 'Semi-Auto',
+                fireRate: 10.05,
+                accuracy: 80,
+                punchThrough: 0.5,
+                critChance: 0.08,
+                critMult: 1.4,
+                status: 0.32,
+                damage: 72,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 38.9 / 72
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 30.2 / 72
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 2.9 / 72
+                    }
+                ]
+            }
+        ]
+    },
+    {
         name: 'CYCRON',
         mastery: 8,
         type: [
@@ -3461,6 +3520,45 @@ const secondaryWeaponStats = [
                     {
                         type: 'Puncture',
                         percent: 0.42
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        name: 'SPECTRA VANDAL',
+        mastery: 10,
+        type: [
+            'PISTOL',
+            'BEAM',
+            'SPECTRA'
+        ],
+        polarities: [],
+        noise: 'Alarming',
+        reload: 1.2,
+        magSize: 80,
+        maxAmmo: 720,
+        disposition: 5,
+        modes: [
+            {
+                trigger: 'Held',
+                rangeLimit: 18,
+                fireRate: 12,
+                accuracy: 100,
+                punchThrough: 0.5,
+                ammoCost: 0.5,
+                critChance: 0.20,
+                critMult: 2,
+                status: 0.28,
+                damage: 22,
+                split: [
+                    {
+                        type: 'Slash',
+                        percent: 9.2 / 22
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 12.8 / 22
                     }
                 ]
             }

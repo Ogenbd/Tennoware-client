@@ -22,6 +22,8 @@ import ArcaneStateHandler from "../arcanestatehandler/ArcaneStateHandler";
 import ArcanePicker from "../arcanepicker/ArcanePicker";
 import Rating from "../rating/Rating";
 
+import {modSets} from "../../utils";
+
 class MeleeModding extends Component {
   constructor(props) {
     super(props);
@@ -1000,18 +1002,7 @@ class MeleeModding extends Component {
   };
 
   checkModSets = (stanceMod, chosenMods) => {
-    let sets = {
-      hunter: 0,
-      vigilante: 0,
-      augur: 0,
-      gladiator: 0,
-      umbral: 0,
-      mecha: 0,
-      tek: 0,
-      synth: 0,
-      sacrificial: 0,
-      strain: 0
-    };
+    const sets = JSON.parse(JSON.stringify(modSets));
     if (stanceMod.set) sets[stanceMod.set.setName]++;
     chosenMods.forEach(mod => {
       if (mod.set) {

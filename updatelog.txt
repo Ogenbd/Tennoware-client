@@ -1,9 +1,21 @@
 UPDATE LOG
 
-upcoming - v1.4.6.
+24/05/2019 - v1.4.6.
 New:
+Added Wisp.
+Added Fulmin to primary weapons.
+Added Komorex to primary weapons (zoom stats to be added in a future patch).
+Added Glaxion Vandal to primary weapons.
+Added Spectra Vandal to secondary weapons.
+Added Cyanex to secondary weapons (damage values are WIP).
 Added Archgun riven mods.
 Added Primed Pack Leader.
+Added the mods and mod sets from update 25 (except Repair Kit, need more data on that one).
+Added Conditional "After landing double or bullet jump" toggle for effects such as Motus Setup Mod effects.
+Added Conditional "During wall latch" toggle for effects such as Proton Jet Mod effects.
+Added Conditional "After wall latch" toggle for effects such as Proton Snap Mod effects.
+Changes:
+Implemented weapon changes from update 25.
 Fixes:
 Fixed server access issues when accessing www.tennoware.com instead of tennoware.com.
 

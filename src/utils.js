@@ -1,0 +1,15 @@
+export const modSets = {
+    hunter: 0,
+    vigilante: 0,
+    augur: 0,
+    gladiator: 0,
+    umbral: 0,
+    mecha: 0,
+    tek: 0,
+    synth: 0,
+    sacrificial: 0,
+    strain: 0,
+    aero: 0,
+    motus: 0,
+    proton: 0,
+  };

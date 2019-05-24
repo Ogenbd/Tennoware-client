@@ -25,6 +25,8 @@ export class RangedWeaponStats extends Component {
       cast: false,
       first: false,
       headshotKill: false,
+      landSpecialJump: false,
+      duringWallLatch: false,
       aimingToggle: false,
       killToggle: false,
       headshotToggle: false,
@@ -32,6 +34,8 @@ export class RangedWeaponStats extends Component {
       castToggle: false,
       firstToggle: false,
       headshotKillToggle: false,
+      landSpecialJumpToggle: false,
+      duringWallLatchToggle: false,
       baseStatsToggle: false,
       arbitrations: false,
       augment: false
@@ -49,7 +53,9 @@ export class RangedWeaponStats extends Component {
       reload: false,
       cast: false,
       first: false,
-      headshotKill: false
+      headshotKill: false,
+      landSpecialJump: false,
+      duringWallLatch: false
     };
     let fireMode = state.mode;
     if (state.baseStatsToggle) {
@@ -160,14 +166,8 @@ export class RangedWeaponStats extends Component {
       effects: effects,
       elemental: elemental,
       conditionalEffects: conditionalEffects,
-      aiming: conditional.aiming,
-      kill: conditional.kill,
-      headshot: conditional.headshot,
-      reload: conditional.reload,
-      cast: conditional.cast,
-      first: conditional.first,
-      headshotKill: conditional.headshotKill,
-      mode: fireMode
+      mode: fireMode,
+      ...conditional
     };
   }
 
@@ -202,6 +202,18 @@ export class RangedWeaponStats extends Component {
   toggleHeadshotKill = () => {
     this.setState(prevState => ({
       headshotKillToggle: !prevState.headshotKillToggle
+    }));
+  };
+
+  toggleLandSpecialJump = () => {
+    this.setState(prevState => ({
+      landSpecialJumpToggle: !prevState.landSpecialJumpToggle
+    }));
+  };
+
+  toggleDuringWallLatch = () => {
+    this.setState(prevState => ({
+      duringWallLatchToggle: !prevState.duringWallLatchToggle
     }));
   };
 
@@ -1572,6 +1584,26 @@ export class RangedWeaponStats extends Component {
                       className="stat"
                       onChange={this.toggleHeadshotKill}
                       checked={this.state.headshotKillToggle}
+                    />
+                  </div>
+                )}
+                {this.state.landSpecialJump && (
+                  <div className="stats-switch">
+                    <p className="stat-name">After landing double or bullet jump</p>
+                    <Switch
+                      className="stat"
+                      onChange={this.toggleLandSpecialJump}
+                      checked={this.state.landSpecialJumpToggle}
+                    />
+                  </div>
+                )}
+                {this.state.duringWallLatch && (
+                  <div className="stats-switch">
+                    <p className="stat-name">During wall latch</p>
+                    <Switch
+                      className="stat"
+                      onChange={this.toggleDuringWallLatch}
+                      checked={this.state.duringWallLatchToggle}
                     />
                   </div>
                 )}

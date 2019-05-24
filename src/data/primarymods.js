@@ -1,4 +1,4 @@
-// currently at abrev t3
+// currently at abrev u0
 const primaryMods = [
     {
         abrev: 'a0',
@@ -40,6 +40,34 @@ const primaryMods = [
         description() { return `+${Math.ceil(this.effects.none * (this.currRank + 1))}% chance for grenades to stick to surfaces` }
     },
     {
+        abrev: 't4',
+        name: 'Aero Agility',
+        img: require('../assets/modimages/aero-agility.jpg'),
+        type: 'SNIPER',
+        rarity: 'rare',
+        polarity: 'naramon',
+        effects: {},
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 4,
+        set: { setName: 'aero', setMax: 3, setCurr: 1 },
+        description() { return [`+${25 * (this.currRank + 1)}% Reload Speed while Aim Gliding`, `Damage enemies while Aim Gliding and put up to 5 of them to sleep for 3s on landing.`] }
+    },
+    {
+        abrev: 't5',
+        name: 'Aero Periphery',
+        img: require('../assets/modimages/aero-periphery.jpg'),
+        type: 'PRIMARY',
+        rarity: 'common',
+        polarity: 'naramon',
+        effects: {},
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 2,
+        set: { setName: 'aero', setMax: 3, setCurr: 1 },
+        description() { return [`${-12.5 * (this.currRank + 1)}% Zoom while Aim Gliding`, `Damage enemies while Aim Gliding and put up to 5 of them to sleep for 3s on landing.`] }
+    },
+    {
         abrev: 'a3',
         name: 'Agile Aim',
         img: require('../assets/modimages/agile-aim.jpg'),
@@ -52,6 +80,48 @@ const primaryMods = [
         currRank: 3,
         baseCost: 2,
         description() { return `Increase movement speed by +${Math.round(this.effects.none * (this.currRank + 1) * 100)}% while aiming` }
+    },
+    {
+        abrev: 't9',
+        name: 'Amalgam Argonak Metal Auger',
+        family: 'Metal Auger',
+        img: require('../assets/modimages/amalgam-argonak-metal-auger.jpg'),
+        type: 'ARGONAK',
+        rarity: 'amalgam',
+        polarity: 'naramon',
+        effects: { punchThrough: 0.5 },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 6,
+        description() { return `+${this.effects.punchThrough * (this.currRank + 1)}% Punch Through\nDamage from daggers reduces Armore by +${1 * (this.currRank + 1)}%.\n----------------------------------\nEnemies are revealed by Punch Through.` }
+    },
+    {
+        abrev: 'u0',
+        name: 'Amalgam Daikyu Target Acquired',
+        family: 'Target Acquired',
+        img: require('../assets/modimages/amalgam-argonak-metal-auger.jpg'),
+        type: 'DAIKYU',
+        rarity: 'amalgam',
+        polarity: 'madurai',
+        effects: { headshotMult: 0.125 },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 10,
+        description() { return `+${Math.round(this.effects.headshotMult * (this.currRank + 1) * 1000) / 10}% to Headshot Multiplier\n+${0.5 * (this.currRank + 1)}% Life Steal on Nikanas\n----------------------------------\n${10 * (this.currRank + 1)}% chance to pickup used arrows.` }
+    },
+    {
+        abrev: 't8',
+        name: 'Amalgam Javlok Magazine Warp',
+        family: 'Magazine Warp',
+        img: require('../assets/modimages/amalgam-javlok-magazine-warp.jpg'),
+        type: 'JAVLOK',
+        rarity: 'amalgam',
+        polarity: 'naramon',
+        effects: { magSize: 0.075 },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 6,
+        description() { return `+${Math.round(this.effects.magSize * (this.currRank + 1) * 1000) / 10}% Magazine Capacity\nParrying with a Shield reflects +${1000 * (this.currRank + 1)}% Damage\n----------------------------------\n+${15 * (this.currRank + 1)}% Channeling Efficiency while Parrying` }
     },
     {
         abrev: 's9',
@@ -1388,6 +1458,7 @@ const primaryMods = [
     {
         abrev: 'h0',
         name: 'Magazine Warp',
+        family: 'Magazine Warp',
         img: require('../assets/modimages/magazine-warp.jpg'),
         type: 'RIFLE',
         rarity: 'common',
@@ -1415,6 +1486,7 @@ const primaryMods = [
     {
         abrev: 'h2',
         name: 'Metal Auger',
+        family: 'Metal Auger',
         img: require('../assets/modimages/metal-auger.jpg'),
         type: 'RIFLE',
         rarity: 'rare',
@@ -1470,6 +1542,21 @@ const primaryMods = [
         currRank: 3,
         baseCost: 10,
         description() { return `On Kill: +15 Heal Rate for 10 seconds.\n-25% from Health Orbs` }
+    },
+    {
+        abrev: 't6',
+        name: 'Motus Setup',
+        img: require('../assets/modimages/motus-setup.jpg'),
+        type: 'SHOTGUN',
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: { critChance: 0.25, status: 0.25 },
+        conditional: { landSpecialJump: true },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 6,
+        set: { setName: 'motus', setMax: 3, setCurr: 1 },
+        description() { return [`${Math.round(this.effects.critChance * (this.currRank + 1) * 100)}% Critical and Status Chance for ${this.currRank + 1}s after landing from a Double or Bullet Jump`, `+33% chance to become immune to Knockdown effects while airborne`] }
     },
     {
         abrev: 'h3',
@@ -1821,6 +1908,21 @@ const primaryMods = [
         currRank: 3,
         baseCost: 10,
         description() { return `On Kill: -100% Shield Recharge Delay for 10 seconds.\n-25% from Health Orbs` }
+    },
+    {
+        abrev: 't7',
+        name: 'Proton Jet',
+        img: require('../assets/modimages/proton-jet.jpg'),
+        type: 'RIFLE',
+        rarity: 'uncommon',
+        polarity: 'naramon',
+        effects: { critChance: 0.3, status: 0.3 },
+        conditional: { duringWallLatch: true },
+        maxRank: 3,
+        currRank: 3,
+        baseCost: 4,
+        set: { setName: 'proton', setMax: 3, setCurr: 1},
+        description() { return [`During a Wall Latch gain +${Math.round(this.effects.critChance * (this.currRank + 1) * 100)}% Status Chance and Critical Chance.`, `During a Wall Latch gain +17% Damage Reduction`] }
     },
     {
         abrev: 'j3',
@@ -2426,6 +2528,7 @@ const primaryMods = [
     {
         abrev: 'm9',
         name: 'Target Acquired',
+        family: 'Target Acquired',
         img: require('../assets/modimages/target-acquired.jpg'),
         type: 'SNIPER',
         rarity: 'rare',
