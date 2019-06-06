@@ -1512,7 +1512,7 @@ const primaryWeaponStats = [
     {
         name: 'FULMIN',
         mastery: 8,
-        type: ['RIFLE', 'ASSAULT RIFLE', 'FULMIN'],
+        type: ['RIFLE', 'ASSAULT RIFLE', 'PROJECTILE', 'FULMIN'],
         polarities: [],
         noise: 'Alarming',
         reload: 1,
