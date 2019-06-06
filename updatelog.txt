@@ -5,6 +5,7 @@ Changes:
 Implemented Fulmin Terminal Velocity change from hotfix 25.0.4.
 Fixes:
 Fixed Secura Dual Cestra Fire Rate.
+Fixed Spectra Vandal damage values.
 
 24/05/2019 - v1.4.6.
 New:

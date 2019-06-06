@@ -3554,11 +3554,11 @@ const secondaryWeaponStats = [
                 split: [
                     {
                         type: 'Slash',
-                        percent: 9.2 / 22
+                        percent: 12.8 / 22
                     },
                     {
                         type: 'Puncture',
-                        percent: 12.8 / 22
+                        percent: 9.2 / 22
                     }
                 ]
             }
