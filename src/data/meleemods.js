@@ -856,7 +856,7 @@ const meleeMods = [
         abrev: 'f6',
         name: 'Gaia\'S Tragedy',
         img: require('../assets/modimages/gaia\'s-tragedy.jpg'),
-        type: 'FIST',
+        type: 'FISTS',
         rarity: 'rare',
         polarity: 'vazarin',
         effects: {},
