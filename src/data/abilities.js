@@ -6817,7 +6817,7 @@ const abilities = {
                         {
                             name: 'Range',
                             suffix: 'm',
-                            base: 15
+                            base: 18
                         }
                     ],
                     efficiency: [
@@ -6837,7 +6837,11 @@ const abilities = {
                     strength: [
                         {
                             name: 'Damage',
-                            base: 1000
+                            base: 1500
+                        },
+                        {
+                            name: 'Boosted damage',
+                            base: 3000
                         }
                     ],
                     range: [
@@ -6857,6 +6861,10 @@ const abilities = {
                         {
                             name: 'Energy drain/s',
                             base: 12
+                        },
+                        {
+                            name: 'Boosted energy drain/s',
+                            base: 24
                         }
                     ]
                 }
