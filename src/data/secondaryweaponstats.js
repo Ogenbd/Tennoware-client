@@ -3291,7 +3291,7 @@ const secondaryWeaponStats = [
         modes: [
             {
                 trigger: 'Auto',
-                fireRate: 7.5,
+                fireRate: 12.5,
                 accuracy: 20,
                 punchThrough: 0,
                 critChance: 0.16,
