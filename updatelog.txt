@@ -12,6 +12,7 @@ Fixed Spectra Vandal damage values.
 Fixed Gaia's Tragedy not showing up when it should.
 Fixed Atomos not being considered a beam weapon.
 Fixed Hildryn having wrong shields value.
+Fixed extreme negetive IPS damage rivens breaking everything.
 
 24/05/2019 - v1.4.6.
 New:

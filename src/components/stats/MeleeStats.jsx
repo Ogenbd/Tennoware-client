@@ -387,6 +387,7 @@ export class MeleeStats extends Component {
             });
             if (typeIndex !== -1) {
                 damageSplit[typeIndex].damage += damageSplit[typeIndex].damage * this.state.effects.impact
+                if (damageSplit[typeIndex].damage < 0) damageSplit[typeIndex].damage = 0
             }
         }
         if (this.state.effects.slash) {
@@ -395,6 +396,7 @@ export class MeleeStats extends Component {
             });
             if (typeIndex !== -1) {
                 damageSplit[typeIndex].damage += damageSplit[typeIndex].damage * this.state.effects.slash
+                if (damageSplit[typeIndex].damage < 0) damageSplit[typeIndex].damage = 0
             }
         }
         if (this.state.effects.puncture) {
@@ -403,6 +405,7 @@ export class MeleeStats extends Component {
             });
             if (typeIndex !== -1) {
                 damageSplit[typeIndex].damage += damageSplit[typeIndex].damage * this.state.effects.puncture
+                if (damageSplit[typeIndex].damage < 0) damageSplit[typeIndex].damage = 0
             }
         }
         if (nativeElementPosition !== -1) {
