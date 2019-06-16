@@ -1,6 +1,6 @@
 UPDATE LOG
 
-upcoming - v1.4.7.
+16/06/2019 - v1.4.7.
 New:
 Added Repair Kit sentinel mod.
 Changes:
