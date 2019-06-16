@@ -310,7 +310,7 @@ const warframeStats = [
         baseEnergy: 0,
         health: 225,
         baseHealth: 75,
-        shields: 1350,
+        shields: 1575,
         baseShields: 450,
         speed: 1,
         abilities: abilities.hildryn
