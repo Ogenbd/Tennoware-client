@@ -8,6 +8,7 @@ Fixes:
 Fixed Secura Dual Cestra Fire Rate.
 Fixed Spectra Vandal damage values.
 Fixed Gaia's Tragedy not showing up when it should.
+Fixed Atomos not being considered a beam weapon.
 
 24/05/2019 - v1.4.6.
 New:

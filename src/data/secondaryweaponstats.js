@@ -838,7 +838,8 @@ const secondaryWeaponStats = [
         name: 'ATOMOS',
         mastery: 5,
         type: [
-            'PISTOL'
+            'PISTOL',
+            'BEAM'
         ],
         polarities: [
             'vazarin'
