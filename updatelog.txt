@@ -1,6 +1,8 @@
 UPDATE LOG
 
 upcoming - v1.4.7.
+New:
+Added Repair Kit sentinel mod.
 Changes:
 Implemented Fulmin Terminal Velocity change from hotfix 25.0.4.
 Implemented Wisp's Breach Surge and Sol Gate changes.

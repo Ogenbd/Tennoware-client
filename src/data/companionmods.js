@@ -1,4 +1,4 @@
-// at abrev j7
+// at abrev j8
 
 const companionMods = [
     {
@@ -781,6 +781,19 @@ const companionMods = [
         currRank: 5,
         baseCost: 2,
         description() { return `If killed, regenerates 1x with ${58 + 8 * this.currRank}% Max Health and is invulnerable for ${this.currRank + 1}s.` }
+    },
+    {
+        abrev: 'j8',
+        name: 'Repair Kit',
+        img: require('../assets/modimages/unavail.jpg'),
+        type: 'SENTINEL',
+        rarity: 'common',
+        polarity: 'vazarin',
+        effects: {},
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 2,
+        description() { return `+${this.currRank + 1} Heal Rate/s` }
     },
     {
         abrev: 'f2',
