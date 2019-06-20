@@ -6873,28 +6873,21 @@ const abilities = {
     ],
     wukong: [
         {
-            name: 'Iron Jab',
+            name: 'Celestial Twin',
             img: require('../assets/itemimages/ironjab.png'),
             details: [
                 {
                     strength: [
                         {
-                            name: 'Damage',
-                            base: 800,
-                            icon: require('../assets/dynamic/damage/Impact.png')
+                            name: 'Health multiplier',
+                            suffix: 'x',
+                            base: 2
                         },
                     ],
                     none: [
                         {
-                            name: 'Range',
-                            suffix: 'm',
-                            base: 10
-                        }
-                    ],
-                    range: [
-                        {
-                            name: 'Impact radius',
-                            suffix: 'm',
+                            name: 'Damage multiplier',
+                            suffix: 'x',
                             base: 2
                         }
                     ],
@@ -6908,42 +6901,22 @@ const abilities = {
             ]
         },
         {
-            name: 'Defy',
-            img: require('../assets/itemimages/defy.png'),
-            details: [
-                {
-                    duration: [
-                        {
-                            name: 'Invulnerability duration',
-                            suffix: 's',
-                            base: 5
-                        }
-                    ],
-                    efficiency: [
-                        {
-                            name: 'Energy',
-                            base: 50
-                        },
-                    ],
-                    channel: [
-                        {
-                            name: 'Energy drain/s',
-                            base: 5
-                        }
-                    ]
-                }
-            ]
-        },
-        {
             name: 'Cloud Walker',
             img: require('../assets/itemimages/cloudwalker.png'),
             details: [
                 {
+                    strength: [
+                        {
+                            name: 'Health/m',
+                            suffix: '%',
+                            base: 1
+                        }
+                    ],
                     duration: [
                         {
                             name: 'Duration',
                             suffix: 's',
-                            base: 25
+                            base: 2
                         }
                     ],
                     range: [
@@ -6957,11 +6930,52 @@ const abilities = {
                         {
                             name: 'Energy',
                             base: 25
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            name: 'Defy',
+            img: require('../assets/itemimages/defy.png'),
+            details: [
+                {
+                    strength: [
+                        {
+                            name: 'Damage multiplier',
+                            suffix: 'x',
+                            base: 7.5
                         },
                         {
-                            name: 'Energy drain / 2.5m',
-                            base: 1
+                            name: 'Armor multiplier',
+                            suffix: 'x',
+                            base: 1.5
+                        },
+                    ],
+                    duration: [
+                        {
+                            name: 'Invulnerability duration',
+                            suffix: 's',
+                            base: 5
+                        },
+                        {
+                            name: 'Armor buff duration',
+                            suffix: 's',
+                            base: 25
+                        },
+                    ],
+                    range: [
+                        {
+                            name: 'Radius',
+                            suffix: 'm',
+                            base: 12
                         }
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Energy',
+                            base: 50
+                        },
                     ]
                 }
             ]
@@ -6977,23 +6991,16 @@ const abilities = {
                             base: 250,
                         },
                     ],
-                    range: [
-                        {
-                            name: 'Melee range bonus',
-                            suffix: '%',
-                            base: 20
-                        }
-                    ],
                     efficiency: [
                         {
                             name: 'Energy',
-                            base: 25
+                            base: 10
                         },
                     ],
                     channel: [
                         {
                             name: 'Energy drain/s',
-                            base: 3
+                            base: 5
                         }
                     ]
                 }

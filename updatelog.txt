@@ -1,4 +1,9 @@
 UPDATE LOG
+20/06/2019 - v1.4.8.
+New:
+Added a Primal Rage input to Iron Staff.
+Changes:
+Implemented Wukong and his Iron Staff changes from update 25.2.0.
 
 16/06/2019 - v1.4.7.
 New:

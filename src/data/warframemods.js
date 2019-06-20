@@ -2097,14 +2097,21 @@ const warframeMods = [
         currRank: 3,
         baseCost: 6,
         augment: {
-            ability: 2,
+            ability: 1,
             details: [
                 {
+                    strength: [
+                        {
+                            name: 'Health/m',
+                            suffix: '%',
+                            base: 1
+                        }
+                    ],
                     duration: [
                         {
                             name: 'Duration',
                             suffix: 's',
-                            base: 25
+                            base: 2
                         },
                         {
                             name: 'Invisibility duration',
@@ -2128,10 +2135,6 @@ const warframeMods = [
                         {
                             name: 'Energy',
                             base: 25
-                        },
-                        {
-                            name: 'Energy drain / 2.5m',
-                            base: 1
                         }
                     ]
                 }
@@ -3703,12 +3706,12 @@ const warframeMods = [
     },
     {
         abrev: 'k8',
-        name: 'Iron Vault',
+        name: 'Celestial Stomp',
         img: require('../assets/modimages/iron-vault.jpg'),
         type: 'WUKONG',
         rarity: 'rare',
         polarity: 'zenurik',
-        effects: { none: [[8, 10, 12, 15], [300, 350, 400, 500]] },
+        effects: { none: [12, 14, 17, 20] },
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
@@ -3718,34 +3721,24 @@ const warframeMods = [
                 {
                     strength: [
                         {
-                            name: 'Damage',
-                            base: 800,
-                            icon: require('../assets/dynamic/damage/Impact.png')
-                        },
-                        {
-                            name: 'Iron vault bonus damage',
-                            suffix: '%',
-                            base(augEffects, augRank) { return augEffects.none[1][augRank] }
+                            name: 'Health multiplier',
+                            suffix: 'x',
+                            base: 2
                         },
                     ],
                     none: [
                         {
-                            name: 'Range',
-                            suffix: 'm',
-                            base: 10
+                            name: 'Damage multiplier',
+                            suffix: 'x',
+                            base: 2
                         }
                     ],
                     range: [
                         {
-                            name: 'Impact radius',
+                            name: 'Stomp range',
                             suffix: 'm',
-                            base: 2
-                        },
-                        {
-                            name: 'Bonus iron vault slam radius',
-                            suffix: 'm',
-                            base(augEffects, augRank) { return augEffects.none[0][augRank] }
-                        },
+                            base(augEffects, augRank) { return augEffects.none[augRank] }
+                        }
                     ],
                     efficiency: [
                         {
@@ -3756,7 +3749,7 @@ const warframeMods = [
                 }
             ]
         },
-        description() { return `Iron Jab Augment: Aiming Iron Jab at the ground launches Wukong into the air. Executing a Slam Attack increases Range by ${this.effects.none[0][this.currRank]}m and applies ${this.effects.none[1][this.currRank]}% Extra Damage.` }
+        description() { return `Celestial Twin Augment: Hold to command the twin to perform a slam attack suspending enemies in the air within ${this.effects.none[this.currRank]}m 25 Energy.` }
     },
     {
         abrev: 'k9',
@@ -5380,7 +5373,7 @@ const warframeMods = [
         type: 'WUKONG',
         rarity: 'rare',
         polarity: 'zenurik',
-        effects: { none: [6, 7, 8, 10] },
+        effects: { none: [8, 10, 12, 15] },
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
@@ -5406,23 +5399,23 @@ const warframeMods = [
                             base: 1
                         }
                     ],
-                    range: [
+                    none: [
                         {
-                            name: 'Melee range bonus',
+                            name: 'Maximum critical chance bonus',
                             suffix: '%',
-                            base: 20
+                            base: 150
                         }
                     ],
                     efficiency: [
                         {
                             name: 'Energy',
-                            base: 25
+                            base: 10
                         },
                     ],
                     channel: [
                         {
                             name: 'Energy drain/s',
-                            base: 3
+                            base: 5
                         }
                     ]
                 }

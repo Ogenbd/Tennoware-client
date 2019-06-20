@@ -78,11 +78,12 @@ export class News extends Component {
           <div className="news-container">
             <div className="home-left">
               <div className="tennoware-update">
-                <div className="update-title">Update 1.4.7</div>
+                <div className="update-title">Update 1.4.8</div>
                 <div className="update-content">
-                  <p>Fixed negetive IPS rivens breaking damage and status calculations. I do not play around with rivens much so I can't test weird riven stats in game. This makes edge case riven (ones you would generally not want to use, like extreme negetives) calculation unreliable. If you find examples of inconsistency between the game and Tennoware involving such rivens please post detailed screenshots over at our subreddit, Thanks!</p>
-                  <p>Added Repair Kit sentinel mod.</p>
-                  <p>Some stats/mod fixes.</p>
+                  <p>Wukong update!</p>
+                  <p>Implemented changes to Wukong, Iron Staff and Wukong's augments.</p>
+                  <p>As a nice bonus Iron Staff got a Primal Rage input to calculate Crit chance with the bonus from the augment. Due to the bonus being variable (both mod ranks and the bonus being affected by power strength) the input if a free number input (0%-150%)</p>
+                  <p>The relevant ability icons and mod images will be changed once I have the new images.</p>
                   <p>For a complete list of additions, changes and fixes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log</a>.</p>
                   <p>To report bugs, missing things, incorrect stats and feature suggestions head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/">Tennoware subreddit</a>.</p>
                 </div>

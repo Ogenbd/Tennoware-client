@@ -8,6 +8,7 @@ export class MeleeStats extends Component {
     constructor(props) {
         super(props);
         this.softInput = React.createRef();
+        this.softPrimalRageInput = React.createRef();
         this.state = {
             effects: {},
             elemental: [],
@@ -18,6 +19,7 @@ export class MeleeStats extends Component {
             comboDamageStep: 0.5,
             powerStr: 100,
             razorwingBlitz: 0,
+            primalRage: '',
             open: false,
             berserker: false,
             berserkerStacks: 0,
@@ -187,6 +189,14 @@ export class MeleeStats extends Component {
         this.setState({
             razorwingBlitz: value
         });
+    }
+
+    handlePrimalRage = ({ target }) => {
+        let value = parseInt(target.value, 10);
+        if (value > 150) value = 150;
+        if (value < 0) value = '';
+        if (isNaN(value)) value = '';
+        this.setState({ primalRage: value })
     }
 
     calcStatus = () => {
@@ -455,6 +465,7 @@ export class MeleeStats extends Component {
         if (this.state.effects.critChance) {
             critChanceMult += this.state.effects.critChance;
         }
+        if (typeof this.state.primalRage === 'number') critChanceMult += this.state.primalRage / 100;
         comboMult !== 0 && this.state.combo > 0
             ? critChance = (this.props.weapon.modes[this.state.mode].critChance * critChanceMult) * (1 + comboMult * (this.state.combo + 1))
             : critChance = this.props.weapon.modes[this.state.mode].critChance * critChanceMult;
@@ -544,6 +555,12 @@ export class MeleeStats extends Component {
     focusSoftInput = () => {
         if (this.props.viewWidth < 1280) {
             this.softInput.current.focus();
+        }
+    }
+
+    focusSoftPrimalRageInput = () => {
+        if (this.props.viewWidth < 1280) {
+            this.softPrimalRageInput.current.focus();
         }
     }
 
@@ -720,7 +737,13 @@ export class MeleeStats extends Component {
                             {weapon.exalted &&
                                 <div className="stats-item">
                                     <p className="stat-name">Power Strength: </p>
-                                    <div className="str-stat"><input className="str-input" type="number" value={this.state.powerStr} onFocus={this.focusSoftInput} onChange={this.handleChange} /><span className="stat">%</span></div>
+                                    <div className="str-stat"><input className="str-input" type="number" value={this.state.powerStr} onFocus={this.focusSoftInput} onChange={this.handleChange} /><span className="input-stat">%</span></div>
+                                </div>
+                            }
+                            {weapon.name === "IRON STAFF" &&
+                                <div className="stats-item">
+                                    <p className="stat-name">Primal Rage critical chance bonus: </p>
+                                    <div className="str-stat"><input className="str-input" type="number" value={this.state.primalRage} onFocus={this.focusSoftPrimalRageInput} onChange={this.handlePrimalRage} /><span className="input-stat">%</span></div>
                                 </div>
                             }
                         </div>
@@ -784,6 +807,10 @@ export class MeleeStats extends Component {
                 </div>
                 <div className="soft-input-wrapper">
                     <input ref={this.softInput} type="number" className="soft-input" value={this.state.powerStr} onChange={this.handleChange} onKeyUp={this.blurInput} />
+                    <p className="soft-percent">%</p>
+                </div>
+                <div className="soft-input-wrapper">
+                    <input ref={this.softPrimalRageInput} type="number" className="soft-input" value={this.state.primalRage} onChange={this.handlePrimalRage} onKeyUp={this.blurInput} />
                     <p className="soft-percent">%</p>
                 </div>
             </React.Fragment>

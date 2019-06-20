@@ -3069,21 +3069,21 @@ const meleeStats = [
     modes: [
       {
         speed: 1,
-        slide: 540,
+        slide: 536,
         wall: 417,
-        slam: 250,
+        slam: 500,
         critChance: 0.25,
         critMult: 2,
-        status: 0.1,
+        status: 0.3,
         damage: 250,
         split: [
           {
             type: 'Impact',
-            percent: 0.85
+            percent: 0.68
           },
           {
-            type: 'Puncture',
-            percent: 0.15
+            type: 'Slash',
+            percent: 0.32
           }
         ]
       }

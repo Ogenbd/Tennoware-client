@@ -7,7 +7,6 @@
   width: 225px;
   overflow-y: auto;
   overflow-x: hidden;
-  /* box-sizing: border-box; */
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 2;
 }
@@ -45,7 +44,6 @@
   margin: 5px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  /* -webkit-tap-highlight-color: transparent; */
 }
 
 .toggle-button-full {
@@ -124,7 +122,6 @@
 }
 
 .stat-name {
-  /* align-self: flex-start; */
   margin-left: 4px;
   max-width: 140px;
 }
@@ -137,24 +134,23 @@
   transition: all 200ms;
 }
 
+.input-stat {
+  margin-right: 4px;
+}
+
 .stat-frag {
   width: 60px;
   text-align: end;
-  /* align-self: flex-end; */
 }
 
 .damage {
   display: flex;
-  /* flex: 1 0 auto; */
   flex-direction: column;
-  /* flex-wrap: wrap; */
-  /* align-self: flex-end; */
 }
 
 .condition {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   justify-content: center;
   width: 89px;
   height: 56px;
@@ -177,10 +173,12 @@
 
 .str-stat {
   display: flex;
+  align-items: center;
 }
 
 .str-input {
   width: 35px;
+  height: 16px;
   margin: 0 2px 1px 0;
   text-align: center;
   background-color: lightgray;
@@ -197,7 +195,6 @@
 .frame-ability {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   flex-shrink: 0;
   width: 200px;
   margin-bottom: 5px;
@@ -228,7 +225,6 @@
 
 .warframe-stat {
   display: flex;
-  /* align-self: flex-end; */
   align-items: center;
   margin-right: 4px;
   transition: all 200ms;
