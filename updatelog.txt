@@ -3,6 +3,7 @@ UPDATE LOG
 Fixes:
 Fixed an issue causing some missing information on Pacify & Provoke calculations for Equinox Prime.
 Added missing Sahasa kubrow mod Ferocity.
+Fixed inability to save and find Garudas Talons builds.
 
 20/06/2019 - v1.4.8.
 New:
