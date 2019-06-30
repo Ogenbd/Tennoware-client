@@ -220,7 +220,7 @@ const meleeList = [
         img: require('../assets/itemimages/galvacord.png')
     },
     {
-        name: 'GARUDA\'S TALONS',
+        name: 'GARUDAS TALONS',
         img: require('../assets/itemimages/garudas-talons.png')
     },
     {

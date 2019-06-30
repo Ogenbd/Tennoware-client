@@ -2332,11 +2332,11 @@ const meleeStats = [
     ]
   },
   {
-    name: 'GARUDA\'S TALONS',
+    name: 'GARUDAS TALONS',
     mastery: 0,
     type: [
       'CLAWS',
-      'GARUDA\'S TALONS'
+      'GARUDAS TALONS'
     ],
     polarities: ['madurai', 'naramon'],
     stance: 'madurai',
