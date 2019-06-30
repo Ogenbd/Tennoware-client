@@ -1,4 +1,4 @@
-// at abrev j8
+// at abrev j9
 
 const companionMods = [
     {
@@ -277,6 +277,19 @@ const companionMods = [
         currRank: 5,
         baseCost: 2,
         description() { return `${8.5 + this.currRank}m Companion Gather-Link. Detects and collects items, including mods.` }
+    },
+    {
+        abrev: 'j9',
+        name: 'Ferocity',
+        img: require('../assets/modimages/ferocity.jpg'),
+        type: 'SAHASA KUBROW',
+        rarity: 'rare',
+        polarity: 'penjaga',
+        effects: {},
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 0,
+        description() { return `Allows the Kubrow to use Finisher attacks on an enemy.\n+${20 * (this.currRank + 1)}% Finisher Damage.` }
     },
     {
         abrev: 'c0',

@@ -2,6 +2,7 @@ UPDATE LOG
 30/06/2019 - v1.4.9.
 Fixes:
 Fixed an issue causing some missing information on Pacify & Provoke calculations for Equinox Prime.
+Added missing Sahasa kubrow mod Ferocity.
 
 20/06/2019 - v1.4.8.
 New:
