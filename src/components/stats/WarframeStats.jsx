@@ -261,7 +261,7 @@ export class WarframeStats extends PureComponent {
                                 }
                             }
                         }
-                        if (this.props.frame.name === 'EQUINOX') {
+                        if (this.props.frame.name === 'EQUINOX' || this.props.frame.name === 'EQUINOX PRIME') {
                             if (this.state.abilityThree === 1) {
                                 if (index === 0) {
                                     stats.push(

@@ -1,4 +1,8 @@
 UPDATE LOG
+30/06/2019 - v1.4.9.
+Fixes:
+Fixed an issue causing some missing information on Pacify & Provoke calculations for Equinox Prime.
+
 20/06/2019 - v1.4.8.
 New:
 Added a Primal Rage input to Iron Staff.
