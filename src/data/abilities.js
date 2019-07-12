@@ -6874,7 +6874,7 @@ const abilities = {
     wukong: [
         {
             name: 'Celestial Twin',
-            img: require('../assets/itemimages/ironjab.png'),
+            img: require('../assets/itemimages/celestialtwin.png'),
             details: [
                 {
                     strength: [
@@ -6956,7 +6956,7 @@ const abilities = {
                         {
                             name: 'Invulnerability duration',
                             suffix: 's',
-                            base: 5
+                            base: 2
                         },
                         {
                             name: 'Armor buff duration',

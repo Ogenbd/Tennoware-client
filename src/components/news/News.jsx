@@ -80,6 +80,8 @@ export class News extends Component {
               <div className="tennoware-update">
                 <div className="update-title">Update 1.4.9</div>
                 <div className="update-content">
+                  <p>Added Wukong Prime, Zhuge Prime and Ninkondi Prime.</p>
+                  <p>Updated Wukong's ability icons.</p>
                   <p>Added the missing Sahasa kubrow mod, Ferocity.</p>
                   <p>Fixed inability to save and find Garudas Talons builds.</p>
                   <p>Fixed an issue causing some missing information on Pacify & Provoke calculations for Equinox Prime.</p>

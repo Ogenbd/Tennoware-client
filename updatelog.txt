@@ -1,9 +1,16 @@
 UPDATE LOG
-30/06/2019 - v1.4.9.
+12/07/2019 - v1.4.9.
+New:
+Added Wukong Prime.
+Added Zhuge Prime.
+Added Ninkondi Prime.
+Updated Wukong's ability icons.
 Fixes:
 Fixed an issue causing some missing information on Pacify & Provoke calculations for Equinox Prime.
 Added missing Sahasa kubrow mod Ferocity.
 Fixed inability to save and find Garudas Talons builds.
+Corrected Wukong's armor value from 225 to 250.
+Corrected Defy's invulnerability duration from 5 sec to 2 sec.
 
 20/06/2019 - v1.4.8.
 New:

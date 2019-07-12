@@ -252,6 +252,10 @@ const warframeList = [
         img: require('../assets/itemimages/wukong.png')
     },
     {
+        name: 'WUKONG PRIME',
+        img: require('../assets/itemimages/wukong-prime.png')
+    },
+    {
         name: 'ZEPHYR',
         img: require('../assets/itemimages/zephyr.png')
     },

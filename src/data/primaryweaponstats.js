@@ -5747,7 +5747,7 @@ const primaryWeaponStats = [
         reload: 2.5,
         magSize: 20,
         maxAmmo: 540,
-        disposition: 3,
+        disposition: 4,
         modes: [
             {
                 trigger: 'Auto',
@@ -5770,6 +5770,43 @@ const primaryWeaponStats = [
                     {
                         type: 'Slash',
                         percent: 0.2
+                    },
+                ]
+            }
+        ]
+    },
+    {
+        name: 'ZHUGE-PRIME',
+        mastery: 7,
+        type: ['RIFLE', 'BOW', 'PROJECTILE'],
+        polarities: ['madurai', 'madurai', 'madurai'],
+        noise: 'Silent',
+        reload: 3,
+        magSize: 30,
+        maxAmmo: 540,
+        disposition: 4,
+        modes: [
+            {
+                trigger: 'Auto',
+                fireRate: 5.5,
+                accuracy: 40,
+                punchThrough: 0,
+                critChance: 0.26,
+                critMult: 2,
+                status: 0.3,
+                damage: 90,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 21.2/90
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 26.5/90
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 42.3/90
                     },
                 ]
             }

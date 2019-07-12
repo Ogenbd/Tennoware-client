@@ -470,6 +470,10 @@ const primaryWeaponList = [
   {
     name: 'ZHUGE',
     img: require('../assets/itemimages/zhuge.png')
+  },
+  {
+    name: 'ZHUGE PRIME',
+    img: require('../assets/itemimages/zhuge-prime.png')
   }
 ]
 

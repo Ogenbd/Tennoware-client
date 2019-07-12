@@ -4289,6 +4289,48 @@ const meleeStats = [
     ]
   },
   {
+    name: 'NINKONDI PRIME',
+    mastery: 0,
+    type: [
+      'NUNCHAKU',
+      'NINKONDI'
+    ],
+    polarities: ['madurai', 'madurai'],
+    stance: 'vazarin',
+    disposition: 5,
+    channelMult: 1.5,
+    modes: [
+      {
+        speed: 1,
+        slide: 116,
+        wall: 216,
+        slam: 54,
+        critChance: 0.22,
+        critMult: 2.4,
+        status: 0.36,
+        damage: 54,
+        split: [
+          {
+            type: 'Impact',
+            percent: 13/54
+          },
+          {
+            type: 'Puncture',
+            percent: 6/54
+          },
+          {
+            type: 'Slash',
+            percent: 11/54
+          },
+          {
+            type: 'Electricity',
+            percent: 24/54
+          }
+        ]
+      }
+    ]
+  },
+  {
     name: 'OBEX',
     mastery: 0,
     type: [

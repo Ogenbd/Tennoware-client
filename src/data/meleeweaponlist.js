@@ -400,6 +400,10 @@ const meleeList = [
         img: require('../assets/itemimages/ninkondi.png')
     },
     {
+        name: 'NINKONDI PRIME',
+        img: require('../assets/itemimages/ninkondi-prime.png')
+    },
+    {
         name: 'OBEX',
         img: require('../assets/itemimages/obex.png')
     },

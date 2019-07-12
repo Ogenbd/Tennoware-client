@@ -935,7 +935,7 @@ const warframeStats = [
         polarities: ['naramon', 'vazarin'],
         aura: 'madurai',
         exilus: undefined,
-        armor: 225,
+        armor: 250,
         energy: 180,
         baseEnergy: 120,
         health: 450,
@@ -943,6 +943,21 @@ const warframeStats = [
         shields: 300,
         baseShields: 100,
         speed: 1,
+        abilities: abilities.wukong
+    },
+    {
+        name: 'WUKONG PRIME',
+        polarities: ['naramon', 'vazarin', 'madurai'],
+        aura: 'madurai',
+        exilus: undefined,
+        armor: 275,
+        energy: 195,
+        baseEnergy: 130,
+        health: 450,
+        baseHealth: 150,
+        shields: 360,
+        baseShields: 120,
+        speed: 1.05,
         abilities: abilities.wukong
     },
     {
