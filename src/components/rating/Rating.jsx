@@ -143,12 +143,14 @@ export class Rating extends PureComponent {
                 <div className="stars-container">
                     {rating}
                 </div>
+                {!this.state.readOnly &&
                 <div className="general-error" style={this.state.error !== null ? { opacity: 1, zIndex: 9112 } : { opacity: 0, zIndex: -1, transitionDelay: '0s, 0.2s' }}>
                     <div className="general-error-box">
                         <p>{this.state.error}</p>
                         <div className="interactable interactable-semi-inactive general-button" onClick={this.confirmError}><p className="interactable-p">Confirm</p></div>
                     </div>
                 </div>
+                }
             </React.Fragment>
         )
     }
