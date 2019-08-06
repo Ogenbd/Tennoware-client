@@ -1,5 +1,7 @@
 UPDATE LOG
 upcoming - v1.4.10.
+New:
+Added the Quatz.
 Fixes:
 Fixed Zhuge Prime page broken link.
 Fixed an issue causing bugs for users that are not logged in.

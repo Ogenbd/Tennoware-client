@@ -3124,6 +3124,80 @@ const secondaryWeaponStats = [
         ]
     },
     {
+        name: 'QUATZ',
+        mastery: 9,
+        type: [
+            'PISTOL'
+        ],
+        polarities: [],
+        noise: 'Alarming',
+        reload: 2.7,
+        magSize: 72,
+        maxAmmo: 504,
+        disposition: 3,
+        modes: [
+            {
+                name: 'Auto',
+                trigger: 'Auto',
+                fireRate: 15,
+                accuracy: 40,
+                punchThrough: 0,
+                critChance: 0.13,
+                critMult: 1.5,
+                status: 0.27,
+                damage: 29,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 9 / 29
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 7 / 29
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 2 / 29
+                    },
+                    {
+                        type: 'Electricity',
+                        percent: 11 / 29
+                    }
+                ]
+            },
+            {
+                name: 'Burst',
+                trigger: 'Burst',
+                burst: 4,
+                fireRate: 10,
+                accuracy: 90.9,
+                punchThrough: 0,
+                critChance: 0.27,
+                critMult: 2.5,
+                status: 0.19,
+                damage: 29,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 9 / 29
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 7 / 29
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 2 / 29
+                    },
+                    {
+                        type: 'Electricity',
+                        percent: 11 / 29
+                    }
+                ]
+            }
+        ]
+    },
+    {
         name: 'RAKTA BALLISTICA',
         mastery: 6,
         type: [
