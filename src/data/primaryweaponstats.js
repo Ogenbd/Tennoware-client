@@ -5776,7 +5776,7 @@ const primaryWeaponStats = [
         ]
     },
     {
-        name: 'ZHUGE-PRIME',
+        name: 'ZHUGE PRIME',
         mastery: 7,
         type: ['RIFLE', 'BOW', 'PROJECTILE'],
         polarities: ['madurai', 'madurai', 'madurai'],

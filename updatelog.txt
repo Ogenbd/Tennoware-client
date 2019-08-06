@@ -1,4 +1,8 @@
 UPDATE LOG
+upcoming - v1.4.10.
+Fixes:
+Fixed Zhuge Prime page broken link.
+
 12/07/2019 - v1.4.9.
 New:
 Added Wukong Prime.
