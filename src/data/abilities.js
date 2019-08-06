@@ -6476,7 +6476,7 @@ const abilities = {
                             base: 12
                         }
                     ],
-                    range: [
+                    exception: [
                         {
                             name: 'Radius',
                             suffix: 'm',

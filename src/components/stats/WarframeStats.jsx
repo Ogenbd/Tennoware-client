@@ -492,6 +492,15 @@ export class WarframeStats extends PureComponent {
                                 </div>
                             )
                         }
+                        if (this.props.frame.name === 'VAUBAN' || this.props.frame.name === 'VAUBAN PRIME') {
+                            let rangeMult = this.state.effects.range ? this.state.effects.range + 1 : 1;
+                            stats.push(
+                                <div key={`${coefficient}${index}`} className="ability-stat">
+                                    <div className="ability-stat-name">{stat.name}</div>
+                                    <div className={"ability-stat-amount " + (rangeMult > 1 ? "increased-stat" : rangeMult < 1 ? "decreased-stat" : "")}>{(stat.base * (rangeMult ** 0.5)).toFixed(2)}m</div>
+                                </div>
+                            )
+                        }
                         // end of exceptions
                     } else {
                         stats.push(

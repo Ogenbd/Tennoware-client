@@ -4,7 +4,8 @@ New:
 Added the Quatz.
 Fixes:
 Fixed Zhuge Prime page broken link.
-Fixed an issue causing bugs for users that are not logged in.
+Fixed an issue causing UI bugs for users that are not logged in.
+Fixed Vauban's Vortex range calculation.
 
 12/07/2019 - v1.4.9.
 New:
