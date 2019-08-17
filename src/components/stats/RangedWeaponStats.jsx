@@ -24,6 +24,7 @@ export class RangedWeaponStats extends Component {
       reload: false,
       cast: false,
       first: false,
+      harpoon: false,
       headshotKill: false,
       landSpecialJump: false,
       duringWallLatch: false,
@@ -33,6 +34,7 @@ export class RangedWeaponStats extends Component {
       reloadToggle: false,
       castToggle: false,
       firstToggle: false,
+      harpoonToggle: false,
       headshotKillToggle: false,
       landSpecialJumpToggle: false,
       duringWallLatchToggle: false,
@@ -55,7 +57,8 @@ export class RangedWeaponStats extends Component {
       first: false,
       headshotKill: false,
       landSpecialJump: false,
-      duringWallLatch: false
+      duringWallLatch: false,
+      harpoon: false
     };
     let fireMode = state.mode;
     if (state.baseStatsToggle) {
@@ -76,7 +79,7 @@ export class RangedWeaponStats extends Component {
             }
             let modEffects = JSON.parse(JSON.stringify(mod.effects));
             for (let effect in modEffects) {
-              modEffects[effect] = modEffects[effect] * (mod.currRank + 1);
+              modEffects[effect] = Array.isArray(modEffects[effect]) ? modEffects[effect][mod.currRank] : modEffects[effect] * (mod.currRank + 1);
             }
             conditionalEffects.push({
               effects: modEffects,
@@ -198,6 +201,10 @@ export class RangedWeaponStats extends Component {
   toggleFirst = () => {
     this.setState(prevState => ({ firstToggle: !prevState.firstToggle }));
   };
+
+  toggleHarpoon = () => {
+    this.setState(prevState => ({ harpoonToggle: !prevState.harpoonToggle }));
+  }
 
   toggleHeadshotKill = () => {
     this.setState(prevState => ({
@@ -504,9 +511,9 @@ export class RangedWeaponStats extends Component {
         return type.type === "Impact";
       });
       if (typeIndex !== -1) {
-        damageSplit[typeIndex].damage += 
+        damageSplit[typeIndex].damage +=
           damageSplit[typeIndex].damage * this.state.effects.impact;
-          if (damageSplit[typeIndex].damage < 0) damageSplit[typeIndex].damage = 0
+        if (damageSplit[typeIndex].damage < 0) damageSplit[typeIndex].damage = 0
       }
     }
     if (this.state.effects.slash) {
@@ -516,7 +523,7 @@ export class RangedWeaponStats extends Component {
       if (typeIndex !== -1) {
         damageSplit[typeIndex].damage +=
           damageSplit[typeIndex].damage * this.state.effects.slash;
-          if (damageSplit[typeIndex].damage < 0) damageSplit[typeIndex].damage = 0
+        if (damageSplit[typeIndex].damage < 0) damageSplit[typeIndex].damage = 0
       }
     }
     if (this.state.effects.puncture) {
@@ -526,7 +533,7 @@ export class RangedWeaponStats extends Component {
       if (typeIndex !== -1) {
         damageSplit[typeIndex].damage +=
           damageSplit[typeIndex].damage * this.state.effects.puncture;
-          if (damageSplit[typeIndex].damage < 0) damageSplit[typeIndex].damage = 0
+        if (damageSplit[typeIndex].damage < 0) damageSplit[typeIndex].damage = 0
       }
     }
     if (nativeElementPosition !== -1) {
@@ -1607,6 +1614,16 @@ export class RangedWeaponStats extends Component {
                       className="stat"
                       onChange={this.toggleDuringWallLatch}
                       checked={this.state.duringWallLatchToggle}
+                    />
+                  </div>
+                )}
+                {this.state.harpoon && (
+                  <div className="stats-switch">
+                    <p className="stat-name">After harpoon pull</p>
+                    <Switch
+                      className="stat"
+                      onChange={this.toggleHarpoon}
+                      checked={this.state.harpoonToggle}
                     />
                   </div>
                 )}

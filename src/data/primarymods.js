@@ -1,4 +1,4 @@
-// currently at abrev u0
+// currently at abrev u3
 const primaryMods = [
     {
         abrev: 'a0',
@@ -818,6 +818,19 @@ const primaryMods = [
         description() { return `+${Math.round(this.effects.none * (this.currRank + 1) * 100)}% Zoom` }
     },
     {
+        abrev: 'u1',
+        name: 'Efficient Beams',
+        img: require('../assets/modimages/unavail.jpg'),
+        type: 'CONVECTRIX',
+        rarity: 'rare',
+        polarity: 'naramon',
+        effects: { status: 0.25 },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 4,
+        description() { return `Only consume ammo when dealing damage.\n+${Math.round(this.effects.status * (this.currRank + 1) * 100)}% Status Chance` }
+    },
+    {
         abrev: 'p6',
         name: 'Emergent Aftermath',
         img: require('../assets/modimages/emergent-aftermath.jpg'),
@@ -844,6 +857,20 @@ const primaryMods = [
         currRank: 3,
         baseCost: 4,
         description() { return `+${this.effects.baseStatus * (this.currRank + 1)} Base Status Chance\n+${this.effects.none * (this.currRank + 1)} 'Entropy'` }
+    },
+    {
+        abrev: 'u2',
+        name: 'Exposing Harpoon',
+        img: require('../assets/modimages/unavail.jpg'),
+        type: 'HARPAK',
+        rarity: 'rare',
+        polarity: 'naramon',
+        effects: { critChance: [1, 1.3, 1.6, 2, 2.5, 3] },
+        conditional: { harpoon: true },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 4,
+        description() { return `Pulling an enemy will give +${Math.round(this.effects.critChance[this.currRank] * 100)}% Critical Chance for 10s.` }
     },
     {
         abrev: 'e1',
@@ -1529,6 +1556,19 @@ const primaryMods = [
         description() { return `When Aiming: ${Math.round(this.effects.none[0] * (this.currRank + 1) * 100)}% Fire Rate\n+${Math.round(this.effects.none[1] * (this.currRank + 1) * 1000) / 10}% Damage` }
     },
     {
+        abrev: 'u3',
+        name: 'Meticulous Aim',
+        img: require('../assets/modimages/unavail.jpg'),
+        type: 'VULKAR',
+        rarity: 'rare',
+        polarity: 'naramon',
+        effects: { headshotMult: 0.175 },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 4,
+        description() { return `+${Math.round(this.effects.headshotMult * (this.currRank + 1) * 1000) / 10}% Headshot Damage\n-${7.5 * (this.currRank + 1)}% Bodyshot Damage` }
+    },
+    {
         abrev: 'r3',
         name: 'Momentary Pause',
         img: require('../assets/modimages/momentary-pause.jpg'),
@@ -1921,7 +1961,7 @@ const primaryMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        set: { setName: 'proton', setMax: 3, setCurr: 1},
+        set: { setName: 'proton', setMax: 3, setCurr: 1 },
         description() { return [`During a Wall Latch gain +${Math.round(this.effects.critChance * (this.currRank + 1) * 100)}% Status Chance and Critical Chance.`, `During a Wall Latch gain +17% Damage Reduction`] }
     },
     {

@@ -930,7 +930,7 @@ const primaryWeaponStats = [
     {
         name: 'CONVECTRIX',
         mastery: 7,
-        type: ['SHOTGUN', 'BEAM'],
+        type: ['SHOTGUN', 'BEAM', 'CONVECTRIX'],
         polarities: [],
         noise: 'Alarming',
         reload: 2,
@@ -1776,7 +1776,7 @@ const primaryWeaponStats = [
     {
         name: 'HARPAK',
         mastery: 7,
-        type: ['RIFLE', 'ASSAULT RIFLE', 'PROJECTILE'],
+        type: ['RIFLE', 'ASSAULT RIFLE', 'PROJECTILE', 'HARPAK'],
         polarities: ['madurai'],
         noise: 'Alarming',
         reload: 2,
@@ -5798,15 +5798,15 @@ const primaryWeaponStats = [
                 split: [
                     {
                         type: 'Impact',
-                        percent: 21.2/90
+                        percent: 21.2 / 90
                     },
                     {
                         type: 'Puncture',
-                        percent: 26.5/90
+                        percent: 26.5 / 90
                     },
                     {
                         type: 'Slash',
-                        percent: 42.3/90
+                        percent: 42.3 / 90
                     },
                 ]
             }
