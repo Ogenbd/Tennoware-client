@@ -676,7 +676,7 @@ export class RangedWeaponStats extends Component {
         });
       }
       if (this.state.effects.fireRate) {
-        if (this.props.weapon.bow) {
+        if (this.props.weapon.type.includes("BOW")) {
           fireRateMult += this.state.effects.fireRate * 2;
         } else {
           fireRateMult += this.state.effects.fireRate;

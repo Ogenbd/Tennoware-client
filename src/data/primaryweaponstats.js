@@ -132,7 +132,6 @@ const primaryWeaponStats = [
         noise: 'Silent',
         reload: 0.9,
         magSize: 1,
-        bow: true,
         exalted: true,
         modes: [
             {
@@ -808,7 +807,6 @@ const primaryWeaponStats = [
         reload: 0.6,
         magSize: 1,
         maxAmmo: 72,
-        bow: true,
         disposition: 2,
         modes: [
             {
@@ -869,10 +867,8 @@ const primaryWeaponStats = [
         polarities: ['madurai', 'madurai'],
         noise: 'Silent',
         reload: 1,
-        // reload: 0.65,
         magSize: 1,
         maxAmmo: 72,
-        bow: true,
         disposition: 2,
         modes: [
             {
@@ -1034,7 +1030,6 @@ const primaryWeaponStats = [
         reload: 0.6,
         magSize: 1,
         maxAmmo: 72,
-        bow: true,
         disposition: 4,
         modes: [
             {
@@ -1249,7 +1244,6 @@ const primaryWeaponStats = [
         reload: 0.7,
         magSize: 1,
         maxAmmo: 72,
-        bow: true,
         disposition: 2,
         modes: [
             {
@@ -2510,7 +2504,6 @@ const primaryWeaponStats = [
         reload: 0.6,
         magSize: 1,
         maxAmmo: 6,
-        bow: true,
         disposition: 3,
         modes: [
             {
@@ -2677,7 +2670,6 @@ const primaryWeaponStats = [
         reload: 0.55,
         magSize: 1,
         maxAmmo: 72,
-        bow: true,
         disposition: 3,
         modes: [
             {
@@ -2780,7 +2772,6 @@ const primaryWeaponStats = [
         reload: 0.6,
         magSize: 1,
         maxAmmo: 72,
-        bow: true,
         disposition: 4,
         modes: [
             {
@@ -3245,7 +3236,6 @@ const primaryWeaponStats = [
         reload: 0.7,
         magSize: 1,
         maxAmmo: 72,
-        bow: true,
         disposition: 3,
         modes: [
             {
@@ -3308,7 +3298,6 @@ const primaryWeaponStats = [
         reload: 0.7,
         magSize: 1,
         maxAmmo: 72,
-        bow: true,
         disposition: 3,
         modes: [
             {
@@ -3806,7 +3795,6 @@ const primaryWeaponStats = [
         reload: 0.6,
         magSize: 1,
         maxAmmo: 72,
-        bow: true,
         disposition: 2,
         modes: [
             {
