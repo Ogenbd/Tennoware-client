@@ -2666,7 +2666,7 @@ const warframeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
-        description() { return `+${this.effects.none[0] * (this.currRank + 1)}% Chance to Resist Knockdown\n+${this.effects.none[0] * (this.currRank + 1)}% Shield Recharge` }
+        description() { return `+${this.effects.none[0] * (this.currRank + 1)}% Chance to Resist Knockdown\n+${this.effects.none[1] * (this.currRank + 1)}% Shield Recharge` }
     },
     {
         abrev: 'h4',
