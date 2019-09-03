@@ -2165,6 +2165,214 @@ const abilities = {
             ]
         },
     ],
+    gauss: [
+        {
+            name: 'Mach Rush',
+            img: undefined,
+            details: [
+                {
+                    strength: [
+                        {
+                            name: 'Explosion Damage',
+                            base: 800,
+                            icon: require('../assets/dynamic/damage/Impact.png')
+                        },
+                    ],
+                    range: [
+                        {
+                            name: 'Knockdown radius',
+                            suffix: 'm',
+                            base: 4
+                        },
+                        {
+                            name: 'Explosion radius',
+                            suffix: 'm',
+                            base: 10
+                        },
+                    ],
+                    none: [
+                        {
+                            name: 'Battery charge on cast',
+                            suffix: '%',
+                            base: 10,
+                        },
+                        {
+                            name: 'Dash distance',
+                            suffix: 'm',
+                            base: 12,
+                        }
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Energy',
+                            base: 15
+                        },
+                        {
+                            name: 'Distance per energy drained 2',
+                            suffix: 'm',
+                            base: 2
+                        },
+                    ],
+                }
+            ]
+        },
+        {
+            name: 'Kinetic Plating',
+            img: undefined,
+            details: [
+                {
+                    exception: [
+                        {
+                            name: 'Minimum damage reduction',
+                            suffix: '%',
+                            base: 20,
+                        },
+                        {
+                            name: 'Maximum damage reduction',
+                            suffix: '%',
+                            base: 100,
+                        },
+                    ],
+                    duration: [
+                        {
+                            name: 'Duration',
+                            suffix: 's',
+                            base: 30
+                        }
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Energy',
+                            base: 50
+                        },
+                    ],
+                    none: [
+                        {
+                            name: 'Battery drain/s',
+                            suffix: '%',
+                            base: 1.28
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            name: 'Thermal Sunder',
+            img: undefined,
+            details: [
+                {
+                    strength: [
+                        {
+                            name: 'Minimum Cold/Heat damage',
+                            base: 150
+                        },
+                        {
+                            name: 'Maximum Cold/Heat damage',
+                            base: 750
+                        },
+                        {
+                            name: 'Minimum Blast damage',
+                            base: 300
+                        },
+                        {
+                            name: 'Maximum Blast damage',
+                            base: 1500
+                        },
+                    ],
+                    duration: [
+                        {
+                            name: 'Zone duration',
+                            suffix: 's',
+                            base: 10
+                        },
+                        {
+                            name: 'Minimum status duration',
+                            suffix: 's',
+                            base: 4
+                        },
+                        {
+                            name: 'Maximum status duration',
+                            suffix: 's',
+                            base: 8
+                        },
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Energy',
+                            base: 50
+                        },
+                    ],
+                }
+            ]
+        },
+        {
+            name: 'Redline',
+            img: undefined,
+            details: [
+                {
+                    strength: [
+                        {
+                            name: 'Damage',
+                            base: 400,
+                        },
+                    ],
+                    duration: [
+                        {
+                            name: 'Duration',
+                            suffix: 's',
+                            base: 30
+                        },
+                        {
+                            name: 'Minimum fire rate buff',
+                            suffix: '%',
+                            base: 15
+                        },
+                        {
+                            name: 'Maximum fire rate buff',
+                            suffix: '%',
+                            base: 75
+                        },
+                        {
+                            name: 'Minimum attack speed buff',
+                            suffix: '%',
+                            base: 8
+                        },
+                        {
+                            name: 'Maximum attack speed buff',
+                            suffix: '%',
+                            base: 40
+                        },
+                        {
+                            name: 'Minimum reload speed buff',
+                            suffix: '%',
+                            base: 10
+                        },
+                        {
+                            name: 'Maximum reload speed buff',
+                            suffix: '%',
+                            base: 50
+                        },
+                        {
+                            name: 'Minimum holster speed buff',
+                            suffix: '%',
+                            base: 20
+                        },
+                        {
+                            name: 'Maximum holster speed buff',
+                            suffix: '%',
+                            base: 100
+                        },
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Energy',
+                            base: 100
+                        },
+                    ],
+                }
+            ]
+        },
+    ],
     harrow: [
         {
             name: 'Condemn',

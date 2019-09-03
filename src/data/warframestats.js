@@ -287,6 +287,21 @@ const warframeStats = [
         abilities: abilities.garuda
     },
     {
+        name: 'GAUSS',
+        polarities: ['madurai', 'vazarin'],
+        aura: 'naramon',
+        exilus: 'naramon',
+        armor: 150,
+        energy: 225,
+        baseEnergy: 150,
+        health: 300,
+        baseHealth: 100,
+        shields: 450,
+        baseShields: 150,
+        speed: 1.4,
+        abilities: abilities.gauss
+    },
+    {
         name: 'HARROW',
         polarities: ['vazarin', 'naramon'],
         aura: 'naramon',
