@@ -8,6 +8,10 @@ const secondaryWeaponList = [
     img: require('../assets/itemimages/afuris.png')
   },
   {
+    name: 'AKARIUS',
+    img: require('../assets/itemimages/akarius.png')
+  },
+  {
     name: 'AKBOLTO',
     img: require('../assets/itemimages/akbolto.png')
   },

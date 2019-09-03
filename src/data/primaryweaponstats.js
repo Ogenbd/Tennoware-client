@@ -1,5 +1,42 @@
 const primaryWeaponStats = [
     {
+        name: 'ACCELTRA',
+        mastery: 8,
+        type: ['RIFLE', 'ASSAULT RIFLE', 'ACCELTRA'],
+        polarities: ['naramon'],
+        noise: 'Alarming',
+        reload: 2,
+        magSize: 48,
+        maxAmmo: 96,
+        disposition: 3,
+        modes: [
+            {
+                trigger: 'Auto',
+                fireRate: 23,
+                accuracy: 23.5,
+                punchThrough: 0,
+                critChance: 0.32,
+                critMult: 2.8,
+                status: 0.06,
+                damage: 70,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 26 / 70
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 35.2 / 70
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 8.8 / 70
+                    }
+                ]
+            }
+        ]
+    },
+    {
         name: 'AMPREX',
         mastery: 10,
         type: ['RIFLE', 'BEAM', 'ASSAULT RIFLE'],

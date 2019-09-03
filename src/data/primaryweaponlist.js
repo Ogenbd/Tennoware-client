@@ -1,5 +1,9 @@
 const primaryWeaponList = [
   {
+    name: 'ACCELTRA',
+    img: require('../assets/itemimages/acceltra.png')
+  },
+  {
     name: 'AMPREX',
     img: require('../assets/itemimages/amprex.png')
   },

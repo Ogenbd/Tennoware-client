@@ -72,6 +72,41 @@ const secondaryWeaponStats = [
         ]
     },
     {
+        name: 'AKARIUS',
+        mastery: 8,
+        type: [
+            'PISTOL'
+        ],
+        polarities: ['naramon', 'naramon'],
+        noise: 'Alarming',
+        reload: 3.4,
+        magSize: 10,
+        maxAmmo: 20,
+        disposition: 3,
+        modes: [
+            {
+                trigger: 'Burst',
+                fireRate: 4.25,
+                accuracy: 26.7,
+                punchThrough: 0,
+                critChance: 0.06,
+                critMult: 1.8,
+                status: 0.28,
+                damage: 487,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 68 / 487
+                    },
+                    {
+                        type: 'Blast',
+                        percent: 419 / 487
+                    }
+                ]
+            }
+        ]
+    },
+    {
         name: 'AKBOLTO',
         mastery: 9,
         type: [
