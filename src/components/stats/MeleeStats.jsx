@@ -203,6 +203,10 @@ export class MeleeStats extends Component {
         let statusMult = 1;
         let comboMult = 0;
         let status = {};
+        let weaponStatus = this.props.weapon.modes[this.state.mode].status;
+        if (this.props.weapon.type[0] === 'EXALTED BLADE' && this.state.mode > 0) {
+            weaponStatus += 0.5 * this.state.powerStr / 100;
+        }
         let conditionalStatusEffects = this.state.conditionalEffects.filter(
             conditional => conditional.effects.status
         );
@@ -220,36 +224,33 @@ export class MeleeStats extends Component {
         if (this.state.effects.comboStatus) comboMult += this.state.effects.comboStatus;
         if (this.state.effects.status) statusMult += this.state.effects.status;
         if (comboMult !== 0 && this.state.combo > 0) {
-            if (this.props.weapon.modes[this.state.mode].status * statusMult * (1 + comboMult * (this.state.combo + 1)) / 100 >= 1) {
+            if (weaponStatus * statusMult * (1 + comboMult * (this.state.combo + 1)) / 100 >= 1) {
                 status.chance = 100;
                 status.chancePerPellet = 100;
             } else {
-                status.chance = Math.round(this.props.weapon.modes[this.state.mode].status * statusMult * (1 + comboMult * (this.state.combo + 1)) * 1000) / 10;
+                status.chance = Math.round(weaponStatus * statusMult * (1 + comboMult * (this.state.combo + 1)) * 1000) / 10;
                 if (this.props.weapon.modes[this.state.mode].pellets) {
-                    if ((1 - (1 - this.props.weapon.modes[this.state.mode].status * statusMult * (1 + comboMult * (this.state.combo + 1)))) * 100 >= 100) {
+                    if ((1 - (1 - weaponStatus * statusMult * (1 + comboMult * (this.state.combo + 1)))) * 100 >= 100) {
                         status.chancePerPellet = 100
                     } else {
-                        status.chancePerPellet = Math.round(((1 - Math.pow(1 - this.props.weapon.modes[this.state.mode].status * statusMult * (1 + comboMult * (this.state.combo + 1)), 1 / this.props.weapon.modes[this.state.mode].pellets)) * 100) * 10) / 10;
+                        status.chancePerPellet = Math.round(((1 - Math.pow(1 - weaponStatus * statusMult * (1 + comboMult * (this.state.combo + 1)), 1 / this.props.weapon.modes[this.state.mode].pellets)) * 100) * 10) / 10;
                     }
                 }
             }
         } else {
-            if (this.props.weapon.modes[this.state.mode].status * statusMult / 100 >= 1) {
+            if (weaponStatus * statusMult / 100 >= 1) {
                 status.chance = 100;
                 status.chancePerPellet = 100;
             } else {
-                status.chance = Math.round(this.props.weapon.modes[this.state.mode].status * statusMult * 1000) / 10;
+                status.chance = Math.round(weaponStatus * statusMult * 1000) / 10;
                 if (this.props.weapon.modes[this.state.mode].pellets) {
-                    if ((1 - (1 - this.props.weapon.modes[this.state.mode].status * statusMult)) * 100 >= 100) {
+                    if ((1 - (1 - weaponStatus * statusMult)) * 100 >= 100) {
                         status.chancePerPellet = 100
                     } else {
-                        status.chancePerPellet = Math.round(((1 - Math.pow(1 - this.props.weapon.modes[this.state.mode].status * statusMult, 1 / this.props.weapon.modes[this.state.mode].pellets)) * 100) * 10) / 10;
+                        status.chancePerPellet = Math.round(((1 - Math.pow(1 - weaponStatus * statusMult, 1 / this.props.weapon.modes[this.state.mode].pellets)) * 100) * 10) / 10;
                     }
                 }
             }
-        }
-        if (this.props.weapon.type[0] === 'EXALTED BLADE' && this.state.mode > 0) {
-            status.chance += 50 * this.state.powerStr / 100;
         }
         if (status.chance > 100) status.chance = 100;
         return status;
