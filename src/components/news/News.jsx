@@ -78,10 +78,11 @@ export class News extends Component {
           <div className="news-container">
             <div className="home-left">
               <div className="tennoware-update">
-                <div className="update-title">Update 1.4.11</div>
+                <div className="update-title">Update 1.4.12</div>
                 <div className="update-content">
-                  <p>Added Nightwave season 2 mods: Efficient Beams, Exposing Harpoon and Meticulous Aim. Also added a toggle for Meticulous Aim critical calculation.</p>
-                  <p>Fixed an issue with crossbow fire rate calculations.</p>
+                  <p>Added Gauss, Accelra and Akarius.</p>
+                  <p>Fixed an issue with chromatic blade status chance calculations.</p>
+                  <p>Synth mods can be used on all companions.</p>
                   <p>For a complete list of additions, changes and fixes head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/comments/a3oyso/tennoware_update_log/">Tennoware update log</a>.</p>
                   <p>To report bugs, missing things, incorrect stats and feature suggestions head over to the <a className="reddit-link" href="https://www.reddit.com/r/Tennoware/">Tennoware subreddit</a>.</p>
                 </div>
