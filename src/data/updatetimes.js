@@ -6,6 +6,10 @@ const updateTimes = [
     {
         name: 'imperator vandal',
         updated: (1549257681476)
+    },
+    {
+        name: 'cryotra',
+        updated: (1568793137463)
     }
 ]
 

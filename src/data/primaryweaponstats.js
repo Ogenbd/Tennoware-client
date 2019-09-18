@@ -12,7 +12,7 @@ const primaryWeaponStats = [
         modes: [
             {
                 trigger: 'Auto',
-                fireRate: 23,
+                fireRate: 12,
                 accuracy: 23.5,
                 punchThrough: 0,
                 critChance: 0.32,
@@ -197,14 +197,14 @@ const primaryWeaponStats = [
                 ]
             },
             {
-                name: 'Uncharged',
+                name: 'Concentrated Arrow',
                 trigger: 'Charge',
                 accuracy: 100,
-                punchThrough: 1,
+                punchThrough: 0,
                 critChance: 0.25,
                 critMult: 2,
                 status: 0.2,
-                damage: 1680,
+                damage: 240,
                 split: [
                     {
                         type: 'Impact',
@@ -855,7 +855,7 @@ const primaryWeaponStats = [
                 critChance: 0.36,
                 critMult: 2,
                 status: 0.18,
-                damage: 220,
+                damage: 380,
                 split: [
                     {
                         type: 'Impact',
@@ -879,7 +879,7 @@ const primaryWeaponStats = [
                 critChance: 0.18,
                 critMult: 1.5,
                 status: 0.18,
-                damage: 110,
+                damage: 190,
                 split: [
                     {
                         type: 'Impact',
@@ -918,7 +918,7 @@ const primaryWeaponStats = [
                 critChance: 0.35,
                 critMult: 2,
                 status: 0.3,
-                damage: 360,
+                damage: 552,
                 split: [
                     {
                         type: 'Impact',
@@ -942,7 +942,7 @@ const primaryWeaponStats = [
                 critChance: 0.175,
                 critMult: 1.5,
                 status: 0.3,
-                damage: 180,
+                damage: 276,
                 split: [
                     {
                         type: 'Impact',
@@ -1074,10 +1074,10 @@ const primaryWeaponStats = [
                 chargeRate: 1,
                 accuracy: 16.7,
                 punchThrough: 3,
-                critChance: 0.2,
+                critChance: 0.34,
                 critMult: 2,
-                status: 0.5,
-                damage: 460,
+                status: 0.46,
+                damage: 700,
                 split: [
                     {
                         type: 'Impact',
@@ -1292,7 +1292,7 @@ const primaryWeaponStats = [
                 critChance: 0.5,
                 critMult: 2,
                 status: 0.2,
-                damage: 200,
+                damage: 336,
                 split: [
                     {
                         type: 'Impact',
@@ -1316,7 +1316,7 @@ const primaryWeaponStats = [
                 critChance: 0.25,
                 critMult: 2,
                 status: 0.2,
-                damage: 130,
+                damage: 168,
                 split: [
                     {
                         type: 'Impact',
@@ -2718,7 +2718,7 @@ const primaryWeaponStats = [
                 critChance: 0.3,
                 critMult: 2,
                 status: 0.15,
-                damage: 120,
+                damage: 230,
                 split: [
                     {
                         type: 'Impact',
@@ -2742,7 +2742,7 @@ const primaryWeaponStats = [
                 critChance: 0.15,
                 critMult: 1.5,
                 status: 0.15,
-                damage: 100,
+                damage: 115,
                 split: [
                     {
                         type: 'Impact',
@@ -2820,7 +2820,7 @@ const primaryWeaponStats = [
                 critChance: 0.15,
                 critMult: 2,
                 status: 0.49,
-                damage: 225,
+                damage: 410,
                 split: [
                     {
                         type: 'Impact',
@@ -2844,7 +2844,7 @@ const primaryWeaponStats = [
                 critChance: 0.1,
                 critMult: 1.5,
                 status: 0.49,
-                damage: 120,
+                damage: 205,
                 split: [
                     {
                         type: 'Impact',
@@ -3284,7 +3284,7 @@ const primaryWeaponStats = [
                 critChance: 0.3,
                 critMult: 2,
                 status: 0.1,
-                damage: 180,
+                damage: 320,
                 split: [
                     {
                         type: 'Impact',
@@ -3308,7 +3308,7 @@ const primaryWeaponStats = [
                 critChance: 0.2,
                 critMult: 1.5,
                 status: 0.1,
-                damage: 120,
+                damage: 160,
                 split: [
                     {
                         type: 'Impact',
@@ -3346,7 +3346,7 @@ const primaryWeaponStats = [
                 critChance: 0.45,
                 critMult: 2,
                 status: 0.2,
-                damage: 260,
+                damage: 360,
                 split: [
                     {
                         type: 'Impact',
@@ -3370,7 +3370,7 @@ const primaryWeaponStats = [
                 critChance: 0.25,
                 critMult: 2,
                 status: 0.2,
-                damage: 130,
+                damage: 180,
                 split: [
                     {
                         type: 'Impact',
@@ -3843,7 +3843,7 @@ const primaryWeaponStats = [
                 critMult: 2,
                 status: 0.15,
                 punchThrough: 1,
-                damage: 250,
+                damage: 470,
                 split: [
                     {
                         type: 'Impact',
@@ -3866,7 +3866,7 @@ const primaryWeaponStats = [
                 critChance: 0.175,
                 critMult: 2,
                 status: 0.15,
-                damage: 150,
+                damage: 235,
                 split: [
                     {
                         type: 'Impact',

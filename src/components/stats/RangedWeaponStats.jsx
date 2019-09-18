@@ -615,6 +615,14 @@ export class RangedWeaponStats extends Component {
         mult: critChanceMult
       };
     }
+    // Artemis bow concentrated arrow headshot
+    if (this.props.weapon.name === "ARTEMIS BOW" && this.state.mode === 1) {
+      return {
+        display:
+          this.props.weapon.modes[this.state.mode].critChance * critChanceMult + 0.5,
+        mult: critChanceMult
+      };
+    }
     return {
       display:
         this.props.weapon.modes[this.state.mode].critChance * critChanceMult,

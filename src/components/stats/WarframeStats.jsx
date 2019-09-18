@@ -403,6 +403,14 @@ export class WarframeStats extends PureComponent {
                                             <div className={"ability-stat-amount " + (rangeMult > 0 ? "increased-stat" : rangeMult < 0 ? "decreased-stat" : "")}>{Math.round(stat.base + 135 * rangeMult)}°</div>
                                         </div>
                                     )
+                                } else if (index === 2) {
+                                    let durationMult = this.state.effects.duration ? this.state.effects.duration + augEffects.none * (augRank + 1) : augEffects.none * (augRank + 1);
+                                    stats.push(
+                                        <div key={`${coefficient}${index}`} className="ability-stat">
+                                            <div className="ability-stat-name">{stat.name}</div>
+                                            <div className={"ability-stat-amount " + (durationMult > 0 ? "increased-stat" : durationMult < 0 ? "decreased-stat" : "")}>{Math.round((stat.base + stat.base * durationMult) * 100) / 100}{stat.suffix}</div>
+                                        </div>
+                                    )
                                 }
                             }
                         }
@@ -435,6 +443,15 @@ export class WarframeStats extends PureComponent {
                                         ? <div className={"ability-stat-amount " + ((this.state.effects.strength > 0 ? "increased-stat" : "decreased-stat"))}>{stat.base + stat.base * this.state.effects.strength < 75 ? Math.round((stat.base + stat.base * this.state.effects.strength) * 10) / 10 : 75}%</div>
                                         : <div className="ability-stat-amount">{stat.base}%</div>
                                     }
+                                </div>
+                            )
+                        }
+                        if ((this.props.frame.name === 'MAG' || this.props.frame.name === 'MAG PRIME') && abilityNum === 1) {
+                            let rangeMult = this.state.effects.range ? this.state.effects.range + this.state.effects.range * augEffects.none[1][augRank] : augEffects.none[1][augRank];
+                            stats.push(
+                                <div key={`${coefficient}${index}`} className="ability-stat">
+                                    <div className="ability-stat-name">{stat.name}</div>
+                                    <div className={"ability-stat-amount " + (rangeMult > 0 ? "increased-stat" : rangeMult < 0 ? "decreased-stat" : "")}>{Math.round((stat.base + stat.base * rangeMult) * 100) / 100}{stat.suffix}</div>
                                 </div>
                             )
                         }

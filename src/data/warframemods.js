@@ -1134,7 +1134,7 @@ const warframeMods = [
         type: 'SARYN',
         rarity: 'rare',
         polarity: 'zenurik',
-        effects: { none: [100, 115, 130, 150] },
+        effects: { none: [[150, 175, 250, 300], [8, 9, 10, 12]] },
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
@@ -1157,7 +1157,7 @@ const warframeMods = [
                         },
                         {
                             name: 'Cloud damage',
-                            base(augEffects, augRank) { return augEffects.none[augRank] },
+                            base(augEffects, augRank) { return augEffects.none[0][augRank] },
                             icon: require('../assets/dynamic/damage/Toxin.png')
                         },
                     ],
@@ -1176,14 +1176,14 @@ const warframeMods = [
                         {
                             name: 'Cloud duration',
                             suffix: 's',
-                            base: 12
+                            base(augEffects, augRank) { return augEffects.none[1][augRank] }
                         }
                     ],
                     range: [
                         {
                             name: 'Cloud radius',
                             suffix: 'm',
-                            base: 2
+                            base: 5
                         }
                     ],
                     efficiency: [
@@ -1195,7 +1195,7 @@ const warframeMods = [
                 }
             ]
         },
-        description() { return `Toxic Lash Augment: Create 2m toxic clouds, dealing ${this.effects.none[this.currRank]} Toxin/s for 8s with every kill. Damage is twice as strong for Melee kills.` }
+        description() { return `Toxic Lash Augment: Create 2m toxic clouds, dealing ${this.effects.none[0][this.currRank]} Toxin/s for ${this.effects.none[1][this.currRank]}s with every kill. Damage is twice as strong for Melee kills.` }
     },
     {
         abrev: 'd1',
@@ -2296,7 +2296,7 @@ const warframeMods = [
         type: 'MIRAGE',
         rarity: 'rare',
         polarity: 'zenurik',
-        effects: { none: [150, 170, 200, 250, 15] },
+        effects: { none: [125, 25] },
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
@@ -2311,7 +2311,7 @@ const warframeMods = [
                         },
                         {
                             name: 'Proximity mine damage',
-                            base(augEffects, augRank) { return augEffects.none[augRank] }
+                            base(augEffects, augRank) { return augEffects.none[0] * (augRank + 1) }
                         },
                     ],
                     duration: [
@@ -2335,7 +2335,7 @@ const warframeMods = [
                         {
                             name: 'Proximity mine status chance',
                             suffix: '%',
-                            base(augEffects, augRank) { return augEffects.none[4] * (augRank + 1) }
+                            base(augEffects, augRank) { return augEffects.none[1] * (augRank + 1) }
                         },
                     ],
                     range: [
@@ -2369,7 +2369,7 @@ const warframeMods = [
                 },
             ]
         },
-        description() { return `Sleight of Hand Augment: Ammo and Orbs pickups are turned into proximity mines that deal ${this.effects.none[this.currRank]} Damage with a ${this.effects.none[4] * (this.currRank + 1)}% Proc Chance.` }
+        description() { return `Sleight of Hand Augment: Ammo and Orbs pickups are turned into proximity mines that deal ${this.effects.none[0] * (this.currRank + 1)} Damage with a ${this.effects.none[1] * (this.currRank + 1)}% Status Chance.` }
     },
     {
         abrev: 'g1',
@@ -2492,6 +2492,13 @@ const warframeMods = [
                             base(augEffects, augRank) { return 28 + 4 * augRank }
                         }
                     ],
+                    range: [
+                        {
+                            name: 'Damage buff radius',
+                            suffix: 'm',
+                            base: 15
+                        }
+                    ],
                     none: [
                         {
                             name: 'Radius',
@@ -2508,7 +2515,7 @@ const warframeMods = [
                 }
             ]
         },
-        description() { return `Fireball Augment: Casting on allies will add ${this.effects.none[this.currRank]}% Heat Damage to their attacks for ${28 + 4 * this.currRank}s.` }
+        description() { return `Fireball Augment: Hold to cast will grant all allies within 15m an additional ${this.effects.none[this.currRank]}% Heat Damage to their attacks for ${28 + 4 * this.currRank}s.` }
     },
     {
         abrev: 'g6',
@@ -2783,6 +2790,13 @@ const warframeMods = [
                             base(augEffects, augRank) { return 28 + 4 * augRank }
                         }
                     ],
+                    range: [
+                        {
+                            name: 'Damage buff radius',
+                            suffix: 'm',
+                            base: 15
+                        }
+                    ],
                     efficiency: [
                         {
                             name: 'Energy',
@@ -2792,7 +2806,7 @@ const warframeMods = [
                 },
             ]
         },
-        description() { return `Freeze Augment: Casting on allies will add ${this.effects.none[this.currRank]}% Cold Damage to their attacks for ${28 + 4 * this.currRank}s.` }
+        description() { return `Freeze Augment: Hold to cast will grant all allies within 15m an additional ${this.effects.none[this.currRank]}% Cold Damage to their attacks for ${28 + 4 * this.currRank}s.` }
     },
     {
         abrev: 'h6',
@@ -2814,7 +2828,7 @@ const warframeMods = [
         type: 'EXCALIBUR',
         rarity: 'rare',
         polarity: 'zenurik',
-        effects: { none: [3, 3, 4, 5] },
+        effects: { none: [[6, 7, 8, 10], [9, 11, 13, 16]] },
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
@@ -2830,7 +2844,7 @@ const warframeMods = [
                         {
                             name: 'Bonus melee damage / Enemy hit',
                             suffix: '%',
-                            base(augEffects, augRank) { return augEffects.none[augRank] }
+                            base(augEffects, augRank) { return augEffects.none[0][augRank] }
                         },
                     ],
                     none: [
@@ -2843,7 +2857,7 @@ const warframeMods = [
                         {
                             name: 'Melee damage buff duration',
                             suffix: 's',
-                            base(augEffects, augRank) { return 6 + 2 * augRank }
+                            base(augEffects, augRank) { return augEffects.none[1][augRank] }
                         }
                     ],
                     range: [
@@ -2862,7 +2876,7 @@ const warframeMods = [
                 }
             ]
         },
-        description() { return `Radial Javelin Augment: Each enemy hit will increase Excalibur's Melee Damage by ${this.effects.none[this.currRank]}% for ${6 + 2 * this.currRank}s.` }
+        description() { return `Radial Javelin Augment: Each enemy hit will increase Excalibur's Melee Damage by ${this.effects.none[0][this.currRank]}% for ${this.effects.none[1][this.currRank]}s.` }
     },
     {
         abrev: 'h8',
@@ -3074,11 +3088,58 @@ const warframeMods = [
         type: 'OBERON',
         rarity: 'rare',
         polarity: 'zenurik',
-        effects: { none: [30, 50, 70, 100] },
+        effects: { none: 0.25 },
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
-        description() { return `Hallowed Ground Augment: The next time this ability is cast it will consume the Hallowed Ground, dealing the remaining damage in a burst with ${this.effects.none[this.currRank]}% Proc Chance of Radiation.` }
+        augment: {
+            ability: 1,
+            details: [
+                {
+                    strength: [
+                        {
+                            name: 'Damage / tick',
+                            base: 100,
+                            icon: require('../assets/dynamic/damage/Radiation.png')
+                        },
+                        {
+                            name: 'Status chance',
+                            suffix: '%',
+                            base: 15,
+                        },
+                    ],
+                    none: [
+                        {
+                            name: 'Ticks/s',
+                            base: 2
+                        }
+                    ],
+                    exception: [
+                        {
+                            name: 'Radius',
+                            suffix: 'm',
+                            base: 15
+                        },
+                        {
+                            name: 'Angle',
+                            base: 180
+                        },
+                        {
+                            name: 'Duration',
+                            suffix: 's',
+                            base: 20
+                        },
+                    ],
+                    efficiency: [
+                        {
+                            name: 'Energy',
+                            base: 50
+                        }
+                    ],
+                }
+            ]
+        },
+        description() { return `Hallowed Ground Augment: Reactivate to deal all Remaining Damage and Radiation Status. Passive: +${this.effects.none * (this.currRank + 1) * 100}% Hallowed Ground Duration.` }
     },
     {
         abrev: 'i6',
@@ -3322,7 +3383,7 @@ const warframeMods = [
         exilus: true,
         rarity: 'rare',
         polarity: 'zenurik',
-        effects: { none: 10 },
+        effects: { none: [25, 30, 40, 50] },
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
@@ -3347,7 +3408,7 @@ const warframeMods = [
                         {
                             name: 'Leap distance',
                             suffix: 'm',
-                            base(augEffects, augRank) { return augEffects.none * (augRank + 1) }
+                            base(augEffects, augRank) { return augEffects.none[augRank] }
                         }
                     ],
                     efficiency: [
@@ -3369,7 +3430,7 @@ const warframeMods = [
                 }
             ]
         },
-        description() { return `Hysteria Augment: Aim and then attack to leap onto enemies up to ${this.effects.none * (this.currRank + 1)}m away.` }
+        description() { return `Hysteria Augment: Aim and then attack to leap onto enemies up to ${this.effects.none[this.currRank]}m away.` }
     },
     {
         abrev: 'j7',
@@ -4136,7 +4197,7 @@ const warframeMods = [
         type: 'MAG',
         rarity: 'rare',
         polarity: 'zenurik',
-        effects: { none: 12.5 },
+        effects: { none: [12.5, [0.2, 0.25, 0.35, 0.45]] },
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
@@ -4158,7 +4219,7 @@ const warframeMods = [
                         {
                             name: 'Disarm chance',
                             suffix: '%',
-                            base(augEffects, augRank) { return augEffects.none * (augRank + 1) },
+                            base(augEffects, augRank) { return augEffects.none[0] * (augRank + 1) },
                         },
                     ],
                     duration: [
@@ -4168,7 +4229,7 @@ const warframeMods = [
                             base: 15
                         }
                     ],
-                    range: [
+                    exception: [
                         {
                             name: 'Field radius',
                             suffix: 'm',
@@ -4189,7 +4250,7 @@ const warframeMods = [
                 }
             ]
         },
-        description() { return `Magnetize Augment: Manually detonate Magnetize by recasting on the target. Enemies hit have a ${this.effects.none * (this.currRank + 1)}% chance to become disarmed.` }
+        description() { return `Magnetize Augment: Recast on the target to detonate. Enemies hit have a ${this.effects.none[0] * (this.currRank + 1)}% chance to become disarmed. Passive: +${this.effects.none[1][this.currRank] * 100}% Magnetize Range.` }
     },
     {
         abrev: 'm0',
@@ -4435,7 +4496,7 @@ const warframeMods = [
                         {
                             name: 'Blind duration',
                             suffix: 's',
-                            base(augEffects, augRank) { return 4 + augRank }
+                            base(augEffects, augRank) { return 3 + augRank }
                         },
                     ],
                     range: [
@@ -4447,7 +4508,7 @@ const warframeMods = [
                         {
                             name: 'Blind radius',
                             suffix: 'm',
-                            base(augEffects, augRank) { return 5 + augRank }
+                            base(augEffects, augRank) { return 6 + 2 * augRank }
                         },
                     ],
                     none: [
@@ -4466,7 +4527,7 @@ const warframeMods = [
                 }
             ]
         },
-        description() { return `Shooting Gallery Augment: Does a burst before switching between players, blinding enemies within ${5 + this.currRank}m for ${4 + this.currRank}s.` }
+        description() { return `Shooting Gallery Augment: After 6 kill assists by a player with Shooting Gallery, Mesa's next shot will blind enemies within ${6 + 2 * this.currRank}m for ${3 + this.currRank}s.` }
     },
     {
         abrev: 'm6',
@@ -5140,7 +5201,7 @@ const warframeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
-        description() { return `Navigator Augment: Each hit increases the projectile's Critical Chance by ${2.5 * (this.currRank + 1)}% up to a max of 50%.` }
+        description() { return `Navigator Augment: Each hit increases the projectile's Critical Chance by ${2.5 * (this.currRank + 1)}% up to a max of 50%. +3 Projectile Punch Through.` }
     },
     {
         abrev: 'o7',
@@ -5197,7 +5258,7 @@ const warframeMods = [
                 }
             ]
         },
-        description() { return `Roar Augment: Enemies within ${this.effects.none[this.currRank]}m will suffer from a Puncture Proc.` }
+        description() { return `Roar Augment: Enemies within ${this.effects.none[this.currRank]}m will be knocked down and suffer from a Puncture Proc. Roar can be recast.` }
     },
     {
         abrev: 'o8',
@@ -5549,7 +5610,7 @@ const warframeMods = [
         maxRank: 3,
         currRank: 3,
         baseCost: 4,
-        set: { setName: 'proton', setMax: 3, setCurr: 1},
+        set: { setName: 'proton', setMax: 3, setCurr: 1 },
         description() { return [`Wall Dashing grants +${25 * (this.currRank + 1)}% Bullet Jump speed.`, `During a Wall Latch gain +17% Damage Reduction`] }
     },
     {
@@ -6279,7 +6340,7 @@ const warframeMods = [
         type: 'ASH',
         rarity: 'rare',
         polarity: 'zenurik',
-        effects: { none: [50, 65, 80, 100] },
+        effects: { none: 1 },
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
@@ -6292,13 +6353,6 @@ const warframeMods = [
                             name: 'Damage',
                             base: 2000,
                             icon: require('../assets/dynamic/damage/True.png')
-                        }
-                    ],
-                    duration: [
-                        {
-                            name: 'Extra melee multiplier duration',
-                            suffix: '%',
-                            base(augEffects, augRank) { return augEffects.none[augRank] }
                         }
                     ],
                     range: [
@@ -6321,7 +6375,7 @@ const warframeMods = [
                 },
             ]
         },
-        description() { return `Blade Storm Augment: Melee multiplier lasts ${this.effects.none[this.currRank]}% longer before it resets.` }
+        description() { return `Blade Storm Augment: Blade Storm attacks increase your Melee Counter by ${this.effects.none * (this.currRank + 1)}. Passive +10s Combo Duration` }
     },
     {
         abrev: 't3',
@@ -6700,6 +6754,11 @@ const warframeMods = [
                             name: 'Chain link range',
                             suffix: 'm',
                             base: 15
+                        },
+                        {
+                            name: 'Damage buff radius',
+                            suffix: 'm',
+                            base: 15
                         }
                     ],
                     none: [
@@ -6717,7 +6776,7 @@ const warframeMods = [
                 }
             ]
         },
-        description() { return `Shock Augment: Casting on allies will add ${this.effects.none[this.currRank]}% Electricity Damage to their attacks for ${28 + 4 * this.currRank}s.` }
+        description() { return `Shock Augment: Hold to cast will grant all allies within 15m an additional ${this.effects.none[this.currRank]}% Electricity Damage to their attacks for ${28 + 4 * this.currRank}s.` }
     },
     {
         abrev: 'u8',
@@ -6894,6 +6953,11 @@ const warframeMods = [
                             name: 'Orb auto-target radius',
                             suffix: 'm',
                             base: 12.5
+                        },
+                        {
+                            name: 'Damage buff radius',
+                            suffix: 'm',
+                            base: 15
                         }
                     ],
                     efficiency: [
@@ -6905,7 +6969,7 @@ const warframeMods = [
                 }
             ]
         },
-        description() { return `Smite Augment: Casting on allies will add ${this.effects.none[this.currRank]}% Radiation Damage to their attacks for ${28 + 4 * this.currRank}s.` }
+        description() { return `Smite Augment: Hold to cast will grant all allies within 15m an additional ${this.effects.none[this.currRank]}% Radiation Damage to their attacks for ${28 + 4 * this.currRank}s.` }
     },
     {
         abrev: 'v4',
@@ -6938,7 +7002,12 @@ const warframeMods = [
                         {
                             name: 'Stagger radius',
                             suffix: 'm',
-                            base: 2
+                            base: 15
+                        },
+                        {
+                            name: 'Ally concealment radius',
+                            suffix: 'm',
+                            base: 15
                         }
                     ],
                     efficiency: [
@@ -6950,7 +7019,7 @@ const warframeMods = [
                 },
             ]
         },
-        description() { return `Smoke Screen Augment: Conceals allies for ${this.effects.none[this.currRank]}s.` }
+        description() { return `Smoke Screen Augment: Conceals allies within 15m for ${this.effects.none[this.currRank]}s.` }
     },
     {
         abrev: 'v5',
@@ -7372,11 +7441,11 @@ const warframeMods = [
         type: 'ZEPHYR',
         rarity: 'rare',
         polarity: 'zenurik',
-        effects: { none: [30, 35, 40, 50] },
+        effects: { none: [40, 60, 80, 100] },
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
-        description() { return `Tail Wind Augment: Each enemy hit increases Tail Wind Damage by ${this.effects.none[this.currRank]}%. Damage resets upon landing.` }
+        description() { return `Tail Wind Augment: Each enemy hit increases Tail Wind Damage by ${this.effects.none[this.currRank]}%. Damage resets upon being on ground for 2s.` }
     },
     {
         abrev: 'x5',
@@ -7576,7 +7645,7 @@ const warframeMods = [
         type: 'HYDROID',
         rarity: 'rare',
         polarity: 'zenurik',
-        effects: { none: [3, 4, 5, 6] },
+        effects: { none: [8, 9, 10, 12] },
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
@@ -7640,7 +7709,7 @@ const warframeMods = [
         type: 'ATLAS',
         rarity: 'rare',
         polarity: 'zenurik',
-        effects: { none: [[1.2, 1.3, 1.4, 1.5,], [1.2, 1.25, 1.3, 1.35], [0.5, 0.55, 0.6, 0.65]] },
+        effects: { none: [2, 2.25, 2.65, 3] },
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
@@ -7655,22 +7724,23 @@ const warframeMods = [
                         },
                         {
                             name: 'Rumbler health',
-                            base(augEffects, augRank) { return 1200 * augEffects.none[0][augRank] }
-                        },
-                        {
-                            name: 'Speed',
-                            base(augEffects, augRank) { return 1 * augEffects.none[2][augRank] },
-                        },
+                            base(augEffects, augRank) { return 1200 * augEffects.none[augRank] }
+                        }
                     ],
                     strength: [
                         {
                             name: 'Melee damage',
-                            base(augEffects, augRank) { return 2000 * augEffects.none[1][augRank] },
+                            base(augEffects, augRank) { return 2000 * augEffects.none[augRank] },
                             icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
                             name: 'Rock throw damage',
-                            base(augEffects, augRank) { return 50 * augEffects.none[1][augRank] },
+                            base(augEffects, augRank) { return 50 * augEffects.none[augRank] },
+                            icon: require('../assets/dynamic/damage/Impact.png')
+                        },
+                        {
+                            name: 'Slam damage',
+                            base(augEffects, augRank) { return 200 + 100 * augRank },
                             icon: require('../assets/dynamic/damage/Impact.png')
                         },
                         {
@@ -7697,6 +7767,11 @@ const warframeMods = [
                             suffix: 'm',
                             base: 6
                         },
+                        {
+                            name: 'Slam and taunt range',
+                            suffix: 'm',
+                            base: 15
+                        }
                     ],
                     none: [
                         {
@@ -7722,7 +7797,7 @@ const warframeMods = [
                 }
             ]
         },
-        description() { return `Rumblers Augment: Create a single rumbler with ${this.effects.none[0][this.currRank] * 100}% Health, ${this.effects.none[1][this.currRank] * 100}% Damage, and ${this.effects.none[2][this.currRank] * 100}% Speed that taunts nearby enemies into attacking it.` }
+        description() { return `Rumblers Augment: Create a single rumbler with ${this.effects.none[this.currRank] * 100}% Health and ${this.effects.none[this.currRank] * 100}% Damage. Reactivating will cause him to slam the floor and knockdown enemies in 15m.` }
     },
     {
         abrev: 'y2',
@@ -7731,7 +7806,7 @@ const warframeMods = [
         type: 'MIRAGE',
         rarity: 'rare',
         polarity: 'zenurik',
-        effects: { none: [[3, 3, 4, 5], [25, 50, 75, 100]] },
+        effects: { none: [8, 10, 12, 15] },
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
@@ -7754,18 +7829,11 @@ const warframeMods = [
                             base: 25
                         }
                     ],
-                    none: [
-                        {
-                            name: 'Aura effects',
-                            suffix: '%',
-                            base(augEffects, augRank) { return augEffects.none[1][augRank] }
-                        }
-                    ],
                     range: [
                         {
                             name: 'Radius',
                             suffix: 'm',
-                            base(augEffects, augRank) { return augEffects.none[0][augRank] }
+                            base(augEffects, augRank) { return augEffects.none[augRank] }
                         }
                     ],
                     efficiency: [
@@ -7791,18 +7859,11 @@ const warframeMods = [
                             base: 25
                         }
                     ],
-                    none: [
-                        {
-                            name: 'Aura effects',
-                            suffix: '%',
-                            base(augEffects, augRank) { return augEffects.none[1][augRank] }
-                        }
-                    ],
                     range: [
                         {
                             name: 'Radius',
                             suffix: 'm',
-                            base(augEffects, augRank) { return augEffects.none[0][augRank] }
+                            base(augEffects, augRank) { return augEffects.none[augRank] }
                         }
                     ],
                     efficiency: [
@@ -7814,7 +7875,7 @@ const warframeMods = [
                 }
             ]
         },
-        description() { return `Eclipse Augment: While active, allies within ${this.effects.none[0][this.currRank]}m gain ${this.effects.none[0][this.currRank]}% benefit from Eclipse.` }
+        description() { return `Eclipse Augment: While active, allies within ${this.effects.none[this.currRank]}m benefit from Eclipse.` }
     },
     {
         abrev: 'y3',
@@ -7876,7 +7937,7 @@ const warframeMods = [
                         {
                             name: 'Static discharge conversion',
                             suffix: '%',
-                            base(augEffects, augRank) { return 25 * (augRank + 1) }
+                            base(augEffects, augRank) { return 75 * (augRank + 1) }
                         }
                     ],
                     duration: [
@@ -7912,7 +7973,7 @@ const warframeMods = [
                 }
             ]
         },
-        description() { return `Electric Shield Augment: Allies can pick up Electric Shield. ${25 * (this.currRank + 1)}% of damage absorbed will be added to Volt's Static Discharge.` }
+        description() { return `Electric Shield Augment: Allies can pick up Electric Shield. ${75 * (this.currRank + 1)}% of damage absorbed will be added to Volt's Static Discharge.` }
     },
     {
         abrev: 'y7',
@@ -8067,6 +8128,11 @@ const warframeMods = [
                             suffix: 'm',
                             base: 16
                         },
+                        {
+                            name: 'Damage buff radius',
+                            suffix: 'm',
+                            base: 15
+                        }
                     ],
                     efficiency: [
                         {
@@ -8077,7 +8143,7 @@ const warframeMods = [
                 }
             ]
         },
-        description() { return `Spores Augment: Casting on allies will add ${this.effects.none[this.currRank]}% Corrosive Damage to their attacks for ${28 + 4 * this.currRank}s.` }
+        description() { return `Spores Augment: Hold to cast will grant all allies within 15m an additional ${this.effects.none[this.currRank]}% Corrosive Damage to their attacks for ${28 + 4 * this.currRank}s.` }
     },
     {
         abrev: 'z3',

@@ -80,7 +80,7 @@ const sentinelWeaponStats = [
             'ASSAULT RIFLE',
             'BEAM'
         ],
-        polarities: [],
+        polarities: ['madurai'],
         noise: 'Alarming',
         reload: 4,
         magSize: 80,

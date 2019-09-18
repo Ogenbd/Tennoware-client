@@ -1,4 +1,17 @@
 UPDATE LOG
+18/09/19 - v1.4.13.
+New:
+Added Concentrated Arrow mode to Artemis Bow. 
+Changes:
+Implemented bow stat changes from update 25.7.
+Implemented Augment changes from update 25.6.
+Fixes:
+Corrected Acceltra fire rate.
+Added missing madurai polarity to Cryotra.
+Mirage's abilities now have the correct icons.
+Corrected Ice Storm secondary mod damage value.
+Fixed Synth mods not showing up for sentinels.
+
 03/09/19 - v1.4.12.
 New:
 Added Gauss, Acceltra and Akarius to their respective catagories.
