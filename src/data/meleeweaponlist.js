@@ -436,6 +436,10 @@ const meleeList = [
         img: require('../assets/itemimages/paracesis.png')
     },
     {
+        name: 'PATHOCYST',
+        img: require('../assets/itemimages/pathocyst.png')
+    },
+    {
         name: 'PLASMA SWORD',
         img: require('../assets/itemimages/plasma-sword.png')
     },
@@ -566,6 +570,10 @@ const meleeList = [
     {
         name: 'TEKKO',
         img: require('../assets/itemimages/tekko.png')
+    },
+    {
+        name: 'TEKKO PRIME',
+        img: require('../assets/itemimages/tekko-prime.png')
     },
     {
         name: 'TELOS BOLTACE',

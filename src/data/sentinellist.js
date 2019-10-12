@@ -12,6 +12,10 @@ const sentinelList = [
         img: require('../assets/itemimages/dethcube.png')
     },
     {
+        name: 'DETHCUBE PRIME',
+        img: require('../assets/itemimages/dethcube-prime.png')
+    },
+    {
         name: 'DIRIGA',
         img: require('../assets/itemimages/diriga.png')
     },

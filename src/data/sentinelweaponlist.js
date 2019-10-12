@@ -24,6 +24,10 @@ const sentinelWeaponList = [
         img: require('../assets/itemimages/deth-machine-rifle.png')
     },
     {
+        name: 'DETH MACHINE RIFLE PRIME',
+        img: require('../assets/itemimages/deth-machine-rifle-prime.png')
+    },
+    {
         name: 'LASER RIFLE',
         img: require('../assets/itemimages/laser-rifle.png')
     },

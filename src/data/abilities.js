@@ -2168,7 +2168,7 @@ const abilities = {
     gauss: [
         {
             name: 'Mach Rush',
-            img: undefined,
+            img: require('../assets/itemimages/machrush.png'),
             details: [
                 {
                     strength: [
@@ -2197,6 +2197,11 @@ const abilities = {
                             base: 10,
                         },
                         {
+                            name: 'Battery charge on enemy hit',
+                            suffix: '%',
+                            base: 1,
+                        },
+                        {
                             name: 'Dash distance',
                             suffix: 'm',
                             base: 12,
@@ -2218,7 +2223,7 @@ const abilities = {
         },
         {
             name: 'Kinetic Plating',
-            img: undefined,
+            img: require('../assets/itemimages/kineticplating.png'),
             details: [
                 {
                     exception: [
@@ -2258,24 +2263,24 @@ const abilities = {
         },
         {
             name: 'Thermal Sunder',
-            img: undefined,
+            img: require('../assets/itemimages/thermalsunder.png'),
             details: [
                 {
                     strength: [
                         {
-                            name: 'Minimum Cold/Heat damage',
+                            name: 'Minimum Cold damage',
                             base: 150
                         },
                         {
-                            name: 'Maximum Cold/Heat damage',
+                            name: 'Maximum Cold damage',
                             base: 750
                         },
                         {
-                            name: 'Minimum Blast damage',
+                            name: 'Minimum Heat damage',
                             base: 300
                         },
                         {
-                            name: 'Maximum Blast damage',
+                            name: 'Maximum Heat damage',
                             base: 1500
                         },
                     ],
@@ -2283,7 +2288,7 @@ const abilities = {
                         {
                             name: 'Zone duration',
                             suffix: 's',
-                            base: 10
+                            base: 15
                         },
                         {
                             name: 'Minimum status duration',
@@ -2296,18 +2301,42 @@ const abilities = {
                             base: 8
                         },
                     ],
+                    range: [
+                        {
+                            name: 'Initial radius',
+                            suffix: 'm',
+                            base: 12
+                        },
+                        {
+                            name: 'Final radius',
+                            suffix: 'm',
+                            base: 6
+                        }
+                    ],
                     efficiency: [
                         {
                             name: 'Energy',
                             base: 50
                         },
                     ],
+                    none: [
+                        {
+                            name: 'Battery charge on tap',
+                            suffix: '%',
+                            base: 10
+                        },
+                        {
+                            name: 'Battery drain on hold',
+                            suffix: '%',
+                            base: 10
+                        }
+                    ]
                 }
             ]
         },
         {
             name: 'Redline',
-            img: undefined,
+            img: require('../assets/itemimages/redline.png'),
             details: [
                 {
                     strength: [

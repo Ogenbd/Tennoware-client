@@ -12,6 +12,10 @@ const warframeList = [
         img: require('../assets/itemimages/atlas.png')
     },
     {
+        name: 'ATLAS PRIME',
+        img: require('../assets/itemimages/atlas-prime.png')
+    },
+    {
         name: 'BANSHEE',
         img: require('../assets/itemimages/banshee.png')
     },

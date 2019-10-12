@@ -36,7 +36,7 @@ const meleeMods = [
         type: 'RIPKAS',
         rarity: 'amalgam',
         polarity: 'madurai',
-        effects: { critChance: 0.125, none: [17,33,50,67,84,100] },
+        effects: { critChance: 0.125, none: [17, 33, 50, 67, 84, 100] },
         maxRank: 5,
         currRank: 5,
         baseCost: 6,
@@ -1534,13 +1534,13 @@ const meleeMods = [
         type: 'MELEE',
         rarity: 'rare',
         polarity: 'madurai',
-        effects: { elemental: { damage: 0.25, type: 'Toxin' }, status: 0.125 },
+        effects: { elemental: { damage: 0.25, type: 'Toxin' }, baseStatus: 12.5 },
         conditional: { afterWallLatch: true },
         maxRank: 3,
         currRank: 3,
         baseCost: 6,
         set: { setName: 'proton', setMax: 3, setCurr: 1 },
-        description() { return [`Hold Wall Latch for 2s to gain +${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Toxin Damage and ${Math.round(this.effects.status * (this.currRank + 1) * 1000) / 10} Status Chance for 20s.`, `During a Wall Latch gain +17% Damage Reduction`] }
+        description() { return [`Hold Wall Latch for 2s to gain +${Math.round(this.effects.elemental.damage * (this.currRank + 1) * 100)}% Toxin Damage and ${this.effects.baseStatus * (this.currRank + 1)} Status Chance for 20s.`, `During a Wall Latch gain +17% Damage Reduction`] }
     },
     {
         abrev: 'k1',

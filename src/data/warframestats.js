@@ -47,6 +47,21 @@ const warframeStats = [
         abilities: abilities.atlas
     },
     {
+        name: 'ATLAS PRIME',
+        polarities: ['naramon', 'vazarin', 'madurai', 'madurai'],
+        aura: 'madurai',
+        exilus: undefined,
+        armor: 475,
+        energy: 262,
+        baseEnergy: 175,
+        health: 525,
+        baseHealth: 175,
+        shields: 450,
+        baseShields: 150,
+        speed: 1,
+        abilities: abilities.atlas
+    },
+    {
         name: 'BANSHEE',
         polarities: ['madurai', 'madurai'],
         aura: 'madurai',

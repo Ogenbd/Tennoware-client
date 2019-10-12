@@ -202,13 +202,14 @@ export class MeleeStats extends Component {
     calcStatus = () => {
         let statusMult = 1;
         let comboMult = 0;
+        let baseStatus = 0;
         let status = {};
         let weaponStatus = this.props.weapon.modes[this.state.mode].status;
         if (this.props.weapon.type[0] === 'EXALTED BLADE' && this.state.mode > 0) {
             weaponStatus += 0.5 * this.state.powerStr / 100;
         }
         let conditionalStatusEffects = this.state.conditionalEffects.filter(
-            conditional => conditional.effects.status
+            conditional => conditional.effects.status || conditional.effects.baseStatus
         );
         if (conditionalStatusEffects.length > 0) {
             conditionalStatusEffects.forEach(conditional => {
@@ -217,37 +218,40 @@ export class MeleeStats extends Component {
                 for (let condition in conditional.conditions) {
                     if (this.state[`${condition}Toggle`]) conditionsMet++;
                 }
-                if (conditionsToMeet === conditionsMet)
-                    statusMult += conditional.effects.status;
+                if (conditionsToMeet === conditionsMet) {
+                    if (conditional.effects.status) statusMult += conditional.effects.status;
+                    if (conditional.effects.baseStatus) baseStatus += conditional.effects.baseStatus;
+                }
             });
         }
         if (this.state.effects.comboStatus) comboMult += this.state.effects.comboStatus;
         if (this.state.effects.status) statusMult += this.state.effects.status;
+        if (this.state.effects.baseStatus) baseStatus += this.state.effects.baseStatus;
         if (comboMult !== 0 && this.state.combo > 0) {
-            if (weaponStatus * statusMult * (1 + comboMult * (this.state.combo + 1)) / 100 >= 1) {
+            if (weaponStatus * statusMult * (1 + comboMult * (this.state.combo + 1)) / 100 + baseStatus / 100 >= 1) {
                 status.chance = 100;
                 status.chancePerPellet = 100;
             } else {
-                status.chance = Math.round(weaponStatus * statusMult * (1 + comboMult * (this.state.combo + 1)) * 1000) / 10;
+                status.chance = Math.round(weaponStatus * statusMult * (1 + comboMult * (this.state.combo + 1)) * 1000) / 10 + baseStatus;
                 if (this.props.weapon.modes[this.state.mode].pellets) {
-                    if ((1 - (1 - weaponStatus * statusMult * (1 + comboMult * (this.state.combo + 1)))) * 100 >= 100) {
+                    if ((1 - (1 - weaponStatus * statusMult * (1 + comboMult * (this.state.combo + 1)))) * 100 + baseStatus >= 100) {
                         status.chancePerPellet = 100
                     } else {
-                        status.chancePerPellet = Math.round(((1 - Math.pow(1 - weaponStatus * statusMult * (1 + comboMult * (this.state.combo + 1)), 1 / this.props.weapon.modes[this.state.mode].pellets)) * 100) * 10) / 10;
+                        status.chancePerPellet = Math.round(((1 - Math.pow(1 - weaponStatus * statusMult * (1 + comboMult * (this.state.combo + 1)) + baseStatus / 100, 1 / this.props.weapon.modes[this.state.mode].pellets)) * 100) * 10) / 10;
                     }
                 }
             }
         } else {
-            if (weaponStatus * statusMult / 100 >= 1) {
+            if (weaponStatus * statusMult / 100 + baseStatus / 100 >= 1) {
                 status.chance = 100;
                 status.chancePerPellet = 100;
             } else {
-                status.chance = Math.round(weaponStatus * statusMult * 1000) / 10;
+                status.chance = Math.round(weaponStatus * statusMult * 1000) / 10 + baseStatus;
                 if (this.props.weapon.modes[this.state.mode].pellets) {
-                    if ((1 - (1 - weaponStatus * statusMult)) * 100 >= 100) {
+                    if ((1 - (1 - weaponStatus * statusMult)) * 100 + baseStatus >= 100) {
                         status.chancePerPellet = 100
                     } else {
-                        status.chancePerPellet = Math.round(((1 - Math.pow(1 - weaponStatus * statusMult, 1 / this.props.weapon.modes[this.state.mode].pellets)) * 100) * 10) / 10;
+                        status.chancePerPellet = Math.round(((1 - Math.pow(1 - weaponStatus * statusMult + baseStatus / 100, 1 / this.props.weapon.modes[this.state.mode].pellets)) * 100) * 10) / 10;
                     }
                 }
             }

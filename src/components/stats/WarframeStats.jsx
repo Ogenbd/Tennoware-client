@@ -221,7 +221,7 @@ export class WarframeStats extends PureComponent {
                         )
                         // the next else if contents are exceptions for specific warframe abilities that have a min/max calculation or otherwise a singular type of calculation
                     } else if (coefficient === 'exception') {
-                        if (this.props.frame.name === 'ATLAS' || ((this.props.frame.name === 'VALKYR' || this.props.frame.name === 'VALKYR PRIME') && abilityNum === 0)) {
+                        if (this.props.frame.name === 'ATLAS' || this.props.frame.name === 'ATLAS PRIME' || ((this.props.frame.name === 'VALKYR' || this.props.frame.name === 'VALKYR PRIME') && abilityNum === 0)) {
                             if (abilityNum === 0) {
                                 let durationMult = this.state.effects.duration ? this.state.effects.duration : 0;
                                 stats.push(

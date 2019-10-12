@@ -21,6 +21,13 @@ const sentinelStats = [
         shields: 100
     },
     {
+        name: 'DETHCUBE PRIME',
+        polarities: ['penjaga', 'penjaga', 'penjaga', 'penjaga', 'vazarin'],
+        armor: 150,
+        health: 300,
+        shields: 100
+    },
+    {
         name: 'DIRIGA',
         polarities: ['penjaga', 'penjaga', 'penjaga', 'penjaga'],
         armor: 50,

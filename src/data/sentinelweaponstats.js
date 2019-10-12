@@ -195,6 +195,46 @@ const sentinelWeaponStats = [
         ]
     },
     {
+        name: 'DETH MACHINE RIFLE PRIME',
+        mastery: 0,
+        mods: 'primary',
+        type: [
+            'RIFLE',
+            'ASSAULT RIFLE'
+        ],
+        polarities: [],
+        noise: 'Alarming',
+        reload: 2,
+        magSize: 100,
+        disposition: 5,
+        modes: [
+            {
+                trigger: 'Auto',
+                fireRate: 10,
+                accuracy: 100,
+                punchThrough: 0,
+                critChance: 0.1,
+                critMult: 2,
+                status: 0.04,
+                damage: 7,
+                split: [
+                    {
+                        type: 'Impact',
+                        percent: 0.1
+                    },
+                    {
+                        type: 'Slash',
+                        percent: 0.85
+                    },
+                    {
+                        type: 'Puncture',
+                        percent: 0.05
+                    }
+                ]
+            }
+        ]
+    },
+    {
         name: 'LASER RIFLE',
         mastery: 0,
         mods: 'primary',

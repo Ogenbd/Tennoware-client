@@ -352,6 +352,7 @@ export class RangedWeaponStats extends Component {
     }
     return status;
   };
+
   // theres probably a better way to do this
   combineElements(first, second) {
     if (

@@ -4312,19 +4312,19 @@ const meleeStats = [
         split: [
           {
             type: 'Impact',
-            percent: 13/54
+            percent: 13 / 54
           },
           {
             type: 'Puncture',
-            percent: 6/54
+            percent: 6 / 54
           },
           {
             type: 'Slash',
-            percent: 11/54
+            percent: 11 / 54
           },
           {
             type: 'Electricity',
-            percent: 24/54
+            percent: 24 / 54
           }
         ]
       }
@@ -4683,6 +4683,105 @@ const meleeStats = [
             type: 'Puncture',
             percent: 0.0798611111111111
           }
+        ]
+      }
+    ]
+  },
+  {
+    name: 'PATHOCYST',
+    mastery: 9,
+    type: [
+      'GLAIVES',
+      'THROWN MELEE',
+      'PATHOCYST'
+    ],
+    polarities: [
+      'madurai',
+      'vazarin'
+    ],
+    stance: 'naramon',
+    disposition: 3,
+    channelMult: 1.5,
+    modes: [
+      {
+        name: 'Melee',
+        speed: 0.667,
+        slide: 410,
+        wall: 246,
+        slam: 82,
+        critChance: 0.15,
+        critMult: 2.1,
+        status: 0.3,
+        damage: 82,
+        split: [
+          {
+            type: 'Impact',
+            percent: 17 / 82
+          },
+          {
+            type: 'Slash',
+            percent: 21 / 82
+          },
+          {
+            type: 'Puncture',
+            percent: 15 / 82
+          },
+          {
+            type: 'Viral',
+            percent: 29 / 82
+          }
+        ]
+      },
+      {
+        name: 'Throw',
+        speed: 0.667,
+        critChance: 0.15,
+        critMult: 2.1,
+        status: 0.3,
+        damage: 285,
+        split: [
+          {
+            type: 'Impact',
+            percent: 35 / 285
+          },
+          {
+            type: 'Slash',
+            percent: 37 / 285
+          },
+          {
+            type: 'Puncture',
+            percent: 29 / 285
+          },
+          {
+            type: 'Viral',
+            percent: 184 / 285
+          }
+        ]
+      },
+      {
+        name: 'Charged Throw',
+        speed: 0.667,
+        critChance: 0.15,
+        critMult: 2.1,
+        status: 0.3,
+        damage: 785,
+        split: [
+          {
+            type: 'Impact',
+            percent: 71 / 785
+          },
+          {
+            type: 'Slash',
+            percent: 75 / 785
+          },
+          {
+            type: 'Puncture',
+            percent: 63 / 785
+          },
+          {
+            type: 'Viral',
+            percent: 576 / 785
+          },
         ]
       }
     ]
@@ -5951,6 +6050,47 @@ const meleeStats = [
           {
             type: 'Puncture',
             percent: 0.1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    name: 'TEKKO PRIME',
+    mastery: 12,
+    type: [
+      'FISTS',
+      'TEKKO'
+    ],
+    polarities: [
+      'madurai',
+      'madurai'
+    ],
+    stance: 'vazarin',
+    disposition: 5,
+    channelMult: 1.5,
+    modes: [
+      {
+        speed: 1,
+        slide: 168,
+        wall: 168,
+        slam: 56,
+        critChance: 0.3,
+        critMult: 2.4,
+        status: 0.26,
+        damage: 56,
+        split: [
+          {
+            type: 'Impact',
+            percent: 0.22
+          },
+          {
+            type: 'Slash',
+            percent: 0.64
+          },
+          {
+            type: 'Puncture',
+            percent: 0.14
           }
         ]
       }

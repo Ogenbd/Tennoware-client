@@ -2,6 +2,13 @@ UPDATE LOG
 12/10/19 - v1.4.14.
 New:
 Added new Arbitrations aura mods Arcanes.
+Added Atlas Prime, Tekko Prime, Dethcube Prime, Deth Machine Rifle Prime and Pathocyst.
+Added Gauss' ability icons.
+Changes:
+Implemented Gauss ability changes.
+Fixes:
+Proton snap status chance is now a flat addition as it is ingame.
+Fixed Scourge incorrect crit chance.
 
 18/09/19 - v1.4.13.
 New:

@@ -31,7 +31,7 @@ class App extends Component {
   componentDidMount() {
     let jwt;
     localStorage.jwt ? jwt = true : jwt = false;
-    navigator.onLine ? this.checkVer('1.4.13', jwt) : this.setState({ updateRequired: false, user: jwt });
+    navigator.onLine ? this.checkVer('1.4.14', jwt) : this.setState({ updateRequired: false, user: jwt });
     window.addEventListener('resize', this.debouncedSetWidth);
     window.addEventListener('updateavail', this.updateInit);
     window.addEventListener('online', this.setOnline);
