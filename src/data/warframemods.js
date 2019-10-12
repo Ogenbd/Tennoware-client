@@ -1,4 +1,4 @@
-// currently at abrev 
+// currently at abrev 1i
 const warframeMods = [
     {
         abrev: 'a0',

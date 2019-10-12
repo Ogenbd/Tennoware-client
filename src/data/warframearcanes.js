@@ -71,6 +71,26 @@ const warframeArcanes = [
         }
     },
     {
+        abrev: 'd1',
+        name: 'BLADE CHARGER',
+        img: require('../assets/itemimages/arbarcane.png'),
+        effects: {},
+        currRank: 3,
+        description() {
+            return `On Primary Weapon Kill:\n${5 * (this.currRank + 1)}% chance for +${50 * (this.currRank + 1)}% Damage to Melee Weapons for ${2 * (this.currRank + 1)}s.`
+        }
+    },
+    {
+        abrev: 'd3',
+        name: 'BODYGUARD',
+        img: require('../assets/itemimages/arbarcane.png'),
+        effects: {},
+        currRank: 3,
+        description() {
+            return `On Six Melee Kill within 6 seconds:\n100% chance to heal companion for ${150 * (this.currRank + 1)}.`
+        }
+    },
+    {
         abrev: 'a7',
         name: 'CONSEQUENCE',
         img: require('../assets/itemimages/consequence.png'),
@@ -191,6 +211,16 @@ const warframeArcanes = [
         }
     },
     {
+        abrev: 'd2',
+        name: 'PISTOLEER',
+        img: require('../assets/itemimages/arbarcane.png'),
+        effects: {},
+        currRank: 3,
+        description() {
+            return `On Pistol Headshot Kill:\n${Math.round(7.5 * (this.currRank + 1))}% chance for +${25 * (this.currRank + 1)}% Ammo efficiency for ${this.currRank + 1}s.`
+        }
+    },
+    {
         abrev: 'c0',
         name: 'PRECISION',
         img: require('../assets/itemimages/precision.png'),
@@ -198,6 +228,16 @@ const warframeArcanes = [
         currRank: 3,
         description() {
             return `On Headshot:\n${20 * (this.currRank + 1)}% chance for +${30 * (this.currRank + 1)}% Damage to Pistols for ${2 * (this.currRank + 1)}s.`
+        }
+    },
+    {
+        abrev: 'd0',
+        name: 'PRIMARY CHARGER',
+        img: require('../assets/itemimages/arbarcane.png'),
+        effects: {},
+        currRank: 3,
+        description() {
+            return `On Melee Kill:\n${5 * (this.currRank + 1)}% chance for +${50 * (this.currRank + 1)}% Damage to Primary Weapons for ${2 * (this.currRank + 1)}s.`
         }
     },
     {
@@ -238,6 +278,16 @@ const warframeArcanes = [
         currRank: 3,
         description() {
             return `On Hit:\n${2.5 * (this.currRank + 1)}% chance for +${10 * (this.currRank + 1)}% Attack Speed to Melee Weapons for ${3 * (this.currRank + 1)}s.`
+        }
+    },
+    {
+        abrev: 'd4',
+        name: 'TANKER',
+        img: require('../assets/itemimages/arbarcane.png'),
+        effects: {},
+        currRank: 3,
+        description() {
+            return `On Heavy Weapon Summon:\n+${300 * (this.currRank + 1)} Armor for ${4 * (this.currRank + 1)}s.`
         }
     },
     {

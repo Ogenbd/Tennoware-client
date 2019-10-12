@@ -1,4 +1,8 @@
 UPDATE LOG
+12/10/19 - v1.4.14.
+New:
+Added new Arbitrations aura mods Arcanes.
+
 18/09/19 - v1.4.13.
 New:
 Added Concentrated Arrow mode to Artemis Bow. 
