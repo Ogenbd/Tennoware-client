@@ -1,4 +1,4 @@
-// currently at abrev 1d
+// currently at abrev 
 const warframeMods = [
     {
         abrev: 'a0',
@@ -162,6 +162,20 @@ const warframeMods = [
         currRank: 3,
         baseCost: 10,
         description() { return `Increases Energy by +${Math.round(this.effects.energy * (this.currRank + 1) * 1000) / 10}% but reduces Health by ${Math.round(this.effects.health * (this.currRank + 1) * 100)}%` }
+    },
+    {
+        abrev: '1e',
+        name: 'Aerodynamic',
+        img: require('../assets/modimages/aerodynamic.jpg'),
+        type: 'AURA',
+        aura: true,
+        rarity: 'rare',
+        polarity: 'vazarin',
+        effects: {},
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 2,
+        description() { return `Reduces damage by ${4 * (this.currRank + 1)}% when Airborne.\n+${this.currRank + 1} Aim Glide/Latch Time` }
     },
     {
         abrev: '1b',
@@ -1050,6 +1064,20 @@ const warframeMods = [
         currRank: 5,
         baseCost: 4,
         description() { return `+${this.effects.none * (this.currRank + 1)}% Aura Strength\n${this.effects.none * (this.currRank + 1)}% Aura Effectiveness` }
+    },
+    {
+        abrev: '1h',
+        name: 'Combat Discipline',
+        img: require('../assets/modimages/combat-discipline.jpg'),
+        type: 'AURA',
+        aura: true,
+        rarity: 'rare',
+        polarity: 'vazarin',
+        effects: { none: [1, 2, 4, 6, 8, 10] },
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 2,
+        description() { return `Lose ${(this.effects.none[this.currRank])} Health on kill\nAllies gain ${5 + 3 * this.currRank} Armor` }
     },
     {
         abrev: 'c7',
@@ -4296,6 +4324,20 @@ const warframeMods = [
         description() { return [`Killing a Marked Enemy grants +${15 * (this.currRank + 1)}% Armor for ${5 * (this.currRank + 1)}s for each enemy within ${7.5 * (this.currRank + 1)}m`, `Kubrow Marks an enemy every ${60 - (15 * (this.set.setCurr - 1))}s for ${3 * this.set.setCurr}s. Kill them to apply their Status Effects to all enemies within ${7.5 * this.set.setCurr}m.`] }
     },
     {
+        abrev: '1i',
+        name: 'Melee Guidance',
+        img: require('../assets/modimages/melee-guidance.jpg'),
+        type: 'AURA',
+        aura: true,
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: {},
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 2,
+        description() { return `Reduce Combo Duration for self by ${this.currRank + 1}\nIncrease Combo Duration for allies by ${2 * (this.currRank + 1)} Armor` }
+    },
+    {
         abrev: 'm1',
         name: 'Mending Splinters',
         img: require('../assets/modimages/mending-splinters.jpg'),
@@ -6615,6 +6657,20 @@ const warframeMods = [
         description() { return `Shuriken Augment: Hits expose weaknesses on enemies, reducing their armor by ${Math.round(this.effects.none[this.currRank] * 100)}% for ${this.effects.none[4] * (this.currRank + 1)} seconds` }
     },
     {
+        abrev: '1g',
+        name: 'Shepherd',
+        img: require('../assets/modimages/shepherd.jpg'),
+        type: 'AURA',
+        aura: true,
+        rarity: 'rare',
+        polarity: 'vazarin',
+        effects: {},
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 2,
+        description() { return `Increases Companion Health and Armor.\n+${50 * (this.currRank + 1)} Health\n+${30 + this.currRank + 1} Armor` }
+    },
+    {
         abrev: 'u3',
         name: 'Shield Disruption',
         img: require('../assets/modimages/shield-disruption.jpg'),
@@ -7390,6 +7446,20 @@ const warframeMods = [
         currRank: 5,
         baseCost: 10,
         description() { return `Gain +${this.effects.none[this.currRank]} energy, upon replenishing shields completely after they have been deactivated.` }
+    },
+    {
+        abrev: '1f',
+        name: 'Swift Momentum',
+        img: require('../assets/modimages/swift-momentum.jpg'),
+        type: 'AURA',
+        aura: true,
+        rarity: 'rare',
+        polarity: 'madurai',
+        effects: {},
+        maxRank: 5,
+        currRank: 5,
+        baseCost: 2,
+        description() { return `+${5 * (this.currRank + 1)}% Melee Charge Attack Speed\n+${this.currRank + 1} Combo Duration` }
     },
     {
         abrev: 'x2',
